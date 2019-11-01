@@ -1,9 +1,10 @@
+setwd(here::here()) # for RStudio Jobs
 library(dplyr)
 library(ggplot2)
+library(sdmTMB)
 # devtools::install_github("seananderson/ggsidekick")
 library(ggsidekick) # for fourth_root_power_trans
 theme_set(ggsidekick::theme_sleek())
-library(sdmTMB)
 source("analysis-survey/utils.R")
 dir.create("data-generated", showWarnings = FALSE)
 dir.create("figs", showWarnings = FALSE)
@@ -13,10 +14,8 @@ if (file.exists(f)) {
   d <- readRDS(f)
 
 } else {
-  d <- gfdata::get_survey_sets("yelloweye rockfish",
-    ssid = c(22, 36, 39, 40)
-  )
-  block_ids <- gfdata::get_survey_blocks(ssid = c(22, 36, 39, 40))
+  d <- gfdata::get_survey_sets("yelloweye rockfish", ssid = c(39, 40))
+  block_ids <- gfdata::get_survey_blocks(ssid = c(39, 40))
   d <- dplyr::left_join(d, block_ids)
   d$block_designation <- as.numeric(d$block_designation)
   saveRDS(d, file = f)
@@ -36,8 +35,7 @@ d_utm <- filter(d_utm, !(X < 9.2 & Y < 54)) # not part of the survey... too far 
 
 g <- ggplot(d_utm, aes(X, Y,
   size = density_1000ppkm2,
-  colour = survey
-)) +
+  colour = survey)) +
   facet_wrap(~year) +
   geom_point(pch = 21) +
   scale_size_area()
@@ -60,6 +58,8 @@ d_utm$depth_log <- log(d_utm$depth_m)
 d_utm$depth_centred <- d_utm$depth_log - mean(d_utm$depth_log)
 d_utm$depth_scaled <- d_utm$depth_centred / sd(d_utm$depth_centred)
 d_utm$Y_cent <- d_utm$Y - mean(d_utm$Y)
+d_utm$X_cent <- d_utm$X - mean(d_utm$X)
+
 # d_utm$rock20_scaled <- sqrt(d_utm$rock20) / sd(sqrt(d_utm$rock20))
 
 joint_grid_utm <- convert2utm(joint_grid, coords = c("longitude", "latitude"))
@@ -70,20 +70,30 @@ joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years) %>%
   # mutate(rock20_scaled = sqrt(rock20) / sd(sqrt(d_utm$rock20)))
 
 joint_grid_utm <- mutate(joint_grid_utm, Y_cent = Y - mean(d_utm$Y))
+joint_grid_utm <- mutate(joint_grid_utm, X_cent = X - mean(d_utm$X))
 north_grid_utm <- filter(joint_grid_utm, survey %in% "HBLL INS N")
 south_grid_utm <- filter(joint_grid_utm, survey %in% "HBLL INS S")
 
-sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 250)
+sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 300)
 plot_spde(sp)
 
-# d_utm <- mutate(d_utm, year_fake = ifelse(year %in% c(2003, 2004), 2005, year))
+# experiment with offsetting catchability:
+# d_utm$north <- ifelse(d_utm$survey == "HBLL INS N", 1, 0)
+# joint_grid_utm$north <- ifelse(joint_grid_utm$survey == "HBLL INS N", 1, 0)
+# d_utm$real_year <- d_utm$year
+# d_utm$year[d_utm$year == 2005] <- 2004
+# joint_grid_utm$real_year <- joint_grid_utm$year
+# joint_grid_utm <- filter(joint_grid_utm, year != 2005)
+
+# Fit model -----------------------------------------------------
 
 model_file <- "data-generated/hbll-inside-joint.rds"
-# if (!file.exists(model_file)) {
+if (!file.exists(model_file)) {
   tictoc::tic()
   m <- sdmTMB(
     formula = density_1000ppkm2 ~ 0 +
-      # Y_cent + I(Y_cent^2) + I(Y_cent^3) +
+      Y_cent + I(Y_cent^2) + X_cent +
+      # north +
       as.factor(year) + depth_scaled + I(depth_scaled^2),
     data = d_utm,
     spde = sp,
@@ -92,15 +102,16 @@ model_file <- "data-generated/hbll-inside-joint.rds"
     anisotropy = TRUE,
     ar1_fields = FALSE,
     include_spatial = TRUE,
-    control = sdmTMBcontrol(step.min = 0.1),
     family = tweedie(link = "log")
   )
   tictoc::toc()
   saveRDS(m, file = model_file)
-# } else {
-#   m <- readRDS(model_file)
-# }
+} else {
+  m <- readRDS(model_file)
+}
 m
+
+# Project density ------------------------------
 
 predictions <- predict(m,
   newdata = joint_grid_utm,
@@ -168,7 +179,7 @@ ggplot(ind, aes(year, est * scale)) + geom_line() +
   geom_vline(xintercept = seq(2006, 2018, 2), lty = 2, alpha = 0.2)
 ggsave("figs/hbll-index.pdf", width = 8, height = 5)
 
-# what about the individual surveys? -----------------------
+# What about the individual surveys? -----------------------
 
 pred_north <- predict(m,
   newdata = north_grid_utm,
