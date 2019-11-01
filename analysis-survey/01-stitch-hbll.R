@@ -122,6 +122,7 @@ predictions <- predict(m,
 )
 saveRDS(predictions, file = "data-generated/hbll-inside-predictions.rds")
 ind <- get_index(predictions, bias_correct = FALSE)
+save(ind, file = "data-generated/hbll-joint-index.rds")
 
 d_utm$resids <- residuals(m) # randomized quantile residuals
 hist(d_utm$resids)
