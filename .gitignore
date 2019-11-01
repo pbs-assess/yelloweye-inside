@@ -37,3 +37,8 @@ vignettes/*.pdf
 *.png
 *.xls
 *.xlsx
+report/csas-style/
+*.log
+*.upa
+*.docx
+report/_book/

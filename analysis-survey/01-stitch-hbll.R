@@ -74,8 +74,10 @@ joint_grid_utm <- mutate(joint_grid_utm, X_cent = X - mean(d_utm$X))
 north_grid_utm <- filter(joint_grid_utm, survey %in% "HBLL INS N")
 south_grid_utm <- filter(joint_grid_utm, survey %in% "HBLL INS S")
 
-sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 300)
+sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 250)
+pdf("figs/hbll-joint-spde.pdf", width = 7, height = 7)
 plot_spde(sp)
+dev.off()
 
 # experiment with offsetting catchability:
 # d_utm$north <- ifelse(d_utm$survey == "HBLL INS N", 1, 0)
@@ -88,7 +90,7 @@ plot_spde(sp)
 # Fit model -----------------------------------------------------
 
 model_file <- "data-generated/hbll-inside-joint.rds"
-if (!file.exists(model_file)) {
+# if (!file.exists(model_file)) {
   tictoc::tic()
   m <- sdmTMB(
     formula = density_1000ppkm2 ~ 0 +
@@ -106,9 +108,10 @@ if (!file.exists(model_file)) {
   )
   tictoc::toc()
   saveRDS(m, file = model_file)
-} else {
-  m <- readRDS(model_file)
-}
+# } else {
+#   m <- readRDS(model_file)
+#   m$tmb_obj$retape()
+# }
 m
 
 # Project density ------------------------------
@@ -117,6 +120,7 @@ predictions <- predict(m,
   newdata = joint_grid_utm,
   return_tmb_object = TRUE, xy_cols = c("X", "Y")
 )
+saveRDS(predictions, file = "data-generated/hbll-inside-predictions.rds")
 ind <- get_index(predictions, bias_correct = FALSE)
 
 d_utm$resids <- residuals(m) # randomized quantile residuals
@@ -129,7 +133,7 @@ dev.off()
 
 ggplot(d_utm, aes(X, Y, col = resids)) +
   scale_colour_gradient2() +
-  geom_point(size = 0.5) + facet_wrap(~year) + coord_fixed()
+  geom_point(size = 0.9) + facet_wrap(~year) + coord_fixed()
 ggsave("figs/hbll-joint-residual-map.pdf", width = 10, height = 10)
 
 plot_map <- function(dat, column) {
