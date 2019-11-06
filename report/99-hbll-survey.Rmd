@@ -6,11 +6,11 @@ include_hbll_fig <- function(file) {
 }
 ```
 
-```{r, fig.cap="The raw data. Note years 2005, 2008, and 2009."}
+```{r, fig.cap="The raw data."}
 include_hbll_fig("hbll-joint-raw-data.pdf")
 ```
 
-```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA."}
+```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 500 knots. kmeans clustering algorithm."}
 include_hbll_fig("hbll-joint-spde.pdf")
 ```
 
@@ -18,26 +18,22 @@ include_hbll_fig("hbll-joint-spde.pdf")
 include_hbll_fig("hbll-joint-prediction-sqrt.pdf")
 ```
 
+```{r, fig.cap="Predicted relative density in space and time. This version uses a log transformed colour scheme."}
+include_hbll_fig("hbll-joint-prediction-log.pdf")
+```
+
 ```{r, fig.cap="Predicted relative density from only the fixed effects."}
 include_hbll_fig("hbll-joint-non-rf.pdf")
 ```
 
-```{r, fig.cap="The spatial random effects. These are consistent differences from the expectation based on depth and year alone."}
+```{r, fig.cap="The spatial random effects. These are consistent differences from the expectation.", out.width="4in"}
 include_hbll_fig("hbll-joint-omega.pdf")
-```
-
-```{r, fig.cap="Spatiotemporal random effects. These are assumed to be independent draws each year. Two things to note: the spatiotemporal random effects fall away to zero in regions that aren't surveyed in a given year and the overall magnitude of these effects is minuscule compared to the spatial random effects."}
-include_hbll_fig("hbll-joint-epsilon.pdf")
 ```
 
 ```{r, fig.cap="Residuals from the model shown in space and time."}
 include_hbll_fig("hbll-joint-residual-map.pdf")
 ```
 
-```{r, out.width="3.5in", fig.cap="QQ plot."}
-include_hbll_fig("hbll-joint-residuals-qq.pdf")
-```
-
-```{r, out.width="4in", fig.cap="The joint index. Top panel shows the joint prediction from the spatial temporal model. The middle panel shows the joint model prediction for only the northern area. The bottom panel shows the joint model prediction for only the southern area. The black line shows the design-based estimate. All shaded regions represent 95\\% confidence intervals. The design-based index has been rescaled to have the same geometric mean as the spatiotemporal index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. The large deviations for the design-based index in 2005, 2008, and 2009 are (at least partially) from the survey locations not matching the survey design. You can see how the uncertainty around the estimates is larger in years without observations. The joint index also has more uncertainty than either of the two regions. I've done my best to model out catchability differences between the north and south areas that are not otherwise accounted for by including latitude and latitude squared and longitude predictors. There is still a very slight seesawing that you can see with the overall index tending to be a little bit higher in years with the northern area surveyed."}
+```{r, out.width="4in", fig.cap="The joint index. Top panel shows the joint prediction from the spatial temporal model. The middle panel shows the joint model prediction for only the northern area. The bottom panel shows the joint model prediction for only the southern area. The black line shows the design-based estimate. All shaded regions represent 95\\% confidence intervals. The design-based index has been rescaled to have the same geometric mean as the spatiotemporal index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. The large deviations for the design-based index in 2005, 2008, and 2009 are (at least partially) from the survey locations not matching the survey design. You can see how the uncertainty around the estimates is larger in area-years without observations."}
 include_hbll_fig("hbll-index-components-with-design.pdf")
 ```
