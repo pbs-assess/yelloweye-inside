@@ -29,21 +29,9 @@ d <- d %>%
   rename(survey = survey_abbrev, block = block_designation)
 
 d_utm <- convert2utm(d, coords = c("longitude", "latitude"))
-# d_utm <- filter(d_utm, !(X < 9.2 & Y < 54)) # not part of the survey... too far south and west
-d_utm <- filter(d_utm, grouping_code > 270 & grouping_code < 330)
+d_utm <- filter(d_utm, grouping_code > 270 & grouping_code < 330) # not all part of survey
 
 joint_grid <- readRDS("data-generated/hbll-inside-grid.rds")
-# d_utm <- left_join(d_utm, select(joint_grid, block, rock100, rock20), by = "block")
-# sum(is.na(d_utm$rock100))
-# sum(is.na(d_utm$rock20))
-# sum(!is.na(d_utm$rock20))
-
-# g <- ggplot(d_utm, aes(X, Y, colour = is.na(rock100))) +i
-#   facet_wrap(~year) +
-#   geom_point(pch = 21)
-# ggsave("figs/hbll-missing-blocks.pdf", width = 10, height = 10)
-
-# d_utm <- filter(d_utm, !is.na(rock100))
 
 d_utm$depth_log <- log(d_utm$depth_m)
 d_utm$depth_centred <- d_utm$depth_log - mean(d_utm$depth_log)
@@ -53,8 +41,6 @@ d_utm$X_cent <- d_utm$X - mean(d_utm$X)
 d_utm$area_swept <- d_utm$hook_count * 0.0024384 * 0.009144 * 1000
 d_utm$offset <- log(d_utm$area_swept)
 
-# d_utm$rock20_scaled <- sqrt(d_utm$rock20) / sd(sqrt(d_utm$rock20))
-
 joint_grid_utm <- convert2utm(joint_grid, coords = c("longitude", "latitude"))
 joint_grid_utm$offset <- mean(d_utm$offset)
 
@@ -62,7 +48,6 @@ years <- sort(unique(d_utm$year))
 joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years) %>%
   mutate(depth_centred = log(depth) - mean(d_utm$depth_log)) %>%
   mutate(depth_scaled = depth_centred / sd(d_utm$depth_centred))
-  # mutate(rock20_scaled = sqrt(rock20) / sd(sqrt(d_utm$rock20)))
 
 joint_grid_utm <- mutate(joint_grid_utm, Y_cent = Y - mean(d_utm$Y))
 joint_grid_utm <- mutate(joint_grid_utm, X_cent = X - mean(d_utm$X))
@@ -81,58 +66,34 @@ g <- ggplot(d_utm, aes(X, Y)) +
   scale_size_area(max_size = 8) +
   labs(colour = "Count density\n(units TODO)", size = "Count density\n(units TODO)",
     fill = "Count density\n(units TODO)")
-g
 ggsave("figs/hbll-joint-raw-data.pdf", width = 10, height = 7)
+
+g <- ggplot(filter(joint_grid_utm, year == 2019), aes(X, Y)) +
+  geom_tile(aes(x = X, y = Y, fill = area), width = 0.02, height = 0.02) +
+  scale_fill_distiller(palette = "BrBG", direction = 1) +
+  coord_fixed() +
+  labs(fill = expression(Area~"in"~water~(km^2))) +
+  xlab("UTMs East (100km)") + ylab("UTMs West (100km)")
+ggsave("figs/hbll-area-in-water.pdf", width = 7, height = 5)
 
 sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 500)
 pdf("figs/hbll-joint-spde.pdf", width = 7, height = 7)
 plot_spde(sp)
 dev.off()
 
-# experiment with offsetting catchability:
-# d_utm$north <- ifelse(d_utm$survey == "HBLL INS N", 1, 0)
-# joint_grid_utm$north <- ifelse(joint_grid_utm$survey == "HBLL INS N", 1, 0)
-# d_utm$real_year <- d_utm$year
-# d_utm$year[d_utm$year == 2005] <- 2004
-# joint_grid_utm$real_year <- joint_grid_utm$year
-# joint_grid_utm <- filter(joint_grid_utm, year != 2005)
-
 # Fit model -----------------------------------------------------
 
-# d_utm <- filter(d_utm, year >= 2005)
-# sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 125)
-# joint_grid_utm <- filter(joint_grid_utm, year >= 2005)
-# north_grid_utm <- filter(north_grid_utm, year >= 2005)
-# south_grid_utm <- filter(south_grid_utm, year >= 2005)
-
-# try stratifying sampling by latitude bin:
-
-bins <- seq(min(d_utm$Y)-0.1, max(d_utm$Y)+0.1, length.out = 3)
-d_utm$lat_bin <- findInterval(d_utm$Y, bins)
-d_utm %>% group_by(lat_bin) %>% count()
-
-# weights = ifelse(d_utm$lat_bin == 1, w, 1)
-# mean(weights)
-# weights <- rep(1, nrow(d_utm))
-# d2 <- d_utm %>% group_by(lat_bin) %>% sample_n(253)
-
-# sp <- make_spde(d2$X, d2$Y, n_knots = 125)
-# sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 150)
-
 model_file <- "data-generated/hbll-inside-joint.rds"
-# if (!file.exists(model_file)) {
+if (!file.exists(model_file)) {
   tictoc::tic()
   m <- sdmTMB(
     formula = catch_count ~ 0 +
       as.factor(year) + Y_cent + I(Y_cent^2) + offset,
-    # depth_scaled + I(depth_scaled^2) +
-      # depth_scaled*Y_cent + I(depth_scaled^2)*Y_cent,
     data = d_utm,
     spde = sp,
     time = "year",
     silent = FALSE,
     anisotropy = TRUE,
-    ar1_fields = FALSE,
     include_spatial = TRUE,
     spatial_only = TRUE,
     reml = TRUE,
@@ -140,52 +101,11 @@ model_file <- "data-generated/hbll-inside-joint.rds"
   )
   tictoc::toc()
   saveRDS(m, file = model_file)
-# } else {
-#   m <- readRDS(model_file)
-#   m$tmb_obj$retape()
-# }
+} else {
+  m <- readRDS(model_file)
+  m$tmb_obj$retape()
+}
 m
-
-# library(mgcv)
-# m2 <- gam(
-#   formula = catch_count ~ 0 +
-#     as.factor(year) + offset(offset) + depth_scaled + I(depth_scaled^2) + te(X, Y),
-#   # depth_scaled + I(depth_scaled^2) +
-#   # depth_scaled*Y_cent + I(depth_scaled^2)*Y_cent,
-#   data = d_utm,
-#   family = nb(link = "log")
-# )
-# m2
-# predictions <- joint_grid_utm
-# predictions$est <- as.numeric(predict(m2, newdata = joint_grid_utm))
-# head(predictions)
-# gam_index <- group_by(predictions, year) %>% summarise(total = sum(exp(est)))
-# gam_index$year <- as.numeric(as.character(gam_index$year))
-# ggplot(gam_index, aes(year, total)) + geom_line() +
-#   xlab("Year") + ylab(expression(Estimated~density~(1000*s~of~fish/km^2))) +
-#   geom_vline(xintercept = filter(d_utm, survey == "HBLL INS S") %>% pull(year) %>% as.character() %>% as.numeric() %>% unique(), lty = 2, alpha = 0.2)
-#
-# library(gbm)
-# # d_utm$present <- ifelse(d_utm$catch_count > 0)
-# d_utm$year <- as.factor(d_utm$year)
-# m2 <- gbm(
-#   formula = catch_count ~ 0 +
-#     year + offset(offset) + depth_scaled + X + Y,
-#   data = d_utm,
-#   distribution = "poisson", n.trees = 3000, interaction.depth = 10, shrinkage = 0.01
-# )
-#
-# m2
-# joint_grid_utm$year <- as.factor(joint_grid_utm$year)
-# predictions <- joint_grid_utm
-# predictions$est <- as.numeric(predict(m2, newdata = joint_grid_utm, n.trees = 3000))
-# head(predictions)
-#
-# gbm_index <- group_by(predictions, year) %>% summarise(total = sum(exp(est)))
-# gbm_index$year <- as.numeric(as.character(gbm_index$year))
-# ggplot(gbm_index, aes(year, total)) + geom_line() +
-#   xlab("Year") + ylab(expression(Estimated~density~(1000*s~of~fish/km^2))) +
-#   geom_vline(xintercept = filter(d_utm, survey == "HBLL INS S") %>% pull(year) %>% as.character() %>% as.numeric() %>% unique(), lty = 2, alpha = 0.2)
 
 # Project density ------------------------------
 
@@ -193,12 +113,13 @@ s_years <- filter(d_utm, survey == "HBLL INS S") %>% pull(year) %>% unique()
 
 predictions <- predict(m,
   newdata = joint_grid_utm,
-  return_tmb_object = TRUE, xy_cols = c("X", "Y")
-)
+  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = joint_grid_utm$area)
+
 saveRDS(predictions, file = "data-generated/hbll-inside-predictions.rds")
 ind <- get_index(predictions, bias_correct = TRUE)
-save(ind, file = "data-generated/hbll-joint-index.rds")
+saveRDS(ind, file = "data-generated/hbll-joint-index.rds")
 
+set.seed(93817)
 d_utm$resids <- residuals(m) # randomized quantile residuals
 hist(d_utm$resids)
 pdf("figs/hbll-joint-residuals-qq.pdf", width = 5, height = 5)
@@ -220,9 +141,6 @@ plot_map <- function(dat, column, wrap = TRUE) {
     scale_fill_viridis_c(option = "D")
   if (wrap) gg + facet_wrap(~year) else gg
 }
-
-# plot_map(predictions$data, exp(est)) + ggtitle("Prediction (fixed effects + all random effects)")
-# ggsave("figs/hbll-joint-prediction.pdf", width = 10, height = 10)
 
 g <- plot_map(predictions$data, exp(est)) +
   scale_fill_viridis_c(trans = "sqrt", option = "D") +
@@ -257,7 +175,6 @@ ggsave("figs/hbll-joint-omega.pdf", width = 5, height = 5)
 #   scale_fill_gradient2()
 # ggsave("figs/hbll-joint-epsilon.pdf", width = 10, height = 10)
 
-# scale <- 2 * 2 # 2 x 2 km grid
 scale <- 1
 ggplot(ind, aes(year, est * scale)) + geom_line() +
   geom_ribbon(aes(ymin = lwr * scale, ymax = upr * scale), alpha = 0.4) +
@@ -307,7 +224,7 @@ g <- bind_rows(ind_north, ind_south) %>%
     alpha = 0.2, colour = NA
   ) +
   facet_wrap(~type, ncol = 1) +
-  xlab("Year") + ylab(expression(Estimated~density~(1000*s~of~fish/km^2))) +
+  xlab("Year") + ylab("Estimated relative abundance") +
   geom_vline(xintercept = s_years, lty = 2, alpha = 0.2, lwd = 0.2) +
   scale_color_brewer(palette = "Set2") +
   scale_fill_brewer(palette = "Set2") +

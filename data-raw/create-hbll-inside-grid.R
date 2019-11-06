@@ -19,5 +19,12 @@ d2 <- d2 %>%
 
 # plot(d2$exported_research_blocks.percent100_rock, d2$exported_research_blocks.Percent20m_rock)
 
-saveRDS(d2, file = "data-generated/hbll-inside-grid.rds")
+# email from Dana:
+area <- readr::read_csv("All_HBLL_Blocks_Area_Water.csv") %>%
+  dplyr::select(block = BLOCK_DESI, area = Area_Water_km2)
 
+d2 <- left_join(d2, area)
+
+stopifnot(sum(is.na(d2$area)) == 0)
+
+saveRDS(d2, file = "data-generated/hbll-inside-grid.rds")
