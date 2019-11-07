@@ -12,7 +12,6 @@ dir.create("figs", showWarnings = FALSE)
 f <- "data-generated/yelloweye-rockfish-inside.rds"
 if (file.exists(f)) {
   d <- readRDS(f)
-
 } else {
   d <- gfdata::get_survey_sets("yelloweye rockfish", ssid = c(39, 40))
   block_ids <- gfdata::get_survey_blocks(ssid = c(39, 40))
@@ -55,24 +54,34 @@ north_grid_utm <- filter(joint_grid_utm, survey %in% "HBLL INS N")
 south_grid_utm <- filter(joint_grid_utm, survey %in% "HBLL INS S")
 
 g <- ggplot(d_utm, aes(X, Y)) +
-  geom_tile(data = north_grid_utm, aes(x = X, y = Y), size = 0.5, colour = "grey50", fill = "white") +
-  geom_tile(data = south_grid_utm, aes(x = X, y = Y), size = 0.5, colour = "grey80", fill = "white") +
+  geom_tile(
+    data = north_grid_utm, aes(x = X, y = Y), size = 0.5,
+    colour = "grey50", fill = "white"
+  ) +
+  geom_tile(
+    data = south_grid_utm, aes(x = X, y = Y), size = 0.5,
+    colour = "grey80", fill = "white"
+  ) +
   facet_wrap(~year) +
-  geom_point(pch = 21, mapping = aes(size = catch_count / area_swept,
-    colour = catch_count / area_swept), alpha = 1) +
+  geom_point(pch = 21, mapping = aes(
+    size = catch_count / area_swept,
+    colour = catch_count / area_swept
+  ), alpha = 1) +
   coord_fixed() +
   scale_color_viridis_c() +
   scale_fill_viridis_c() +
   scale_size_area(max_size = 8) +
-  labs(colour = "Count density\n(units TODO)", size = "Count density\n(units TODO)",
-    fill = "Count density\n(units TODO)")
+  labs(
+    colour = "Count density\n(units TODO)", size = "Count density\n(units TODO)",
+    fill = "Count density\n(units TODO)"
+  )
 ggsave("figs/hbll-joint-raw-data.pdf", width = 10, height = 7)
 
 g <- ggplot(filter(joint_grid_utm, year == 2019), aes(X, Y)) +
   geom_tile(aes(x = X, y = Y, fill = area), width = 0.02, height = 0.02) +
   scale_fill_distiller(palette = "BrBG", direction = 1) +
   coord_fixed() +
-  labs(fill = expression(Area~"in"~water~(km^2))) +
+  labs(fill = expression(Area ~ "in" ~ water ~ (km^2))) +
   xlab("UTMs East (100km)") + ylab("UTMs West (100km)")
 ggsave("figs/hbll-area-in-water.pdf", width = 7, height = 5)
 
@@ -109,15 +118,36 @@ m
 
 # Project density ------------------------------
 
-s_years <- filter(d_utm, survey == "HBLL INS S") %>% pull(year) %>% unique()
+s_years <- filter(d_utm, survey == "HBLL INS S") %>%
+  pull(year) %>%
+  unique()
 
 predictions <- predict(m,
   newdata = joint_grid_utm,
-  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = joint_grid_utm$area)
-
+  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = joint_grid_utm$area
+)
 saveRDS(predictions, file = "data-generated/hbll-inside-predictions.rds")
 ind <- get_index(predictions, bias_correct = TRUE)
 saveRDS(ind, file = "data-generated/hbll-joint-index.rds")
+
+# Check effect of land ----------------------------
+predictions_noarea <- predict(m,
+  newdata = joint_grid_utm,
+  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = rep(4, nrow(joint_grid_utm))
+)
+ind_noarea <- get_index(predictions_noarea, bias_correct = TRUE)
+ind$area_water <- TRUE
+ind_noarea$area_water <- FALSE
+ind_area_check <- bind_rows(ind, ind_noarea)
+scale <- 1
+ggplot(ind_area_check, aes(year, est * scale)) + geom_line(aes(colour = area_water)) +
+  geom_ribbon(aes(ymin = lwr * scale, ymax = upr * scale, fill = area_water), alpha = 0.4) +
+  xlab("Year") + ylab(expression(Estimated ~ density ~ (count))) +
+  geom_vline(xintercept = s_years, lty = 2, alpha = 0.2) +
+  labs(fill = "Accounting for\narea on land", colour = "Accounting for\narea on land")
+ggsave("figs/hbll-index-water-check.pdf", width = 8, height = 5)
+
+# Diagnostics -----------------------------------
 
 set.seed(93817)
 d_utm$resids <- residuals(m) # randomized quantile residuals
@@ -136,7 +166,11 @@ ggsave("figs/hbll-joint-residual-map.pdf", width = 10, height = 10)
 
 plot_map <- function(dat, column, wrap = TRUE) {
   gg <- ggplot(data = dat) +
-    geom_tile(mapping = aes(X, Y, fill = {{column}}), width = 0.025, height = 0.025) +
+    geom_tile(mapping = aes(X, Y, fill = {
+      {
+        column
+      }
+    }), width = 0.025, height = 0.025) +
     coord_fixed() +
     scale_fill_viridis_c(option = "D")
   if (wrap) gg + facet_wrap(~year) else gg
@@ -144,10 +178,13 @@ plot_map <- function(dat, column, wrap = TRUE) {
 
 g <- plot_map(predictions$data, exp(est)) +
   scale_fill_viridis_c(trans = "sqrt", option = "D") +
-  labs(fill = "Estimated\nrelative\nabundance", size = "Observed\nrelative\nabundance") +
-  # ggtitle("") +
-  geom_point(data = d_utm, pch = 21, mapping = aes(x = X, y = Y, size = catch_count / area_swept),
-    inherit.aes = FALSE, colour = "grey20", alpha = 0.5) +
+  labs(fill = "Estimated\nrelative\nabundance",
+    size = "Observed\nrelative\nabundance") +
+  geom_point(
+    data = d_utm, pch = 21, mapping = aes(x = X, y = Y,
+      size = catch_count / area_swept),
+    inherit.aes = FALSE, colour = "grey20", alpha = 0.5
+  ) +
   scale_size_area(max_size = 7)
 ggsave("figs/hbll-joint-prediction-sqrt.pdf", width = 10, height = 10)
 
@@ -155,7 +192,6 @@ g <- g + scale_fill_viridis_c(trans = "log10", option = "D")
 ggsave("figs/hbll-joint-prediction-log.pdf", width = 10, height = 10)
 
 plot_map(predictions$data, exp(est_non_rf)) +
-  # ggtitle("Fixed effects component") +
   scale_fill_viridis_c(trans = "sqrt", option = "D") +
   labs(fill = "Fixed effect\nestimate")
 ggsave("figs/hbll-joint-non-rf.pdf", width = 10, height = 10)
@@ -166,7 +202,6 @@ ggsave("figs/hbll-joint-non-rf.pdf", width = 10, height = 10)
 # ggsave("figs/hbll-joint-rf.pdf", width = 10, height = 10)
 
 plot_map(filter(predictions$data, year == 2018), omega_s, wrap = FALSE) +
-  ggtitle("Spatial random effects only") +
   scale_fill_gradient2(high = scales::muted("red"), low = scales::muted("blue"), mid = "grey90")
 ggsave("figs/hbll-joint-omega.pdf", width = 5, height = 5)
 
@@ -175,24 +210,17 @@ ggsave("figs/hbll-joint-omega.pdf", width = 5, height = 5)
 #   scale_fill_gradient2()
 # ggsave("figs/hbll-joint-epsilon.pdf", width = 10, height = 10)
 
-scale <- 1
-ggplot(ind, aes(year, est * scale)) + geom_line() +
-  geom_ribbon(aes(ymin = lwr * scale, ymax = upr * scale), alpha = 0.4) +
-  xlab("Year") + ylab(expression(Estimated~density~(1000*s~of~fish/km^2)~TODO~FIX~UNITS)) +
-  geom_vline(xintercept = s_years, lty = 2, alpha = 0.2)
-ggsave("figs/hbll-index.pdf", width = 8, height = 5)
-
 # What about the individual surveys? -----------------------
 
 pred_north <- predict(m,
   newdata = north_grid_utm,
-  return_tmb_object = TRUE, xy_cols = c("X", "Y")
+  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = north_grid_utm$area
 )
 ind_north <- get_index(pred_north, bias_correct = TRUE)
 
 pred_south <- predict(m,
   newdata = south_grid_utm,
-  return_tmb_object = TRUE, xy_cols = c("X", "Y")
+  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = south_grid_utm$area
 )
 ind_south <- get_index(pred_south, bias_correct = TRUE)
 
@@ -233,7 +261,7 @@ g
 ggsave("figs/hbll-index-components.pdf", width = 5.5, height = 8.5)
 
 # Design based comparison: -----------------------------------
-out <- d %>% filter(grouping_code > 50) %>% # not part of design?
+out <- d_utm %>%
   boot_biomass(reps = 1000L)
 all_modelled <- bind_rows(ind_north, ind_south) %>%
   bind_rows(ind)

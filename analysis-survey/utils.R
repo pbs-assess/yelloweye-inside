@@ -37,7 +37,7 @@ boot_biomass <- function(dat, reps = 100) {
 
 calc_bio <- function(dat, i = seq_len(nrow(dat))) {
   dat[i, ] %>% group_by(year, survey, grouping_code) %>%
-    summarise(density = mean(density_ppkm2)) %>%
+    summarise(density = mean(catch_count / area_swept)) %>%
     group_by(year) %>%
     summarise(biomass = sum(density * 2 * 2)) %>%
     pull(biomass)
