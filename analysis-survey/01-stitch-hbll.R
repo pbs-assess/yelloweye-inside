@@ -102,6 +102,7 @@ dev.off()
 model_file <- "data-generated/hbll-inside-joint-hook-eps-depth.rds"
 model_file_depth <- "data-generated/hbll-inside-joint-hook-eps.rds"
 if (!file.exists(model_file) || !file.exists(model_file_depth)) {
+  tictoc::tic()
   m_nodepth <- sdmTMB(
     formula = catch_count ~ 0 +
       as.factor(year) +
@@ -110,11 +111,15 @@ if (!file.exists(model_file) || !file.exists(model_file_depth)) {
     spde = sp,
     time = "year",
     silent = FALSE,
-    anisotropy = TRUE,
+    anisotropy = FALSE,
+    cores = 4L,
+    reml = TRUE,
     family = nbinom2(link = "log")
   )
+  tictoc::toc()
   saveRDS(m_nodepth, file = model_file)
 
+  tictoc::tic()
   m <- sdmTMB(
     formula = catch_count ~ 0 +
       as.factor(year) +
@@ -124,9 +129,12 @@ if (!file.exists(model_file) || !file.exists(model_file_depth)) {
     spde = sp,
     time = "year",
     silent = FALSE,
-    anisotropy = TRUE,
+    anisotropy = FALSE,
+    cores = 4L,
+    reml = TRUE,
     family = nbinom2(link = "log")
   )
+  tictoc::toc()
   saveRDS(m, file = model_file_depth)
 } else {
   m_nodepth <- readRDS(model_file)
@@ -137,8 +145,8 @@ if (!file.exists(model_file) || !file.exists(model_file_depth)) {
 m_nodepth
 m
 
-AIC(m_nodepth)
-AIC(m)
+# AIC(m_nodepth)
+# AIC(m)
 
 # Project density ------------------------------
 
@@ -250,15 +258,25 @@ s_years <- filter(d_utm, survey %in% "HBLL INS S") %>%
 
 ind_north_plot <- filter(ind_north, year %in% n_years)
 ind_south_plot <- filter(ind_south, year %in% s_years)
+
+.geomean <- exp(mean(log(ind$est)))
+.ratio <- (exp(mean(log(ind_nodepth$est))) / .geomean)
+.ind_nodepth <- ind_nodepth %>%
+  mutate(est = est / .ratio) %>%
+  mutate(upr = upr / .ratio) %>%
+  mutate(lwr = lwr / .ratio)
+
 all_plot <- bind_rows(ind_north_plot, ind_south_plot) %>%
   bind_rows(ind) %>%
-  bind_rows(ind_nodepth) %>%
+  mutate(type2 = type) %>%
+  bind_rows(mutate(.ind_nodepth, type2 = "HBLL INS")) %>%
   filter(year > 2003)
 
 scale <- 1
 g <- bind_rows(ind_north, ind_south) %>%
   bind_rows(ind) %>%
-  bind_rows(ind_nodepth) %>%
+  mutate(type2 = type) %>%
+  bind_rows(mutate(.ind_nodepth, type2 = "HBLL INS")) %>%
   filter(year > 2003) %>%
   ggplot(aes(year, est * scale)) +
   geom_line(aes(colour = type)) +
@@ -267,37 +285,41 @@ g <- bind_rows(ind_north, ind_south) %>%
   geom_ribbon(aes(ymin = lwr * scale, ymax = upr * scale, fill = type),
     alpha = 0.2, colour = NA
   ) +
-  facet_wrap(~type, ncol = 1) +
+  facet_wrap(~type2, ncol = 1) +
+  labs(colour = "Type", fill = "Type") +
   xlab("Year") + ylab("Estimated relative abundance") +
   geom_vline(xintercept = s_years, lty = 2, alpha = 0.2, lwd = 0.2) +
   scale_color_brewer(palette = "Set2") +
   scale_fill_brewer(palette = "Set2") +
-  scale_x_continuous(breaks = seq(2004, 2018, 2))
-g
-ggsave("figs/hbll-index-components-eps-depth.pdf", width = 5.5, height = 8.5)
+  scale_x_continuous(breaks = seq(2004, 2018, 2)) +
+  coord_cartesian(ylim = c(0, max(ind$upr) * 0.8)) +
+  theme(legend.position = c(0.22, 0.56))
+# g
+ggsave("figs/hbll-index-components-eps-depth.pdf", width = 4.1, height = 7.5)
 
 # Design based comparison: -----------------------------------
-out <- d_utm %>%
-  boot_biomass(reps = 200L)
-all_modelled <- bind_rows(ind_north, ind_south) %>%
-  bind_rows(ind)
-design_based <- all_modelled %>%
-  group_by(type) %>%
-  mutate(est_scaled = est * scale) %>%
-  summarise(geomean = exp(mean(log(est_scaled)))) %>%
-  rename(survey = type) %>%
-  right_join(out, by = "survey") %>%
-  group_by(survey) %>%
-  mutate(scaled_biomass = biomass / (exp(mean(log(biomass))) / geomean)) %>%
-  mutate(scaled_max = upr / (exp(mean(log(biomass))) / geomean)) %>%
-  mutate(scaled_min = lwr / (exp(mean(log(biomass))) / geomean)) %>%
-  rename(type = survey)
-
-g + geom_line(data = design_based, aes(x = year, y = scaled_biomass),
-  inherit.aes = FALSE) +
-  geom_point(data = design_based, aes(x = year, y = scaled_biomass),
-    inherit.aes = FALSE, pch = 4) +
-  geom_ribbon(data = design_based,
-    aes(x = year, ymin = scaled_min, ymax = scaled_max), inherit.aes = FALSE, alpha = 0.1) +
-  labs(colour = "Type", fill = "Type") + theme(legend.position = "none")
-ggsave("figs/hbll-index-components-with-design-hook-eps-depth.pdf", width = 5.3, height = 8.5)
+# out <- d_utm %>%
+#   boot_biomass(reps = 1000L)
+# all_modelled <- bind_rows(ind_north, ind_south) %>%
+#   bind_rows(ind)
+# design_based <- all_modelled %>%
+#   group_by(type) %>%
+#   mutate(est_scaled = est * scale) %>%
+#   summarise(geomean = exp(mean(log(est_scaled)))) %>%
+#   rename(survey = type) %>%
+#   right_join(out, by = "survey") %>%
+#   group_by(survey) %>%
+#   mutate(scaled_biomass = biomass / (exp(mean(log(biomass))) / geomean)) %>%
+#   mutate(scaled_max = upr / (exp(mean(log(biomass))) / geomean)) %>%
+#   mutate(scaled_min = lwr / (exp(mean(log(biomass))) / geomean)) %>%
+#   rename(type = survey) %>%
+#   mutate(type2 = type)
+#
+# g + geom_line(data = design_based, aes(x = year, y = scaled_biomass),
+#   inherit.aes = FALSE) +
+#   geom_point(data = design_based, aes(x = year, y = scaled_biomass),
+#     inherit.aes = FALSE, pch = 4) +
+#   geom_ribbon(data = design_based,
+#     aes(x = year, ymin = scaled_min, ymax = scaled_max), inherit.aes = FALSE, alpha = 0.1) +
+#   labs(colour = "Type", fill = "Type") + theme(legend.position = "none")
+# ggsave("figs/hbll-index-components-with-design-hook-eps-depth.pdf", width = 5.3, height = 8.5)
