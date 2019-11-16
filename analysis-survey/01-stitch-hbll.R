@@ -8,6 +8,9 @@ theme_set(ggsidekick::theme_sleek())
 source("analysis-survey/utils.R")
 dir.create("data-generated", showWarnings = FALSE)
 dir.create("figs", showWarnings = FALSE)
+cores <- floor(parallel::detectCores() / 4)
+
+# Load data and prep. -----------------------------------------------------
 
 f <- "data-generated/yelloweye-rockfish-inside.rds"
 if (file.exists(f)) {
@@ -46,10 +49,11 @@ d_utm$Y_cent <- d_utm$Y - mean(d_utm$Y)
 d_utm$X_cent <- d_utm$X - mean(d_utm$X)
 d_utm$area_swept <- d_utm$hook_count * 0.0024384 * 0.009144 * 1000
 d_utm$offset_area_swept <- log(d_utm$area_swept)
-d_utm$offset <- log(d_utm$area_swept / d_utm$hook_adjust_factor)
+d_utm$offset_area_hook <- log(d_utm$area_swept / d_utm$hook_adjust_factor)
 
 joint_grid_utm <- convert2utm(joint_grid, coords = c("longitude", "latitude"))
-joint_grid_utm$offset <- mean(d_utm$offset)
+joint_grid_utm$offset_area_hook <- mean(d_utm$offset_area_hook)
+joint_grid_utm$offset_area_swept <- mean(d_utm$offset_area_swept)
 
 years <- sort(unique(d_utm$year))
 joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years) %>%
@@ -92,61 +96,56 @@ g <- ggplot(filter(joint_grid_utm, year == 2019), aes(X, Y)) +
   xlab("UTMs East (100km)") + ylab("UTMs West (100km)")
 ggsave("figs/hbll-area-in-water.pdf", width = 7, height = 5)
 
-sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 500)
+sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 400)
 pdf("figs/hbll-joint-spde.pdf", width = 7, height = 7)
 plot_spde(sp)
 dev.off()
 
 # Fit model -----------------------------------------------------
 
-model_file <- "data-generated/hbll-inside-joint-hook-eps-depth.rds"
-model_file_depth <- "data-generated/hbll-inside-joint-hook-eps.rds"
-if (!file.exists(model_file) || !file.exists(model_file_depth)) {
-  tictoc::tic()
-  m_nodepth <- sdmTMB(
-    formula = catch_count ~ 0 +
-      as.factor(year) +
-      offset,
-    data = d_utm,
-    spde = sp,
-    time = "year",
-    silent = FALSE,
-    anisotropy = FALSE,
-    cores = 4L,
-    reml = TRUE,
-    family = nbinom2(link = "log")
-  )
-  tictoc::toc()
-  saveRDS(m_nodepth, file = model_file)
+model_file <- "data-generated/hbll-inside-joint-hook-eps.rds"
+model_file_depth <- "data-generated/hbll-inside-joint-hook-eps-depth.rds"
+model_file_nohook <- "data-generated/hbll-inside-joint-no-hook-eps.rds"
+if (!file.exists(model_file) || !file.exists(model_file_depth) ||
+    !file.exists(model_file_nohook)) {
+  fit_model <- function(formula, file) {
+    tictoc::tic()
+    .m <- sdmTMB(
+      formula = formula,
+      data = d_utm,
+      spde = sp,
+      time = "year",
+      silent = FALSE,
+      anisotropy = FALSE,
+      cores = cores,
+      reml = TRUE,
+      control = sdmTMBcontrol(step.min = 0.01, step.max = 1),
+      family = nbinom2(link = "log")
+    )
+    tictoc::toc()
+    saveRDS(.m, file = file)
+    .m
+  }
 
-  tictoc::tic()
-  m <- sdmTMB(
-    formula = catch_count ~ 0 +
-      as.factor(year) +
-      depth_scaled + I(depth_scaled^2) +
-      offset,
-    data = d_utm,
-    spde = sp,
-    time = "year",
-    silent = FALSE,
-    anisotropy = FALSE,
-    cores = 4L,
-    reml = TRUE,
-    family = nbinom2(link = "log")
+  d_utm$offset <- d_utm$offset_area_hook
+  m <- fit_model(catch_count ~ 0 + as.factor(year) + offset, model_file)
+  m_depth <- fit_model(
+    catch_count ~ 0 + as.factor(year) + depth_scaled + I(depth_scaled^2) + offset,
+    model_file_depth
   )
-  tictoc::toc()
-  saveRDS(m, file = model_file_depth)
+  d_utm$offset <- d_utm$offset_area_swept
+  m_nohook <- fit_model(catch_count ~ 0 + as.factor(year) + offset,
+    model_file_nohook
+  )
+
 } else {
-  m_nodepth <- readRDS(model_file)
-  m <- readRDS(model_file_depth)
-  m_nodepth$tmb_obj$retape()
-  m$tmb_obj$retape()
+  m <- readRDS(model_file)
+  m_depth <- readRDS(model_file_depth)
+  m_nohook <- readRDS(model_file_nohook)
 }
-m_nodepth
 m
-
-# AIC(m_nodepth)
-# AIC(m)
+m_depth
+m_nohook
 
 # Project density ------------------------------
 
@@ -154,30 +153,30 @@ s_years <- filter(d_utm, survey == "HBLL INS S") %>%
   pull(year) %>%
   unique()
 
-predictions_nodepth <- predict(m_nodepth,
-  newdata = joint_grid_utm,
-  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = joint_grid_utm$area
-)
-ind_nodepth <- get_index(predictions_nodepth, bias_correct = FALSE)
-saveRDS(ind_nodepth, file = "data-generated/hbll-joint-index-no-depth.rds")
+joint_grid_utm$offset <- joint_grid_utm$offset_area_hook
+get_predictions <- function(model) {
+  predict(model,
+    newdata = joint_grid_utm,
+    return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = joint_grid_utm$area
+  )
+}
 
-predictions <- predict(m,
-  newdata = joint_grid_utm,
-  return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = joint_grid_utm$area
-)
+predictions <- get_predictions(m)
 ind <- get_index(predictions, bias_correct = FALSE)
 saveRDS(ind, file = "data-generated/hbll-joint-index.rds")
+
+predictions_depth <- get_predictions(m_depth)
+ind_depth <- get_index(predictions_depth, bias_correct = FALSE)
+saveRDS(ind_depth, file = "data-generated/hbll-joint-index-depth.rds")
+
+predictions_nohook <- get_predictions(m_nohook)
+ind_nohook <- get_index(predictions_nohook, bias_correct = FALSE)
+saveRDS(ind_nohook, file = "data-generated/hbll-joint-index-depth.rds")
 
 # Diagnostics -----------------------------------
 
 set.seed(93817)
 d_utm$resids <- residuals(m) # randomized quantile residuals
-hist(d_utm$resids)
-pdf("figs/hbll-joint-residuals-qq.pdf", width = 5, height = 5)
-par(cex = 0.75)
-qqnorm(d_utm$resids)
-abline(a = 0, b = 1)
-dev.off()
 
 ggplot(d_utm, aes(X, Y, col = resids)) +
   scale_colour_gradient2() +
@@ -217,11 +216,6 @@ plot_map(predictions$data, exp(est_non_rf)) +
   labs(fill = "Fixed effect\nestimate")
 ggsave("figs/hbll-joint-non-rf.pdf", width = 10, height = 10)
 
-# plot_map(predictions$data, est_rf) +
-#   ggtitle("All spatial and spatiotemporal random effects") +
-#   scale_fill_gradient2(high = scales::muted("red"), low = scales::muted("blue"), mid = "grey90")
-# ggsave("figs/hbll-joint-rf.pdf", width = 10, height = 10)
-
 plot_map(filter(predictions$data, year == 2018), omega_s, wrap = FALSE) +
   scale_fill_gradient2(high = scales::muted("red"), low = scales::muted("blue"), mid = "grey90")
 ggsave("figs/hbll-joint-omega.pdf", width = 5, height = 5)
@@ -247,21 +241,25 @@ ind_south <- get_index(pred_south, bias_correct = FALSE)
 ind_north$type <- "HBLL INS N"
 ind_south$type <- "HBLL INS S"
 ind$type <- "HBLL INS"
-ind_nodepth$type <- "HBLL INS no depth"
+ind_depth$type <- "HBLL INS (with depth)"
+ind_nonook$type <- "HBLL INS (no hook competition)"
 
 n_years <- filter(d_utm, survey %in% "HBLL INS N") %>%
-  pull(year) %>%
-  unique()
+  pull(year) %>% unique()
 s_years <- filter(d_utm, survey %in% "HBLL INS S") %>%
-  pull(year) %>%
-  unique()
-
+  pull(year) %>% unique()
 ind_north_plot <- filter(ind_north, year %in% n_years)
 ind_south_plot <- filter(ind_south, year %in% s_years)
 
 .geomean <- exp(mean(log(ind$est)))
 .ratio <- (exp(mean(log(ind_nodepth$est))) / .geomean)
-.ind_nodepth <- ind_nodepth %>%
+.ind_depth <- ind_depth %>%
+  mutate(est = est / .ratio) %>%
+  mutate(upr = upr / .ratio) %>%
+  mutate(lwr = lwr / .ratio)
+
+.ratio <- (exp(mean(log(ind_nohook$est))) / .geomean)
+.ind_nohook <- ind_nohook %>%
   mutate(est = est / .ratio) %>%
   mutate(upr = upr / .ratio) %>%
   mutate(lwr = lwr / .ratio)
@@ -294,32 +292,4 @@ g <- bind_rows(ind_north, ind_south) %>%
   scale_x_continuous(breaks = seq(2004, 2018, 2)) +
   coord_cartesian(ylim = c(0, max(ind$upr) * 0.8)) +
   theme(legend.position = c(0.22, 0.56))
-# g
 ggsave("figs/hbll-index-components-eps-depth.pdf", width = 4.1, height = 7.5)
-
-# Design based comparison: -----------------------------------
-# out <- d_utm %>%
-#   boot_biomass(reps = 1000L)
-# all_modelled <- bind_rows(ind_north, ind_south) %>%
-#   bind_rows(ind)
-# design_based <- all_modelled %>%
-#   group_by(type) %>%
-#   mutate(est_scaled = est * scale) %>%
-#   summarise(geomean = exp(mean(log(est_scaled)))) %>%
-#   rename(survey = type) %>%
-#   right_join(out, by = "survey") %>%
-#   group_by(survey) %>%
-#   mutate(scaled_biomass = biomass / (exp(mean(log(biomass))) / geomean)) %>%
-#   mutate(scaled_max = upr / (exp(mean(log(biomass))) / geomean)) %>%
-#   mutate(scaled_min = lwr / (exp(mean(log(biomass))) / geomean)) %>%
-#   rename(type = survey) %>%
-#   mutate(type2 = type)
-#
-# g + geom_line(data = design_based, aes(x = year, y = scaled_biomass),
-#   inherit.aes = FALSE) +
-#   geom_point(data = design_based, aes(x = year, y = scaled_biomass),
-#     inherit.aes = FALSE, pch = 4) +
-#   geom_ribbon(data = design_based,
-#     aes(x = year, ymin = scaled_min, ymax = scaled_max), inherit.aes = FALSE, alpha = 0.1) +
-#   labs(colour = "Type", fill = "Type") + theme(legend.position = "none")
-# ggsave("figs/hbll-index-components-with-design-hook-eps-depth.pdf", width = 5.3, height = 8.5)
