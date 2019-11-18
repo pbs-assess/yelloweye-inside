@@ -6,34 +6,42 @@ include_hbll_fig <- function(file) {
 }
 ```
 
-```{r, fig.cap="The raw data."}
+```{r, fig.cap="The raw data. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the raw number of fish caught not adjusting for number of hooks or hook competition."}
 include_hbll_fig("hbll-joint-raw-data.pdf")
 ```
 
-```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 500 knots. kmeans clustering algorithm."}
+```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 400 knots. kmeans clustering algorithm. Samples from all years are shown simultaneously."}
 include_hbll_fig("hbll-joint-spde.pdf")
 ```
 
-```{r, fig.cap="Predicted relative density in space and time. This version uses a square root transformed colour scheme."}
-include_hbll_fig("hbll-joint-prediction-sqrt.pdf")
+```{r, out.width="5in", fig.cap="Area per survey grid cell."}
+include_hbll_fig("hbll-area-in-water.pdf")
 ```
 
-```{r, fig.cap="Predicted relative density in space and time. This version uses a log transformed colour scheme."}
+```{r, fig.cap="Baited hooks. Note the substantial difference between the northern and southern areas and the change in the north between 2003--2007 in subsequent years."}
+include_hbll_fig("hbll-joint-baited.pdf")
+```
+
+```{r, fig.cap="Hook adjustment factor."}
+include_hbll_fig("hbll-joint-hook-adjust.pdf")
+```
+
+```{r, fig.cap="Predicted relative density in space and time."}
 include_hbll_fig("hbll-joint-prediction-log.pdf")
 ```
 
-```{r, fig.cap="Predicted relative density from only the fixed effects."}
-include_hbll_fig("hbll-joint-non-rf.pdf")
-```
-
-```{r, fig.cap="The spatial random effects. These are consistent differences from the expectation.", out.width="4in"}
+```{r, fig.cap="The spatial random effects. These are consistent differences from the expectation in space.", out.width="4in"}
 include_hbll_fig("hbll-joint-omega.pdf")
 ```
 
-```{r, fig.cap="Residuals from the model shown in space and time."}
+```{r, fig.cap="The spatiotemporal random effects. Note the reversion to the mean in area-year combinations without sampling data. Also note the difference in magnitude between the spatiotemporal and spatial random effects."}
+include_hbll_fig("hbll-joint-epsilon.pdf")
+```
+
+```{r, fig.cap="Randomized quantile residuals from the model shown in space and time."}
 include_hbll_fig("hbll-joint-residual-map.pdf")
 ```
 
-```{r, out.width="4in", fig.cap="The joint index. Top panel shows the joint prediction from the spatial temporal model. The middle panel shows the joint model prediction for only the northern area. The bottom panel shows the joint model prediction for only the southern area. The black line shows the design-based estimate. All shaded regions represent 95\\% confidence intervals. The design-based index has been rescaled to have the same geometric mean as the spatiotemporal index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. The large deviations for the design-based index in 2005, 2008, and 2009 are (at least partially) from the survey locations not matching the survey design. You can see how the uncertainty around the estimates is larger in area-years without observations."}
-include_hbll_fig("hbll-index-components-with-design.pdf")
+```{r, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
+include_hbll_fig("hbll-index-components-eps-depth2.pdf")
 ```
