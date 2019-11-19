@@ -42,3 +42,4 @@ report/csas-style/
 *.upa
 *.docx
 report/_book/
+.Rproj.user
