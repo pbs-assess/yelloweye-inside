@@ -6,11 +6,11 @@ all_years <- seq(starting_year, ending_year)
 
 science_name <- "Sebastes ruberrimus"
 species_file <- here::here(
-  "generated-data",
+  "data-generated",
   paste0(gsub(" ", "-", species_name), "-ins.rds")
 )
 species_file_privacy <- here::here(
-  "generated-data",
+  "data-generated",
   paste0(gsub(" ", "-", species_name), "-ins-privacy.rds")
 )
 
@@ -98,7 +98,7 @@ if (!file.exists(species_file) && !file.exists(species_file_privacy)) {
 
 # bottom trawl catch:
 if ("catch" %in% names(d_privacy)) {
-  catch <- d_privacy$catch %>%
+  catch_tr <- d_privacy$catch %>%
     filter(gear == "BOTTOM TRAWL") %>%
     gfplot::tidy_catch() %>%
     group_by(year) %>%
@@ -106,17 +106,17 @@ if ("catch" %in% names(d_privacy)) {
     right_join(tibble(year = all_years), by = "year") %>%
     #mutate(value = ifelse(year >= 1990 & year <= 1995, value / 3, value)) %>%
     pull(value)
-  saveRDS(catch, file = here::here("generated-data", "ye-ins-catch-tr.rds"))
+  saveRDS(catch, file = here::here("data-generated", "ye-ins-catch-tr.rds"))
 } else {
-  catch <- readRDS(here::here("generated-data", "ye-ins-catch-tr.rds"))
+  catch <- readRDS(here::here("data-generated", "ye-ins-catch-tr.rds"))
 }
 
 catch
 plot(all_years, catch, type = "o")
 
 # hook and line catch:
-if ("catch" %in% names(yelloweye_ins)) {
-  catch_hl <- yelloweye_ins$catch %>%
+if ("catch" %in% names(d_privacy)) {
+  catch_hl <- d_privacy$catch %>%
     filter(gear == "HOOK AND LINE") %>%
     gfplot::tidy_catch() %>%
     group_by(year) %>%
@@ -124,9 +124,9 @@ if ("catch" %in% names(yelloweye_ins)) {
     right_join(tibble(year = all_years), by = "year") %>%
     #mutate(value = ifelse(year >= 1990 & year <= 1995, value / 3, value)) %>%
     pull(value)
-  saveRDS(catch_hl, file = here::here("generated-data", "ye-ins-catch-hl.rds"))
+  saveRDS(catch_hl, file = here::here("data-generated", "ye-ins-catch-hl.rds"))
 } else {
-  catch_hl <- readRDS(here::here("generated-data", "ye-ins-catch-hl.rds"))
+  catch_hl <- readRDS(here::here("data-generated", "ye-ins-catch-hl.rds"))
 }
 
 catch_hl
