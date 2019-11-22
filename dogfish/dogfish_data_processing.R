@@ -10,7 +10,7 @@
 rm(list=ls())
 
 library(dplyr)
-
+library(sp)
 
 # read in the data
 dat2019 <- read.csv(file = "hbll_dogfish_2019_data.csv", header=TRUE, stringsAsFactors = FALSE)
@@ -77,9 +77,17 @@ data2019 <- data2019 %>%
 
 ## ---------------- 2004 Data ------------------------------------------------------
 
+# change lat and long from hours mins secs to decimal degrees (found the conversion in Elise's SQL code)
 # add in area_swept_km2
+# remove columns with previous location format
 data2004 <- dat2004 %>%
-  mutate(area_swept_km2 = hook_spacing * gangion_length * lglsp_hook_count)
+    mutate_at("lat_mins", as.numeric) %>% 
+    mutate_at("long_mins", as.numeric) %>% 
+    mutate(latitude = lat_hours + lat_mins/60,
+              longitude = -(long_hours + long_mins/60) ) %>% 
+    mutate(area_swept_km2 = hook_spacing * gangion_length * lglsp_hook_count) %>% 
+    select(-lat_mins, -lat_hours, -long_mins, -long_hours)
+    
 
 # what is missing from 2004?
 missing2004 <- setdiff(headers, names(data2004))
