@@ -6,7 +6,7 @@ include_hbll_fig <- function(file) {
 }
 ```
 
-```{r, fig.cap="The raw data. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the raw number of fish caught not adjusting for number of hooks or hook competition."}
+```{r, fig.cap="The raw data. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the number of fish caught per hook after accounting for hook competition."}
 include_hbll_fig("hbll-joint-raw-data.pdf")
 ```
 
