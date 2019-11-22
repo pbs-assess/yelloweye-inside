@@ -7,7 +7,8 @@ theme_set(ggsidekick::theme_sleek())
 source("analysis-survey/utils.R")
 dir.create("data-generated", showWarnings = FALSE)
 dir.create("figs", showWarnings = FALSE)
-cores <- floor(parallel::detectCores() / 2 - 3)
+cores_star <- parallel::detectCores()
+cores <- if (cores_star == 16L) 4 else 2
 TMB::openmp(cores)
 
 # Load data and prep. -----------------------------------------------------
@@ -31,49 +32,12 @@ d_utm <- convert2utm(d, coords = c("longitude", "latitude"))
 joint_grid_utm <- joint_grid %>%
   mutate(X = X / 100, Y = Y / 100)
 
-joint_grid_utm$area <- 1 # 1km^2 grid
+joint_grid_utm$area <- 1 # 1x1 km grid
 # joint_grid_utm$hook_code <- filter(d_utm, year == 1986)$hook_code[1]
 # joint_grid_utm$hook_code <- filter(d_utm, year == 2019)$hook_code[1]
 joint_grid_utm$circle_hook_centered <- 0 # mean(d_utm$circle_hook_centered)
 joint_grid_utm$dogfish_count <- mean(d_utm$dogfish_count)
 
-# Examine some different ways of accounting for hook type effect -----------------------
-d_utm2004 <- filter(d_utm, year == 2004)
-sp2004 <- make_spde(d_utm2004$X, d_utm2004$Y, n_knots = 20)
-d_utm2004$offset <- log(d_utm2004$area_swept_km2 * 100)
-
-plot_spde(sp2004)
-m2004 <- sdmTMB(
-  formula = ye_count ~ offset + as.factor(hook_code),
-  data = d_utm2004,
-  spde = sp2004,
-  silent = FALSE,
-  anisotropy = FALSE,
-  reml = TRUE,
-  spatial_only = T,
-  family = nbinom2(link = "log")
-)
-m2004
-
-m2004 <- MASS::glm.nb(
-  formula = ye_count ~ 1 + offset(offset) + as.factor(hook_code) + log(dogfish_count),
-  data = d_utm2004
-)
-m2004
-1/exp(coef(m2004)[["as.factor(hook_code)3"]])
-ci <- exp(confint(m2004)["as.factor(hook_code)3", ])
-1/ci
-
-ratio <- filter(d_utm, year == 2004) %>% group_by(circle_hook) %>% summarize(m = mean(ye_count))
-ratio
-.ratio <- ratio$m[2] / ratio$m[1]
-1/.ratio
-
-# hook_correction <- exp(coef(m2004)[["as.factor(hook_code)3"]])
-# hook_correction <- ci[[1]]
-# hook_correction <- ci[[2]]
-hook_correction <- 1
-d_utm$area_swept_km2[d_utm$hook_code == 3] <- d_utm$area_swept_km2[d_utm$hook_code == 3] * hook_correction
 d_utm$offset <- log(d_utm$area_swept_km2 * 100)
 # d_utm$offset <- log(d_utm$lglsp_hook_count / 100)
 joint_grid_utm$offset <- mean(d_utm$offset)
@@ -82,13 +46,16 @@ joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years)
 
 # Fit models -----------------------------------------------------
 length(unique(paste(d_utm$X, d_utm$Y)))
-sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 350)
+sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 300)
 pdf("figs/dogfish-joint-spde.pdf", width = 7, height = 7)
 plot_spde(sp)
 dev.off()
 
 m <- sdmTMB(
-  formula = ye_count ~ 0 + circle_hook_centered + as.factor(year) + log(dogfish_count) + offset,
+  formula =
+    ye_count ~ 0 + circle_hook_centered +
+    as.factor(year) +
+    log(dogfish_count) + offset,
   data = d_utm,
   spde = sp,
   time = "year",
@@ -112,7 +79,8 @@ d_utm$resids <- residuals(m) # randomized quantile residuals
 get_predictions <- function(model) {
   predict(model,
     newdata = joint_grid_utm,
-    return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = joint_grid_utm$area
+    return_tmb_object = TRUE, xy_cols = c("X", "Y"),
+    area = joint_grid_utm$area
   )
 }
 predictions <- get_predictions(m)
@@ -126,8 +94,10 @@ ind %>%
   geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2) +
   xlab("Year") + ylab("Estimated relative abundance") +
   scale_x_continuous(breaks = seq(1986, 2019, 2)) +
-  coord_cartesian(ylim = c(0, max(ind$upr) * 0.65), expand = FALSE,
-    xlim = range(ind$year) + c(-0.3, 0.3))
+  coord_cartesian(
+    ylim = c(0, max(ind$upr) * 0.75), expand = FALSE,
+    xlim = range(ind$year) + c(-0.3, 0.3)
+  )
 ggsave("figs/dogfish-index-estimated-hook.pdf", width = 5, height = 4)
 
 # Raw data plots -----------------------------------------------------
@@ -139,23 +109,19 @@ coast <- gfplot:::load_coastline(range(d$longitude) + c(-.2, .2),
 coast <- gfplot:::utm2ll(coast)
 
 plot_raw_data <- function(column) {
+  lab <- "Count density\n(units TODO)"
   ggplot(d_utm, aes(X, Y)) +
     geom_tile(
       data = joint_grid_utm, aes(x = X, y = Y), size = 0.5,
       colour = "grey80", fill = "white"
     ) +
     facet_wrap(~year) +
-    geom_point(pch = 21, mapping = aes_string(
-      size = column
-    ), alpha = 1) +
+    geom_point(pch = 21, mapping = aes_string(size = column)) +
     coord_fixed() +
     scale_color_viridis_c() +
     scale_fill_viridis_c() +
     scale_size_area(max_size = 8) +
-    labs(
-      colour = "Count density\n(units TODO)", size = "Count density\n(units TODO)",
-      fill = "Count density\n(units TODO)"
-    )
+    labs(colour = lab, size = lab, fill = lab)
 }
 
 plot_raw_data("ye_count / area_swept_km2")
@@ -176,12 +142,16 @@ ggsave("figs/dogfish-lglsp_hook_count-raw-data.pdf", width = 10, height = 7)
 
 # Diagnostics and plots -----------------------------------
 
-diverging_scale <- scale_fill_gradient2(high = scales::muted("red"),
-  low = scales::muted("blue"), mid = "grey90")
+diverging_scale <- scale_fill_gradient2(
+  high = scales::muted("red"),
+  low = scales::muted("blue"), mid = "grey90"
+)
 
 ggplot(d_utm, aes(X, Y, col = resids)) +
-  scale_colour_gradient2(high = scales::muted("red"),
-    low = scales::muted("blue"), mid = "grey90") +
+  scale_colour_gradient2(
+    high = scales::muted("red"),
+    low = scales::muted("blue"), mid = "grey90"
+  ) +
   geom_jitter(size = 0.9, width = 0.03, height = 0.03) + facet_wrap(~year) + coord_fixed() +
   labs(colour = "Residual")
 ggsave("figs/dogfish-residual-map.pdf", width = 10, height = 10)
@@ -194,10 +164,10 @@ plot_map <- function(dat, column, wrap = TRUE) {
     geom_tile(mapping = aes(X, Y, fill = {{ column }}), width = 0.025, height = 0.025) +
     coord_fixed() +
     scale_fill_viridis_c(option = "D") #+
-    # geom_polygon(
-    #   data = coast, aes_string(x = "X", y = "Y", group = "PID"),
-    #   fill = "grey87", col = "grey70", lwd = 0.2
-    # )
+  # geom_polygon(
+  #   data = coast, aes_string(x = "X", y = "Y", group = "PID"),
+  #   fill = "grey87", col = "grey70", lwd = 0.2
+  # )
   if (wrap) gg + facet_wrap(~year) else gg
 }
 
