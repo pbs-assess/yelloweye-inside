@@ -8,12 +8,12 @@ theme_set(ggsidekick::theme_sleek())
 source("analysis-survey/utils.R")
 dir.create("data-generated", showWarnings = FALSE)
 dir.create("figs", showWarnings = FALSE)
-cores <- floor(parallel::detectCores() / 2 - 2)
+cores <- floor(parallel::detectCores() / 2 - 3)
 TMB::openmp(cores)
 
 # Load data and prep. -----------------------------------------------------
 
-d <- readr::read_csv("analysis-survey/dogfish/all_dogfish_sets_data.csv")
+d <- readr::read_csv("dogfish/all_dogfish_sets_data.csv")
 joint_grid <- gfplot::dogfish_grid$grid
 
 group_by(d, year) %>% summarise(n_na = sum(!is.na(ye_count)))
@@ -62,7 +62,7 @@ joint_grid_utm <- joint_grid %>%
   mutate(X = X / 100, Y = Y / 100)
 
 joint_grid_utm$area <- 1
-joint_grid_utm$hook_code <- filter(d_utm, year == 2019)$hook_code[1]
+joint_grid_utm$hook_code <- filter(d_utm, year == 1986)$hook_code[1]
 joint_grid_utm$dogfish_count <- mean(d_utm$dogfish_count)
 
 nrow(d)
@@ -78,41 +78,46 @@ nrow(d_utm2004)
 sp2004 <- make_spde(d_utm2004$X, d_utm2004$Y, n_knots = 15)
 d_utm2004$offset <- log(d_utm2004$area_swept_km2 * 100)
 
-plot_spde(sp2004)
-m2004 <- sdmTMB(
-  formula = ye_count ~ 1 + offset + as.factor(hook_code),
-  data = d_utm2004,
-  spde = sp2004,
-  silent = FALSE,
-  anisotropy = FALSE,
-  reml = TRUE,
-  spatial_only = T,
-  family = nbinom2(link = "log")
-)
-m2004
+# plot_spde(sp2004)
+# m2004 <- sdmTMB(
+#   formula = ye_count ~ 1 + offset + as.factor(hook_code),
+#   data = d_utm2004,
+#   spde = sp2004,
+#   silent = FALSE,
+#   anisotropy = FALSE,
+#   reml = TRUE,
+#   spatial_only = T,
+#   family = nbinom2(link = "log")
+# )
+# m2004
 
 m2004 <- MASS::glm.nb(
   formula = ye_count ~ 1 + offset(offset) + as.factor(hook_code) + log(dogfish_count),
   data = d_utm2004
 )
 m2004
-exp(coef(m2004)[["as.factor(hook_code)3"]])
-exp(confint(m2004)["as.factor(hook_code)3", ])
+1/exp(coef(m2004)[["as.factor(hook_code)3"]])
+ci <- exp(confint(m2004)["as.factor(hook_code)3", ])
+1/ci
 
 ratio <- filter(d_utm, year == 2004) %>% group_by(hook_code) %>% summarize(m = mean(ye_count))
 ratio
 .ratio <- ratio$m[2] / ratio$m[1]
-.ratio
+1/.ratio
 
-d_utm$area_swept_km2[d_utm$hook_code == 3] <- d_utm$area_swept_km2[d_utm$hook_code == 3] * exp(coef(m2004)[["as.factor(hook_code)3"]])
+# hook_correction <- exp(coef(m2004)[["as.factor(hook_code)3"]])
+# hook_correction <- ci[[1]]
+# hook_correction <- ci[[2]]
+hook_correction <- 1
+d_utm$area_swept_km2[d_utm$hook_code == 3] <- d_utm$area_swept_km2[d_utm$hook_code == 3] * hook_correction
 d_utm$offset <- log(d_utm$area_swept_km2 * 100)
 joint_grid_utm$offset <- mean(d_utm$offset)
 years <- sort(unique(d_utm$year))
 joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years)
 
 m <- sdmTMB(
-  # formula = ye_count ~ 0 + as.factor(year) + as.factor(hook_code) + log(dogfish_count) + offset,
-  formula = ye_count ~ 0 + as.factor(year) + log(dogfish_count) + offset,
+  formula = ye_count ~ 0 + as.factor(year) + as.factor(hook_code) + log(dogfish_count) + offset,
+  # formula = ye_count ~ 0 + as.factor(year) + log(dogfish_count) + offset,
   data = d_utm,
   spde = sp,
   time = "year",
@@ -144,6 +149,18 @@ bias_correct <- FALSE
 predictions <- get_predictions(m)
 ind <- get_index(predictions, bias_correct = bias_correct)
 saveRDS(ind, file = "data-generated/dogfish-index.rds")
+
+ind %>%
+  ggplot(aes(year, est)) +
+  geom_line() +
+  geom_point() +
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2) +
+  xlab("Year") + ylab("Estimated relative abundance")
+
+# scale_x_continuous(breaks = seq(2004, 2018, 2)) +
+# coord_cartesian(ylim = c(0, max(ind$upr) * 0.65), expand = FALSE,
+#   xlim = range(ind$year) + c(-0.3, 0.3))
+ggsave("figs/dogfish-index-estimated-hook.pdf", width = 5, height = 4)
 
 # Raw data plots -----------------------------------------------------
 
@@ -240,15 +257,5 @@ ggsave("figs/dogfish-omega.pdf", width = 5, height = 5)
 #   diverging_scale
 # ggsave("figs/hbll-joint-epsilon.pdf", width = 10, height = 10)
 
-ind %>%
-  ggplot(aes(year, est)) +
-  geom_line() +
-  geom_point() +
-  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2) +
-  xlab("Year") + ylab("Estimated relative abundance")
 
-  # scale_x_continuous(breaks = seq(2004, 2018, 2)) +
-  # coord_cartesian(ylim = c(0, max(ind$upr) * 0.65), expand = FALSE,
-  #   xlim = range(ind$year) + c(-0.3, 0.3))
-ggsave("figs/dogfish-index.pdf", width = 5, height = 4)
 
