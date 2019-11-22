@@ -127,19 +127,20 @@ get_predictions <- function(model) {
   )
 }
 
+bias_correct <- FALSE
 joint_grid_utm$offset <- joint_grid_utm$offset_area_hook
 predictions <- get_predictions(m)
-ind <- get_index(predictions, bias_correct = FALSE)
+ind <- get_index(predictions, bias_correct = bias_correct)
 saveRDS(ind, file = "data-generated/hbll-joint-index.rds")
 
 joint_grid_utm$offset <- joint_grid_utm$offset_area_hook
 predictions_depth <- get_predictions(m_depth)
-ind_depth <- get_index(predictions_depth, bias_correct = FALSE)
+ind_depth <- get_index(predictions_depth, bias_correct = bias_correct)
 saveRDS(ind_depth, file = "data-generated/hbll-joint-index-depth.rds")
 
 joint_grid_utm$offset <- joint_grid_utm$offset_area_swept
 predictions_nohook <- get_predictions(m_nohook)
-ind_nohook <- get_index(predictions_nohook, bias_correct = FALSE)
+ind_nohook <- get_index(predictions_nohook, bias_correct = bias_correct)
 saveRDS(ind_nohook, file = "data-generated/hbll-joint-index-depth.rds")
 
 # What about the individual surveys? -----------------------
@@ -149,14 +150,14 @@ pred_north <- predict(m,
   newdata = north_grid_utm,
   return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = north_grid_utm$area
 )
-ind_north <- get_index(pred_north, bias_correct = FALSE)
+ind_north <- get_index(pred_north, bias_correct = bias_correct)
 
 south_grid_utm$offset <- south_grid_utm$offset_area_hook
 pred_south <- predict(m,
   newdata = south_grid_utm,
   return_tmb_object = TRUE, xy_cols = c("X", "Y"), area = south_grid_utm$area
 )
-ind_south <- get_index(pred_south, bias_correct = FALSE)
+ind_south <- get_index(pred_south, bias_correct = bias_correct)
 
 ind_north$type <- "HBLL INS N"
 ind_south$type <- "HBLL INS S"
@@ -205,7 +206,7 @@ g <- ggplot(d_utm, aes(X, Y)) +
   facet_wrap(~year) +
   geom_point(pch = 21, mapping = aes(
     size = catch_count / area_swept,
-    colour = catch_count / area_swept
+    colour = catch_count / exp(offset_area_hook)
   ), alpha = 1) +
   coord_fixed() +
   scale_color_viridis_c() +
@@ -281,7 +282,7 @@ g <- plot_map(predictions$data, exp(est)) +
   geom_point(
     data = d_utm, pch = 21, mapping = aes(
       x = X, y = Y,
-      size = catch_count / area_swept
+      size = catch_count / exp(offset_area_hook)
     ),
     inherit.aes = FALSE, colour = "grey20", alpha = 0.5
   ) +
