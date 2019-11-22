@@ -54,19 +54,16 @@ d <- filter(d, fe_end_deployment_time != "11/20/2004  14:32:00 PM")
 #     mapping = aes(X, Y), col = "red", pch = 21)
 
 d_utm <- convert2utm(d, coords = c("longitude", "latitude"))
-d_utm$offset <- log(d_utm$area_swept_km2 * 100)
+
 d_utm$hook_code <- as.factor(d_utm$hook_code)
 d_utm$dogfish_count[d_utm$dogfish_count == 0] <- 1
 
 joint_grid_utm <- joint_grid %>%
   mutate(X = X / 100, Y = Y / 100)
-joint_grid_utm$offset <- mean(d_utm$offset)
+
 joint_grid_utm$area <- 1
 joint_grid_utm$hook_code <- filter(d_utm, year == 2019)$hook_code[1]
 joint_grid_utm$dogfish_count <- mean(d_utm$dogfish_count)
-
-years <- sort(unique(d_utm$year))
-joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years)
 
 nrow(d)
 sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 250)
@@ -75,6 +72,43 @@ plot_spde(sp)
 dev.off()
 
 # Fit models -----------------------------------------------------
+
+d_utm2004 <- filter(d_utm, year == 2004)
+nrow(d_utm2004)
+sp2004 <- make_spde(d_utm2004$X, d_utm2004$Y, n_knots = 15)
+d_utm2004$offset <- log(d_utm2004$area_swept_km2 * 100)
+
+plot_spde(sp2004)
+m2004 <- sdmTMB(
+  formula = ye_count ~ 1 + offset + as.factor(hook_code),
+  data = d_utm2004,
+  spde = sp2004,
+  silent = FALSE,
+  anisotropy = FALSE,
+  reml = TRUE,
+  spatial_only = T,
+  family = nbinom2(link = "log")
+)
+m2004
+
+m2004 <- MASS::glm.nb(
+  formula = ye_count ~ 1 + offset(offset) + as.factor(hook_code) + log(dogfish_count),
+  data = d_utm2004
+)
+m2004
+exp(coef(m2004)[["as.factor(hook_code)3"]])
+exp(confint(m2004)["as.factor(hook_code)3", ])
+
+ratio <- filter(d_utm, year == 2004) %>% group_by(hook_code) %>% summarize(m = mean(ye_count))
+ratio
+.ratio <- ratio$m[2] / ratio$m[1]
+.ratio
+
+d_utm$area_swept_km2[d_utm$hook_code == 3] <- d_utm$area_swept_km2[d_utm$hook_code == 3] * exp(coef(m2004)[["as.factor(hook_code)3"]])
+d_utm$offset <- log(d_utm$area_swept_km2 * 100)
+joint_grid_utm$offset <- mean(d_utm$offset)
+years <- sort(unique(d_utm$year))
+joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years)
 
 m <- sdmTMB(
   # formula = ye_count ~ 0 + as.factor(year) + as.factor(hook_code) + log(dogfish_count) + offset,
@@ -89,6 +123,9 @@ m <- sdmTMB(
   family = nbinom2(link = "log")
 )
 m
+sink("figs/dogfish-model.txt")
+print(m)
+sink()
 # saveRDS(m, file = "data-generated/dogfish-model.rds")
 
 set.seed(82302)
@@ -118,7 +155,6 @@ ggplot(d_utm, aes(X, Y)) +
   facet_wrap(~year) +
   geom_point(pch = 21, mapping = aes(
     size = ye_count / area_swept_km2
-    # colour = catch_count / exp(offset_area_hook)
   ), alpha = 1) +
   coord_fixed() +
   scale_color_viridis_c() +
@@ -138,7 +174,6 @@ ggplot(d_utm, aes(X, Y)) +
   facet_wrap(~year) +
   geom_point(pch = 21, mapping = aes(
     size = dogfish_count / area_swept_km2
-    # colour = catch_count / exp(offset_area_hook)
   ), alpha = 1) +
   coord_fixed() +
   scale_color_viridis_c() +
@@ -158,7 +193,7 @@ diverging_scale <- scale_fill_gradient2(high = scales::muted("red"),
 ggplot(d_utm, aes(X, Y, col = resids)) +
   scale_colour_gradient2(high = scales::muted("red"),
     low = scales::muted("blue"), mid = "grey90") +
-  geom_jitter(size = 0.9, width = 0.07, height = 0.07) + facet_wrap(~year) + coord_fixed() +
+  geom_jitter(size = 0.9, width = 0.03, height = 0.03) + facet_wrap(~year) + coord_fixed() +
   labs(colour = "Residual")
 ggsave("figs/dogfish-residual-map.pdf", width = 10, height = 10)
 
@@ -173,7 +208,7 @@ plot_map <- function(dat, column, wrap = TRUE) {
   if (wrap) gg + facet_wrap(~year) else gg
 }
 
-plot_map(predictions$data, exp(est)) +
+g <- plot_map(predictions$data, exp(est)) +
   scale_fill_viridis_c(trans = "sqrt", option = "D") +
   labs(
     fill = "Estimated\nrelative\nabundance",
@@ -187,7 +222,7 @@ plot_map(predictions$data, exp(est)) +
     inherit.aes = FALSE, colour = "grey20", alpha = 0.5
   ) +
   scale_size_area(max_size = 7)
-# ggsave("figs/hbll-joint-prediction-sqrt.pdf", width = 10, height = 10)
+# ggsave("figs/dogfish-prediction-sqrt.pdf", width = 10, height = 10)
 
 g + scale_fill_viridis_c(trans = "log10", option = "D")
 ggsave("figs/dogfish-prediction-log.pdf", width = 10, height = 10)
@@ -215,4 +250,5 @@ ind %>%
   # scale_x_continuous(breaks = seq(2004, 2018, 2)) +
   # coord_cartesian(ylim = c(0, max(ind$upr) * 0.65), expand = FALSE,
   #   xlim = range(ind$year) + c(-0.3, 0.3))
-ggsave("figs/dogfish-index.pdf", width = 5, height = 8)
+ggsave("figs/dogfish-index.pdf", width = 5, height = 4)
+
