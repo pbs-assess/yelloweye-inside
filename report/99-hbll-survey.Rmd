@@ -49,6 +49,22 @@ include_hbll_fig("hbll-index-components-eps-depth2.pdf")
 
 # DOGFISH SURVEY
 
+Notes:
+
+I'm estimating the index for an "average" hook type. If we estimate for one or the other type then it puts more or less uncertainty into the first or second half of the time series (the estimates themselves are just scaled though).
+
+It is now able to estimate spatiotemporal random effects and with the help of the spatial correlation it seems to be better able to estimate the hook type correction with appropriate uncertainty. You can see the estimated correction factor in the model output:
+
+exp(2.04)
+[1] 7.690609
+
+exp(2.04 + c(-2, 2) * 0.80)
+[1]  1.552707 38.091837
+
+I'm sure thats an exaggeration, but so it is with few data points and no priors. At least by including it in one model we can let the data speak for themselves.
+
+I am creating the index on the rectangles that define the dogfish survey. I overlaid a 500m x 500m grid on the dogfish survey rectangles and am now also removing any of those fine scale grid cells that overlap land.
+
 ```{r, fig.cap="SPDE", out.width="4in"}
 include_hbll_fig("dogfish-joint-spde.png")
 ```
