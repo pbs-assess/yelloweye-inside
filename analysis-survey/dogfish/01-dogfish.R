@@ -30,9 +30,9 @@ d$dogfish_count[d$dogfish_count == 0] <- 1
 
 d_utm <- convert2utm(d, coords = c("longitude", "latitude"))
 joint_grid_utm <- joint_grid %>%
-  mutate(X = X / 100, Y = Y / 100)
+  mutate(X = X / (1000*100), Y = Y / (1000*100))
 
-joint_grid_utm$area <- 1 # 1x1 km grid
+joint_grid_utm$area <- gfplot::dogfish_grid$cell_area # .5x.5 km grid
 # joint_grid_utm$hook_code <- filter(d_utm, year == 1986)$hook_code[1]
 # joint_grid_utm$hook_code <- filter(d_utm, year == 2019)$hook_code[1]
 joint_grid_utm$circle_hook_centered <- 0 # mean(d_utm$circle_hook_centered)
@@ -47,7 +47,8 @@ joint_grid_utm <- expand_prediction_grid(joint_grid_utm, years = years)
 # Fit models -----------------------------------------------------
 length(unique(paste(d_utm$X, d_utm$Y)))
 sp <- make_spde(d_utm$X, d_utm$Y, n_knots = 300)
-pdf("figs/dogfish-joint-spde.pdf", width = 7, height = 7)
+png("figs/dogfish-joint-spde.png", width = 7, height = 7,
+  units = "in", res = 200)
 plot_spde(sp)
 dev.off()
 
@@ -62,7 +63,6 @@ m <- sdmTMB(
   silent = FALSE,
   anisotropy = TRUE,
   reml = TRUE,
-  spatial_only = F,
   family = nbinom2(link = "log")
 )
 print(m)
@@ -89,56 +89,67 @@ saveRDS(ind, file = "data-generated/dogfish-index.rds")
 
 ind %>%
   ggplot(aes(year, est)) +
-  geom_line() +
-  geom_point() +
-  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2) +
+  geom_line(alpha = 0.5) +
+  # geom_point() +
+  geom_pointrange(aes(ymin = lwr, ymax = upr)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.08) +
   xlab("Year") + ylab("Estimated relative abundance") +
-  scale_x_continuous(breaks = seq(1986, 2019, 2)) +
+  scale_x_continuous(breaks = seq(1985, 2020, 5)) +
   coord_cartesian(
-    ylim = c(0, max(ind$upr) * 0.75), expand = FALSE,
+    ylim = c(0, max(ind$upr) * 0.85), expand = FALSE,
     xlim = range(ind$year) + c(-0.3, 0.3)
-  )
-ggsave("figs/dogfish-index-estimated-hook.pdf", width = 5, height = 4)
+  ) +
+  geom_vline(xintercept = 2004, lty = 2, alpha = 0.3)
+ggsave("figs/dogfish-index-estimated-hook.png", width = 6.5, height = 4)
 
 # Raw data plots -----------------------------------------------------
 
-coast <- gfplot:::load_coastline(range(d$longitude) + c(-.2, .2),
-  range(d$latitude) + c(-0, 0),
+coast <- gfplot:::load_coastline(range(d$longitude),
+  range(d$latitude),
   utm_zone = 9
 )
-coast <- gfplot:::utm2ll(coast)
+coast$X <- coast$X/100
+coast$Y <- coast$Y/100
+ggcoast <-  geom_polygon(
+  data = coast, aes_string(x = "X", y = "Y", group = "PID"),
+  fill = "grey92", col = "grey80", lwd = 0.2
+)
+# ggplot() + ggcoast + coord_fixed()
+coords <- coord_fixed(xlim = range(joint_grid_utm$X),
+  ylim = range(joint_grid_utm$Y))
 
 plot_raw_data <- function(column) {
   lab <- "Count density\n(units TODO)"
   ggplot(d_utm, aes(X, Y)) +
+    coords +
+    ggcoast +
     geom_tile(
-      data = joint_grid_utm, aes(x = X, y = Y), size = 0.5,
-      colour = "grey80", fill = "white"
+      data = joint_grid_utm, aes(x = X, y = Y), width = 1/100, height = 1/100,
+      colour = "grey70", fill = "grey70"
     ) +
     facet_wrap(~year) +
     geom_point(pch = 21, mapping = aes_string(size = column)) +
-    coord_fixed() +
     scale_color_viridis_c() +
     scale_fill_viridis_c() +
     scale_size_area(max_size = 8) +
     labs(colour = lab, size = lab, fill = lab)
 }
 
-plot_raw_data("ye_count / area_swept_km2")
-ggsave("figs/dogfish-yelloweye-per-area-data.pdf", width = 10, height = 7)
-plot_raw_data("ye_count")
-ggsave("figs/dogfish-yelloweye-raw-data.pdf", width = 10, height = 7)
+g <- plot_raw_data("ye_count / area_swept_km2")
+ggsave("figs/dogfish-yelloweye-per-area-data.png", width = 10, height = 7)
+g <- plot_raw_data("ye_count")
+ggsave("figs/dogfish-yelloweye-raw-data.png", width = 10, height = 7)
 
-plot_raw_data("dogfish_count / area_swept_km2")
-ggsave("figs/dogfish-dogfish-per-area-data.pdf", width = 10, height = 7)
-plot_raw_data("dogfish_count")
-ggsave("figs/dogfish-dogfish-raw-data.pdf", width = 10, height = 7)
+g <- plot_raw_data("dogfish_count / area_swept_km2")
+ggsave("figs/dogfish-dogfish-per-area-data.png", width = 10, height = 7)
+g <- plot_raw_data("dogfish_count")
+ggsave("figs/dogfish-dogfish-raw-data.png", width = 10, height = 7)
 
-plot_raw_data("area_swept_km2")
-ggsave("figs/dogfish-area_swept_km2-raw-data.pdf", width = 10, height = 7)
+g <- plot_raw_data("area_swept_km2")
+ggsave("figs/dogfish-area_swept_km2-raw-data.png", width = 10, height = 7)
 
-plot_raw_data("lglsp_hook_count")
-ggsave("figs/dogfish-lglsp_hook_count-raw-data.pdf", width = 10, height = 7)
+g <- plot_raw_data("lglsp_hook_count")
+ggsave("figs/dogfish-lglsp_hook_count-raw-data.png", width = 10, height = 7)
 
 # Diagnostics and plots -----------------------------------
 
@@ -147,27 +158,27 @@ diverging_scale <- scale_fill_gradient2(
   low = scales::muted("blue"), mid = "grey90"
 )
 
-ggplot(d_utm, aes(X, Y, col = resids)) +
+g <- ggplot(d_utm, aes(X, Y, col = resids)) +
   scale_colour_gradient2(
     high = scales::muted("red"),
     low = scales::muted("blue"), mid = "grey90"
   ) +
-  geom_jitter(size = 0.9, width = 0.03, height = 0.03) + facet_wrap(~year) + coord_fixed() +
+  geom_jitter(size = 0.9, width = 0.03, height = 0.03) + facet_wrap(~year) +
+  coords +
+  ggcoast +
   labs(colour = "Residual")
-ggsave("figs/dogfish-residual-map.pdf", width = 10, height = 10)
+ggsave("figs/dogfish-residual-map.png", width = 10, height = 10)
 
 qqnorm(d_utm$resids)
 qqline(d_utm$resids)
 
 plot_map <- function(dat, column, wrap = TRUE) {
   gg <- ggplot(data = dat) +
-    geom_tile(mapping = aes(X, Y, fill = {{ column }}), width = 0.025, height = 0.025) +
-    coord_fixed() +
-    scale_fill_viridis_c(option = "D") #+
-  # geom_polygon(
-  #   data = coast, aes_string(x = "X", y = "Y", group = "PID"),
-  #   fill = "grey87", col = "grey70", lwd = 0.2
-  # )
+    geom_tile(mapping = aes(X, Y, fill = {{ column }}),
+      width = 0.01, height = 0.01) +
+    coords +
+    ggcoast +
+    scale_fill_viridis_c(option = "D")
   if (wrap) gg + facet_wrap(~year) else gg
 }
 
@@ -185,18 +196,18 @@ g <- plot_map(predictions$data, exp(est)) +
     inherit.aes = FALSE, colour = "grey20", alpha = 0.5
   ) +
   scale_size_area(max_size = 7)
-g + scale_fill_viridis_c(trans = "log10", option = "D")
-ggsave("figs/dogfish-prediction-log.pdf", width = 10, height = 10)
+g <- g + scale_fill_viridis_c(trans = "log10", option = "D")
+ggsave("figs/dogfish-prediction-log.png", width = 10, height = 10)
 
-plot_map(predictions$data, exp(est_non_rf)) +
+g <- plot_map(predictions$data, exp(est_non_rf)) +
   scale_fill_viridis_c(trans = "sqrt", option = "D") +
   labs(fill = "Fixed effect\nestimate")
-ggsave("figs/dogfish-non-rf.pdf", width = 10, height = 10)
+ggsave("figs/dogfish-non-rf.png", width = 10, height = 10)
 
-plot_map(filter(predictions$data, year == 2019), omega_s, wrap = FALSE) +
+g <- plot_map(filter(predictions$data, year == 2019), omega_s, wrap = FALSE) +
   diverging_scale
-ggsave("figs/dogfish-omega.pdf", width = 5, height = 5)
+ggsave("figs/dogfish-omega.png", width = 5, height = 5)
 
-plot_map(predictions$data, epsilon_st) +
+g <- plot_map(predictions$data, epsilon_st) +
   diverging_scale
-ggsave("figs/dogfish-epsilon.pdf", width = 10, height = 10)
+ggsave("figs/dogfish-epsilon.png", width = 10, height = 10)

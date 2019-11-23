@@ -45,3 +45,63 @@ include_hbll_fig("hbll-joint-residual-map.pdf")
 ```{r, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
 include_hbll_fig("hbll-index-components-eps-depth2.pdf")
 ```
+
+
+# DOGFISH SURVEY
+
+```{r, fig.cap="SPDE", out.width="4in"}
+include_hbll_fig("dogfish-joint-spde.png")
+```
+
+```{r, fig.cap="Raw data"}
+include_hbll_fig("dogfish-yelloweye-per-area-data.png")
+```
+
+```{r, fig.cap="Spatial residuals with some jittering."}
+include_hbll_fig("dogfish-residual-map.png")
+```
+
+```{r, fig.cap="Prediction with log transformed color scale."}
+include_hbll_fig("dogfish-prediction-log.png")
+```
+
+```{r, fig.cap="Spatial random effects.", out.width="4in"}
+include_hbll_fig("dogfish-omega.png")
+```
+
+```{r, fig.cap="Spatiotemporal random effects."}
+include_hbll_fig("dogfish-epsilon.png")
+```
+
+```{r, fig.cap="Standardized index.", out.width="4in"}
+include_hbll_fig("dogfish-index-estimated-hook.png")
+```
+
+\clearpage
+
+Model:
+
+```
+Spatiotemporal model fit by REML ['sdmTMB']
+Formula: ye_count ~ 0 + circle_hook_centered + as.factor(year) + log(dogfish_count) + 
+Formula:     offset
+SPDE: sp
+Family: nbinom2(link = 'log')
+                     coef.est coef.se
+circle_hook_centered     2.04    0.80
+as.factor(year)1986      1.48    1.20
+as.factor(year)1989      1.83    1.25
+as.factor(year)2004      0.08    1.09
+as.factor(year)2005     -0.20    1.19
+as.factor(year)2008     -0.07    1.13
+as.factor(year)2011     -0.27    1.19
+as.factor(year)2014     -0.31    1.11
+as.factor(year)2019      0.75    1.11
+log(dogfish_count)      -0.31    0.14
+
+Matern range parameter: 0.36
+Dispersion parameter: 0.32
+Spatial SD (sigma_O): 1.80
+Spatiotemporal SD (sigma_E): 0.77
+REML criterion at convergence: 428.921
+```
