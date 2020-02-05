@@ -1,3 +1,6 @@
+# Some simulation testing of stitching a survey together
+# with missing areas each year
+
 library(sdmTMB)
 library(ggplot2)
 library(dplyr)

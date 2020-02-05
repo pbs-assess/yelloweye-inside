@@ -1,3 +1,6 @@
+# My understanding is that this is no longer needed
+# but I could be wrong. -SA 2020-02-05
+
 # Dogfish survey data for inside yelloweye rebuilding plan.
 # Uses gfdata
 

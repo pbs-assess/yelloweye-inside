@@ -2,6 +2,8 @@ library(dplyr)
 
 data <- gfdata::get_ll_hook_data(species = 442, ssid = c(39, 40))
 
+d2 <- gfdata::get_survey_sets("Yelloweye Rockfish", ssid = c(39, 40))
+
 # the following code should deal with the issue of 0 baited hooks being observed.
 adjust <- data %>%
   group_by(year, fishing_event_id) %>%

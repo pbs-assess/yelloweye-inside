@@ -113,6 +113,10 @@ m
 m_depth
 m_nohook
 
+sink("figs/hbll-model.txt")
+m
+sink()
+
 set.seed(82302)
 d_utm$resids <- residuals(m) # randomized quantile residuals
 
@@ -132,16 +136,19 @@ joint_grid_utm$offset <- joint_grid_utm$offset_area_hook
 predictions <- get_predictions(m)
 ind <- get_index(predictions, bias_correct = bias_correct)
 saveRDS(ind, file = "data-generated/hbll-joint-index.rds")
+ind <- readRDS("data-generated/hbll-joint-index.rds")
 
 joint_grid_utm$offset <- joint_grid_utm$offset_area_hook
 predictions_depth <- get_predictions(m_depth)
 ind_depth <- get_index(predictions_depth, bias_correct = bias_correct)
 saveRDS(ind_depth, file = "data-generated/hbll-joint-index-depth.rds")
+ind_depth <- readRDS("data-generated/hbll-joint-index-depth.rds")
 
 joint_grid_utm$offset <- joint_grid_utm$offset_area_swept
 predictions_nohook <- get_predictions(m_nohook)
 ind_nohook <- get_index(predictions_nohook, bias_correct = bias_correct)
 saveRDS(ind_nohook, file = "data-generated/hbll-joint-index-depth.rds")
+ind_nohook <- readRDS("data-generated/hbll-joint-index-depth.rds")
 
 # What about the individual surveys? -----------------------
 
@@ -316,19 +323,21 @@ bind_rows(ind_north, ind_south) %>%
   ggplot(aes(year, est)) +
   geom_line(aes(colour = type)) +
   geom_point(aes(colour = type), pch = 21) +
-  geom_point(data = all_plot, aes(colour = type)) +
+  # geom_point(data = all_plot, aes(colour = type)) +
   geom_ribbon(aes(ymin = lwr, ymax = upr, fill = type),
     alpha = 0.2
   ) +
   facet_wrap(~type2, ncol = 1) +
   labs(colour = "Type", fill = "Type") +
   xlab("Year") + ylab("Estimated relative abundance") +
-  geom_vline(xintercept = s_years, lty = 2, alpha = 0.2, lwd = 0.2) +
+  geom_vline(xintercept = s_years, lty = 2, alpha = 0.6, lwd = 0.2) +
   scale_color_manual(values = palette) +
   scale_fill_manual(values = palette) +
   scale_x_continuous(breaks = seq(2004, 2018, 2)) +
   coord_cartesian(ylim = c(0, max(ind$upr) * 0.65), expand = FALSE,
     xlim = range(ind$year) + c(-0.3, 0.3)) +
   theme(legend.position = c(0.26, 0.56))
+  # guides(colour = FALSE, fill = FALSE)
+ggsave("figs/hbll-index-components-eps-depth-2019-11-25-depth.pdf", width = 5, height = 4)
 ggsave("figs/hbll-index-components-eps-depth2.pdf", width = 5, height = 8)
 
