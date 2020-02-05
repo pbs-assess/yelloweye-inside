@@ -1,7 +1,8 @@
 book_filename: "resdoc"
 rmd_files: ["index.Rmd",
             "01-introduction.Rmd",
-            "04-references.Rmd"]
-            #"05-appendix.Rmd",
+            "02-methods.Rmd",
+            "04-references.Rmd",
+            "05-appendix.Rmd"]
             #"99-hbll-survey.Rmd"]
 delete_merged_file: true

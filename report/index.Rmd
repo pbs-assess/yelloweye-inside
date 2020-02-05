@@ -8,7 +8,7 @@ author: |
   Midoli Bresch^1^,
   Elise.A. Keppel^1^,
   Quang C. Huynh^2^
-author_list: " Order TBA, Forrest, R.E., Haggarty, D.R., Anderson, S.C., Bresch, M., Keppel, E.A., Huynh, Quang C."
+author_list: " Order TBA, Forrest, R.E., Haggarty, D.R., Anderson, S.C., Bresch, M., Keppel, E.A., Huynh, Q.C."
 address: |
   ^1^Pacific Biological Station\
      Fisheries and Oceans Canada, 3190 Hammond Bay Road\
