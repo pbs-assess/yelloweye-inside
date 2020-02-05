@@ -1,0 +1,22 @@
+# INTRODUCTION
+
+## BACKGROUND
+
+
+
+## MOTIVATION
+
+
+On June 21, 2019, major amendments to Canada's [*Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547) received Royal Assent, thus passing them into Canadian law. Among many other amendments, provisions in the new *Fisheries Act* require that fish stocks be managed at sustainable levels, specifically at biomass levels above the LRP. Hereafter referred to as the "Fish Stocks provisions", the provisions legislate elements of Canada's SFF and PA Framework, and state:
+
+> **Measures to maintain fish stocks**
+> 6.1(1) In the management of fisheries, the Minister shall implement measures to maintain major fish stocks at or above the level necessary to promote the sustainability of the stock, taking into account the biology of the fish and the environmental conditions affecting the stock.
+
+> **Limit reference point**
+> 6.1 (2) If the Minister is of the opinion that it is not feasible or appropriate, for cultural reasons or because of adverse socio-economic impacts, to implement the measures referred to in subsection (1), the Minister shall set a limit reference point and implement measures to maintain the fish stock above that point, taking into account the biology of the fish and the environmental conditions affecting the stock.
+
+> **Plan to rebuild**
+> 6.2(1) If a major fish stock has declined to or below its limit reference point, the Minister shall develop a plan to rebuild the stock above that point in the affected area, taking into account the biology of the fish and the environmental conditions affecting the stock, and implement it within the period provided for in the plan.
+
+For data-limited stocks, data are generally insufficient to adequately account for uncertainty in development of BRPs and assessment of stock status relative to BRPs. To comply with the legal requirements identified in the Fish Stocks provisions for data-limited species, it is therefore necessary to develop defensible methods and a framework for setting catch limits that promote sustainability and maintain stocks above their LRP, recognizing that, in many cases, the LRP and stock status cannot be reliably estimated.
+
