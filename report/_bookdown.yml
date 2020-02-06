@@ -4,7 +4,8 @@ rmd_files: ["index.Rmd",
             "02-methods.Rmd",
             #"03-mse-results.Rmd",
             #"04-discussion",
-            #"05-appendix-MP-descriptions.Rmd",
+            #05-appendix-om-description.Rmd","
+            #"06-appendix-mp-descriptions.Rmd",
             "99-hbll-survey.Rmd",
             "99-references.Rmd"]
 delete_merged_file: true
