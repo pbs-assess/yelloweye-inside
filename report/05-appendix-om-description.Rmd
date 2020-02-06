@@ -1,0 +1,727 @@
+```{r, echo=FALSE}
+library(here)
+filter_data_rex <- function(d,
+                            minimum_year = 1996,
+                            maximum_year = 2018,
+                            major_stat_area_codes = c("03", "04"),
+                            survey_series_descs = c("West Coast Vancouver Island Synoptic Bottom Trawl")) {
+  d$commercial_samples <- d$commercial_samples %>%
+    dplyr::filter(major_stat_area_code %in% major_stat_area_codes) %>%
+    dplyr::mutate(year = lubridate::year(trip_start_date)) %>%
+    dplyr::filter(year <= maximum_year, year >= minimum_year)
+
+  d$survey_samples <- d$survey_samples %>%
+    dplyr::filter(survey_series_desc %in% survey_series_descs) %>%
+    dplyr::mutate(year = lubridate::year(trip_start_date)) %>%
+    dplyr::filter(year <= maximum_year, year >= minimum_year)
+
+  d$catch <- d$catch %>%
+    dplyr::filter(major_stat_area_code %in% major_stat_area_codes) %>%
+    dplyr::mutate(year = lubridate::year(fe_start_date)) %>%
+    dplyr::filter(year <= maximum_year, year >= minimum_year)
+
+  d$survey_index <- d$survey_index %>%
+    dplyr::filter(survey_series_desc %in% survey_series_descs) %>%
+    dplyr::filter(year <= maximum_year, year >= minimum_year)
+
+  d
+}
+load_data_rex <- gfdlm::load_data_factory("rex sole",
+  file = here("generated-data", "rex-sole.rds")
+)
+```
+
+```{r}
+science_name <- "Glyptocephalus zachirusadus"
+drex <- load_data_rex() %>% filter_data_rex()
+saveRDS(drex, here::here("generated-data", "rex-filter-data.rds"))
+```
+
+# REX SOLE OPERATING MODEL DEFINITION {#app:desc-om-rex}
+
+**The following is effectively an appendix to the next appendix; order may change. Background on the fishery and data are in the following appendix.**
+
+(ref:fig-rex-synopsis1) PLACEHOLDER: The first page for Rex Sole from @anderson2019synopsis.
+
+```{r rex-synopsis1, fig.cap="(ref:fig-rex-synopsis1)", out.width="5.8in", fig.pos="h", eval=FALSE}
+knitr::include_graphics(here::here("report/figure/rex-sole-1.pdf"))
+```
+
+(ref:fig-rex-synopsis2) PLACEHOLDER: The second page for Rex Sole from @anderson2019synopsis.
+
+```{r rex-synopsis2, fig.cap="(ref:fig-rex-synopsis2)", out.width="5.8in", fig.pos="p", eval=FALSE}
+knitr::include_graphics(here::here("report/figure/rex-sole-2.pdf"))
+```
+
+<!-- \clearpage -->
+
+```{r message = FALSE}
+library(DLMtool)
+knitr_results <- TRUE
+knitr_echo <- TRUE
+```
+
+## STOCK SLOT DESCRIPTIONS {#app:desc-stock-rex}
+
+```{r warnings = FALSE}
+stock_rex <- methods::new("Stock")
+```
+
+```{r rex-stock-defaults, echo=FALSE}
+stock_rex@Size_area_1 <- c(0.5, 0.5)
+stock_rex@Frac_area_1 <- c(0.5, 0.5)
+stock_rex@Prob_staying <- c(0.5, 0.5)
+stock_rex@Mexp <- c(NA_real_, NA_real_)
+stock_rex@R0 <- 1000
+```
+
+<!-- slot-chunk-begin -->
+### Name {#app:desc-stock-name-rex}
+
+*The name of the Stock object.*
+
+```{r desc-stock-name-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@Name <- "Rex Sole WCVI"
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Common_Name {#app:desc-stock-common_name-rex}
+
+*Common name of the species.*
+
+```{r desc-stock-common_name-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@Common_Name <- "Rex Sole"
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Species {#app:desc-stock-species-rex}
+
+*Scientific name of the species.*
+
+```{r desc-stock-species-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@Species <- "Glyptocephalus zachirus"
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### maxage {#app:desc-stock-maxage-rex}
+
+*The maximum age of individuals that is simulated. Positive integer.*
+
+@munk2001 note the maximum age observed for Rex Sole in the Gulf of Alaska is 27 years. We do not have ages in our database to inform the maximum age for this region.
+
+```{r desc-stock-maxage-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@maxage <- 27
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### M {#app:desc-stock-m-rex}
+
+*Natural mortality rate. Uniform distribution lower and upper bounds.*
+
+@mcgilliard2017 used 0.17 for M but they also note that growth rates and size can vary with latitude, which can affect M. Here, we add some uncertainty around this value.
+
+```{r desc-stock-m-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@M <- c(0.14, 0.20)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### h {#app:desc-stock-h-rex}
+
+*Steepness of the stock-recruit relationship. Uniform distribution lower and upper bounds with values from 1/5 to 1.*
+
+@maunder2012 cite @myers1999 who found a median value of steepness of 0.80 for flatfish and note that, because of the bias in the value estimated for North Atlantic Cod in that paper, the value might be closer to 0.94. @grandin2017arrowtooth estimated steepness for Arrowtooth Flounder, but found their posterior was highly influenced by their prior (they estimated a median of 0.88 with a 95% confidence interval of 0.69--0.98). Here we will choose a value that approximately encompasses this range.
+
+```{r desc-stock-h-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@h <- c(0.70, 0.95)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### SRrel {#app:desc-stock-srrel-rex}
+
+*Type of stock-recruit relationship. Single integer value, switch (1) Beverton-Holt (2) Ricker.*
+
+We will use a Beverton-Holt stock-recruit relationship as has been used in most BC groundfish assessments and is assumed in the estimates of steepness defined in this operating model.
+
+```{r desc-stock-srrel-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@SRrel <- 1L
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Perr {#app:desc-stock-perr-rex}
+
+*Process error, the CV of lognormal recruitment deviations. Uniform distribution lower and upper bounds.*
+
+@thorson2014 found the mean standard deviation of log recruitment deviations for Pleuronectiformes to be about 0.64 with a standard deviation of about 0.26. We will set our uniform distribution to be approximately plus or minus one standard deviation. @mcgilliard2017 used 0.6 for Gulf of Alaska stocks.
+
+```{r desc-stock-perr-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@Perr <- c(0.4, 0.9)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### AC {#app:desc-stock-ac-rex}
+
+*Autocorrelation in recruitment deviations. Uniform distribution lower and upper bounds.*
+
+@thorson2014 found the mean autocorrelation for Pleuronectiformes to be about 0.44 with a standard deviation of about 0.27. We will set our uniform distribution to be approximately plus or minus one standard deviation.
+
+```{r desc-stock-ac-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@AC <- c(0.2, 0.7)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Linf {#app:desc-stock-linf-rex}
+
+*Maximum length. Uniform distribution lower and upper bounds.*
+
+We do not have ages in our database to fit a von Bertalanffy model, but we can look at the distribution of lengths from our survey samples. This is the distribution across all fish sampled across the WCVI synoptic survey.
+
+```{r rex-length1, echo=TRUE}
+rex_lengths <- dplyr::filter(drex$survey_samples, !is.na(length))
+hist(rex_lengths$length, breaks = 50)
+```
+
+We can look at the 95%, 99%, and 100% quantiles for males and then for females:
+
+```{r rex-length3}
+dplyr::filter(rex_lengths, sex == 1) %>%
+  dplyr::pull(length) %>%
+  quantile(probs = c(0.95, 0.99, 1.00))
+dplyr::filter(rex_lengths, sex == 2) %>%
+  dplyr::pull(length) %>%
+  quantile(probs = c(0.95, 0.99, 1.00))
+```
+
+However, $L_\mathrm{inf}$ represents the average maximum length, not the maximum observed length. @turnock2005 (their Table 4.12) found the $L_\mathrm{inf}$ for males was 39.5 cm and $L_\mathrm{inf}$ for females was 44.9 cm in the Gulf of Alaska. This looks roughly in line with the length samples in our database. We will use these values to be consistent with their other growth parameters.
+
+```{r desc-stock-linf-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@Linf <- c(39.5, 44.9)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### K {#app:desc-stock-k-rex}
+
+*von Bertalanffy growth parameter k. Uniform distribution lower and upper bounds.*
+
+@turnock2005 (their Table 4.12) in the Gulf of Alaska estimated $k$ to be 0.38 and 0.31 for males and females, respectively. We will use these values.
+
+```{r desc-stock-k-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@K <- c(0.31, 0.38)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### t0 {#app:desc-stock-t0-rex}
+
+*von Bertalanffy theoretical age at length zero. Uniform distribution lower and upper bounds.*
+
+@turnock2005 (their Table 4.12) in the Gulf of Alaska estimated $t_0$ to be 0.79 and 0.69 for males and females, respectively. We assume these should be negative.
+
+```{r desc-stock-t0-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@t0 <- c(-0.79, -0.69)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### LenCV {#app:desc-stock-lencv-rex}
+
+*CV of length-at-age (assumed constant for all age classes). Uniform distribution lower and upper bounds.*
+
+Given uncertainty in the growth parameters as applied in BC, we will set a fairly large CV.
+
+```{r desc-stock-lencv-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@LenCV <- c(0.25, 0.25)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### L50 {#app:desc-stock-l50-rex}
+
+*Length at 50% maturity. Uniform distribution lower and upper bounds.*
+
+We have sufficient maturity and length data to fit a logistic maturity model. @mcgilliard2017 noted that length at maturity varied by latitude, but that age at maturity was fairly consistent among stocks.
+
+```{r desc-stock-l50-rex, results = knitr_results, echo = knitr_echo, message=FALSE, warning=FALSE}
+m_mat <- gfplot::fit_mat_ogive(drex$survey_samples, type = "length")
+mat_perc <- gfdlm:::extract_maturity_perc(coef(m_mat$model))
+se_l50 <- gfdlm:::delta_method(~ -(log((1 / 0.5) - 1) + x1 + x3) / (x2 + x4),
+  mean = coef(m_mat$model), cov = vcov(m_mat$model)
+)
+gfplot::plot_mat_ogive(m_mat)
+
+stock_rex@L50 <- round(c(-2, 2) * se_l50 + mat_perc$f.p0.5, 1)
+stock_rex@L50
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### L50_95 {#app:desc-stock-l50_95-rex}
+
+*Length increment from 50% to 95% maturity. Uniform distribution lower and upper bounds.*
+
+We can calculate this as a derived parameter from our logistic maturity model:
+
+```{r desc-stock-l50_95-rex, results = knitr_results, echo = knitr_echo}
+se_l50_95m <- gfdlm:::delta_method(
+  ~ -(log((1 / 0.95) - 1) + x1 + x3) / (x2 + x4) -
+    -(log((1 / 0.5) - 1) + x1 + x3) / (x2 + x4),
+  mean = coef(m_mat$model), cov = vcov(m_mat$model)
+)
+stock_rex@L50_95 <- round(c(-2, 2) * se_l50_95m + (mat_perc$f.p0.95 - mat_perc$f.p0.5), 1)
+stock_rex@L50_95
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### D {#app:desc-stock-d-rex}
+
+*Current level of stock depletion SSB~current~/SSB~unfished~. Uniform distribution lower and upper bounds representing a fraction.*
+
+This will be populated via the SRA conditioning model and so we will leave it blank here.
+
+```{r desc-stock-d-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@D
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### a {#app:desc-stock-a-rex}
+
+*Length-weight parameter alpha. Positive real number.*
+
+We have sufficient length and weight data to fit a model to our data for both sexes combined:
+
+```{r desc-stock-a-rex, results = knitr_results, echo = knitr_echo}
+mlw <- gfplot::fit_length_weight(drex$survey_samples, sex = "all")
+gfplot::plot_length_weight(object_all = mlw, col = c("All" = "black"))
+stock_rex@a <- exp(mlw$pars[["log_a"]])
+round(log(stock_rex@a), 2)
+round(stock_rex@a, 7)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### b {#app:desc-stock-b-rex}
+
+*Length-weight parameter beta. Positive real number.*
+
+<!-- Alternatively from @mcgilliard2017: -->
+<!-- - Female = 3.44963 -->
+<!-- - Male = 3.30571 -->
+
+<!-- How do these values compare to @mcgilliard2017: -->
+<!-- Female a = 1.35e-06 -->
+<!-- Male a  = 2.18e-06 -->
+<!-- Female b = 3.45 -->
+<!-- Male b  = 3.31 -->
+<!-- A bit different. Should check sensitivity to these values. -->
+
+```{r desc-stock-b-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@b <- mlw$pars[["b"]]
+round(stock_rex@b, 2)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Fdisc {#app:desc-stock-fdisc-rex}
+
+*Fraction of discarded fish that die. Uniform distribution lower and upper bounds.*
+
+We will assume that all discarded fish die.
+
+```{r desc-stock-fdisc-rex, results = knitr_results, echo = knitr_echo}
+stock_rex@Fdisc <- c(1, 1)
+```
+<!-- slot-chunk-end -->
+
+## FLEET SLOT DESCRIPTIONS {#app:desc-fleet-rex}
+
+```{r warnings = FALSE}
+fleet_rex <- DLMtool::Generic_Fleet
+```
+
+```{r warnings = FALSE, echo=FALSE}
+fleet_rex@Esd <- c(0, 0)
+fleet_rex@qinc <- c(0, 0)
+fleet_rex@qcv <- c(0, 0)
+fleet_rex@EffYears <- 1996:2018
+fleet_rex@EffLower <- rep(1, length(fleet_rex@EffYears))
+fleet_rex@EffUpper <- rep(1, length(fleet_rex@EffYears))
+fleet_rex@Spat_targ <- c(1, 1)
+```
+
+<!-- slot-chunk-begin -->
+### Name {#app:desc-fleet-name-rex}
+
+*Name of the Fleet object.*
+
+```{r desc-fleet-name-rex, results = knitr_results, echo = knitr_echo}
+fleet_rex@Name <- "BC Fleet"
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### nyears {#app:desc-fleet-nyears-rex}
+
+*The number of years for the historical spool-up simulation.*
+
+We will set the historical run-up to be approximately the length of the recorded commercial fishery.
+
+```{r desc-fleet-nyears-rex, results = knitr_results, echo = knitr_echo}
+catch_yrs <- unique(drex$catch$year)
+c(catch_yrs[1], catch_yrs[length(catch_yrs)])
+fleet_rex@nyears <- length(catch_yrs)
+fleet_rex@nyears
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### L5 {#app:desc-fleet-l5-rex}
+
+*Shortest length corresponding to 5% vulnerability. Uniform distribution lower and upper bounds.*
+
+There are very few commercial length samples to inform this parameter for our commercial WCVI samples:
+
+```{r min-caught-rex1}
+drex$commercial_samples %>%
+  dplyr::filter(!is.na(length)) %>%
+  nrow()
+hist(drex$commercial_samples$length)
+```
+
+However, we can look at the commercial samples from our entire coast to inform this parameter:
+
+```{r min-caught-rex2, message=FALSE}
+fi <- here::here("generated-data/rex-coastwide-commercial-samples.rds")
+if (!file.exists(fi)) {
+  rex_commercial <- gfdata::get_commercial_samples("rex sole", unsorted_only = FALSE)
+  saveRDS(rex_commercial, file = fi)
+} else {
+  rex_commercial <- readRDS(fi)
+}
+quantile(rex_commercial$length,
+  probs = c(0.000, 0.005, 0.01, 0.025, 0.050, 0.500), na.rm = TRUE
+)
+hist(rex_commercial$length, breaks = 50)
+```
+
+We can look at the number of fish sampled below various thresholds for length:
+
+```{r min-caught-rex3, echo=TRUE}
+dplyr::filter(rex_commercial, length <= 14) %>% nrow()
+dplyr::filter(rex_commercial, length <= 15) %>% nrow()
+dplyr::filter(rex_commercial, length <= 16) %>% nrow()
+dplyr::filter(rex_commercial, length <= 17) %>% nrow()
+```
+
+Let's pick a range based on those values:
+
+```{r min-caught-rex4, echo=TRUE}
+l5 <- c(16, 18)
+```
+
+Based on the slot `isRel` below, this slot needs to be converted into a proportion of size at maturity. The 95% CI of size at maturity from this analysis is `r stock_rex@L50[[1]]` to `r stock_rex@L50[[2]]`.
+
+```{r desc-fleet-l5-rex, results = knitr_results, echo = knitr_echo}
+fleet_rex@L5 <- c(l5[1] / stock_rex@L50[[2]], l5[2] / stock_rex@L50[[1]])
+round(fleet_rex@L5, 2)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### LFS {#app:desc-fleet-lfs-rex}
+
+*Shortest length that is fully vulnerable to fishing. Uniform distribution lower and upper bounds.*
+
+We can look at a comparison of the commercial (from the entire coast) and survey samples (from WCVI) with the commercial samples shown is a histogram in the survey samples shown as line density. We will indicate the lower and upper bounds of the `L50` (length at 50% maturity) slot with red lines.
+
+```{r}
+hist(rex_commercial$length, xlim = c(5, 60), breaks = 50)
+par(new = TRUE)
+plot(density(na.omit(drex$survey_samples$length)),
+  xlim = c(5, 60), main = "", ylab = "", xlab = "", axes = FALSE
+)
+abline(v = stock_rex@L50[[1]], col = "red")
+abline(v = stock_rex@L50[[2]], col = "red")
+```
+
+Based on the slot `isRel` below, this slot needs to be converted into a proportion of size at maturity. Size at maturity has been entered as `r stock_rex@L50[[1]]` to `r stock_rex@L50[[2]]` (shown as vertical red lines in the above plot).
+
+TODO: We will assume that Rex Sole is fully vulnerable to fishing by approximately size at maturity:
+
+```{r desc-fleet-lfs-rex, results = knitr_results, echo = knitr_echo}
+fleet_rex@LFS <- c(0.8, 1.2)
+```
+
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Vmaxlen {#app:desc-fleet-vmaxlen-rex}
+
+*The vulnerability of fish at `Linf`. Uniform distribution lower and upper bounds. Fraction.*
+
+We will set this to 1. Setting this to a value lower than 1 would be assuming dome-shaped selectivity.
+
+```{r desc-fleet-vmaxlen-rex, results = knitr_results, echo = knitr_echo}
+fleet_rex@Vmaxlen <- c(1, 1)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### isRel {#app:desc-fleet-isrel-rex}
+
+*Are the selectivity parameters in units of size-of-maturity (`TRUE`) (or absolute units, for example, cm) (`FALSE`).*
+
+As mentioned above, the slots have been entered as units of size at maturity.
+
+```{r desc-fleet-isrel-rex, results = knitr_results, echo = knitr_echo}
+fleet_rex@isRel <- TRUE
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### LR5 {#app:desc-fleet-lr5-rex}
+
+*Shortest length corresponding ot 5% retention. Uniform distribution lower and upper bounds.*
+
+We will assume this is 1/4 of `Linf`. This should have no impact on the results because we are assuming 100% discard mortality and reporting of all catch.
+
+```{r desc-fleet-lr5-rex, results = knitr_results, echo = knitr_echo}
+quarter_linf <- stock_rex@Linf / 4
+fleet_rex@LR5 <- c(quarter_linf, quarter_linf)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### LFR {#app:desc-fleet-lfr-rex}
+
+*Shortest length that is fully retained. Uniform distribution lower and upper bounds.*
+
+We will assume this is 1/2 of `Linf`. This should have no impact on the results because we are assuming 100% discard mortality and reporting of all catch.
+
+```{r desc-fleet-lfr-rex, results = knitr_results, echo = knitr_echo}
+half_linf <- stock_rex@Linf / 2
+fleet_rex@LFR <- c(half_linf, half_linf)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Rmaxlen {#app:desc-fleet-rmaxlen-rex}
+
+*The retention of fish at `Linf`. Uniform distribution lower and upper bounds.*
+
+We do not have any length data on discards but assume that they will be retained if they are large (at `Linf`). This should have no impact on the results because we are assuming 100% discard mortality and reporting of all catch.
+
+```{r desc-fleet-rmaxlen-rex, results = knitr_results, echo = knitr_echo}
+fleet_rex@Rmaxlen <- c(1, 1)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### DR {#app:desc-fleet-dr-rex}
+
+*Discard rate: the fraction of caught fish that are discarded. Uniform distribution lower and upper bounds. Fraction.*
+
+Since all the discards are included in the catch, we will set this to 0.
+
+```{r desc-fleet-dr-rex, results = knitr_results, echo = FALSE}
+fleet_rex@DR <- 0
+```
+
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### CurrentYr {#app:desc-fleet-currentyr-rex}
+
+*The current calendar year (final year) of the historical simulations (e.g., 2019).*
+
+```{r desc-fleet-currentyr-rex, results = knitr_results, echo = knitr_echo}
+fleet_rex@CurrentYr <- 2018
+```
+<!-- slot-chunk-end -->
+
+## OBS SLOT DESCRIPTIONS {#app:desc-obs-rex}
+
+We will start with a built-in observation object and substitute values as we go:
+
+```{r warnings = FALSE}
+obs_rex <- DLMtool::Precise_Unbiased
+```
+
+<!-- slot-chunk-begin -->
+### Name {#app:desc-obs-name-rex}
+
+*The name of the observation model object.*
+
+```{r desc-obs-name-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@Name <- "BC observation model"
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Cobs {#app:desc-obs-cobs-rex}
+
+*Log-normal catch observation error expressed as a CV. Uniform distribution lower and upper bounds.*
+
+Since 1996, observation error on catch should be very small:
+
+<!-- TODO: does this affect historical build up because there was certainly much larger observation error on catch before 1996. -->
+<!-- RF: No I think the historical catch uncertainty is dealt with in the historical MSE -->
+
+```{r desc-obs-cobs-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@Cobs <- c(0, 0.05)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Cbiascv {#app:desc-obs-cbiascv-rex}
+
+*Log-normal CV controlling the sampling of bias in catch observations for each simulation. Uniform distribution lower and upper bounds.*
+
+We will keep this at 0 because observation error on catch should be very small with 100% on board and dockside monitoring.
+
+<!-- FIXME: what about the historical period? -->
+
+```{r desc-obs-cbiascv-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@Cbiascv <- c(0, 0)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### CAA_nsamp {#app:desc-obs-caa_nsamp-rex}
+
+*Number of catch-at-age observation per time step. Uniform distribution lower and upper bounds.*
+
+This slot will not be relevant in the main operating model since none of the MPs make use of age data.
+
+```{r desc-obs-caa_nsamp-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@CAA_nsamp <- c(100, 200)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### CAA_ESS {#app:desc-obs-caa_ess-rex}
+
+*Effective sample size (independent age draws) of the multinomial catch-at-age observation error model. Uniform distribution lower and upper bounds.*
+
+This slot will not be relevant in the main operating model since none of the MPs make use of age data.
+
+```{r desc-obs-caa_ess-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@CAA_ESS <- c(50, 100)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### CAL_nsamp {#app:desc-obs-cal_nsamp-rex}
+
+*Number of catch-at-length observation per time step. Uniform distribution lower and upper bounds.*
+
+The number of Rex Sole fish sampled for length each year in the SYN WCVI survey is somewhere between 3000 and 4000.
+
+This slot will not be relevant in the main operating model since none of the MPs make use of length samples.
+
+```{r desc-obs-cal_nsamp-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@CAL_nsamp <- c(3000, 4000)
+obs_rex@CAL_nsamp
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### CAL_ESS {#app:desc-obs-cal_ess-rex}
+
+*Effective sample size (independent length draws) of the multinomial catch-at-length observation error model. Uniform distribution lower and upper bounds.*
+
+Based on the calculations described in @pennington2002 (TODO: explain elsewhere), the effective sample size for catch at length appears to be around 100 to 400, depending on the year.
+
+This slot will not be relevant in the main operating model since none of the MPs make use of length samples.
+
+```{r desc-obs-cal_ess-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@CAL_ESS <- c(100, 400)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Iobs {#app:desc-obs-iobs-rex}
+
+*Observation error in the relative abundance indices expressed as a CV. Uniform distribution lower and upper bounds.*
+
+This will get replaced by the SRA conditioning model with the actual annual values.
+
+```{r}
+rex_cv_range <- dplyr::filter(drex$survey_index, survey_abbrev == "SYN WCVI") %>%
+  dplyr::pull(re) %>%
+  range() %>%
+  round(2)
+obs_rex@Iobs <- rex_cv_range
+```
+
+```{r desc-obs-iobs-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@Iobs
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### beta {#app:desc-obs-beta-rex}
+
+*A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases more slowly than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution lower and upper bounds.*
+
+We will set this to 1 to imply no hyperstability or hyperdepletion of the synoptic trawl survey population index.
+
+```{r desc-obs-beta-rex, results = knitr_results, echo = knitr_echo}
+obs_rex@beta <- c(1, 1)
+```
+<!-- slot-chunk-end -->
+
+## IMP SLOT DESCRIPTIONS {#app:desc-imp-rex}
+
+```{r warnings = FALSE}
+imp_rex <- DLMtool::Perfect_Imp
+```
+
+<!-- slot-chunk-begin -->
+### Name {#app:desc-imp-name-rex}
+
+*The name of the Implementation error object.*
+
+```{r desc-imp-name-rex, results = knitr_results, echo = knitr_echo}
+imp_rex@Name <- "BC Implementation"
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### TACFrac {#app:desc-imp-tacfrac-rex}
+
+*Mean fraction of TAC taken. Uniform distribution lower and upper bounds.*
+
+We will assume that there is no persistent bias from iteration to iteration of the fraction of TAC taken.
+
+```{r desc-imp-tacfrac-rex, results = knitr_results, echo = knitr_echo}
+imp_rex@TACFrac <- c(1.0, 1.0)
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### TACSD {#app:desc-imp-tacsd-rex}
+
+*Log-normal CV in the fraction of TAC taken. Uniform distribution lower and upper bounds.*
+
+We will allow for a small amount of variation in fraction of TAC taken from year to year.
+
+```{r desc-imp-tacsd-rex, results = knitr_results, echo = knitr_echo}
+imp_rex@TACSD <- c(0.05, 0.05)
+```
+<!-- slot-chunk-end -->
+
+```{r output-rex}
+rex_om <- new("OM", stock_rex, fleet_rex, obs_rex, imp_rex)
+saveRDS(rex_om, file = here::here("generated-data", "rex-om.rds"))
+```
