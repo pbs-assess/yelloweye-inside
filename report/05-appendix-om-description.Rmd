@@ -16,7 +16,7 @@ stock_yelloweye <- methods::new("Stock")
 *The name of the Stock object.*
 
 ```{r desc-stock-name-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@Name
+stock_yelloweye@Name <- "Inside Yelloweye Rockfish"
 ```
 <!-- slot-chunk-end -->
 
@@ -26,7 +26,7 @@ stock_yelloweye@Name
 *Common name of the species.*
 
 ```{r desc-stock-common_name-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@Common_Name
+stock_yelloweye@Common_Name <- "Yelloweye Rockfish"
 ```
 <!-- slot-chunk-end -->
 
@@ -36,7 +36,7 @@ stock_yelloweye@Common_Name
 *Scientific name of the species.*
 
 ```{r desc-stock-species-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@Species
+stock_yelloweye@Species <- "Sebastes ruberrimus"
 ```
 <!-- slot-chunk-end -->
 
