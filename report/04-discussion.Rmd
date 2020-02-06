@@ -1,0 +1,40 @@
+# DISCUSSION
+
+*Final discussion may include other topics. Below is a rough start.*
+
+## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS
+
+* How this is compliant with the DFO precautionary framework and Bill C68
+* Not just a backup solution, could be argued that this is "implicit" knowledge is a better solution then the usual "explicit" knowledge
+
+## FORMAT OF THE ADVICE
+
+* Suggested elements to include in a Research Document
+* Suggested elements to include in a SAR
+* Potential use of SRs to update advice
+* Potential to assess multiple spatial regions and related species simultaneously
+
+## REASSESSMENT FREQUENCY AND TRIGGERS
+
+* Annual(?) updating of catch recommendation
+* Less frequent revisiting of the OM and potential changes to MP/HCR
+* Some suggested interval barring a trigger
+
+* Identifying mismatches between the operating model and realized data
+* Suggested that these are checked on some regular interval
+* Which data are we suggesting to check
+
+## INCLUDING ENVIRONMENTAL EFFECTS
+
+* Tie into bill C68 and ecosystem approach to fisheries management working group
+* Perhaps one of the most feasible ways to include environmental effects is via operating models
+
+## ASSESSING THE VALUE OF INFORMATION
+
+* Possibly draw on the value of aging data for English sole from a case study as an example
+* Can also suggest other possible uses, e.g., changes to survey coverage
+
+## REBUILDING PLANS
+
+* Brief overview
+* Note the upcoming yelloweye inside application

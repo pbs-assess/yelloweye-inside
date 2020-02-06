@@ -2,10 +2,27 @@
 
 ## BACKGROUND
 
+*TODO edit this. Lifted from PID*
 
+The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the Inside Population of Yelloweye Rockfish (Sebastes ruberrimus). Objectives and methods should be consistent with national policy guidance (DFO 2009, 2013) and the results should be documented to a standard acceptable for a CSAS Regional Peer Review Process (RPR). The project will apply a closed-loop simulation approach to test and identify management procedures that meet rebuilding objectives for the Inside population of Yelloweye Rockfish (Inside Yelloweye Rockfish, 4B groundfish management area). The project has three parts: 1) Review and revise rebuilding objectives; 2)  Development of one or more operating models to represent alternative hypotheses for stock and fishery dynamics and to simulate future data; and 3) Evaluation of the performance of candidate management procedures with respect to meeting the rebuilding objectives and characterisation of trade-offs associated with alternative rebuilding plans.
 
 ## MOTIVATION
 
+*TODO edit all this. Lifted from PID*
+
+Canadian fish stocks that have been assessed as being below the Limit Reference Point (LRP), i.e., in the Critical Zone (DFO 2009), require a rebuilding plan to rebuild the stock out of the Critical Zone.  The Department's guidance document for the development of rebuilding plans (DFO 2013) states that rebuilding plans should include short- and long-term objectives, where short-term objectives should be achieved within the life of the rebuilding plan and are characterised by: 1) a target; 2) desired time to reach the target; and 3) acceptable probability of reaching the target. Rebuilding plans should also include planned management measures, milestone objectives and should undergo regular (no more than three years) performance reviews, in addition to annual monitoring and evaluation. 
+
+Inside Yelloweye Rockfish is a data-limited species targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries. The population was assessed in 2011 as being below the LRP (Yamanaka et al. 2011, DFO 2012). A rebuilding plan for the population was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish (DFO 2018). The current rebuilding plan has the objective to “rebuild the stock above the LRP over 80 years with 56% probability of success”. The milestone objectives are to “achieve positive trends within each 10 y period”. The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, FSC) below 15 tonnes (see DFO 2018, App. 9 for details).
+The current rebuilding plan is due for review. Science has received a Request for Science Information and Advice (RSIA) from the Pacific Groundfish Management Unit that states:
+“Science support is requested to review rebuilding plan objectives, and if indicated by the review, adjust the rebuilding plan objectives so that they can be monitored and evaluated, and  are consistent with the Rebuilding Plan guidance document.”
+
+Review of the rebuilding plan objectives includes reviewing whether the current stated probability of rebuilding (56%) is consistent with the guidance document (DFO 2013), which state that there should be a high probability of rebuilding the stock within the stated time-frame.
+
+The guidance document (DFO 2013) identifies some recommended management measures, which include keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of MSE to examine the consequences of alternative management measures aimed at rebuilding. The current rebuilding plan implements an annual fixed TAC, which has not been simulation-tested to date.
+
+Inside Yelloweye Rockfish is listed under the Species at Risk Act as Special Concern, and is anticipated to be reassessed by COSEWIC in 2019 (Kepple and Olsen 2019). Project results may inform a COSEWIC reassessment and will inform a Species at Risk Act (SARA) Recovery Potential Assessment for the Inside Population, should one be required. 
+
+### Legislative obligations
 
 On June 21, 2019, major amendments to Canada's [*Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547) received Royal Assent, thus passing them into Canadian law. Among many other amendments, provisions in the new *Fisheries Act* require that fish stocks be managed at sustainable levels, specifically at biomass levels above the LRP. Hereafter referred to as the "Fish Stocks provisions", the provisions legislate elements of Canada's SFF and PA Framework, and state:
 
@@ -22,4 +39,4 @@ For data-limited stocks, data are generally insufficient to adequately account f
 
 ## THE INSIDE STOCK OF YELLOWEYE ROCKFISH
 
-
+*TODO: Very brief background info about stock*
