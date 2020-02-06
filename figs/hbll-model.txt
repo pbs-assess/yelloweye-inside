@@ -1,0 +1,26 @@
+Spatiotemporal model fit by REML ['sdmTMB']
+Formula: formula
+SPDE: sp
+Family: nbinom2(link = 'log')
+                    coef.est coef.se
+as.factor(year)2003    -0.63    0.39
+as.factor(year)2004    -0.22    0.39
+as.factor(year)2005    -1.23    0.36
+as.factor(year)2007    -1.01    0.41
+as.factor(year)2008    -1.23    0.35
+as.factor(year)2009    -1.56    0.55
+as.factor(year)2010    -1.02    0.36
+as.factor(year)2011    -0.81    0.35
+as.factor(year)2012    -1.02    0.36
+as.factor(year)2013    -0.97    0.35
+as.factor(year)2014    -1.07    0.36
+as.factor(year)2015    -0.70    0.36
+as.factor(year)2016    -0.66    0.35
+as.factor(year)2018    -1.74    0.40
+as.factor(year)2019    -1.08    0.34
+
+Matern range parameter: 0.24
+Dispersion parameter: 1.16
+Spatial SD (sigma_O): 1.48
+Spatiotemporal SD (sigma_E): 0.25
+REML criterion at convergence: 1559.043
