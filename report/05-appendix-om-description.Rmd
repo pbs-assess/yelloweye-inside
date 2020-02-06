@@ -1,8 +1,17 @@
+\newpage
+
+`r if(knitr:::is_latex_output()) '\\Appendices'`
+
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+
+
 ```{r message = FALSE}
 library(DLMtool)
 knitr_results <- TRUE
 knitr_echo <- TRUE
 ```
+
+# INSIDE YELLOWEYE ROCKFISH OPERATING MODEL DEFINITION {#app:desc-om-yelloweye}
 
 ## STOCK SLOT DESCRIPTIONS {#app:desc-stock-yelloweye}
 
@@ -358,7 +367,7 @@ obs_yelloweye@Name
 *Log-normal catch obs_yelloweyeervation error expressed as a CV. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs_yelloweye-cobs_yelloweye-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@Cobs_yelloweye
+#obs_yelloweye@Cobs_yelloweye
 ```
 <!-- slot-chunk-end -->
 
@@ -418,7 +427,7 @@ obs_yelloweye@CAL_ESS
 *Observation error in the relative abundance indices expressed as a CV. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs_yelloweye-iobs_yelloweye-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@Iobs_yelloweye
+#obs_yelloweye@Iobs_yelloweye
 ```
 <!-- slot-chunk-end -->
 
