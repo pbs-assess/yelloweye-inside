@@ -86,7 +86,7 @@ if (!file.exists(model_file) || !file.exists(model_file_depth) ||
       time = "year",
       silent = FALSE,
       anisotropy = TRUE,
-      cores = cores,
+      #cores = cores,
       reml = TRUE,
       family = nbinom2(link = "log")
     )

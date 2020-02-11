@@ -1,7 +1,9 @@
-# email from Dana:
-d2 <- readxl::read_xls("data-raw/complete_research_blocks_table.xls")
-
 library(dplyr)
+
+# email from Dana:
+d2 <- readRDS("data-raw/complete_research_blocks_table.rds")
+area <- readRDS("data-raw/All_HBLL_Blocks_Area_Water.rds") %>%
+  dplyr::select(block = BLOCK_DESI, area = Area_Water_km2)
 
 d2 <- d2 %>%
   filter(exported_research_blocks.SS_ID %in% c(39, 40)) %>%
@@ -18,10 +20,6 @@ d2 <- d2 %>%
   mutate(survey = paste0("HBLL ", survey))
 
 # plot(d2$exported_research_blocks.percent100_rock, d2$exported_research_blocks.Percent20m_rock)
-
-# email from Dana:
-area <- readr::read_csv("All_HBLL_Blocks_Area_Water.csv") %>%
-  dplyr::select(block = BLOCK_DESI, area = Area_Water_km2)
 
 d2 <- left_join(d2, area)
 
