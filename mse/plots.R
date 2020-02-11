@@ -37,15 +37,18 @@ mps <- c("FMSYref", "NF", "CC_5t", "CC_10t", "CC_15t", "ICI_YE", "ICI2_YE",
 `LTC` <- gfdlm::pm_factory("LTY", 0.5, c(38, 38))
 PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "FMSY", "STC", "LTC", "AAVC")
 
-custom_pal <- c(RColorBrewer::brewer.pal(8, "Set2"), "grey60", "grey30")
+custom_pal <- c(RColorBrewer::brewer.pal(4, "Set2"), "grey60", "grey30")
 names(custom_pal) <- c(c("GB_slope_YE", "CC_10t", 1:6), "FMSYref", "NF")
+
+custom_pal <- c(RColorBrewer::brewer.pal(3, "Set2"), "grey60", "grey30")
+names(custom_pal) <- c(c("CC_10t", "CC_15t", "CC_5t"), "FMSYref", "NF")
 
 plots <- plot_factory(
   mse,
   pm = PM,
   scenario_df = sc,
   this_year = 2019,
-  mp_sat = c("GB_slope_YE", "CC_10t"),
+  mp_sat = c("CC_10t", "CC_15t", "CC_5t", "NF", "FMSYref"),
   mp_not_sat = c("CC_15t"),
   mp_not_sat_highlight = c("CC_15t"),
   mp_ref = c("FMSYref", "NF"),
