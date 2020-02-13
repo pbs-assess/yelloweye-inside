@@ -72,3 +72,32 @@ plots <- plot_factory(
   eg_scenario = "upweight_dogfish",
   satisficed_criteria = c("LRP 1.5GT" = 0.8, "STC" = 0.7)
 )
+
+pm_angle <- theme(axis.text.x.top = element_text(angle = 45, hjust = 0))
+cobweb <- geom_line(alpha = 0.15, position = position_dodge(width = 0.6))
+
+plots$tigure_all_scenarios_avg
+plots$tigure_minimum + pm_angle
+plots$tigure_refset + pm_angle
+plots$tigure_robset + pm_angle
+plots$kobe
+plots$convergence + coord_cartesian(ylim = c(-0.02, 1.02), expand = FALSE)
+plots$worms_proj
+plots$worms_hist_proj
+plots$tradeoff_refset
+plots$tradeoff_robset
+plots$radar_refset_avg
+plots$radar_refset
+plots$lollipops_refset + cobweb
+plots$lollipops_robset + cobweb
+plots$lollipops_refset_avg + cobweb
+plots$lollipops_refset
+plots$lollipops_robset
+plots$lollipops_refset_avg
+plots$parallel_refset_avg
+plots$parallel_refset
+plots$parallel_refset_avg
+plots$projections$base
+plots$projections$upweight_dogfish
+plots$projections$low_catch
+plots$projections$sporadic_recruitment
