@@ -61,7 +61,7 @@ plots <- plot_factory(
   this_year = 2019,
   mp_sat = c("CC_10t", "CC_15t", "CC_5t", "NF", "FMSYref"),
   mp_not_sat = c("CC_15t"),
-  mp_not_sat_highlight = c("CC_15t"),
+  mp_not_sat2 = c("CC_15t"),
   mp_ref = c("FMSYref", "NF"),
   custom_pal = custom_pal,
   tradeoff = c("LRP 1.5GT", "STC"),
@@ -73,8 +73,8 @@ plots <- plot_factory(
 pm_angle <- theme(axis.text.x.top = element_text(angle = 45, hjust = 0))
 cobweb <- geom_line(alpha = 0.15, position = position_dodge(width = 0.6))
 
-plots$tigure_all_scenarios_avg
-plots$tigure_minimum + pm_angle
+plots$tigure_refset_avg
+plots$tigure_min + pm_angle
 plots$tigure_refset + pm_angle
 plots$tigure_robset + pm_angle
 plots$kobe
