@@ -126,16 +126,17 @@ g1 <- bbmsy_ffmsy %>%
   filter(scenario != "Pinniped mortality") %>%
   filter(mp_name %in% c(c("CC_10t", "CC_15t", "CC_5t"), "FMSYref", "NF")) %>%
   ggplot(aes_string("real_year", "m", colour = "scenario", fill = "scenario")) +
+  geom_vline(xintercept = this_year, lty = 2, alpha = 0.3) +
+  geom_hline(yintercept = 1, lty = 2, alpha = 0.3) +
   geom_line(na.rm = TRUE) +
   facet_grid(mp_name ~ Type, labeller = ggplot2::label_parsed) +
   geom_ribbon(aes_string(x = "real_year", ymin = "l", ymax = "u"),
     colour = NA, alpha = 0.07, na.rm = TRUE
   ) +
   theme_pbs() +
-  coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
+  coord_cartesian(expand = FALSE, ylim = c(0, 3.9)) +
   scale_colour_brewer(palette = "Dark2") +
   scale_fill_brewer(palette = "Dark2") + ylab("Value") + xlab("Year") +
-  geom_vline(xintercept = this_year, lty = 2, alpha = 0.3) +
   ggplot2::theme(panel.spacing = grid::unit(-0.1, "lines"))
 
 g2 <- catch %>%
@@ -162,9 +163,10 @@ g3 <- cowplot::plot_grid(
 
 legend <- cowplot::get_legend(
   # create some space for the legend
-  g1 + theme(legend.box.margin = margin(0.2, 0.2, 12, .2), legend.position = "bottom")
+  g1 + theme(legend.box.margin = margin(0.2, 0.2, 12, .2), legend.position = "bottom") +
+    labs(colour = "Scenario", fill = "Scenario")
 )
 
 g <- cowplot::plot_grid(g3, legend, rel_heights = c(4, .2), nrow = 2)
 
-ggsave("~/Desktop/sc.pdf", width = 8, height = 8)
+ggsave("~/Desktop/sc.pdf", width = 8, height = 7.5)
