@@ -41,10 +41,6 @@ mps <- c(
 `1.5GT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(56, 56))
 `1.5GT USR` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 56))
 
-# `MT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(38, 38))
-# `LT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(56, 56))
-# `LT USR` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 56))
-#
 `LRP 1GT` <- gfdlm::pm_factory("SBMSY", 0.4, c(38, 38))
 `LRP 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.4, c(56, 56))
 `USR 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 56))
@@ -72,6 +68,7 @@ plots <- plot_factory(
   eg_scenario = "upweight_dogfish",
   satisficed_criteria = c("LRP 1.5GT" = 0.8, "STC" = 0.7)
 )
+
 
 pm_angle <- theme(axis.text.x.top = element_text(angle = 45, hjust = 0))
 cobweb <- geom_line(alpha = 0.15, position = position_dodge(width = 0.6))
@@ -101,3 +98,73 @@ plots$projections$base
 plots$projections$upweight_dogfish
 plots$projections$low_catch
 plots$projections$sporadic_recruitment
+
+# -----------------------------------------------------------------------------
+# FIXME: pull into package:
+
+mse2 <- mse
+names(mse2) <- sc$scenario_human
+
+bbmsy_ffmsy <- purrr::map_dfr(names(mse2), ~ {
+  ts_data <- gfdlm:::get_ts(object = mse2[[.]], type = c("SSB", "FM"), this_year = 2019)
+  gfdlm:::get_ts_quantiles(ts_data, probs = c(0.1, 0.5)) %>%
+    mutate(scenario = .x)
+})
+
+catch <- purrr::map_dfr(names(mse2), ~ {
+  ts_data <- gfdlm:::get_ts(object = mse2[[.]], type = c("C"), this_year = 2019)
+  gfdlm:::get_ts_quantiles(ts_data, probs = c(0.1, 0.5)) %>%
+    mutate(scenario = .x)
+})
+
+this_year <- 2019
+rel_widths <- c(2, 1.2)
+bbmsy_ffmsy$Type <- gsub("_", "/", bbmsy_ffmsy$Type)
+bbmsy_ffmsy$Type <- gsub("MSY", "[MSY]", bbmsy_ffmsy$Type)
+
+g1 <- bbmsy_ffmsy %>%
+  filter(scenario != "Pinniped mortality") %>%
+  filter(mp_name %in% c(c("CC_10t", "CC_15t", "CC_5t"), "FMSYref", "NF")) %>%
+  ggplot(aes_string("real_year", "m", colour = "scenario", fill = "scenario")) +
+  geom_line(na.rm = TRUE) +
+  facet_grid(mp_name ~ Type, labeller = ggplot2::label_parsed) +
+  geom_ribbon(aes_string(x = "real_year", ymin = "l", ymax = "u"),
+    colour = NA, alpha = 0.07, na.rm = TRUE
+  ) +
+  theme_pbs() +
+  coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
+  scale_colour_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") + ylab("Value") + xlab("Year") +
+  geom_vline(xintercept = this_year, lty = 2, alpha = 0.3) +
+  ggplot2::theme(panel.spacing = grid::unit(-0.1, "lines"))
+
+g2 <- catch %>%
+  filter(scenario != "Pinniped mortality") %>%
+  filter(mp_name %in% c(c("CC_10t", "CC_15t", "CC_5t"), "FMSYref", "NF")) %>%
+  ggplot(aes_string("real_year", "m", colour = "scenario", fill = "scenario")) +
+  geom_line(na.rm = TRUE) +
+  facet_grid(mp_name ~ Type) +
+  geom_ribbon(aes_string(x = "real_year", ymin = "l", ymax = "u"),
+    colour = NA, alpha = 0.07, na.rm = TRUE
+  ) +
+  theme_pbs() +
+  # coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
+  scale_colour_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") + ylab("Catch") + xlab("Year") +
+  geom_vline(xintercept = this_year, lty = 2, alpha = 0.3) +
+  ggplot2::theme(panel.spacing = grid::unit(-0.1, "lines"))
+
+g3 <- cowplot::plot_grid(
+  g1 + theme(legend.position = "none"),
+  g2 + theme(legend.position = "none"),
+  rel_widths = rel_widths, align = "h"
+)
+
+legend <- cowplot::get_legend(
+  # create some space for the legend
+  g1 + theme(legend.box.margin = margin(0.2, 0.2, 12, .2), legend.position = "bottom")
+)
+
+g <- cowplot::plot_grid(g3, legend, rel_heights = c(4, .2), nrow = 2)
+
+ggsave("~/Desktop/sc.pdf", width = 8, height = 8)
