@@ -4,7 +4,7 @@ library(ggplot2)
 library(gfdlm)
 
 sc <- tibble::tribble(
-  ~scenario,             ~scenario_human,        ~scenario_type,
+  ~scenario,             ~scenario_human,            ~scenario_type,
   "base",                 "Base",                     "Reference",
   "upweight_dogfish",     "Upweight dogfish survey",  "Reference",
   "low_catch",            "Low catch",                "Reference",
@@ -13,32 +13,47 @@ sc <- tibble::tribble(
   "pinniped",             "Pinniped mortality",       "Robustness"
 )
 
-mse <- map(sc$scenario, ~readRDS(paste0("data-generated/mse/MSE_", .x, ".rds")))
+mse <- map(sc$scenario,
+  ~readRDS(paste0("data-generated/mse/MSE_", ., ".rds")))
 names(mse) <- sc$scenario
 
 reference_mp <- c("FMSYref", "NFref")
-
-mps <- c("FMSYref", "NF", "CC_5t", "CC_10t", "CC_15t", "ICI_YE", "ICI2_YE",
-  "Iratio_YE", "GB_slope_YE", "IT5_YE", "IT10_YE", "Islope_YE",
-  "IDX_YE", "IDX_smooth_YE", "SP_4080_5f", "SP_4080_10f", "SP_2060_5f",
-  "SP_2060_10f", "SP_interim")
+mps <- c(
+  "FMSYref", "NF", # rename NF to NFref; FMSYref75?
+  "CC_5t", "CC_10t", "CC_15t", # keep
+  "ICI_YE", "ICI2_YE", # cut?
+  "Iratio_YE", # keep
+  "GB_slope_YE", # keep
+  "IT5_YE", "IT10_YE", # what is the target?
+  "Islope_YE", # 4 versions?
+  "IDX_YE", "IDX_smooth_YE", # add floor
+  "SP_4080_5f", "SP_4080_10f",
+    "SP_2060_5f", "SP_2060_10f",
+  "SP_interim" # explain priors
+  # add:
+  #   - Itargets
+  #   - GB_slopes?
+)
 
 # Set up PMs ------------------------------------------------------------------
 
-`LT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(56, 100))
-`LT USR` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 100))
+`1GT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(38, 38))
+`1.5GT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(56, 56))
+`1.5GT USR` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 56))
 
+# `MT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(38, 38))
+# `LT LRP` <- gfdlm::pm_factory("SBMSY", 0.4, c(56, 56))
+# `LT USR` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 56))
+#
 `LRP 1GT` <- gfdlm::pm_factory("SBMSY", 0.4, c(38, 38))
 `LRP 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.4, c(56, 56))
 `USR 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 56))
-`FMSY` <- DLMtool::PNOF
-`AAVC` <- DLMtool::AAVY
-`STC` <- gfdlm::pm_factory("LTY", 0.5, c(1, 10))
-`LTC` <- gfdlm::pm_factory("LTY", 0.5, c(38, 38))
-PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "FMSY", "STC", "LTC", "AAVC")
 
-custom_pal <- c(RColorBrewer::brewer.pal(4, "Set2"), "grey60", "grey30")
-names(custom_pal) <- c(c("GB_slope_YE", "CC_10t", 1:6), "FMSYref", "NF")
+FMSY <- DLMtool::PNOF
+AAVC <- DLMtool::AAVY
+STC <- gfdlm::pm_factory("LTY", 0.5, c(1, 10))
+LTC <- gfdlm::pm_factory("LTY", 0.5, c(38, 38))
+PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "FMSY", "STC", "LTC", "AAVC")
 
 custom_pal <- c(RColorBrewer::brewer.pal(3, "Set2"), "grey60", "grey30")
 names(custom_pal) <- c(c("CC_10t", "CC_15t", "CC_5t"), "FMSYref", "NF")
@@ -57,4 +72,3 @@ plots <- plot_factory(
   eg_scenario = "upweight_dogfish",
   satisficed_criteria = c("LRP 1.5GT" = 0.8, "STC" = 0.7)
 )
-
