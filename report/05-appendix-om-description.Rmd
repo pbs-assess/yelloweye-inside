@@ -6,7 +6,7 @@
 
 
 ```{r message = FALSE}
-library(DLMtool)
+library(MSEtool)
 knitr_results <- TRUE
 knitr_echo <- TRUE
 ```
@@ -55,7 +55,7 @@ stock_yelloweye@Species <- "Sebastes ruberrimus"
 *The maximum age of individuals that is simulated. Positive integer.*
 
 ```{r desc-stock-maxage-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@maxage
+stock_yelloweye@maxage <- 80
 ```
 <!-- slot-chunk-end -->
 
@@ -65,7 +65,7 @@ stock_yelloweye@maxage
 *The magnitude of unfished recruitment. An arbitrary value that scales all results. Set to 1000.*
 
 ```{r desc-stock-r0-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@R0
+stock_yelloweye@R0 #Estimated by SRA_scope
 ```
 <!-- slot-chunk-end -->
 
@@ -95,7 +95,7 @@ stock_yelloweye@h
 *Type of stock_yelloweye-recruit relationship. Single integer value, switch (1) Beverton-Holt (2) Ricker.*
 
 ```{r desc-stock-srrel-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@SRrel
+stock_yelloweye@SRrel <- 1
 ```
 <!-- slot-chunk-end -->
 
@@ -105,7 +105,7 @@ stock_yelloweye@SRrel
 *Process error, the CV of lognormal recruitment deviations. Uniform distribution lower and upper bounds.*
 
 ```{r desc-stock-perr-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@Perr
+stock_yelloweye@Perr <- rep(0.4, 2)
 ```
 <!-- slot-chunk-end -->
 
@@ -115,7 +115,7 @@ stock_yelloweye@Perr
 *Autocorrelation in recruitment deviations. Uniform distribution lower and upper bounds.*
 
 ```{r desc-stock-ac-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@AC
+stock_yelloweye@AC # Estimated by SRA_scope
 ```
 <!-- slot-chunk-end -->
 
@@ -125,7 +125,7 @@ stock_yelloweye@AC
 *Maximum length. Uniform distribution lower and upper bounds.*
 
 ```{r desc-stock-linf-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@Linf
+stock_yelloweye@Linf <- rep(65.2) #gfsynopsis
 ```
 <!-- slot-chunk-end -->
 
@@ -135,7 +135,7 @@ stock_yelloweye@Linf
 *von Bertalanffy growth parameter k. Uniform distribution lower and upper bounds.*
 
 ```{r desc-stock-k-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@K
+stock_yelloweye@K <- rep(0.04, 2) #gfsynopsis
 ```
 <!-- slot-chunk-end -->
 
@@ -145,7 +145,7 @@ stock_yelloweye@K
 *von Bertalanffy theoretical age at length zero. Uniform distribution lower and upper bounds.*
 
 ```{r desc-stock-t0-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@t0
+stock_yelloweye@t0 <- rep(-9.04, 2) # gfsynopsis
 ```
 <!-- slot-chunk-end -->
 
@@ -155,7 +155,7 @@ stock_yelloweye@t0
 *CV of length-at-age (assumed constant for all age classes). Uniform distribution lower and upper bounds.*
 
 ```{r desc-stock-lencv-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@LenCV
+stock_yelloweye@LenCV <- rep(0.14, 2) # gfsynopsis only used if we use length data
 ```
 <!-- slot-chunk-end -->
 
@@ -185,7 +185,7 @@ stock_yelloweye@L50_95
 *Current level of stock_yelloweye depletion SSB~current~/SSB~unfished~. Uniform distribution lower and upper bounds representing a fraction.*
 
 ```{r desc-stock-d-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@D
+stock_yelloweye@D # Updated by SRA_scope
 ```
 <!-- slot-chunk-end -->
 
@@ -195,7 +195,7 @@ stock_yelloweye@D
 *Length-weight parameter alpha. Positive real number.*
 
 ```{r desc-stock-a-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@a
+stock_yelloweye@a <- 1.31e-5 # gfsynopsis
 ```
 <!-- slot-chunk-end -->
 
@@ -205,7 +205,7 @@ stock_yelloweye@a
 *Length-weight parameter beta. Positive real number.*
 
 ```{r desc-stock-b-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@b
+stock_yelloweye@b <- 3.09 # gfsynopsis
 ```
 <!-- slot-chunk-end -->
 
@@ -215,7 +215,7 @@ stock_yelloweye@b
 *Fraction of discarded fish that die. Uniform distribution lower and upper bounds.*
 
 ```{r desc-stock-fdisc-yelloweye, results = knitr_results, echo = knitr_echo}
-stock_yelloweye@Fdisc
+stock_yelloweye@Fdisc <- c(1, 1) # Not used, we assume all sources of mortality are included in catch.
 ```
 <!-- slot-chunk-end -->
 
@@ -241,7 +241,7 @@ fleet_yelloweye@Name
 *The number of years for the historical spool-up simulation.*
 
 ```{r desc-fleet-nyears-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@nyears
+fleet_yelloweye@nyears <- 101 # 1918-2019
 ```
 <!-- slot-chunk-end -->
 
@@ -251,7 +251,7 @@ fleet_yelloweye@nyears
 *Distribution of fishing in relation to spatial biomass: fishing distribution is proportional to B^`Spat_targ`^. Uniform distribution lower and upper bounds.*
 
 ```{r desc-fleet-spat_targ-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@Spat_targ
+fleet_yelloweye@Spat_targ <- c(1, 1) # We don't model spatial dynamics.
 ```
 <!-- slot-chunk-end -->
 
@@ -261,7 +261,7 @@ fleet_yelloweye@Spat_targ
 *Shortest length corresponding to 5% vulnerability. Uniform distribution lower and upper bounds.*
 
 ```{r desc-fleet-l5-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@L5
+fleet_yelloweye@L5 # Selectivity of recreational and commercial fleets are fixed in SRA_scope, which updates the OM.
 ```
 <!-- slot-chunk-end -->
 
@@ -271,7 +271,7 @@ fleet_yelloweye@L5
 *Shortest length that is fully vulnerable to fishing. Uniform distribution lower and upper bounds.*
 
 ```{r desc-fleet-lfs-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@LFS
+fleet_yelloweye@LFS # Selectivity of recreational and commercial fleets are fixed in SRA_scope, which updates the OM.
 ```
 <!-- slot-chunk-end -->
 
@@ -281,7 +281,7 @@ fleet_yelloweye@LFS
 *The vulnerability of fish at `Linf`. Uniform distribution lower and upper bounds. Fraction.*
 
 ```{r desc-fleet-vmaxlen-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@Vmaxlen
+fleet_yelloweye@Vmaxlen # Selectivity of recreational and commercial fleets are fixed in SRA_scope, which updates the OM.
 ```
 <!-- slot-chunk-end -->
 
@@ -291,7 +291,7 @@ fleet_yelloweye@Vmaxlen
 *Are the selectivity parameters in units of size-of-maturity (`TRUE`) (or absolute units, for example, cm) (`FALSE`).*
 
 ```{r desc-fleet-isrel-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@isRel
+fleet_yelloweye@isRel <- "FALSE"
 ```
 <!-- slot-chunk-end -->
 
@@ -311,7 +311,7 @@ fleet_yelloweye@LR5
 *Shortest length that is fully retained. Uniform distribution lower and upper bounds.*
 
 ```{r desc-fleet-lfr-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@LFR
+fleet_yelloweye@LFR # No discard dynamics are modeled. We assume all mortality occurs via selectivity.
 ```
 <!-- slot-chunk-end -->
 
@@ -331,7 +331,7 @@ fleet_yelloweye@Rmaxlen
 *Discard rate: the fraction of caught fish that are discarded. Uniform distribution lower and upper bounds. Fraction.*
 
 ```{r desc-fleet-dr-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@DR
+fleet_yelloweye@DR <- c(0, 0)
 ```
 <!-- slot-chunk-end -->
 
@@ -341,7 +341,7 @@ fleet_yelloweye@DR
 *The current calendar year (final year) of the historical simulations (e.g., 2019).*
 
 ```{r desc-fleet-currentyr-yelloweye, results = knitr_results, echo = knitr_echo}
-fleet_yelloweye@CurrentYr
+fleet_yelloweye@CurrentYr <- 2019
 ```
 <!-- slot-chunk-end -->
 
@@ -357,7 +357,7 @@ obs_yelloweye <- DLMtool::Precise_Unbiased
 *The name of the obs_yelloweyeervation model object.*
 
 ```{r desc-obs-name-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@Name
+obs_yelloweye@Name <- "BC Groundfish"
 ```
 <!-- slot-chunk-end -->
 
@@ -367,7 +367,7 @@ obs_yelloweye@Name
 *Log-normal catch obs_yelloweyeervation error expressed as a CV. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs_yelloweye-cobs_yelloweye-yelloweye, results = knitr_results, echo = knitr_echo}
-#obs_yelloweye@Cobs_yelloweye
+obs_yelloweye@Cobs_yelloweye
 ```
 <!-- slot-chunk-end -->
 
@@ -387,7 +387,7 @@ obs_yelloweye@Cbiascv
 *Number of catch-at-age obs_yelloweyeervation per time step. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs-caa_nsamp-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@CAA_nsamp
+obs_yelloweye@CAA_nsamp # We are not testing MPs that require age comps
 ```
 <!-- slot-chunk-end -->
 
@@ -397,7 +397,7 @@ obs_yelloweye@CAA_nsamp
 *Effective sample size (independent age draws) of the multinomial catch-at-age obs_yelloweyeervation error model. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs-caa_ess-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@CAA_ESS
+obs_yelloweye@CAA_ESS # We are not testing MPs that require age comps
 ```
 <!-- slot-chunk-end -->
 
@@ -407,7 +407,7 @@ obs_yelloweye@CAA_ESS
 *Number of catch-at-length obs_yelloweyeervation per time step. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs-cal_nsamp-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@CAL_nsamp
+obs_yelloweye@CAL_nsamp # We are not testing MPs that require length comps
 ```
 <!-- slot-chunk-end -->
 
@@ -417,7 +417,7 @@ obs_yelloweye@CAL_nsamp
 *Effective sample size (independent length draws) of the multinomial catch-at-length obs_yelloweyeervation error model. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs-cal_ess-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@CAL_ESS
+obs_yelloweye@CAL_ESS # We are not testing MPs that require length comps
 ```
 <!-- slot-chunk-end -->
 
@@ -427,7 +427,7 @@ obs_yelloweye@CAL_ESS
 *Observation error in the relative abundance indices expressed as a CV. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs_yelloweye-iobs_yelloweye-yelloweye, results = knitr_results, echo = knitr_echo}
-#obs_yelloweye@Iobs_yelloweye
+#obs_yelloweye@Iobs_yelloweye # SRA_scope will update indices
 ```
 <!-- slot-chunk-end -->
 
@@ -506,4 +506,48 @@ imp_yelloweye@TACFrac
 imp_yelloweye@TACSD
 ```
 <!-- slot-chunk-end -->
+
+
+## CUSTOM PARAMETERS {#app:desc-cpars-yelloweye}
+
+```{r desc-cpars-yelloweye, results = knitr_results, echo = knitr_echo}
+OM_yelloweye <- new("OM", stock_yelloweye, fleet_yelloweye, obs_yelloweye, imp_yelloweye)
+OM_yelloweye@nsim <- 250
+OM_yelloweye@proyears <- 100
+```
+
+<!-- slot-chunk-begin -->
+### Maturity {#app:desc-cpars-maturity-yelloweye}
+
+*To incorporate uncertainty in natural mortality among simulations, we sample from a lognormal distribution using the Hoenig (1983) prior.*
+
+```{r desc-fleet-name-yelloweye, results = knitr_results, echo = knitr_echo}
+set.seed()
+OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, )
+```
+<!-- slot-chunk-end -->
+
+
+<!-- slot-chunk-begin -->
+### Natural mortality {#app:desc-cpars-M-yelloweye}
+
+*To incorporate uncertainty in natural mortality among simulations, we sample from a lognormal distribution using the Hoenig (1983) prior.*
+
+```{r desc-fleet-name-yelloweye, results = knitr_results, echo = knitr_echo}
+set.seed()
+OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, 
+fleet_yelloweye@Name
+```
+<!-- slot-chunk-end -->
+
+# CONDITIONING THE OPERATING MODEL TO DATA
+
+```{r}
+
+
+
+
+}
+
+
 
