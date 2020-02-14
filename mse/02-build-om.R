@@ -17,14 +17,15 @@ stock_yelloweye@R0 <- 1200 # Start value of R0 for SRA_scope, will be estimated 
 
 ## Will be updated in cpars section below
 stock_yelloweye@M <- c(0.045, 0.045)
-stock_yelloweye@Msd <- c(0, 0)
+stock_yelloweye@Msd <- stock_yelloweye@Linfsd <- stock_yelloweye@Ksd <-
+  stock_yelloweye@L50 <- stock_yelloweye@L50_95 <- c(0, 0)
 stock_yelloweye@h <- c(0.71, 0.71)
 
 stock_yelloweye@SRrel <- 1
 stock_yelloweye@Perr <- c(0.4, 0.4)
 
 # Will be updated by SRA_scope, need a placeholder for now
-stock_yelloweye@AC <- stock_yelloweye@D <- c(0, 0)
+#stock_yelloweye@AC <- stock_yelloweye@D <- c(0, 0)
 
 ## gfsynopsis
 stock_yelloweye@Linf <- c(65.1, 65.1)
@@ -48,25 +49,39 @@ fleet_yelloweye@DR <- c(0, 0) # All removals will be accounted for in the catch
 fleet_yelloweye@CurrentYr <- 2019
 
 # Placeholder, not used. Effort/F/selectivity will be updated by SRA_scope, qinc/qcv only affect effort MPs
-fleet_yelloweye@EffYears <- c(1, fleet_yelloweye@nyears)
-fleet_yelloweye@Esd <- fleet_yelloweye@qinc <- fleet_yelloweye@qcv <-
+#fleet_yelloweye@EffYears <- c(1, fleet_yelloweye@nyears)
+fleet_yelloweye@qinc <- fleet_yelloweye@qcv <- c(0, 0)
+#fleet_yelloweye@Esd <- fleet_yelloweye@qinc <- fleet_yelloweye@qcv <- c(0, 0)
 
 # Selectivity parameters will be starting values for HBLL survey selectivity (fixed for all other fleets/surveys)
 fleet_yelloweye@L5 <- c(33, 33)
 fleet_yelloweye@LFS <- c(45, 45)
 fleet_yelloweye@Vmaxlen <- c(1, 1)
+fleet_yelloweye@isRel <- FALSE
 
 #### Observation and Implementation
 # We will only care about Cobs and Cbiascv. Index error is handled internally based on SRA_scope inputs and model fit.
 # We don't use age/length data, or any life history information for MPs.
-obs_yelloweye <- DLMtool::Precise_Biased
+obs_yelloweye <- DLMtool::Precise_Unbiased
 imp_yelloweye <- DLMtool::Perfect_Imp
 
 
 OM <- new("OM", stock_yelloweye, fleet_yelloweye, obs_yelloweye, imp_yelloweye)
 OM@Name <- "Inside Yelloweye Rockfish"
-OM@nsim <- 250
 OM@proyears <- 100
+
+################# OM with 2 sims
+OM2 <- OM
+OM2@nsim <- 2
+
+Mat_age <- ifelse(1:OM2@maxage <= 7, 0, 1/(1 + exp(-log(19) * (1:OM2@maxage - 14.4)/(27.4-14.4))))
+OM2@cpars$Mat_age <- array(Mat_age, c(OM2@maxage, OM2@nyears + OM2@proyears, OM2@nsim)) %>% aperm(perm = c(3, 1, 2))
+
+saveRDS(OM2, file = "mse/scoping/OM2.rds")
+
+
+################## OM with 250 sims
+OM@nsim <- 250
 
 ################# cpars (custom parameters)
 # Maturity: from gfsynopsis 50% maturity at 14.4 years, 95% maturity at 27.4, immature for all ages <= 7
@@ -88,13 +103,15 @@ h_samps <- rbeta(OM@nsim, h_alpha, h_beta)
 h_samps <- 0.8 * h_samps + 0.2
 OM@cpars$h <- h_samps
 
+saveRDS(OM, file = "mse/scoping/OM.rds")
+
 ### Plot M and h samples
 #hist(M_samps, xlab = "Natural mortality", main = ""); abline(v = 0.045, lwd = 2, lty = 3)
 #hist(h_samps, xlab = "Steepness", main = ""); abline(v = 0.71, lwd = 2, lty = 3)
 
 
 ############ Condition operating models with SRA_scope and data
-setup(12)
+#setup(12)
 
 # Base
 OM_condition <- OM
