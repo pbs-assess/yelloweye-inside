@@ -6,6 +6,7 @@ rmd_files: ["index.Rmd",
             #"04-discussion",
             "05-appendix-om-description.Rmd",
             #"06-appendix-mp-descriptions.Rmd",
+            #"07-appendix-rec-data.Rmd",
             "99-hbll-survey.Rmd",
             "99-references.Rmd"]
 delete_merged_file: true
