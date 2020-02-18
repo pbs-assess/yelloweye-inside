@@ -1,5 +1,8 @@
 # HBLL INSIDE SURVEY INDEX
 
+** TODO: HBLL survey description by Midoli**
+The hard bottom long line (HBLL) survey for the Strait of Georgia management area has been providing catch rate indices and associated biological data for inshore rockfish assessment since 2003 [@Lochead2007]. The survey is a depth-stratified random design of 2km by 2km survey blocks. The survey uses snap-type circle hooks and squid bait with a two hour soak time. Hook by hook data is collected onboard by DFO technicians and stored in a database. The survey area (4B) is divided into northern and southern portions which are fished in alternating years so that each area is sampled every other year. For further details on survey design see @Lochead2004.  
+
 ```{r}
 include_hbll_fig <- function(file) {
   knitr::include_graphics(here::here("figs", file), dpi = NA)
@@ -48,6 +51,10 @@ include_hbll_fig("hbll-index-components-eps-depth2.pdf")
 
 
 # DOGFISH SURVEY
+** TODO: Dogfish survey paragraph by Midoli**
+The Pacific Spiny Dogfish (*Squalus suckleyi*) survey samples nine locations in the Strait of Georgia that were historically fished by the commercial Dogfish fishery [@King2012]. The survey was first carried out in 1986, with subsequent sampling in 1989, 2005, 2011, 2014, and 2019. In 2004 a separate calibration study was undertaken to assess the potential for a change in catch rates due to a switch from J-hooks to circle hooks on survey gear. 
+
+The survey is a depth stratified longline survey that uses snap on gear with 300 circle hooks baited with herring and a two hour soak time. Hook by hook data is collected onboard by DFO technicians, along with biological information on captured Rockfish species. A more detailed description of survey methods is provided in [@King2012]. 
 
 Notes:
 
@@ -121,3 +128,4 @@ Spatial SD (sigma_O): 1.80
 Spatiotemporal SD (sigma_E): 0.77
 REML criterion at convergence: 428.921
 ```
+
