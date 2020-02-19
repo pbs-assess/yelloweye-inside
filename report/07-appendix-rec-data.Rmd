@@ -38,3 +38,27 @@ csasdown::csas_table(rec_catch,
 ```
 
 
+```{r reccatch, echo=FALSE, warning=FALSE, results = "asis"}
+
+rec_area <- read.csv("./data-raw/rec-catcheffortbyarea.csv", header=T)
+
+# organizing the data from long to wide format
+library(tidyr)
+library(dplyr)
+library(stringr)
+
+rec_wide <- rec_area %>% 
+  select(year, tonnes, totaleffort, pfma) %>% 
+  pivot_wider(names_from = pfma, values_from = c(tonnes, totaleffort)) %>% 
+  mutate(effort = rowSums(.[13:23], na.rm=TRUE)/10000) %>% 
+  select(-starts_with("totaleffort")) %>% 
+  rename_at(vars(starts_with("tonnes_")), funs(str_remove(., "tonnes_")))
+
+# make the table of catch by PFMA and total effort by year
+csasdown::csas_table(rec_wide,
+                     align="c",
+                     digits=1,
+                     caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019."
+)
+```
+
