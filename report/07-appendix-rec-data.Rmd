@@ -9,7 +9,7 @@ In 2012,DFO established a coast-wide, internet-based survey of tidal water licen
 
 ## Reconstructed Historical Recreational Catch
 
-Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a family run recreational fishing resort[@Yamanaka2011]. We used the same time series of reconstructed recreational catch for the current analysis. 
+Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a family run recreational fishing resort[@Yamanaka2011]. We used the same historical time series of reconstructed recreational catch for the current analysis. 
 
 ## Creel Survey Data 1982-2019
 
@@ -18,7 +18,7 @@ PFMA 12  : No surveys here prior to 2000, so no historical ROCKFISH catch data
 For PFMA 12: Use proportion of YE catch in PFMA 12 compared to all of Strait of Georgia for 2000 and 2001 -->
 Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys. The surveys cover Pacific Fishery Management Areas (PFMAs) 12-20, 28, and 29 [@Zetterberg2010]. Rockfish catch has been recorded in areas 13-19, 28, and 29 since 1982 but was not enumerated by species until 2000. In PFMA 12 rockfish have been counted by species since 2000 [@Zetterberg2010].
 
-In order to estimate the catch of Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982-1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982-1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year. To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for PFMA 12, where effort was not recorded until 2000. We converted rockfish pieces to weight by multiplying by 2.49kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008. 
+In order to estimate the catch of Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982-1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982-1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year. To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000. We converted rockfish pieces to weight by multiplying by 2.49kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008. 
 
 
 ```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
@@ -40,7 +40,7 @@ csasdown::csas_table(rec_catch,
 
 ```{r reccatch, echo=FALSE, warning=FALSE, results = "asis"}
 
-rec_area <- read.csv("./data-raw/rec-catcheffortbyarea.csv", header=T)
+rec_area <- read.csv("../data-raw/rec-catcheffortbyarea.csv", header=T)
 
 # organizing the data from long to wide format
 library(tidyr)
