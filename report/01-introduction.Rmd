@@ -4,10 +4,13 @@
 
 *TODO: edit this - Midoli has taken a first crack at this*
 
+
 The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the Inside Population of Yelloweye Rockfish (*Sebastes ruberrimus*), consistent with national policy guidance [@DFO2009; @DFO2013]. The project applys a closed-loop simulation approach to test and identify management procedures that meet rebuilding objectives for the Inside population of Yelloweye Rockfish (4B groundfish management area). The project has three parts: 
 1) Review and revise rebuilding objectives. 
 2) Development of one or more operating models to represent alternative hypotheses for stock and fishery dynamics and to simulate future data.  
 3) Evaluation of the performance of candidate management procedures with respect to meeting the rebuilding objectives and characterisation of trade-offs associated with alternative rebuilding plans.
+
+
 
 ## MOTIVATION
 
