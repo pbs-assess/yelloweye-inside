@@ -1,5 +1,6 @@
 
 library(MSEtool)
+library(gfdlm)
 source("mse/YE_MPs.R")
 setup(12)
 sfExportAll()
@@ -16,22 +17,30 @@ for(i in 1:length(scenario)) {
   message("Running ", scenario[i], " scenario...")
 
   # Constant catch scenarios
-  myOM@interval <- c(1, rep(200, 4))
-  message("Constant catch and ref MPs...")
-  myMSE1 <- runMSE(myOM, MPs = c("FMSYref", "NF", "CC_5t", "CC_10t", "CC_15t"), parallel = TRUE)
-  saveRDS(myMSE1, file = paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
+  #myOM@interval <- c(1, 1, rep(200, 4))
+  #message("Constant catch and ref MPs...")
+  #myMSE1 <- runMSE(myOM, MPs = c("FMSYref", "FMSYref75", "NFref", "CC_5t", "CC_10t", "CC_15t"), parallel = TRUE)
+  #saveRDS(myMSE1, file = paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
 
-  ## All other index-based MPs
-  #myOM@interval <- 1
-  #message("Other index-based MPs...")
-  #myMSE2 <- runMSE(myOM, MPs = c("ICI_YE", "ICI2_YE", "Iratio_YE", "GB_slope_YE", "IT5_YE", "IT10_YE", "Islope_YE"), parallel = TRUE)
-  #saveRDS(myMSE2, file = paste0("mse/om/MSE_", scenario[i], "_index.rds"))
+  # Index slope MPs
+  myOM@interval <- 1
+  message("Index slope MPs...")
+  myMSE2 <- runMSE(myOM, MPs = c("GB_slope_lambda1", "GB_slope_lambda05", "GB_slope_yrs10",
+                                 "Islope_5_lambda04", "Islope_10_lambda04", "Islope_10_lambda08"), parallel = TRUE)
+  saveRDS(myMSE2, file = paste0("mse/om/MSE_", scenario[i], "_index_slope.rds"))
+
+  # Index ratio MPs
+  myOM@interval <- 1
+  message("Index ratio MPs...")
+  myMSE3 <- runMSE(myOM, MPs = c("Iratio_23", "Iratio_510", "IT5_mc05", "IT5_mc025", "IT10_mc05", "IT10_mc025",
+                                 "Itarget_5", "Itarget_10"), parallel = TRUE)
+  saveRDS(myMSE3, file = paste0("mse/om/MSE_", scenario[i], "_index_ratio.rds"))
 
   # IDX and SP_4080 with 5 and 10 yr intervals
-  myOM@interval <- c(1, 1, 5, 10, 5, 10)
-  message("IDX and SP...")
-  myMSE3 <- runMSE(myOM, MPs = c("IDX_YE", "IDX_smooth_YE", "SP_4080_5f", "SP_4080_10f", "SP_2060_5f", "SP_2060_10f"), parallel = TRUE)
-  saveRDS(myMSE3, file = paste0("mse/om/MSE_", scenario[i], "_IDX_SP.rds"))
+  #myOM@interval <- c(1, 1, 5, 10, 5, 10)
+  #message("IDX and SP...")
+  #myMSE4 <- runMSE(myOM, MPs = c("IDX_YE", "IDX_smooth_YE", "SP_4080_5f", "SP_4080_10f", "SP_2060_5f", "SP_2060_10f"), parallel = TRUE)
+  #saveRDS(myMSE4, file = paste0("mse/om/MSE_", scenario[i], "_IDX_SP.rds"))
 
   # SP_2060 with 5 and 10 yr intervals and interim SP
   #myOM@interval <- c(5, 10, 1)

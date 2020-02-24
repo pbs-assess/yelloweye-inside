@@ -38,6 +38,7 @@ YE_wrapper <- function(MP, add_min_TAC = 0.5, ...) {
   MP_body <- bquote({
     Data@Ind <- Data@AddInd[, 1, ]
     Data@CV_Ind <- Data@CV_AddInd[, 1, ]
+    Data@Iref <- 2 * apply(Data@AddInd[, 1, 93:102], 1, mean, na.rm = TRUE)
     Rec <- .(MP_call)
     if(!all(is.na(Rec@TAC))) Rec@TAC[Rec@TAC < .(add_min_TAC)] <- .(add_min_TAC)
     return(Rec)
@@ -50,19 +51,64 @@ YE_wrapper <- function(MP, add_min_TAC = 0.5, ...) {
 
 ##### Index-based HCRs that uses HBLL
 # IDX
-IDX_YE <- YE_wrapper(gfdlm::IDX, tac_floor = 15)
-IDX_smooth_YE <- YE_wrapper(gfdlm::IDX_smooth, tac_floor = 15)
+IDX_YE <- YE_wrapper(gfdlm::IDX, tac_floor = 5)
+IDX_smooth_YE <- YE_wrapper(gfdlm::IDX_smooth, tac_floor = 5)
 
-# ICI
-ICI_YE <- YE_wrapper(ICI)
-ICI2_YE <- YE_wrapper(ICI2)
-Iratio_YE <- YE_wrapper(Iratio)
+# Iratio
+Iratio_23 <- YE_wrapper(Iratio)
+Iratio_510 <- YE_wrapper(Iratio, yrs = c(5, 10))
 
-GB_slope_YE <- YE_wrapper(GB_slope)
-IT5_YE <- YE_wrapper(IT5)
-IT10_YE <- YE_wrapper(IT10)
+# I slope
+GB_slope_lambda1 <- YE_wrapper(GB_slope)
+GB_slope_lambda05 <- YE_wrapper(GB_slope, lambda = 0.5) # Slower changes in catch relative to index
+GB_slope_yrs10 <- YE_wrapper(GB_slope, yrsmth = 10) # Longer time window for smoothing
 
-Islope_YE <- YE_wrapper(Islope1)
+Islope_5_lambda04 <- YE_wrapper(Islope1, xx = 0)
+Islope_10_lambda04 <- YE_wrapper(Islope1, xx = 0, yrsmth = 10)
+Islope_10_lambda08 <- YE_wrapper(Islope1, xx = 0, yrsmth = 10, lambda = 0.8)
+
+# Ratio of mean index to Iref = 2 * mean 2010-2019 index
+IT_YE <- function(x, Data, reps = 100, plot=FALSE, yrsmth = 5, mc = 0.05) {
+  dependencies = "Data@Ind, Data@MPrec, Data@CV_Ind, Data@Iref"
+  ind <- max(1, (length(Data@Year) - yrsmth + 1)):length(Data@Year)
+  if(is.na(Data@Iref[x])) return(list(TAC=rep(as.numeric(NA), reps)))
+  deltaI <- mean(Data@Ind[x, ind], na.rm=TRUE)/Data@Iref[x]
+  if (deltaI < (1 - mc)) deltaI <- 1 - mc
+  if (deltaI > (1 + mc)) deltaI <- 1 + mc
+  TAC <- Data@MPrec[x] * deltaI * trlnorm(reps, 1, if(is.na(Data@CV_Ind[x, 1])) 0.1 else Data@CV_Ind[x, 1])
+  TAC <- TACfilter(TAC)
+  if (plot) {
+    op <- par(no.readonly = TRUE)
+    on.exit(op)
+    par(mfrow=c(1,2), oma=c(1,1,1,1), mar=c(5,4,1,4))
+    ylim <- range(c(Data@Ind[x,ind], Data@Iref[x]))
+    plot(Data@Year[ind], Data@Ind[x,ind], xlab="Year",
+         ylab= paste0("Index (previous ", yrsmth, "years)"), bty="l", type="l",
+         lwd=2, ylim=ylim)
+    lines(Data@Year[ind], rep(mean(Data@Ind[x, ind], na.rm=TRUE), length(ind)), lty=2)
+    text(quantile(Data@Year[ind],0.15), mean(Data@Ind[x, ind], na.rm=TRUE), "Mean Index", pos=3)
+    lines(Data@Year[ind], rep(mean(Data@Iref[x], na.rm=TRUE), length(ind)), lty=3)
+    text(quantile(Data@Year[ind],0.15), Data@Iref[x], "Reference Index", pos=3)
+
+    boxplot(TAC, ylab=paste0("TAC (", Data@Units, ")"))
+    points(1, Data@MPrec[x], cex=2, col="blue", pch=16)
+    text(1, Data@MPrec[x], cex=1, col="blue", "Last Catch", pos=1)
+  }
+  Rec <- new("Rec")
+  Rec@TAC <- TAC
+  return(Rec)
+}
+class(IT_YE) <- "MP"
+
+IT5_mc05 <- YE_wrapper(IT_YE) #
+IT5_mc025 <- YE_wrapper(IT_YE, mc = 0.025)
+
+IT10_mc05 <- YE_wrapper(IT_YE, mc = 0.05)
+IT10_mc025 <- YE_wrapper(IT_YE, mc = 0.025)
+
+# Iref = 1.5 * mean 2010-2015 index
+Itarget_5 <- YE_wrapper(Itarget1)
+Itarget_10 <- YE_wrapper(Itarget1, yrsmth = 10)
 
 ##### SP model that only uses future HBLL and with r-rprio
 SP_YE <- function(x, Data, ...) {

@@ -181,5 +181,12 @@ SRA <- generate_high_Ierr(SRA)
 
 saveRDS(SRA, file = "mse/om/high_index_cv.rds")
 
+# Under-utilize TAC
+uTAC <- rowSums(SRA_data$Chist)/15
+mean(uTAC[95:102]) # Since 2012, mean = 0.7806198
 
+SRA <- readRDS("mse/om/updog_fixsel.rds")
+SRA@OM@TACFrac <- rep(0.7806198, 2)
+SRA@OM@TACSD <- rep(0.1, 2)
 
+saveRDS(SRA, file = "mse/om/underutilize_TAC.rds")
