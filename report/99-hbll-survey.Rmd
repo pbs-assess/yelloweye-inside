@@ -3,6 +3,10 @@
 ** TODO: HBLL survey description by Midoli**
 The hard bottom long line (HBLL) survey for the Strait of Georgia management area has been providing catch rate indices and associated biological data for inshore rockfish assessment since 2003 [@Lochead2007]. The survey is a depth-stratified random design of 2km by 2km survey blocks. The survey uses snap-type circle hooks and squid bait with a two hour soak time. Hook by hook data is collected onboard by DFO technicians and stored in a database. The survey area (4B) is divided into northern and southern portions which are fished in alternating years so that each area is sampled every other year. For further details on survey design see @Lochead2004.  
 
+**Hook competion** Midoli TODO
+
+**TODO:Dana, Oddities of sampling and requirement for spatio-temporal model. Desolation Sound, 2009.
+
 ```{r}
 include_hbll_fig <- function(file) {
   knitr::include_graphics(here::here("figs", file), dpi = NA)
