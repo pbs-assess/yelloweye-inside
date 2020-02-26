@@ -7,7 +7,8 @@ sfExportAll()
 sfLibrary(gfdlm)
 
 
-scenario <- c("updog_fixsel", "lowcatch_fixsel", "episodic_recruitment", "lowM_fixsel", "high_index_cv")
+scenario <- c("updog_fixsel", "lowcatch_fixsel", "episodic_recruitment", "lowM_fixsel", "high_index_cv", "upweight_dogfish")
+#scenario <- "upweight_dogfish"
 subsets <- c("fixedTAC", "index", "IDXSP", "SP")
 
 for(i in 1:length(scenario)) {
@@ -17,10 +18,10 @@ for(i in 1:length(scenario)) {
   message("Running ", scenario[i], " scenario...")
 
   # Constant catch scenarios
-  #myOM@interval <- c(1, 1, rep(200, 4))
-  #message("Constant catch and ref MPs...")
-  #myMSE1 <- runMSE(myOM, MPs = c("FMSYref", "FMSYref75", "NFref", "CC_5t", "CC_10t", "CC_15t"), parallel = TRUE)
-  #saveRDS(myMSE1, file = paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
+  myOM@interval <- c(1, 1, rep(200, 4))
+  message("Constant catch and ref MPs...")
+  myMSE1 <- runMSE(myOM, MPs = c("FMSYref", "FMSYref75", "NFref", "CC_5t", "CC_10t", "CC_15t"), parallel = TRUE)
+  saveRDS(myMSE1, file = paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
 
   # Index slope MPs
   myOM@interval <- 1
@@ -37,10 +38,10 @@ for(i in 1:length(scenario)) {
   saveRDS(myMSE3, file = paste0("mse/om/MSE_", scenario[i], "_index_ratio.rds"))
 
   # IDX and SP_4080 with 5 and 10 yr intervals
-  #myOM@interval <- c(1, 1, 5, 10, 5, 10)
-  #message("IDX and SP...")
-  #myMSE4 <- runMSE(myOM, MPs = c("IDX_YE", "IDX_smooth_YE", "SP_4080_5f", "SP_4080_10f", "SP_2060_5f", "SP_2060_10f"), parallel = TRUE)
-  #saveRDS(myMSE4, file = paste0("mse/om/MSE_", scenario[i], "_IDX_SP.rds"))
+  myOM@interval <- c(1, 1, 5, 10, 5, 10)
+  message("IDX and SP...")
+  myMSE4 <- runMSE(myOM, MPs = c("IDX_YE", "IDX_smooth_YE", "SP_4080_5f", "SP_4080_10f", "SP_2060_5f", "SP_2060_10f"), parallel = TRUE)
+  saveRDS(myMSE4, file = paste0("mse/om/MSE_", scenario[i], "_IDX_SP.rds"))
 
   # SP_2060 with 5 and 10 yr intervals and interim SP
   #myOM@interval <- c(5, 10, 1)
@@ -48,10 +49,26 @@ for(i in 1:length(scenario)) {
   #myMSE4 <- runMSE(myOM, MPs = c("SP_2060_5f", "SP_2060_10f", "SP_interim"), parallel = TRUE)
   #saveRDS(myMSE4, file = paste0("mse/OM/MSE_", scenario[i], "_SP.rds"))
 
-  #out <- merge_MSE(myMSE1, myMSE2, myMSE3, myMSE4)
-  #saveRDS(out, file = paste0("mse/om/MSE_", scenario[i], ".rds"))
+  out <- merge_MSE(myMSE1, myMSE2, myMSE3, myMSE4)
+  saveRDS(out, file = paste0("mse/om/MSE_", scenario[i], ".rds"))
 
   message("Done for ", scenario[i], ".\n")
 }
 
 sfStop()
+
+
+for(i in 1:length(scenario)) {
+
+  myMSE1 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
+  myMSE2 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_index_slope.rds"))
+  myMSE3 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_index_ratio.rds"))
+  myMSE4 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_IDX_SP.rds"))
+
+  out <- merge_MSE(myMSE1, myMSE2, myMSE3, myMSE4)
+  saveRDS(out, file = paste0("mse/om/MSE_", scenario[i], ".rds"))
+
+  message("Done for ", scenario[i], ".\n")
+}
+
+

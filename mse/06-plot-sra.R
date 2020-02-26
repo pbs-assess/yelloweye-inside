@@ -13,7 +13,7 @@ all_years <- seq(starting_year, ending_year)
 nyear <- length(all_years)
 
 fig_dir <- "mse/figures"
-if (!dir.exists(fig_dir)) dir.create(fig_dir)
+#if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
 # Set up the scenario names ---------------------------------------------------
 
@@ -41,10 +41,9 @@ get_SSB <- function(x, scenario, mse = NULL, type = c("SSB", "depletion", "MSY")
 
   if(type == "depletion") depletion <- x@SSB / sapply(x@Misc, getElement, "E0_SR")
   if(type == "SSB") depletion <- x@SSB
-  if(type == "MSY") {
-    if(class(mse) == "MSE") depletion <- x@SSB / mse@Misc$MSYRefs[[1]]$Refs$SSBMSY
-    if(class(mse) == "Hist") depletion <- x@SSB / mse@Ref$SSBMSY
-  }
+  if(type == "MSY") depletion <- x@SSB / mse@Misc$MSYRefs$ByYear$SSBMSY[, 1, mse@nyears]
+
+  #if(class(mse) == "Hist") depletion <- x@SSB / mse@Ref$SSBMSY
 
   d1 <- t(apply(depletion[, -nyear], 2,
     FUN = quantile,
@@ -101,6 +100,7 @@ mse_ye <- lapply(sc$scenario, function(x) {
     readRDS(paste0("mse/om/MSE_", x, ".rds"))
   }
 })
+mse_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
 names(mse_ye) <- sc$scenario
 
 g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenarios_human, mse = mse_ye, type = "MSY")) %>%
@@ -205,7 +205,6 @@ ggsave("mse/figures/ye-index-dogfish.png", width = 8, height = 5)
 
 
 # Selectivity HBLL and dogfish
-
 get_sra_selectivity <- function(sc_name) {
   sra <- sra_ye[[sc_name]]
   x <- do.call(cbind, purrr::map(sra@Misc, ~ .$s_vul[101,,1]))
@@ -237,3 +236,112 @@ ggplot(sel2, aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::them
 ggsave("mse/figures/fishery-selectivity.png", width = 7, height = 4)
 
 
+# Histograms of M and h
+
+#histogram of M and h
+samps <- data.frame(M = sra_ye[[1]]@OM@cpars$M, h = sra_ye[[1]]@OM@cpars$h, lowM = sra_ye$lowM_fixsel@OM@cpars$M)
+#png("mse/figures/M.png", res = 400, units = "in", height = 4, width = 5)
+#hist(samps$M, xlab = "M", main = "")
+#abline(v = 0.045, lty = 3, lwd = 2)
+#dev.off()
+
+#png("mse/figures/h.png", res = 400, units = "in", height = 4, width = 5)
+#hist(samps$h, xlab = "steepness", main = "")
+#abline(v = 0.71, lty = 3, lwd = 2)
+#dev.off()
+
+ggplot(samps, aes(M)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.045, linetype = 2) +
+  gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
+ggsave("mse/figures/M.png", height = 4, width = 5)
+
+ggplot(samps, aes(lowM)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.045, linetype = 2) +
+  gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
+ggsave("mse/figures/lowM.png", height = 4, width = 5)
+
+ggplot(samps, aes(h)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.71, linetype = 2) +
+  gfplot::theme_pbs() + labs(x = "Steepness", ylab = "Frequency")
+ggsave("mse/figures/steepness.png", height = 4, width = 5)
+
+samps <- data.frame(M = c(samps$M, samps$lowM), Scenario = rep(c("All others", "Low M"), each = 250))
+ggplot(samps, aes(M, colour = Scenario)) + geom_freqpoly(bins = 20) +
+  gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
+ggsave("mse/figures/lowM.png", height = 4, width = 5)
+
+
+
+#### Low/high catch
+cat <- data.frame(Year = rep(1918:2019, 3),
+                  Catch = c(sra_ye[[1]]@data$Chist[, 2], sra_ye[[1]]@data$Chist[, 1], sra_ye$lowcatch_fixsel@data$Chist[, 1]),
+                  Fleet = c(rep("Recreational", 102), rep("Catch", 2 * 102)),
+                  Scenario = c(rep("All others", 2 * 102), rep("Low catch", 102)))
+
+ggplot(cat, aes(Year, Catch, colour = Fleet, linetype = Scenario)) + geom_line() + gfplot::theme_pbs()
+ggsave("mse/figures/catch.png", width = 5.5, height = 3.5, dpi = 500)
+
+
+### COSEWIC indicators and probability below LRP/USR in 2019
+COSEWIC_Bdecline_hist <- function(MSEobj, Ref = 0.7, Yr = NULL) {
+
+  # Historic
+  stopifnot(!is.null(Yr))
+  if(length(Yr) > 1) stop("Length of Yr is one.")
+
+  year_start <- MSEobj@nyears - abs(Yr) + 1
+  if(year_start < 1) year_start <- 1
+  SSB <- apply(MSEobj@SSB_hist, c(1, 3), sum)
+  metric <- 1 - SSB[, MSEobj@nyears]/SSB[, year_start]
+  out <- sum(metric < Ref)/length(metric)
+  return(out)
+}
+
+P_LRP <- function(MSEobj, LRP = 0.4, Yr = NULL) {
+  if(is.null(Yr)) Yr <- MSEobj@nyears
+  SSB <- apply(MSEobj@SSB_hist, c(1, 3), sum)
+  metric <- SSB[, Yr]/MSEobj@Misc$MSYRefs$ByYear$SSBMSY[, 1, Yr]
+  out <- sum(metric >= LRP)/length(metric)
+  return(out)
+}
+
+P_USR <- P_LRP
+formals(P_USR)$LRP <- 0.8
+
+
+COSEWIC_P70 <- COSEWIC_P50 <- COSEWIC_P30 <- COSEWIC_Bdecline_hist
+formals(COSEWIC_P50)$Ref <- 0.5
+formals(COSEWIC_P30)$Ref <- 0.3
+
+# Historical indicators
+# P70 - probability that SSB has not declined at least 70% within the past 3 GT
+# P50 - probability that SSB has not declined at least 50% within the past 3 GT
+# P30 - probability that SSB has not declined at least 30% within the past 3 GT
+
+# LRP - probability that SSB > 0.4 BMSY in 2019
+# USR - probability that SSB > 0.8 BMSY in 2019
+YE_historical <- rbind(vapply(mse_ye, COSEWIC_P70, numeric(1), Yr = 3 * 38),
+                       vapply(mse_ye, COSEWIC_P50, numeric(1), Yr = 3 * 38),
+                       vapply(mse_ye, COSEWIC_P30, numeric(1), Yr = 3 * 38),
+                       vapply(mse_ye, P_LRP, numeric(1)),
+                       vapply(mse_ye, P_USR, numeric(1))) %>%
+  structure(dimnames = list(c("P70", "P50", "P30", "LRP", "USR"), sc$scenarios_human)) %>%
+  t() %>% as.data.frame()
+
+YE_historical$MP <- factor(sc$scenarios_human, levels = sc$scenarios_human)
+
+g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenarios_human))
+ggsave("mse/figures/historical_indicators.png", height = 4, width = 5)
+
+
+
+# Plot episodic recruitment
+png("mse/figures/rec_dev.png", height = 5, width = 5, units = "in", res = 400)
+par(mfrow = c(2, 1), mar = c(2, 3, 1, 1), oma = c(3, 2, 0, 0))
+matplot(1918:2119, t(sra_ye[[1]]@OM@cpars$Perr_y[26:28, -c(1:79)]), typ = 'l', lty = 1, xlab = "", ylab = "")
+abline(v = 2019, lty = 2)
+legend("topleft", "All other scenarios", bty = "n")
+
+matplot(1918:2119, t(sra_ye$episodic_recruitment@OM@cpars$Perr_y[26:28, -c(1:79)]), typ = 'l', lty = 1, xlab = "", ylab = "")
+abline(v = 2019, lty = 2)
+mtext("Year", side = 1, outer = TRUE)
+mtext("Recruitment deviations (normal space)", side = 2, outer = TRUE)
+legend("topleft", "Episodic recruitment", bty = "n")
+dev.off()
