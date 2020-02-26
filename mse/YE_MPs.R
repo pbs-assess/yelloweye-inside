@@ -320,8 +320,9 @@ merge_MSE <- function(...) {
   stopifnot(Misc_identical(MSYRefs_Refs))
 
   MSYRefs_ByYear <- lapply(MSYRefs, getElement, "ByYear")
-  MSYRefs_ByYear2 <- lapply(c("MSY", "FMSY", "SSBMSY", "BMSY", "VBMSY"),
+  MSYRefs_ByYear2 <- lapply(names(MSYRefs_ByYear[[1]]), 
                             function(x) do.call(abind::abind, c(lapply(MSYRefs_ByYear, getElement, x), along = 2)))
+  names(MSYRefs_ByYear2) <- names(MSYRefs_ByYear[[1]])
 
   Misc_new <- list(Data = Data, TryMP = TryMP,
                    Unfished = list(Refs = Unfished_Refs[[1]], ByYear = Unfished_ByYear[[1]]),
