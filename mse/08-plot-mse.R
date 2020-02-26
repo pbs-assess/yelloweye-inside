@@ -58,8 +58,8 @@ scenarios_rob <- get_filtered_scenario("Robustness", "scenario")
 scenarios_rob_human <- get_filtered_scenario("Robustness", "scenarios_human")
 
 # Read OMs --------------------------------------------------------------------
-om <- lapply(scenarios, function(x) readRDS(paste0("mse/om/", x, ".rds"))@OM)
-names(om) <- scenarios
+#om <- lapply(scenarios, function(x) readRDS(paste0("mse/om/", x, ".rds"))@OM)
+#names(om) <- scenarios
 #
 
 mse <- lapply(scenarios, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
