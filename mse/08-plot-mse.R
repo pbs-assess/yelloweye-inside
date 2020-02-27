@@ -165,7 +165,7 @@ g <- plots$tradeoff_refset + facet_wrap(~scenario, ncol = 4)
 .ggsave("tradeoff-robset", width = 6, height = 3, plot = plots$tradeoff_robset)
 
 pm_angle <- theme(
-  axis.text.x.top = element_text(angle = 45, hjust = 0)in
+  axis.text.x.top = element_text(angle = 45, hjust = 0)
 )
 
 .ggsave("tigure-refset", width = 6.75, height = 5.5, plot = plots$tigure_refset + pm_angle)
