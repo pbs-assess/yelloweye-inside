@@ -138,7 +138,7 @@ plots <- gfdlm::plot_factory(
   eg_scenario = "updog_fixsel",
   tradeoff = c("LRP 1.5GT", "ST C10"),
   satisficed_criteria = satisficed_criteria,
-  skip_projections = FALSE,
+  skip_projections = FALSE, # TRUE for speed!
   survey_type = "AddInd"
 )
 
@@ -158,20 +158,20 @@ g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
   scale_colour_manual(values = custom_pal)
 .ggsave("convergence", width = 8, height = 11, plot = g)
 
-.ggsave("dot-refset-avg", width = 7.5, height = 4.5, plot = plots$dot_refset_avg)
+.ggsave("dot-refset-avg", width = 8, height = 4.5, plot = plots$dot_refset_avg)
 
 g <- plots$tradeoff_refset + facet_wrap(~scenario, ncol = 4)
 .ggsave("tradeoff-refset", width = 7.5, height = 5, plot = g)
 .ggsave("tradeoff-robset", width = 6, height = 3, plot = plots$tradeoff_robset)
 
 pm_angle <- theme(
-  axis.text.x.top = element_text(angle = 45, hjust = 0)
+  axis.text.x.top = element_text(angle = 45, hjust = 0)in
 )
 
-.ggsave("tigure-refset", width = 6.5, height = 6, plot = plots$tigure_refset + pm_angle)
+.ggsave("tigure-refset", width = 6.75, height = 5.5, plot = plots$tigure_refset + pm_angle)
 .ggsave("tigure-robset", width = 6.5, height = 3, plot = plots$tigure_robset + pm_angle)
-.ggsave("tigure-refset-min", width = 4.5, height = 7, plot = plots$tigure_refset_min + pm_angle)
-.ggsave("tigure-refset-avg", width = 4.5, height = 7, plot = plots$tigure_refset_avg + pm_angle)
+.ggsave("tigure-refset-min", width = 4.5, height = 6.75, plot = plots$tigure_refset_min + pm_angle)
+.ggsave("tigure-refset-avg", width = 4.5, height = 6.75, plot = plots$tigure_refset_avg + pm_angle)
 
 .ggsave("radar-refset", width = 10, height = 10, plot = plots$radar_refset)
 .ggsave("radar-refset-avg", width = 6, height = 6, plot = plots$radar_refset_avg)
