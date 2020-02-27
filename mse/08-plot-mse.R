@@ -29,9 +29,9 @@ LRP_thresh <- 0.95
 `USR 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.8, c(56, 56))
 FMSY <- DLMtool::PNOF
 `AAVC` <- DLMtool::AAVY
-`ST C10` <- gfdlm::pm_factory("LTY", 2/3 - 1e-8, c(1, 10))
-`ST C20` <- gfdlm::pm_factory("LTY", 1.5 - 1e-8, c(1, 10))
-`LT C20` <- gfdlm::pm_factory("LTY", 1.5 - 1e-8, c(56, 56))
+`ST C10` <- gfdlm::pm_factory("LTY", 0.5 - 1e-4, c(1, 10))
+`ST C20` <- gfdlm::pm_factory("LTY", 1 - 1e-4, c(1, 10))
+`LT C20` <- gfdlm::pm_factory("LTY", 1 - 1e-4, c(56, 56))
 PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "ST C10", "ST C20", "LT C20", "AAVC")
 
 # Set up and checks -----------------------------------------------------------
@@ -65,7 +65,7 @@ scenarios_rob_human <- get_filtered_scenario("Robustness", "scenarios_human")
 
 mse <- lapply(scenarios, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
 names(mse) <- scenarios
-for (i in seq_along(mse)) mse[[i]]@OM$RefY <- 15
+for (i in seq_along(mse)) mse[[i]]@OM$RefY <- 20
 
 
 # Satisficing -----------------------------------------------------------------
