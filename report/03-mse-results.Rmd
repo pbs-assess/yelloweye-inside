@@ -13,11 +13,7 @@ See Section \@ref(sec:approach1).
 *TODO: Complete this section after technical team meetings*
 
 ## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results-2}
-
-We defined the objectives for Rex Sole to be the same as those listed in Section \@ref(sec:approach2).
-
-The performance metrics measuring the objectives are:
-
+<!-- There was a note to put these in the methods section so I drafted these there (MJB)-->
 
 ## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:results-3}
 

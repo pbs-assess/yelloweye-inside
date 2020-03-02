@@ -1,0 +1,64 @@
+\newpage
+
+`r if(knitr:::is_latex_output()) '\\Appendices'`
+
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+
+# Recreational catch
+In 2012,DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data. However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis[@DFO2015].
+
+## Reconstructed Historical Recreational Catch
+
+Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a family run recreational fishing resort[@Yamanaka2011]. We used the same historical time series of reconstructed recreational catch for the current analysis. 
+
+## Creel Survey Data 1982-2019
+
+<!-- as in Yamanaka et al. 2011, we calculated the proportion of YE in all rockfish catch by PFMA in 2000 and 2001. We then used these proportions to convert "ROCKFISHES' to Yelloweye for the data from 1982-1999.  
+PFMA 12  : No surveys here prior to 2000, so no historical ROCKFISH catch data
+For PFMA 12: Use proportion of YE catch in PFMA 12 compared to all of Strait of Georgia for 2000 and 2001 -->
+Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys. The surveys cover Pacific Fishery Management Areas (PFMAs) 12-20, 28, and 29 [@Zetterberg2010]. Rockfish catch has been recorded in areas 13-19, 28, and 29 since 1982 but was not enumerated by species until 2000. In PFMA 12 rockfish have been counted by species since 2000 [@Zetterberg2010].
+
+In order to estimate the catch of Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982-1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982-1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year. To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000. We converted rockfish pieces to weight by multiplying by 2.49kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008. 
+
+
+```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
+library(knitr)
+rec_catch <- read.csv("../data-raw/rec-allcatch-effort.csv", header=TRUE) 
+
+# make a table of recreational catch
+csasdown::csas_table(rec_catch,
+                     col.names = c("Year", "Catch(t)", "Effort(boat trips)"),
+                     align=c("c","c","c"),
+                     digits=1,
+                     repeat_header = TRUE,
+                     caption = "Recreational catch estimates for inside Yelloweye Rockfish.
+                      The table contains reconstructed (1918-1981) and modern (1982-2019) 
+                     catch estimates for inside Yelloweye Rockfish."
+)
+```
+
+
+```{r reccatch, echo=FALSE, warning=FALSE, results = "asis"}
+
+rec_area <- read.csv("../data-raw/rec-catcheffortbyarea.csv", header=T)
+
+# organizing the data from long to wide format
+library(tidyr)
+library(dplyr)
+library(stringr)
+
+rec_wide <- rec_area %>% 
+  select(year, tonnes, totaleffort, pfma) %>% 
+  pivot_wider(names_from = pfma, values_from = c(tonnes, totaleffort)) %>% 
+  mutate(effort = rowSums(.[13:23], na.rm=TRUE)/10000) %>% 
+  select(-starts_with("totaleffort")) %>% 
+  rename_at(vars(starts_with("tonnes_")), funs(str_remove(., "tonnes_")))
+
+# make the table of catch by PFMA and total effort by year
+csasdown::csas_table(rec_wide,
+                     align="c",
+                     digits=1,
+                     caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019.Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000-2008)."
+)
+```
+
