@@ -10,8 +10,6 @@ The purpose of this project is to provide scientific advice to support revision 
 2) Development of one or more operating models to represent alternative hypotheses for stock and fishery dynamics and to simulate future data.  
 3) Evaluation of the performance of candidate management procedures with respect to meeting the rebuilding objectives and characterisation of trade-offs associated with alternative rebuilding plans.
 
-
-
 ## MOTIVATION
 
 *TODO edit - Midoli has taken a first crack at this*
