@@ -1,0 +1,152 @@
+# HBLL INSIDE SURVEY INDEX
+** TODO: HBLL survey description by Midoli**
+The hard bottom long line (HBLL) survey for the Strait of Georgia management area has been providing catch rate indices and associated biological data for inshore rockfish assessment since 2003 [@Lochead2007]. The survey is a depth-stratified random design of 2km by 2km survey blocks. The survey uses snap-type circle hooks and squid bait with a two hour soak time. Hook-by-hook data is collected onboard by DFO technicians and stored in a database. The survey area (4B) is divided into northern and southern portions which are fished in alternating years so that each area is sampled every other year. For further details on survey design see @Lochead2004.  
+
+## Hook Competition
+A longline index of species abundance may not be proportional to actual abundance under certain conditions. For example, if there is a high degree of competition amongst species for baited hooks the actual catch may not accurately reflect the true abundance of less competitive species [@Kuriyama2018]. The HBLL survey catch is mostly comprised of Pacific Spiny Dogfish, which are considered a major hook competitor with Rockfish [@Obradovich2018]. A hook competition model, which accounts for the competition between individual fish for the bait on hooks, was applied to the HBLL Inside survey data, which has been collecting hook-by-hook data since the beginning of the time series. To apply the model, a competition adjustment factor, which scales up the observed number of each species caught to give the expected number after accounting for competition, was applied to each set in each year. The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them. In instances where zero hooks were returned with bait the number of baited hooks returned was set to 1. The hook adjusted data (observed absolute numbers) was then fed to the spatiotemporal model to develop the index of abundance. **Not sure if I can just reference the synopsis report appendix here, or if you want the entire section with equations added in here? - MJB** 
+
+hook_adjust = - log(Pit) / (1 - Pit)
+ 
+where P_it is the proportion of observed hooks for set i in year t returned with bait on them. 
+
+
+**TODO:Dana, Oddities of sampling and requirement for spatio-temporal model. Desolation Sound, 2009.**
+
+```{r}
+include_hbll_fig <- function(file) {
+  knitr::include_graphics(here::here("figs", file), dpi = NA)
+}
+```
+
+```{r, fig.cap="The raw data. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the number of fish caught per hook after accounting for hook competition."}
+include_hbll_fig("hbll-joint-raw-data.pdf")
+```
+
+```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 400 knots. kmeans clustering algorithm. Samples from all years are shown simultaneously."}
+include_hbll_fig("hbll-joint-spde.pdf")
+```
+
+```{r, out.width="5in", fig.cap="Area per survey grid cell."}
+include_hbll_fig("hbll-area-in-water.pdf")
+```
+
+```{r, fig.cap="Baited hooks. Note the substantial difference between the northern and southern areas and the change in the north between 2003--2007 in subsequent years."}
+include_hbll_fig("hbll-joint-baited.pdf")
+```
+
+```{r, fig.cap="Hook adjustment factor."}
+include_hbll_fig("hbll-joint-hook-adjust.pdf")
+```
+
+```{r, fig.cap="Predicted relative density in space and time."}
+include_hbll_fig("hbll-joint-prediction-log.pdf")
+```
+
+```{r, fig.cap="The spatial random effects. These are consistent differences from the expectation in space.", out.width="4in"}
+include_hbll_fig("hbll-joint-omega.pdf")
+```
+
+```{r, fig.cap="The spatiotemporal random effects. Note the reversion to the mean in area-year combinations without sampling data. Also note the difference in magnitude between the spatiotemporal and spatial random effects."}
+include_hbll_fig("hbll-joint-epsilon.pdf")
+```
+
+```{r, fig.cap="Randomized quantile residuals from the model shown in space and time."}
+include_hbll_fig("hbll-joint-residual-map.pdf")
+```
+
+```{r, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
+include_hbll_fig("hbll-index-components-eps-depth2.pdf")
+```
+
+
+# DOGFISH SURVEY
+** Dogfish survey description by Midoli**
+The Pacific Spiny Dogfish (*Squalus suckleyi*) survey samples nine locations in the Strait of Georgia that were historically fished by the commercial Dogfish fishery [@King2012]. The survey was first carried out in 1986, with subsequent sampling in 1989, 2005, 2011, 2014, and 2019. The survey is a depth stratified longline survey that uses snap on gear with 300 circle hooks baited with Herring and a two hour soak time. A more detailed description of survey methods is provided in [@King2012]. For most of the time series, Set by set catch of Rockfish was recorded. Beginning in 2019, hook by hook data for all captured species was collected onboard by DFO technicians, along with biological data for Rockfish. A spatio-temporal model is used to estimate the density of Yelloweye per square-kilometre. The area swept is calculated by multiplying the number of hooks deployed by the estimated width swept by the length of two gangions and the estimated distance between hooks (8ft spacing).
+
+## Hook Comparison
+In the early part of the time series, the survey fished with J-hooks and then changed to Circle-hooks in 2005. In 2004 a calibration study was undertaken to assess the potential for a change in catch rates due to a switch from J-hooks to circle hooks [@McFarlane2005]. The study only compared catch rates for Dogfish and sample sizes were too low to allow for comparison of Yelloweye catch rates. However, the hook change likely affected catchability for Yelloweye differently than for Dogfish. In the previous assessment a catchability ratio was estimated using data for all Rockfish and the median estimate was used to scale the values in the 1980s. The ratio used was not reported and the author's didn't mention how they calculated the index. The previous assessment was quite sensitive to the resulting Dogfish index, because of the big decline from the 1980s, but that decline is nearly entirely dependent on the unreported hook ratio. In the current analysis we estimate the index for an "average" hook type. Estimating for one or the other hook type puts more or less uncertainty into the first or second half of the time series (by scaling the estimates). The model is able to estimate spatiotemporal random effects and, with the help of spatial correlation, is better able to estimate the hook type correction with appropriate uncertainty. 
+
+## Depth
+In addition to the survey not being designed for rockfish, and the change in gear type, the shallower depth stratum was dropped in 2004 and later surveys. This was done to purposely try to avoid catching Rockfish (because of conservation concerns).While depth isn't explicitly in the spatiotemporal model, the spatial random effects should account for something similar along with other spatially varying effects. 
+
+## Hook Competition
+The previous inside Yelloweye assessment claims to have used an exponential hook competition model on the dogfish survey data in 2011. However, there is no data on the number of baited and empty hooks available for the Dogfish survey prior to 2019. Therefore, a hook competition model was not applied to the Dogfish survey data in the present analysis.  
+
+## Selectivity
+**The circle hooks used now are one size bigger than on HBLL and who knows what the selectivity was with the j-hooks! No rockfish biological data were formerly collected. So, in absence of info, I think we can use the same selectivity as long as we acknowledge the uncertainty (This is a note from one of Dana's emails but I'm not sure what was actually decided for selectivity-MJB)**
+
+**Sean's notes**
+Notes:
+
+I'm estimating the index for an "average" hook type. If we estimate for one or the other type then it puts more or less uncertainty into the first or second half of the time series (the estimates themselves are just scaled though).
+
+It is now able to estimate spatiotemporal random effects and with the help of the spatial correlation it seems to be better able to estimate the hook type correction with appropriate uncertainty. You can see the estimated correction factor in the model output:
+
+exp(2.04)
+[1] 7.690609
+
+exp(2.04 + c(-2, 2) * 0.80)
+[1]  1.552707 38.091837
+
+I'm sure thats an exaggeration, but so it is with few data points and no priors. At least by including it in one model we can let the data speak for themselves.
+
+I am creating the index on the rectangles that define the dogfish survey. I overlaid a 500m x 500m grid on the dogfish survey rectangles and am now also removing any of those fine scale grid cells that overlap land.
+
+
+```{r, fig.cap="SPDE", out.width="4in"}
+include_hbll_fig("dogfish-joint-spde.png")
+```
+
+```{r, fig.cap="Raw data"}
+include_hbll_fig("dogfish-yelloweye-per-area-data.png")
+```
+
+```{r, fig.cap="Spatial residuals with some jittering."}
+include_hbll_fig("dogfish-residual-map.png")
+```
+
+```{r, fig.cap="Prediction with log transformed color scale."}
+include_hbll_fig("dogfish-prediction-log.png")
+```
+
+```{r, fig.cap="Spatial random effects.", out.width="4in"}
+include_hbll_fig("dogfish-omega.png")
+```
+
+```{r, fig.cap="Spatiotemporal random effects."}
+include_hbll_fig("dogfish-epsilon.png")
+```
+
+```{r, fig.cap="Standardized index.", out.width="4in"}
+include_hbll_fig("dogfish-index-estimated-hook.png")
+```
+
+\clearpage
+
+Model:
+
+```
+Spatiotemporal model fit by REML ['sdmTMB']
+Formula: ye_count ~ 0 + circle_hook_centered + as.factor(year) + log(dogfish_count) + 
+Formula:     offset
+SPDE: sp
+Family: nbinom2(link = 'log')
+                     coef.est coef.se
+circle_hook_centered     2.04    0.80
+as.factor(year)1986      1.48    1.20
+as.factor(year)1989      1.83    1.25
+as.factor(year)2004      0.08    1.09
+as.factor(year)2005     -0.20    1.19
+as.factor(year)2008     -0.07    1.13
+as.factor(year)2011     -0.27    1.19
+as.factor(year)2014     -0.31    1.11
+as.factor(year)2019      0.75    1.11
+log(dogfish_count)      -0.31    0.14
+
+Matern range parameter: 0.36
+Dispersion parameter: 0.32
+Spatial SD (sigma_O): 1.80
+Spatiotemporal SD (sigma_E): 0.77
+REML criterion at convergence: 428.921
+```
+

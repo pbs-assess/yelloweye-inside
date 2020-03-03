@@ -1,0 +1,13 @@
+\newpage
+
+`r if(knitr:::is_latex_output()) '\\Appendices'`
+
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+
+```{r managementchanges, echo=FALSE, warning=FALSE, results="asis"}
+library(knitr)
+mngt_changes <- read.csv("../data-raw/management-chronology.csv", header=TRUE) 
+
+# make a table of the changes
+
+```
