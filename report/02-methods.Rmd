@@ -56,15 +56,15 @@ The management procedure that was agreed upon to meet these objectives was to ke
 
 For this analysis, a set of refined objectives were proposed for Inside Yelloweye in order to be consistent with legislated requirements under the new *Fisheries Act*, specify the length of the projection period to be used for simulations, and to account for other processes, including the anticipated re-assessment by COSEWIC. The new objectives are:
 *"Rebuild the stock above the LRP over 56 years (1.5 generations) with at least 95% probability of success"
-*"Achieve positive trends in biomass within each 10 year period or if the stock is above the LRP" <!--I think this one is not correctly worded, I took it from Quang's presentation but I'm not sure where to find the proper one (Midoli)-->
+*"Achieve positive trends in biomass within each 10 year period or if the stock is above the LRP" <!--I think this one is not correctly worded, I took it from Quang's presentation but I'm not sure where to find the proper one (MJB)-->
 
 *TODO: Also list COSEWIC indicators- MJB first crack*
-COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@COSEWIC2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes -->
+COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@COSEWIC2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) -->
 
 *TODO: List the performance metrics - MJB first crack*
 We propose the following performance metrics, where MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, and *F*~MSY~ refers to the fishing mortality that produces MSY over the long term:
 1. Rebuilding metrics
-  * P(B~t=2075~ > LRP) after 1.5 generations (56 years) > 95% to satisfice
+  * P(B~t=2075~ > LRP) after 1.5 generations (56 years) > 95% to satisfice 
   * P(B~t=2057~ > LRP) after 1 generation time (38 years)
   * P(B~t=2075~ > USR) after 1.5 generations (56 years)
   * P(B~t~ > B~t-10~ or B > LRP) milestone objective
