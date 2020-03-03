@@ -8,6 +8,6 @@ rmd_files: ["index.Rmd",
             #"06-appendix-mp-descriptions.Rmd",
             #"07-appendix-catch-data.Rmd",
             "98-hbll-survey.Rmd",
-            "09-appendix-management changes.Rmd",
+            "09-appendix-management-changes.Rmd",
             "10-references.Rmd"]
 delete_merged_file: true
