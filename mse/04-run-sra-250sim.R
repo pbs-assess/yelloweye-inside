@@ -10,7 +10,7 @@ data_ind <- match(data_names, names(SRA_data))
 
 OM_condition <- readRDS("mse/scoping/OM_250sim.rds")
 
-# Generate error in projected HBLL indices (CV = 0.25)
+# Generate error in projected HBLL indices (SD = 0.25)
 AddIbeta <- matrix(1, OM_condition@nsim, 5)
 
 set.seed(24)
