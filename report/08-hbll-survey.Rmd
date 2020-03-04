@@ -11,7 +11,7 @@ where P_it is the proportion of observed hooks for set i in year t returned with
 
 
 **TODO:Dana, Oddities of sampling and requirement for spatio-temporal model. Desolation Sound, 2009.**
-<!-- These figures are not on the github repo (MJB)
+<!-- These figures are not on the github repo (MJB) so not sure if they are going in the final doc
 ```{r}
 include_hbll_fig <- function(file) {
   knitr::include_graphics(here::here("figs", file), dpi = NA)
