@@ -3,7 +3,7 @@ library(MSEtool)
 
 ############ Condition operating models with SRA_scope and data
 SRA_data <- readRDS("mse/scoping/SRA_data.rds")
-data_names <- c("Chist", "Index", "I_sd", "I_type", "length_bin", "s_CAA", "CAA", "CAL", "I_basis")
+data_names <- c("Chist", "Index", "I_sd", "I_type", "length_bin", "s_CAA", "CAA", "CAL", "I_units")
 data_ind <- match(data_names, names(SRA_data))
 
 OM_condition <- readRDS("mse/scoping/OM_2sim.rds")

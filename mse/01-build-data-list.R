@@ -178,7 +178,7 @@ generate_survey_CAA <- function() {
 generate_survey_CAA()
 
 # Survey are abundance-based
-SRA_data$I_basis <- c(0, 0, 1, 1, 1)
+SRA_data$I_units <- c(0, 0, 1, 1, 1)
 
 # Selectivity parameters for fishery - use outside YE estimates
 sel_rec <- 1/(1 + exp(-log(19) * (c(1:SRA_data$maxage) - 6.7) / (11.5 - 6.7)))

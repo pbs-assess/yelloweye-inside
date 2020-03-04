@@ -5,7 +5,7 @@ setup(12)
 
 ############ Condition operating models with SRA_scope and data
 SRA_data <- readRDS("mse/scoping/SRA_data.rds")
-data_names <- c("Chist", "Index", "I_sd", "I_type", "length_bin", "s_CAA", "CAA", "CAL", "I_basis")
+data_names <- c("Chist", "Index", "I_sd", "I_type", "length_bin", "s_CAA", "CAA", "CAL", "I_units")
 data_ind <- match(data_names, names(SRA_data))
 
 OM_condition <- readRDS("mse/scoping/OM_250sim.rds")
@@ -160,9 +160,6 @@ generate_high_Ierr <- function(SRA) {
   plot(Iobs[, 1], ylim = c(0, 80000), pch = 16, typ = 'o')
   matlines(do.call(cbind, lapply(Ipred, function(x) x[, 1])))
 
-  #hist(Isd[, 1])
-  #hist(IAC[, 1])
-
   set.seed(24)
   I_dev_mu <- -0.5 * Isd^2 * (1 - IAC)/sqrt(1 - IAC^2)
   I_devs <- rnorm(SRA@OM@nsim * 5 * (SRA@OM@proyears + SRA@OM@nyears), I_dev_mu, Isd) %>%
@@ -182,11 +179,11 @@ SRA <- generate_high_Ierr(SRA)
 saveRDS(SRA, file = "mse/om/high_index_cv.rds")
 
 # Under-utilize TAC
-uTAC <- rowSums(SRA_data$Chist)/15
-mean(uTAC[95:102]) # Since 2012, mean = 0.7806198
-
-SRA <- readRDS("mse/om/updog_fixsel.rds")
-SRA@OM@TACFrac <- rep(0.7806198, 2)
-SRA@OM@TACSD <- rep(0.1, 2)
-
-saveRDS(SRA, file = "mse/om/underutilize_TAC.rds")
+#uTAC <- rowSums(SRA_data$Chist)/15
+#mean(uTAC[95:102]) # Since 2012, mean = 0.7806198
+#
+#SRA <- readRDS("mse/om/updog_fixsel.rds")
+#SRA@OM@TACFrac <- rep(0.7806198, 2)
+#SRA@OM@TACSD <- rep(0.1, 2)
+#
+#saveRDS(SRA, file = "mse/om/underutilize_TAC.rds")
