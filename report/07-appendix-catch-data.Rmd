@@ -22,7 +22,7 @@ In order to estimate the catch of Yelloweye Rockfish for 1982 to 1999, the avera
 
 
 ```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
-library(knitr)
+
 rec_catch <- read.csv("../data-raw/rec-allcatch-effort.csv", header=TRUE) 
 
 # make a table of recreational catch
@@ -31,14 +31,14 @@ csasdown::csas_table(rec_catch,
                      align=c("c","c","c"),
                      digits=1,
                      repeat_header = TRUE,
-                     caption = "Recreational catch estimates for inside Yelloweye Rockfish.
+                     caption = "Table xx. Recreational catch estimates for inside Yelloweye Rockfish.
                       The table contains reconstructed (1918-1981) and modern (1982-2019) 
                      catch estimates for inside Yelloweye Rockfish."
 )
 ```
 
 
-```{r reccatch, echo=FALSE, warning=FALSE, results = "asis"}
+```{r recbyarea, echo=FALSE, warning=FALSE, results = "asis"}
 
 rec_area <- read.csv("../data-raw/rec-catcheffortbyarea.csv", header=T)
 
