@@ -354,7 +354,7 @@ obs_yelloweye <- DLMtool::Precise_Unbiased
 <!-- slot-chunk-begin -->
 ### Name {#app:desc-obs-name-yelloweye}
 
-*The name of the obs_yelloweyeervation model object.*
+*The name of the obs_yelloweye observation model object.*
 
 ```{r desc-obs-name-yelloweye, results = knitr_results, echo = knitr_echo}
 obs_yelloweye@Name <- "BC Groundfish"
@@ -364,7 +364,7 @@ obs_yelloweye@Name <- "BC Groundfish"
 <!-- slot-chunk-begin -->
 ### Cobs_yelloweye {#app:desc-obs_yelloweye-cobs_yelloweye-yelloweye}
 
-*Log-normal catch obs_yelloweyeervation error expressed as a CV. Uniform distribution lower and upper bounds.*
+*Log-normal catch obs_yelloweye observation error expressed as a CV. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs_yelloweye-cobs_yelloweye-yelloweye, results = knitr_results, echo = knitr_echo}
 obs_yelloweye@Cobs_yelloweye
@@ -521,7 +521,7 @@ OM_yelloweye@proyears <- 100
 
 *To incorporate uncertainty in natural mortality among simulations, we sample from a lognormal distribution using the Hoenig (1983) prior.*
 
-```{r desc-fleet-name-yelloweye, results = knitr_results, echo = knitr_echo}
+```{r desc-cpars-maturity-yelloweye, results = knitr_results, echo = knitr_echo}
 set.seed()
 OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, )
 ```
@@ -533,7 +533,7 @@ OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, )
 
 *To incorporate uncertainty in natural mortality among simulations, we sample from a lognormal distribution using the Hoenig (1983) prior.*
 
-```{r desc-fleet-name-yelloweye, results = knitr_results, echo = knitr_echo}
+```{r desc-cpars-M-yelloweye, results = knitr_results, echo = knitr_echo}
 set.seed()
 OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, 
 fleet_yelloweye@Name

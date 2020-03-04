@@ -20,13 +20,14 @@ Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimat
 
 In order to estimate the catch of Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982-1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982-1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year. To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000. We converted rockfish pieces to weight by multiplying by 2.49kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008. 
 
-
+\newpage
 ```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
-library(knitr)
+
 rec_catch <- read.csv("../data-raw/rec-allcatch-effort.csv", header=TRUE) 
 
 # make a table of recreational catch
 csasdown::csas_table(rec_catch,
+                     format = "latex",
                      col.names = c("Year", "Catch(t)", "Effort(boat trips)"),
                      align=c("c","c","c"),
                      digits=1,
@@ -34,18 +35,15 @@ csasdown::csas_table(rec_catch,
                      caption = "Recreational catch estimates for inside Yelloweye Rockfish.
                       The table contains reconstructed (1918-1981) and modern (1982-2019) 
                      catch estimates for inside Yelloweye Rockfish."
-)
+) 
 ```
 
-
-```{r reccatch, echo=FALSE, warning=FALSE, results = "asis"}
+\newpage
+```{r recbyarea, echo=FALSE, warning=FALSE, results = "asis"}
 
 rec_area <- read.csv("../data-raw/rec-catcheffortbyarea.csv", header=T)
 
 # organizing the data from long to wide format
-library(tidyr)
-library(dplyr)
-library(stringr)
 
 rec_wide <- rec_area %>% 
   select(year, tonnes, totaleffort, pfma) %>% 
@@ -56,9 +54,11 @@ rec_wide <- rec_area %>%
 
 # make the table of catch by PFMA and total effort by year
 csasdown::csas_table(rec_wide,
-                     align="c",
+                     format = "latex",
                      digits=1,
                      caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019.Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000-2008)."
-)
+) %>% 
+  kableExtra::column_spec(1:13, width = "1.cm") 
+  
 ```
 

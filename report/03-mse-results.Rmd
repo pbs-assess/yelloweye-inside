@@ -3,17 +3,13 @@
 # RESULTS
 
 *TODO: Write the sections below. These are for Rex Sole*
-
+<!-- There was a note to put these in the methods section so I drafted these there (MJB)-->
 ## STEP 1: DEFINE THE DECISION CONTEXT {#sec:results-1}
-
-The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice.
-The time-frame for making the decision was stated in the request for science advice.
-See Section \@ref(sec:approach1).
 
 *TODO: Complete this section after technical team meetings*
 
 ## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results-2}
-<!-- There was a note to put these in the methods section so I drafted these there (MJB)-->
+
 
 ## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:results-3}
 
