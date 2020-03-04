@@ -235,6 +235,9 @@ ggplot(sel2, aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::them
   coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
 ggsave("mse/figures/fishery-selectivity.png", width = 7, height = 4)
 
+ggplot(filter(sel2, Fleet != "HBLL"), aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::theme_pbs() +
+  coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
+ggsave("mse/figures/fishery-selectivity2.png", width = 7, height = 4)
 
 # Histograms of M and h
 
@@ -278,6 +281,8 @@ cat <- data.frame(Year = rep(1918:2019, 3),
 ggplot(cat, aes(Year, Catch, colour = Fleet, linetype = Scenario)) + geom_line() + gfplot::theme_pbs()
 ggsave("mse/figures/catch.png", width = 5.5, height = 3.5, dpi = 500)
 
+ggplot(filter(cat, Scenario != "Low catch"), aes(Year, Catch, colour = Fleet)) + geom_line() + gfplot::theme_pbs()
+ggsave("mse/figures/catch2.png", width = 5.5, height = 3.5, dpi = 500)
 
 ### COSEWIC indicators and probability below LRP/USR in 2019
 COSEWIC_Bdecline_hist <- function(MSEobj, Ref = 0.7, Yr = NULL) {
@@ -345,3 +350,21 @@ mtext("Year", side = 1, outer = TRUE)
 mtext("Recruitment deviations (normal space)", side = 2, outer = TRUE)
 legend("topleft", "Episodic recruitment", bty = "n")
 dev.off()
+
+# Plot higher Isd and AC of HBLL in (B) High index CV
+SRA <- readRDS("mse/om/high_index_cv.rds")
+
+Iobs <- SRA@OM@cpars$Data@AddInd[1, 1, ]
+Ipred <- lapply(SRA@Misc, getElement, "Ipred")
+
+Isd <- vapply(Ipred, function(x, y) sd(log(y/x[, 1]), na.rm = TRUE), numeric(1), y = Iobs)
+IAC <- vapply(Ipred, function(x, y) {xx <- log(y/x[, 1]); acf(xx[!is.na(xx)], lag.max = 1, plot = FALSE)$acf[2, 1, 1]},
+              numeric(1), y = Iobs)
+
+high_error <- data.frame(Isd = Isd, IAC = IAC)
+
+g1 <- ggplot(high_error, aes(Isd)) + geom_histogram(bins = 15) + gfplot::theme_pbs() + labs(x = "HBLL standard deviation")
+g2 <- ggplot(high_error, aes(IAC)) + geom_histogram(bins = 15) + gfplot::theme_pbs() + labs(x = "HBLL autocorrelation")
+
+cowplot::plot_grid(g1, g2)
+ggsave("mse/figures/HBLL_high_CV.png", width = 5, height = 3)
