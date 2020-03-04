@@ -11,7 +11,7 @@ where P_it is the proportion of observed hooks for set i in year t returned with
 
 
 **TODO:Dana, Oddities of sampling and requirement for spatio-temporal model. Desolation Sound, 2009.**
-
+<!-- These figures are not on the github repo (MJB)
 ```{r}
 include_hbll_fig <- function(file) {
   knitr::include_graphics(here::here("figs", file), dpi = NA)
@@ -19,8 +19,9 @@ include_hbll_fig <- function(file) {
 ```
 
 ```{r, fig.cap="The raw data. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the number of fish caught per hook after accounting for hook competition."}
-include_hbll_fig("hbll-joint-raw-data.pdf")
+include_hbll_fig("hbll-joint-raw-data.pdf") 
 ```
+
 
 ```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 400 knots. kmeans clustering algorithm. Samples from all years are shown simultaneously."}
 include_hbll_fig("hbll-joint-spde.pdf")
@@ -57,7 +58,7 @@ include_hbll_fig("hbll-joint-residual-map.pdf")
 ```{r, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
 include_hbll_fig("hbll-index-components-eps-depth2.pdf")
 ```
-
+ -->
 
 # DOGFISH SURVEY
 ** Dogfish survey description by Midoli**
@@ -92,7 +93,7 @@ I'm sure thats an exaggeration, but so it is with few data points and no priors.
 
 I am creating the index on the rectangles that define the dogfish survey. I overlaid a 500m x 500m grid on the dogfish survey rectangles and am now also removing any of those fine scale grid cells that overlap land.
 
-
+<!--figures not in repo
 ```{r, fig.cap="SPDE", out.width="4in"}
 include_hbll_fig("dogfish-joint-spde.png")
 ```
@@ -120,7 +121,7 @@ include_hbll_fig("dogfish-epsilon.png")
 ```{r, fig.cap="Standardized index.", out.width="4in"}
 include_hbll_fig("dogfish-index-estimated-hook.png")
 ```
-
+--> 
 \clearpage
 
 Model:
