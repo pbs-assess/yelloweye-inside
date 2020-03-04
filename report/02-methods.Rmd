@@ -8,13 +8,6 @@ We follow the methods recommended in the Management Procedure Framework for Grou
 
 *TODO: Mention this is done in a simulation framework. Very briefly introduce dlmtool and msetool here*
 
-(ref:fig-mse-chart) The steps of the MSE process following @punt2016 as implemented in DLMtool. Adapted from @carruthers2018. This figure expands on Figure \@ref(fig:mse-chart-basic).
-
-```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("images/mse-chart.pdf"))
-```
-
-
 * Step 1: define the decision context
 
 * Step 2: selection of objectives and performance metrics 
@@ -64,17 +57,17 @@ COSEWIC and DFO have different criteria for assessing the status of marine fish 
 *TODO: List the performance metrics - MJB first crack*
 We propose the following performance metrics, where MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, and *F*~MSY~ refers to the fishing mortality that produces MSY over the long term:
 <!--from the powerpoint slides from Quang (MJB)-->
-LRP 1.5 GT		P[B > 0.4 BMSY] after 1.5 GT (56 years)
-Satisficing: only consider MPs with 95% probability
-LRP 1GT		P[SSB > LRP] after 1 GT (38 years) 		
-USR 1.5 GT		P[SSB > USR] after 56 years
-		
-ST C10		P[Catch > 10 t] during 2020-2029
-ST C15    P[Catch > 15 t] during 2020-2029
-LT C20		P[Catch > 20 t] during 2020-2029
-LT C20		P[Catch > 20 t] after 1 Generation time
-AAVC			Probability of < 20% inter-annual variability in catch
-<!--AADC?-->
+
+  * LRP 1.5 GT		P[B > 0.4 BMSY] after 1.5 GT (56 years) Satisficing: only consider MPs with 95% probability
+  * LRP 1GT		    P[SSB > LRP] after 1 GT (38 years) 		
+  * USR 1.5 GT		P[SSB > USR] after 56 years
+  		
+  * ST C10		P[Catch > 10 t] during 2020-2029
+  * ST C15    P[Catch > 15 t] during 2020-2029
+  * LT C20		P[Catch > 20 t] during 2020-2029
+  * LT C20		P[Catch > 20 t] after 1 Generation time
+  * AAVC			Probability of < 20% inter-annual variability in catch
+
 Performance metrics are averaged across reference set of OMs or reported individually. 
 
 
