@@ -1,6 +1,7 @@
 library(reshape2)
 library(dplyr)
 library(gfplot)
+library(ggplot)
 
 dat <- readRDS("data-generated/yelloweye-rockfish-ins-privacy.rds")
 
@@ -70,7 +71,7 @@ ggsave("mse/figures/maturity2.png", width = 5, height = 3)
 
 
 # Show predicted vs. observed proportions
-prop <- mat_age[[3]]$data %>% group_by(female, age_or_length) %>% summarise(prop_mature = sum(mature)/n()) %>% acast(list("female", "age_or_length"))
+prop <- mat_age[[3]]$data %>% group_by(female, age_or_length) %>% summarise(prop_mature = sum(mature)/n()) %>% reshape2::acast(list("female", "age_or_length"))
 
 prop_female <- data.frame(age = as.numeric(colnames(prop)), prop = prop[2, ])
 

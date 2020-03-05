@@ -80,6 +80,12 @@ satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
 plot_tigure(pm_avg, satisficed = satisficed_criteria)
 plot_tigure(pm_min, satisficed = satisficed_criteria)
 
+plot_tigure(pm_df_list_rob[[1]]) + ggtitle("(A) Low M")
+ggsave(paste0("mse/figures/tigure_lowM.png"), width = 6.5, height = 6.5)
+
+plot_tigure(pm_df_list_rob[[2]]) + ggtitle("(B) High CV HBLL")
+ggsave(paste0("mse/figures/tigure_high_CV_HBLL.png"), width = 6.5, height = 6.5)
+
 #mp_sat <- pm_df_list[[1]]$MP
 mp_index <- pm_df_list[[1]]$MP[c(7:22)]
 mp_other <- pm_df_list[[1]]$MP[-c(7:22)]
@@ -112,6 +118,10 @@ ref_mp_cols <- c("grey45", "grey10", "grey75") %>% set_names(reference_mp)
 custom_pal <- c(RColorBrewer::brewer.pal(8, "Set2")[seq_along(mp_sat)], ref_mp_cols) %>%
   set_names(mp_sat_with_ref)
 
+
+
+
+
 mp_eg_not_sat <- c(
   "Itarget_5",
   "Itarget_10",
@@ -126,6 +136,45 @@ mp_eg_not_sat <- c(
   "SP_2060_10f"
 )
 
+
+walk(names(mse), ~ {
+ g <- plot_main_projections(Sub(mse[[.x]], MPs = mp_sat),
+   catch_breaks = c(0, 25),
+   catch_ylim = c(0, 50))
+ ggsave(paste0("mse/figures/projections/projections_", .x, ".png"), width = 6.5, height = 6.5)
+}
+)
+
+# Iratio
+walk(names(mse), ~ {
+  g <- plot_main_projections(Sub(mse[[.x]], MPs = c("Iratio_23", "Iratio_510", "Itarget_5", "Itarget_10")),
+                             catch_breaks = c(0, 25),
+                             catch_ylim = c(0, 50))
+  ggsave(paste0("mse/figures/projections/projections_Iratiotarget_", .x, ".png"), width = 6.5, height = 6.5)
+}
+)
+
+# GB
+walk(names(mse), ~ {
+  g <- plot_main_projections(Sub(mse[[.x]], MPs = c("GB_slope_lambda1", "GB_slope_lambda05", "GB_slope_yrs10",
+                                                    "IDX_YE", "IDX_smooth_YE")),
+                             catch_breaks = c(0, 25),
+                             catch_ylim = c(0, 50))
+  ggsave(paste0("mse/figures/projections/projections_GB_IDX_", .x, ".png"), width = 6.5, height = 6.5)
+}
+)
+
+
+# SP
+walk(names(mse), ~ {
+  g <- plot_main_projections(Sub(mse[[.x]], MPs = c("SP_4080_10f", "SP_4080_5f", "SP_2060_5f", "SP_2060_10f")),
+                             catch_breaks = c(0, 25),
+                             catch_ylim = c(0, 50))
+  ggsave(paste0("mse/figures/projections/projections_SP_", .x, ".png"), width = 6.5, height = 6.5)
+}
+)
+
+
 plots <- gfdlm::plot_factory(
   mse_list = mse,
   pm = PM,
@@ -139,6 +188,7 @@ plots <- gfdlm::plot_factory(
   tradeoff = c("LRP 1.5GT", "ST C10"),
   satisficed_criteria = satisficed_criteria,
   skip_projections = FALSE, # TRUE for speed!
+  catch_breaks = seq(0, 75, 25), catch_ylim = c(0, 75),
   survey_type = "AddInd"
 )
 
