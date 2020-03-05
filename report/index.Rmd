@@ -37,7 +37,8 @@ bibliography: [bib/refs.bib, bib/mpframework-refs.bib]
 csl: csl/csas.csl # or csl/csas-french.csl for French
 # Any extra LaTeX code for the header:
 # header-includes:
-# - \usepackage{tikz}
+# - \usepackage{etex}
+
 ---
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
