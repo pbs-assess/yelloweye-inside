@@ -92,6 +92,7 @@ library(MSEtool)
 library(rfishbase)
 library(RColorBrewer)
 library(tidyverse)
+library(magrittr)
 filter <- dplyr::filter
 options(tinytex.verbose = TRUE)
 knitr::opts_chunk$set(crop = NULL)
