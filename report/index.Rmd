@@ -33,7 +33,7 @@ output:
 # End of options to set
 knit: bookdown::render_book
 link-citations: true
-bibliography: bib/refs.bib
+bibliography: [bib/refs.bib, bib/mpframework-refs.bib]
 csl: csl/csas.csl # or csl/csas-french.csl for French
 # Any extra LaTeX code for the header:
 # header-includes:
