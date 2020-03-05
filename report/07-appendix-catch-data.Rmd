@@ -3,15 +3,19 @@
 `r if(knitr:::is_latex_output()) '\\Appendices'`
 
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+# CATCH 
 
-# Recreational catch
+## Commercial Catch
+**Placeholder**
+
+## Recreational catch
 In 2012,DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data. However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis[@DFO2015].
 
-## Reconstructed Historical Recreational Catch
+### Reconstructed Historical Recreational Catch
 
 Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a family run recreational fishing resort[@Yamanaka2011]. We used the same historical time series of reconstructed recreational catch for the current analysis. 
 
-## Creel Survey Data 1982-2019
+### Creel Survey Data 1982-2019
 
 <!-- as in Yamanaka et al. 2011, we calculated the proportion of YE in all rockfish catch by PFMA in 2000 and 2001. We then used these proportions to convert "ROCKFISHES' to Yelloweye for the data from 1982-1999.  
 PFMA 12  : No surveys here prior to 2000, so no historical ROCKFISH catch data
@@ -62,3 +66,6 @@ csasdown::csas_table(rec_wide,
   
 ```
 
+## Food, Social, and Ceremonial Catch (FSC)
+
+**placeholder**

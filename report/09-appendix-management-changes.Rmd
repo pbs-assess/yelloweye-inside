@@ -1,5 +1,4 @@
-
-# Chronology of Management Changes
+# CHRONOLOGY OF MANAGEMENT CHANGES 
 
 ```{r, echo=FALSE, warning=FALSE, results="asis"}
 timeline <- read.csv("../data-raw/management-chronology.csv", header=TRUE)
