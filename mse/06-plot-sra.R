@@ -322,6 +322,7 @@ formals(COSEWIC_P30)$Ref <- 0.3
 
 # LRP - probability that SSB > 0.4 BMSY in 2019
 # USR - probability that SSB > 0.8 BMSY in 2019
+mse_ye <- map(sc$scenario, ~readRDS(paste0("mse/om/MSE_", .x, ".rds")))
 YE_historical <- rbind(vapply(mse_ye, COSEWIC_P70, numeric(1), Yr = 3 * 38),
                        vapply(mse_ye, COSEWIC_P50, numeric(1), Yr = 3 * 38),
                        vapply(mse_ye, COSEWIC_P30, numeric(1), Yr = 3 * 38),
