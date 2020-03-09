@@ -84,15 +84,19 @@ generate_CAL <- function() {
 }
 generate_CAL()
 
-###### Commerical data: handline, trawl, comps
+###### Commerical data: handline, trawl, comps, not used here but identical to next section
 #HL <- readRDS("mse/data/ye-ins-catch-hl.rds")
 #TR <- readRDS("mse/data/ye-ins-catch-tr.rds")
-#MO$catch$total <- MO$catch$sum_landed_kg + MO$catch$sum_discarded_kg
-#comm <- summarise(group_by(MO$catch, year, gear), total = sum(total)) %>% right_join(data.frame(year = 1969:2019)) %>% acast(list("year", "gear"))
-#write.csv(1e-3 * rowSums(cbind(HL, TR), na.rm = TRUE), file = "mse/data/comm.csv")
+
 
 
 ###### Catch data. Fleet 1 = commerical (Hook and line plus trawl). Fleet 2 = Rec (FSC should be included in both fleets)
+# Recreational catch from `insideYEallcatchandeffort.csv`
+# Commercial catch 1918-1985 uses `reconstructed ye from inside assessment.xlsx`
+# Commerical catch from 1986-2019:
+#MO$catch$total <- MO$catch$sum_landed_kg + MO$catch$sum_discarded_kg
+#comm <- summarise(group_by(MO$catch, year, gear), total = sum(total)) %>% right_join(data.frame(year = 1969:2019)) %>% acast(list("year", "gear"))
+
 generate_catch <- function() {
   cat <- read.csv("data-generated/catch.csv")
 
