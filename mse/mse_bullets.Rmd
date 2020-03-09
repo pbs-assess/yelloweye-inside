@@ -1,0 +1,258 @@
+
+# For 02-methods.Rmd
+
+## Life history
+
+For operating model, use point estimates of growth and maturity from gfsynopsis (inside population samples only, exclude outside).
+
+
+### gfsynopsis
+<!-- See figures/gfsynopsis to include plots -->
+- Estimation methods documented in gfsynopsis res doc? (Anderson and Keppel) <!-- I used gfplot functions -->
+- Single growth curves (von Bert, and length-weight) for both sexes due to lack of sexual dimorphism
+- Use female maturity. Logistic regression appeared to fit proportion mature well for age 17+, but tended to overpredict proportion mature for ages 7-17. However, maturity determination is an ongoing area of research and we decided to proceed with logistic model.
+- Minimum age observed was 7. Assumed all fish at younger ages are immature.
+
+### Natural mortality and steepness
+- Natural mortality and Beverton-Holt steepness are core uncertainties for many stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling them from prior distributions generated from meta-analysis:
+
+M ~ Lognormal(0.045, 0.2) from Hoenig et al. (1983) using maxage = 101 years
+h ~ Transformed Beta(mean = 0.71, sd = 0.15) using Forrest et al. prior
+
+For h, sample X ~ Beta(alpha, beta), then transform: h = 0.8 X + 0.2. Alpha and beta are values so that mean(h) = 0.71, sd(h) = 0.15
+
+Each OM scenario had 250 replicates, thus, 250 samples of M and h.
+
+- sigma_R (recruitment SD) = 0.4 to match outside YE assumptions
+
+## Data
+
+
+### Catch
+- Recreational estimates from creel survey post-1982, reconstruction pre-1982 <!-- I believe, please double check with Dana or Midoli -->
+- Commerical post-1986 from gfdatabase, pre-1986 from reconstruction 
+<! -- Haigh, R. and Yamanaka, K.L. 2011. Catch history reconstruction for rockfish
+(Sebastes spp.) caught in British Columbia coastal waters. Can. Tech. Rep. Fish.
+Aquat. Sci. 2943: viii + 124 p. -->
+- Also double 1986-2005 commercial catch based on industry estimates of underreporting (see 2011 assessment) 
+- FSC believed to be incorporated into these estimates (dual-fishing) <!-- follow up with Dana's discussion with FN representatives -->
+
+
+### Surveys
+- Stitched north and south HBLL survey
+- Dogfish survey
+- Standard errors obtained from GLMM standardization models
+
+- Historical Commercial CPUE and standard errors that were used and obtained from 2011 assessment
+- Divided into three time stanzas: 1986-1990, 1995-2001, 2003-2005
+- Series are short but 1986-1990, 1995-2001 series indicate declines in stock following large catches
+
+### Composition Data
+- Samples from HBLL
+
+Fishery dependent composition data:
+- Age comp from one commercial longline trip (1989)
+- Length comps from creel survey
+- Tried to fit them for OM, but did not generate plausible estimates of selectivity. Age of full selectivity was very high compared to outside. It is unlikely that selectivity differs to such an extent, thus, these data were not further considered.
+
+## Conditioning operating models
+
+### Initial fit
+
+Use catch, surveys, and HBLL age comps. Perform statistical diagnostics (retrospectives), and adjust as necessary to generate suitable sets of OM.
+
+General settings:
+- Max age = 80 years (plus group accumulator age)
+- Use SRA model (cite gfmp)
+- Each replicate fits a different value of M and h (sampled independently)
+- Fix selectivity of fisheries to values from outside YE. Use hook and line for commercial (there is little to no trawl fishery for inside pop)
+- Estimate rec devs after 1950 (age comps only available after 2003)
+- Estimate HBLL selectivity. Mirror the dogfish selectivity in each replicate to match that for HBLL
+- Multinomial annual sample size for age comps based on the number of sampling trips.
+
+- Initial fit did not fit dogfish survey well. Retrospective analysis showed bias in SSB (For model with M and h set to mean priors, rho = 0.25 for 11 years when removing up to 11 years of data). 11 years of data were used primarily to evaluate consistency of the model going back to 2009 which was the terminal year for the 2011 assessment.
+- Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.  
+- Next, it was decided to fix the HBLL selectivity to that from the initial fit while also upweighting the dogfish survey. This fit generated small retrospective bias (SSB rho = -0.07) for the fit with M and h mean priors.
+- Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process.
+<!-- I will generate a plot of SSB rho vs. M to show this -->
+
+
+### Reference set
+
+From the initial fit, the following OMs were developed as the reference set:
+
+1. Upweight dogfish survey: Uses the initial fit but upweight dogfish selectivity and fix HBLL full selectivity age to 20 years.
+Additional things to mention:
+- Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
+- Future recruitment deviations sampled in logspace with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
+- Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in logspace.
+
+2. Low catch - to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty. 
+
+3. Episodic recruitment - to address uncertainty in future productivity, an alternative scenario where recruitment is more variable. Rockfish assessments in the Pacific have estimated occasional extreme year classes (examples? POP, boccacio?). SRA may not estimate large cohorts, this could be a limitation of the available data to detect large cohorts. From (1), extreme recruitment is generated on average once every generation (38 years). If y is an extreme recruitment year, then the recruitment is sampled with lognormal with SD = 2.
+
+<!-- I need to add an equation to describe episodic recruitment -->
+
+4. Estimate HBLL selectivity - same as 1 but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
+
+
+
+### Robustness set
+
+Two robustness OM were considered:
+
+(A) Low M - Same as (1), but M ~ Lognormal(0.025, 0.2), pessimistic scenario for stock productivity and rebuilding
+
+(B) Higher CV HBLL - Future HBLL index is less precise than in (1). Instead of SD = 0.25, we use the SD and autocorrelation from the index residuals in OM (1). In doing so, this scenario evaluate MPs if we've overestimated the precision of the HBLL survey and conditioning uncertainty (we've generated larger than expected residuals).
+
+
+## Closed-loop simulation of management procedures
+
+## Reference MPs
+<! -- Only No fishing (NFref), FMSY75 and FMSY -->
+
+## Fixed TAC MPs
+
+- Look at different values of fixed catch, including 5, 10, and 15 t. 15 t can be considered the status quo.
+
+## Index-based MPs
+
+Index-based MPs set the TAC relative to the change in the index over time. Slope-based MPs increase or decrease the TAC in accordance with the estimated slope in the index over recent time, while ratio MPs increase or decrease the TAC in accordance with the ratio of the index from two different time periods.
+
+A third type, target MPs, adjusts the TAC based on the ratio of the recent index and a target index value. These were not considered here as further guidance from management would be needed in order to select the appropriate target value. For the rebuilding plan, the goal is to ensure that the stock is above the LRP, however, the LRP is not likely to be the target state of nature that would be suitable for management and stakeholders.
+
+Evaluate index MPs with either annual or 5-year updates. For the latter, fixed TAC between updates.
+
+All index-based MPs set a minimum TAC = 0.5 t for surveys.
+
+### Index slope
+
+$\text{TAC}_y = C_{y-1} (1 + \lambda I^{\text{slope}}_{y-1})
+
+<! -- Geromont, H.F. and Butterworth, D.S. 2014. Complex assessment or simple management procedures for efficient fisheries management: a comparative study. ICES J. Mar. Sci. doi:10.1093/icesjms/fsu017 -->
+
+Various tuning parameters can alter performance of MPs:
+Lambda controls the change in TAC relative to change in slope.
+I_slope can vary by the number of years in which the slope is calculated.
+Two types of index slope MPs:
+
+GB_slope - use above eq but ensure that $0.8 C_{y-1} \le TAC_y \le 1.2 C_{y-1}$.
+
+Three configurations to explore:
+GB_slope_lambda1   $\lambda = 1	$	  $I^{slope}_{y-1}$ is calculated from index in the preceding 5 years
+GB_slope_lambda05  $\lambda = 0.5$	$I^{slope}_{y-1}$ is calculated from the preceding 5 years
+GB_slope_yrs10     $\lambda = 1	$	  $I^{slope}_{y-1}$ is calculated from the preceding 10 years
+
+
+Islope - no cap. Thus smaller values of $\lambda$ may be prudent.
+
+Islope_5_lambda04  $\lambda = 0.4$	  $I^{slope}_{y-1}$ is calculated from index in the preceding 5 years
+Islope_10_lambda04 $\lambda = 0.4$	$I^{slope}_{y-1}$ is calculated from the preceding 10 years
+Islope_10_lambda08 $\lambda = 0.8$	  $I^{slope}_{y-1}$ is calculated from the preceding 10 years
+
+
+### Index ratio
+
+$\text{TAC}_y = C_{y-1} \dfrac{I^{\text{recent}}}{I^{\text{historical}}} $
+
+<! -- Ernesto Jardim, Manuela Azevedo, Nuno M. Brites, Harvest control rules for data limited stocks using length-based reference points and survey biomass indices, Fisheries Research, Volume 171, November 2015, Pages 12-19, ISSN 0165-7836, https://doi.org/10.1016/j.fishres.2014.11.013 -->
+
+
+$I^{\text{recent}}$ is the mean index from the most recent years, $I^{\text{historical}}$ is the mean from years preceding that for I^{\text{recent}}.
+The number of years for $I^{\text{recent}}$ and $I^{\text{historical}}$ can vary. Two options were explored:
+
+Iratio_23  $I^{\text{recent}}$ is from the preceding 2 years, e.g., 2018-2019
+           $I^{\text{historical}}$ is from the 3 years preceding $I^{\text{recent}}$, e.g., 2015-2017
+
+Iratio_55  $I^{\text{recent}}$ is from the preceding 5 years, e.g., 2015-2019
+           $I^{\text{historical}}$ is from the 5 years preceding $I^{\text{recent}}$, e.g., 2010-2014
+
+### IDX
+
+<! -- Cox et al. Res Doc in press -->
+
+
+## SP MPs
+- State-space surplus production model (should be documented in gfmp appendix?) with prior for intrinsic rate of increase from 2011 assessment.
+- Two ramped harvest control rules:
+a. 80-40% BMSY as the USR, LRP
+b. 40-10% B0 as the USR, LRP
+- Two assessment frequencies (5 and 10 years)
+- Fixed TAC between assessments
+
+## Historical metrics from operating model
+
+### COSEWIC Metric A
+
+P70 - Probability that population decline hasn't exceeded 70% over 3 generations
+where generation time = 38 years for inside yelloweye
+
+P[1 - B_2019/B_1918 < 0.7]
+
+P50 - Probability that population decline hasn't exceeded 50% over 3 generations 
+
+P[1 - B_2019/B_1918 < 0.5]
+
+P30 - Probability that population decline hasn't exceeded 30% over 3 generations
+
+P[1 - B_2019/B_1918 < 0.3]
+
+
+### Reference points
+
+USR - Probability that B_2019 > 0.8 BMSY
+LRP - Probability that B_2019 > 0.4 BMSY
+
+
+## Performance metrics of MPs
+
+<!-- Use AADC instead of AAVY -->
+AADC - average absolute deviation in catch over $n$ years is defined as: <!-- See gfmp -->
+$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid
+`ST AADC` - probability that AADC in the first decade of the projection period is less than that in 2012 - 2019 (since start of 15 t TAC)
+
+### Extinction Risk - COSEWIC E
+We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction. 
+Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
+
+`2% B_0` = P[B_y > 0.02 B_0]
+`5% B_0` = P[B_y > 0.05 B_0]
+
+
+
+# For 03-mse-results.Rmd
+
+## Conditioning operating models
+- Fit to HBLL is reasonable: estimated index within confidence intervals, although there are several outliers. A slight increasing trend in all OMs.
+- Fit to dogfish survey is better in (4) and (A) compared to the others, although this is in light of the large uncertainties associated with the pre-1990 values and gear change.
+- Fit to commercial CPUE is generally good due to short time stanzas.
+<!-- I need to find a way to show fits to HBLL age comps -->
+<!-- I need to report range of FMSY and MSY in OMs -->
+
+- Additional model fit to a state-state surplus production model was done. This model indicates that the stock is below the LRP, output of model is consistent with 2011 assessment which used a similar model.
+
+### Historical metrics
+From the six OMs, 3 share common historical conditioning. From the four unique historical reconstruction, all likely show that 30 and 50% declines have occurred. Different results among OMs with respect to P70:
+
+70% decline is likely in (4) and (A) while somewhat likely for (1) and (2) with probabilities between 43-53%.
+
+Stock is very likely above the LRP in all OMs except (A).
+Stock is likely above the USR in (1), (2); likely below in (4) and (A)
+
+### Management procedures
+
+- All MPs met the satisficing criterion (LRP 1.5GT > 0.95) in individual OMs in the reference set and averaged across all four reference OMs.
+- Most MPs generate low yields, we further filtered MPs where ST C10 > 50%. This leaves us with Fixed TACs of 10 and 15t and Islope MPs. For these MPs, we see slight loss of yield in (B) if the index were to be less precise than in the reference set.
+- Low M OM more easily shows the conservation vs. yield tradeoff. To meet satisficing criterion for LRP 1.5GT, ST C10 must be very low.
+- No MPs considered here is likely to generate catches > 20 t in 56 years. The best performing MP for LT C20 is Iratio.
+
+Based on projection plots:
+<!-- Need to make projection plots for reference MPs -->
+- FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM.
+- Iratio generates low catches within the first decade but generates high catches later on. There is high variability among replicates in each OM.
+- SP MPs generate no catch in the first decade, but increase catches later on.
+
+### Risk extinction
+- The status quo approach, as well as almost all MPs, has low probability of reaching the extinction threshold in all OMs.
+
+
