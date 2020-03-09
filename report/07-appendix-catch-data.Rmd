@@ -6,7 +6,11 @@
 
 ## Commercial Catch
 
-**Placeholder**
+The major points to cover are: 
+
+1. The discrepancy between the reconstructed catch reported in the last assessment and the one we are using in this evaluation. This happened because the previous assessment was done before the catch reconstruction document was finished/published and there were changes made to the algorithm that were not incorporated into the analysis in 2009. Quang stopped using the reconstructed data in 1985, due to a lack of familiarity with the reconstruction, lack of clarity. This may have been the wrong call, as full reporting didn't ocurr until 2006. Waiting on the answer to this question. 
+2. Changes to the modern data happen because the data base is changing (finding errors, updating information etc.)
+3. The total catch from 1986-2005 was doubled in the previous assessment to account for underreporting. Not sure why this was applied to the entire catch, and not just the ZN fishery catch. Will check proceedings document for more information on this but we are going with what the previous assessment did (what Quang ran in the models). In the proceedings from the previous assessment industry raised the concern of underreporting due to lack of confidence in the logbooks [@DFO2012c]. The previous assessment included sensitivity tests that looked at decreasing the entire time series by 50% and increasing the time series by 150%. The changes resulted in estimates of biomass, but reference point estimates were less sensitive. 
 
 ## Recreational catch
 
@@ -66,8 +70,11 @@ csasdown::csas_table(rec_wide,
 
 ## Food, Social, and Ceremonial (FSC) Catch
 
-What did they do in the previous assessment and why was it no good?
-The data in the table below comes from the commercial dockside monitoring program and is collected from dual fishing trips, wherein indigenous fishers choose to keep some of their catch for FSC purposes. The data is collected at the trip level, not set level, therefore there may be issues with some of the reported catch being collected outside the geographic boundary for Inside Yelloweye. 
+What did they do in the previous assessment and why was it no good? e.g. consumption rates which was not supported by conversations with indigenous reps. 
+The data in the table below comes from the commercial dockside monitoring program and is collected from dual fishing trips, wherein indigenous fishers choose to keep some of their catch for FSC purposes. There is no discussion of this in the proceedings from the previous CSAS process in 2011 [@DFO2012c]. 
+
+The data is collected at the trip level, not set level, therefore there may be issues with some of the reported catch being collected outside the geographic boundary for Inside Yelloweye. 
+
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
 
