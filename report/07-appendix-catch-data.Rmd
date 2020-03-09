@@ -70,7 +70,7 @@ The data in the table below comes from the commercial dockside monitoring progra
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
 
-fsc_catch <- read.csv("../data-generated/FSC_DMP.csv", header=TRUE)
+fsc_catch <- read.csv("../data-raw/fsc_dmp.csv", header=TRUE)
 
 csasdown::csas_table(fsc_catch, 
                      format = "latex",
