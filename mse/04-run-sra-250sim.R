@@ -17,8 +17,9 @@ AddIbeta <- matrix(1, OM_condition@nsim, 5)
 set.seed(24)
 SRA_for_selectivity <- readRDS("mse/scoping/scoping_base.rds")[[1]]
 SRA <- SRA_for_selectivity
-AddIerr <- rnorm(SRA@OM@nsim * 5 * (SRA@OM@nyears + SRA@OM@proyears), -0.5 * 0.25^2, 0.25) %>% exp() %>%
-  array(dim = c(SRA@OM@nsim, 5, SRA@OM@nyears + SRA@OM@proyears))
+nsim <- 250
+AddIerr <- rnorm(nsim * 5 * (SRA@OM@nyears + SRA@OM@proyears), -0.5 * 0.25^2, 0.25) %>% exp() %>%
+  array(dim = c(nsim, 5, SRA@OM@nyears + SRA@OM@proyears))
 
 add_Ierr <- function(SRA) {
   SRA@OM@cpars$AddIbeta <- AddIbeta

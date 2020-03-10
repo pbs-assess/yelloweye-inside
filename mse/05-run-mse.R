@@ -2,12 +2,19 @@
 library(MSEtool)
 library(gfdlm)
 source("mse/YE_MPs.R")
-setup(12)
+setup(parallel::detectCores()/2)
 sfExportAll()
 sfLibrary(gfdlm)
 
 
 scenario <- c("updog_fixsel", "lowcatch_fixsel", "episodic_recruitment", "lowM_fixsel", "high_index_cv", "upweight_dogfish")
+
+SRA <- readRDS("mse/scoping/scoping_base.rds")[[1]]
+nsim <- 250
+set.seed(24)
+AddIerr <- rnorm(nsim * 5 * (SRA@OM@nyears + SRA@OM@proyears), -0.5 * 0.25^2, 0.25) %>% exp() %>%
+  array(dim = c(nsim, 5, SRA@OM@nyears + SRA@OM@proyears))
+rm(SRA)
 
 for(i in 1:length(scenario)) {
   SRA <- readRDS(paste0("mse/om/", scenario[i], ".rds"))
@@ -17,6 +24,7 @@ for(i in 1:length(scenario)) {
 
   # Constant catch scenarios and reference MPs
   myOM@interval <- c(1, 1, rep(200, 4))
+  myOM@cpars$AddIerr <- AddIerr
   message("Constant catch and ref MPs...")
   myMSE1 <- runMSE(myOM, MPs = c("FMSYref", "FMSYref75", "NFref", "CC_5t", "CC_10t", "CC_15t"), parallel = TRUE)
   saveRDS(myMSE1, file = paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
