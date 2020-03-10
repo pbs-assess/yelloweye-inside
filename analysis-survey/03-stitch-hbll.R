@@ -31,6 +31,15 @@ hook <- readRDS("data-generated/yelloweye_hook_adjusted_data.rds") %>%
   )
 
 d <- left_join(d, hook, by = c("survey_series_id", "year", "fishing_event_id"))
+
+dogfish_test_remove <- TRUE
+if (dogfish_test_remove) {
+  dg <- c(5151558, 5151667, 5151581, 5151551, 5151555, 5151559, 5151676,
+    5151584, 5151588, 5151592, 5151562, 5151665, 5151586, 5151595,
+    5151670, 5151671, 5151554, 5151591, 5151675)
+  d <- filter(d, !fishing_event_id %in% dg)
+}
+
 d <- d %>%
   select(
     survey_abbrev, year, longitude, latitude, catch_count, hook_count,
@@ -70,11 +79,15 @@ pdf("figs/hbll-joint-spde.pdf", width = 7, height = 7)
 plot_spde(sp)
 dev.off()
 
+png("figs/hbll-joint-spde.png", width = 7, height = 7, units = "in", res = 180)
+plot_spde(sp)
+dev.off()
+
 # Fit models -----------------------------------------------------
 
-model_file <- "data-generated/hbll-inside-joint-hook-eps.rds"
-model_file_depth <- "data-generated/hbll-inside-joint-hook-eps-depth.rds"
-model_file_nohook <- "data-generated/hbll-inside-joint-no-hook-eps.rds"
+model_file <- "data-generated/hbll-inside-joint-hook-eps-dg.rds"
+model_file_depth <- "data-generated/hbll-inside-joint-hook-eps-depth-dg.rds"
+model_file_nohook <- "data-generated/hbll-inside-joint-no-hook-eps-dg.rds"
 if (!file.exists(model_file) || !file.exists(model_file_depth) ||
     !file.exists(model_file_nohook)) {
   fit_model <- function(formula, file) {
@@ -113,7 +126,7 @@ m
 m_depth
 m_nohook
 
-sink("figs/hbll-model.txt")
+sink("figs/hbll-model-dg.txt")
 m
 sink()
 
@@ -135,20 +148,20 @@ bias_correct <- FALSE
 joint_grid_utm$offset <- joint_grid_utm$offset_area_hook
 predictions <- get_predictions(m)
 ind <- get_index(predictions, bias_correct = bias_correct)
-saveRDS(ind, file = "data-generated/hbll-joint-index.rds")
-ind <- readRDS("data-generated/hbll-joint-index.rds")
+saveRDS(ind, file = "data-generated/hbll-joint-index-dg.rds")
+ind <- readRDS("data-generated/hbll-joint-index-dg.rds")
 
 joint_grid_utm$offset <- joint_grid_utm$offset_area_hook
 predictions_depth <- get_predictions(m_depth)
 ind_depth <- get_index(predictions_depth, bias_correct = bias_correct)
-saveRDS(ind_depth, file = "data-generated/hbll-joint-index-depth.rds")
-ind_depth <- readRDS("data-generated/hbll-joint-index-depth.rds")
+saveRDS(ind_depth, file = "data-generated/hbll-joint-index-depth-dg.rds")
+ind_depth <- readRDS("data-generated/hbll-joint-index-depth-dg.rds")
 
 joint_grid_utm$offset <- joint_grid_utm$offset_area_swept
 predictions_nohook <- get_predictions(m_nohook)
 ind_nohook <- get_index(predictions_nohook, bias_correct = bias_correct)
-saveRDS(ind_nohook, file = "data-generated/hbll-joint-index-depth.rds")
-ind_nohook <- readRDS("data-generated/hbll-joint-index-depth.rds")
+saveRDS(ind_nohook, file = "data-generated/hbll-joint-index-depth-dg.rds")
+ind_nohook <- readRDS("data-generated/hbll-joint-index-depth-dg.rds")
 
 # What about the individual surveys? -----------------------
 
@@ -223,7 +236,7 @@ g <- ggplot(d_utm, aes(X, Y)) +
     colour = "Count density\n(units TODO)", size = "Count density\n(units TODO)",
     fill = "Count density\n(units TODO)"
   )
-ggsave("figs/hbll-joint-raw-data.png", width = 10, height = 7)
+ggsave("figs/hbll-joint-raw-data-dg.png", width = 10, height = 7)
 
 g <- ggplot(d_utm, aes(X, Y)) +
   facet_wrap(~year) +
@@ -235,7 +248,7 @@ g <- ggplot(d_utm, aes(X, Y)) +
   coord_fixed() +
   scale_size_area(max_size = 8) +
   labs(colour = "Hook adjustment\nfactor", fill = "Hook adjustment\nfactor")
-ggsave("figs/hbll-joint-hook-adjust.png", width = 10, height = 7)
+ggsave("figs/hbll-joint-hook-adjust-dg.png", width = 10, height = 7)
 
 g <- ggplot(d_utm, aes(X, Y)) +
   facet_wrap(~year) +
@@ -247,7 +260,7 @@ g <- ggplot(d_utm, aes(X, Y)) +
   coord_fixed() +
   scale_size_area(max_size = 8) +
   labs(colour = "Proportion baited hooks", fill = "Proportion baited hooks")
-ggsave("figs/hbll-joint-baited.png", width = 10, height = 7)
+ggsave("figs/hbll-joint-baited-dg.png", width = 10, height = 7)
 
 g <- ggplot(filter(joint_grid_utm, year == 2019), aes(X, Y)) +
   geom_tile(aes(x = X, y = Y, fill = area), width = 0.02, height = 0.02) +
@@ -255,7 +268,7 @@ g <- ggplot(filter(joint_grid_utm, year == 2019), aes(X, Y)) +
   coord_fixed() +
   labs(fill = expression(Area ~ "in" ~ water ~ (km^2))) +
   xlab("UTMs East (100km)") + ylab("UTMs West (100km)")
-ggsave("figs/hbll-area-in-water.png", width = 7, height = 5)
+ggsave("figs/hbll-area-in-water-dg.png", width = 7, height = 5)
 
 # Diagnostics and plots -----------------------------------
 
@@ -267,7 +280,7 @@ ggplot(d_utm, aes(X, Y, col = resids)) +
     low = scales::muted("blue"), mid = "grey90") +
   geom_point(size = 0.9) + facet_wrap(~year) + coord_fixed() +
   labs(colour = "Residual")
-ggsave("figs/hbll-joint-residual-map.png", width = 10, height = 10)
+ggsave("figs/hbll-joint-residual-map-dg.png", width = 10, height = 10)
 
 qqnorm(d_utm$resids)
 qqline(d_utm$resids)
@@ -294,23 +307,23 @@ g <- plot_map(predictions$data, exp(est)) +
     inherit.aes = FALSE, colour = "grey20", alpha = 0.5
   ) +
   scale_size_area(max_size = 7)
-ggsave("figs/hbll-joint-prediction-sqrt.png", width = 10, height = 10)
+ggsave("figs/hbll-joint-prediction-sqrt-dg.png", width = 10, height = 10)
 
 g <- g + scale_fill_viridis_c(trans = "log10", option = "D")
-ggsave("figs/hbll-joint-prediction-log.png", width = 10, height = 10)
+ggsave("figs/hbll-joint-prediction-log-dg.png", width = 10, height = 10)
 
 plot_map(predictions$data, exp(est_non_rf)) +
   scale_fill_viridis_c(trans = "sqrt", option = "D") +
   labs(fill = "Fixed effect\nestimate")
-ggsave("figs/hbll-joint-non-rf.png", width = 10, height = 10)
+ggsave("figs/hbll-joint-non-rf-dg.png", width = 10, height = 10)
 
 plot_map(filter(predictions$data, year == 2018), omega_s, wrap = FALSE) +
   diverging_scale
-ggsave("figs/hbll-joint-omega.png", width = 5, height = 5)
+ggsave("figs/hbll-joint-omega-dg.png", width = 5, height = 5)
 
 plot_map(predictions$data, epsilon_st) +
   diverging_scale
-ggsave("figs/hbll-joint-epsilon.png", width = 10, height = 10)
+ggsave("figs/hbll-joint-epsilon-dg.png", width = 10, height = 10)
 
 palette <- c(RColorBrewer::brewer.pal(5, "Set2"))
 bind_rows(ind_north, ind_south) %>%
@@ -338,6 +351,6 @@ bind_rows(ind_north, ind_south) %>%
     xlim = range(ind$year) + c(-0.3, 0.3)) +
   theme(legend.position = c(0.26, 0.56))
   # guides(colour = FALSE, fill = FALSE)
-ggsave("figs/hbll-index-components-eps-depth-2019-11-25-depth.png", width = 5, height = 4)
-ggsave("figs/hbll-index-components-eps-depth2.png", width = 5, height = 8)
+ggsave("figs/hbll-index-components-eps-depth-2019-11-25-depth-dg.png", width = 5, height = 4)
+ggsave("figs/hbll-index-components-eps-depth2-dg.png", width = 5, height = 8)
 
