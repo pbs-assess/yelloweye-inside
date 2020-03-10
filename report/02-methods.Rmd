@@ -89,6 +89,7 @@ DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an
 
 Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey. 
 
+*from Quang*
 General settings:
 - Max age = 80 years (plus group accumulator age)
 - Use SRA model (cite gfmp)
@@ -102,7 +103,7 @@ General settings:
 - Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.  
 - Next, it was decided to fix the HBLL selectivity to that from the initial fit while also upweighting the dogfish survey. This fit generated small retrospective bias (SSB rho = -0.07) for the fit with M and h mean priors.
 - Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process.
-<!-- I will generate a plot of SSB rho vs. M to show this: Quang -->
+<!-- I will generate a plot of SSB rho vs. M to show this -->
 
 To isolate the effects of specific sources of uncertainty on performance of MPs, alternative OMs were developed that changed the value (or distribution) of one parameter or data source of interest. OMs are divided into a reference set of core OMs representing the most important plausible model uncertainties, and a robustness set for testing sensitivity to a broader range of structural uncertainties [@rademeyer2007].
 
@@ -148,7 +149,7 @@ We focus on two main types of MPs: data-based and model-based MPs.
 All MPs included in this framework are fully described in Appendix \@ref(app:MPs).
 
 ## Reference MPs
-<! -- Only No fishing (NFref), FMSY75 and FMSY -->
+<!-- Only No fishing (NFref), FMSY75 and FMSY -->
 
 ## Fixed TAC MPs
 
@@ -166,9 +167,9 @@ All index-based MPs set a minimum TAC = 0.5 t for surveys.
 
 ### Index slope
 
-$\text{TAC}_y = C_{y-1} (1 + \lambda I^{\text{slope}}_{y-1})
+$\text{TAC}_y = C_{y-1} (1 + \lambda I^{\text{slope}}_{y-1})$
 
-<! -- Geromont, H.F. and Butterworth, D.S. 2014. Complex assessment or simple management procedures for efficient fisheries management: a comparative study. ICES J. Mar. Sci. doi:10.1093/icesjms/fsu017 -->
+<!-- Geromont, H.F. and Butterworth, D.S. 2014. Complex assessment or simple management procedures for efficient fisheries management: a comparative study. ICES J. Mar. Sci. doi:10.1093/icesjms/fsu017 -->
 
 Various tuning parameters can alter performance of MPs:
 Lambda controls the change in TAC relative to change in slope.
@@ -178,9 +179,9 @@ Two types of index slope MPs:
 GB_slope - use above eq but ensure that $0.8 C_{y-1} \le TAC_y \le 1.2 C_{y-1}$.
 
 Three configurations to explore:
-GB_slope_lambda1   $\lambda = 1	$	  $I^{slope}_{y-1}$ is calculated from index in the preceding 5 years
+GB_slope_lambda1   $\lambda = 1$	  $I^{slope}_{y-1}$ is calculated from index in the preceding 5 years
 GB_slope_lambda05  $\lambda = 0.5$	$I^{slope}_{y-1}$ is calculated from the preceding 5 years
-GB_slope_yrs10     $\lambda = 1	$	  $I^{slope}_{y-1}$ is calculated from the preceding 10 years
+GB_slope_yrs10     $\lambda = 1$	  $I^{slope}_{y-1}$ is calculated from the preceding 10 years
 
 
 Islope - no cap. Thus smaller values of $\lambda$ may be prudent.
@@ -192,12 +193,12 @@ Islope_10_lambda08 $\lambda = 0.8$	  $I^{slope}_{y-1}$ is calculated from the pr
 
 ### Index ratio
 
-$\text{TAC}_y = C_{y-1} \dfrac{I^{\text{recent}}}{I^{\text{historical}}} $
+$\text{TAC}_y = C_{y-1} \dfrac{I^{\text{recent}}}{I^{\text{historical}}}$
 
-<! -- Ernesto Jardim, Manuela Azevedo, Nuno M. Brites, Harvest control rules for data limited stocks using length-based reference points and survey biomass indices, Fisheries Research, Volume 171, November 2015, Pages 12-19, ISSN 0165-7836, https://doi.org/10.1016/j.fishres.2014.11.013 -->
+<!-- Ernesto Jardim, Manuela Azevedo, Nuno M. Brites, Harvest control rules for data limited stocks using length-based reference points and survey biomass indices, Fisheries Research, Volume 171, November 2015, Pages 12-19, ISSN 0165-7836, https://doi.org/10.1016/j.fishres.2014.11.013 -->
 
 
-$I^{\text{recent}}$ is the mean index from the most recent years, $I^{\text{historical}}$ is the mean from years preceding that for I^{\text{recent}}.
+$I^{\text{recent}}$ is the mean index from the most recent years, $I^{\text{historical}}$ is the mean from years preceding that for $I^{\text{recent}}$.
 The number of years for $I^{\text{recent}}$ and $I^{\text{historical}}$ can vary. Two options were explored:
 
 Iratio_23  $I^{\text{recent}}$ is from the preceding 2 years, e.g., 2018-2019
@@ -208,7 +209,7 @@ Iratio_55  $I^{\text{recent}}$ is from the preceding 5 years, e.g., 2015-2019
 
 ### IDX
 
-<! -- Cox et al. Res Doc in press -->
+<!-- Cox et al. Res Doc in press -->
 
 
 ## SP MPs
@@ -279,7 +280,7 @@ We suggest selecting sufficient replicates so that the rank order of MPs across 
 
 <!-- Use AADC instead of AAVY -->
 AADC - average absolute deviation in catch over $n$ years is defined as: <!-- See gfmp -->
-$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid
+$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid$
 `ST AADC` - probability that AADC in the first decade of the projection period is less than that in 2012 - 2019 (since start of 15 t TAC)
 
 ### Extinction Risk - COSEWIC E
@@ -288,8 +289,6 @@ Using a projection period of 100 years, we calculate the probability that the st
 
 `2% B_0` = P[B_y > 0.02 B_0]
 `5% B_0` = P[B_y > 0.05 B_0]
-
-
 
 ## DATA
 
