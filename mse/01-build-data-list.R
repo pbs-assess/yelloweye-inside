@@ -98,7 +98,7 @@ generate_CAL()
 #comm <- summarise(group_by(MO$catch, year, gear), total = sum(total)) %>% right_join(data.frame(year = 1969:2019)) %>% acast(list("year", "gear"))
 
 generate_catch <- function() {
-  cat <- read.csv("data-generated/catch.csv")
+  cat <- read.csv("data-generated/catch-reconstructed.csv")
 
   Chist <- matrix(NA, length(SRA_data$Year), 2)
   Chist[, 1] <- vapply(SRA_data$Year, function(x) ifelse(!is.na(match(x, cat$Year)), cat$Comm[match(x, cat$Year)], NA), numeric(1))
