@@ -87,13 +87,6 @@ SRA5 <- SRA_list[[1]]; ret5 <- SRA_list[[2]]
 plot(SRA5, retro = ret5, file = "mse/scoping/scoping_lowcatch_fixsel", dir = getwd(), open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
      MSY_ref = c(0.4, 0.8), render_args = list(output_format = "word_document"))
 
-## Fit data to surplus production model
-SRA_list <- readRDS("mse/scoping/scoping_base.rds")
-SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
-
-SP_mod <- SP_SS(Data = SRA@OM@cpars$Data, AddInd = 1:5, use_r_prior = TRUE, start = list(r_prior = c(0.068, 0.03)))
-plot(SP_mod, dir = getwd(), filename = "mse/scoping/scoping_SP", open_file = FALSE)
-
 
 ## Try to estimate fishery selectivity
 SRA_data$vul_par[1:2, ] <- c(50, 40, 30, 25)
