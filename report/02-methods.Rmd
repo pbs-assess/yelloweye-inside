@@ -79,28 +79,20 @@ DLMtool OMs are organized into four main components representing a real fished s
 3. observation processes (e.g., bias and precision in survey indices); and
 4. management implementation (e.g., percentage overages of catch limits).
 
-Parameters under the four components are entered into "slots" [terminology referring to a feature of the S4 object-oriented system in R; @r2019] and in Appendix B of @carruthers2018.
+Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from fishery-independent surveys. 
 
-DLMtool allows the incorporation of uncertainty in most OM parameters through optional specification of a distribution, typically a uniform distribution between two bounds. See Appendix B of @carruthers2018 for a full list of parameters for which a distribution can be specified. However, to isolate the effects of specific sources of uncertainty on performance of MPs, we recommend development of alternative OMs that change the value (or distribution) of one parameter or data source of interest.
-
-We recommend developing more than one OM, dividing OMs into a reference set of core OMs representing the most important plausible model uncertainties, and a robustness set for testing sensitivity to a broader range of structural uncertainties [@rademeyer2007].
-
-*Identify key uncertainties to include in OMs in the reference and robustness sets*
-
-We note that DLMtool OMs includes a very large number of parameters that can vary through time, or which can be set to be deliberately biased. To simplify the operating model and focus on what are likely the most important axes of uncertainty, we suggest fixing most parameters to be time-invariant and unbiased (see @anderson2020, their Appendix \@ref(app:default-slots)). 
-
-Best practice recommends calibrating OMs with observed data so they can reproduce historical observations (e.g., indices of abundance, age-composition data). 
-
-*TODO: shorten this and make specific to Inside YE*
-DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data. The SRA implementation in MSEtool can be conditioned on catch or effort time series. For most applications for BC groundfish stocks, we suggest conditioning on catch, as historical trajectories of catch tend to be more reliable than time series of effort, especially given uncertainties in how to best represent and interpret effort in multispecies fisheries. An advantage of using MSEtool's SRA for calibrating OMs is it allows fitting to multiple indices of abundance, and can accommodate multiple fishing fleets if needed.
-
-The SRA model is used to condition the following OM parameters:
+DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data. The SRA model is used to condition the following OM parameters:
 
 * unfished recruitment
 * depletion
 * relative fishing effort
 * annual recruitment deviations
 * selectivity parameters (if age or length composition data are included as inputs to the SRA)
+
+To isolate the effects of specific sources of uncertainty on performance of MPs, alternative OMs were developed that changed the value (or distribution) of one parameter or data source of interest. OMs are divided into a reference set of core OMs representing the most important plausible model uncertainties, and a robustness set for testing sensitivity to a broader range of structural uncertainties [@rademeyer2007].
+
+
+
 
 *TODO. Decide if we will have our own SRA appendix or refer to MP Framework*
 

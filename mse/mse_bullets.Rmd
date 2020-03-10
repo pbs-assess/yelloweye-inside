@@ -12,6 +12,7 @@ For operating model, use point estimates of growth and maturity from gfsynopsis 
 - Single growth curves (von Bert, and length-weight) for both sexes due to lack of sexual dimorphism
 - Use female maturity. Logistic regression appeared to fit proportion mature well for age 17+, but tended to overpredict proportion mature for ages 7-17. However, maturity determination is an ongoing area of research and we decided to proceed with logistic model.
 - Minimum age observed was 7. Assumed all fish at younger ages are immature.
+*Do we want to put biological data explanations in an appendix?*
 
 ### Natural mortality and steepness
 - Natural mortality and Beverton-Holt steepness are core uncertainties for many stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling them from prior distributions generated from meta-analysis:
@@ -37,6 +38,7 @@ Aquat. Sci. 2943: viii + 124 p. -->
 - Also double 1986-2005 commercial catch based on industry estimates of underreporting (see 2011 assessment) 
 - FSC believed to be incorporated into these estimates (dual-fishing) <!-- follow up with Dana's discussion with FN representatives -->
 
+*Midoli has put all this in the appendix for catch data, if we want to leave it there*
 
 ### Surveys
 - Stitched north and south HBLL survey
