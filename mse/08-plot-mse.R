@@ -47,6 +47,13 @@ sc <- rename(sc, scenario_human = scenarios_human)
 fig_dir <- "mse/figures"
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
+# # FIXME: temp.
+# sc <- tibble::tribble(
+#   ~scenario,     ~scenario_human,        ~scenario_type,
+#   "upweight_dogfish_nr",    "(4) Estimate HBLL selectivity","Reference",
+#   "upweight_dogfish",       "(4b) Estimate HBLL selectivity (RC)","Reference"
+# )
+
 .ggsave <- function(filename, width, height, ...) {
   ggsave(file.path(fig_dir, paste0(sp, "-", filename, ".png")),
     width = width, height = height, ...
@@ -114,6 +121,19 @@ pm_df <- bind_rows(pm_df_list, .id = "scenario") # All as a data.frame
 
 saveRDS(pm_df, file = "mse/om/ye-pm-all.rds")
 
+# # FIXME:
+# pm_angle <- theme(
+#   axis.text.x.top = element_text(angle = 60, hjust = 0)
+# )
+#
+# x <- pm_df_list[[1]] %>% dplyr::filter(MP %in% pm_df_list[[2]]$MP) %>%
+#   arrange(`LRP 1.5GT`, `USR 1.5GT`, `LRP 1GT`, `ST C10`)
+# plot_tigure(x, mp_order = x$MP) + pm_angle
+# ggsave("mse/figures/tigure_upweight_dogfish.png", width = 5, height = 6.5)
+# plot_tigure(pm_df_list[[2]], mp_order = x$MP) + pm_angle
+# ggsave("mse/figures/tigure_upweight_dogfish_recon_catch.png", width = 5, height = 6.5)
+# plot_scenario_projections(mse)
+# ggsave("mse/figures/proj.pdf", width = 10, height = 42, limitsize = FALSE)
 
 # Average across OMs
 pm_avg <- group_by(pm_df, MP) %>% summarise_if(is.numeric, mean)
@@ -134,6 +154,7 @@ walk(names(mse), ~ {
   ggsave(paste0("mse/figures/tigure_", .x, ".png"), width = 6.5, height = 6.5)
 }
 )
+
 
 # All tigures in robustness set
 plot_tigure(pm_df_list_rob[[1]]) + ggtitle("(A) Low M")
