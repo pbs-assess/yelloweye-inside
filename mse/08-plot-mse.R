@@ -70,12 +70,10 @@ scenarios_rob_human <- get_filtered_scenario("Robustness", "scenario_human")
 #names(om) <- scenarios
 
 mse <- map(scenarios, ~readRDS(paste0("mse/om/MSE_", .x, ".rds")))
-names(mse) <- scenarios
 for (i in seq_along(mse)) {
   mse[[i]]@OM$RefY <- 20
-  mse[[i]]@MPs[c(23, 25)] <- c("IDX", "IDX_smooth")
+  mse[[i]]@MPs[mse[[i]]@MPs %in% c("IDX_", "IDX_smooth_")] <- c("IDX", "IDX_smooth")
 }
-
 
 # COSEWIC metric E, Probability that the biomass is at least 2, 5 % B0 within the projection period
 COSEWIC_E <- function(MSEobj, Ref = 0.02, Yrs = c(1, 100)) {
