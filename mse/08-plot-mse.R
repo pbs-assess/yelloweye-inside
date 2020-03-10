@@ -51,7 +51,7 @@ if (!dir.exists(fig_dir)) dir.create(fig_dir)
 # sc <- tibble::tribble(
 #   ~scenario,     ~scenario_human,        ~scenario_type,
 #   "upweight_dogfish_nr",    "(4) Estimate HBLL selectivity","Reference",
-#   "upweight_dogfish",       "(4b) Estimate HBLL selectivity (RC)","Reference"
+#   "upweight_dogfish",       "(4b) Estimate HBLL selectivity\n(Reconstructed catch until 2006)","Reference"
 # )
 
 .ggsave <- function(filename, width, height, ...) {
@@ -134,6 +134,8 @@ saveRDS(pm_df, file = "mse/om/ye-pm-all.rds")
 # ggsave("mse/figures/tigure_upweight_dogfish_recon_catch.png", width = 5, height = 6.5)
 # plot_scenario_projections(mse)
 # ggsave("mse/figures/proj.pdf", width = 10, height = 42, limitsize = FALSE)
+# .pm_df_list %>% set_names(sc$scenario_human) %>% plot_tigure_facet() + pm_angle
+# ggsave("mse/figures/tigure_upweight_dogfish_recon_catch_comparison.png", width = 7.5, height = 6.5)
 
 # Average across OMs
 pm_avg <- group_by(pm_df, MP) %>% summarise_if(is.numeric, mean)
