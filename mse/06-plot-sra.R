@@ -202,6 +202,36 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "Dogfish"), aes(year, value, g
   ylab("Index") + xlab("Year") + coord_cartesian(xlim = c(1980, 2020))
 ggsave("mse/figures/ye-index-dogfish.png", width = 8, height = 5)
 
+# Plot HBLL age comps, report N = sampling trips for the multinomial likelihood in the SRA
+Ntrips <- rowSums(SRA_data$s_CAA[,,1], na.rm = TRUE)
+yr_ind <- Ntrips > 0
+yr_plot <- SRA_data$Year[yr_ind]
+Ntrips <- data.frame(Year = yr_plot, N = paste("N =", Ntrips[Ntrips > 0]))
+
+HBLL_obs <- structure(SRA_data$s_CAA[yr_ind,,1]/rowSums(SRA_data$s_CAA[yr_ind,,1]), dimnames = list(Year = yr_plot, Age = 1:80)) %>%
+  reshape2::melt(value.name = "Frequency")
+
+nsim <- 250
+HBLL_pred <- lapply(sc$scenario, function(xx) {
+  do.call(rbind, lapply(1:nsim, function(x) {
+    y <- sra_ye[[xx]]@Misc[[x]]$s_CAApred[match(yr_plot, SRA_data$Year),,1]
+    y <- structure(y/rowSums(y), dimnames = list(Year = yr_plot, Age = 1:80))
+    y <- reshape2::melt(y, value.name = "Frequency")
+    y$Iter <- x
+    y
+  }))
+})
+
+walk(1:length(HBLL_pred), ~{
+  g <- ggplot(HBLL_pred[[.x]], aes(Age, Frequency, group = Iter)) + facet_wrap(~Year, scales = "free_y") +
+    geom_line(alpha = 0.05, colour = "#66C2A5") +
+    geom_line(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE) +
+    geom_point(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#66C2A5") +
+    geom_label(data = Ntrips, mapping = aes(label = N), x = Inf, y = Inf, hjust = "right", vjust = "top", inherit.aes = FALSE) +
+    gfplot::theme_pbs() + ggtitle(sc$scenarios_human[.x])
+  ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8, dpi = 500)
+})
+
 
 
 # Selectivity HBLL and dogfish
