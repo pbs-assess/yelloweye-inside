@@ -8,8 +8,12 @@
 
 The major points to cover are: 
 
-1. The discrepancy between the reconstructed catch reported in the last assessment and the one we are using in this evaluation. This happened because the previous assessment was done before the catch reconstruction document was finished/published and there were changes made to the algorithm that were not incorporated into the analysis in 2009. Quang stopped using the reconstructed data in 1985, due to a lack of familiarity with the reconstruction, lack of clarity. This may have been the wrong call, as full reporting didn't ocurr until 2006. Waiting on the answer to this question. 
+Due to limited information regarding catch for groundfish species in the historical fishery, a reconstructed time series of commercial catch for Inside Yelloweye was developed and published in 2011 [@Haigh2011]. An early version of the reconstruction algorithm was used to develop the commercial time series for the previous assessment of Inside Yelloweye in 2009. However, after that analysis was complete, further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch, in some years (personal comm. Norm Olsen). 
+
+The time series of commercial catch used for this evaluation was pulled from the gfcatch database which is maintained by the groundfish data unit at DFO. Ongoing quality control and data updates may have lead to minor differences between the catch timeseries from the previous assessment in 2009 and the timeseries used in the current analysis (personal comm. Maria Surry). The biggest discrepancy between the reconstructed catch reported in the last assessment and the one we are using in this evaluation. This happened because the previous assessment was done before the catch reconstruction document was finished/published and there were changes made to the algorithm that were not incorporated into the analysis in 2009. Quang stopped using the reconstructed data in 1985, due to a lack of familiarity with the reconstruction, lack of clarity. This may have been the wrong call, as full reporting didn't ocurr until 2006. Waiting on the answer to this question. 
+
 2. Changes to the modern data happen because the data base is changing (finding errors, updating information etc.)
+
 3. The total catch from 1986-2005 was doubled in the previous assessment to account for underreporting. Not sure why this was applied to the entire catch, and not just the ZN fishery catch. Will check proceedings document for more information on this but we are going with what the previous assessment did (what Quang ran in the models). In the proceedings from the previous assessment industry raised the concern of underreporting due to lack of confidence in the logbooks [@DFO2012c]. The previous assessment included sensitivity tests that looked at decreasing the entire time series by 50% and increasing the time series by 150%. The changes resulted in estimates of biomass, but reference point estimates were less sensitive. 
 
 ## Recreational catch
@@ -74,7 +78,7 @@ What did they do in the previous assessment and why was it no good? e.g. consump
 
 The data in *table XX* was collected from dual fishing trips by the commercial dockside monitoring program. Dual fishing trips ocurr when indigenous fishers choose to keep some of the catch obtained during a commercial fishing trip for FSC purposes. The table shows the proportion of the catch from each dual fishing trip that was taken for FSC. These proportions are incorporated into the annual totals for commercial catch within the groudfish sector databases. Therefore, a separate analysis to construct a timeseries of FSC catch was not undertaken in this evaluation. 
 
-The data is collected at the trip level, not set level, therefore there may be issues with some of the reported catch being collected outside the geographic boundary for Inside Yelloweye. However, resolving this issue was outside the scope of this evaluation. 
+The data is collected at the trip level, not set level, therefore there may be issues with some of the reported catch being collected outside the geographic boundary for Inside Yelloweye. 
 
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
