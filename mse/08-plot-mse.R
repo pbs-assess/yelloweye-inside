@@ -28,7 +28,9 @@ FMSY <- DLMtool::PNOF
 `ST C15` <- gfdlm::pm_factory("LTY", 0.75 - 1e-4, c(1, 10))
 `LT C20` <- gfdlm::pm_factory("LTY", 1 - 1e-4, c(56, 56))
 
-catch <- apply(mse[[1]]@CB_hist[1, , (102-8+1):102, ], 2, sum) # Catch since 2012
+mse_temp <- readRDS("mse/om/MSE_upweight_dogfish.rds")
+catch <- apply(mse_temp@CB_hist[1, , (102-8+1):102, ], 2, sum) # Catch since 2012
+rm(mse_temp)
 ref_aadc <- gfdlm:::get_aadc(catch)
 `ST AADC` <- gfdlm::pm_factory("AADC", ref_aadc, c(1, 10))
 #`AADC 1GT` <- gfdlm::pm_factory("AADC", ref_aadc, c(1, 38))
