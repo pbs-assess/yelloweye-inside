@@ -147,13 +147,102 @@ We focus on two main types of MPs: data-based and model-based MPs.
 
 All MPs included in this framework are fully described in Appendix \@ref(app:MPs).
 
-#### Data-based MPs
+## Reference MPs
+<! -- Only No fishing (NFref), FMSY75 and FMSY -->
 
-*TODO. List the MPs we are using and refer to the appendix*
+## Fixed TAC MPs
 
-#### Model-based MPs
+- Look at different values of fixed catch, including 5, 10, and 15 t. 15 t can be considered the status quo.
 
-*TODO. List the MPs we are using and refer to the appendix*
+## Index-based MPs
+
+Index-based MPs set the TAC relative to the change in the index over time. Slope-based MPs increase or decrease the TAC in accordance with the estimated slope in the index over recent time, while ratio MPs increase or decrease the TAC in accordance with the ratio of the index from two different time periods.
+
+A third type, target MPs, adjusts the TAC based on the ratio of the recent index and a target index value. These were not considered here as further guidance from management would be needed in order to select the appropriate target value. For the rebuilding plan, the goal is to ensure that the stock is above the LRP, however, the LRP is not likely to be the target state of nature that would be suitable for management and stakeholders.
+
+Evaluate index MPs with either annual or 5-year updates. For the latter, fixed TAC between updates.
+
+All index-based MPs set a minimum TAC = 0.5 t for surveys.
+
+### Index slope
+
+$\text{TAC}_y = C_{y-1} (1 + \lambda I^{\text{slope}}_{y-1})
+
+<! -- Geromont, H.F. and Butterworth, D.S. 2014. Complex assessment or simple management procedures for efficient fisheries management: a comparative study. ICES J. Mar. Sci. doi:10.1093/icesjms/fsu017 -->
+
+Various tuning parameters can alter performance of MPs:
+Lambda controls the change in TAC relative to change in slope.
+I_slope can vary by the number of years in which the slope is calculated.
+Two types of index slope MPs:
+
+GB_slope - use above eq but ensure that $0.8 C_{y-1} \le TAC_y \le 1.2 C_{y-1}$.
+
+Three configurations to explore:
+GB_slope_lambda1   $\lambda = 1	$	  $I^{slope}_{y-1}$ is calculated from index in the preceding 5 years
+GB_slope_lambda05  $\lambda = 0.5$	$I^{slope}_{y-1}$ is calculated from the preceding 5 years
+GB_slope_yrs10     $\lambda = 1	$	  $I^{slope}_{y-1}$ is calculated from the preceding 10 years
+
+
+Islope - no cap. Thus smaller values of $\lambda$ may be prudent.
+
+Islope_5_lambda04  $\lambda = 0.4$	  $I^{slope}_{y-1}$ is calculated from index in the preceding 5 years
+Islope_10_lambda04 $\lambda = 0.4$	$I^{slope}_{y-1}$ is calculated from the preceding 10 years
+Islope_10_lambda08 $\lambda = 0.8$	  $I^{slope}_{y-1}$ is calculated from the preceding 10 years
+
+
+### Index ratio
+
+$\text{TAC}_y = C_{y-1} \dfrac{I^{\text{recent}}}{I^{\text{historical}}} $
+
+<! -- Ernesto Jardim, Manuela Azevedo, Nuno M. Brites, Harvest control rules for data limited stocks using length-based reference points and survey biomass indices, Fisheries Research, Volume 171, November 2015, Pages 12-19, ISSN 0165-7836, https://doi.org/10.1016/j.fishres.2014.11.013 -->
+
+
+$I^{\text{recent}}$ is the mean index from the most recent years, $I^{\text{historical}}$ is the mean from years preceding that for I^{\text{recent}}.
+The number of years for $I^{\text{recent}}$ and $I^{\text{historical}}$ can vary. Two options were explored:
+
+Iratio_23  $I^{\text{recent}}$ is from the preceding 2 years, e.g., 2018-2019
+           $I^{\text{historical}}$ is from the 3 years preceding $I^{\text{recent}}$, e.g., 2015-2017
+
+Iratio_55  $I^{\text{recent}}$ is from the preceding 5 years, e.g., 2015-2019
+           $I^{\text{historical}}$ is from the 5 years preceding $I^{\text{recent}}$, e.g., 2010-2014
+
+### IDX
+
+<! -- Cox et al. Res Doc in press -->
+
+
+## SP MPs
+- State-space surplus production model (should be documented in gfmp appendix?) with prior for intrinsic rate of increase from 2011 assessment.
+- Two ramped harvest control rules:
+a. 80-40% BMSY as the USR, LRP
+b. 40-10% B0 as the USR, LRP
+- Two assessment frequencies (5 and 10 years)
+- Fixed TAC between assessments
+
+## Historical metrics from operating model
+
+### COSEWIC Metric A
+
+P70 - Probability that population decline hasn't exceeded 70% over 3 generations
+where generation time = 38 years for inside yelloweye
+
+P[1 - B_2019/B_1918 < 0.7]
+
+P50 - Probability that population decline hasn't exceeded 50% over 3 generations 
+
+P[1 - B_2019/B_1918 < 0.5]
+
+P30 - Probability that population decline hasn't exceeded 30% over 3 generations
+
+P[1 - B_2019/B_1918 < 0.3]
+
+
+### Reference points
+
+USR - Probability that B_2019 > 0.8 BMSY
+LRP - Probability that B_2019 > 0.4 BMSY
+
+
 
 #### Reference MPs
 
@@ -186,7 +275,20 @@ We suggest selecting sufficient replicates so that the rank order of MPs across 
 
 ### STEP 6: PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE  {#sec:approach6}
 
-*TODO: Decide what to present here*
+## Performance metrics of MPs
+
+<!-- Use AADC instead of AAVY -->
+AADC - average absolute deviation in catch over $n$ years is defined as: <!-- See gfmp -->
+$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid
+`ST AADC` - probability that AADC in the first decade of the projection period is less than that in 2012 - 2019 (since start of 15 t TAC)
+
+### Extinction Risk - COSEWIC E
+We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction. 
+Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
+
+`2% B_0` = P[B_y > 0.02 B_0]
+`5% B_0` = P[B_y > 0.05 B_0]
+
 
 
 ## DATA
