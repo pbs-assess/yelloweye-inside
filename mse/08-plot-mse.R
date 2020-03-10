@@ -82,6 +82,23 @@ for (i in seq_along(mse)) {
   mse[[i]]@MPs[mse[[i]]@MPs %in% c("IDX_", "IDX_smooth_")] <- c("IDX", "IDX_smooth")
 }
 
+# Report range in reference points for each OM
+ref_pt <- lapply(mse, function(x) {
+  do.call(rbind, lapply(x@Misc$MSYRefs$ByYear[1:2], function(xx) {
+    mean_ref <- mean(xx[, 1, x@nyears])
+    sd_ref <- sd(xx[, 1, x@nyears])
+    structure(c(mean_ref, sd_ref/mean_ref), names = c("Mean", "CV"))
+  }))
+})
+
+ref_pt_text <- do.call(rbind, lapply(ref_pt, function(x) {
+  round(x, 2) %>% format(trim = TRUE) %>% apply(1, function(xx) paste0(xx[1], " (", xx[2], ")"))
+  })) %>%
+  structure(dimnames = list(scenarios_human, c("MSY", "FMSY")))
+write.csv(ref_pt_text, file = "mse/figures/ref_pt.csv")
+saveRDS(ref_pt_text, "mse/figures/ref_pt.rds")
+
+
 # COSEWIC metric E, Probability that the biomass is at least 2, 5 % B0 within the projection period
 COSEWIC_E <- function(MSEobj, Ref = 0.02, Yrs = c(1, 100)) {
   Yrs <- ChkYrs(Yrs, MSEobj)
