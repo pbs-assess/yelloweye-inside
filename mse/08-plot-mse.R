@@ -201,6 +201,15 @@ r <- Map(function(x, y, z) plot_tigure(filter(x, MP %in% z)) + ggtitle(y) + pm_a
 do.call(plot_grid, c(r, list(nrow = 3)))
 ggsave("mse/figures/tigure_satisficed.png", width = 8, height = 10)
 
+# Projections of reference MPs
+walk(names(mse), ~ {
+  g <- plot_main_projections(Sub(mse[[.x]], MPs = reference_mp),
+                             catch_breaks = c(0, 10, 20, 30),
+                             catch_ylim = c(0, 40))
+  ggsave(paste0("mse/figures/projections/projections_refmp_", .x, ".png"), width = 6.5, height = 3.5)
+}
+)
+
 # Projections of satisficed MPs
 walk(names(mse), ~ {
   g <- plot_main_projections(Sub(mse[[.x]], MPs = mp_sat),
