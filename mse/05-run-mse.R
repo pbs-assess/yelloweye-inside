@@ -71,16 +71,17 @@ for(i in 1:length(scenario)) {
 
 sfStop()
 
-#for(i in 1:length(scenario)) {
-#
-#  myMSE1 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
-#  myMSE2 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_index_slope.rds"))
-#  myMSE3 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_index_ratio.rds"))
-#  myMSE4 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_IDX_SP.rds"))
-#
-#  out <- merge_MSE(myMSE1, myMSE2, myMSE3, myMSE4)
-#  saveRDS(out, file = paste0("mse/om/MSE_", scenario[i], ".rds"))
-#
-#  message("Done for ", scenario[i], ".\n")
-#}
-#
+for(i in 1:length(scenario)) {
+
+ myMSE1 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_fixedTAC.rds"))
+ myMSE2 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_IDX.rds"))
+ myMSE3 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_index_5y.rds"))
+ myMSE3 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_index.rds"))
+ myMSE4 <- readRDS(paste0("mse/om/MSE_", scenario[i], "_SP.rds"))
+
+ out <- merge_MSE(myMSE1, myMSE2, myMSE3, myMSE4)
+ saveRDS(out, file = paste0("mse/om/MSE_", scenario[i], ".rds"))
+
+ message("Done for ", scenario[i], ".\n")
+}
+
