@@ -1,4 +1,4 @@
-
+cores <- parallel::detectCores() / 2
 library(MSEtool)
 
 ############ Condition operating models with SRA_scope and data
@@ -142,7 +142,7 @@ OM_condition@cpars$Mat_age <- array(Mat_age,
 
 # Upweight dogfish
 SRA7 <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", selectivity = rep("free", 2),
-                 s_selectivity = rep("logistic", 5), cores = 8,
+                 s_selectivity = rep("logistic", 5), cores = cores,
                  vul_par = SRA_data$vul_par, map_vul_par = matrix(NA, 80, 2),
                  map_s_vul_par = SRA_data$map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
@@ -183,7 +183,7 @@ saveRDS(SRA, file = "mse/OM/sporadic_recruitment.rds")
 # M = 0.02
 OM_condition@cpars$M <- rep(0.02, OM@nsim)
 SRA <- SRA_scope(OM_condition, condition = "catch2", Chist = SRA_data$Chist, Index = SRA_data$Index, I_sd = SRA_data$I_sd, I_type = SRA_data$I_type,
-                 selectivity = rep("logistic", 2), s_selectivity = rep("logistic", 5), length_bin = 0.1 * SRA_data$length_bin, cores = 12,
+                 selectivity = rep("logistic", 2), s_selectivity = rep("logistic", 5), length_bin = 0.1 * SRA_data$length_bin, cores = cores,
                  s_CAA = SRA_data$s_CAA, vul_par = SRA_data$vul_par, map_s_vul_par = SRA_data$map_s_vul_par,
                  map_log_rec_dev = SRA_data$map_log_rec_dev)
 saveRDS(SRA, file = "mse/OM/lowM.rds")
