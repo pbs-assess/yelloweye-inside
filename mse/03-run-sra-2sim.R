@@ -16,7 +16,7 @@ SRA <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", 
                  map_s_vul_par = SRA_data$map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0))
 ret <- retrospective(SRA, 11)
-#saveRDS(list(SRA, ret), file = "mse/scoping/scoping_base.rds")
+saveRDS(list(SRA, ret), file = "mse/scoping/scoping_base.rds")
 #SRA_list <- readRDS("mse/scoping/scoping_base.rds")
 #SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
 
