@@ -2,359 +2,50 @@
 
 # RESULTS
 
-*TODO: Write the sections below. These are for Rex Sole*
-<!-- There was a note to put these in the methods section so I drafted these there (MJB)-->
-## STEP 1: DEFINE THE DECISION CONTEXT {#sec:results-1}
-
-*TODO: Complete this section after technical team meetings*
-
-## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results-2}
-
-
-## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:results-3}
-
-We consider the major axes of uncertainty for Rex Sole to be:
-
-1. The magnitude of the commercial catch prior to 1996;
-
-2. The importance of the commercial CPUE index;
-
-3. The value of the steepness parameter (*h*) of the stock-recruit relationship; and
-
-4. The value of natural mortality (*M*).
-
-*TODO: The commercial and survey length selectivity is another possible axis of uncertainty that is not yet explored.*
-
-We defined nine OM scenarios that differed from each other in these respects (Table \@ref(tab:rex-scen)), with all other parameters held at the same values as described in Appendix \@ref(app:desc-om-rex).
-
-```{r rex-scen, results='asis'}
-sc <- readRDS(here::here("generated-data/rex-scenarios.rds"))
-sc %>%
-  select(-scenario, -order) %>%
-csasdown::csas_table(caption = "Rex Sole scenarios", col_names = c("Scenario name", "Category"))
-```
-
-### The Reference Set
-
-#### Magnitude of pre-1996 commercial catch and importance of commercial CPUE
-
-Prior to 1996, reported catches for WCVI Rex Sole were much lower than post-1995 and there were no reported discards (Figure \@ref(fig:rex-syn1)).
-Assumptions about pre-1996 catch levels affect the SRA model's estimates of the depletion level in 1996 (Appendix \@ref(app:sra)).
-The SRA model parameter $\tilde{C}^{\textrm{eq}}_f$, describes the equilibrium catch in weight prior to the first year of the model (1996 for Rex Sole), which is used to calculate equilibrium fishing mortality prior to the first year of the model $F^{\textrm{eq}}_f$, which in turn is used to calculate total mortality $Z^{\textrm{eq}}_a$ needed to calculate recruits and numbers in the first year of the model (Equation C.3).
-We note that the use of $F^{\textrm{eq}}_f$ and $\tilde{C}^{\textrm{eq}}_f$ make the assumption that the population biomass and fishery were in equilibrium at that catch level prior to 1996.
-While this is likely an unrealistic assumption, it is a convenient means of initializing a population model in the presence of fishing.
-For this reason, we treated the value of $\tilde{C}^{\textrm{eq}}_f$ as a major axis of uncertainty.
-
-<!-- *TODO, make equation C.3 a dynamic ref* RF -->
-
-We considered four scenarios that varied in the assumed value of $\tilde{C}^{\textrm{eq}}_f$ (Table \@ref(tab:rex-scen)).
-
-* The scenario "Catch eq. 100%" assumes that equilibrium catch prior to 1996 was the same as that in 1996.
-
-* The scenario "Catch eq. 200%" assumes that equilibrium catch prior to 1996 was twice that in 1996, where the catch could possibly have been underestimated because it was not mandatory to report all landings and discards prior to 1996.
-
-* The scenario "Catch eq. 200% + CPUE" also assumes that equilibrium catch prior to 1996 was twice that in 1996, plus the SRA model is fit to the commercial CPUE index, which is available from 1996, therefore providing a longer index of abundance than the synoptic bottom trawl survey (Figure \@ref(fig:rex-syn1)).
-
-* The scenario "Catch eq. 50%" assumes that equilibrium catch prior to 1996 was half that in 1996, approximating the reported 1995 catch. Unless otherwise stated, all other scenarios use $\tilde{C}^{\textrm{eq}}_f$ = 50%.
-
-*Note: we are planning on exploring the best "default" value for Catch eq. after discussions with the technical team*.
-
-#### Steepness
-
-We considered two alternative scenarios that differed in terms of the steepness of the stock-recruit relationship (Table \@ref(tab:rex-scen)).
-Unless otherwise stated, all other scenarios drew from a baseline uniform distribution *h* = 0.7--0.95 (see Section \@ref(app:desc-stock-h-rex)).
-
-* The scenario "*h* = 0.5--0.7" drew from a uniform distribution of lower steepness values than the baseline.
-
-* The scenario "*h* = 95" fixed steepness at a higher value than the baseline.
-
-#### Natural Mortality
-
-We considered one alternative scenario that differed in terms of the fixed value of natural mortality (Table \@ref(tab:rex-scen)).
-Unless otherwise stated, all other scenarios drew from a baseline uniform distribution *M* = 0.14--0.2 *y*^-1^, which is centred around the value of 0.17 *y*^-1^ used for the Gulf of Alaska stock assessment of Rex Sole (@mcgilliard2017, see Section \@ref(app:desc-stock-m-rex)).
-
-* The scenario "M = 0.25 *y*^-1^" considers that *M* could be latitude-dependent and may be higher for stocks in warmer BC waters.
-
-We considered the above seven scenarios to represent the major sources of uncertainty for Rex Sole and grouped them into the "reference set" of OMs (see Section \@ref(sec:best3)).
-Results presented in Section \@ref(sec:results-rex6) will be based on average results from the reference set.
-
-### The Robustness Set
-
-In addition, to illustrate application of the framework in the presence of additional sources of structural uncertainty, we included two scenarios with non-stationarity in *M* (Table \@ref(tab:rex-scen)).
-
-* The "Increasing *M*" scenario assumes that *M* increases monotonically from 0.2 to 0.4 *y*^-1^ over the projection period.
-
-* The "Decreasing *M*" scenario assumes *M* decreases monotonically from 0.2 to 0.1 *y*^-1^ over the projection period.
-
-Results from the Robustness Set will be presented separately in Section \@ref(sec:results-rex6) and will be used to show whether performance of MPs is significantly affected by these other sources of uncertainty.
-
-*NOTE: the authors will be running further sensitivity tests to check whether alternative selectivity scenarios need to be included in the robustness set*
-
-### OM Model Outputs
-
-Selectivity-at-length used by all OMs is shown in Figure (\@ref(fig:rex-selectivity)).
-Selectivity-at-length is calculated from two parameters: L5, the shortest length corresponding to 5% vulnerability; and LFS, the shortest length that is fully vulnerable to fishing.
-Variation in the selectivity ogives comes from the distributions assumed for these two parameters in the OM (See Sections \@ref(app:desc-fleet-l5-rex) and \@ref(app:desc-fleet-lfs-rex)).
-
-Fits to the historical indices of abundance from the nine OMs are shown in Figure (\@ref(fig:rex-survey-fits)).
-Estimates of depletion (*SSB*/*SSB*~0~) during the historical period from the nine OMs are shown in Figure (\@ref(fig:rex-depletion-om)).
-
-```{r rex-selectivity, fig.cap="Selectivity-at-length used by all OMs.", out.width="4in"}
-knitr::include_graphics(here::here("report/figure/rex-selectivity.png"))
-```
-
-```{r rex-survey-fits, fig.cap="Survey fits.", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-index-fits.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-depletion-om)
-SSB depletion trajectories from reference and robustness set OMs.
-Depletion is represented as a fraction of B0 (biomass at unfished equilibrium).
-Some OMs ("M decreasing" and "M increasing") have identical historical trajectories as "Catch eq. 50%", but with a fixed value of M in the historical period (i.e., the change in M only occurs in the projection period).
-
-```{r rex-depletion-om, fig.cap="(ref:fig-rex-depletion-om)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-compare-SRA-depletion-panel.png"))
-```
-
-\clearpage
-
-## STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:results-4}
-
-We started with the full set of candidate MPs described in Appendix \@ref(app:MPs):
-
-```{r rex-mps, results='asis'}
-mp <- readr::read_csv(here::here("data", "mp.txt"), comment = "#")
-mp_list <- split(mp, mp$type)
-csasdown::csas_table(mp, caption = "Candidate MPs.", col_names = c("Management procedure", "MP type"))
-```
-
-We used the `.` version of the MPs, where applicable, to refer to the version of the MPs that only observes the survey index every second year to mimic our biennial WCVI synoptic survey.
-Due to the biennial nature of the trawl survey, we set the MPs to be applied every second year.
-
-We set a prior on the intrinsic rate of population increase $r$ in the surplus production models based on...
-
-## STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:results-5}
-
-```{r}
-pm_all <- readRDS(here::here("generated-data/rex-pm-all.rds"))
-pm_avg <- group_by(pm_all, MP) %>%
-  summarise_if(is.numeric, mean, na.rm = TRUE)
-pm_min <- group_by(pm_all, MP) %>%
-  summarise_if(is.numeric, min, na.rm = TRUE)
-rex_satisficed <- dplyr::filter(pm_min, `LT P40` > 0.8, STY > 0.7) %>% pull(MP)
-reference_mp <- c("FMSYref75", "NFref", "FMSYref")
-rex_satisficed <- rex_satisficed[!rex_satisficed %in% reference_mp]
-
-pm_avg_sat <- pm_avg %>% filter(MP %in% rex_satisficed)
-```
-
-
-Before running the final simulations, we ran a set of trial simulations to screen out MPs that did not meet a basic set of criteria, i.e., a satisficing step [@miller2010].
-We began by assessing minimum performance across all candidate MPs for the reference set of OMs (Figure \@ref(fig:rex-tigure-min)) to determine which MPs would be carried forward as satisficed MPs.
-To obtain a manageable number of MPs for further consideration, we set satisficing thresholds of LT P40 $>$ 0.8 and STY $>$ 0.7.
-This left us with `r length(rex_satisficed)` MPs (`r gfutilities::commify(rex_satisficed)`).
-
-We ran the closed-loop simulations across 200 stochastic iterations using DLMtool version XX with the OMs and MPs described above.
-We assessed convergence of the closed-loop simulation by plotting the cumulative performance metrics as iterations were added (Figure \@ref(fig:rex-converge)).
-Some MPs with very similar performance may still be exchanging rank order within specific performance metrics as of 200 iterations.
-Therefore, final inference should probably be drawn on somewhat greater than the 200 iterations shown here.
-We checked other OMs and these showed similar patterns to the representative  Figure \@ref(fig:rex-converge).
-
-(ref:fig-rex-converge)
-Assessing convergence of the Rex Sole closed-loop simulation under an example OM from the reference set with MPs that are later determined to be part of the satisficed set.
-Broad differences between MPs have converged (lines no longer cross each other).
-
-```{r rex-converge, fig.cap="(ref:fig-rex-converge)", out.width="5in"}
-knitr::include_graphics(here::here("report/figure/rex-converge.png"))
-```
 
 ## STEP 6: PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE  {#sec:results-6}
 
+*below were pasted in from Quang's notes*
+
+### Conditioning OM Model 
+
+-Fit to HBLL is reasonable: estimated index within confidence intervals, although there are several outliers. A slight increasing trend in all OMs.
+- Fit to dogfish survey is better in (4) and (A) compared to the others, although this is in light of the large uncertainties associated with the pre-1990 values and gear change.
+- Fit to commercial CPUE is generally good due to short time stanzas.
+<!-- I need to find a way to show fits to HBLL age comps -->
+<!-- I need to report range of FMSY and MSY in OMs -->
+
+- Additional model fit to a state-state surplus production model was done. This model indicates that the stock is below the LRP, output of model is consistent with 2011 assessment which used a similar model.
+
+### Historical metrics
+From the six OMs, 3 share common historical conditioning. From the four unique historical reconstruction, all likely show that 30 and 50% declines have occurred. Different results among OMs with respect to P70:
+
+70% decline is likely in (4) and (A) while somewhat likely for (1) and (2) with probabilities between 43-53%.
+
+Stock is very likely above the LRP in all OMs except (A).
+Stock is likely above the USR in (1), (2); likely below in (4) and (A)
+
+
 ### Reference Set Results
 
-Average performance within the reference set of OMs varied across MPs and performance metrics (Figure \@ref(fig:rex-tigure-avg)).
-We can also see some variability in performance within the individual reference set scenarios (Figure \@ref(fig:rex-tigure-panel)).
-LT P40 varied between `r round(min(pm_avg_sat$"LT P40"), 2)` and `r round(max(pm_avg_sat$"LT P40"), 2)` and STY varied between `r round(min(pm_avg_sat$STY), 2)` and `r round(max(pm_avg_sat$STY), 2)`.
-
-Across the categories of MPs, index-slope MPs had the most consistent performance across all six performance metrics (Figure \@ref(fig:rex-spider-all-mps)).
-We were unable to obtain reasonable performance out of the surplus production models, but will investigate this further (Figure \@ref(fig:rex-spider-all-mps)).
-The constant catch MPs showed clear trade-offs between conservation and fisheries performance metrics and all were "dominated" (exceeded in all performance metric categories) by other MPs (Figure \@ref(fig:rex-spider-all-mps)).
-The reference category MPs provide a baseline for considering the performance of the other MPs.
-
-We can look more closely at the average performance metric trade-offs amongst the satisficed MPs (Figure \@ref(fig:rex-spider-satisficed-mps-avg)).
-These MPs achieve very similar performance metric values likely because they are very similar in how they are defined (Appendix \@ref(app:MPs)).
-These satisficed MPs achieve STY and LTY with close to the same probability as fishing perfectly at F/F~MSY~ or 75% of F/F~MSY~ (Figures \@ref(fig:rex-tigure-panel), \@ref(fig:rex-spider-satisficed-mps-avg), \@ref(fig:rex-spider-satisficed-mps-reference)).
-
-Within the reference set OMs, the "Catch eq. 200%" OM had the most noticeable effect on the yield performance metrics with slightly lower values than in the other scenarios (Figure \@ref(fig:rex-spider-satisficed-mps-reference)).
-However, making the same assumption about catch at equilibrium the year before the initial year of the historical period but including commercial CPUE resulted in consistently high conservation performance metric values and slightly higher yield performance metric values than the scenario that did not include commercial CPUE (Figure \@ref(fig:rex-spider-satisficed-mps-reference)).
-
-We can look at timeseries trajectories of SSB/SSB~MSY~, F/F~MSY~, and catch to further understand performance across the various MPs and reference set OMs (Figure \@ref(fig:rex-proj-ceq100)--\@ref(fig:rex-proj-low-h); other trajectories not shown yet).
-Although these satisficed MPs mostly perform similarly to each other, by inspecting the projections from MPs that did not make it past the satisficing step, we can see the variety of ways that other MPs failed to achieve the baseline satisficing criteria (Figure \@ref(fig:rex-proj-failed)).
-
-We can also look at "Kobe" plots that demonstrate either the final SSB/SSB~MSY~ vs. F/F~MSY~ status of the various simulations or the trajectory of these status values through time (Figure \@ref(fig:rex-kobe) and \@ref(fig:rex-worm)).
-
-
-(ref:fig-rex-tigure-min) Minimum performance of all candidate MPs across the reference set of OMs.
-This figure is the same as Figure \@ref(fig:rex-tigure-avg) but shows the **minimum** performance metric across the OMs in the reference set for the purposes of applying satisficing rules.
-In other words, this figure illustrates the worst performance of each MP across the reference set of OMs.
-
-```{r rex-tigure-min, fig.cap="(ref:fig-rex-tigure-min)", out.width="3.5in"}
-knitr::include_graphics(here::here("report/figure/rex-pm-table-min.png"))
-```
-
-(ref:fig-rex-tigure-avg) Average performance of all candidate MPs across the reference set of OMs.
-MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric and using columns from left to right to break any ties.
-The color shading reflects the underlying numbers.
-
-```{r rex-tigure-avg, fig.cap="(ref:fig-rex-tigure-avg)", out.width="3.5in"}
-knitr::include_graphics(here::here("report/figure/rex-pm-table-avg.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-tigure-panel) Performance of satisficed MPs for the reference set OMs.
-MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:rex-tigure-min).
-
-```{r rex-tigure-panel, fig.cap="(ref:fig-rex-tigure-panel)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-pm-tigures-ref-set.png"))
-```
-
-\clearpage
-
-```{r rex-spider-all-mps, fig.cap="Spider plots of performance metric trade-offs amongst all MPs for the averaged reference set of OMs. Each spoke of the web represents a performance metric and each line represents a management procedure. Lines closer to the outside of the web correspond to MPs that are determined to have a higher probability of achieving that performance metric.", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-spider-all-mptypes-avg-panel.png"))
-```
-
-\clearpage
-
-```{r rex-spider-satisficed-mps-avg, fig.cap="Average performance metrics for satisficed MPs for the reference set of OMs.", out.width="5in"}
-knitr::include_graphics(here::here("report/figure/rex-spider-satisficed-avg.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-spider-satisficed-mps-reference)
-Performance metrics for satisficed MPs for the individual OMs in the reference set. Colours are the same as for Figure \@ref(fig:rex-spider-satisficed-mps-avg).
-
-```{r rex-spider-satisficed-mps-reference, fig.cap="(ref:fig-rex-spider-satisficed-mps-reference)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-spider-satisficed-panel.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-proj-ceq100) Historical and projected SSB/SSB~MSY~, F/F~MSY~, and catch across satisficed and reference MPs and the "Catch eq. 100%" OM.
-Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
-Thin gray lines represent illustrative simulation iterations.
-The vertical dashed line indicates the last year of the historical period.
-The horizontal dashed lines indicate SSB/SSB~MSY~ = 1, 0.8, and 0.4; F/F~MSY~ = 1; and catch = catch from the last historical year.
-
-```{r rex-proj-ceq100, fig.cap="(ref:fig-rex-proj-ceq100)", out.width="6.5in"}
-knitr::include_graphics(here::here("report/figure/rex-projections-satisficed-ceq100.png"))
-```
-
-(ref:fig-rex-proj-ceq200-cpue) Same as Figure \@ref(fig:rex-proj-ceq100) but for the OM "Catch 200% + CPUE".
-
-```{r rex-proj-ceq200-cpue, fig.cap="(ref:fig-rex-proj-ceq200-cpue)", out.width="6.5in"}
-knitr::include_graphics(here::here("report/figure/rex-projections-satisficed-ceq200-cpue.png"))
-```
-
-(ref:fig-rex-proj-low-h) Same as Figure \@ref(fig:rex-proj-ceq100) but for the OM "h = 0.5--0.7". (Other similar projection plots would be included but are not included in this draft.)
-
-```{r rex-proj-low-h, fig.cap="(ref:fig-rex-proj-low-h)", out.width="6.5in"}
-knitr::include_graphics(here::here("report/figure/rex-projections-satisficed-low-h.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-proj-failed) Historical and projected SSB/SSB~MSY~, F/F~MSY~, and catch for the base OM across example MPs that did **not** pass the satisficing criteria. In cases where similar MPs existed but had similar performance, only one is shown as an example (e.g., for .IDX and .IDX_smooth, only .IDX_smooth is shown).
-Caption is otherwise the same as Figure \@ref(fig:rex-proj-ceq100).
-
-```{r rex-proj-failed, fig.cap="(ref:fig-rex-proj-failed)", out.width="6.5in"}
-knitr::include_graphics(here::here("report/figure/rex-projections-eg-NOT-satisficed-ceq50.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-kobe) SSB/SSB~MSY~ and F/F~MSY~ values from the final year of the projections across all iterations for the "Catch eq. 100%" OM.
-Dots represent individual iterations.
-Contour lines indicate two-dimensional kernel-density-smoothed quantiles at 0.10, 0.25, and 0.50 levels, calculated in log space.
-
-```{r rex-kobe, fig.cap="(ref:fig-rex-kobe)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-kobe-satisficed-ceq100.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-worm) Trajectory of SSB/SSB~MSY~ and F/F~MSY~ values summarized across iterations for the "Catch eq. 100%" OM.
-The solid line corresponds to the median value.
-Each diamond represents the 80% quantile of B/B~MSY~ (horizontal) and F/F~MSY~ (vertical).
-
-```{r rex-worm, fig.cap="(ref:fig-rex-worm)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-neon-worms-base.png"))
-```
-
-\clearpage
 
 ### Robustness Set Results
 
-With the exception of the GB_slope MPs, the satisficed MPs were relatively robust to linear increases in natural mortality in the projection period (Figure \@ref(fig:rex-spider-satisficed-mps-robust) and \@ref(fig:rex-tigure-panel-rob)).
-However, all satisficed MPs had a lower probability of achieving yield performance metrics if natural mortality linearly decreasing in the projection period (Figure \@ref(fig:rex-spider-satisficed-mps-robust) and \@ref(fig:rex-tigure-panel-rob)).
-The Iratio2 MP achieved the highest AAVY, LTY, and STY performance metrics in the M increasing scenario, while maintaining virtually identical conservation performance metrics as the other MPs (Figure \@ref(fig:rex-spider-satisficed-mps-robust), dark green line).
+### Management procedures
 
-```{r rex-spider-satisficed-mps-robust, fig.cap="Performance metrics for satisficed MPs for the individual OMs in the robustness set. Colours are the same as in the average spider plot figure (legend to be added TODO).", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-spider-satisficed-panel-robust.png"))
-```
+- All MPs met the satisficing criterion (LRP 1.5GT > 0.95) in individual OMs in the reference set and averaged across all four reference OMs.
+- Most MPs generate low yields, we further filtered MPs where ST C10 > 50%. This leaves us with Fixed TACs of 10 and 15t and Islope MPs. For these MPs, we see slight loss of yield in (B) if the index were to be less precise than in the reference set.
+- Low M OM more easily shows the conservation vs. yield tradeoff. To meet satisficing criterion for LRP 1.5GT, ST C10 must be very low.
+- No MPs considered here is likely to generate catches > 20 t in 56 years. The best performing MP for LT C20 is Iratio.
 
-(ref:fig-rex-tigure-panel-rob) Performance of satisficed MPs for the robustness set OMs.
+Based on projection plots:
+<!-- Need to make projection plots for reference MPs -->
+- FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM.
+- Iratio generates low catches within the first decade but generates high catches later on. There is high variability among replicates in each OM.
+- SP MPs generate no catch in the first decade, but increase catches later on.
 
-```{r rex-tigure-panel-rob, fig.cap="(ref:fig-rex-tigure-panel-rob)", out.width="5in"}
-knitr::include_graphics(here::here("report/figure/rex-pm-tigures-rob-set.png"))
-```
-
-\clearpage
-
-### Sensitivity Tests
-
-The closed-loop simulation results demonstrate that conservation and yield metrics are generally insensitive to the range of operating model parameter values explored within a given operating model with the exception of the depletion in the final historical year (D) (Figure \@ref(fig:rex-sens-bbmsy)--\@ref(fig:rex-proj-sens-ffmsy)).
-We note that the sensitivity demonstrated here is sensitivity to the range of parameter values within an already conditioned OM.
-Changing some of these parameter values prior to fitting the conditioning SRA model would demonstrate sensitivity in some cases (as demonstrated by the OM scenarios).
+### Risk extinction
+- The status quo approach, as well as almost all MPs, has low probability of reaching the extinction threshold in all OMs.
 
 
-(ref:fig-rex-sens-bbmsy)
-The sensitivity of SSB/SSB~MSY~ in years 36--50 of the projection (y-axis) to OM parameter values (x-axis).
-This example uses the "Catch eq. 100%" OM.
-A variety of MPs are illustrated across rows.
-Each point corresponds to simulation iteration and the solid lines correspond to a loess smoother.
 
-```{r rex-sens-bbmsy, fig.cap="(ref:fig-rex-sens-bbmsy)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-sensitivity-bbmsy-base.png"))
-```
-
-(ref:fig-rex-sens-yield)
-Same as Figure \@ref(fig:rex-sens-bbmsy) but for mean yield in years 6--20 of the projection.
-
-```{r rex-sens-yield, fig.cap="(ref:fig-rex-sens-yield)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-sensitivity-yield-base.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-proj-sens-bbmsy)
-The sensitivity of SSB/SSB~MSY~ (y-axis) to high and low values (colours) of various OM parameters (columns) over time.
-This example uses the "Catch eq. 100%" OM.
-
-```{r rex-proj-sens-bbmsy, fig.cap="(ref:fig-rex-proj-sens-bbmsy)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-sensitivity-traj-bbmsy-base.png"))
-```
-
-\clearpage
-
-(ref:fig-rex-proj-sens-ffmsy)
-The sensitivity of F/F~MSY~ (y-axis) to high and low values (colours) of various OM parameters (columns) over time.
-This example uses the "Catch eq. 100%" OM.
-
-```{r rex-proj-sens-ffmsy, fig.cap="(ref:fig-rex-proj-sens-ffmsy)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("report/figure/rex-sensitivity-traj-ffmsy-base.png"))
-```
