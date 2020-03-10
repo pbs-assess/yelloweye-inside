@@ -14,6 +14,8 @@ OM_condition <- readRDS("mse/scoping/OM_250sim.rds")
 AddIbeta <- matrix(1, OM_condition@nsim, 5)
 
 set.seed(24)
+SRA_for_selectivity <- readRDS("mse/scoping/scoping_base.rds")[[1]]
+SRA <- SRA_for_selectivity
 AddIerr <- rnorm(SRA@OM@nsim * 5 * (SRA@OM@nyears + SRA@OM@proyears), -0.5 * 0.25^2, 0.25) %>% exp() %>%
   array(dim = c(SRA@OM@nsim, 5, SRA@OM@nyears + SRA@OM@proyears))
 
@@ -24,14 +26,13 @@ add_Ierr <- function(SRA) {
 }
 
 ## SRA for HBLL sel
-SRA_for_selectivity <- readRDS("mse/scoping/scoping_base.rds")[[1]]
 base_s_vul_par <- c(SRA_for_selectivity@mean_fit$report$s_LFS[1], SRA_for_selectivity@mean_fit$report$s_L5[1])
 s_vul_par <- matrix(c(base_s_vul_par, 0.5), 3, 5)
 map_s_vul_par <- matrix(NA, 3, 5)
 
 # Upweight dogfish
 SRA <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", selectivity = rep("free", 2),
-                 s_selectivity = rep("logistic", 5), cores = 8,
+                 s_selectivity = rep("logistic", 5), cores = cores,
                  vul_par = SRA_data$vul_par, map_vul_par = matrix(NA, 80, 2),
                  map_s_vul_par = SRA_data$map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
@@ -42,7 +43,7 @@ SRA <- readRDS(file = "mse/om/upweight_dogfish.rds")
 
 # Upweight dogfish survey, fix HBLL sel from base
 SRA <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", selectivity = rep("free", 2),
-                 s_selectivity = rep("logistic", 5), cores = 8,
+                 s_selectivity = rep("logistic", 5), cores = cores,
                  vul_par = SRA_data$vul_par, map_vul_par = matrix(NA, 80, 2),
                  s_vul_par = s_vul_par, map_s_vul_par = map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
