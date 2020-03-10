@@ -1,7 +1,8 @@
 
 library(MSEtool)
 library(dplyr)
-setup(12)
+cores <- parallel::detectCores() / 2
+setup(cores)
 
 ############ Condition operating models with SRA_scope and data
 SRA_data <- readRDS("mse/scoping/SRA_data.rds")
@@ -56,7 +57,7 @@ SRA <- readRDS(file = "mse/om/updog_fixsel.rds")
 SRA_data2 <- SRA_data
 SRA_data2$Chist[match(1986:2005, SRA_data2$Year), 1] <- 0.5 * SRA_data2$Chist[match(1986:2005, SRA_data2$Year), 1]
 SRA <- SRA_scope(OM_condition, data = SRA_data2[data_ind], condition = "catch2", selectivity = rep("free", 2),
-                 s_selectivity = rep("logistic", 5), cores = 1,
+                 s_selectivity = rep("logistic", 5), cores = cores,
                  vul_par = SRA_data$vul_par, map_vul_par = matrix(NA, 80, 2),
                  map_s_vul_par = SRA_data$map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
@@ -67,7 +68,7 @@ SRA <- readRDS(file = "mse/om/lowcatch.rds")
 
 # Low catch - fix HBLL sel from base
 SRA <- SRA_scope(OM_condition, data = SRA_data2[data_ind], condition = "catch2", selectivity = rep("free", 2),
-                 s_selectivity = rep("logistic", 5), cores = 8,
+                 s_selectivity = rep("logistic", 5), cores = cores,
                  vul_par = SRA_data$vul_par, map_vul_par = matrix(NA, 80, 2),
                  s_vul_par = s_vul_par, map_s_vul_par = map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
@@ -121,7 +122,7 @@ M_samps <- rlnorm(OM_condition@nsim, log(0.025) - 0.5 * 0.2^2, 0.2)
 OM_condition@cpars$M <- M_samps
 
 SRA <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", selectivity = rep("free", 2),
-                 s_selectivity = rep("logistic", 5), cores = 1,
+                 s_selectivity = rep("logistic", 5), cores = cores,
                  vul_par = SRA_data$vul_par, map_vul_par = matrix(NA, 80, 2),
                  map_s_vul_par = SRA_data$map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
@@ -137,7 +138,7 @@ M_samps <- rlnorm(OM_condition@nsim, log(0.025) - 0.5 * 0.2^2, 0.2)
 OM_condition@cpars$M <- M_samps
 
 SRA <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", selectivity = rep("free", 2),
-                 s_selectivity = rep("logistic", 5), cores = 12,
+                 s_selectivity = rep("logistic", 5), cores = cores,
                  vul_par = SRA_data$vul_par, map_vul_par = matrix(NA, 80, 2),
                  s_vul_par = s_vul_par, map_s_vul_par = map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
