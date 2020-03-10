@@ -46,3 +46,5 @@ report/csas-style/
 report/_book/
 .Rproj.user
 figs/dogfish-model.txt
+mse/scoping/*.Rmd
+
