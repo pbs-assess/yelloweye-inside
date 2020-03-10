@@ -8,7 +8,7 @@
 
 Due to limited information regarding groundfish catches in the historical fishery, a reconstructed time series of commercial catch was developed and published in 2011 [@Haigh2011]. Raw commercial catch data for Inside Yelloweye was pulled from the gfcatch database, which is maintained by the groundfish data unit at DFO. An early version of the catch reconstruction algorithm was used to develop the commercial catch time series for the previous assessment of Inside Yelloweye in 2009. However, further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (personal comm. Norm Olsen). As well, ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (personal comm. Maria Surry). For these reasons, the time series of commercial catch used in the current analysis differs from that used in the most recent stock assessment in 2009. 
 
-** Quang stopped using the reconstructed data in 1985, due to a lack of familiarity with the reconstruction, lack of clarity. This may have been the wrong call, as full reporting didn't ocurr until 2006. Sean's test analysis on the upweighted dogfish scenario didn't lead to significantly different results. Not sure how/where to account for this in the document **
+*Quang stopped using the reconstructed data in 1985, due to a lack of familiarity with the reconstruction, lack of clarity. This may have been the wrong call, as full reporting didn't ocurr until 2006. Sean's test analysis on the upweighted dogfish scenario didn't lead to significantly different results. Not sure how/where to account for this in the document*
 
 To be consistent with the previous assessment, the total commercial catch for 1986-2005 was doubled. The original decision to double the catch for those years was based on feedback from the commercial industry and was intended to account for their lack of confidence in commercial logbook reporting [@DFO2012].  
 
@@ -71,7 +71,7 @@ csasdown::csas_table(rec_wide,
 
 ## Food, Social, and Ceremonial (FSC) Catch
 
-What did they do in the previous assessment and why was it no good? e.g. consumption rates which was not supported by conversations with indigenous reps (cite personal comm...). There is no discussion of this in the proceedings from the previous CSAS process in 2011 [@DFO2012c]. 
+What did they do in the previous assessment and why was it no good? e.g. consumption rates which was not supported by conversations with indigenous reps.
 
 The data in *table XX* was collected from dual fishing trips by the commercial dockside monitoring program. Dual fishing trips ocurr when indigenous fishers choose to keep some of the catch obtained during a commercial fishing trip for FSC purposes. The table shows the proportion of the catch from each dual fishing trip that was taken for FSC. These proportions are incorporated into the annual totals for commercial catch within the groudfish sector databases. Therefore, a separate analysis to construct a timeseries of FSC catch was not undertaken in this evaluation. 
 
@@ -84,7 +84,7 @@ fsc_catch <- read.csv("../data-raw/fsc-dmp.csv", header=TRUE)
 
 csasdown::csas_table(fsc_catch, 
                      format = "latex",
-                     col_names = c("Year", "FSC", "Commercial", "Total", "/% FSC"),
+                     col_names = c("Year", "FSC", "Commercial", "Total", "Percent FSC"),
                      caption = "FSC catch of Inside Yelloweye Rockfish as a proportion of total commercial catch reported to dockside observers from dual fishing trips." )
 
 ```
