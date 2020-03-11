@@ -93,13 +93,13 @@ ggsave(file.path(fig_dir, paste0("ye-compare-SRA-SSB-panel.png")),
 #sra <- readRDS("mse/om/upweight_dogfish.rds")
 #Hist <- runMSE(sra@OM, parallel = TRUE, Hist = TRUE)
 #saveRDS(Hist, file = 'mse/om/Hist_upweight_dogfish.rds')
-mse_ye <- lapply(sc$scenario, function(x) {
-  if(x == "upweight_dogfish") {
-    readRDS(paste0("mse/om/Hist_", x, ".rds"))
-  } else {
-    readRDS(paste0("mse/om/MSE_", x, ".rds"))
-  }
-})
+#mse_ye <- lapply(sc$scenario, function(x) {
+  #if(x == "upweight_dogfish") {
+  #  readRDS(paste0("mse/om/Hist_", x, ".rds"))
+  #} else {
+  #  readRDS(paste0("mse/om/MSE_", x, ".rds"))
+  #}
+#})
 mse_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
 names(mse_ye) <- sc$scenario
 

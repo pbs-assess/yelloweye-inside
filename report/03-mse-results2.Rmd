@@ -56,7 +56,7 @@ We considered the major axes of uncertainty for Rex Sole to be:
 4. The value of natural mortality (*M*)
 5. The age selectivity pattern of the commercial fleet and survey gear
 
-We divided OM scenarios into a reference set and a robustness set (Section \@ref(sec:best3) *REFER TO MP FRAMEWORK*). We defined six OM reference-set scenarios that differed from each other in these respects and two OM robustness-set scenarios (Table \@ref(tab:rex-scen)), with parameter values provided in Appendix \@ref(app:desc-om-rex). We describe each of the scenarios below.
+We divided OM scenarios into a reference set and a robustness set (Section \@ref(sec:best3) *REFER TO MP FRAMEWORK*). We defined six OM reference-set scenarios that differed from each other in these respects and two OM robustness-set scenarios (Table \@ref(tab:yelloweye-scen)), with parameter values provided in Appendix \@ref(app:desc-om-yelloweye). We describe each of the scenarios below.
 
 ```{r yelloweye-scen, results='asis'}
 sc <- readRDS(here("mse/om/ye-scenarios.rds"))
@@ -415,18 +415,18 @@ knitr::include_graphics(here("mse/figures/ye-kobe.png"))
 ```
 
 \clearpage
-<!-- Didn't make these
+
 (ref:fig-yelloweye-worm) Trajectory of B/B~MSY~ and F/F~MSY~ values summarized across replicates.
 The solid line corresponds to the median value.
 Each diamond represents the 50% quantile of B/B~MSY~ (horizontal) and F/F~MSY~ (vertical).
 
 ```{r yelloweye-worm, fig.cap="(ref:fig-yelloweye-worm)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figures/ye-worms-proj.png"))
+knitr::include_graphics(here("mse/figures/ye-worms.png"))
 ```
 
 \clearpage
 
--->
+
 
 ### Robustness Set Results
 
