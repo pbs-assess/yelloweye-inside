@@ -164,15 +164,6 @@ mp_eg_not_sat <- c(
   "IDX", "IDX_smooth", "SP_8040_10u", "SP_8040_5u", "SP_4010_10u", "SP_4010_5u"
 )
 
-sc$scenario_human[sc$scenario == "updog_fixsel"] <-
-  "(1) Upweight\ndogfish survey"
-sc$scenario_human[sc$scenario == "episodic_recruitment"] <-
-  "(3) Episodic\nrecruitment"
-sc$scenario_human[sc$scenario == "upweight_dogfish"] <-
-  "(4) Estimate\nHBLL selectivity"
-sc$scenario_human[sc$scenario == "high_index_cv"] <-
-  "(B) High CV HBLL\n(projected)"
-
 g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
   set_names(sc$scenario_human) %>%
   plot_tigure_facet() +

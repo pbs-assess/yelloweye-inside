@@ -19,23 +19,13 @@ fig_dir <- "mse/figures"
 
 sc <- tibble::tribble(
   ~scenario,     ~scenario_human,        ~scenario_type,
-  "updog_fixsel",           "(1) Upweight dogfish survey",  "Reference",
+  "updog_fixsel",           "(1) Upweight\ndogfish survey",  "Reference",
   "lowcatch_fixsel",        "(2) Low catch",                "Reference",
-  "episodic_recruitment",   "(3) Episodic recruitment",     "Reference",
-  "upweight_dogfish",       "(4) Estimate HBLL selectivity","Reference",
+  "episodic_recruitment",   "(3) Episodic\nrecruitment",     "Reference",
+  "upweight_dogfish",       "(4) Estimate\nHBLL selectivity","Reference",
   "lowM_fixsel",            "(A) Low M",                    "Robustness",
-  "high_index_cv",          "(B) High CV HBLL (projected)", "Robustness"
+  "high_index_cv",          "(B) High CV HBLL\nprojected", "Robustness"
 )
-
-sc$scenario_human[sc$scenario == "updog_fixsel"] <-
-  "(1) Upweight\ndogfish survey"
-sc$scenario_human[sc$scenario == "episodic_recruitment"] <-
-  "(3) Episodic\nrecruitment"
-sc$scenario_human[sc$scenario == "upweight_dogfish"] <-
-  "(4) Estimate\nHBLL selectivity"
-sc$scenario_human[sc$scenario == "high_index_cv"] <-
-  "(B) High CV HBLL\n(projected)"
-
 sc <- mutate(sc, order = seq_len(n()))
 saveRDS(sc, file = "mse/om/ye-scenarios.rds")
 
