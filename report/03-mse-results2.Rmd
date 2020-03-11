@@ -107,31 +107,25 @@ Unless otherwise stated, all other scenarios drew from a baseline uniform distri
 Descriptive text
 
 
-
 ### OM CONDITIONING
 
-After specifying most of the OM parameters (Appendix \@ref(app:desc-om-rex)), we conditioned the OMs using the SRA model described in Appendix \@ref(app:sra) --- *REFER TO MP FRAMEWORK*.
+After specifying most of the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix \@ref(app:sra) --- *REFER TO MP FRAMEWORK*.
 We conditioned the models using: (1) commercial catch data from 1996--2019; (2) the synoptic WCVI (SYN WCVI) trawl relative biomass index (a depth-stratified random survey); and (3) commercial bottom trawl CPUE.
-We down-weighted the commercial CPUE index by inflating the standard errors 1.5 times, since we have greater confidence in the SYN WCVI data reflecting underlying biomass trends.
-We specified a range of $C^{\textrm{eq}}$ values as described above to reflect uncertainty in initial stock depletion.
 
-The SRA was able to fit to the WCVI synoptic trawl survey relative biomass index and commercial bottom trawl CPUE reasonably well for all OM scenarios (Figure \@ref(fig:yelloweye-survey-fits)).
-The SYN WCVI survey was better fit than the commercial CPUE, likely due to the smaller standard errors (Figure \@ref(fig:yelloweye-survey-fits)).
-The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 (Equation \@ref(eq:sra-om-like-catch)).
+The SRA was able to fit to the HBLL survey relative biomass index and XXX indices reasonably well for all OM scenarios (Figure \@ref(fig:yelloweye-survey-fits)).
+The XXX survey was better fit than the XXX, likely due to XXX (Figure \@ref(fig:yelloweye-survey-fits)).
+The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 (*REF TO MP FRAMEWORK*, their Equation \@ref(eq:sra-om-like-catch)).
 
 (ref:fig-yelloweye-survey-fits)
-SRA model fits to the SYN WCVI and commercial bottom trial CPUE relative biomass indices.
-Panels from top to bottom represent scenarios.
+SRA model fits to the HBLL, Dogfish and and three commercial CPUE relative  indices.
+Panels from left to right represent OM scenarios.
 Thin lines represent individual SRA model fits across stochastic draws from the various OM parameters.
 Dots represent index mean and line segments represent 2 times the standard errors as entered into the SRA models.
-In the case of the commercial CPUE, these standard errors have been inflated 1.5 times from the fitted standard errors to down-weight the commercial CPUE index relative to the survey index.
+
 
 ```{r yelloweye-survey-fits, fig.cap="(ref:fig-yelloweye-survey-fits)", out.width="0.65\\textwidth"}
 knitr::include_graphics(here("mse/figures/conditioning/ye-index-fits.png"))
 ```
-
-
-*TODO: Add the individual survey index plots in the same folder*
 
 We used the SRA to populate the following parameters in the conditioned OMs:
 

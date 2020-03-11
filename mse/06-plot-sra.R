@@ -18,7 +18,7 @@ fig_dir <- "mse/figures"
 # Set up the scenario names ---------------------------------------------------
 
 sc <- tibble::tribble(
-  ~scenario,     ~scenarios_human,        ~scenario_type,
+  ~scenario,     ~scenario_human,        ~scenario_type,
   "updog_fixsel",           "(1) Upweight dogfish survey",  "Reference",
   "lowcatch_fixsel",        "(2) Low catch",                "Reference",
   "episodic_recruitment",   "(3) Episodic recruitment",     "Reference",
@@ -26,6 +26,16 @@ sc <- tibble::tribble(
   "lowM_fixsel",            "(A) Low M",                    "Robustness",
   "high_index_cv",          "(B) High CV HBLL (projected)", "Robustness"
 )
+
+sc$scenario_human[sc$scenario == "updog_fixsel"] <-
+  "(1) Upweight\ndogfish survey"
+sc$scenario_human[sc$scenario == "episodic_recruitment"] <-
+  "(3) Episodic\nrecruitment"
+sc$scenario_human[sc$scenario == "upweight_dogfish"] <-
+  "(4) Estimate\nHBLL selectivity"
+sc$scenario_human[sc$scenario == "high_index_cv"] <-
+  "(B) High CV HBLL\n(projected)"
+
 sc <- mutate(sc, order = seq_len(n()))
 saveRDS(sc, file = "mse/om/ye-scenarios.rds")
 
@@ -62,8 +72,8 @@ get_SSB <- function(x, scenario, mse = NULL, type = c("SSB", "depletion", "MSY")
 }
 
 # Depletion -------------------------------------------------------------------
-g <- purrr::map2_df(sra_ye, sc$scenarios_human, get_SSB, type = "depletion") %>%
-  mutate(scenario = factor(scenario, levels = sc$scenarios_human)) %>%
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB, type = "depletion") %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
   geom_ribbon(fill = "grey90") +
   geom_ribbon(fill = "grey70", mapping = aes(ymin = lwr50, ymax = upr50)) +
@@ -76,8 +86,8 @@ ggsave(file.path(fig_dir, paste0("ye-compare-SRA-depletion-panel.png")),
 )
 
 # SSB -------------------------------------------------------------------------
-g <- purrr::map2_df(sra_ye, sc$scenarios_human, get_SSB, type = "SSB") %>%
-  mutate(scenario = factor(scenario, levels = sc$scenarios_human)) %>%
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB, type = "SSB") %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
   geom_ribbon(fill = "grey90") +
   geom_ribbon(fill = "grey70", mapping = aes(ymin = lwr50, ymax = upr50)) +
@@ -96,8 +106,8 @@ ggsave(file.path(fig_dir, paste0("ye-compare-SRA-SSB-panel.png")),
 mse_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
 names(mse_ye) <- sc$scenario
 
-g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenarios_human, mse = mse_ye, type = "MSY")) %>%
-  mutate(scenario = factor(scenario, levels = sc$scenarios_human)) %>%
+g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye, type = "MSY")) %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
   geom_ribbon(fill = "grey90") +
   geom_ribbon(fill = "grey70", mapping = aes(ymin = lwr50, ymax = upr50)) +
@@ -131,7 +141,7 @@ get_sra_survey <- function(sra, sc_name, survey_names) {
 
 surv <- purrr::map2_dfr(sra_ye, sc$scenario, get_sra_survey, survey_names = survey_names)
 surv <- left_join(surv, sc, by = "scenario")
-surv$scenarios_human <- factor(surv$scenarios_human, levels = sc$scenarios_human)
+surv$scenario_human <- factor(surv$scenario_human, levels = sc$scenario_human)
 surv$year <- surv$year + min(all_years) - 1
 surv$survey <- factor(surv$survey, levels = survey_names)
 
@@ -152,7 +162,7 @@ g <- ggplot(filter(surv, year >= 1980), aes(year, value, group = paste(iter, sur
   geom_line(alpha = 0.05) +
   geom_pointrange(data = Index, mapping = aes(x = Year, y = value, ymin = lower, ymax = upper,
                                               fill = as.character(survey)), inherit.aes = FALSE, pch = 21, colour = "grey40") +
-  facet_grid(survey~scenarios_human, scales = "free_y") +
+  facet_grid(survey~scenario_human, scales = "free_y") +
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
@@ -165,7 +175,7 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "HBLL"), aes(year, value, grou
   geom_line(alpha = 0.05, colour = "#66C2A5") +
   geom_pointrange(data = filter(Index, survey == "HBLL"), mapping = aes(x = Year, y = value, ymin = lower, ymax = upper),
                   inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#66C2A5") +
-  facet_wrap(~scenarios_human) +
+  facet_wrap(~scenario_human) +
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
@@ -176,7 +186,7 @@ g <- ggplot(filter(surv, year >= 2000 & survey == "HBLL"), aes(year, value, grou
   geom_line(alpha = 0.05, colour = "#66C2A5") +
   geom_pointrange(data = filter(Index, survey == "HBLL"), mapping = aes(x = Year, y = value, ymin = lower, ymax = upper),
                   inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#66C2A5") +
-  facet_wrap(~scenarios_human) +
+  facet_wrap(~scenario_human) +
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
@@ -188,7 +198,7 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "Dogfish"), aes(year, value, g
   geom_line(alpha = 0.05, colour = "#FC8D62") +
   geom_pointrange(data = filter(Index, survey == "Dogfish"), mapping = aes(x = Year, y = value, ymin = lower, ymax = upper),
                   inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#FC8D62") +
-  facet_wrap(~scenarios_human) +
+  facet_wrap(~scenario_human) +
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
@@ -223,7 +233,7 @@ walk(1:length(HBLL_pred), ~{
     geom_line(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE) +
     geom_point(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#66C2A5") +
     geom_label(data = Ntrips, mapping = aes(label = N), x = Inf, y = Inf, hjust = "right", vjust = "top", inherit.aes = FALSE) +
-    gfplot::theme_pbs() + ggtitle(sc$scenarios_human[.x])
+    gfplot::theme_pbs() + ggtitle(sc$scenario_human[.x])
   ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8, dpi = 500)
 })
 
@@ -238,12 +248,12 @@ get_sra_selectivity <- function(sc_name) {
 }
 sel <- map_dfr(sc$scenario, get_sra_selectivity) # pick one
 sel <- left_join(sel, sc, by = "scenario")
-sel$scenarios_human <- factor(sel$scenarios_human, levels = sc$scenarios_human)
+sel$scenario_human <- factor(sel$scenario_human, levels = sc$scenario_human)
 
 g <- sel %>%
   ggplot(aes(Length, value, group = paste(iter))) +
   geom_line(alpha = 0.15) +
-  gfplot::theme_pbs() + facet_wrap(~scenarios_human) +
+  gfplot::theme_pbs() + facet_wrap(~scenario_human) +
   ylab("HBLL selectivity") + xlab("Age") +
   coord_cartesian(expand = FALSE, ylim = c(-0.01, 1.1))
 ggsave("mse/figures/HBLL-selectivity.png", width = 8, height = 5)
@@ -348,12 +358,12 @@ YE_historical <- rbind(vapply(mse_ye, COSEWIC_P70, numeric(1), Yr = 3 * 38),
                        vapply(mse_ye, COSEWIC_P30, numeric(1), Yr = 3 * 38),
                        vapply(mse_ye, P_LRP, numeric(1)),
                        vapply(mse_ye, P_USR, numeric(1))) %>%
-  structure(dimnames = list(c("P70", "P50", "P30", "LRP", "USR"), sc$scenarios_human)) %>%
+  structure(dimnames = list(c("P70", "P50", "P30", "LRP", "USR"), sc$scenario_human)) %>%
   t() %>% as.data.frame()
 
-YE_historical$MP <- factor(sc$scenarios_human, levels = sc$scenarios_human)
+YE_historical$MP <- factor(sc$scenario_human, levels = sc$scenario_human)
 
-g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenarios_human))
+g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenario_human))
 ggsave("mse/figures/historical_indicators.png", height = 4, width = 5)
 
 # Plot episodic recruitment ---------------------------------------------------
