@@ -106,10 +106,10 @@ formals(`5% B0`)$Ref <- 0.05
 e_df_list <- map(mse, ~ gfdlm::get_probs(.x, c("2% B0", "5% B0"))) # List with all OMs and PMs
 
 # For all scenarios
-walk(names(mse), ~ {
-  g <- plot_tigure(e_df_list[[.x]]) + ggtitle(sc$scenario_human[match(.x, sc$scenario)])
-  ggsave(paste0("mse/figures/tigure_cosewic_", .x, ".png"), width = 3.5, height = 6.5)
-})
+# walk(names(mse), ~ {
+#   g <- plot_tigure(e_df_list[[.x]]) + ggtitle(sc$scenario_human[match(.x, sc$scenario)])
+#   ggsave(paste0("mse/figures/tigure_cosewic_", .x, ".png"), width = 3.5, height = 6.5)
+# })
 
 # Averaged across reference set
 e_avg <- e_df_list[sc$scenario_type == "Reference"] %>%
@@ -118,8 +118,8 @@ e_avg <- e_df_list[sc$scenario_type == "Reference"] %>%
   summarise_if(is.numeric, mean)
 pm_df_list <- map(mse[scenarios_ref], ~ gfdlm::get_probs(.x, PM)) # List with all OMs and PMs
 
-g <- plot_tigure(e_avg) + ggtitle("Averaged across reference set")
-ggsave("mse/figures/tigure_cosewic_average_ref.png", width = 3.5, height = 6.5)
+# g <- plot_tigure(e_avg) + ggtitle("Averaged across reference set")
+# ggsave("mse/figures/tigure_cosewic_average_ref.png", width = 3.5, height = 6.5)
 
 # Satisficing -----------------------------------------------------------------
 pm_df_list <- map(mse[scenarios_ref], ~ gfdlm::get_probs(.x, PM)) # List with all OMs and PMs
@@ -183,10 +183,6 @@ mp_not_sat <- pm_avg$MP[!pm_avg$MP %in% mp_sat & !pm_avg$MP %in% reference_mp]
 
 stopifnot(any(!mp_not_sat %in% mp_sat))
 stopifnot(any(!mp_sat %in% mp_not_sat))
-
-pm_angle <- theme(
-  axis.text.x.top = element_text(angle = 60, hjust = 0)
-)
 
 # # Projections of non-satisficed Index MPs
 # walk(names(mse), ~ {
@@ -252,6 +248,21 @@ sc$scenario_human[sc$scenario == "episodic_recruitment"] <- "(3) Episodic\nrecru
 sc$scenario_human[sc$scenario == "upweight_dogfish"] <- "(4) Estimate\nHBLL selectivity"
 sc$scenario_human[sc$scenario == "high_index_cv"] <- "(B) High CV HBLL\n(projected)"
 
+g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
+  set_names(sc$scenario_human) %>%
+  plot_tigure_facet() +
+  theme(
+    plot.margin = margin(t = 11/2 - 5, r = 11/2 + 15, b = 11/2, l = 11/2 - 5)
+  )
+ggsave("mse/figures/ye-tigure-cosewic-all.png", width = 5.7, height = 5)
+
+g <- dplyr::filter(e_avg, MP %in% union(mp_sat, "NFref")) %>%
+  plot_tigure() +
+  scale_fill_viridis_c(limits = c(0, 1), begin = 0.15, end = 1, alpha = 0.6,
+    option = "C", direction = 1)
+g
+ggsave("mse/figures/ye-tigure-cosewic-avg.png", width = 2.5, height = 3)
+
 plots <- gfdlm::plot_factory(
   mse_list = mse,
   pm = PM,
@@ -269,7 +280,6 @@ plots <- gfdlm::plot_factory(
   catch_ylim = c(0, 40),
   survey_type = "AddInd",
   skip_worms = TRUE # memory problems
->>>>>>> 73d5f6f388ad5b84d9293597ae503606c3fd15e2
 )
 
 # rm(mse) # memory problems
@@ -279,19 +289,18 @@ g <- plots$projections_index +
 .ggsave("projections-index", width = 12, height = 10, plot = g)
 
 g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
- set_names(scenarios_human) %>%
+ set_names(sc$scenario_human) %>%
  gfdlm::plot_convergence(pm_list = names(satisficed_criteria)) +
  scale_colour_manual(values = custom_pal) +
   theme(legend.position = "bottom")
-.ggsave("convergence", width = 10, height = 5, plot = g)
+.ggsave("convergence", width = 9, height = 4.5, plot = g)
 
-.ggsave("dot-refset-avg", width = 8, height = 4.5,
+.ggsave("dot-refset-avg", width = 8, height = 4,
   plot = plots$dot_refset_avg)
-.ggsave("tradeoff-refset", width = 7.5, height = 5, plot = g)
 .ggsave("tradeoff-refset-avg", width = 4.5, height = 4,
-  plot = plots$tradeoff_refset_avg + facet_wrap(~scenario, ncol = 4))
+  plot = plots$tradeoff_avg + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE))
 .ggsave("tradeoff-robset", width = 6, height = 3,
-  plot = plots$tradeoff_robset)
+  plot = plots$tradeoff_robset + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE))
 
 pm_angle <- theme(
   axis.text.x.top = element_text(angle = 45, hjust = 0, vjust = 0),
@@ -327,14 +336,14 @@ walk(names(plots$projections), ~ {
 .ggsave("projections-not-sat", width = 6.5, height = 20,
   plot = plots$projections_not_sat)
 .ggsave("projections-scenarios", width = 8, height = 11,
-  plot = plots$projections_scenarios)
+  plot = plots$projections_scenarios + scale_color_brewer())
 
 optimize_png <- FALSE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   files_per_core <- 2
   setwd("mse/figures")
   system(paste0(
-    "find -X . -name 'ye-*.png' -print0 | xargs -0 -n ",
+    "find -X . -name '*.png' -print0 | xargs -0 -n ",
     files_per_core, " -P ", parallel::detectCores()/2, " optipng -strip all"
   ))
   setwd(here())
