@@ -68,13 +68,12 @@ General settings:
 - Fix selectivity of fisheries to values from outside YE. Use hook and line for commercial (there is little to no trawl fishery for inside pop)
 - Estimate rec devs after 1950 (age comps only available after 2003)
 - Estimate HBLL selectivity. Mirror the dogfish selectivity in each replicate to match that for HBLL
-- Multinomial annual sample size for age comps based on the number of sampling trips.
+- Multinomial annual sample size for HBLL age comps based on the number of sampling trips.
 
 - Initial fit did not fit dogfish survey well. Retrospective analysis showed bias in SSB (For model with M and h set to mean priors, rho = 0.25 for 11 years when removing up to 11 years of data). 11 years of data were used primarily to evaluate consistency of the model going back to 2009 which was the terminal year for the 2011 assessment.
 - Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.  
 - Next, it was decided to fix the HBLL selectivity to that from the initial fit while also upweighting the dogfish survey. This fit generated small retrospective bias (SSB rho = -0.07) for the fit with M and h mean priors.
-- Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process.
-<!-- I will generate a plot of SSB rho vs. M to show this -->
+- Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process. <!-- Plot of SSB rho vs. M has been generated and shows this -->
 
 
 ### Reference set
@@ -84,14 +83,45 @@ From the initial fit, the following OMs were developed as the reference set:
 1. Upweight dogfish survey: Uses the initial fit but upweight dogfish selectivity and fix HBLL full selectivity age to 20 years.
 Additional things to mention:
 - Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
-- Future recruitment deviations sampled in logspace with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
+- Future recruitment deviations sampled in logspace with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model:
+The log-recruitment deviation $\varepsilon_y$ in the projection period is:
+
+$$
+\varepsilon_y = 
+
+\left\{
+\begin{array}{ll}
+\delta_y & y=1\\
+\rho\varepsilon_{y-1} + \delta_y\sqrt{1 - \rho^2} & y=2,\ldots,N_p
+\end{array}
+\right.
+
+$$
+
+where $\rho$ is the autocorrelation coefficient and $N_p$ is the number of projection years, and 
+$\delta_y \sim N(-0.5\sigma^2 (1 - \rho)/\sqrt{1 - \rho^2})$ with $\rho = 0.8$ and $\sigma = 0.4$.
+
+
+
 - Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in logspace.
 
 2. Low catch - to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty. 
 
 3. Episodic recruitment - to address uncertainty in future productivity, an alternative scenario where recruitment is more variable. Rockfish assessments in the Pacific have estimated occasional extreme year classes (examples? POP, boccacio?). SRA may not estimate large cohorts, this could be a limitation of the available data to detect large cohorts. From (1), extreme recruitment is generated on average once every generation (38 years). If y is an extreme recruitment year, then the recruitment is sampled with lognormal with SD = 2.
 
-<!-- I need to add an equation to describe episodic recruitment -->
+<!-- Equation to describe episodic recruitment: -->
+$$
+\varepsilon_y = 
+
+\left\{
+\begin{array}{ll}
+\varepsilon^1_y & \eta_y = 0\\
+\varepsilon^2_y & \eta_y = 1
+\end{array}
+\right.
+
+$$
+where $\varepsilon^1_y$ is the recruitment deviation from OM 1, $\varepsilon^2_y \sim N(-0.5\tau^2, \tau^2)$ where $\tau = 2$, $\eta_y \sim Be(p = 1/38)$ is a Bernoulli random variable which indicates whether an extreme recruitment event will occur. One extreme recruitment is expected to occur once every generation (38 years).
 
 4. Estimate HBLL selectivity - same as 1 but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
 
@@ -127,9 +157,9 @@ All index-based MPs set a minimum TAC = 0.5 t for surveys.
 
 ### Index slope
 
-$\text{TAC}_y = C_{y-1} (1 + \lambda I^{\text{slope}}_{y-1})
+$\text{TAC}_y = C_{y-1} (1 + \lambda I^{\text{slope}}_{y-1})$
 
-<! -- Geromont, H.F. and Butterworth, D.S. 2014. Complex assessment or simple management procedures for efficient fisheries management: a comparative study. ICES J. Mar. Sci. doi:10.1093/icesjms/fsu017 -->
+<!-- Geromont, H.F. and Butterworth, D.S. 2014. Complex assessment or simple management procedures for efficient fisheries management: a comparative study. ICES J. Mar. Sci. doi:10.1093/icesjms/fsu017 -->
 
 Various tuning parameters can alter performance of MPs:
 Lambda controls the change in TAC relative to change in slope.
@@ -155,7 +185,7 @@ Islope_10_lambda08 $\lambda = 0.8$	  $I^{slope}_{y-1}$ is calculated from the pr
 
 $\text{TAC}_y = C_{y-1} \dfrac{I^{\text{recent}}}{I^{\text{historical}}} $
 
-<! -- Ernesto Jardim, Manuela Azevedo, Nuno M. Brites, Harvest control rules for data limited stocks using length-based reference points and survey biomass indices, Fisheries Research, Volume 171, November 2015, Pages 12-19, ISSN 0165-7836, https://doi.org/10.1016/j.fishres.2014.11.013 -->
+<!-- Ernesto Jardim, Manuela Azevedo, Nuno M. Brites, Harvest control rules for data limited stocks using length-based reference points and survey biomass indices, Fisheries Research, Volume 171, November 2015, Pages 12-19, ISSN 0165-7836, https://doi.org/10.1016/j.fishres.2014.11.013 -->
 
 
 $I^{\text{recent}}$ is the mean index from the most recent years, $I^{\text{historical}}$ is the mean from years preceding that for I^{\text{recent}}.
@@ -169,7 +199,21 @@ Iratio_55  $I^{\text{recent}}$ is from the preceding 5 years, e.g., 2015-2019
 
 ### IDX
 
-<! -- Cox et al. Res Doc in press -->
+An index-based MP with TAC minimum:
+
+$\text{TAC}_y = \lambda C_{y-1} (1 + \Delta I) + (1 - \lambda) C_{y-1}$
+
+<!-- Cox et al. Res Doc in press -->
+
+$\Delta I = \frac{I_{y-1}}{I_p} - 1 $, subject to $-0.5 \le \Delta I \le 0.25$. Overall, there is also a TAC floor of 5 t. 
+
+Tried four MPs:
+
+IDX             $p = y-2$     $\lambda = 0$
+IDX_yrs5        $p = y-6$     $\lambda = 0$
+IDX_smooth      $p = y-2$     $\lambda = 0.5$
+IDX_smooth_yrs5 $p = y-6$     $\lambda = 0.5$
+
 
 
 ## SP MPs
@@ -226,10 +270,21 @@ Using a projection period of 100 years, we calculate the probability that the st
 - Fit to HBLL is reasonable: estimated index within confidence intervals, although there are several outliers. A slight increasing trend in all OMs.
 - Fit to dogfish survey is better in (4) and (A) compared to the others, although this is in light of the large uncertainties associated with the pre-1990 values and gear change.
 - Fit to commercial CPUE is generally good due to short time stanzas.
-<!-- I need to find a way to show fits to HBLL age comps -->
-<!-- I need to report range of FMSY and MSY in OMs -->
 
-- Additional model fit to a state-state surplus production model was done. This model indicates that the stock is below the LRP, output of model is consistent with 2011 assessment which used a similar model.
+- Note that in OM (1) and (4) that fixing and estimating, respectively, HBLL selectivity does not appear to generate radically different fits in age comps visually. <!-- New plots have been drawn to show HBLL age comp fits -->
+- Models predict larger abundance in plusgroup than what has been observed. 
+- Lack of plusgroup (age 80+) fish in the survey suggests that Z (total mortality) has been higher in the past. One can accomplish in two ways:
+- Increase M - however this creates retrospective bias
+- Increase F - this was done with OM (2) by using a lower catches in 1986-2005 but minimally reduced the predicted plus group abundance.
+This issue may arise from conditioning uncertainty (data conflict between dogfish survey and HBLL age comps results in either poor retrospectives or poor fit to age comp plusgroup), as well as potential uncertainty in the data (ageing error, insufficient sampling in the HBLL survey, etc.).
+
+- Reference points: <!-- See mse/figures/ref_pt_text.csv -->
+- Mean MSY is almost 64 t in OM 1. OMs 2 (lower catches --> smaller stock) and A (low M --> less productive) generate lower MSY compared to OM 1, as expected.
+- Mean FMSY = 0.04 is identical in all except in A, where mean is half of that in the others (also expected due to lower M).
+
+- Additional model fit to a state-state surplus production model was done. This model indicates that the stock is below the LRP, output of model is consistent with 2011 assessment which used a similar model. 
+- Reference points MSY = 62 t and FMSY = 0.03 are similar to age-structured OMs but it's the stock status that's much different.
+<!-- Figure has been generated (see mse/09-plot-miscellaneous.R) -->
 
 ### Historical metrics
 From the six OMs, 3 share common historical conditioning. From the four unique historical reconstruction, all likely show that 30 and 50% declines have occurred. Different results among OMs with respect to P70:
@@ -247,12 +302,22 @@ Stock is likely above the USR in (1), (2); likely below in (4) and (A)
 - No MPs considered here is likely to generate catches > 20 t in 56 years. The best performing MP for LT C20 is Iratio.
 
 Based on projection plots:
-<!-- Need to make projection plots for reference MPs -->
-- FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM.
+- FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM. <!-- Projection plots of reference MPs have been added -->
 - Iratio generates low catches within the first decade but generates high catches later on. There is high variability among replicates in each OM.
-- SP MPs generate no catch in the first decade, but increase catches later on.
+- IDX returns gradually lower catches over time.
+- GB_slope appears to hold catch fairly constant between 10-15 t in the reference set. 
+
+- Iratio and GB_slope generates zero catch in the low catch OM (#2). Hence it didn't satisfy the informal `ST C10` PM. <!-- Why is this happening?? -->
+
+- SP MPs generate no catch in the first decade, but increase catches later on, e.g. after 50 years.
+
 
 ### Risk extinction
 - The status quo approach, as well as almost all MPs, has low probability of reaching the extinction threshold in all OMs.
 
+
+# For discussion.Rmd
+
+- Different tunings within each MP 'type' did not significantly alter their peformance. (this may be a discussion point)
+- Reference set OMs showed moderate-high probability of currently being above the LRP. 
 
