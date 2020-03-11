@@ -62,8 +62,6 @@ scenarios_rob <- get_filtered_scenario("Robustness", "scenario")
 scenarios_rob_human <- get_filtered_scenario("Robustness", "scenario_human")
 
 # Read OMs --------------------------------------------------------------------
-# om <- lapply(scenarios, function(x) readRDS(paste0("mse/om/", x, ".rds"))@OM)
-# names(om) <- scenarios
 
 mse <- map(scenarios, ~ readRDS(paste0("mse/om/MSE_", .x, ".rds")))
 for (i in seq_along(mse)) {
@@ -89,7 +87,6 @@ ref_pt_text <- do.call(rbind, lapply(ref_pt, function(x) {
 write.csv(ref_pt_text, file = "mse/figures/ref_pt.csv")
 saveRDS(ref_pt_text, "mse/figures/ref_pt.rds")
 
-
 # COSEWIC metric E, Probability that the biomass is at least 2, 5 % B0 within the projection period
 COSEWIC_E <- function(MSEobj, Ref = 0.02, Yrs = c(1, 100)) {
   Yrs <- ChkYrs(Yrs, MSEobj)
@@ -107,21 +104,12 @@ formals(`5% B0`)$Ref <- 0.05
 
 e_df_list <- map(mse, ~ gfdlm::get_probs(.x, c("2% B0", "5% B0"))) # List with all OMs and PMs
 
-# For all scenarios
-# walk(names(mse), ~ {
-#   g <- plot_tigure(e_df_list[[.x]]) + ggtitle(sc$scenario_human[match(.x, sc$scenario)])
-#   ggsave(paste0("mse/figures/tigure_cosewic_", .x, ".png"), width = 3.5, height = 6.5)
-# })
-
 # Averaged across reference set
 e_avg <- e_df_list[sc$scenario_type == "Reference"] %>%
   bind_rows(.id = "scenario") %>%
   group_by(MP) %>%
   summarise_if(is.numeric, mean)
 pm_df_list <- map(mse[scenarios_ref], ~ gfdlm::get_probs(.x, PM)) # List with all OMs and PMs
-
-# g <- plot_tigure(e_avg) + ggtitle("Averaged across reference set")
-# ggsave("mse/figures/tigure_cosewic_average_ref.png", width = 3.5, height = 6.5)
 
 # Satisficing -----------------------------------------------------------------
 pm_df_list <- map(mse[scenarios_ref], ~ gfdlm::get_probs(.x, PM)) # List with all OMs and PMs
@@ -152,27 +140,7 @@ pm_min <- group_by(pm_df, MP) %>% summarise_if(is.numeric, min)
 
 satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
 
-# Plot tigure averaged across OMs
-
-# plot_tigure(pm_avg, satisficed = satisficed_criteria) + ggtitle("Averaged across reference OMs")
-# ggsave("mse/figures/tigure_average_ref.png", width = 6.5, height = 6.5)
-
-# plot_tigure(pm_min, satisficed = satisficed_criteria)
-
-# Plot all tigures in reference set
-# walk(names(mse), ~ {
-#   g <- plot_tigure(pm_df_list[[.x]]) + ggtitle(sc$scenario_human[match(.x, sc$scenario)])
-#   ggsave(paste0("mse/figures/tigure_", .x, ".png"), width = 6.5, height = 6.5)
-# })
-
-# All tigures in robustness set
-# plot_tigure(pm_df_list_rob[[1]]) + ggtitle("(A) Low M")
-# ggsave(paste0("mse/figures/tigure_lowM.png"), width = 6.5, height = 6.5)
-#
-# plot_tigure(pm_df_list_rob[[2]]) + ggtitle("(B) High CV HBLL")
-# ggsave(paste0("mse/figures/tigure_high_CV_HBLL.png"), width = 6.5, height = 6.5)
-
-# # For satisficed MPs
+# satisficed MPs
 mp_sat <- dplyr::filter(
   pm_avg,
   `LRP 1.5GT` > satisficed_criteria[1],
@@ -187,60 +155,9 @@ mp_not_sat <- pm_avg$MP[!pm_avg$MP %in% mp_sat & !pm_avg$MP %in% reference_mp]
 stopifnot(any(!mp_not_sat %in% mp_sat))
 stopifnot(any(!mp_sat %in% mp_not_sat))
 
-# # Projections of non-satisficed Index MPs
-# walk(names(mse), ~ {
-#   g <- plot_main_projections(Sub(mse[[.x]], MPs = c(
-#     "Iratio_23", "Iratio_55",
-#     "GB_slope_lambda1", "GB_slope_lambda05", "GB_slope_yrs10",
-#     "IDX", "IDX_smooth"
-#   )),
-#   catch_breaks = c(0, 10, 20, 30),
-#   catch_ylim = c(0, 40)
-#   )
-#   ggsave(paste0("mse/figures/projections/projections_index_", .x, ".png"), width = 6.5, height = 6.5)
-# })
-#
-# # Projections of SP MPs (non were satisficed)
-# walk(names(mse), ~ {
-#   g <- plot_main_projections(Sub(mse[[.x]], MPs = c("SP_8040_10u", "SP_8040_5u", "SP_4010_10u", "SP_4010_5u")),
-#     catch_breaks = c(0, 10, 20, 30),
-#     catch_ylim = c(0, 40)
-#   )
-#   ggsave(paste0("mse/figures/projections/projections_SP_", .x, ".png"), width = 6.5, height = 6.5)
-# })
-
-
-# Projections of reference MPs
-# walk(names(mse), ~ {
-#  g <- plot_main_projections(Sub(mse[[.x]], MPs = reference_mp),
-#                             catch_breaks = c(0, 10, 20, 30),
-#                             catch_ylim = c(0, 40))
-#  ggsave(paste0("mse/figures/projections/projections_refmp_", .x, ".png"), width = 6.5, height = 3.5)
-# }
-# )
-#
-## Projections of satisficed MPs
-# walk(names(mse), ~ {
-#  g <- plot_main_projections(Sub(mse[[.x]], MPs = mp_sat),
-#                             catch_breaks = c(0, 10, 20, 30),
-#                             catch_ylim = c(0, 40))
-#  ggsave(paste0("mse/figures/projections/projections_satisficed_", .x, ".png"), width = 6.5, height = 6.5)
-# }
-
-# # Dot plots
 ref_mp_cols <- c("grey45", "grey10", "grey75") %>% set_names(reference_mp)
 custom_pal <- c(RColorBrewer::brewer.pal(8, "Dark2")[seq_along(mp_sat)], ref_mp_cols) %>%
   set_names(c(mp_sat, reference_mp))
-# plot_dots(filter(pm_avg, MP %in% c(mp_sat, reference_mp)), type = "facet", dodge = 0.8)
-# ggsave("mse/figures/dot-refset-avg.png", width = 8, height = 3)
-#
-# # Convergence plot
-# scenarios %>%
-#   purrr::map(~ DLMtool::Sub(mse[[.x]], MPs = c(mp_sat, reference_mp))) %>%
-#   set_names(scenarios_human) %>%
-#   gfdlm::plot_convergence(pm = c("LRP 1.5GT", "ST C10"), ylim = c(0.3, 1.05), custom_pal = custom_pal)
-# ggsave("mse/figures/convergence.png", height = 4, width = 8)
-#
 
 mp_eg_not_sat <- c(
   "Iratio_23", "Iratio_55",
