@@ -295,8 +295,7 @@ g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
   set_names(sc$scenario_human) %>%
   gfdlm::plot_convergence(pm_list = names(satisficed_criteria)) +
   scale_colour_manual(values = custom_pal) +
-  theme(legend.position = "bottom") +
-  coord_cartesian(ylim = c(0, 0.5), expand = FALSE)
+  theme(legend.position = "bottom")
 .ggsave("convergence", width = 9, height = 4.5, plot = g)
 
 .ggsave("dot-refset-avg",
