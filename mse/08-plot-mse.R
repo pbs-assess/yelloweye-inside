@@ -76,13 +76,15 @@ ref_pt <- lapply(mse, function(x) {
   do.call(rbind, lapply(x@Misc$MSYRefs$ByYear[1:2], function(xx) {
     mean_ref <- mean(xx[, 1, x@nyears])
     sd_ref <- sd(xx[, 1, x@nyears])
-    structure(c(mean_ref, sd_ref/mean_ref), names = c("Mean", "CV"))
+    structure(c(mean_ref, sd_ref / mean_ref), names = c("Mean", "CV"))
   }))
 })
 
 ref_pt_text <- do.call(rbind, lapply(ref_pt, function(x) {
-  round(x, 2) %>% format(trim = TRUE) %>% apply(1, function(xx) paste0(xx[1], " (", xx[2], ")"))
-  })) %>%
+  round(x, 2) %>%
+    format(trim = TRUE) %>%
+    apply(1, function(xx) paste0(xx[1], " (", xx[2], ")"))
+})) %>%
   structure(dimnames = list(scenarios_human, c("MSY", "FMSY")))
 write.csv(ref_pt_text, file = "mse/figures/ref_pt.csv")
 saveRDS(ref_pt_text, "mse/figures/ref_pt.rds")
@@ -174,7 +176,8 @@ satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
 mp_sat <- dplyr::filter(
   pm_avg,
   `LRP 1.5GT` > satisficed_criteria[1],
-  `ST C10` > satisficed_criteria[2]) %>%
+  `ST C10` > satisficed_criteria[2]
+) %>%
   pull(MP)
 mp_sat <- mp_sat[!mp_sat %in% reference_mp]
 mp_sat
@@ -208,21 +211,21 @@ stopifnot(any(!mp_sat %in% mp_not_sat))
 
 
 # Projections of reference MPs
-#walk(names(mse), ~ {
+# walk(names(mse), ~ {
 #  g <- plot_main_projections(Sub(mse[[.x]], MPs = reference_mp),
 #                             catch_breaks = c(0, 10, 20, 30),
 #                             catch_ylim = c(0, 40))
 #  ggsave(paste0("mse/figures/projections/projections_refmp_", .x, ".png"), width = 6.5, height = 3.5)
-#}
-#)
+# }
+# )
 #
 ## Projections of satisficed MPs
-#walk(names(mse), ~ {
+# walk(names(mse), ~ {
 #  g <- plot_main_projections(Sub(mse[[.x]], MPs = mp_sat),
 #                             catch_breaks = c(0, 10, 20, 30),
 #                             catch_ylim = c(0, 40))
 #  ggsave(paste0("mse/figures/projections/projections_satisficed_", .x, ".png"), width = 6.5, height = 6.5)
-#}
+# }
 
 # # Dot plots
 ref_mp_cols <- c("grey45", "grey10", "grey75") %>% set_names(reference_mp)
@@ -239,9 +242,11 @@ custom_pal <- c(RColorBrewer::brewer.pal(8, "Dark2")[seq_along(mp_sat)], ref_mp_
 # ggsave("mse/figures/convergence.png", height = 4, width = 8)
 #
 
-mp_eg_not_sat <- c("Iratio_23", "Iratio_55",
+mp_eg_not_sat <- c(
+  "Iratio_23", "Iratio_55",
   "GB_slope_lambda1", "GB_slope_lambda05", "GB_slope_yrs10",
-  "IDX", "IDX_smooth", "SP_8040_10u", "SP_8040_5u", "SP_4010_10u", "SP_4010_5u")
+  "IDX", "IDX_smooth", "SP_8040_10u", "SP_8040_5u", "SP_4010_10u", "SP_4010_5u"
+)
 
 sc$scenario_human[sc$scenario == "updog_fixsel"] <- "(1) Upweight\ndogfish survey"
 sc$scenario_human[sc$scenario == "episodic_recruitment"] <- "(3) Episodic\nrecruitment"
@@ -252,14 +257,12 @@ g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
   set_names(sc$scenario_human) %>%
   plot_tigure_facet() +
   theme(
-    plot.margin = margin(t = 11/2 - 5, r = 11/2 + 15, b = 11/2, l = 11/2 - 5)
+    plot.margin = margin(t = 11 / 2 - 5, r = 11 / 2 + 15, b = 11 / 2, l = 11 / 2 - 5)
   )
 ggsave("mse/figures/ye-tigure-cosewic-all.png", width = 5.7, height = 5)
 
 g <- dplyr::filter(e_avg, MP %in% union(mp_sat, "NFref")) %>%
-  plot_tigure() +
-  scale_fill_viridis_c(limits = c(0, 1), begin = 0.15, end = 1, alpha = 0.6,
-    option = "C", direction = 1)
+  plot_tigure()
 g
 ggsave("mse/figures/ye-tigure-cosewic-avg.png", width = 2.5, height = 3)
 
@@ -284,59 +287,84 @@ plots <- gfdlm::plot_factory(
 
 # rm(mse) # memory problems
 g <- plots$projections_index +
- scale_x_continuous(breaks = seq(1975, 2120, 25)) +
- scale_y_continuous(labels = function(x) x / 1e6)
+  scale_x_continuous(breaks = seq(1975, 2120, 25)) +
+  scale_y_continuous(labels = function(x) x / 1e6)
 .ggsave("projections-index", width = 12, height = 10, plot = g)
 
 g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
- set_names(sc$scenario_human) %>%
- gfdlm::plot_convergence(pm_list = names(satisficed_criteria)) +
- scale_colour_manual(values = custom_pal) +
-  theme(legend.position = "bottom")
+  set_names(sc$scenario_human) %>%
+  gfdlm::plot_convergence(pm_list = names(satisficed_criteria)) +
+  scale_colour_manual(values = custom_pal) +
+  theme(legend.position = "bottom") +
+  coord_cartesian(ylim = c(0, 0.5), expand = FALSE)
 .ggsave("convergence", width = 9, height = 4.5, plot = g)
 
-.ggsave("dot-refset-avg", width = 8, height = 4,
-  plot = plots$dot_refset_avg)
-.ggsave("tradeoff-refset-avg", width = 4.5, height = 4,
-  plot = plots$tradeoff_avg + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE))
-.ggsave("tradeoff-robset", width = 6, height = 3,
-  plot = plots$tradeoff_robset + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE))
+.ggsave("dot-refset-avg",
+  width = 8, height = 4,
+  plot = plots$dot_refset_avg
+)
+.ggsave("tradeoff-refset-avg",
+  width = 4.5, height = 4,
+  plot = plots$tradeoff_avg + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE)
+)
+.ggsave("tradeoff-robset",
+  width = 6, height = 3,
+  plot = plots$tradeoff_robset + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE)
+)
 
 pm_angle <- theme(
   axis.text.x.top = element_text(angle = 45, hjust = 0, vjust = 0),
-  plot.margin = margin(t = 11/2 - 5, r = 11/2 + 10, b = 11/2, l = 11/2 - 5)
+  plot.margin = margin(t = 11 / 2 - 5, r = 11 / 2 + 10, b = 11 / 2, l = 11 / 2 - 5)
 )
-.ggsave("tigure-refset", width = 6.75, height = 5.5,
-  plot = plots$tigure_refset + pm_angle)
-.ggsave("tigure-robset", width = 6.5, height = 3,
-  plot = plots$tigure_robset + pm_angle)
-.ggsave("tigure-refset-min", width = 5, height = 7,
-  plot = plots$tigure_refset_min + pm_angle)
-.ggsave("tigure-refset-avg", width = 5, height = 7,
-  plot = plots$tigure_refset_avg + pm_angle)
-.ggsave("radar-refset", width = 10, height = 10,
-  plot = plots$radar_refset)
-.ggsave("radar-robset", width = 10, height = 5,
-  plot = plots$radar_robset)
+.ggsave("tigure-refset",
+  width = 6.75, height = 5.5,
+  plot = plots$tigure_refset + pm_angle
+)
+.ggsave("tigure-robset",
+  width = 6.5, height = 3,
+  plot = plots$tigure_robset + pm_angle
+)
+.ggsave("tigure-refset-min",
+  width = 5, height = 7,
+  plot = plots$tigure_refset_min + pm_angle
+)
+.ggsave("tigure-refset-avg",
+  width = 5, height = 7,
+  plot = plots$tigure_refset_avg + pm_angle
+)
+.ggsave("radar-refset",
+  width = 10, height = 10,
+  plot = plots$radar_refset
+)
+.ggsave("radar-robset",
+  width = 10, height = 5,
+  plot = plots$radar_robset
+)
 
 g <- plots$projections_index +
- scale_x_continuous(breaks = seq(1980, 2090, 20)) +
- coord_cartesian(ylim = c(0, 1e5), expand = FALSE) +
- scale_y_continuous(breaks = seq(0, 1e5, 5e4), labels = function(x) x / 1e6)
+  scale_x_continuous(breaks = seq(1980, 2090, 20)) +
+  coord_cartesian(ylim = c(0, 1e5), expand = FALSE) +
+  scale_y_continuous(breaks = seq(0, 1e5, 5e4), labels = function(x) x / 1e6)
 .ggsave("projections-index", width = 12, height = 8, plot = g)
 
 walk(names(plots$projections), ~ {
- .ggsave(paste0("projections-", .x),
-   width = 8.5, height = 10,
-   plot = plots$projections[[.x]]
- )
+  .ggsave(paste0("projections-", .x),
+    width = 8.5, height = 10,
+    plot = plots$projections[[.x]]
+  )
 })
-.ggsave("projections-not-sat2", width = 8.5, height = 13,
-  plot = plots$projections_not_sat2)
-.ggsave("projections-not-sat", width = 6.5, height = 20,
-  plot = plots$projections_not_sat)
-.ggsave("projections-scenarios", width = 8, height = 11,
-  plot = plots$projections_scenarios + scale_color_brewer())
+.ggsave("projections-not-sat2",
+  width = 8.5, height = 13,
+  plot = plots$projections_not_sat2
+)
+.ggsave("projections-not-sat",
+  width = 6.5, height = 20,
+  plot = plots$projections_not_sat
+)
+.ggsave("projections-scenarios",
+  width = 8, height = 11,
+  plot = plots$projections_scenarios + scale_color_brewer()
+)
 
 optimize_png <- FALSE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
@@ -344,7 +372,7 @@ if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   setwd("mse/figures")
   system(paste0(
     "find -X . -name '*.png' -print0 | xargs -0 -n ",
-    files_per_core, " -P ", parallel::detectCores()/2, " optipng -strip all"
+    files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
   ))
   setwd(here())
 }
