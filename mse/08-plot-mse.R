@@ -32,7 +32,6 @@ PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "ST C10", "ST C15", "LT C20", "ST A
 
 # Set up and checks -----------------------------------------------------------
 sc <- readRDS("mse/om/ye-scenarios.rds")
-sc <- rename(sc, scenario_human = scenarios_human)
 fig_dir <- "mse/figures"
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
@@ -55,7 +54,7 @@ get_filtered_scenario <- function(type, column) {
     set_names()
 }
 scenarios <- sc$scenario %>% set_names()
-scenarios_human <- sc$scenario_human %>% set_names()
+scenario_human <- sc$scenario_human %>% set_names()
 scenarios_ref <- get_filtered_scenario("Reference", "scenario")
 scenarios_ref_human <- get_filtered_scenario("Reference", "scenario_human")
 scenarios_rob <- get_filtered_scenario("Robustness", "scenario")
@@ -83,7 +82,7 @@ ref_pt_text <- do.call(rbind, lapply(ref_pt, function(x) {
     format(trim = TRUE) %>%
     apply(1, function(xx) paste0(xx[1], " (", xx[2], ")"))
 })) %>%
-  structure(dimnames = list(scenarios_human, c("MSY", "FMSY")))
+  structure(dimnames = list(scenario_human, c("MSY", "FMSY")))
 write.csv(ref_pt_text, file = "mse/figures/ref_pt.csv")
 saveRDS(ref_pt_text, "mse/figures/ref_pt.rds")
 
