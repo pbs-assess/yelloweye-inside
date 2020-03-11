@@ -5,7 +5,6 @@ library("purrr")
 library("ggplot2")
 library("gfdlm")
 library("here")
-
 # Settings --------------------------------------------------------------------
 reference_mp <- c("FMSYref", "FMSYref75", "NFref")
 sp <- "ye"
@@ -231,7 +230,7 @@ pm_angle <- theme(
 
 # # Dot plots
 ref_mp_cols <- c("grey45", "grey10", "grey75") %>% set_names(reference_mp)
-custom_pal <- c(RColorBrewer::brewer.pal(8, "Set2")[seq_along(mp_sat)], ref_mp_cols) %>%
+custom_pal <- c(RColorBrewer::brewer.pal(8, "Dark2")[seq_along(mp_sat)], ref_mp_cols) %>%
   set_names(c(mp_sat, reference_mp))
 # plot_dots(filter(pm_avg, MP %in% c(mp_sat, reference_mp)), type = "facet", dodge = 0.8)
 # ggsave("mse/figures/dot-refset-avg.png", width = 8, height = 3)
@@ -247,6 +246,11 @@ custom_pal <- c(RColorBrewer::brewer.pal(8, "Set2")[seq_along(mp_sat)], ref_mp_c
 mp_eg_not_sat <- c("Iratio_23", "Iratio_55",
   "GB_slope_lambda1", "GB_slope_lambda05", "GB_slope_yrs10",
   "IDX", "IDX_smooth", "SP_8040_10u", "SP_8040_5u", "SP_4010_10u", "SP_4010_5u")
+
+sc$scenario_human[sc$scenario == "updog_fixsel"] <- "(1) Upweight\ndogfish survey"
+sc$scenario_human[sc$scenario == "episodic_recruitment"] <- "(3) Episodic\nrecruitment"
+sc$scenario_human[sc$scenario == "upweight_dogfish"] <- "(4) Estimate\nHBLL selectivity"
+sc$scenario_human[sc$scenario == "high_index_cv"] <- "(B) High CV HBLL\n(projected)"
 
 plots <- gfdlm::plot_factory(
   mse_list = mse,
@@ -268,8 +272,7 @@ plots <- gfdlm::plot_factory(
 >>>>>>> 73d5f6f388ad5b84d9293597ae503606c3fd15e2
 )
 
-rm(mse) # memory problems
-gc()
+# rm(mse) # memory problems
 g <- plots$projections_index +
  scale_x_continuous(breaks = seq(1975, 2120, 25)) +
  scale_y_continuous(labels = function(x) x / 1e6)
@@ -278,29 +281,39 @@ g <- plots$projections_index +
 g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
  set_names(scenarios_human) %>%
  gfdlm::plot_convergence(pm_list = names(satisficed_criteria)) +
- scale_colour_manual(values = custom_pal)
-.ggsave("convergence", width = 8, height = 11, plot = g)
+ scale_colour_manual(values = custom_pal) +
+  theme(legend.position = "bottom")
+.ggsave("convergence", width = 10, height = 5, plot = g)
 
-.ggsave("dot-refset-avg", width = 8, height = 4.5, plot = plots$dot_refset_avg)
+.ggsave("dot-refset-avg", width = 8, height = 4.5,
+  plot = plots$dot_refset_avg)
 .ggsave("tradeoff-refset", width = 7.5, height = 5, plot = g)
 .ggsave("tradeoff-refset-avg", width = 4.5, height = 4,
   plot = plots$tradeoff_refset_avg + facet_wrap(~scenario, ncol = 4))
-.ggsave("tradeoff-robset", width = 6, height = 3, plot = plots$tradeoff_robset)
+.ggsave("tradeoff-robset", width = 6, height = 3,
+  plot = plots$tradeoff_robset)
 
 pm_angle <- theme(
- axis.text.x.top = element_text(angle = 60, hjust = 0)
+  axis.text.x.top = element_text(angle = 45, hjust = 0, vjust = 0),
+  plot.margin = margin(t = 11/2 - 5, r = 11/2 + 10, b = 11/2, l = 11/2 - 5)
 )
-.ggsave("tigure-refset", width = 6.75, height = 5.5, plot = plots$tigure_refset + pm_angle)
-.ggsave("tigure-robset", width = 6.5, height = 3, plot = plots$tigure_robset + pm_angle)
-.ggsave("tigure-refset-min", width = 4.5, height = 6.75, plot = plots$tigure_refset_min + pm_angle)
-.ggsave("tigure-refset-avg", width = 4.5, height = 6.75, plot = plots$tigure_refset_avg + pm_angle)
-.ggsave("radar-refset", width = 10, height = 10, plot = plots$radar_refset)
-.ggsave("radar-robset", width = 6, height = 6, plot = plots$radar_robset)
+.ggsave("tigure-refset", width = 6.75, height = 5.5,
+  plot = plots$tigure_refset + pm_angle)
+.ggsave("tigure-robset", width = 6.5, height = 3,
+  plot = plots$tigure_robset + pm_angle)
+.ggsave("tigure-refset-min", width = 5, height = 7,
+  plot = plots$tigure_refset_min + pm_angle)
+.ggsave("tigure-refset-avg", width = 5, height = 7,
+  plot = plots$tigure_refset_avg + pm_angle)
+.ggsave("radar-refset", width = 10, height = 10,
+  plot = plots$radar_refset)
+.ggsave("radar-robset", width = 10, height = 5,
+  plot = plots$radar_robset)
 
 g <- plots$projections_index +
  scale_x_continuous(breaks = seq(1980, 2090, 20)) +
- coord_cartesian(ylim = c(0, 16e6)) +
- scale_y_continuous(labels = function(x) x / 1e6)
+ coord_cartesian(ylim = c(0, 1e5), expand = FALSE) +
+ scale_y_continuous(breaks = seq(0, 1e5, 5e4), labels = function(x) x / 1e6)
 .ggsave("projections-index", width = 12, height = 8, plot = g)
 
 walk(names(plots$projections), ~ {
@@ -309,16 +322,19 @@ walk(names(plots$projections), ~ {
    plot = plots$projections[[.x]]
  )
 })
-.ggsave("projections-not-sat2", width = 6.5, height = 9, plot = plots$projections_not_sat2)
-.ggsave("projections-not-sat", width = 6.5, height = 20, plot = plots$projections_not_sat)
-.ggsave("projections-scenarios-ref", width = 8, height = 10, plot = plots$projections_scenarios)
+.ggsave("projections-not-sat2", width = 8.5, height = 13,
+  plot = plots$projections_not_sat2)
+.ggsave("projections-not-sat", width = 6.5, height = 20,
+  plot = plots$projections_not_sat)
+.ggsave("projections-scenarios", width = 8, height = 11,
+  plot = plots$projections_scenarios)
 
 optimize_png <- FALSE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
-  files_per_core <- 1
+  files_per_core <- 2
   setwd("mse/figures")
   system(paste0(
-    "find -X . -name '*.png' -print0 | xargs -0 -n ",
+    "find -X . -name 'ye-*.png' -print0 | xargs -0 -n ",
     files_per_core, " -P ", parallel::detectCores()/2, " optipng -strip all"
   ))
   setwd(here())
