@@ -165,10 +165,14 @@ mp_eg_not_sat <- c(
   "IDX", "IDX_smooth", "SP_8040_10u", "SP_8040_5u", "SP_4010_10u", "SP_4010_5u"
 )
 
-sc$scenario_human[sc$scenario == "updog_fixsel"] <- "(1) Upweight\ndogfish survey"
-sc$scenario_human[sc$scenario == "episodic_recruitment"] <- "(3) Episodic\nrecruitment"
-sc$scenario_human[sc$scenario == "upweight_dogfish"] <- "(4) Estimate\nHBLL selectivity"
-sc$scenario_human[sc$scenario == "high_index_cv"] <- "(B) High CV HBLL\n(projected)"
+sc$scenario_human[sc$scenario == "updog_fixsel"] <-
+  "(1) Upweight\ndogfish survey"
+sc$scenario_human[sc$scenario == "episodic_recruitment"] <-
+  "(3) Episodic\nrecruitment"
+sc$scenario_human[sc$scenario == "upweight_dogfish"] <-
+  "(4) Estimate\nHBLL selectivity"
+sc$scenario_human[sc$scenario == "high_index_cv"] <-
+  "(B) High CV HBLL\n(projected)"
 
 g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
   set_names(sc$scenario_human) %>%
@@ -199,7 +203,7 @@ plots <- gfdlm::plot_factory(
   catch_breaks = seq(0, 30, 10),
   catch_ylim = c(0, 40),
   survey_type = "AddInd",
-  skip_worms = TRUE # memory problems
+  skip_worms = FALSE # memory problems
 )
 
 # rm(mse) # memory problems
@@ -221,8 +225,8 @@ g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
 )
 
 .ggsave("dot-robset",
-        width = 8, height = 4,
-        plot = plots$dot_robset
+  width = 8, height = 4,
+  plot = plots$dot_robset
 )
 
 .ggsave("tradeoff-refset-avg",
@@ -264,23 +268,38 @@ pm_angle <- theme(
 )
 
 .ggsave("radar-refset-avg",
-        width = 10, height = 10,
-        plot = plots$radar_refset_avg
+  width = 10, height = 10,
+  plot = plots$radar_refset_avg
+)
+
+.ggsave("worms",
+  width = 10, height = 10,
+  plot = plots$worms_hist_proj
+)
+
+.ggsave("worms-refset",
+  width = 10, height = 10,
+  plot = plots$worms_hist_proj_ref
+)
+
+.ggsave("worms-robset",
+  width = 10, height = 10,
+  plot = plots$worms_hist_proj_rob
 )
 
 .ggsave("kobe",
-        width = 10, height = 10,
-        plot = plots$kobe
+  width = 10, height = 10,
+  plot = plots$kobe
 )
 
 .ggsave("kobe-refset",
-        width = 10, height = 10,
-        plot = plots$kobe_ref
+  width = 10, height = 10,
+  plot = plots$kobe_ref
 )
 
 .ggsave("kobe-robset",
-        width = 10, height = 10,
-        plot = plots$kobe_rob
+  width = 10, height = 10,
+  plot = plots$kobe_rob
 )
 
 g <- plots$projections_index +
@@ -305,7 +324,7 @@ walk(names(plots$projections), ~ {
 )
 .ggsave("projections-scenarios",
   width = 8, height = 11,
-  plot = plots$projections_scenarios + scale_color_brewer()
+  plot = plots$projections_scenarios
 )
 
 optimize_png <- FALSE
@@ -318,4 +337,3 @@ if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   ))
   setwd(here())
 }
-
