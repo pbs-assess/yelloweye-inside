@@ -61,7 +61,7 @@ get_SSB <- function(x, scenario, mse = NULL, type = c("SSB", "depletion", "MSY")
   left_join(d1, d2, by = "year")
 }
 
-# Depletion
+# Depletion -------------------------------------------------------------------
 g <- purrr::map2_df(sra_ye, sc$scenarios_human, get_SSB, type = "depletion") %>%
   mutate(scenario = factor(scenario, levels = sc$scenarios_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
@@ -75,7 +75,7 @@ ggsave(file.path(fig_dir, paste0("ye-compare-SRA-depletion-panel.png")),
   width = 8, height = 4
 )
 
-# SSB
+# SSB -------------------------------------------------------------------------
 g <- purrr::map2_df(sra_ye, sc$scenarios_human, get_SSB, type = "SSB") %>%
   mutate(scenario = factor(scenario, levels = sc$scenarios_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
@@ -89,17 +89,10 @@ ggsave(file.path(fig_dir, paste0("ye-compare-SRA-SSB-panel.png")),
        width = 8, height = 4
 )
 
-# SSB/SSBMSY
+# SSB/SSBMSY  -----------------------------------------------------------------
 #sra <- readRDS("mse/om/upweight_dogfish.rds")
 #Hist <- runMSE(sra@OM, parallel = TRUE, Hist = TRUE)
 #saveRDS(Hist, file = 'mse/om/Hist_upweight_dogfish.rds')
-#mse_ye <- lapply(sc$scenario, function(x) {
-  #if(x == "upweight_dogfish") {
-  #  readRDS(paste0("mse/om/Hist_", x, ".rds"))
-  #} else {
-  #  readRDS(paste0("mse/om/MSE_", x, ".rds"))
-  #}
-#})
 mse_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
 names(mse_ye) <- sc$scenario
 
@@ -118,7 +111,7 @@ ggsave(file.path(fig_dir, paste0("ye-compare-SRA-MSY-panel.png")),
 )
 
 
-# Survey plots
+# Survey plots  ---------------------------------------------------------------
 survey_names = c("HBLL", "Dogfish", "CPUE 86-90", "CPUE 95-01", "CPUE 03-05")
 get_sra_survey <- function(sra, sc_name, survey_names) {
   n_surv <- dim(sra@Misc[[1]]$Ipred)[2]
@@ -150,10 +143,10 @@ Index <- sra_ye[[1]]@data$Index %>% structure(dimnames = list(all_years, survey_
   as.data.frame() %>% cbind(data.frame(Year = all_years)) %>%
   reshape2::melt(id.vars = c("Year"), variable.name = "survey") %>% left_join(I_sd, by = c("Year", "survey"))
 
-Index$lower <- exp(log(Index$value) - 2 * Index$SD * 1.5)
-Index$upper <- exp(log(Index$value) + 2 * Index$SD * 1.5)
+Index$lower <- exp(log(Index$value) - 2 * Index$SD)
+Index$upper <- exp(log(Index$value) + 2 * Index$SD)
 
-# Plot all surveys and OMs
+# Plot all surveys and OMs  ---------------------------------------------------
 g <- ggplot(filter(surv, year >= 1980), aes(year, value, group = paste(iter, survey),
                                             colour = as.character(survey))) +
   geom_line(alpha = 0.05) +
@@ -166,7 +159,7 @@ g <- ggplot(filter(surv, year >= 1980), aes(year, value, group = paste(iter, sur
   ylab("Index") + xlab("Year") + labs(colour = "Survey", fill = "Survey") + coord_cartesian(xlim = c(1980, 2020))
 ggsave("mse/figures/ye-index-fits.png", width = 15, height = 10)
 
-# Plot HBLL
+# Plot HBLL  ------------------------------------------------------------------
 #plot(1:5, col = RColorBrewer::brewer.pal(5, "Set2"), pch = 16)
 g <- ggplot(filter(surv, year >= 1980 & survey == "HBLL"), aes(year, value, group = paste(iter))) +
   geom_line(alpha = 0.05, colour = "#66C2A5") +
@@ -190,7 +183,7 @@ g <- ggplot(filter(surv, year >= 2000 & survey == "HBLL"), aes(year, value, grou
   ylab("Index") + xlab("Year") + coord_cartesian(xlim = c(2000, 2020))
 ggsave("mse/figures/ye-index-HBLL2.png", width = 8, height = 5)
 
-# Plot dogfish
+# Plot dogfish  ---------------------------------------------------------------
 g <- ggplot(filter(surv, year >= 1980 & survey == "Dogfish"), aes(year, value, group = paste(iter))) +
   geom_line(alpha = 0.05, colour = "#FC8D62") +
   geom_pointrange(data = filter(Index, survey == "Dogfish"), mapping = aes(x = Year, y = value, ymin = lower, ymax = upper),
@@ -202,7 +195,8 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "Dogfish"), aes(year, value, g
   ylab("Index") + xlab("Year") + coord_cartesian(xlim = c(1980, 2020))
 ggsave("mse/figures/ye-index-dogfish.png", width = 8, height = 5)
 
-# Plot HBLL age comps, report N = sampling trips for the multinomial likelihood in the SRA
+# Plot HBLL age comps, report N = sampling trips for the multinomial likelihood in the SRA -----------
+SRA_data <- readRDS("mse/scoping/SRA_data.rds")
 Ntrips <- rowSums(SRA_data$s_CAA[,,1], na.rm = TRUE)
 yr_ind <- Ntrips > 0
 yr_plot <- SRA_data$Year[yr_ind]
@@ -222,6 +216,7 @@ HBLL_pred <- lapply(sc$scenario, function(xx) {
   }))
 })
 
+dir.create("mse/figures/conditioning", showWarnings = FALSE)
 walk(1:length(HBLL_pred), ~{
   g <- ggplot(HBLL_pred[[.x]], aes(Age, Frequency, group = Iter)) + facet_wrap(~Year, scales = "free_y") +
     geom_line(alpha = 0.05, colour = "#66C2A5") +
@@ -231,8 +226,6 @@ walk(1:length(HBLL_pred), ~{
     gfplot::theme_pbs() + ggtitle(sc$scenarios_human[.x])
   ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8, dpi = 500)
 })
-
-
 
 # Selectivity HBLL and dogfish
 get_sra_selectivity <- function(sc_name) {
@@ -255,7 +248,7 @@ g <- sel %>%
   coord_cartesian(expand = FALSE, ylim = c(-0.01, 1.1))
 ggsave("mse/figures/HBLL-selectivity.png", width = 8, height = 5)
 
-# Fishery selectivity
+# Fishery selectivity  --------------------------------------------------------
 sel2 <- data.frame(Age = 1:80, Commercial = sra_ye[[1]]@Misc[[1]]$vul[1,,1],
                    Recreational = sra_ye[[1]]@Misc[[1]]$vul[1,,2],
                    HBLL = sra_ye[[1]]@Misc[[1]]$s_vul[1,,1]) %>%
@@ -269,7 +262,7 @@ ggplot(filter(sel2, Fleet != "HBLL"), aes(Age, Selectivity, colour = Fleet)) + g
   coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
 ggsave("mse/figures/fishery-selectivity2.png", width = 7, height = 4)
 
-# Histograms of M and h
+# Histograms of M and h  ------------------------------------------------------
 
 #histogram of M and h
 samps <- data.frame(M = sra_ye[[1]]@OM@cpars$M, h = sra_ye[[1]]@OM@cpars$h, lowM = sra_ye$lowM_fixsel@OM@cpars$M)
@@ -300,9 +293,7 @@ ggplot(samps, aes(M, colour = Scenario)) + geom_freqpoly(bins = 20) +
   gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
 ggsave("mse/figures/lowM.png", height = 4, width = 5)
 
-
-
-#### Low/high catch
+#### Low/high catch  ----------------------------------------------------------
 cat <- data.frame(Year = rep(1918:2019, 3),
                   Catch = c(sra_ye[[1]]@data$Chist[, 2], sra_ye[[1]]@data$Chist[, 1], sra_ye$lowcatch_fixsel@data$Chist[, 1]),
                   Fleet = c(rep("Recreational", 102), rep("Catch", 2 * 102)),
@@ -340,12 +331,11 @@ P_LRP <- function(MSEobj, LRP = 0.4, Yr = NULL) {
 P_USR <- P_LRP
 formals(P_USR)$LRP <- 0.8
 
-
 COSEWIC_P70 <- COSEWIC_P50 <- COSEWIC_P30 <- COSEWIC_Bdecline_hist
 formals(COSEWIC_P50)$Ref <- 0.5
 formals(COSEWIC_P30)$Ref <- 0.3
 
-# Historical indicators
+# Historical indicators  ------------------------------------------------------
 # P70 - probability that SSB has not declined at least 70% within the past 3 GT
 # P50 - probability that SSB has not declined at least 50% within the past 3 GT
 # P30 - probability that SSB has not declined at least 30% within the past 3 GT
@@ -366,9 +356,7 @@ YE_historical$MP <- factor(sc$scenarios_human, levels = sc$scenarios_human)
 g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenarios_human))
 ggsave("mse/figures/historical_indicators.png", height = 4, width = 5)
 
-
-
-# Plot episodic recruitment
+# Plot episodic recruitment ---------------------------------------------------
 png("mse/figures/rec_dev.png", height = 5, width = 5, units = "in", res = 400)
 par(mfrow = c(2, 1), mar = c(2, 3, 1, 1), oma = c(3, 2, 0, 0))
 matplot(1918:2119, t(sra_ye[[1]]@OM@cpars$Perr_y[26:28, -c(1:79)]), typ = 'l', lty = 1, xlab = "", ylab = "")
@@ -382,7 +370,7 @@ mtext("Recruitment deviations (normal space)", side = 2, outer = TRUE)
 legend("topleft", "Episodic recruitment", bty = "n")
 dev.off()
 
-# Plot higher Isd and AC of HBLL in (B) High index CV
+# Plot higher Isd and AC of HBLL in (B) High index CV  ------------------------
 SRA <- readRDS("mse/om/high_index_cv.rds")
 
 Iobs <- SRA@OM@cpars$Data@AddInd[1, 1, ]
