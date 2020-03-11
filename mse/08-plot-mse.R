@@ -219,6 +219,12 @@ g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
   width = 8, height = 4,
   plot = plots$dot_refset_avg
 )
+
+.ggsave("dot-robset",
+        width = 8, height = 4,
+        plot = plots$dot_robset
+)
+
 .ggsave("tradeoff-refset-avg",
   width = 4.5, height = 4,
   plot = plots$tradeoff_avg + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE)
@@ -257,6 +263,26 @@ pm_angle <- theme(
   plot = plots$radar_robset
 )
 
+.ggsave("radar-refset-avg",
+        width = 10, height = 10,
+        plot = plots$radar_refset_avg
+)
+
+.ggsave("kobe",
+        width = 10, height = 10,
+        plot = plots$kobe
+)
+
+.ggsave("kobe-refset",
+        width = 10, height = 10,
+        plot = plots$kobe_ref
+)
+
+.ggsave("kobe-robset",
+        width = 10, height = 10,
+        plot = plots$kobe_rob
+)
+
 g <- plots$projections_index +
   scale_x_continuous(breaks = seq(1980, 2090, 20)) +
   coord_cartesian(ylim = c(0, 1e5), expand = FALSE) +
@@ -292,3 +318,4 @@ if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   ))
   setwd(here())
 }
+
