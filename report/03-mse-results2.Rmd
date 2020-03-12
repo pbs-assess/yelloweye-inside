@@ -226,8 +226,10 @@ csasdown::csas_table(mp, caption = "Candidate MPs. The `.` in front of some MPs 
 
 ## STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:results5}
 
+*TODO: make yelloweye-pm-all.rds and modify code below as needed*
+
 ```{r}
-pm_df_list <- readRDS(here("generated-data/rex-pm-all.rds"))
+pm_df_list <- readRDS(here("generated-data/yelloweye-pm-all.rds"))
 pm_all <- bind_rows(pm_df_list, .id = "scenario")
 pm_avg <- group_by(pm_all, MP) %>%
   summarise_if(is.numeric, mean, na.rm = TRUE)
@@ -272,7 +274,7 @@ Second, we removed CC_hist20 since it was outperformed by the other constant cat
 This left `r number_to_word(length(mp_sat))` MPs (`r gfutilities::commify(sort(mp_sat))`).
 
 (ref:fig-yelloweye-converge)
-Assessing convergence of the Rex Sole closed-loop simulations on consistent rank order of MPs within performance metrics.
+Assessing convergence of the closed-loop simulations on consistent rank order of MPs within performance metrics.
 Colours represent individual satisficed and reference MPs.
 Lines that do not cross by the final replicates indicate that rank order among replicates had converged.
 Although not shown, we also checked that the satisficing rules had converged (i.e., the selection of satisficed MPs did not change with additional replicates).

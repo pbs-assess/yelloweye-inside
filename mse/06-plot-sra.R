@@ -32,6 +32,14 @@ saveRDS(sc, file = "mse/om/ye-scenarios.rds")
 sra_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/", x, ".rds")))
 names(sra_ye) <- sc$scenario
 
+#get converged replicates
+scenarios <- sc$scenario %>% purrr::set_names(sc$scenario_human)
+oms <- map(scenarios, ~ {
+  readRDS(paste0("mse/om/", .x, ".rds"))@OM
+})
+yelloweye_converged <- map_dfr(oms, ~tibble(nsim = .x@nsim), .id = "scenario")
+saveRDS(yelloweye_converged, file = here("mse/om/yelloweye-converged.rds"))
+
 
 # Some plots ------------------------------------------------------------------
 
