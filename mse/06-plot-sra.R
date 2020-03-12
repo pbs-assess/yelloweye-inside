@@ -150,7 +150,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_F) %>%
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
   labs(x = "Year", y = "F") +
-  coord_cartesian(ylim = c(0, 1.8), expand = FALSE)
+  coord_cartesian(ylim = c(0, 0.4), expand = FALSE)
 ggsave(here::here("mse/figures/ye-compare-SRA-F-panel.png"),
        width = 8, height = 6.75
 )

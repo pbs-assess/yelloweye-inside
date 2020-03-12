@@ -188,8 +188,6 @@ Apical fishing mortality ($F$) trajectories for reference and robustness set OMs
 Apical fishing mortality is the maximum $F$ experienced by fish of any age in a given year.
 Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
 
-*TODO: make ye-compare-F-panel.png and ye-compare-recdev-panel.png*
-
 ```{r yelloweye-F-om, fig.cap="(ref:fig-yelloweye-F-om)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 ```
