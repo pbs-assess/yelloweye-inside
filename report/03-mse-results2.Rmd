@@ -30,8 +30,7 @@ We defined the objectives for Rex Sole based on the provisional objectives prese
 
 *TODO: justify length of projection period here (based on gen time)*
 
-Our estimated length at 50% maturity (25.8 cm), coupled with our estimated growth parameters, imply an age at 50% maturity of approximately 4--5 years.
-Since 1.5 to 2 generations would be less than 50 years, we chose to base our long-term performance metrics on a 50-year projection.
+TEXT about choice of 100 y projection period and generation time (check Quang's notes on years used for calculating LT performance metrics)
 
 *TODO: Change these to the YE PMs*
 
@@ -47,6 +46,8 @@ The performance metrics measuring the objectives were:
 We measured the performance metrics as probabilities integrated over years and replicates simultaneously.
 
 ## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:results3}
+
+*TODO: change to YE OMs --- see table and headings below*
 
 We considered the major axes of uncertainty for Rex Sole to be:
 
@@ -90,14 +91,14 @@ Descriptive text, possibly figs
 
 
 
-
 ### The Robustness Set {#sec:results-robustness-set}
 
 #### Low natural mortality ($M$)
 
 *This is Rex text but could use something similar*
 
-We considered one alternative scenario that differed in terms of the value of $M$ (Table \@ref(tab:rex-scen)).
+We considered one alternative scenario that differed in terms of the value of $M$ (Table \@ref(tab:yelloweye-scen)).
+
 Unless otherwise stated, all other scenarios drew from a baseline uniform distribution $M$ = 0.17--0.25 *y*^-1^, which starts at the value of 0.17 *y*^-1^ used for the Gulf of Alaska stock assessment of Rex Sole (@mcgilliard2017, see Section \@ref(app:desc-stock-m-rex)) and explores a slightly higher range since *M* is likely to be somewhat greater at a lower latitude.
 
 * The scenario "Higher M" considers that *M* could be latitude-dependent and may be substantially higher for stocks in warmer BC waters (*M* = 0.3 *y*^-1^).
@@ -114,7 +115,7 @@ We conditioned the models using: (1) commercial catch data from 1996--2019; (2) 
 
 The SRA was able to fit to the HBLL survey relative biomass index and XXX indices reasonably well for all OM scenarios (Figure \@ref(fig:yelloweye-survey-fits)).
 The XXX survey was better fit than the XXX, likely due to XXX (Figure \@ref(fig:yelloweye-survey-fits)).
-The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 (*REF TO MP FRAMEWORK*, their Equation \@ref(eq:sra-om-like-catch)).
+The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 (*REFER TO MP FRAMEWORK*, their Equation \@ref(eq:sra-om-like-catch)).
 
 (ref:fig-yelloweye-survey-fits)
 SRA model fits to the HBLL, Dogfish and and three commercial CPUE relative  indices.
@@ -135,11 +136,15 @@ We used the SRA to populate the following parameters in the conditioned OMs:
 - $F_{a,y}$ (fishing mortality at age by year)
 - $\varepsilon_{\textrm{R},y}$ for years $t_1$ to $t_c$ (historical recruitment deviations)
 
+*TODO: we haven't made many of these figs*
+
 The reference and robustness scenarios rendered a range of estimated parameter values (Figures \@ref(fig:yelloweye-sra-conditioned-parameters), \@ref(fig:yelloweye-F-om), \@ref(fig:yelloweye-recdev-om)).
 In fitting the SRA across replicate draws from the initial OMs, we discarded any models that did not converge or had $F_{a,y} > 3$.
-The majority of replicates were retained (Table \@ref(tab:rex-sra-fraction)). However, by discarding  replicates from non-converged models, the input parameters carried through to the conditioned OMs varied slightly (Figure \@ref(fig:yelloweye-sra-conditioned-parameters2)).
+The majority of replicates were retained (Table \@ref(tab:yelloweye-sra-fraction)). However, by discarding  replicates from non-converged models, the input parameters carried through to the conditioned OMs varied slightly (Figure \@ref(fig:yelloweye-sra-conditioned-parameters2)).
 The discarded parameter values represent implausible parameter combinations according to the SRA model.
-The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs are similar with the exception of the "No CPUE Ceq. 50%" scenario (Figure \@ref(fig:yelloweye-depletion-om)).
+The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs are similar with the exception of the "Low M" scenario (Figure \@ref(fig:yelloweye-depletion-om)).
+
+*TODO: we haven't made rex-converged.rds*
 
 ```{r yelloweye-sra-fraction, results='asis'}
 rex_converged <- readRDS(here("generated-data/rex-converged.rds"))
@@ -150,6 +155,8 @@ rex_converged %>%
   csasdown::csas_table(col_names = c("Scenario", "Fraction retained"),
     caption = "Fraction of replicates retained after conditioning with the SRA model.")
 ```
+
+*TODO: make ye-sra-estimated.png and ye-sra-filtered.png*
 
 (ref:fig-yelloweye-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. Fishing mortality at age, the historical depletion trajectory, and historical recruitment deviations are also derived from the SRA model. Historical depletion trajectories are shown in Figure \@ref(fig:yelloweye-depletion-om), apical fishing mortality by year are shown in Figure \@ref(fig:yelloweye-F-om), and historical recruitment deviations are shown in Figure \@ref(fig:yelloweye-recdev-om).
 D refers to depletion. AC refers to $\theta_\textrm{AC}$.
@@ -170,7 +177,6 @@ knitr::include_graphics(here("mse/figures/ye-sra-filtered.png"))
 (ref:fig-yelloweye-depletion-om)
 Spawning stock biomass ($B$) depletion trajectories for reference and robustness set OMs.
 Depletion is represented as a fraction of $B_0$ (spawning stock biomass at unfished equilibrium).
-Note that the "M increasing" scenario only represents $M$ increasing in the future projections---not the historical time period illustrated here---and uses a fixed value of $M$ in the historical period.
 Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
 
 ```{r yelloweye-depletion-om, fig.cap="(ref:fig-yelloweye-depletion-om)", out.width="\\textwidth"}
@@ -181,6 +187,8 @@ knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
 Apical fishing mortality ($F$) trajectories for reference and robustness set OMs.
 Apical fishing mortality is the maximum $F$ experienced by fish of any age in a given year.
 Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
+
+*TODO: make ye-compare-F-panel.png and ye-compare-recdev-panel.png*
 
 ```{r yelloweye-F-om, fig.cap="(ref:fig-yelloweye-F-om)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/ye-compare-F-panel.png"))
@@ -198,15 +206,20 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-recdev-panel.png"))
 
 ## STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:results4}
 
-We started with the full set of provisional candidate MPs described in Appendix \@ref(app:MPs) (Table \@ref(tab:rex-mps)).
+We started with the full set of provisional candidate MPs described in Appendix \@ref(app:MPs) (Table \@ref(tab:yelloweye-mps)).
+
+*TODO: this is rex text*
+
 Early explorations with the SP models  suggested little effect of the three alternative harvest control rules (HCRs) described in Section \@ref(sec:mp-sp) (presumably because the projected biomass spent little time on the HCR "ramp"). There was also very little difference in performance between the Fox and Schaefer production models.
 Therefore, for the SP models we focused mostly on tuning the prior on $r$, the intrinsic population growth rate.
 We evaluated three priors on $r$: $\textrm{Normal}(0.4, 0.1)$, $\textrm{Normal}(0.5, 0.1)$, and $\textrm{Normal}(0.6, 0.1)$.
 With the Schaefer surplus production function, these correspond to $F_\textrm{MSY} = 0.2$, $F_\textrm{MSY} = 0.25$, and $F_\textrm{MSY} = 0.3$, which approximately match the values of $M$ explored in the operating models.
 In applications of the framework, additional tuning of SP models and index-based MPs could be explored if needed.
 
+*TODO: update mse/mp.txt table. This one is for Rex*
+
 ```{r yelloweye-mps, results='asis'}
-mp <- readr::read_csv(here("analysis", "rex", "mp.txt"), comment = "#")
+mp <- readr::read_csv(here("mse",  "mp.txt"), comment = "#")
 mp_list <- split(mp, mp$type)
 csasdown::csas_table(mp, caption = "Candidate MPs. The `.` in front of some MPs denotes versions of the MPs that only observe the survey index every second year to mimic our biennial WCVI synoptic survey.", col_names = c("Management procedure", "MP type"))
 ```

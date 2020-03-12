@@ -1,0 +1,57 @@
+mp, type
+
+CC_hist20, "Constant catch"
+
+CC1.2, "Constant catch"
+CC1.1, "Constant catch"
+CC1.0, "Constant catch"
+CC0.9, "Constant catch"
+CC0.8, "Constant catch"
+CC0.7, "Constant catch"
+CC0.6, "Constant catch"
+
+.Iratio2, "Index ratio"
+
+.GB_slope6_0.66, "Index slope"
+.GB_slope6_1, "Index slope"
+.GB_slope8_0.66, "Index slope"
+.GB_slope8_1, "Index slope"
+
+.Islope0.2_80, "Index slope"
+.Islope0.2_100, "Index slope"
+.Islope0.4_80, "Index slope"
+.Islope0.4_100, "Index slope"
+
+.IDX, "Index ratio"
+.IDX_smooth, "Index ratio"
+
+.IT10_hist, "Index target"
+.IT5_hist, "Index target"
+
+.Itarget_base, "Index target"
+.Itarget_w0.8, "Index target"
+.Itarget_x0.2, "Index target"
+.Itarget_x0.8, "Index target"
+.Itarget_d1.2, "Index target"
+.Itarget_d0.8, "Index target"
+
+.ITM_hist, "Index target"
+
+#.SP4010, "Surplus production"
+#.SP6040, "Surplus production"
+#.SP6040_Fox, "Surplus production"
+#.SP8040, "Surplus production"
+#.SP8040_Fox, "Surplus production"
+#.SP_MSY, "Surplus production"
+#.SP_MSY_Fox, "Surplus production"
+
+.SP6040_0.4, "Surplus production"
+.SP6040_0.5, "Surplus production"
+.SP6040_0.6, "Surplus production"
+.SP8040_0.6, "Surplus production"
+.SP4010_0.6, "Surplus production"
+.SP6040_0.6_fox, "Surplus production"
+
+NFref, "Reference"
+FMSYref, "Reference"
+FMSYref75, "Reference"
