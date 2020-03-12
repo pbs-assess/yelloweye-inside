@@ -144,10 +144,10 @@ The majority of replicates were retained (Table \@ref(tab:yelloweye-sra-fraction
 The discarded parameter values represent implausible parameter combinations according to the SRA model.
 The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs are similar with the exception of the "Low M" scenario (Figure \@ref(fig:yelloweye-depletion-om)).
 
-*TODO: we haven't made rex-converged.rds*
+*TODO: Check this has been made correctly ... all have the same fraction 0.38*
 
 ```{r yelloweye-sra-fraction, results='asis'}
-rex_converged <- readRDS(here("generated-data/rex-converged.rds"))
+rex_converged <- readRDS(here("mse/om/ye-converged.rds"))
 rex_converged %>%
   mutate(fraction_converged = sprintf("%.2f",round(nsim / 650, 2))) %>%
   mutate(scenario = gsub("\\n", " ", scenario)) %>%
@@ -158,7 +158,7 @@ rex_converged %>%
 
 *TODO: make ye-sra-estimated.png and ye-sra-filtered.png*
 
-(ref:fig-yelloweye-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. Fishing mortality at age, the historical depletion trajectory, and historical recruitment deviations are also derived from the SRA model. Historical depletion trajectories are shown in Figure \@ref(fig:yelloweye-depletion-om), apical fishing mortality by year are shown in Figure \@ref(fig:yelloweye-F-om), and historical recruitment deviations are shown in Figure \@ref(fig:yelloweye-recdev-om).
+(ref:fig-yelloweye-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. Other parameters: Fishing mortality at age, the historical depletion trajectory, and historical recruitment deviations are also derived from the SRA model. Historical depletion trajectories are shown in Figure \@ref(fig:yelloweye-depletion-om), apical fishing mortality by year are shown in Figure \@ref(fig:yelloweye-F-om), and historical recruitment deviations are shown in Figure \@ref(fig:yelloweye-recdev-om).
 D refers to depletion. AC refers to $\theta_\textrm{AC}$.
 
 ```{r yelloweye-sra-conditioned-parameters, out.width="0.85\\textwidth", fig.cap="(ref:fig-yelloweye-sra-conditioned-parameters)"}
@@ -191,7 +191,7 @@ Lines represent medians, and dark and light grey shading represent 50% and 95% q
 *TODO: make ye-compare-F-panel.png and ye-compare-recdev-panel.png*
 
 ```{r yelloweye-F-om, fig.cap="(ref:fig-yelloweye-F-om)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("mse/figures/ye-compare-F-panel.png"))
+knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 ```
 
 (ref:fig-yelloweye-recdev-om)
@@ -199,7 +199,7 @@ Historical recruitment deviations estimated by the SRA model (in log space).
 Lines represent 100 random samples from the replicates.
 
 ```{r yelloweye-recdev-om, fig.cap="(ref:fig-yelloweye-recdev-om)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("mse/figures/ye-compare-recdev-panel.png"))
+knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"))
 ```
 
 \clearpage

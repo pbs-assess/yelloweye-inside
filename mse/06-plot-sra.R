@@ -33,12 +33,15 @@ sra_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/", x, ".rds")))
 names(sra_ye) <- sc$scenario
 
 #get converged replicates
+
+#Check this is working ... copied from Rex. All scenarios have the same proportion 0.38
+
 scenarios <- sc$scenario %>% purrr::set_names(sc$scenario_human)
 oms <- map(scenarios, ~ {
   readRDS(paste0("mse/om/", .x, ".rds"))@OM
 })
 yelloweye_converged <- map_dfr(oms, ~tibble(nsim = .x@nsim), .id = "scenario")
-saveRDS(yelloweye_converged, file = here("mse/om/yelloweye-converged.rds"))
+saveRDS(yelloweye_converged, file = here("mse/om/ye-converged.rds"))
 
 
 # Some plots ------------------------------------------------------------------
@@ -69,6 +72,46 @@ get_SSB <- function(x, scenario, mse = NULL, type = c("SSB", "depletion", "MSY")
   left_join(d1, d2, by = "year")
 }
 
+get_F <- function(x, scenario) {
+
+  .F1 <- map(x@Misc, "F_at_age")
+  .F <- map_dfc(.F1, ~tibble(.F = apply(.x, 1, max)))
+  .F <- t(as.matrix(.F))
+
+  last_year <- dim(.F)[2]
+  all_years <- seq(x@OM@CurrentYr - x@OM@nyears + 1, x@OM@CurrentYr)
+  all_years <- all_years #[-length(all_years)]
+
+  d1 <- t(apply(.F[, ], 2,
+                FUN = quantile,
+                probs = c(0.025, 0.5, 0.975)
+  )) %>%
+    as.data.frame() %>%
+    cbind(all_years) %>%
+    mutate(scenario = scenario) %>%
+    rename(lwr = 1, med = 2, upr = 3, year = all_years)
+  d2 <- t(apply(.F[, ], 2,
+                FUN = quantile,
+                probs = c(0.25, 0.75))) %>%
+    as.data.frame() %>%
+    cbind(all_years) %>%
+    rename(lwr50 = 1, upr50 = 2, year = all_years)
+
+  left_join(d1, d2, by = "year")
+}
+
+get_Perr_y <- function(x, scenario) {
+  max_age <- x@OM@maxage
+  nyears <- x@OM@nyears
+  perr_y <- x@OM@cpars$Perr_y[,max_age:(max_age+nyears-1), drop=FALSE]
+  all_years <- seq(x@OM@CurrentYr - x@OM@nyears + 1, x@OM@CurrentYr)
+  reshape2::melt(perr_y) %>%
+    rename(iteration = Var1) %>%
+    mutate(year = rep(all_years, each = max(iteration))) %>%
+    mutate(scenario = scenario)
+}
+
+
 # Depletion -------------------------------------------------------------------
 g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB, type = "depletion") %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
@@ -97,6 +140,37 @@ ggsave(file.path(fig_dir, paste0("ye-compare-SRA-SSB-panel.png")),
        width = 8, height = 4
 )
 
+#F
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_F) %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
+  ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
+  geom_ribbon(fill = "grey90") +
+  geom_ribbon(fill = "grey70", mapping = aes(ymin = lwr50, ymax = upr50)) +
+  geom_line() +
+  facet_wrap(vars(scenario)) +
+  gfplot::theme_pbs() +
+  labs(x = "Year", y = "F") +
+  coord_cartesian(ylim = c(0, 1.8), expand = FALSE)
+ggsave(here::here("mse/figures/ye-compare-SRA-F-panel.png"),
+       width = 8, height = 6.75
+)
+
+#Recdevs
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
+  dplyr::filter(iteration %in% 1:100) %>%
+  ggplot(aes(year, y = log(value), group = iteration)) +
+  geom_line(alpha = 0.1) +
+  facet_wrap(vars(scenario)) +
+  gfplot::theme_pbs() +
+  labs(x = "Year", y = "Recruitment deviation in log space") +
+  coord_cartesian(ylim = c(-1.5, 1.7), expand = FALSE) +
+  geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
+# g
+ggsave(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"),
+       width = 8, height = 6.75
+)
+
 # SSB/SSBMSY  -----------------------------------------------------------------
 #sra <- readRDS("mse/om/upweight_dogfish.rds")
 #Hist <- runMSE(sra@OM, parallel = TRUE, Hist = TRUE)
@@ -117,7 +191,6 @@ g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenario_human, mse =
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-MSY-panel.png")),
        width = 8, height = 4
 )
-
 
 # Survey plots  ---------------------------------------------------------------
 survey_names = c("HBLL", "Dogfish", "CPUE 86-90", "CPUE 95-01", "CPUE 03-05")
