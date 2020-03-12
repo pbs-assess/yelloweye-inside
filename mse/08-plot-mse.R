@@ -114,8 +114,12 @@ pm_df_list <- map(mse[scenarios_ref], ~ gfdlm::get_probs(.x, PM)) # List with al
 pm_df_list <- map(mse[scenarios_ref], ~ gfdlm::get_probs(.x, PM)) # List with all OMs and PMs
 pm_df_list_rob <- map(mse[scenarios_rob], ~ gfdlm::get_probs(.x, PM)) # Robustness only
 pm_df <- bind_rows(pm_df_list, .id = "scenario") # All as a data.frame
+pm_avg <- group_by(pm_df, MP) %>% summarise_if(is.numeric, mean)
+pm_min <- group_by(pm_df, MP) %>% summarise_if(is.numeric, min)
+saveRDS(pm_df_list, file = here("mse","om", "ye-pm-all.rds"))
+saveRDS(pm_df_list_rob, file = here("mse","om", "ye-pm-all-rob.rds"))
 
-saveRDS(pm_df, file = "mse/om/ye-pm-all.rds")
+#saveRDS(pm_df, file = "mse/om/ye-pm-all.rds")
 
 # # FIXME:
 # pm_angle <- theme(

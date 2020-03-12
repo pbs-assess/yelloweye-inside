@@ -227,7 +227,7 @@ csasdown::csas_table(mp, caption = "Candidate MPs. The `.` in front of some MPs 
 *TODO: make yelloweye-pm-all.rds and modify code below as needed*
 
 ```{r}
-pm_df_list <- readRDS(here("generated-data/yelloweye-pm-all.rds"))
+pm_df_list <- readRDS(here("mse/om/ye-pm-all.rds"))
 pm_all <- bind_rows(pm_df_list, .id = "scenario")
 pm_avg <- group_by(pm_all, MP) %>%
   summarise_if(is.numeric, mean, na.rm = TRUE)
