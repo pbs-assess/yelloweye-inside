@@ -2,6 +2,8 @@
 
 ```{r round2-function}
 round2 <- function(x) sprintf("%.2f",round(x, 2))
+
+library(here)
 ```
 
 \clearpage
@@ -222,9 +224,10 @@ mp_list <- split(mp, mp$type)
 csasdown::csas_table(mp, caption = "Candidate MPs. The `.` in front of some MPs denotes versions of the MPs that only observe the survey index every second year to mimic our biennial WCVI synoptic survey.", col_names = c("Management procedure", "MP type"))
 ```
 
+
 ## STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:results5}
 
-*TODO: make yelloweye-pm-all.rds and modify code below as needed*
+*TODO: modify code below as needed. Check which MPs to filter out because they performed the same*
 
 ```{r}
 pm_df_list <- readRDS(here("mse/om/ye-pm-all.rds"))
@@ -236,15 +239,16 @@ pm_min <- group_by(pm_all, MP) %>%
 reference_mp <- c("FMSYref75", "NFref", "FMSYref")
 
 
-satisficed_criteria <- c("LT LRP" = 0.9, "STC" = 0.8)
+satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
 # plot_tigure(pm_avg, satisficed = satisficed_criteria)
 # plot_tigure(pm_min, satisficed = satisficed_criteria)
 
-mp_sat <- dplyr::filter(pm_min, `LT LRP` > satisficed_criteria[1], `STC` > satisficed_criteria[2]) %>%
+mp_sat <- dplyr::filter(pm_min, `LRP 1.5GT` > satisficed_criteria[1], `ST C10` > satisficed_criteria[2]) %>%
   pull(MP)
 mp_sat <- mp_sat[!mp_sat %in% reference_mp]
 mp_sat_b4_cut <- mp_sat
 
+#These might not get filtered out for ye
 mp_sat <- mp_sat[!mp_sat %in% c(".SP4010_0.6", ".SP6040_0.6_fox", ".SP6040_0.6")]
 mp_sat <- mp_sat[!mp_sat %in% c("CC_hist20")] # similar to "CC1.2"
 mp_sat <- mp_sat[!mp_sat %in% reference_mp]
@@ -261,10 +265,16 @@ We deemed 250 replicates sufficient since the rank order of MPs was consistent f
 To determine which MPs would be carried forward as satisficed MPs [@miller2010], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:yelloweye-tigure-avg) and \@ref(fig:yelloweye-tigure-min)) .
 To obtain a manageable number of MPs for further consideration, we set satisficing thresholds of `r names(satisficed_criteria)[1]` $>$ `r satisficed_criteria[[1]]` and `r names(satisficed_criteria)[2]` $>$ `r satisficed_criteria[[2]]`.
 We could apply these criteria to either the average (Figures \@ref(fig:yelloweye-tigure-avg)) or minimum performance (Figures \@ref(fig:yelloweye-tigure-min)) and such a decision is likely best made by a technical working group or decision-makers coupled with stakeholders in an applied setting.
+
+*TODO: This might be different for YE*
+
 In this case study, it made little difference whether we chose the average or minimum performance metrics to apply the satisficing criteria.
+
 We therefore chose to apply the satisficing criteria to the minimum performance metrics.
 This implies that the satisficed MPs pass these criteria even in the worst-case reference-set scenario.
 Applying these criteria resulted in `r number_to_word(length(mp_sat_b4_cut))` remaining MPs (`r gfutilities::commify(sort(mp_sat_b4_cut))`).
+
+*TODO: CHECK THIS FOR YE BEFORE FILTERING THEM OUT*
 
 We additionally decided to omit four MPs from further consideration.
 First, we chose to retain only one satisficed SP model MP (.SP8040_0.6) since the SP model MPs that differed only in production-function shape (.SP6040_0.6_fox) or HCR (.SP6040_0.6 and .SP4010_0.6) had near identical performance (Figure \@ref(fig:yelloweye-tigure-min)).
@@ -319,28 +329,9 @@ These fixed-catch MPs do not incorporate feedback between the management and bio
 Trade-offs among performance metrics for most of the satisficed MPs were relatively minor within the reference-set scenarios (Figures \@ref(fig:yelloweye-tradeoff-reference) and \@ref(fig:yelloweye-spider-satisficed-mps-avg)).
 Within the "Ceq. 200%" scenario, there was a slight trade-off between STC and LT LRP (Figure \@ref(fig:yelloweye-tradeoff-reference)).
 
-<!--
-Figure \@ref(fig:yelloweye-dot-lines)
-Figure \@ref(fig:yelloweye-tradeoff-reference)
-Figure \@ref(fig:yelloweye-spider-satisficed-mps-avg)
-Figure \@ref(fig:yelloweye-proj-index)
-Figures \@ref(fig:yelloweye-proj-updog-fixsel)--\@ref(fig:yelloweye-proj-no-cpue)
-
-Figure \@ref(fig:yelloweye-kobe)
-Figure \@ref(fig:yelloweye-worm)
-
-Figure \@ref(fig:yelloweye-tigure-panel-rob)
-Figure \@ref(fig:yelloweye-dots-satisficed-mps-robust)
-Figure \@ref(fig:yelloweye-tradeoff-robust)
-Figure \@ref(fig:yelloweye-spider-satisficed-mps-robust)
-
-Figure \@ref(fig:yelloweye-proj-no-cpue-light) and Figure \@ref(fig:yelloweye-proj-high-index-cv)
-
-Figure \@ref(fig:yelloweye-proj-scenarios)
--->
 
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:yelloweye-proj-index), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference set OMs (Figures \@ref(fig:yelloweye-proj-updog-fixsel)--\@ref(fig:yelloweye-proj-no-cpue)).
-<!--Although these satisficed MPs mostly perform similarly to each other, by inspecting the projections from MPs that did not make it past the satisficing step, we can see the variety of ways that other MPs failed to achieve the baseline satisficing criteria (Figure \@ref(fig:yelloweye-proj-failed)).-->
+
 Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:yelloweye-kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:yelloweye-worm)).
 
 (ref:fig-yelloweye-tigure-panel) Performance of satisficed MPs for the reference set OMs.
@@ -382,14 +373,16 @@ knitr::include_graphics(here("mse/figures/ye-projections-index.png"))
 
 \clearpage
 
-(ref:fig-yelloweye-proj-updog-fixsel) B/B~MSY~, F/F~MSY~, and catch from the historical and projected time periods for the "Ceq. 200%" OM.
+(ref:fig-yelloweye-proj-updog-fixsel) B/B~MSY~, F/F~MSY~, and catch from the historical and projected time periods for the "Upweight dogfish" OM.
 Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
 Thin gray lines represent illustrative simulation replicates.
 The vertical dashed line indicates the last year of the historical period.
 The horizontal dashed lines indicate B/B~MSY~ = 0.8 and 0.4 and F/F~MSY~ = 1.
 
-```{r yelloweye-proj-updog_fixsel, fig.cap="(ref:fig-yelloweye-proj-updog-fixsel)", out.width="6.5in"}
+
+```{r yelloweye-proj-updog-fixsel", fig.cap="(ref:fig-yelloweye-proj-updog-fixsel)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-updog_fixsel.png"))
+
 ```
 
 (ref:fig-yelloweye-proj-low-catch) Same as Figure \@ref(fig:yelloweye-proj-updog-fixsel) but for the OM "Low catch".
@@ -495,3 +488,5 @@ Satisficed and reference MPs are shown from top to bottom.
 ```{r yelloweye-proj-scenarios, fig.cap="(ref:fig-yelloweye-proj-scenarios)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-projections-scenarios.png"))
 ```
+
+
