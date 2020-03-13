@@ -375,10 +375,8 @@ Thin gray lines represent illustrative simulation replicates.
 The vertical dashed line indicates the last year of the historical period.
 The horizontal dashed lines indicate B/B~MSY~ = 0.8 and 0.4 and F/F~MSY~ = 1.
 
-
-```{r proj-updog-fixsel", fig.cap="(ref:fig-proj-updog-fixsel)", out.width="6.5in"}
+```{r proj-updog-fixsel, fig.cap="(ref:fig-proj-updog-fixsel)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-updog_fixsel.png"))
-
 ```
 
 (ref:fig-proj-low-catch) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "Low catch".
