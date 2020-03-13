@@ -1,9 +1,5 @@
 \newpage
 
-`r if(knitr:::is_latex_output()) '\\Appendices'`
-
-`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
-
 # DATA-LIMITED MANAGEMENT PROCEDURES {#app:MPs}
 
 *TODO. FILTER TO INCLUDE ONLY INSIDE YE MPs. DECIDE WHETHER TO DUPLICATE MPs ALREADY IN MP FRAMEWORK*

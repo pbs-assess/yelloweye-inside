@@ -1,5 +1,12 @@
 # METHODS
 
+
+## DATA
+
+Data are described in Appendices 
+
+*TODO: Not sure of the best place for the data section*
+
 *TODO: Edit all of this text. Placeholder for now. RF can do this*
 
 We follow the methods recommended in the Management Procedure Framework for Groundfish in British Columbia [@anderson2020]. The framework follows six best practice steps described below. For more details on the best practice steps see @anderson2020 <!--should this say "in press"?-->.
@@ -67,7 +74,48 @@ We propose the following performance metrics, where MSY refers to maximum sustai
   * LT C20		P[Catch > 20 t] after 1 Generation time
   * AAVC			Probability of < 20% inter-annual variability in catch
 
-Performance metrics are averaged across reference set of OMs or reported individually. 
+Performance metrics are averaged across reference set of OMs or reported individually.
+
+*TODO: RF Moved these from MP section but not sure if they are needed. Go through all these and delete if they were not used or explain why they are here ... or add them to results if they are needed *
+
+## Historical metrics 
+
+### COSEWIC Metric A
+
+P70 - Probability that population decline hasn't exceeded 70% over 3 generations
+where generation time = 38 years for inside yelloweye
+
+P[1 - B_2019/B_1918 < 0.7]
+
+P50 - Probability that population decline hasn't exceeded 50% over 3 generations 
+
+P[1 - B_2019/B_1918 < 0.5]
+
+P30 - Probability that population decline hasn't exceeded 30% over 3 generations
+
+P[1 - B_2019/B_1918 < 0.3]
+
+
+### Reference points
+
+USR - Probability that B_2019 > 0.8 BMSY
+LRP - Probability that B_2019 > 0.4 BMSY
+
+*TODO: RF moved these from Step 6. Probably not needed*
+
+## Performance metrics of MPs
+
+<!-- Use AADC instead of AAVY -->
+AADC - average absolute deviation in catch over $n$ years is defined as: <!-- See gfmp -->
+$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid$
+`ST AADC` - probability that AADC in the first decade of the projection period is less than that in 2012 - 2019 (since start of 15 t TAC)
+
+### Extinction Risk - COSEWIC E
+We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction. 
+Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
+
+`2% B_0` = P[B_y > 0.02 B_0]
+`5% B_0` = P[B_y > 0.05 B_0]
 
 
 ### STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:approach3}
@@ -88,6 +136,9 @@ DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an
 * selectivity parameters (if age or length composition data are included as inputs to the SRA)
 
 Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey. 
+
+
+
 
 *from Quang*
 General settings:
@@ -150,6 +201,8 @@ All MPs included in this framework are fully described in Appendix \@ref(app:MPs
 
 ## Reference MPs
 <!-- Only No fishing (NFref), FMSY75 and FMSY -->
+
+*TODO: move MPs into appendix*
 
 ## Fixed TAC MPs
 
@@ -220,31 +273,6 @@ b. 40-10% B0 as the USR, LRP
 - Two assessment frequencies (5 and 10 years)
 - Fixed TAC between assessments
 
-## Historical metrics from operating model
-
-### COSEWIC Metric A
-
-P70 - Probability that population decline hasn't exceeded 70% over 3 generations
-where generation time = 38 years for inside yelloweye
-
-P[1 - B_2019/B_1918 < 0.7]
-
-P50 - Probability that population decline hasn't exceeded 50% over 3 generations 
-
-P[1 - B_2019/B_1918 < 0.5]
-
-P30 - Probability that population decline hasn't exceeded 30% over 3 generations
-
-P[1 - B_2019/B_1918 < 0.3]
-
-
-### Reference points
-
-USR - Probability that B_2019 > 0.8 BMSY
-LRP - Probability that B_2019 > 0.4 BMSY
-
-
-
 #### Reference MPs
 
 In addition to the candidate MPs, it is important to include reference MPs. Provisionally, we suggest the following reference MPs:
@@ -276,22 +304,6 @@ We suggest selecting sufficient replicates so that the rank order of MPs across 
 
 ### STEP 6: PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE  {#sec:approach6}
 
-## Performance metrics of MPs
 
-<!-- Use AADC instead of AAVY -->
-AADC - average absolute deviation in catch over $n$ years is defined as: <!-- See gfmp -->
-$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid$
-`ST AADC` - probability that AADC in the first decade of the projection period is less than that in 2012 - 2019 (since start of 15 t TAC)
-
-### Extinction Risk - COSEWIC E
-We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction. 
-Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
-
-`2% B_0` = P[B_y > 0.02 B_0]
-`5% B_0` = P[B_y > 0.05 B_0]
-
-## DATA
-
-*TODO: Not sure of the best place for the data section*
 
 

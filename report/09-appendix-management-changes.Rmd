@@ -1,3 +1,6 @@
+
+\clearpage
+
 # CHRONOLOGY OF MANAGEMENT CHANGES 
 
 ```{r, echo=FALSE, warning=FALSE, results="asis"}
