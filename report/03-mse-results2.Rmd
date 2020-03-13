@@ -127,7 +127,7 @@ Dots represent index mean and line segments represent 2 times the standard error
 
 
 ```{r yelloweye-survey-fits, fig.cap="(ref:fig-yelloweye-survey-fits)", out.width="0.65\\textwidth"}
-knitr::include_graphics(here("mse/figures/conditioning/ye-index-fits.png"))
+knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
 ```
 
 We used the SRA to populate the following parameters in the conditioned OMs:
