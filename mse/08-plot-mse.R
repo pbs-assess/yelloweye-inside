@@ -251,14 +251,29 @@ pm_angle <- theme(
   width = 5, height = 7,
   plot = plots$tigure_refset_avg + pm_angle
 )
-.ggsave("radar-refset",
-  width = 10, height = 10,
-  plot = plots$radar_refset
-)
-.ggsave("radar-robset",
-  width = 10, height = 5,
-  plot = plots$radar_robset
-)
+
+MPs <- union(mp_sat, reference_mp)
+PM_radar <- PM[!PM %in% c("LRP 1GT")]
+pm_df_list_rob <- purrr::map(mse[scenarios_rob], ~ gfdlm::get_probs(.x, PM_radar))
+radar_robset <- pm_df_list_rob %>%
+  map(dplyr::filter, MP %in% MPs) %>%
+  set_names(scenarios_rob_human) %>%
+  plot_radar_facet(custom_pal = custom_pal) +
+  theme(
+    panel.spacing.x = grid::unit(60, "pt"),
+    plot.margin = margin(t = 11 / 2, r = 11 / 2, b = 11 / 2, l = 11 / 2 + 10),
+    legend.position = "bottom"
+  )
+.ggsave("radar-robset", width = 10, height = 6, plot = radar_robset)
+
+radar_refset_avg <- pm_avg %>%
+  select(-`LRP 1GT`) %>%
+  dplyr::filter(MP %in% MPs) %>%
+  plot_radar(custom_pal = custom_pal) +
+  theme(
+    plot.margin = margin(t = 11 / 2, r = 11 / 2, b = 11 / 2, l = 11 / 2 + 10),
+  )
+.ggsave("radar-refset", width = 7, height = 6, plot = radar_refset_avg)
 
 .ggsave("radar-refset-avg",
   width = 10, height = 10,
