@@ -367,7 +367,7 @@ obs_yelloweye@Name <- "BC Groundfish"
 *Log-normal catch obs_yelloweye observation error expressed as a CV. Uniform distribution lower and upper bounds.*
 
 ```{r desc-obs_yelloweye-cobs_yelloweye-yelloweye, results = knitr_results, echo = knitr_echo}
-obs_yelloweye@Cobs_yelloweye
+obs_yelloweye@Cobs
 ```
 <!-- slot-chunk-end -->
 
@@ -521,33 +521,28 @@ OM_yelloweye@proyears <- 100
 
 *To incorporate uncertainty in natural mortality among simulations, we sample from a lognormal distribution using the Hoenig (1983) prior.*
 
+<!-- FIXME. What seed? Does the seed get set here? Finish rlnorm eq. This is supposed to be maturity not mortality and why being pulled from cpars?
+
 ```{r desc-cpars-maturity-yelloweye, results = knitr_results, echo = knitr_echo}
-set.seed()
+set.seed(1)
 OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, )
 ```
-<!-- slot-chunk-end -->
 
 
-<!-- slot-chunk-begin -->
 ### Natural mortality {#app:desc-cpars-M-yelloweye}
 
 *To incorporate uncertainty in natural mortality among simulations, we sample from a lognormal distribution using the Hoenig (1983) prior.*
 
 ```{r desc-cpars-M-yelloweye, results = knitr_results, echo = knitr_echo}
-set.seed()
-OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, 
+set.seed(1)
+OM_yelloweye@cpars$M <- rlnorm(OM_yelloweye@nsim, )
 fleet_yelloweye@Name
 ```
+
+-->
 <!-- slot-chunk-end -->
 
 # CONDITIONING THE OPERATING MODEL TO DATA
 
-```{r}
-
-
-
-
-}
-
-
+*TODO: ADD sra section or appendix?*
 
