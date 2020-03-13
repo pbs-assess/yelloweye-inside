@@ -120,7 +120,7 @@ Panels from left to right represent OM scenarios.
 Thin lines represent individual SRA model fits across stochastic draws from the various OM parameters.
 Dots represent index mean and line segments represent 2 times the standard errors as entered into the SRA models.
 
-```{r yelloweye-survey-fits, fig.cap="(ref:fig-yelloweye-survey-fits)", out.width="0.65\\textwidth"}
+```{r yelloweye-survey-fits, fig.cap="(ref:fig-yelloweye-survey-fits)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
 ```
 
@@ -142,10 +142,12 @@ The implied spawning stock biomass depletion trajectories during the historical 
 
 *TODO: Check this has been made correctly ... all have the same fraction 0.38*
 
-```{r yelloweye-sra-fraction, results='asis'}
+100% of the SRA replicates converged...
+
+```{r yelloweye-sra-fraction, results='asis', eval=FALSE}
 rex_converged <- readRDS(here("mse/om/ye-converged.rds"))
 rex_converged %>%
-  mutate(fraction_converged = sprintf("%.2f",round(nsim / 650, 2))) %>%
+  mutate(fraction_converged = sprintf("%.2f",round(nsim / 250, 2))) %>%
   mutate(scenario = gsub("\\n", " ", scenario)) %>%
   select(-nsim) %>%
   csasdown::csas_table(col_names = c("Scenario", "Fraction retained"),

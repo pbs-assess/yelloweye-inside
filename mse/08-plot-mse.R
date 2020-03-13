@@ -178,7 +178,6 @@ ggsave("mse/figures/ye-tigure-cosewic-all.png", width = 5.7, height = 5)
 
 g <- dplyr::filter(e_avg, MP %in% union(mp_sat, "NFref")) %>%
   plot_tigure()
-g
 ggsave("mse/figures/ye-tigure-cosewic-avg.png", width = 2.5, height = 3)
 
 plots <- gfdlm::plot_factory(
