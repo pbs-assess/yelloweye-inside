@@ -269,9 +269,12 @@ radar_robset <- pm_df_list_rob %>%
 radar_refset_avg <- pm_avg %>%
   select(-`LRP 1GT`) %>%
   dplyr::filter(MP %in% MPs) %>%
-  plot_radar(custom_pal = custom_pal) +
+  list() %>%
+  plot_radar_facet(custom_pal = custom_pal) +
   theme(
     plot.margin = margin(t = 11 / 2, r = 11 / 2, b = 11 / 2, l = 11 / 2 + 10),
+      strip.background = element_blank(),
+      strip.text.x = element_blank()
   )
 .ggsave("radar-refset", width = 7, height = 6, plot = radar_refset_avg)
 
