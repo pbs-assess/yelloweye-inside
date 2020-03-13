@@ -470,7 +470,7 @@ cowplot::plot_grid(g1, g2)
 ggsave("mse/figures/HBLL_high_CV.png", width = 5, height = 3)
 
 sc2 <- readRDS(here("mse", "om", "ye-scenarios.rds"))
-sc2$scenario_human <- paste0(sc2$order, " - ", sc2$scenario_human)
+# sc2$scenario_human <- paste0(sc2$order, " - ", sc2$scenario_human)
 x <- oms %>% set_names(sc2$scenario_human) %>%
   map_dfr(~tibble(
     D = .x@cpars$D,
