@@ -1,7 +1,7 @@
 library(reshape2)
 library(dplyr)
 library(gfplot)
-library(ggplot)
+library(ggplot2)
 
 dat <- readRDS("data-generated/yelloweye-rockfish-ins-privacy.rds")
 
@@ -81,4 +81,3 @@ ggplot(prop_female, aes(age, prop)) + geom_point() +
 ggsave("mse/figures/ye-maturity3.png", width = 5, height = 3)
 
 # A50 = 14.4, A95 = 27.4, Mat = 0 if age <=7
-

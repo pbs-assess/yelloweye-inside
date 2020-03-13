@@ -515,16 +515,3 @@ x %>% dplyr::filter(variable %in% c("sigma_R", "h", "L50", "L50_95", "t0", "k", 
 
 ggsave(here::here("mse/figures/ye-sra-filtered.png"),
        width = 6.5, height = 5.5)
-
-# Substantially speeds up LaTeX rendering on a Mac
-# by pre-optimizing the PNG compression:
-optimize_png <- TRUE
-if (optimize_png && !identical(.Platform$OS.type, "windows")) {
-  files_per_core <- 4
-  setwd("mse/figures")
-  system(paste0(
-    "find -X . -name 'ye-*.png' -print0 | xargs -0 -n ",
-    files_per_core, " -P ", cores, " optipng -strip all"
-  ))
-  setwd(here())
-}

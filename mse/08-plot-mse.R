@@ -321,7 +321,7 @@ walk(names(plots$projections), ~ {
   plot = plots$projections_scenarios
 )
 
-optimize_png <- FALSE
+optimize_png <- TRUE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   files_per_core <- 2
   setwd("mse/figures")
@@ -329,5 +329,5 @@ if (optimize_png && !identical(.Platform$OS.type, "windows")) {
     "find -X . -name '*.png' -print0 | xargs -0 -n ",
     files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
   ))
-  setwd(here())
+  setwd("../../")
 }
