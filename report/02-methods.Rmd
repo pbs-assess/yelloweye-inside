@@ -3,9 +3,15 @@
 
 ## DATA
 
-Data are described in Appendices 
+- Brief generic text describing data sources that were available
+- Is Inside YE considered a data-limited species and why (not much ageing data? Less certain catch history?)
 
-*TODO: Not sure of the best place for the data section*
+Biological data are described in Appendix \@ref(app:biological-data). 
+Catch data are described in Appendix \@ref(app:catch-data).
+Fishery independent survey data are described in Appendix \@ref(app:index-data). 
+
+
+## THE MANAGEMENT PROCEDURE FRAMEWORK
 
 *TODO: Edit all of this text. Placeholder for now. RF can do this*
 

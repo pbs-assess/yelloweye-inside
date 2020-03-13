@@ -3,7 +3,7 @@
 
 # CATCH DATA {#app:catch-data}
 
-## Commercial Catch Data {sec:com-catch-data}
+## Commercial Catch Data {#sec:com-catch-data}
 
 Historical catch data for Inside Yellwoeye rockfish suffer from two forms of uncertainty. The first uncertainty is that commercial landings of rockfish other than Pacific Ocean Perch were reported as an aggregate (other rockfish, ORF). To reconstruct historical catches an algorithm was developed to convert ORF landings to Inside Yelloweye Rockfish landings, by fishery sector, using the ratio of Inside Yelloweye catch to ORF, from a period with credible landings data (1997-2005) from the hook and line dockside monitoring program. The ratio was then applied to the period of questionable Yelloweye catch in the reconstruction algorithm [@Haigh2011]. 
 
@@ -29,15 +29,15 @@ csasdown::csas_table(comm_catch,
 ```
 
 
-## Recreational Catch Data {sec:rec-catch-data}
+## Recreational Catch Data {#sec:rec-catch-data}
 
 In 2012,DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data. However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis[@DFO2015].
 
-### Reconstructed Historical Recreational Catch {sec:recon-rec-catch-data}
+### Reconstructed Historical Recreational Catch {#sec:recon-rec-catch-data}
 
 Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a family run recreational fishing resort[@Yamanaka2011]. We used the same historical time series of reconstructed recreational catch for the current analysis. 
 
-### Creel Survey Data 1982-2019 {sec:creel-catch-data}
+### Creel Survey Data 1982-2019 {#sec:creel-catch-data}
 
 Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys. The surveys cover Pacific Fishery Management Areas (PFMAs) 12-20, 28, and 29 [@Zetterberg2010]. Rockfish catch has been recorded in areas 13-19, 28, and 29 since 1982 but was not enumerated by species until 2000. In PFMA 12 rockfish have been counted by species since 2000 [@Zetterberg2010].
 
@@ -86,7 +86,7 @@ csasdown::csas_table(rec_wide,
   
 ```
 
-## Food, Social and Ceremonial (FSC) Catch {sec:fsc-catch-data}
+## Food, Social and Ceremonial (FSC) Catch {#sec:fsc-catch-data}
 
 Yelloweye Rockfish are an important traditional food source of coastal First Nations in BC [@Eckert2018], including in the inside waters of 4B. Total FSC catch data of Yelloweye Rockfish, as well as other groundfish species, are not available for either the historic or contemporary time period and particulary not available resolved to the species [M. Fetterly and A. Rushton, pers. comm.].
 To account for FSC catch in the last stock assessment, Yamanaka et al. (2011) used a consumption rate (0.23 kg/year/person), which was half of the consumption rate determined in a traditional diet study from Southeast Alaska, applied to the First Nations population near area 4B over the time series (1918-2009). 
