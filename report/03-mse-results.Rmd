@@ -7,7 +7,7 @@
 
 *below were pasted in from Quang's notes*
 
-### Conditioning OM Model 
+### Conditioning OM Model
 
 -Fit to HBLL is reasonable: estimated index within confidence intervals, although there are several outliers. A slight increasing trend in all OMs.
 - Fit to dogfish survey is better in (4) and (A) compared to the others, although this is in light of the large uncertainties associated with the pre-1990 values and gear change.

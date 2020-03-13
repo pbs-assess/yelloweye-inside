@@ -6,9 +6,9 @@
 - Brief generic text describing data sources that were available
 - Is Inside YE considered a data-limited species and why (not much ageing data? Less certain catch history?)
 
-Biological data are described in Appendix \@ref(app:biological-data). 
+Biological data are described in Appendix \@ref(app:biological-data).
 Catch data are described in Appendix \@ref(app:catch-data).
-Fishery independent survey data are described in Appendix \@ref(app:index-data). 
+Fishery independent survey data are described in Appendix \@ref(app:index-data).
 
 
 ## THE MANAGEMENT PROCEDURE FRAMEWORK
@@ -23,19 +23,19 @@ We follow the methods recommended in the Management Procedure Framework for Grou
 
   Step 1: define the decision context
 
-  Step 2: selection of objectives and performance metrics 
+  Step 2: selection of objectives and performance metrics
 
-  Step 3: selection of uncertainties/specification of operating models 
+  Step 3: selection of uncertainties/specification of operating models
 
-  Step 4: identification of candidate management procedures 
+  Step 4: identification of candidate management procedures
 
-  Step 5: simulation of the application of the management procedures 
+  Step 5: simulation of the application of the management procedures
 
   Step 6: presentation of results and selection of management procedure
 
 *TODO: possibly add Step 7 ... monitoring future surveys and triggering review of OM if surveys are outside projection envelope"
 
-## BEST PRACTICES FOR IMPLEMENTING A MANAGEMENT PROCEDURE APPROACH 
+## BEST PRACTICES FOR IMPLEMENTING A MANAGEMENT PROCEDURE APPROACH
 
 ### STEP 1: DEFINE THE DECISION CONTEXT {#sec:approach1}
 
@@ -43,7 +43,7 @@ The decision to be made is which MP to use to determine catch limits for the per
 
 The boundaries on the project ...
 
-The final decision on which MP to use to determine catch limits should be made based on a consensus by the Regional Peer Review (RPR) committee, after review of the scientific content of the advice (including the structure and content of the OMs), and consideration of the relative performance of the MPs with respect to meeting stated objectives and trade-offs among performance metrics. 
+The final decision on which MP to use to determine catch limits should be made based on a consensus by the Regional Peer Review (RPR) committee, after review of the scientific content of the advice (including the structure and content of the OMs), and consideration of the relative performance of the MPs with respect to meeting stated objectives and trade-offs among performance metrics.
 
 ### STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:approach2}
 
@@ -56,7 +56,7 @@ Key provisional conservation objectives are guided by the PA Framework [@dfo2006
 The rebuilding plan objectives for Inside Yelloweye were published in Appendix 9 of the Pacfic Region Integrated Fishery Management Plan (IFMP) for Groundfish in 2018 [@DFO2018]. The original rebuilding plan objectives were:
 *"Rebuild the stock above the LRP over 80 years with 56% probability of success".
 *"Achieve positive trends within each 10 year period"
-The management procedure that was agreed upon to meet these objectives was to keep the the combined TAC (commercial, recreational, FSC) below 15 tonnes annually [@DFO2018]. 
+The management procedure that was agreed upon to meet these objectives was to keep the the combined TAC (commercial, recreational, FSC) below 15 tonnes annually [@DFO2018].
 
 For this analysis, a set of refined objectives were proposed for Inside Yelloweye in order to be consistent with legislated requirements under the new *Fisheries Act*, specify the length of the projection period to be used for simulations, and to account for other processes, including the anticipated re-assessment by COSEWIC. The new objectives are:
 
@@ -71,9 +71,9 @@ We propose the following performance metrics, where MSY refers to maximum sustai
 <!--from the powerpoint slides from Quang (MJB)-->
 
   * LRP 1.5 GT		P[B > 0.4 BMSY] after 1.5 GT (56 years) Satisficing: only consider MPs with 95% probability
-  * LRP 1GT		    P[SSB > LRP] after 1 GT (38 years) 		
+  * LRP 1GT		    P[SSB > LRP] after 1 GT (38 years)
   * USR 1.5 GT		P[SSB > USR] after 56 years
-  		
+
   * ST C10		P[Catch > 10 t] during 2020-2029
   * ST C15    P[Catch > 15 t] during 2020-2029
   * LT C20		P[Catch > 20 t] during 2020-2029
@@ -84,7 +84,7 @@ Performance metrics are averaged across reference set of OMs or reported individ
 
 *TODO: RF Moved these from MP section but not sure if they are needed. Go through all these and delete if they were not used or explain why they are here ... or add them to results if they are needed *
 
-## Historical metrics 
+## Historical metrics
 
 ### COSEWIC Metric A
 
@@ -93,7 +93,7 @@ where generation time = 38 years for inside yelloweye
 
 P[1 - B_2019/B_1918 < 0.7]
 
-P50 - Probability that population decline hasn't exceeded 50% over 3 generations 
+P50 - Probability that population decline hasn't exceeded 50% over 3 generations
 
 P[1 - B_2019/B_1918 < 0.5]
 
@@ -117,7 +117,7 @@ $AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid$
 `ST AADC` - probability that AADC in the first decade of the projection period is less than that in 2012 - 2019 (since start of 15 t TAC)
 
 ### Extinction Risk - COSEWIC E
-We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction. 
+We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction.
 Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
 
 `2% B_0` = P[B_y > 0.02 B_0]
@@ -141,7 +141,7 @@ DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an
 * annual recruitment deviations
 * selectivity parameters (if age or length composition data are included as inputs to the SRA)
 
-Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey. 
+Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey.
 
 
 
@@ -157,7 +157,7 @@ General settings:
 - Multinomial annual sample size for age comps based on the number of sampling trips.
 
 - Initial fit did not fit dogfish survey well. Retrospective analysis showed bias in SSB (For model with M and h set to mean priors, rho = 0.25 for 11 years when removing up to 11 years of data). 11 years of data were used primarily to evaluate consistency of the model going back to 2009 which was the terminal year for the 2011 assessment.
-- Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.  
+- Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.
 - Next, it was decided to fix the HBLL selectivity to that from the initial fit while also upweighting the dogfish survey. This fit generated small retrospective bias (SSB rho = -0.07) for the fit with M and h mean priors.
 - Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process.
 <!-- I will generate a plot of SSB rho vs. M to show this -->
@@ -171,10 +171,10 @@ From the initial fit, the following OMs were developed as the reference set:
 1. Upweight dogfish survey: Uses the initial fit but upweight dogfish selectivity and fix HBLL full selectivity age to 20 years.
 Additional things to mention:
 - Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
-- Future recruitment deviations sampled in logspace with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
-- Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in logspace.
+- Future recruitment deviations sampled in log space with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
+- Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in log space.
 
-2. Low catch - to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty. 
+2. Low catch - to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
 
 3. Episodic recruitment - to address uncertainty in future productivity, an alternative scenario where recruitment is more variable. Rockfish assessments in the Pacific have estimated occasional extreme year classes (examples? POP, boccacio?). SRA may not estimate large cohorts, this could be a limitation of the available data to detect large cohorts. From (1), extreme recruitment is generated on average once every generation (38 years). If y is an extreme recruitment year, then the recruitment is sampled with lognormal with SD = 2.
 

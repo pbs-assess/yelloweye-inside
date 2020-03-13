@@ -2,7 +2,6 @@
 
 ```{r round2-function}
 round2 <- function(x) sprintf("%.2f",round(x, 2))
-
 library(here)
 ```
 
@@ -16,7 +15,7 @@ library(here)
 
 *TODO: Do we need this step here? Should be in the methods*
 
-The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice. The time-frame for making the decision would be stated in the Request for Science Advice. In applications of the MP Framework, additional aspects of the decision context would be established through a technical committee. 
+The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice. The time-frame for making the decision would be stated in the Request for Science Advice. In applications of the MP Framework, additional aspects of the decision context would be established through a technical committee.
 
 ## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results2}
 
