@@ -62,11 +62,10 @@ We divided OM scenarios into a reference set and a robustness set (Section \@ref
 
 ```{r yelloweye-scen, results='asis'}
 sc <- readRDS(here("mse/om/ye-scenarios.rds"))
-sc <- sc %>%
-  select(-order) #%>%
-  #mutate(scenario_human = gsub("inc\\.", "increasing", scenario_human)) %>%
-  #mutate(scenario_human = gsub("\\\n", " ", scenario_human))
-sc %>% select(-scenario) %>%
+sc %>%
+  select(-order) %>%
+  mutate(scenario_human = gsub("\\\n", " ", scenario_human)) %>%
+  select(-scenario) %>%
   csasdown::csas_table(caption = "Yelloweye Rockfish OM scenarios. ",
     col_names = c("Scenario name", "Set type")) %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
