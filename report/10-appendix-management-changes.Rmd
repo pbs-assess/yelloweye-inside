@@ -1,0 +1,20 @@
+
+\clearpage
+
+# CHRONOLOGY OF MANAGEMENT CHANGES 
+
+```{r, echo=FALSE, warning=FALSE, results="asis"}
+timeline <- read.csv("../data-raw/management-chronology.csv", header=TRUE)
+
+# make csas formatted table
+csasdown::csas_table(timeline,
+                     format = "latex",
+                     col.names = c("Year", "Area", "Management Action"),
+                     caption = "History of management changes for the directed hook and line Yelloweye Rockfish (*Sebastes ruberrimus*) fishery from 1986 to 2019."
+) %>% 
+  kableExtra::column_spec(1, width = "2.5cm") %>% 
+  kableExtra::column_spec(2, width = "1.75cm") %>% 
+  kableExtra::column_spec(3, width = "7.5cm") 
+ 
+```
+

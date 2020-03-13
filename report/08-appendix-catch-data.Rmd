@@ -1,0 +1,124 @@
+
+\clearpage
+
+# CATCH DATA {#app:catch-data}
+
+## Commercial Catch Data {sec:com-catch-data}
+
+Historical catch data for Inside Yellwoeye rockfish suffer from two forms of uncertainty. The first uncertainty is that commercial landings of rockfish other than Pacific Ocean Perch were reported as an aggregate (other rockfish, ORF). To reconstruct historical catches an algorithm was developed to convert ORF landings to Inside Yelloweye Rockfish landings, by fishery sector, using the ratio of Inside Yelloweye catch to ORF, from a period with credible landings data (1997-2005) from the hook and line dockside monitoring program. The ratio was then applied to the period of questionable Yelloweye catch in the reconstruction algorithm [@Haigh2011]. 
+
+The second major source of uncertainty in historical catch timeseries is due to unreported catch that was discarded at sea. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets [@Haigh2011] using data from a credible period. The catch reconstruction assumes no discarding prior to 1986 and that discards are fully reported in DFO databases since 2006.
+
+Raw commercial catch data for Inside Yelloweye was pulled from the gfcatch database, which is maintained by the groundfish data unit at DFO. An early version of the catch reconstruction algorithm was used to develop the commercial catch time series for the previous assessment of Inside Yelloweye in 2009. However, further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (personal comm. Norm Olsen). As well, ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (personal comm. Maria Surry). For these reasons, the time series of commercial catch used in the current analysis differs from that used in the most recent stock assessment in 2009. 
+
+To be consistent with the previous assessment, the total commercial catch for 1986-2005 was doubled [@DFO2012]. The original decision to double the catch for those years was based on feedback from the commercial industry and was intended to account for their lack of confidence in commercial logbooks. In the current analysis we used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards. We perhaps should have used the reconstruction algorithm to obtain catches up until 2006, when full reporting and 100% monitoring was implemented in the groundfish fishery. However, sensitivity analyses demonstrated that the different catch timeseries did not affect our final perception of stock status (*cite figure Sean made*)
+
+```{r commcatch, echo = FALSE, warning = FALSE, results = "asis"}
+
+comm_catch <- read.csv("../data-raw/ye_catch_by_sector.csv", header=TRUE)
+csasdown::csas_table(comm_catch,
+                     format = "latex",
+                     col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
+                     repeat_header = TRUE,
+                     caption = "Commercial catch by sector for Inside Yelloweye Rockfish.
+                      The table contains reconstructed (1918-1985) and nominal (1986-2019) 
+                     catch estimates in tonnes."
+) %>% 
+  kableExtra::column_spec(1:6, width = "1.0cm") 
+
+```
+
+
+## Recreational Catch Data {sec:rec-catch-data}
+
+In 2012,DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data. However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis[@DFO2015].
+
+### Reconstructed Historical Recreational Catch {sec:recon-rec-catch-data}
+
+Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a family run recreational fishing resort[@Yamanaka2011]. We used the same historical time series of reconstructed recreational catch for the current analysis. 
+
+### Creel Survey Data 1982-2019 {sec:creel-catch-data}
+
+Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys. The surveys cover Pacific Fishery Management Areas (PFMAs) 12-20, 28, and 29 [@Zetterberg2010]. Rockfish catch has been recorded in areas 13-19, 28, and 29 since 1982 but was not enumerated by species until 2000. In PFMA 12 rockfish have been counted by species since 2000 [@Zetterberg2010].
+
+We followed the same method as in Yamanaka et al. (2011) to estimate the catch of Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982-1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982-1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year. To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000. We converted rockfish pieces to weight by multiplying by 2.49kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008. 
+
+```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
+
+
+rec_catch <- read.csv("../data-raw/rec-allcatch-effort.csv", header=TRUE) 
+
+# make a table of recreational catch
+csasdown::csas_table(rec_catch,
+                     format = "latex",
+                     col_names = c("Year", "Catch(t)", "Effort(boat trips)"),
+                     align=c("c","c","c"),
+                     digits=1,
+                     repeat_header = TRUE,
+                     caption = "Recreational catch estimates for inside Yelloweye Rockfish.
+                      The table contains reconstructed (1918-1981) and modern (1982-2019) 
+                     catch estimates in tonnes."
+) 
+```
+
+\clearpage
+
+```{r recbyarea, echo=FALSE, warning=FALSE, results = "asis"}
+
+rec_area <- read.csv("../data-raw/rec-catcheffortbyarea.csv", header=TRUE)
+
+# organizing the data from long to wide format
+
+rec_wide <- rec_area %>% 
+  select(year, tonnes, totaleffort, pfma) %>% 
+  pivot_wider(names_from = pfma, values_from = c(tonnes, totaleffort)) %>% 
+  mutate(effort = rowSums(.[13:23], na.rm=TRUE)/10000) %>% 
+  select(-starts_with("totaleffort")) %>% 
+  rename_at(vars(starts_with("tonnes_")), funs(str_remove(., "tonnes_")))
+
+# make the table of catch by PFMA and total effort by year
+csasdown::csas_table(rec_wide,
+                     format = "latex",
+                     digits=1,
+                     caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019.Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000-2008)."
+) %>% 
+  kableExtra::column_spec(1:13, width = "0.75cm") 
+  
+```
+
+## Food, Social and Ceremonial (FSC) Catch {sec:fsc-catch-data}
+
+Yelloweye Rockfish are an important traditional food source of coastal First Nations in BC [@Eckert2018], including in the inside waters of 4B. Total FSC catch data of Yelloweye Rockfish, as well as other groundfish species, are not available for either the historic or contemporary time period and particulary not available resolved to the species [M. Fetterly and A. Rushton, pers. comm.].
+To account for FSC catch in the last stock assessment, Yamanaka et al. (2011) used a consumption rate (0.23 kg/year/person), which was half of the consumption rate determined in a traditional diet study from Southeast Alaska, applied to the First Nations population near area 4B over the time series (1918-2009). 
+This approach assumes that the consumption rate of Yelloweye Rockfish by First Nations has remained constant through time, despite the fact that European colonization is known to have impacted most aspects of Indigenous society over this same time period. 
+A decline in the amount of fish and seafood consumed by First Nations in BC has been attributed to numerous social, ecological, and economic factors including the loss of traditional territories, diminished traditional knowledge transmission, and barriers such as poverty that makes buying boats and fishing gear unattainable for many communities -->[add ref-@Marushka2019]<--.
+Specific to the southern part of our study area, the Coast Salish people have seen their relationship to marine resources eroded due to the development of commercial and recreational fisheries, as well as policy and political decisions -->[add ref-@Ayers2012]<--.
+We did not, therefore, follow the methods used in Yamanaka et al. (2011). 
+
+The only FSC data that are available are from the commercial dockside monitoring program (DMP) between 2006 and 2019 *table XX*. These data were collected from "dual fishing" trips which occur when indigenous fishers choose to keep some of the catch obtained during a commercial fishing trip for FSC purposes. 
+Both commercial and FSC catch are monitored during the offload.
+Between 0 and 0.8 T amounting to and average of 5.6% of the total commercial catch has been landed on dual fishing trips in this time period. 
+The FSC catch from these dual trips is included in the annual totals for commercial catch within the groundfish sector databases. 
+The data are, however, collected at the trip level, not set level, therefore some of the reported catch might be from outside of Area 4B. 
+Dual fishing trips that could not be mostly attributed to 4B or outside waters were excluded from this analysis. 
+Most of the dual fishing trips from the northern part of the study area because this is also where most of the commercial fishing for Yelloweye Rockfish in 4B currently occurs.
+Indigenous fishers from the member First Nations represented by the A-Tlegay Fisheries Society, are largely obtaining Yelloweye Rockfish on dual fishing trips (Christa Rusel, pers. comm.). 
+
+In the southern part of the study area, indigenous fishers have little commercial capacity -->[add ref-@Ayers2012]<--. 
+FSC catch in the Strait of Georgia is, therefore, primarily from small recreational boats (C. Ayers, pers. comm.). 
+Similar to how some of the FSC catch is accounted with the commercial catch data, the FSC effort from small boats will be captured in the recreational data from the creel survey program.
+Although FSC fishers are not constrained by recreational catch limits or closures, their boats will be counted on the aerial portion of the creel survey, and therefore contribute to the expanded recreational catch estimates.  
+The proportion of FSC fisher encountered by the dockside creel monitor was not, however, readily available in the recreational database (CREST) (P. Zetterberg, pers. comm.).
+ 
+
+
+```{r fsc-catch, echo=FALSE, results = "asis"}
+
+fsc_catch <- read.csv("../data-raw/fsc-dmp.csv", header=TRUE)
+
+csasdown::csas_table(fsc_catch, 
+                     format = "latex",
+                     col_names = c("Year", "FSC", "Commercial", "Total", "Percent FSC"),
+                     caption = "FSC catch of Inside Yelloweye Rockfish as a proportion of total commercial catch reported to dockside observers from dual fishing trips." )
+
+```
