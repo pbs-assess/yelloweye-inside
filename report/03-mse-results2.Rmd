@@ -19,7 +19,7 @@ The decision to be made is which MP to use to determine catch limits for the per
 
 ## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results2}
 
-We defined the objectives for Rex Sole based on the provisional objectives presented in Section \@ref(sec:approach2). These objectives are guided by the PA Framework, elements of which are incorporated into the Fish Stocks provisions of the *Fisheries Act*.
+We defined the objectives for Yelloweye Rockfish based on the provisional objectives presented in Section \@ref(sec:approach2). These objectives are guided by the PA Framework, elements of which are incorporated into the Fish Stocks provisions of the *Fisheries Act*.
 
 *TODO: Change these to the YE objectives*
 
@@ -50,7 +50,7 @@ We measured the performance metrics as probabilities integrated over years and r
 
 *TODO: change to YE OMs --- see table and headings below*
 
-We considered the major axes of uncertainty for Rex Sole to be:
+We considered the major axes of uncertainty for Yelloweye Rockfish to be:
 
 1. The magnitude of the commercial catch prior to 1996 (influencing initial depletion in 1996)
 2. The importance of the commercial CPUE index
@@ -62,11 +62,10 @@ We divided OM scenarios into a reference set and a robustness set (Section \@ref
 
 ```{r yelloweye-scen, results='asis'}
 sc <- readRDS(here("mse/om/ye-scenarios.rds"))
-sc <- sc %>%
-  select(-order) #%>%
-  #mutate(scenario_human = gsub("inc\\.", "increasing", scenario_human)) %>%
-  #mutate(scenario_human = gsub("\\\n", " ", scenario_human))
-sc %>% select(-scenario) %>%
+sc %>%
+  select(-order) %>%
+  mutate(scenario_human = gsub("\\\n", " ", scenario_human)) %>%
+  select(-scenario) %>%
   csasdown::csas_table(caption = "Yelloweye Rockfish OM scenarios. ",
     col_names = c("Scenario name", "Set type")) %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
@@ -90,8 +89,6 @@ Descriptive text, possibly figs
 
 Descriptive text, possibly figs
 
-
-
 ### The Robustness Set {#sec:results-robustness-set}
 
 #### Low natural mortality ($M$)
@@ -108,15 +105,14 @@ Unless otherwise stated, all other scenarios drew from a baseline uniform distri
 
 Descriptive text
 
+### OPERATING MODEL CONDITIONING
 
-### OM CONDITIONING
-
-After specifying most of the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix \@ref(app:sra) --- *REFER TO MP FRAMEWORK*.
+After specifying most of the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
 We conditioned the models using: (1) commercial catch data from 1996--2019; (2) the synoptic WCVI (SYN WCVI) trawl relative biomass index (a depth-stratified random survey); and (3) commercial bottom trawl CPUE.
 
 The SRA was able to fit to the HBLL survey relative biomass index and XXX indices reasonably well for all OM scenarios (Figure \@ref(fig:yelloweye-survey-fits)).
 The XXX survey was better fit than the XXX, likely due to XXX (Figure \@ref(fig:yelloweye-survey-fits)).
-The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 (*REFER TO MP FRAMEWORK*, their Equation \@ref(eq:sra-om-like-catch)).
+The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
 
 (ref:fig-yelloweye-survey-fits)
 SRA model fits to the HBLL, Dogfish and and three commercial CPUE relative  indices.
@@ -124,8 +120,7 @@ Panels from left to right represent OM scenarios.
 Thin lines represent individual SRA model fits across stochastic draws from the various OM parameters.
 Dots represent index mean and line segments represent 2 times the standard errors as entered into the SRA models.
 
-
-```{r yelloweye-survey-fits, fig.cap="(ref:fig-yelloweye-survey-fits)", out.width="0.65\\textwidth"}
+```{r yelloweye-survey-fits, fig.cap="(ref:fig-yelloweye-survey-fits)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
 ```
 
@@ -147,10 +142,12 @@ The implied spawning stock biomass depletion trajectories during the historical 
 
 *TODO: Check this has been made correctly ... all have the same fraction 0.38*
 
-```{r yelloweye-sra-fraction, results='asis'}
+100% of the SRA replicates converged...
+
+```{r yelloweye-sra-fraction, results='asis', eval=FALSE}
 rex_converged <- readRDS(here("mse/om/ye-converged.rds"))
 rex_converged %>%
-  mutate(fraction_converged = sprintf("%.2f",round(nsim / 650, 2))) %>%
+  mutate(fraction_converged = sprintf("%.2f",round(nsim / 250, 2))) %>%
   mutate(scenario = gsub("\\n", " ", scenario)) %>%
   select(-nsim) %>%
   csasdown::csas_table(col_names = c("Scenario", "Fraction retained"),

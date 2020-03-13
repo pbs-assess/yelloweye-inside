@@ -48,4 +48,6 @@ report/_book/
 figs/dogfish-model.txt
 mse/scoping/*.Rmd
 *.sublime-*
+report/resdoc.Rmd
+report/resdoc.tex
 
