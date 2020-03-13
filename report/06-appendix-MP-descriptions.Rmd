@@ -50,6 +50,7 @@ We have modified many standard MPs to discard every second year of survey data t
 <!-- TODO: or just make it consistent! slope, tuning parameters, C or TAC, index symbol...-->
 
 ```{r, results='asis', include=FALSE, eval=FALSE}
+library(DLMtool)
 mps <- DLMtool::MPtype(DLMtool::avail('MP')) %>%
   dplyr::filter(Recs == "TAC") %>%
   dplyr::filter(!MP %in% grep("CC[2-9]+", .$MP, value = TRUE) )

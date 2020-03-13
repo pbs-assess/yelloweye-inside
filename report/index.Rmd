@@ -18,10 +18,12 @@ address: |
 year: 2020
 report_number: nnn
 region: Pacific Region
+
 abstract: |
   Here is the abstract text.
 
-  Start new paragraphs after a blank line and with 2 spaces indent.
+  Start new paragraphs after a blank line and with 2 spaces indent. 
+  
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  csasdown::resdoc_pdf:
@@ -33,6 +35,10 @@ knit: bookdown::render_book
 link-citations: true
 bibliography: [bib/refs.bib, bib/mpframework-refs.bib]
 csl: csl/csas.csl # or csl/csas-french.csl for French
+# Any extra LaTeX code for the header:
+# header-includes:
+# - \usepackage{etex}
+
 ---
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
