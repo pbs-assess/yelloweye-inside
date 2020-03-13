@@ -7,8 +7,9 @@ rmd_files: ["index.Rmd",
             "04-discussion.Rmd",
             #"05-appendix-om-description.Rmd",
             #"06-appendix-mp-descriptions.Rmd",
-            #"07-appendix-catch-data.Rmd",
-            #"08-hbll-survey.Rmd",
-            #"09-appendix-management-changes.Rmd",
-            "10-references.Rmd"]
+            #"07-appendix-biological-data.Rmd",
+            #"08-appendix-catch-data.Rmd",
+            #"09-appendix-survey-data.Rmd",
+            #"10-appendix-management-changes.Rmd",
+            "11-references.Rmd"]
 delete_merged_file: true
