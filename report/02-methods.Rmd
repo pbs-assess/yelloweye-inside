@@ -1,7 +1,7 @@
-# METHODS
 
+# METHODS {#sec:methods}
 
-## DATA
+## DATA {#sec:methods-data}
 
 - Brief generic text describing data sources that were available
 - Is Inside YE considered a data-limited species and why (not much ageing data? Less certain catch history?)
@@ -11,13 +11,19 @@ Catch data are described in Appendix \@ref(app:catch-data).
 Fishery independent survey data are described in Appendix \@ref(app:index-data).
 
 
-## THE MANAGEMENT PROCEDURE FRAMEWORK
+## THE MANAGEMENT PROCEDURE FRAMEWORK {#sec:methods-mp-framework}
 
 *TODO: Edit all of this text. Placeholder for now. RF can do this*
 
-We follow the methods recommended in the Management Procedure Framework for Groundfish in British Columbia [@anderson2020gfmp]. The framework follows six best practice steps described below. For more details on the best practice steps see @anderson2020gfmp.
 
-@punt2016 reviewed best practices for MSE and identified five key steps in the process (Steps 2--6 below). In large part, the DLMtool software has been designed to allow practitioners to follow these steps [Figure \@ref(fig:mse-chart); @carruthers2018]. We also identify a critical first step (Step 1 below): defining the decision context [@gregory2012 and Cox and Benson (unpublished)].
+
+
+
+
+The framework follows six best practice steps described below. For more details on the best practice steps see @anderson2020gfmp.
+
+
+@punt2016 reviewed best practices for MSE and identified five key steps in the process (Steps 2--6 below). In large part, the DLMtool software has been designed to allow practitioners to follow these steps [Figure \@ref(fig:mse-chart); @carruthers2018]. We also identify a critical first step (Step 1 below): defining the decision context [@gregory2012 and  @cox2016].
 
 *TODO: Mention this is done in a simulation framework. Very briefly introduce dlmtool and msetool here*
 
@@ -35,9 +41,9 @@ We follow the methods recommended in the Management Procedure Framework for Grou
 
 *TODO: possibly add Step 7 ... monitoring future surveys and triggering review of OM if surveys are outside projection envelope"
 
-## BEST PRACTICES FOR IMPLEMENTING A MANAGEMENT PROCEDURE APPROACH
+## BEST PRACTICES FOR IMPLEMENTING A MANAGEMENT PROCEDURE APPROACH {#sec:methods-approach}
 
-### STEP 1: DEFINE THE DECISION CONTEXT {#sec:approach1}
+### STEP 1: DEFINE THE DECISION CONTEXT {#sec:methods-approach1}
 
 The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice. The time-frame for making the decision should be stated in the request for science advice.
 
@@ -45,7 +51,7 @@ The boundaries on the project ...
 
 The final decision on which MP to use to determine catch limits should be made based on a consensus by the Regional Peer Review (RPR) committee, after review of the scientific content of the advice (including the structure and content of the OMs), and consideration of the relative performance of the MPs with respect to meeting stated objectives and trade-offs among performance metrics.
 
-### STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:approach2}
+### STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:methods-approach2}
 
 Here we describe a set of provisional objectives and associated performance metrics. In real applications of the framework, objectives should be refined on a stock-by-stock basis, with advice from Fisheries Management, First Nations, commercial and recreational fishing representatives, NGOs and other affected parties. Other objectives could be added (e.g., cultural objectives), decided on a stock-by-stock basis.
 
@@ -124,7 +130,7 @@ Using a projection period of 100 years, we calculate the probability that the st
 `5% B_0` = P[B_y > 0.05 B_0]
 
 
-### STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:approach3}
+### STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:methods-approach3}
 
 DLMtool OMs are organized into four main components representing a real fished system:
 
@@ -195,7 +201,7 @@ Two robustness OM were considered:
 
 Further details on the SRA OM-calibration model are available in Appendix \@ref(app:sra).
 
-### STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:approach4}
+### STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:methods-approach4}
 
 @anderson2020gfmp screened all MPs available in DLMtool as of November 2019 along with recent MPs used in BC groundfish reports. DLMtool includes MPs that make different types of management recommendations.
 These recommendations include adjustments to total allowable catch (TAC), effort, or spatial allocation of catch or effort.
@@ -291,7 +297,7 @@ In addition to the candidate MPs, it is important to include reference MPs. Prov
 The purpose of reference MPs is not to explore viable management strategies but to bound the range of expected or possible performance and contextualize whether differences between performance statistics among MPs are meaningful [@punt2016]. For example, the "no fishing" reference MPs provides information on maximum possible stock levels and the maximum possible rate of rebuilding under a rebuilding scenario. The "fishing at 0.75 F/F~MSY~" MP illustrates performance under an omniscient manager with perfect information. The MP that maintains the current TAC is included not because we think it is necessarily a good management strategy but illustrates what is likely the default had the framework not been implemented and illustrates the long-term performance expectations given current exploitation levels.
 
 
-### STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:approach5}
+### STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:methods-approach5}
 
 Once the objectives, performance metrics, calibrated OMs and MPs are fully specified, a closed-loop simulation framework (Figure \@ref(fig:mse-chart)) can be applied to test relative performance of the MPs with respect to meeting the stated objectives.
 
@@ -308,7 +314,7 @@ This is achieved by adding stochastic noise to the data (e.g, indices of abundan
 We suggest selecting sufficient replicates so that the rank order of MPs across the performance metrics remains consistent regardless of additional iterations [@carruthers_user_2019].
 
 
-### STEP 6: PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE  {#sec:approach6}
+### STEP 6: PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE  {#sec:methods-approach6}
 
 
 
