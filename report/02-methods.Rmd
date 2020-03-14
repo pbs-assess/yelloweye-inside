@@ -55,7 +55,7 @@ The final decision on which MP to use to determine catch limits should be made b
 
 Here we describe a set of provisional objectives and associated performance metrics. In real applications of the framework, objectives should be refined on a stock-by-stock basis, with advice from Fisheries Management, First Nations, commercial and recreational fishing representatives, NGOs and other affected parties. Other objectives could be added (e.g., cultural objectives), decided on a stock-by-stock basis.
 
-Key provisional conservation objectives are guided by the PA Framework [@dfo2006; @dfo2009] and rebuilding plan guidance [@DFO2013], elements of which are incorporated into the Fish Stocks provisions of the *Fisheries Act* (see Section \@ref(motivation)). Additional objectives related to fisheries yield and variability in annual fisheries yield are based on precedents in other DFO Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019].
+Key provisional conservation objectives are guided by the PA Framework [@dfo2006; @DFO2009] and rebuilding plan guidance [@DFO2013], elements of which are incorporated into the Fish Stocks provisions of the *Fisheries Act* (see Section \@ref(motivation)). Additional objectives related to fisheries yield and variability in annual fisheries yield are based on precedents in other DFO Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019].
 
 *TODO: LIST THE REBUILDING PLAN OBJECTIVES. How have these changed compared to the original objectives and why? - MJB first crack*
 

@@ -10,13 +10,13 @@ The project applies a closed-loop simulation framework [@anderson2020gfmp] to te
 
 ## MOTIVATION - POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
 
-The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@DFO2006; @DFO2009].
+The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@dfo2006; @DFO2009].
 The PA Framework [@DFO2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds to be avoided with high probability.
 The approach requires that fishing mortality be adjusted in relation to two levels of stock status---an Upper Stock Reference (USR) and a Limit Reference Point (LRP) (Figure \@ref(fig:pa-illustration)). The LRP and USR delineate three stock status zones ("healthy", "cautious", and "critical").
 
 Canadian fish stocks that have been assessed as being below the Limit Reference Point (LRP), i.e., in the critical zone [@DFO2009], require a rebuilding plan to rebuild the stock out of the critical Zone [@DFO2013].
 
-(ref:fig-pa) Illustration of DFO's Precautionary Approach Framework. Based on @dfo2009.
+(ref:fig-pa) Illustration of DFO's Precautionary Approach Framework. Based on @DFO2009.
 
 ```{r pa-illustration, fig.cap="(ref:fig-pa)", out.width="3.8in"}
 knitr::include_graphics(here::here("figs/pa-framework.png"))
@@ -53,6 +53,9 @@ The stock was assessed in 2011 as being below the LRP [@Yamanaka2011; @DFO2012] 
 The Inside Yelloweye Rockfish stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@COSEWIC2008], and is anticipated to be reassessed by the COSEWIC in 2020.
 Results from this project may inform a COSEWIC reassessment and, potentially, a SARA Recovery Potential Assessment, should one be required.
 
+The stock is considered to be data-limited, due to sparse availability of age-composition data, lack of biological data from commercial, recreational and First Nations' fisheries, and uncertainty in the magnitude of historical catches.
+These data-limitations pose a challenge to evaluation of the expected performance of rebuilding plans needed to bring the stock into compliance with the Fish Stocks provisions.
+
 The current rebuilding plan has the objective to "rebuild the stock above the LRP over 80 years with 56% probability of success".
 The milestone objectives are to "achieve positive trends within each 10 year period". The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, FSC, and survey) below 15 tonnes (see [@DFO2018], App. 9 for details).
 
@@ -62,19 +65,25 @@ Part of the motivation for this project was concern by fisheries managers that t
 The guidance for rebuilding plans [@DFO2013] identifies some recommended management measures, which include keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock.
 The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [@IFMP2018], which has not been simulation-tested.
 
+## Management strategy evaluation (MSE) {#sec:introduction-mse}
 
-Closed-loop simulation 
+Worldwide, there has been a movement towards MSE, or management-oriented approaches, for the provision of advice for managing fisheries [e.g., @butterworth1999; @rademeyer2007; @berkson2015; @geromont2015; @punt2016; @carruthers2016].
+MSE focuses on identifying management procedures (MPs) that perform best with respect to meeting agreed-upon policy and fishery objectives when implemented in a "closed-loop" simulation environment (Figure \@ref(fig:mse-chart-basic)).
+In output controlled fisheries such as the quota-managed BC groundfish fishery, MPs describe management measures that are used in setting catch limits.
+MPs can vary greatly in their data demands, from very data-rich approaches, including statistical catch-age stock assessments with harvest control rules, to simple data rules ("data-limited" approaches), which only rely on catch data and an index of abundance (e.g., @geromont2015; @carruthers2016).
 
-The project has three parts:
-1. Review and revise rebuilding objectives.
-2. Development of one or more operating models to represent alternative hypotheses for stock and fishery dynamics and to simulate future data.
-3. Evaluation of the performance of candidate management procedures with respect to meeting the rebuilding objectives and characterisation of trade-offs associated with alternative rebuilding plans.
+Closed-loop simulation is distinguished from conventional stock assessment approaches because it simulates feedback between implementation of the MPs and the underlying system representing the fish stock and its environment, described by one or more operating models (OMs).
+This approach not only takes into account the effect of the MPs on the system but also the future data collected from the system and its use in the MPs [@punt2016].
+The steps of MSE are described in Section \@ref(sec:methods-mp-framework) [see also @punt2016; @carruthers2018; @anderson2020gfmp].
 
+(ref:fig-mse-chart-basic) Illustration of the fisheries closed-loop simulation process following @punt2016. The management procedure may be based on a simple data rule (e.g., decrease the allowable catch x% if the survey index decreases y%) or it might be an estimation model combined with a harvest control rule.
 
+```{r mse-chart-basic, fig.cap="(ref:fig-mse-chart-basic)", out.width="6.3in"}
+knitr::include_graphics(here::here("images/mse-chart-simple2.png"))
+```
+ 
+## Approach {#sec:introduction-approach}
 
-
-
-
-
+*TODO: finish this*
 
 We follow the methods recommended in the Management Procedure Framework for Groundfish in British Columbia [@anderson2020gfmp], described below in Section \@ref(sec:methods-mp-framework). 

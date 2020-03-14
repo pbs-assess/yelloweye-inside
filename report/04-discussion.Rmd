@@ -1,5 +1,52 @@
-# DISCUSSION
+# DISCUSSION {#sec:discussion}
 
+*TODO: These two sections are lifted from MPF. Shorten, tailor to YE and refer back to MPF*
 
+## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
 
+This MP Framework, and all MSE processes, differ from conventional stock assessments in the way science advice is delivered.
+In most BC groundfish stock assessments [e.g., @yamanaka2011; @starr2017; @forrest2019], catch advice is presented in the form of decision tables, where probabilities of breaching reference points (e.g., probability of the stock falling below the LRP) are presented over a range of possible future TAC levels.
+Uncertainty can be incorporated into the process in two main ways: (1) within a single model, through treating model parameters (e.g., $M$, $R_0$, $h$, process, and observation error terms) as random variables; and/or (2) developing alternative models to test sensitivity to model assumptions.
+In the latter case, results from some of these sensitivity models may be averaged to produce a model-averaged decision table [e.g., @forrest2019], integrating uncertainties across multiple models.
+This approach depends on explicit reporting of reference points and estimation of stock status.
+Following the production of a decision table, it is then the job of the decision-makers to select a future TAC based on the probabilities presented in the decision table and their consideration of other factors such as economic needs of the fishery combined with their risk tolerance.
+In this process, consideration of risk (i.e., probability of breaching reference points and resulting impacts) occurs at the final step of the decision-making process and may not always be transparent or be related to agreed-upon objectives.
+
+MP frameworks differ from conventional assessments in two key ways: (1) reference points and stock status are not explicitly reported (or at least not emphasized); and (2) objectives related to the probability of breaching reference points must be agreed upon at the beginning of the process, i.e., at Step 2 of the best practices (Section \@ref(sec:best2)).
+Reference points and stock status are therefore still an integral component of the framework---they are calculated in the OMs and are built into the performance metrics.
+Critically, agreement on acceptable risk (e.g., acceptable probabilities of breaching reference points) must be reached at the beginning of the process so that performance metrics and satisficing criteria can be established.
+The final decision point in this process is the MP that delivers a TAC that meets objectives, while ideally also achieving acceptable trade-offs among other objectives such as catch or variability in catch.
+An advantage of MP frameworks is that all objectives must be transparently stated and are "baked in" to the final catch advice.
+
+We note that, for many stocks, especially data-limited stocks, it is not possible to reliably estimate biological reference points or estimate stock status.
+MP frameworks such as this one may be especially important for these stocks
+The Sustainable Fisheries Framework and the Fish Stocks provisions of the *Fisheries Act* require that fish stocks be maintained at sustainable levels, and particularly above the LRP (Section \@ref(sec:intro-motivation)).
+This framework implicitly preserves the intent of these policies, despite the fact that reference points and stock status are not explicitly provided.
+The MP Framework therefore increases capacity for provision of Sustainable Fisheries Framework- and Fish Stocks provisions-compliant catch advice for data-limited stocks.
+We recommend that products such as [DFO's sustainability survey](https://www.dfo-mpo.gc.ca/reports-rapports/regs/sff-cpd/survey-sondage/index-en.html) be flexible to accommodate status reports from MP-approach processes, which may use alternative wording such as: "Under the current management procedure, the stock has a less than [X] probability ([Y] times out of [N] chance) of being below the LRP averaged over a [Z]-year time frame."
+Alternatively, if a minimum-performance-by-year calculation [@ices2016criteria] is performed: "...less than [X] probability ([Y] times out of [N] chance) of being below the LRP in each and every year over a [Z]-year time frame."
+
+## REASSESSMENT FREQUENCY AND TRIGGERS {#sec:discussion-triggers}
+
+In general, the purpose of an MP framework is to identify and select a robust MP that can be left in place for an agreed amount of time.
+We do not recommend a specific interval between assessments in this framework and suggest this should be done on a stock-by-stock basis.
+We suggest that the MP Framework itself can be used to test appropriate re-assessment intervals for individual fish stocks [e.g., @huynh2020].
+Interim checks between assessments are also recommended to ensure the selected MP is performing as expected.
+
+In addition to the best practice steps described in Section \@ref(sec:best-practices), @carruthers2018 describe a final evaluation step, where performance of the selected MP is formally reviewed once it has been implemented.
+Departures from an MP's predicted performance have been termed "exceptional circumstances", where the observed system dynamics fall outside the range of scenarios specified in the OM(s), over which the MPs were demonstrated to be robust [@butterworth2008].
+Exceptional circumstances can be caused either by misspecification of the original OM(s) or can be due to unforeseen changes in the future system dynamics that were not captured in the original OM(s) (e.g., changes in natural mortality, growth, recruitment, or fishing dynamics).
+Evidence for exceptional circumstances, occurring within the recommended assessment interval, would trigger a review of the OM(s) and MP, possibly resulting in a new OM, or an adjustment to the selected MP [@carruthers_hordyk_2018].
+
+In established MSE processes [e.g., @cox2008a], informal evaluation of the performance of MPs may be done at regular intervals as the MP is applied and new data are gathered (e.g., survey and commercial CPUE information).
+@carruthers_hordyk_2018 list several examples of MSEs where formal protocols for detecting exceptional circumstances have been established.
+In general, formal protocols have included monitoring the biomass index, catch, and sometimes other data-types such as age-composition data, and comparing observations to the OM predictions.
+Examples of triggers for re-evaluation include observed data falling outside some confidence interval of the OM-predicted data (e.g., 90% or 95%).
+@carruthers_hordyk_2018 recommend testing the statistical power of formal protocols to detect exceptional circumstances.
+This may be especially important for data-limited species, where statistical power may be low due to large uncertainty in OM dynamics.
+For example, if the confidence interval of a predicted index is extremely large due to OM uncertainties, the likelihood of future observed indices falling outside its range may be low.
+It may therefore be necessary to use more rigorous test statistics, possibly based on multiple sources of data [e.g., examples provided in @carruthers_hordyk_2018].
+
+We recommend regular evaluation of the performance of MPs recommended by this framework but recognize that a formal protocol has not yet been established.
+We therefore also recommend further analyses to evaluate protocols for detecting exceptional circumstances as a matter of priority.
 
