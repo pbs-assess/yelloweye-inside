@@ -44,12 +44,12 @@ csl: csl/csas.csl # or csl/csas-french.csl for French
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
 library(knitr)
 if (is_latex_output()) {
-  knitr_figs_dir <- "knitr-figs-pdf"
-  knitr_cache_dir <- "knitr-cache-pdf"
+  knitr_figs_dir <- "knitr-figs-pdf/"
+  knitr_cache_dir <- "knitr-cache-pdf/"
   fig_out_type <- "png"
 } else {
-  knitr_figs_dir <- "knitr-figs-docx"
-  knitr_cache_dir <- "knitr-cache-docx"
+  knitr_figs_dir <- "knitr-figs-docx/"
+  knitr_cache_dir <- "knitr-cache-docx/"
   fig_out_type <- "png"
 }
 fig_asp <- 0.618
@@ -69,8 +69,8 @@ opts_chunk$set(
   fig.width = fig_width,
   out.width = fig_out_width,
   echo = FALSE,
-  #  autodep = TRUE,
-  #  cache = TRUE,
+  autodep = TRUE,
+  cache = TRUE,
   cache.comments = FALSE,
   dev = fig_out_type,
   dpi = fig_dpi,
