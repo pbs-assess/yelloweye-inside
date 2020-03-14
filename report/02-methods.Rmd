@@ -101,21 +101,21 @@ In addition, we propose refining the milestones identified in the original rebui
 
 5. Achieve positive biomass trends within each 10 year period *for as long as the stock remains below the LRP*.
 
-Current rebuilding guidance only provides for objectives to build stocks out of the critical zone [@ifmp2018], with milestones intended to ensure progress is achieved during the rebuilding process.
+Current rebuilding guidance only provides for objectives to build stocks out of the critical zone [@dfo2013], with milestones intended to ensure progress is achieved during the rebuilding process.
 The 10 year period identified in the milestones for the Inside Yelloweye Rockfish rebuilding plan [@ifmp2018] reflected an assumption that rebuilding could be very slow for this stock.
 We adjusted the milestone to reflect the assumption that, once the stock is rebuilt (i.e., no longer in the critical zone), the milestone would no longer be required.
 The rebuilding guidance does discuss having longer-term objectives to keep rebuilding stocks into the healthy zone.
-However, this is supposed to be achieved beyond the period of the rebuilding plan.
-We have interpreted this milestone in its strictest sense (i.e., the rebuilding plan is to rebuild the stock out of the critical zone), but the milestone may be revised in the future to state that positive biomass trends should be achieved until the stock is in the healthy zone.
+However, this is supposed to be achieved beyond the period and scope of the rebuilding plan [@dfo2013].
+We have interpreted this milestone in its strictest sense (i.e., the rebuilding plan is to rebuild the stock out of the critical zone), but the milestone could be revised in the future to require that positive biomass trends should be achieved until the stock is in the healthy zone.
 This is a decision to be made at Step 1 of future processes by fisheries managers, First Nations and stakeholders.
 
 We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, and GT represents generation time:
 
 *TODO: define the years for calculating LRP 1.5 GT, LRP 1 GT, USR 1.5 GT and LT C20*
 
-  * LRP 1.5 GT		P[B > 0.4 BMSY] after 1.5 GT (56 years)
-  * LRP 1 GT		    P[B > LRP] after 1 GT (38 years)
-  * USR 1.5 GT		P[B > USR] after 56 years
+  * LRP 1.5 GT		P[*B* > 0.4 *B*~MSY~] after 1.5 GT (56 years)
+  * LRP 1 GT		    P[*B* > LRP] after 1 GT (38 years)
+  * USR 1.5 GT		P[*B* > USR] after 56 years
 
   * ST C10		P[Catch > 10 t] during 2020-2029
   * ST C15    P[Catch > 15 t] during 2020-2029
@@ -132,8 +132,9 @@ The baseline period for AADC (2012 - 2019) was selected as this is the period si
 We include the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term. *TODO: is this correct?*
 
 In cases where performance metrics are calculated over a range of years, care needs to be taken to clearly report how summary statistics are calculated.
-@anderson2020gfmp suggested calculating performance statistics across replicates and the time window as defined for the performance metric.
-For example, we recommend calculating the *F*~MSY~ performance metric across all replicates and years simultaneously, whereas short-term (ST) catch metrics are averaged over only the years 2020-2029.
+@anderson2020gfmp suggested calculating performance statistics across replicates and the entire time window as defined for the performance metric.
+We follow this protocol here.
+For example, we averaged the short-term (ST) catch metrics over only the years 2020-2029.
 
 #### COSEWIC CONSIDERATIONS {#sec:methods-approach2-cosewic}
 
@@ -156,7 +157,8 @@ P30 - Probability that population decline hasn't exceeded 30% over 3 generations
 
 P[1 - B_2019/B_1918 < 0.3]
 
-### Extinction Risk - COSEWIC E
+##### Extinction Risk - COSEWIC E
+
 We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction.
 Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
 
