@@ -5,7 +5,7 @@
 ## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
 
 This MP Framework, and all MSE processes, differ from conventional stock assessments in the way science advice is delivered.
-In most BC groundfish stock assessments [e.g., @Yamanaka2011; @starr2017; @forrest2019], catch advice is presented in the form of decision tables, where probabilities of breaching reference points (e.g., probability of the stock falling below the LRP) are presented over a range of possible future TAC levels.
+In most BC groundfish stock assessments [e.g., @yamanaka2011; @starr2017; @forrest2019], catch advice is presented in the form of decision tables, where probabilities of breaching reference points (e.g., probability of the stock falling below the LRP) are presented over a range of possible future TAC levels.
 Uncertainty can be incorporated into the process in two main ways: (1) within a single model, through treating model parameters (e.g., $M$, $R_0$, $h$, process, and observation error terms) as random variables; and/or (2) developing alternative models to test sensitivity to model assumptions.
 In the latter case, results from some of these sensitivity models may be averaged to produce a model-averaged decision table [e.g., @forrest2019], integrating uncertainties across multiple models.
 This approach depends on explicit reporting of reference points and estimation of stock status.

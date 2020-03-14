@@ -55,14 +55,19 @@ The final decision on which MP to use to determine catch limits should be made b
 
 Here we describe a set of provisional objectives and associated performance metrics. In real applications of the framework, objectives should be refined on a stock-by-stock basis, with advice from Fisheries Management, First Nations, commercial and recreational fishing representatives, NGOs and other affected parties. Other objectives could be added (e.g., cultural objectives), decided on a stock-by-stock basis.
 
-Key provisional conservation objectives are guided by the PA Framework [@dfo2006; @DFO2009] and rebuilding plan guidance [@DFO2013], elements of which are incorporated into the Fish Stocks provisions of the *Fisheries Act* (see Section \@ref(motivation)). Additional objectives related to fisheries yield and variability in annual fisheries yield are based on precedents in other DFO Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019].
+Key provisional conservation objectives are guided by the PA Framework
+[@dfo2006; @dfo2009] and rebuilding plan guidance [@dfo2013], elements of which
+are incorporated into the Fish Stocks provisions of the *Fisheries Act* (see
+Section \@ref(motivation)). Additional objectives related to fisheries yield
+and variability in annual fisheries yield are based on precedents in other DFO
+Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019].
 
 *TODO: LIST THE REBUILDING PLAN OBJECTIVES. How have these changed compared to the original objectives and why? - MJB first crack*
 
-The rebuilding plan objectives for Inside Yelloweye were published in Appendix 9 of the Pacfic Region Integrated Fishery Management Plan (IFMP) for Groundfish in 2018 [@DFO2018]. The original rebuilding plan objectives were:
+The rebuilding plan objectives for Inside Yelloweye were published in Appendix 9 of the Pacfic Region Integrated Fishery Management Plan (IFMP) for Groundfish in 2018 [@dfo2018]. The original rebuilding plan objectives were:
 *"Rebuild the stock above the LRP over 80 years with 56% probability of success".
 *"Achieve positive trends within each 10 year period"
-The management procedure that was agreed upon to meet these objectives was to keep the the combined TAC (commercial, recreational, FSC) below 15 tonnes annually [@DFO2018].
+The management procedure that was agreed upon to meet these objectives was to keep the the combined TAC (commercial, recreational, FSC) below 15 tonnes annually [@dfo2018].
 
 For this analysis, a set of refined objectives were proposed for Inside Yelloweye in order to be consistent with legislated requirements under the new *Fisheries Act*, specify the length of the projection period to be used for simulations, and to account for other processes, including the anticipated re-assessment by COSEWIC. The new objectives are:
 
@@ -70,7 +75,7 @@ For this analysis, a set of refined objectives were proposed for Inside Yellowey
 2. Achieve positive trends in biomass within each 10 year period or if the stock is above the LRP" <!--I think this one is not correctly worded, I took it from Quang's presentation but I'm not sure where to find the proper one (MJB)-->
 
 *TODO: Also list COSEWIC indicators- MJB first crack*
-COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@COSEWIC2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) -->
+COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@cosewic2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) -->
 
 *TODO: List the performance metrics - MJB first crack*
 We propose the following performance metrics, where MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, and *F*~MSY~ refers to the fishing mortality that produces MSY over the long term:

@@ -5,18 +5,18 @@
 
 # INTRODUCTION {#sec:introduction}
 
-The purpose of this project is to provide scientific advice to support revision of the rebuilding plan  for the Inside Population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@IFMP2018], consistent with national policy guidance [@DFO2009; @DFO2013]. 
+The purpose of this project is to provide scientific advice to support revision of the rebuilding plan  for the Inside Population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
 The project applies a closed-loop simulation framework [@anderson2020gfmp] to test and identify management procedures (MPs) that meet rebuilding objectives for the Inside population of Yelloweye Rockfish.
 
 ## MOTIVATION - POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
 
-The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@dfo2006; @DFO2009].
-The PA Framework [@DFO2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds to be avoided with high probability.
+The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@dfo2006; @dfo2009].
+The PA Framework [@dfo2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds to be avoided with high probability.
 The approach requires that fishing mortality be adjusted in relation to two levels of stock status---an Upper Stock Reference (USR) and a Limit Reference Point (LRP) (Figure \@ref(fig:pa-illustration)). The LRP and USR delineate three stock status zones ("healthy", "cautious", and "critical").
 
-Canadian fish stocks that have been assessed as being below the Limit Reference Point (LRP), i.e., in the critical zone [@DFO2009], require a rebuilding plan to rebuild the stock out of the critical Zone [@DFO2013].
+Canadian fish stocks that have been assessed as being below the Limit Reference Point (LRP), i.e., in the critical zone [@dfo2009], require a rebuilding plan to rebuild the stock out of the critical Zone [@dfo2013].
 
-(ref:fig-pa) Illustration of DFO's Precautionary Approach Framework. Based on @DFO2009.
+(ref:fig-pa) Illustration of DFO's Precautionary Approach Framework. Based on @dfo2009.
 
 ```{r pa-illustration, fig.cap="(ref:fig-pa)", out.width="3.8in"}
 knitr::include_graphics(here::here("figs/pa-framework.png"))
@@ -27,14 +27,14 @@ The Fish Stocks provisions require that major fish stocks be managed at sustaina
 Furthermore,  Sections 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan must be established to rebuild the stock above the LRP.
 Major fish stocks will be designated under regulations, with the first batch of major fish stocks due to be designated in Fall 2020.
 
-The guidance for the development of rebuilding plans in Canada [@DFO2013] states that rebuilding plans should be based upon objectives characterised by:
+The guidance for the development of rebuilding plans in Canada [@dfo2013] states that rebuilding plans should be based upon objectives characterised by:
 
 1. A target.
 2. A desired time to reach the target.
 3. An agreed-upon acceptable probability of reaching the target.
 
 Rebuilding plans should also include planned management measures, milestone objectives and should undergo regular (no more than three years) performance reviews, in addition to annual monitoring and evaluation. 
-Current guidance states that the timelines (*TODO check guidance and definition of generation time*) should be 1.5 to 2 times the generation time of the species [@DFO2013], where generation time is the average number of years taken for individuals to reproduce.
+Current guidance states that the timelines (*TODO check guidance and definition of generation time*) should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years taken for individuals to reproduce.
 
 ## BACKGROUND {#sec:introduction-background}
 
@@ -50,20 +50,20 @@ The stock is considered to be data-limited, due to sparse availability of age-co
 knitr::include_graphics(here::here("figs/InsideYE_Map_new.png"))
 ```
 
-Yelloweye Rockfish are a long-lived species [up to 121 years in B.C. @Keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@Yamanaka2011].
+Yelloweye Rockfish are a long-lived species [up to 121 years in B.C. @keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
 These life history traits make the stock vulnerable to overexploitation by fisheries.
-The stock was assessed in 2011 as being below the LRP [@Yamanaka2011; @DFO2012] and a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@DFO2018].
-The Inside Yelloweye Rockfish stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@COSEWIC2008], and is anticipated to be reassessed by the COSEWIC in 2020.
+The stock was assessed in 2011 as being below the LRP [@yamanaka2011; @dfo2012] and a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@dfo2018].
+The Inside Yelloweye Rockfish stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@cosewic2008], and is anticipated to be reassessed by the COSEWIC in 2020.
 Results from this project may inform a COSEWIC reassessment and, potentially, a SARA Recovery Potential Assessment, should one be required.
 
 The current rebuilding plan has the objective to "rebuild the stock above the LRP over 80 years with 56% probability of success".
-The milestone objectives are to "achieve positive trends within each 10 year period". The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, FSC, and survey) below 15 tonnes (see [@DFO2018], App. 9 for details).
+The milestone objectives are to "achieve positive trends within each 10 year period". The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, FSC, and survey) below 15 tonnes (see [@dfo2018], App. 9 for details).
 
-The guidance for rebuilding plans states that there should be a high probability of rebuilding fish stocks out of the critical zone within the stated time-frame [@DFO2013].
-Part of the motivation for this project was concern by fisheries managers that the  56% probability of success, stated as an objective in the current rebuilding plan [@IFMP2018], was inconsistent with the definition of high probability.
+The guidance for rebuilding plans states that there should be a high probability of rebuilding fish stocks out of the critical zone within the stated time-frame [@dfo2013].
+Part of the motivation for this project was concern by fisheries managers that the  56% probability of success, stated as an objective in the current rebuilding plan [@ifmp2018], was inconsistent with the definition of high probability.
 
-The guidance for rebuilding plans [@DFO2013] identifies some recommended management measures, which include keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock.
-The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [@IFMP2018], which has not been simulation-tested.
+The guidance for rebuilding plans [@dfo2013] identifies some recommended management measures, which include keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock.
+The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [@ifmp2018], which has not been simulation-tested.
 
 ## Management strategy evaluation (MSE) {#sec:introduction-mse}
 

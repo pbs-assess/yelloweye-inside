@@ -3,16 +3,16 @@
 
 # BIOLOGICAL DATA {#app:biological-data}
 
-Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait; Figure \@ref(map-4B)), are a genetically distinct stock from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@Andrews2018; @Siegle2011; @Siegle2013].  The inside and outside stocks are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@COSEWIC2008].
+Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait; Figure \@ref(map-4B)), are a genetically distinct stock from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013].  The inside and outside stocks are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@cosewic2008].
 
 The northerly boundary between the two genetic populations is found in the middle of the Queen Charlotte Strait, north of Malcolm Island.
-Understanding of the Southern boundary has recently changed based on analyses presented in @Andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations.
+Understanding of the Southern boundary has recently changed based on analyses presented in @andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations.
 The two populations are assessed and managed independently using the Groundfish Management Area 4B to define the inside stock despite the fact that Area 4B extends past the boundaries of the biological population (Figure \@ref(map-4B)).
 
 *TODO: Explain how the maximum age is younger than the oldest aged fish*
 
-Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum age for inside Yelloweye is 98 years [@Keppel2019]. 
-They prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@Yamanaka2011]. 
+Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum age for inside Yelloweye is 98 years [@keppel2019]. 
+They prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011]. 
 These life history traits make the stock vulnerable to overexploitation by fisheries.
 
 *TODO: Add biological data here*

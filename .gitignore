@@ -50,4 +50,4 @@ mse/scoping/*.Rmd
 *.sublime-*
 report/resdoc.Rmd
 report/resdoc.tex
-
+report/knitr-*

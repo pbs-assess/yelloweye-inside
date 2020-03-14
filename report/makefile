@@ -8,3 +8,4 @@ continuous:
 
 bibclean:
 	bibtool -s --print.use.tab=Off --print.line.length=80 -i bib/mpframework-refs.bib -o bib/mpframework-refs.bib
+	bibtool -s --print.use.tab=Off --print.line.length=80 -i bib/refs.bib -o bib/refs.bib
