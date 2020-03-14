@@ -20,6 +20,12 @@ The best practice steps are based on a review by @punt2016, who identified five 
 In large part, the DLMtool software has been designed to allow practitioners to follow these steps [Figure \@ref(fig:mse-chart); @carruthers2018].
 The framework also identifies a critical first step, defining the decision context [@gregory2012 and  @cox2016].
 
+(ref:fig-mse-chart) The steps of the MSE process following @punt2016 as implemented in DLMtool. Adapted from @carruthers2018. This figure expands on Figure \@ref(fig:mse-chart-basic).
+
+```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("figs/mse-chart.pdf"))
+```
+
 The six steps are as follows:
 
   Step 1: Define the decision context.
@@ -35,7 +41,7 @@ The six steps are as follows:
   Step 6: Presentation of results and selection of management procedure.
 
 Following selection and implementation of the MP for setting the catch limit, it is also necessary to periodically monitor and evaluate the performance of the MP [@dowling2015a; @carruthers2018]. 
-This may be done through informal means,such as through feedback from fishers and survey information [e.g., @cox2008], or through more formal statistical measures, where observed data are compared to predictions from the OMs to test whether the system is performing as expected [@carruthers_hordyk_2018; discussed in @anderson2020gfmp].
+This may be done through informal means, such as through feedback from fishers and survey information [e.g., @cox2008], or through more formal statistical measures, where observed data are compared to predictions from the OMs to test whether the system is performing as expected [@carruthers_hordyk_2018; discussed in @anderson2020gfmp].
 
 Below, we describe the methods used for developing a candidate rebuilding plan for Inside Yelloweye Rockfish, following the six best practice steps.
 
