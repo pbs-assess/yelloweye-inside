@@ -26,43 +26,43 @@ include_hbll_fig <- function(file) {
 \clearpage
 
 ```{r, fig.cap="The raw data. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the number of fish caught per hook after accounting for hook competition.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-raw-data.pdf")
+include_hbll_fig("hbll-joint-raw-data.png")
 ```
 
 ```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 400 knots. kmeans clustering algorithm. Samples from all years are shown simultaneously."}
-include_hbll_fig("hbll-joint-spde.pdf")
+include_hbll_fig("hbll-joint-spde.png")
 ```
 
 ```{r, out.width="5in", fig.cap="Area per survey grid cell."}
-include_hbll_fig("hbll-area-in-water.pdf")
+include_hbll_fig("hbll-area-in-water.png")
 ```
 
 ```{r, fig.cap="Baited hooks. Note the substantial difference between the northern and southern areas and the change in the north between 2003--2007 in subsequent years.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-baited.pdf")
+include_hbll_fig("hbll-joint-baited.png")
 ```
 
 ```{r, fig.cap="Hook adjustment factor.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-hook-adjust.pdf")
+include_hbll_fig("hbll-joint-hook-adjust.png")
 ```
 
 ```{r, fig.cap="Predicted relative density in space and time.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-prediction-log.pdf")
+include_hbll_fig("hbll-joint-prediction-log.png")
 ```
 
 ```{r, fig.cap="The spatial random effects. These are consistent differences from the expectation in space.", out.width="4.2in"}
-include_hbll_fig("hbll-joint-omega.pdf")
+include_hbll_fig("hbll-joint-omega.png")
 ```
 
 ```{r, fig.cap="The spatiotemporal random effects. Note the reversion to the mean in area-year combinations without sampling data. Also note the difference in magnitude between the spatiotemporal and spatial random effects.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-epsilon.pdf")
+include_hbll_fig("hbll-joint-epsilon.png")
 ```
 
 ```{r, fig.cap="Randomized quantile residuals from the model shown in space and time.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-residual-map.pdf")
+include_hbll_fig("hbll-joint-residual-map.png")
 ```
 
 ```{r, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
-include_hbll_fig("hbll-index-components-eps-depth2.pdf")
+include_hbll_fig("hbll-index-components-eps-depth2.png")
 ```
 
 \clearpage
