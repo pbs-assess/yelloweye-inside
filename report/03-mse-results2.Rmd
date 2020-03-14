@@ -2,10 +2,7 @@
 
 ```{r round2-function}
 round2 <- function(x) sprintf("%.2f",round(x, 2))
-library(here)
 ```
-
-\clearpage
 
 # RESULTS
 

@@ -82,17 +82,14 @@ options(kableExtra.latex.load_packages = FALSE)
 ```
 
 ```{r load-libraries, cache=FALSE}
-# add other packages here:
-library(gfplot)
 library(gfutilities)
-library(gfdlm)
 library(csasdown)
-library(DLMtool)
-library(MSEtool)
-library(rfishbase)
 library(RColorBrewer)
-library(tidyverse)
-library(magrittr)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(here)
 filter <- dplyr::filter
 options(tinytex.verbose = TRUE)
 knitr::opts_chunk$set(crop = NULL)

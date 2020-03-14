@@ -1,6 +1,3 @@
-
-\clearpage
-
 # CATCH DATA {#app:catch-data}
 
 Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries.
@@ -15,21 +12,23 @@ Raw commercial catch data for Inside Yelloweye was pulled from the GFCatch datab
 
 To be consistent with the previous assessment, the total commercial catch for 1986-2005 was doubled [@dfo2012]. The original decision to double the catch for those years was based on feedback from the commercial industry and was intended to account for their lack of confidence in commercial logbooks. In the current analysis we used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards. We perhaps should have used the reconstruction algorithm to obtain catches up until 2006, when full reporting and 100% monitoring was implemented in the groundfish fishery. However, sensitivity analyses demonstrated that the different catch timeseries did not affect our final perception of stock status (*cite figure Sean made*)
 
+\clearpage
+
 ```{r commcatch, echo = FALSE, warning = FALSE, results = "asis"}
-
-comm_catch <- read.csv("../data-raw/ye_catch_by_sector.csv", header=TRUE)
+comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
 csasdown::csas_table(comm_catch,
-                     format = "latex",
-                     col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
-                     repeat_header = TRUE,
-                     caption = "Commercial catch by sector for Inside Yelloweye Rockfish.
-                      The table contains reconstructed (1918-1985) and nominal (1986-2019)
-                     catch estimates in tonnes."
+  format = "latex",
+  col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
+  repeat_header = TRUE,
+  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918-1985) and nominal (1986-2019) catch estimates in tonnes."
 ) %>%
-  kableExtra::column_spec(1:6, width = "1.0cm")
-
+  kableExtra::column_spec(1, width = "1.0cm") %>%
+  kableExtra::column_spec(2:6, width = "1.6cm")
 ```
 
+TODO: plot instead or in addition?
+
+\clearpage
 
 ## Recreational Catch Data {#sec:rec-catch-data}
 
@@ -45,47 +44,44 @@ Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimat
 
 We followed the same method as in Yamanaka et al. (2011) to estimate the catch of Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982-1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982-1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year. To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000. We converted rockfish pieces to weight by multiplying by 2.49kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
 
+\clearpage
+
 ```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
-
-
-rec_catch <- read.csv("../data-raw/rec-allcatch-effort.csv", header=TRUE)
+rec_catch <- read.csv(here("data-raw/rec-allcatch-effort.csv"))
 
 # make a table of recreational catch
 csasdown::csas_table(rec_catch,
-                     format = "latex",
-                     col_names = c("Year", "Catch(t)", "Effort(boat trips)"),
-                     align=c("c","c","c"),
-                     digits=1,
-                     repeat_header = TRUE,
-                     caption = "Recreational catch estimates for inside Yelloweye Rockfish.
-                      The table contains reconstructed (1918-1981) and modern (1982-2019)
-                     catch estimates in tonnes."
+  format = "latex",
+  col_names = c("Year", "Catch (t)", "Effort (boat trips)"),
+  align = c("c", "c", "c"),
+  digits = 1,
+  repeat_header = TRUE,
+  caption = "Recreational catch estimates for inside Yelloweye Rockfish. The table contains reconstructed (1918-1981) and modern (1982-2019) catch estimates in tonnes."
 )
 ```
+
+TODO: plot instead or in addition?
 
 \clearpage
 
 ```{r recbyarea, echo=FALSE, warning=FALSE, results = "asis"}
-
-rec_area <- read.csv("../data-raw/rec-catcheffortbyarea.csv", header=TRUE)
+rec_area <- read.csv(here("data-raw/rec-catcheffortbyarea.csv"))
 
 # organizing the data from long to wide format
-
 rec_wide <- rec_area %>%
   select(year, tonnes, totaleffort, pfma) %>%
-  pivot_wider(names_from = pfma, values_from = c(tonnes, totaleffort)) %>%
-  mutate(effort = rowSums(.[13:23], na.rm=TRUE)/10000) %>%
+  tidyr::pivot_wider(names_from = pfma, values_from = c(tonnes, totaleffort)) %>%
+  mutate(effort = rowSums(.[13:23], na.rm = TRUE) / 10000) %>%
   select(-starts_with("totaleffort")) %>%
-  rename_at(vars(starts_with("tonnes_")), funs(str_remove(., "tonnes_")))
+  rename_at(vars(starts_with("tonnes_")), list(~ stringr::str_remove(., "tonnes_")))
 
 # make the table of catch by PFMA and total effort by year
 csasdown::csas_table(rec_wide,
-                     format = "latex",
-                     digits=1,
-                     caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019.Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000-2008)."
+  format = "latex",
+  digits = 1,
+  caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019.Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000-2008)."
 ) %>%
   kableExtra::column_spec(1:13, width = "0.75cm")
-
 ```
 
 ## Food, Social and Ceremonial (FSC) Catch {#sec:fsc-catch-data}
@@ -115,12 +111,10 @@ The proportion of FSC fisher encountered by the dockside creel monitor was not, 
 
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
-
-fsc_catch <- read.csv("../data-raw/fsc-dmp.csv", header=TRUE)
-
+fsc_catch <- read.csv(here("data-raw/fsc-dmp.csv"))
 csasdown::csas_table(fsc_catch,
-                     format = "latex",
-                     col_names = c("Year", "FSC", "Commercial", "Total", "Percent FSC"),
-                     caption = "FSC catch of Inside Yelloweye Rockfish as a proportion of total commercial catch reported to dockside observers from dual fishing trips." )
-
+  format = "latex",
+  col_names = c("Year", "FSC", "Commercial", "Total", "Percent FSC"),
+  caption = "FSC catch of Inside Yelloweye Rockfish as a proportion of total commercial catch reported to dockside observers from dual fishing trips."
+)
 ```
