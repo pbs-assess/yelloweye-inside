@@ -21,9 +21,9 @@ knitr::include_graphics(here::here("images/pa-framework.png"))
 ```
 
 In June 2019, major amendments to Canada's *Fisheries Act* legislated many key components of SFF, encoded in the Fish Stocks provisions ([Section 6 of the *Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547)).
-The Fish Stocks provisions require that major fish stocks be managed at sustainable levels, specifically at biomass levels above the LRP. 
+The Fish Stocks provisions require that major fish stocks be managed at sustainable levels, specifically at biomass levels above the LRP.
 Furthermore,  Sections 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan must be established to rebuild the stock above the LRP.
-Major fish stocks will be designated under regulations, with the first batch of major fish stocks due to be designated in Fall 2020. 
+Major fish stocks will be designated under regulations, with the first batch of major fish stocks due to be designated in Fall 2020.
 
 The guidance for the development of rebuilding plans in Canada [@DFO2013] states that rebuilding plans should be based upon objectives characterised by:
 
@@ -36,12 +36,8 @@ Current guidance states that the timelines (*TODO check guidance and definition 
 
 ## BACKGROUND {#sec:introduction-background}
 
-Inside Yelloweye Rockfish is a data-limited fish stock occurring in British Columbia in Groundfish Management Area 4B (Figure \@ref(map-4B)). 
-It is expected to be designated as a major fish stock in the first batch.
-Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries. 
-The population was assessed in 2011 as being below the LRP [@Yamanaka2011; @DFO2012] and a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@DFO2018]. 
-The current rebuilding plan has the objective to "rebuild the stock above the LRP over 80 years with 56% probability of success". 
-The milestone objectives are to "achieve positive trends within each 10 year period". The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, FSC, and survey) below 15 tonnes (see [@DFO2018], App. 9 for details).
+Inside Yelloweye Rockfish is a fish stock occurring in British Columbia in Groundfish Management Area 4B (Figure \@ref(map-4B)).
+The stock is expected to be designated as a major fish stock in the first batch of major stocks in Fall 2020, and its management will therefore be legislated under the Fish Stocks provisions.
 
 (ref:fig-map-4B) Map of Groundfish Management Area 4B.
 
@@ -49,28 +45,20 @@ The milestone objectives are to "achieve positive trends within each 10 year per
 knitr::include_graphics(here::here("figs/InsideYE_Map_new.png"))
 ```
 
-Science received a Request for Science Information and Advice (RSIA) from the Pacific Groundfish Management Unit that states: "Science support is requested to review rebuilding plan objectives, and if indicated by the review, adjust the rebuilding plan objectives so that they can be monitored and evaluated, and  are consistent with the Rebuilding Plan guidance document." 
-Review of the rebuilding plan objectives includes reviewing whether the current stated probability of rebuilding (56%) is consistent with the guidance for rebuilding plans in Canada [@DFO2013], which states that there should be a high probability of rebuilding the stock within the stated time-frame.
+Yelloweye Rockfish are a long-lived species [up to 121 years in B.C. @Keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@Yamanaka2011].
+These life history traits make the stock vulnerable to overexploitation by fisheries.
+The stock was assessed in 2011 as being below the LRP [@Yamanaka2011; @DFO2012] and a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@DFO2018].
+The Inside Yelloweye Rockfish stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@COSEWIC2008], and is anticipated to be reassessed by the COSEWIC in 2020.
+Results from this project may inform a COSEWIC reassessment and, potentially, a SARA Recovery Potential Assessment, should one be required.
 
+The current rebuilding plan has the objective to "rebuild the stock above the LRP over 80 years with 56% probability of success".
+The milestone objectives are to "achieve positive trends within each 10 year period". The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, FSC, and survey) below 15 tonnes (see [@DFO2018], App. 9 for details).
 
+The guidance for rebuilding plans states that there should be a high probability of rebuilding fish stocks out of the critical zone within the stated time-frame [@DFO2013].
+Part of the motivation for this project was concern by fisheries managers that the  56% probability of success, stated as an objective in the current rebuilding plan [@IFMP2018], was inconsistent with the definition of high probability.
 
-The guidance document [@DFO2013] identifies some recommended management measures, which include keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to examine the consequences of alternative management measures aimed at rebuilding the stock. The current rebuilding plan implements an annual fixed TAC, which has not been simulation-tested.
-
-
-
-
-
-
-For data-limited stocks, data are generally insufficient to adequately account for uncertainty in development of biological reference points (BRPs) and assessment of stock status relative to BRPs. 
-To comply with the legal requirements identified in the Fish Stocks provisions for data-limited species, it is therefore necessary to develop defensible methods and a framework for setting catch limits that promote sustainability and maintain stocks above their LRP, recognizing that, in many cases, the LRP and stock status cannot be reliably estimated.
-
-
-
-
-
- 
-
-
+The guidance for rebuilding plans [@DFO2013] identifies some recommended management measures, which include keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock.
+The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [@IFMP2018], which has not been simulation-tested.
 
 
 Closed-loop simulation 
@@ -83,11 +71,8 @@ The project has three parts:
 
 
 
-Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait), are genetically distinct from the outside population of Yelloweye Rockfish whose range covers the rest of the coast [@Andrews2018; @Siegle2011; @Siegle2013] and are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@COSEWIC2008].
-The northerly boundary between the two genetic populations is found in the middle of the Queen Charlotte Strait, north of Malcolm Island.
-Our understanding of the Southern boundary has recently changed based on analyses presented in Andrews et al. (2018) who argue that the Victoria Sill is the most likely geological boundary between the two populations.
-The two populations are assessed and managed independently using the Groundfish Management Area 4B to define the inside stock despite the fact that 4B extends past the boundaries of the biological population (**Figure x**).
 
-Yelloweye are a long-lived species and have been aged up to 121 years in B.C. although the maximum age for inside Yelloweye is 98 years [@Kepple2019]. They prefer rocky demersal habitats that have a patchy, discontinuous distribution along the inner coast [@Yamanaka2011]. These life history traits make Inside Yelloweye vulnerable to overexploitation by fisheries. Inside Yelloweye Rockfish are listed under the Species at Risk Act (SARA) as a Species of Special Concern [@COSEWIC2008], and is anticipated to be reassessed by the COSEWIC in 2020. Project results may inform a COSEWIC reassessment and will inform a SARA Recovery Potential Assessment for the Inside Population, should one be required.
+
+
 
 We follow the methods recommended in the Management Procedure Framework for Groundfish in British Columbia [@anderson2020gfmp], described below in Section \@ref(sec:methods-mp-framework). 

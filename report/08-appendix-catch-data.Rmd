@@ -3,6 +3,8 @@
 
 # CATCH DATA {#app:catch-data}
 
+Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries.
+
 ## Commercial Catch Data {#sec:com-catch-data}
 
 Historical catch data for Inside Yelloweye rockfish suffer from two forms of uncertainty. The first uncertainty is that commercial landings of rockfish other than Pacific Ocean Perch were reported as an aggregate (other rockfish, ORF). To reconstruct historical catches an algorithm was developed to convert ORF landings to Inside Yelloweye Rockfish landings, by fishery sector, using the ratio of Inside Yelloweye catch to ORF, from a period with credible landings data (1997-2005) from the hook and line dockside monitoring program. The ratio was then applied to the period of questionable Yelloweye catch in the reconstruction algorithm [@Haigh2011].
