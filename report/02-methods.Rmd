@@ -43,66 +43,105 @@ The six steps are as follows:
 Following selection and implementation of the MP for setting the catch limit, it is also necessary to periodically monitor and evaluate the performance of the MP [@dowling2015a; @carruthers2018]. 
 This may be done through informal means, such as through feedback from fishers and survey information [e.g., @cox2008a], or through more formal statistical measures, where observed data are compared to predictions from the OMs to test whether the system is performing as expected [@carruthers_hordyk_2018; discussed in @anderson2020gfmp].
 
-Below, we describe the methods used for developing a candidate rebuilding plan for Inside Yelloweye Rockfish, following the six best practice steps.
+Next, we describe the approach used for developing a candidate rebuilding plan for Inside Yelloweye Rockfish, following the six best practice steps.
 
 ## BEST PRACTICES FOR IMPLEMENTING A MANAGEMENT PROCEDURE APPROACH {#sec:methods-approach}
 
 ### STEP 1: DEFINE THE DECISION CONTEXT {#sec:methods-approach1}
 
-The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice.
-The time-frame for making the decision should be stated in the request for science advice.
+Key questions to guide defining the decision context for MSE include:
 
-The boundaries on the project ...
+* What is the exact decision to be made?
+
+* What is the time frame for making the decision?
+
+* What are specific roles and responsibilities of parties involved? Parties include Science, Management, First Nations, industry, academia, and/or non-governmental organizations (NGOs).
+
+* How will the final decision be made?
+
+For this rebuilding plan, the decision to be made is which MP to use to determine catch limits for the period until the next available catch advice.
+The time-frame for making the decision should be stated in the request for science advice.
 
 The final decision on which MP to use to determine catch limits should be made based on a consensus by the Regional Peer Review (RPR) committee, after review of the scientific content of the advice (including the structure and content of the OMs), and consideration of the relative performance of the MPs with respect to meeting stated objectives and trade-offs among performance metrics.
 
 ### STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:methods-approach2}
 
-Here we describe a set of provisional objectives and associated performance metrics. In real applications of the framework, objectives should be refined on a stock-by-stock basis, with advice from Fisheries Management, First Nations, commercial and recreational fishing representatives, NGOs and other affected parties. Other objectives could be added (e.g., cultural objectives), decided on a stock-by-stock basis.
+Clear management and fishery objectives and the performance metrics that measure them must be identified.
+Objectives may span a wide range of policy or legistated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., average catch or variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
+Fully quantified objectives include a metric, the desired probability of success, and a time frame to achieve the objective (e.g., probability of maintaining the stock above the LRP is greater than 0.95 [19 times out of 20], over 1.5 generations of the stock).
+Performance metrics are quantified measures of the objectives, calculated in the OM at each time step of the projections.
 
+The original rebuilding plan objectives for Inside Yelloweye Rockfish were published in 2018 [@ifmp2018; their Appendix 9]. The original rebuilding plan objective was to
+rebuild the stock above the LRP over 80 years with 56% probability of success; with the additional milestone to achieve positive biomass trends within each 10 year period.
+The MP that was agreed upon to meet these objectives was to maintain the combined TAC (commercial, recreational, FSC, biological survey) below 15 tonnes annually [@ifmp2018].
+
+Here we present a set of refined objectives and associated performance metrics for the rebuilding plan for Inside Yelloweye Rockfish.
 Key provisional conservation objectives are guided by the PA Framework
-[@dfo2006; @dfo2009] and rebuilding plan guidance [@dfo2013], elements of which
-are incorporated into the Fish Stocks provisions of the *Fisheries Act* (see
-Section \@ref(motivation)). Additional objectives related to fisheries yield
-and variability in annual fisheries yield are based on precedents in other DFO
-Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019].
+[@dfo2006; @dfo2009], rebuilding plan guidance [@dfo2013], and regional precedent [@cox2019; @cox2020].
+Additional objectives related to fisheries yield and variability in annual fisheries yield are based on precedents in other DFO Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019; @cox2020].
 
-*TODO: LIST THE REBUILDING PLAN OBJECTIVES. How have these changed compared to the original objectives and why? - MJB first crack*
+The proposed core conservation objective is:
 
-The rebuilding plan objectives for Inside Yelloweye were published in Appendix 9 of the Pacfic Region Integrated Fishery Management Plan (IFMP) for Groundfish in 2018 [@dfo2018]. The original rebuilding plan objectives were:
-*"Rebuild the stock above the LRP over 80 years with 56% probability of success".
-*"Achieve positive trends within each 10 year period"
-The management procedure that was agreed upon to meet these objectives was to keep the the combined TAC (commercial, recreational, FSC) below 15 tonnes annually [@dfo2018].
+1. Rebuild the stock above the LRP over 56 years (1.5 generations) with at least 95% [19 times out of 20] probability of success.
 
-For this analysis, a set of refined objectives were proposed for Inside Yelloweye in order to be consistent with legislated requirements under the new *Fisheries Act*, specify the length of the projection period to be used for simulations, and to account for other processes, including the anticipated re-assessment by COSEWIC. The new objectives are:
+*TODO: DANA please can you add something here about the choice of 1.5 generations. I think this came from the outside YE rebuilding plan [@cox2020]. Please also make a short note about the difference in GT between the inside and outside stocks and refer to the biological data appendix. I have added a todo there as well*
 
-1. Rebuild the stock above the LRP over 56 years (1.5 generations) with at least 95% probability of success
-2. Achieve positive trends in biomass within each 10 year period or if the stock is above the LRP" <!--I think this one is not correctly worded, I took it from Quang's presentation but I'm not sure where to find the proper one (MJB)-->
+The rebuilding time-frame was modified from 80 years in the original rebuilding plan [@ifmp2018] to 56 years to reflect ... **xxx**
+The probability of success was increased from 56% to 95% to reflect rebuilding guidance that the probability of rebuilding should be high, and international best practice, where policies in numerous jurisdictions aim to keep stocks above the LRP with 90-95% probability [18 to 19 times out of 20][@sainsbury2008; @mcilgorm2013].
 
-*TODO: Also list COSEWIC indicators- MJB first crack*
-COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@cosewic2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) -->
+We also propose the following additional objectives:
 
-*TODO: List the performance metrics - MJB first crack*
-We propose the following performance metrics, where MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, and *F*~MSY~ refers to the fishing mortality that produces MSY over the long term:
-<!--from the powerpoint slides from Quang (MJB)-->
+2. Maintain a fishing mortality rate below the fishing mortality rate at maximum sustainable yield (*F*~MSY~) with some probability.
 
-  * LRP 1.5 GT		P[B > 0.4 BMSY] after 1.5 GT (56 years) Satisficing: only consider MPs with 95% probability
-  * LRP 1GT		    P[SSB > LRP] after 1 GT (38 years)
-  * USR 1.5 GT		P[SSB > USR] after 56 years
+3. Given the above conservation objectives are achieved, maximize short- and long-term fisheries catch.
+
+4. Given the above conservation objectives are achieved, minimize variability in fisheries catch from year to year.
+
+In addition, we propose refining the milestones identified in the original rebuilding plan as follows:
+
+5. Achieve positive biomass trends within each 10 year period *for as long as the stock remains below the LRP*.
+
+Current rebuilding guidance only provides for objectives to build stocks out of the critical zone [@ifmp2018], with milestones intended to ensure progress is achieved during the rebuilding process.
+The 10 year period identified in the milestones for the Inside Yelloweye Rockfish rebuilding plan [@ifmp2018] reflected an assumption that rebuilding could be very slow for this stock.
+We adjusted the milestone to reflect the assumption that, once the stock is rebuilt (i.e., no longer in the critical zone), the milestone would no longer be required.
+The rebuilding guidance does discuss having longer-term objectives to keep rebuilding stocks into the healthy zone.
+However, this is supposed to be achieved beyond the period of the rebuilding plan.
+We have interpreted this milestone in its strictest sense (i.e., the rebuilding plan is to rebuild the stock out of the critical zone), but the milestone may be revised in the future to state that positive biomass trends should be achieved until the stock is in the healthy zone.
+This is a decision to be made at Step 1 of future processes by fisheries managers, First Nations and stakeholders.
+
+We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, and GT represents generation time:
+
+*TODO: define the years for calculating LRP 1.5 GT, LRP 1 GT, USR 1.5 GT and LT C20*
+
+  * LRP 1.5 GT		P[B > 0.4 BMSY] after 1.5 GT (56 years)
+  * LRP 1 GT		    P[B > LRP] after 1 GT (38 years)
+  * USR 1.5 GT		P[B > USR] after 56 years
 
   * ST C10		P[Catch > 10 t] during 2020-2029
   * ST C15    P[Catch > 15 t] during 2020-2029
-  * LT C20		P[Catch > 20 t] during 2020-2029
+  * ST C20		P[Catch > 20 t] during 2020-2029
   * LT C20		P[Catch > 20 t] after 1 Generation time
-  * AAVC			Probability of < 20% inter-annual variability in catch
+  * ST AADC   P[AADC during 2020-2029 < AADC during 2012 - 2019]
+  
+AADC represents average absolute deviation in catch over $n$ years and is defined as:
 
-Performance metrics are averaged across reference set of OMs or reported individually.
+$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid$
 
-*TODO: RF Moved these from MP section but not sure if they are needed. Go through all these and delete if they were not used or explain why they are here ... or add them to results if they are needed *
+The baseline period for AADC (2012 - 2019) was selected as this is the period since the start of the 15 t TAC.
 
-## Historical metrics
+We include the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term. *TODO: is this correct?*
 
-### COSEWIC Metric A
+In cases where performance metrics are calculated over a range of years, care needs to be taken to clearly report how summary statistics are calculated.
+@anderson2020gfmp suggested calculating performance statistics across replicates and the time window as defined for the performance metric.
+For example, we recommend calculating the *F*~MSY~ performance metric across all replicates and years simultaneously, whereas short-term (ST) catch metrics are averaged over only the years 2020-2029.
+
+#### COSEWIC CONSIDERATIONS {#sec:methods-approach2-cosewic}
+
+*TODO: Clean this up. RF Moved these COSEWIC metrics from MP section but not sure if they are needed. Go through all these and delete if they were not used or explain why they are here ... OR do we need to add them to results if not already? *
+
+COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@cosewic2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) -->
+
+##### COSEWIC Metric A
 
 P70 - Probability that population decline hasn't exceeded 70% over 3 generations
 where generation time = 38 years for inside yelloweye
@@ -116,21 +155,6 @@ P[1 - B_2019/B_1918 < 0.5]
 P30 - Probability that population decline hasn't exceeded 30% over 3 generations
 
 P[1 - B_2019/B_1918 < 0.3]
-
-
-### Reference points
-
-USR - Probability that B_2019 > 0.8 BMSY
-LRP - Probability that B_2019 > 0.4 BMSY
-
-*TODO: RF moved these from Step 6. Probably not needed*
-
-## Performance metrics of MPs
-
-<!-- Use AADC instead of AAVY -->
-AADC - average absolute deviation in catch over $n$ years is defined as: <!-- See gfmp -->
-$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid$
-`ST AADC` - probability that AADC in the first decade of the projection period is less than that in 2012 - 2019 (since start of 15 t TAC)
 
 ### Extinction Risk - COSEWIC E
 We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction.

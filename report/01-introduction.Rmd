@@ -57,7 +57,7 @@ The Inside Yelloweye Rockfish stock is also listed under the *Species at Risk Ac
 Results from this project may inform a COSEWIC reassessment and, potentially, a SARA Recovery Potential Assessment, should one be required.
 
 The current rebuilding plan has the objective to "rebuild the stock above the LRP over 80 years with 56% probability of success".
-The milestone objectives are to "achieve positive trends within each 10 year period". The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, FSC, and survey) below 15 tonnes (see [@dfo2018], App. 9 for details).
+The milestone objectives are to "achieve positive trends within each 10 year period". The management measure in the current rebuilding plan is to keep the total annual catch (commercial, recreational, First Nations food, social and ceremonial (FSC), and survey) below 15 tonnes (see [@dfo2018], App. 9 for details).
 
 The guidance for rebuilding plans states that there should be a high probability of rebuilding fish stocks out of the critical zone within the stated time-frame [@dfo2013].
 Part of the motivation for this project was concern by fisheries managers that the  56% probability of success, stated as an objective in the current rebuilding plan [@ifmp2018], was inconsistent with the definition of high probability.
