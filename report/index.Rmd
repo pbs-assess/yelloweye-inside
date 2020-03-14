@@ -53,8 +53,8 @@ if (is_latex_output()) {
   fig_out_type <- "png"
 }
 fig_asp <- 0.618
-fig_width <- 9
-fig_out_width <- "6in"
+fig_width <- 7.5
+fig_out_width <- "5.5in"
 fig_dpi <- 180
 fig_align <- "center"
 fig_pos <- "htb"
