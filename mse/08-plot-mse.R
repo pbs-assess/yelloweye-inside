@@ -218,17 +218,19 @@ g <- purrr::map(scenarios, ~ DLMtool::Sub(mse[[.x]], MPs = mp_sat)) %>%
 )
 
 .ggsave("dot-robset",
-  width = 8, height = 4,
-  plot = plots$dot_robset
+  width = 8, height = 7,
+  plot = plots$dot_robset + facet_wrap(~scenario, ncol = 1)
 )
 
 .ggsave("tradeoff-refset-avg",
   width = 4.5, height = 4,
-  plot = plots$tradeoff_avg + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE)
+  plot = plots$tradeoff_avg + coord_equal(xlim = c(0.5, 1.005), ylim = c(0.5, 1.005), expand = FALSE)
 )
 .ggsave("tradeoff-robset",
   width = 6, height = 3,
-  plot = plots$tradeoff_robset + coord_equal(xlim = c(0.5, 1), ylim = c(0.5, 1), expand = FALSE)
+  plot = plots$tradeoff_robset +
+    coord_equal(xlim = c(0.5, 1.01), ylim = c(0.5, 1.01), expand = FALSE) +
+    scale_x_continuous(breaks = seq(0.6, 1, 0.1))
 )
 
 pm_angle <- theme(
@@ -261,10 +263,10 @@ radar_robset <- pm_df_list_rob %>%
   plot_radar_facet(custom_pal = custom_pal) +
   theme(
     panel.spacing.x = grid::unit(60, "pt"),
-    plot.margin = margin(t = 11 / 2, r = 11 / 2, b = 11 / 2, l = 11 / 2 + 10),
+    plot.margin = margin(t = 11 / 2, r = 11 / 2, b = 11 / 2, l = 11 / 2 + 6),
     legend.position = "bottom"
   )
-.ggsave("radar-robset", width = 10, height = 6, plot = radar_robset)
+.ggsave("radar-robset", width = 8.5, height = 5.2, plot = radar_robset)
 
 radar_refset_avg <- pm_avg %>%
   select(-`LRP 1GT`) %>%
@@ -276,12 +278,7 @@ radar_refset_avg <- pm_avg %>%
       strip.background = element_blank(),
       strip.text.x = element_blank()
   )
-.ggsave("radar-refset", width = 7, height = 6, plot = radar_refset_avg)
-
-.ggsave("radar-refset-avg",
-  width = 10, height = 10,
-  plot = plots$radar_refset_avg
-)
+.ggsave("radar-refset-avg", width = 7, height = 6, plot = radar_refset_avg)
 
 .ggsave("worms",
   width = 10, height = 10,
@@ -314,10 +311,20 @@ radar_refset_avg <- pm_avg %>%
 )
 
 g <- plots$projections_index +
-  scale_x_continuous(breaks = seq(1980, 2090, 20)) +
-  coord_cartesian(ylim = c(0, 1e5), expand = FALSE) +
-  scale_y_continuous(breaks = seq(0, 1e5, 5e4), labels = function(x) x / 1e6)
-.ggsave("projections-index", width = 12, height = 8, plot = g)
+  scale_x_continuous(breaks = seq(1975, 2100, 25)) +
+  coord_cartesian(ylim = c(0, 1e5 + 10000), expand = FALSE) +
+  scale_y_continuous(breaks = seq(0, 1e5, 5e4), labels = function(x) x / 1e6) +
+  theme(strip.text.y = element_text(size = 8),  panel.spacing.y = grid::unit(20, "pt"))
+
+# Deal with over plotting of facet labels on right:
+pg <- ggplotGrob(g)
+for(i in which(grepl("strip-r", pg$layout$name))){
+  pg$grobs[[i]]$layout$clip <- "off"
+}
+png(file.path(fig_dir, paste0(sp, "-", "projections-index", ".png")), width = 10, height = 10, units = "in", res = 160)
+grid::grid.draw(pg)
+dev.off()
+# .ggsave("projections-index", width = 10, height = 9, plot = g)
 
 walk(names(plots$projections), ~ {
   .ggsave(paste0("projections-", .x),
@@ -340,7 +347,7 @@ walk(names(plots$projections), ~ {
 
 optimize_png <- TRUE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
-  files_per_core <- 2
+  files_per_core <- 4
   setwd("mse/figures")
   system(paste0(
     "find -X . -name '*.png' -print0 | xargs -0 -n ",

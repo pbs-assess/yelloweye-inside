@@ -15,48 +15,46 @@ library(here)
 
 *TODO: Do we need this step here? Should be in the methods*
 
-The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice. The time-frame for making the decision would be stated in the Request for Science Advice. In applications of the MP Framework, additional aspects of the decision context would be established through a technical committee.
+The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice. 
+TODO write more here or there should be in the methods.
 
 ## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results2}
 
-We defined the objectives for Yelloweye Rockfish based on the provisional objectives presented in Section \@ref(sec:approach2). These objectives are guided by the PA Framework, elements of which are incorporated into the Fish Stocks provisions of the *Fisheries Act*.
+We defined the objectives for Yelloweye Rockfish based on
+TODO: write more here.
 
-*TODO: Change these to the YE objectives*
+TODO: list the objectives here
 
-1. Maintain stock status above the LRP in the long term with high probability.
-2. Maintain stock status above the USR in the long term with moderately high probability.
-3. Maintain a fishing exploitation rate below the rate at maximum sustainable yield with some probability.
-4. Given the above conservation objectives are achieved, maximize short- and long-term fisheries catch.
-5. Given the above conservation objectives are achieved, minimize variability in fisheries catch from year to year.
+1. Maintain ...
+2. Maintain ...
+3. Etc.
 
-*TODO: justify length of projection period here (based on gen time)*
+TODO: justify length of projection period here (based on gen time)
 
 TEXT about choice of 100 y projection period and generation time (check Quang's notes on years used for calculating LT performance metrics)
 
-*TODO: Change these to the YE PMs*
 
 The performance metrics measuring the objectives were:
 
+TODO: list the performance metrics here
+
+<!--
+Rex:
 1. LT LRP: Probability *B* > 0.4 *B*~MSY~ (years 35--50)
 2. LT USR: Probability *B* > 0.8 *B*~MSY~ (years 35--50)
 3. FMSY: P(*F* < *F*~MSY~) (years 1--50)
 4. STC: Probability catch > reference catch (years 1--10)
 5. LTC: Probability catch > reference catch (years 35--50)
 6. AADC: Probability AADC (average absolute interannual difference in catch) < historical AADC (years 1--50)
+-->
 
 We measured the performance metrics as probabilities integrated over years and replicates simultaneously.
 
 ## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:results3}
 
-*TODO: change to YE OMs --- see table and headings below*
-
 We considered the major axes of uncertainty for Yelloweye Rockfish to be:
 
-1. The magnitude of the commercial catch prior to 1996 (influencing initial depletion in 1996)
-2. The importance of the commercial CPUE index
-3. The value of the steepness parameter (*h*) of the stock-recruit relationship
-4. The value of natural mortality (*M*)
-5. The age selectivity pattern of the commercial fleet and survey gear
+TODO: list these here:
 
 We divided OM scenarios into a reference set and a robustness set (Section \@ref(sec:best3) *REFER TO MP FRAMEWORK*). We defined six OM reference-set scenarios that differed from each other in these respects and two OM robustness-set scenarios (Table \@ref(tab:scen)), with parameter values provided in Appendix \@ref(app:desc-om-yelloweye). We describe each of the scenarios below.
 
@@ -93,29 +91,26 @@ Descriptive text, possibly figs
 
 #### Low natural mortality ($M$)
 
-*This is Rex text but could use something similar*
-
 We considered one alternative scenario that differed in terms of the value of $M$ (Table \@ref(tab:scen)).
 
-Unless otherwise stated, all other scenarios drew from a baseline uniform distribution $M$ = 0.17--0.25 *y*^-1^, which starts at the value of 0.17 *y*^-1^ used for the Gulf of Alaska stock assessment of Rex Sole (@mcgilliard2017, see Section \@ref(app:desc-stock-m-rex)) and explores a slightly higher range since *M* is likely to be somewhat greater at a lower latitude.
-
-* The scenario "Higher M" considers that *M* could be latitude-dependent and may be substantially higher for stocks in warmer BC waters (*M* = 0.3 *y*^-1^).
+TODO: write more here.
 
 #### High projected CV in HBLL
 
-Descriptive text
+TODO: write more here.
 
 ### OPERATING MODEL CONDITIONING
 
 After specifying most of the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
-We conditioned the models using: (1) commercial catch data from 1996--2019; (2) the synoptic WCVI (SYN WCVI) trawl relative biomass index (a depth-stratified random survey); and (3) commercial bottom trawl CPUE.
 
-The SRA was able to fit to the HBLL survey relative biomass index and XXX indices reasonably well for all OM scenarios (Figure \@ref(fig:survey-fits)).
-The XXX survey was better fit than the XXX, likely due to XXX (Figure \@ref(fig:survey-fits)).
+TODO: write more here.
+
+The SRA was able to fit to the HBLL survey relative biomass index and TODO indices reasonably well for all OM scenarios (Figure \@ref(fig:survey-fits)).
+The TODO survey was better fit than the TODO, likely due to TODO (Figure \@ref(fig:survey-fits)).
 The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
 
 (ref:fig-survey-fits)
-SRA model fits to the HBLL, Dogfish and and three commercial CPUE relative  indices.
+SRA model fits to the HBLL, Dogfish, and three commercial CPUE relative  indices.
 Panels from left to right represent OM scenarios.
 Thin lines represent individual SRA model fits across stochastic draws from the various OM parameters.
 Dots represent index mean and line segments represent 2 times the standard errors as entered into the SRA models.
@@ -132,19 +127,17 @@ We used the SRA to populate the following parameters in the conditioned OMs:
 - $F_{a,y}$ (fishing mortality at age by year)
 - $\varepsilon_{\textrm{R},y}$ for years $t_1$ to $t_c$ (historical recruitment deviations)
 
-*TODO: we haven't made many of these figs*
-
 The reference and robustness scenarios rendered a range of estimated parameter values (Figures \@ref(fig:sra-conditioned-parameters), \@ref(fig:F-om), \@ref(fig:recdev-om)).
-In fitting the SRA across replicate draws from the initial OMs, we discarded any models that did not converge or had $F_{a,y} > 3$.
-The majority of replicates were retained (Table \@ref(tab:sra-fraction)). However, by discarding  replicates from non-converged models, the input parameters carried through to the conditioned OMs varied slightly (Figure \@ref(fig:sra-conditioned-parameters2)).
-The discarded parameter values represent implausible parameter combinations according to the SRA model.
-The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs are similar with the exception of the "Low M" scenario (Figure \@ref(fig:depletion-om)).
 
-*TODO: Check this has been made correctly ... all have the same fraction 0.38*
+TODO: note that all replicates converged
 
-100% of the SRA replicates converged...
+Other key parameters that were possibly affected by the SRA (but there wasn't any filtering) (Figure \@ref(fig:sra-conditioned-parameters2)).
+
+The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs were TODO (Figure \@ref(fig:depletion-om)).
+
 
 ```{r sra-fraction, results='asis', eval=FALSE}
+# This just checks that all replicas converged
 rex_converged <- readRDS(here("mse/om/ye-converged.rds"))
 rex_converged %>%
   mutate(fraction_converged = sprintf("%.2f",round(nsim / 250, 2))) %>%
@@ -169,6 +162,8 @@ Frequency polygons for parameters input to the SRA. Parameters were sampled stoc
 ```{r sra-conditioned-parameters2, out.width="\\textwidth", fig.asp=0.85, fig.width=7, fig.cap="(ref:fig-sra-conditioned-parameters2)"}
 knitr::include_graphics(here("mse/figures/ye-sra-filtered.png"))
 ```
+
+<!-- TODO: this fig is kind of weird with the triangles -->
 
 \clearpage
 
@@ -202,28 +197,16 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"
 
 ## STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:results4}
 
-We started with the full set of provisional candidate MPs described in Appendix \@ref(app:MPs) (Table \@ref(tab:mps)).
+We started with the full set of provisional candidate MPs described in Section TODO (Table \@ref(tab:mps)).
 
-*TODO: this is rex text*
-
-Early explorations with the SP models  suggested little effect of the three alternative harvest control rules (HCRs) described in Section \@ref(sec:mp-sp) (presumably because the projected biomass spent little time on the HCR "ramp"). There was also very little difference in performance between the Fox and Schaefer production models.
-Therefore, for the SP models we focused mostly on tuning the prior on $r$, the intrinsic population growth rate.
-We evaluated three priors on $r$: $\textrm{Normal}(0.4, 0.1)$, $\textrm{Normal}(0.5, 0.1)$, and $\textrm{Normal}(0.6, 0.1)$.
-With the Schaefer surplus production function, these correspond to $F_\textrm{MSY} = 0.2$, $F_\textrm{MSY} = 0.25$, and $F_\textrm{MSY} = 0.3$, which approximately match the values of $M$ explored in the operating models.
-In applications of the framework, additional tuning of SP models and index-based MPs could be explored if needed.
-
-*TODO: update mse/mp.txt table. This one is for Rex*
+TODO: write more here
 
 ```{r mps, results='asis'}
 mp <- readr::read_csv(here("mse",  "mp.txt"), comment = "#")
-mp_list <- split(mp, mp$type)
-csasdown::csas_table(mp, caption = "Candidate MPs. The `.` in front of some MPs denotes versions of the MPs that only observe the survey index every second year to mimic our biennial WCVI synoptic survey.", col_names = c("Management procedure", "MP type"))
+csasdown::csas_table(mp, caption = "Candidate MPs.", col_names = c("Management procedure", "MP type"))
 ```
 
-
 ## STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:results5}
-
-*TODO: modify code below as needed. Check which MPs to filter out because they performed the same*
 
 ```{r}
 pm_df_list <- readRDS(here("mse/om/ye-pm-all.rds"))
@@ -234,20 +217,11 @@ pm_min <- group_by(pm_all, MP) %>%
   summarise_if(is.numeric, min, na.rm = TRUE)
 reference_mp <- c("FMSYref75", "NFref", "FMSYref")
 
-
 satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
-# plot_tigure(pm_avg, satisficed = satisficed_criteria)
-# plot_tigure(pm_min, satisficed = satisficed_criteria)
-
 mp_sat <- dplyr::filter(pm_min, `LRP 1.5GT` > satisficed_criteria[1], `ST C10` > satisficed_criteria[2]) %>%
   pull(MP)
 mp_sat <- mp_sat[!mp_sat %in% reference_mp]
 mp_sat_b4_cut <- mp_sat
-
-#These might not get filtered out for ye
-mp_sat <- mp_sat[!mp_sat %in% c(".SP4010_0.6", ".SP6040_0.6_fox", ".SP6040_0.6")]
-mp_sat <- mp_sat[!mp_sat %in% c("CC_hist20")] # similar to "CC1.2"
-mp_sat <- mp_sat[!mp_sat %in% reference_mp]
 
 pm_avg_sat <- pm_avg %>% filter(MP %in% mp_sat)
 pm_min_sat <- pm_min %>% filter(MP %in% mp_sat)
@@ -260,27 +234,13 @@ We deemed 250 replicates sufficient since the rank order of MPs was consistent f
 
 To determine which MPs would be carried forward as satisficed MPs [@miller2010], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)) .
 To obtain a manageable number of MPs for further consideration, we set satisficing thresholds of `r names(satisficed_criteria)[1]` $>$ `r satisficed_criteria[[1]]` and `r names(satisficed_criteria)[2]` $>$ `r satisficed_criteria[[2]]`.
-We could apply these criteria to either the average (Figures \@ref(fig:tigure-avg)) or minimum performance (Figures \@ref(fig:tigure-min)) and such a decision is likely best made by a technical working group or decision-makers coupled with stakeholders in an applied setting.
-
-*TODO: This might be different for YE*
-
-In this case study, it made little difference whether we chose the average or minimum performance metrics to apply the satisficing criteria.
-
-We therefore chose to apply the satisficing criteria to the minimum performance metrics.
-This implies that the satisficed MPs pass these criteria even in the worst-case reference-set scenario.
-Applying these criteria resulted in `r number_to_word(length(mp_sat_b4_cut))` remaining MPs (`r gfutilities::commify(sort(mp_sat_b4_cut))`).
-
-*TODO: CHECK THIS FOR YE BEFORE FILTERING THEM OUT*
-
-We additionally decided to omit four MPs from further consideration.
-First, we chose to retain only one satisficed SP model MP (.SP8040_0.6) since the SP model MPs that differed only in production-function shape (.SP6040_0.6_fox) or HCR (.SP6040_0.6 and .SP4010_0.6) had near identical performance (Figure \@ref(fig:tigure-min)).
-Second, we removed CC_hist20 since it was outperformed by the other constant catch MPs---LT LRP and STC were both exceeded by all other constant-catch MPs (Figure \@ref(fig:tigure-min)).
-This left `r number_to_word(length(mp_sat))` MPs (`r gfutilities::commify(sort(mp_sat))`).
+We chose to apply the satisficing criteria to the average performance metrics.
+Applying these criteria resulted in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
 
 (ref:fig-converge)
 Assessing convergence of the closed-loop simulations on consistent rank order of MPs within performance metrics.
 Colours represent individual satisficed and reference MPs.
-Lines that do not cross by the final replicates indicate that rank order among replicates had converged.
+Lines that do not cross by the final replicates indicate that rank order among replicates has converged.
 Although not shown, we also checked that the satisficing rules had converged (i.e., the selection of satisficed MPs did not change with additional replicates).
 
 ```{r converge, fig.cap="(ref:fig-converge)", out.width="\\textwidth"}
@@ -291,7 +251,7 @@ knitr::include_graphics(here("mse/figures/ye-convergence.png"))
 MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric (LT LRP) and using columns from left to right to break any ties.
 The colour shading reflects the probabilities.
 Outlined cells represent MPs that met a particular performance metric's satisficing criteria.
-Using this set of criteria, MPs would be "satisficed" if cells in *both* "LT LRP" and "STC" were outlined.
+Using this set of criteria, MPs would be "satisficed" if cells in *both* "`r names(satisficed_criteria)[1]`" and "`r names(satisficed_criteria)[2]`" were outlined.
 Light grey MPs indicate reference MPs.
 
 ```{r tigure-avg, fig.cap="(ref:fig-tigure-avg)", out.width="3.5in"}
@@ -313,22 +273,21 @@ knitr::include_graphics(here("mse/figures/ye-tigure-refset-min.png"))
 ### Reference Set Results
 
 Performance within the reference set of OMs varied across MPs and performance metrics (Figures \@ref(fig:tigure-avg), \@ref(fig:tigure-min), \@ref(fig:tigure-panel), and \@ref(fig:dot-lines)).
-There was variability in performance among the individual reference-set scenarios with the most variability in both the long-term and entire projection period performance metrics: LT USR, FMSY, LTC, and AADC (Figure \@ref(fig:tigure-panel)).
-Between the two performance metrics used in the initial satisficing step, LT LRP varied between `r round2(min(pm_avg_sat$"LT LRP"))` and `r round2(max(pm_avg_sat$"LT LRP"))`, and STC varied between `r round2(min(pm_avg_sat$STC))` and `r round2(max(pm_avg_sat$STC))`.
+There was variability in performance among the individual reference-set scenarios with the most variability in both the long-term and entire projection period performance metrics: TODO (Figure \@ref(fig:tigure-panel)).
+Between the two performance metrics used in the initial satisficing step, average LRP 1.5GT varied between `r round2(min(pm_avg_sat$"LRP 1.5GT"))` and `r round2(max(pm_avg_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
+Minimum LRP 1.5GT varied between `r round2(min(pm_min_sat$"LRP 1.5GT"))` and `r round2(max(pm_min_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
 
 A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across satisficed MPs (Figure \@ref(fig:dot-lines)).
-Long-term catch (LTC) was roughly comparable between a fishing strategy of fishing at *F*/*F*~MSY~ and the satisficed Itarget or .SP8040_0.6 MPs (Figure \@ref(fig:dot-lines)).
-Short-term catch (STC) of all satisficed MPs exceeded these reference MPs (Figure \@ref(fig:dot-lines)).
-Fixed catch MPs of 1.1 or 1.2 times average catch from the last five years rendered similar performance to other satisficed MPs across most performance metrics within the reference-set scenarios, with somewhat higher LTC and AADC metrics (Figure \@ref(fig:dot-lines)).
-These fixed-catch MPs do not incorporate feedback between the management and biological systems.
+TODO: explain more results here
 
-Trade-offs among performance metrics for most of the satisficed MPs were relatively minor within the reference-set scenarios (Figures \@ref(fig:tradeoff-reference) and \@ref(fig:spider-satisficed-mps-avg)).
-Within the "Ceq. 200%" scenario, there was a slight trade-off between STC and LT LRP (Figure \@ref(fig:tradeoff-reference)).
-
+Trade-offs among performance metrics for most of the satisficed MPs were TODO (add something here) within the reference-set scenarios (Figures \@ref(fig:tradeoff-reference) and \@ref(fig:spider-satisficed-mps-avg)).
+TODO (write something more here).
 
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-no-cpue)).
+TODO (write something more here if desired).
 
 Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
+TODO (write something more here if desired).
 
 (ref:fig-tigure-panel) Performance of satisficed MPs for the reference set OMs.
 MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:tigure-avg).
@@ -363,7 +322,7 @@ knitr::include_graphics(here("mse/figures/ye-radar-refset-avg.png"))
 
 \clearpage
 
-```{r proj-index, fig.cap="Historical and projected SYN WCVI relative biomass index values. Vertical dashed line represents 2019. The shaded region represents the 95\\% quantile and individual lines represent four sample replicates.", out.width="\\textwidth"}
+```{r proj-index, fig.cap="Historical and projected HBLL-inside survey relative abundance index values. Vertical dashed line represents 2019. The shaded region represents the 95\\% quantile and individual lines represent four sample replicates.", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-projections-index.png"))
 ```
 
@@ -420,8 +379,6 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 
 \clearpage
 
-
-
 ### Robustness Set Results
 
 *TODO: Refer directly to YE results. This is all rex even though the plots say Yelloweye*
@@ -435,7 +392,6 @@ This scenario demonstrates stronger trade-offs among performance metrics than th
 In particular, there is an obvious trade-off between STC and LT LRP (Figures \@ref(fig:tradeoff-robust)).
 The constant catch MPs achieved the highest STC values but at the expense of lower LT LRP values.
 The Itarget MPs struck more of a balance between LT LRP and STC (Figures \@ref(fig:tradeoff-robust)).
-
 
 For the "M increasing" scenario, the satisficed MPs were fairly robust to linear increases in natural mortality in the projection period, with the exception that all satisficed MPs had a considerably lower probability of achieving the long-term catch (LTC) metric (Figures \@ref(fig:tigure-panel-rob)--\@ref(fig:spider-satisficed-mps-robust)).
 Notably, the Itarget satisficed MPs maintained LT LRP $>$ 0.9 despite increasing $M$, whereas the fixed-catch and surplus-production MPs all resulted in LT LRP $<$ 0.9.
@@ -464,11 +420,13 @@ knitr::include_graphics(here("mse/figures/ye-tradeoff-robset.png"))
 knitr::include_graphics(here("mse/figures/ye-radar-robset.png"))
 ```
 
+(ref:fig-proj-low-m) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "Low M".
 
 ```{r proj-low-m, fig.cap="(ref:fig-proj-low-m)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-lowM_fixsel.png"))
 ```
 
+(ref:fig-proj-high-index-cv) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "High CV HBLL projected".
 
 ```{r proj-high-index-cv, fig.cap="(ref:fig-proj-high-index-cv)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-high_index_cv.png"))
@@ -479,7 +437,7 @@ Colours represent the reference- and robustness-set scenarios.
 Lines represent medians and shaded regions represent 50% quantiles.
 Satisficed and reference MPs are shown from top to bottom.
 
-```{r proj-scenarios, fig.cap="(ref:fig-proj-scenarios)", out.width="\\textwidth"}
+```{r proj-scenarios, fig.cap="(ref:fig-proj-scenarios)", out.width="0.9\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-projections-scenarios.png"))
 ```
 
