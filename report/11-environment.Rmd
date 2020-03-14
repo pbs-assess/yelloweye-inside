@@ -1,7 +1,3 @@
-\clearpage
-
-*TODO: update versions, add yelloweye repo*
-
 # COMPUTATIONAL ENVIRONMENT
 
 This version of the document was generated on `r Sys.time()` with
