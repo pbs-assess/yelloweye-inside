@@ -32,7 +32,7 @@ tidyr::pivot_longer(comm_catch, -1) %>%
   mutate(name = gsub("Hook line rockfish", "Hook and line rockfish", name)) %>%
   mutate(name = gsub("Dogfish lingcod", "Dogfish and lingcod", name)) %>%
   dplyr::filter(name != "Total t") %>% 
-  ggplot(aes(year, value, fill = name)) + geom_col() +
+  ggplot(aes(year, value, fill = name)) + geom_col(width = 1) +
   gfdlm::theme_pbs() +
   scale_fill_brewer(palette = "Set2") + 
   coord_cartesian(expand = FALSE) +
