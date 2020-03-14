@@ -1,6 +1,8 @@
 
 \clearpage
 
+*TODO: import refs from mpframework-refs.bib to refs.bib. Remove duplicates. Avoid citation problems like using both DFO2009 and dfo2009 in the doc - these are seen as two different refs*
+
 # INTRODUCTION {#sec:introduction}
 
 The purpose of this project is to provide scientific advice to support revision of the rebuilding plan  for the Inside Population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@IFMP2018], consistent with national policy guidance [@DFO2009; @DFO2013]. 
@@ -8,8 +10,8 @@ The project applies a closed-loop simulation framework [@anderson2020gfmp] to te
 
 ## MOTIVATION - POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
 
-The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@dfo2006; @dfo2009].
-The PA Framework [@dfo2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds to be avoided with high probability.
+The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@DFO2006; @DFO2009].
+The PA Framework [@DFO2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds to be avoided with high probability.
 The approach requires that fishing mortality be adjusted in relation to two levels of stock status---an Upper Stock Reference (USR) and a Limit Reference Point (LRP) (Figure \@ref(fig:pa-illustration)). The LRP and USR delineate three stock status zones ("healthy", "cautious", and "critical").
 
 Canadian fish stocks that have been assessed as being below the Limit Reference Point (LRP), i.e., in the critical zone [@DFO2009], require a rebuilding plan to rebuild the stock out of the critical Zone [@DFO2013].
@@ -36,7 +38,7 @@ Current guidance states that the timelines (*TODO check guidance and definition 
 
 ## BACKGROUND {#sec:introduction-background}
 
-Inside Yelloweye Rockfish is a fish stock occurring in British Columbia in Groundfish Management Area 4B (Figure \@ref(map-4B)).
+Inside Yelloweye Rockfish is a fish stock occurring in British Columbia in Groundfish Management Area 4B (Figure \@ref(fig:map-4B)).
 The stock is expected to be designated as a major fish stock in the first batch of major stocks in Fall 2020, and its management will therefore be legislated under the Fish Stocks provisions.
 
 (ref:fig-map-4B) Map of Groundfish Management Area 4B.
