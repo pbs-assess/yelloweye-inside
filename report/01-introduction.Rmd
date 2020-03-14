@@ -17,7 +17,7 @@ Canadian fish stocks that have been assessed as being below the Limit Reference 
 (ref:fig-pa) Illustration of DFO's Precautionary Approach Framework. Based on @dfo2009.
 
 ```{r pa-illustration, fig.cap="(ref:fig-pa)", out.width="3.8in"}
-knitr::include_graphics(here::here("images/pa-framework.png"))
+knitr::include_graphics(here::here("figs/pa-framework.png"))
 ```
 
 In June 2019, major amendments to Canada's *Fisheries Act* legislated many key components of SFF, encoded in the Fish Stocks provisions ([Section 6 of the *Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547)).
