@@ -1,9 +1,6 @@
 \clearpage
 
-
-\clearpage
-
-*TODO: update*
+*TODO: update versions, add yelloweye repo*
 
 # COMPUTATIONAL ENVIRONMENT
 

@@ -10,5 +10,6 @@ rmd_files: ["index.Rmd",
             "08-appendix-catch-data.Rmd",
             "09-appendix-survey-data.Rmd",
             "10-appendix-management-changes.Rmd",
-            "11-references.Rmd"]
+            "11-environment.Rmd",
+            "99-references.Rmd"]
 delete_merged_file: true
