@@ -1,0 +1,16 @@
+
+## STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:methods-approach5}
+
+Once the objectives, performance metrics, calibrated OMs and MPs are fully specified, a closed-loop simulation framework (Figure \@ref(fig:mse-chart)) can be applied to test relative performance of the MPs with respect to meeting the stated objectives.
+
+We recommend beginning with a satisficing step, where trial simulations are run to screen out MPs that do not meet a basic set of performance criteria [@miller2010].
+For example, in our illustrative Rex Sole case study (Appendix \@ref(app:mse-rex)), we screened out MPs that did not achieve a long-term 90% probability of keeping the stock above the LRP (LT P40 $\geq$ 0.9) and a short-term 75% probability of yield above 50% MSY (STY $\geq$ 0.75).
+This resulted in **XX** final MPs, plus the four reference MPs.
+
+DLMtool is designed to follow standard MSE operating procedure (Figure \@ref(fig:mse-chart)), where the OM is used to simulate the various data streams required by the MP at each time step, then the biomass is projected forward under the prescribed MP at each subsequent time step until the projection period is complete.
+Performance is then evaluated through calculation of performance statistics in the OM.
+DLMtool makes use of the C++ programming language and parallel processing, making the simulations computationally efficient [@carruthers2018].
+
+For each OM-MP combination, multiple replicate projections are run to account for observation and process errors in the data streams.
+This is achieved by adding stochastic noise to the data (e.g, indices of abundance) before passing them to the MP. Coefficients of variation in the data should be consistent with those in historical observations [@rademeyer2007]. Typically, at least 100 replicate simulations are run for each OM/MP combination.
+We suggest selecting sufficient replicates so that the rank order of MPs across the performance metrics remains consistent regardless of additional iterations [@carruthers_user_2019].
