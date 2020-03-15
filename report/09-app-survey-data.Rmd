@@ -2,20 +2,40 @@
 
 ## HBLL INSIDE SURVEY INDEX {#sec:hbll-index-data}
 
-The hard bottom long line (HBLL) survey for the Strait of Georgia management area has been providing catch rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007]. The survey is a depth-stratified random design of 2km by 2km survey blocks which has always taken place on the CCGS Neocaligus. The survey uses snap-type circle hooks and squid bait with a two hour soak time. Hook-by-hook data is collected on-board by DFO technicians and stored in a database. For further details on survey design see @lochead2004.
+The Hard Bottom Long Line (HBLL) survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
+The survey is a depth-stratified random design of 2km by 2km survey blocks, which has always taken place on the CCGS Neocaligus vessel.
+The survey uses snap-type circle hooks and squid bait with a two-hour soak time.
+Hook-by-hook data is collected on-board by DFO technicians and stored in a database.
+For further details on survey design see @lochead2004.
 
-The survey area (4B) is divided into northern and southern regions which are fished in alternating years so that each area is supposed to be sampled every other year. However, several irregularities have occurred (Appendix table#). The survey did not take place in 2006 and 2017. The length of the survey has also varied and has lead to inconsistencies in the geographic extents surveyed. Desolation Sound which falls between the northern and the southern regions, is supposed to be sampled in the southern region, but was fished along with the northern region in 2003, 2008 and 2019 and not in 2009 and 2018. The Yelloweye Rockfish catch rates are highest on Desolation Sound (Area 15) so not sampling there can affect the design-based survey estimates of the southern survey. In addition, the full southern survey was not achieved in 2009 and only 38 stations were fished in the southern Strait of Georgia between Nanaimo and Victoria. Catch rates of most rockfish species caught on this survey decline from the north to the south, so this also has a major effect on the survey index.
+The survey domain is divided into northern and southern regions, which are fished in alternating years so that each area is designed to be sampled every other year.
+However, several irregularities have occurred:
+- The survey did not take place in 2006 and 2017.
+- The length of the survey has varied and has lead to inconsistencies in the geographic extents surveyed.
+- Desolation Sound, which falls between the northern and the southern regions, is supposed to be sampled in the southern region, but was sampled along with the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. The Yelloweye Rockfish catch rates are highest in Desolation Sound (Area 15) so not sampling there we expected to affect design-based survey estimates of the southern survey.
+- The full southern survey was not achieved in 2009 and only 38 stations were fished in the southern Strait of Georgia between Nanaimo and Victoria. Catch rates of most rockfish species caught on this survey decline from the north to the south, so this also has a major effect on the survey index.
+
+For these reasons, we chose to undertake a geostatistical spatiotemporal model standardization of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design.
+Theoretically, such an approach can account for the above factors.
+We confirmed via simulation that such approach can "stitch" together two survey regions conducted in a north and south region (REF section).
 
 ### Hook Competition {#sec:hbll-hook-competition}
 
-A longline index of species abundance may not be proportional to actual abundance under certain conditions. For example, if there is a high degree of competition among species for baited hooks the actual catch may not accurately reflect the true abundance of less competitive species [@kuriyama2018]. The HBLL survey catch is mostly comprised of Pacific Spiny Dogfish, which are considered a major hook competitor with rockfishes [@obradovich2018]. As in Yamanka et al. (2011), a hook competition model, which accounts for the competition between individual fish for the bait on hooks, was applied to the HBLL Inside survey data. Hook-by-hook catch data have always been collected on this survey. To apply the model, a competition adjustment factor, which scales up the observed number of each species caught to give the expected number after accounting for competition, was applied to each set in each year. The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them. In instances where zero hooks were returned with bait the number of baited hooks returned was set to 1. The hook adjusted data (observed absolute numbers) was then fed to the spatiotemporal model to develop the index of abundance.
-**Not sure if I can just reference the synopsis report appendix here, or if you want the entire section with equations added in here? - MJB**
+A longline index of species abundance may not be proportional to actual abundance under certain conditions.
+For example, if there is a high degree of competition among species for baited hooks, the actual catch may not accurately reflect the true abundance of less competitive species [@kuriyama2018]. The HBLL survey catch is mostly comprised of Pacific Spiny Dogfish (TODO SP), which are considered a major hook competitor with rockfishes [@obradovich2018].
+As in @yamanaka2011, we applied a hook competition model, which accounts for the competition between individual fish for the bait on hooks, to the HBLL Inside survey data.
+Hook-by-hook catch data have always been collected on this survey.
+To apply the model, we applied a competition adjustment factor to each set in each year, which scales up the observed number of each species caught to give the expected number of fish caught after accounting for competition.
 
+The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them:
+
+TODO: add the equation here:
 hook_adjust = - log(Pit) / (1 - Pit)
 
 where P_it is the proportion of observed hooks for set i in year t returned with bait on them.
 
-**TODO:Dana, Oddities of sampling and requirement for spatio-temporal model. Desolation Sound, 2009.**
+In instances where zero hooks were returned with bait the number of baited hooks returned was set to one.
+The hook adjusted data (observed numbers) were then passed to the spatiotemporal model to develop the index of abundance.
 
 ```{r}
 include_hbll_fig <- function(file) {
