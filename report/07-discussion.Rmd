@@ -50,3 +50,15 @@ It may therefore be necessary to use more rigorous test statistics, possibly bas
 We recommend regular evaluation of the performance of MPs recommended by this framework but recognize that a formal protocol has not yet been established.
 We therefore also recommend further analyses to evaluate protocols for detecting exceptional circumstances as a matter of priority.
 
+\clearpage
+
+# ACKNOWLEDGEMENTS
+
+We are grateful to the members of our technical advisory group Adam Keizer, Maureen Finn, Roger Kanno for helpful discussions and guidance regarding objectives for the rebuilding plan.
+
+Strachan Tucker ...
+
+People who helped with questions about FSC ...
+
+Others ...
+

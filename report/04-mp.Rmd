@@ -11,7 +11,7 @@ of requirements that would rarely be met for BC groundfish stocks. Excluded MPs 
 While it is necessary to explore these axes of uncertainty within OMs, implementing MPs real data that require knowledge of these factors would require many additional assumptions.
 
 A library of all MPs considered in the MP Framework is provided in @anderson2020gfmp (their Appendix D).
-MPs considered for this Inside Yelloweye Rockfish rebuilding plan are framework are detailed here in Appendix \@ref(app:MPs).
+MPs considered for this Inside Yelloweye Rockfish rebuilding plan are framework are detailed here in Appendix \@ref(app:mps).
 
 We evaluated two main types of MPs: empirical (data-based) and model-based MPs. We also evaluated three reference MPs.
 

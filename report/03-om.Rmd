@@ -7,7 +7,12 @@ DLMtool OMs are organized into four main components representing a real fished s
 3. observation processes (e.g., bias and precision in survey indices); and
 4. management implementation (e.g., percentage overages of catch limits).
 
-DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data. The SRA model is used to condition the following OM parameters: <!--not sure these are the correct ones below -->
+Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations.
+Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs.
+The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey.
+
+DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data.
+The SRA model was used to condition the following OM parameters: <!--not sure these are the correct ones below -->
 
 * unfished recruitment
 * depletion
@@ -15,11 +20,11 @@ DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an
 * annual recruitment deviations
 * selectivity parameters (if age or length composition data are included as inputs to the SRA)
 
-Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey.
-
 ## DATA {#sec:approach3-data}
 
-- Brief generic text describing data sources that were available
+*TODO: write this*
+
+- Brief generic text describing data sources that were available for constructing the OMs
 
 Biological data are described in Appendix \@ref(app:biological-data).
 Catch data are described in Appendix \@ref(app:catch-data).
@@ -27,10 +32,24 @@ Fishery independent survey data are described in Appendix \@ref(app:index-data).
 
 ## OPERATING MODELS {#sec:approach3-oms}
 
-*TODO add some text here describing ref and rob set*
+MSE best practice recommends dividing MSE trials into a "reference set", using a core set of OMs that include the most important uncertainties (e.g., depletion of the stock or range of natural mortality values), and a "robustness set", representing other plausible OM formulations that represent alternative structural hypotheses [@rademeyer2007].
+These authors recommend  that the reference set of OMs include the most important uncertainties, which are both highly plausible and have major impacts on results. 
+@punt2016 provide a list of factors which commonly have a large impact on MSE performance due to uncertainty (their Table 3).
 
+Once an agreed-upon reference set of OMs has been determined, a wider range of OMs (the robustness set) should be developed to capture a wider range of uncertainties that may be less plausible but should nonetheless be explored [@rademeyer2007].
+These may include effects related to environmental change, structural representation of population dynamics, or alternative data sources.
 
-## REFERENCE SET
+@anderson2020gfmp recommended presenting performance metrics from the reference and robustness sets separately.
+They recommended that, for most results, reference-set performance metrics should be averaged across all reference set scenarios (an "ensemble approach" to integrate across model uncertainties).
+They recommended presenting performance metrics from individual robustness-set scenarios separately.
+This facilitates visualization of performance of MPs that performed well in the reference set under a set of more diverse assumptions [@rademeyer2007].
+More details on visualization of performance metrics from the robustness and reference sets of OMs are provided in Section \@ref(sec:results).
+
+We developed four alternative OMs for inclusion in the reference set and two alternative OMs for inclusion in the robustness set, described below.
+
+### REFERENCE SET
+
+*TODO: flesh these out a bit*
 
 From the initial fit, the following OMs were developed as the reference set:
 
@@ -48,19 +67,13 @@ Additional things to mention:
 
 4. Estimate HBLL selectivity - same as 1 but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
 
-## ROBUSTNESS SET
+### ROBUSTNESS SET
 
 Two robustness OM were considered:
 
 (A) Low M - Same as (1), but M ~ Lognormal(0.025, 0.2), pessimistic scenario for stock productivity and rebuilding
 
 (B) Higher CV HBLL - Future HBLL index is less precise than in (1). Instead of SD = 0.25, we use the SD and autocorrelation from the index residuals in OM (1). In doing so, this scenario evaluate MPs if we've overestimated the precision of the HBLL survey and conditioning uncertainty (we've generated larger than expected residuals).
-
-
-*TODO. Decide if we will have our own SRA appendix or refer to MP Framework*
-
-Further details on the SRA OM-calibration model are available in Appendix \@ref(app:sra).
-
 
 ## OPERATING MODEL CONDITIONING
 
