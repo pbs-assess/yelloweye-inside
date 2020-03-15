@@ -21,12 +21,12 @@ This MP is based on Method 3.2 used by ICES for data-limited stocks [@ices2012; 
 
 The TAC is calculated as:
 
-\begin{align}
-\textrm{TAC}_y &= \alpha C_{y-1},\\
-\alpha &=
+$$
+\textrm{TAC}_y = \alpha C_{y-1},\\
+\alpha =
 \left. \frac{I_{yr-1} + I_{yr-2}} {2} \middle/
 \frac{I_{yr-3} + I_{yr-4} + I_{yr-5}} {3} \right. ,
-\end{align}
+$$
 
 where $C_{y-1}$ is the catch from the previous year and $\alpha$ is the ratio of the mean index in the most recent 2 years of the time series and the mean index in 3--5 years before current time.
 
