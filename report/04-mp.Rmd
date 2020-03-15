@@ -1,5 +1,5 @@
 
-## IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:mp}
+# IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:mp}
 
 @anderson2020gfmp screened all MPs available in DLMtool as of November 2019. DLMtool includes data-limited MPs that make different types of management recommendations, including adjustments to total allowable catch (TAC), effort, or spatial allocation of catch or effort.
 This represents a fairly comprehensive set of data-limited MPs available in the primary literature or agency reports to date.
@@ -15,12 +15,12 @@ MPs considered for this Inside Yelloweye Rockfish rebuilding plan are framework 
 
 We evaluated two main types of MPs: empirical (data-based) and model-based MPs. We also evaluated three reference MPs.
 
-### Empirical MPs
+## Empirical MPs
 
 Empirical MPs make use of catch and population index data.
 These MPs can be divided into two main categories:
 
-#### Constant-catch MPs
+### Constant-catch MPs
 
 As the name implies, constant-catch MPs set the recommended catch to some fixed level, typically based on recent or historical catches.
 Constant-catch MPs do not incorporate feedback between the management system and the population---they make the same catch recommendation regardless of trends in the population index.
@@ -28,7 +28,7 @@ The current MP being used for Inside Yelloweye Rockfish is a constant-catch MP o
 
 Constant-catch MPs considered in this document are provided in Appendix \@ref(app:MPs), Section \@ref(sec:mp-cc).
 
-#### Index-based MPs 
+### Index-based MPs 
 
 Index-based MPs set the TAC relative to the change in the index over time.
 Index-ratio MPs increase or decrease the TAC in accordance with the ratio of the index from two different time periods.
@@ -43,7 +43,7 @@ Index-based MPs were evaluated with either annual updates, or five-yearly update
 
 MPs considered in this document are provided in Appendix \@ref(app:MPs), Section \@ref(sec:mp-ibased).
 
-### Model-based MPs
+## Model-based MPs
 
 In addition to the empirical MPs, we considered a surplus production (SP) model.
 We provisionally utilized the SP model coded in MSEtool [@huynh_msetool_2019] and based on @fletcher1978 (see @anderson2020gfmp, their Appendix D) paired with a two alternative harvest control rules (HCRs):
@@ -54,7 +54,7 @@ We provisionally utilized the SP model coded in MSEtool [@huynh_msetool_2019] an
 
 We evaluated two assessment frequencies (five and 10 years), with fixed TAC between assessments.
 
-### Reference MPs
+## Reference MPs
 
 In addition to the empirical and model-based candidate MPs, it is important to include reference MPs.
 Provisionally, we suggest the following reference MPs:
