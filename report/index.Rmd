@@ -93,6 +93,7 @@ library(here)
 filter <- dplyr::filter
 options(tinytex.verbose = TRUE)
 knitr::opts_chunk$set(crop = NULL)
+round2 <- function(x) sprintf("%.2f",round(x, 2))
 ```
 
 <!-- The math symbols greater and less than seem to render in RStudio Rmd files when inside $$..$$ chunks but tinytex doesn't recognize them unless the following are defined -->

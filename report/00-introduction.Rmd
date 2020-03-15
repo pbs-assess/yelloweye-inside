@@ -1,7 +1,4 @@
-
 \clearpage
-
-<!--TODO: import refs from mpframework-refs.bib to refs.bib. Remove duplicates. Avoid citation problems like using both DFO2009 and dfo2009 in the doc - these are seen as two different refs-->
 
 # INTRODUCTION {#sec:introduction}
 

@@ -1,5 +1,4 @@
-
-## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:approach3}
+# SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:om}
 
 DLMtool OMs are organized into four main components representing a real fished system:
 
