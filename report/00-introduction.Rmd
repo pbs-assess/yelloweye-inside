@@ -62,7 +62,7 @@ Part of the motivation for this project was concern by fisheries managers that t
 The guidance for rebuilding plans [@dfo2013] identifies some recommended management measures, which include keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock.
 The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [@ifmp2018], which has not been simulation-tested.
 
-## Management strategy evaluation (MSE) {#sec:introduction-mse}
+## MANAGEMENT STRATEGY EVALUATION (MSE) {#sec:introduction-mse}
 
 Worldwide, there has been a movement towards MSE, or management-oriented approaches, for the provision of advice for managing fisheries [e.g., @butterworth1999; @rademeyer2007; @berkson2015; @geromont2015; @punt2016; @carruthers2016].
 MSE focuses on identifying management procedures (MPs) that perform best with respect to meeting agreed-upon policy and fishery objectives when implemented in a "closed-loop" simulation environment (Figure \@ref(fig:mse-chart-basic)).
@@ -79,7 +79,7 @@ The steps of MSE are described in Section \@ref(sec:methods-mp-framework) [see a
 knitr::include_graphics(here::here("figs/mse-chart-simple2.png"))
 ```
  
-## Approach {#sec:introduction-approach}
+## APPROACH {#sec:introduction-approach}
 
 Data-limitations for the Inside Yelloweye Rockfish stock pose a challenge to evaluating the expected performance of management measures needed to build the stock out of the critical zone within the agreed time-frame with the agreed probability, and bring the stock into compliance with the Fish Stocks provisions.
 

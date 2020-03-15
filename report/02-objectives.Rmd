@@ -78,7 +78,7 @@ For example, we averaged the short-term (ST) catch metrics over only the years 2
 
 COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@cosewic2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) -->
 
-### COSEWIC Metric A
+### COSEWIC METRIC A
 
 P70 - Probability that population decline hasn't exceeded 70% over 3 generations
 where generation time = 38 years for inside yelloweye
@@ -93,7 +93,7 @@ P30 - Probability that population decline hasn't exceeded 30% over 3 generations
 
 P[1 - B_2019/B_1918 < 0.3]
 
-### Extinction Risk - COSEWIC E
+### EXTINCTION RISK - COSEWIC E
 
 We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction.
 Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
