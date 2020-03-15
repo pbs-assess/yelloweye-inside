@@ -77,3 +77,98 @@ Two robustness OM were considered:
 *TODO. Decide if we will have our own SRA appendix or refer to MP Framework*
 
 Further details on the SRA OM-calibration model are available in Appendix \@ref(app:sra).
+
+## OPERATING MODEL CONDITIONING
+
+After specifying most of the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
+
+TODO: write more here.
+
+The SRA was able to fit to the HBLL survey relative biomass index and TODO indices reasonably well for all OM scenarios (Figure \@ref(fig:survey-fits)).
+The TODO survey was better fit than the TODO, likely due to TODO (Figure \@ref(fig:survey-fits)).
+The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
+
+(ref:fig-survey-fits)
+SRA model fits to the HBLL, Dogfish, and three commercial CPUE relative  indices.
+Panels from left to right represent OM scenarios.
+Thin lines represent individual SRA model fits across stochastic draws from the various OM parameters.
+Dots represent index mean and line segments represent 2 times the standard errors as entered into the SRA models.
+
+```{r survey-fits, fig.cap="(ref:fig-survey-fits)", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
+```
+
+We used the SRA to populate the following parameters in the conditioned OMs:
+
+- $B_{t_c}/B_0$ (or "D"; depletion in the last historical year)
+- $R_0$ (unfished recruitment)
+- $\theta_\textrm{AC}$ (or "AC"; first-order autocorrelation of recruitment deviations)
+- $F_{a,y}$ (fishing mortality at age by year)
+- $\varepsilon_{\textrm{R},y}$ for years $t_1$ to $t_c$ (historical recruitment deviations)
+
+The reference and robustness scenarios rendered a range of estimated parameter values (Figures \@ref(fig:sra-conditioned-parameters), \@ref(fig:F-om), \@ref(fig:recdev-om)).
+
+TODO: note that all replicates converged
+
+Other key parameters that were possibly affected by the SRA (but there wasn't any filtering) (Figure \@ref(fig:sra-conditioned-parameters2)).
+
+The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs were TODO (Figure \@ref(fig:depletion-om)).
+
+
+```{r sra-fraction, results='asis', eval=FALSE}
+# This just checks that all replicas converged
+rex_converged <- readRDS(here("mse/om/ye-converged.rds"))
+rex_converged %>%
+  mutate(fraction_converged = sprintf("%.2f",round(nsim / 250, 2))) %>%
+  mutate(scenario = gsub("\\n", " ", scenario)) %>%
+  select(-nsim) %>%
+  csasdown::csas_table(col_names = c("Scenario", "Fraction retained"),
+    caption = "Fraction of replicates retained after conditioning with the SRA model.")
+```
+
+*TODO: make ye-sra-estimated.png and ye-sra-filtered.png*
+
+(ref:fig-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. Other parameters: Fishing mortality at age, the historical depletion trajectory, and historical recruitment deviations are also derived from the SRA model. Historical depletion trajectories are shown in Figure \@ref(fig:depletion-om), apical fishing mortality by year are shown in Figure \@ref(fig:F-om), and historical recruitment deviations are shown in Figure \@ref(fig:recdev-om).
+D refers to depletion. AC refers to $\theta_\textrm{AC}$.
+
+```{r sra-conditioned-parameters, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-conditioned-parameters)"}
+knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
+```
+
+(ref:fig-sra-conditioned-parameters2)
+Frequency polygons for parameters input to the SRA. Parameters were sampled stochastically as input into the SRA (see Appendix \@ref(app:desc-om-rex) for ranges). Any samples associated with non-converged SRA models were discarded. Since most SRA models converged, these distributions are similar across scenarios unless they were specified differently in the OM. The large spikes represent fixed parameter values in the OM. sigma_R refers to $\sigma_R$.
+
+```{r sra-conditioned-parameters2, out.width="\\textwidth", fig.asp=0.85, fig.width=7, fig.cap="(ref:fig-sra-conditioned-parameters2)"}
+knitr::include_graphics(here("mse/figures/ye-sra-filtered.png"))
+```
+
+<!-- TODO: this fig is kind of weird with the triangles -->
+
+\clearpage
+
+(ref:fig-depletion-om)
+Spawning stock biomass ($B$) depletion trajectories for reference and robustness set OMs.
+Depletion is represented as a fraction of $B_0$ (spawning stock biomass at unfished equilibrium).
+Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
+
+```{r depletion-om, fig.cap="(ref:fig-depletion-om)", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
+```
+
+(ref:fig-F-om)
+Apical fishing mortality ($F$) trajectories for reference and robustness set OMs.
+Apical fishing mortality is the maximum $F$ experienced by fish of any age in a given year.
+Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
+
+```{r F-om, fig.cap="(ref:fig-F-om)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
+```
+
+(ref:fig-recdev-om)
+Historical recruitment deviations estimated by the SRA model (in log space).
+Lines represent 100 random samples from the replicates.
+
+```{r recdev-om, fig.cap="(ref:fig-recdev-om)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"))
+```
+
