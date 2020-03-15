@@ -1,18 +1,40 @@
 
 ## STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:approach4}
 
-@anderson2020gfmp screened all MPs available in DLMtool as of November 2019 along with recent MPs used in BC groundfish reports. DLMtool includes MPs that make different types of management recommendations.
-These recommendations include adjustments to total allowable catch (TAC), effort, or spatial allocation of catch or effort.
-For Inside YE, we focus on MPs that make TAC recommendations because the stock is managed by quotas.
+@anderson2020gfmp screened all MPs available in DLMtool as of November 2019. DLMtool includes data-limited MPs that make different types of management recommendations, including adjustments to total allowable catch (TAC), effort, or spatial allocation of catch or effort.
+This represents a fairly comprehensive set of data-limited MPs available in the primary literature or agency reports to date.
+@anderson2020gfmp also adjusted some of the DLMtool MPs to accommodate the types of data available for BC groundfish (e.g., biennial surveys in several management areas), or to reflect fishery operations.
+The MP Framework only considers MPs that make TAC recommendations, because most groundfish stocks are managed by quotas and TACs.
 
-We focus on two main types of MPs: data-based and model-based MPs.
+The MP Framework focuses on two main types of MPs: empirical (data-based) and model-based MPs.
+@anderson2020gfmp excluded certain MPs from the MP Framework based on a number
+of requirements that would rarely be met for BC groundfish stocks. Excluded MPs were those that required: knowledge of absolute abundance; recent age-composition data;  knowledge of depletion; and knowledge of steepness (*h*) of the stock-recruit relationship, since these are likely to be major axes of uncertainty for the stocks to which this framework will be applied.
+While it is necessary to explore these axes of uncertainty within OMs, implementing MPs real data that require knowledge of these factors would require many additional assumptions.
 
-All MPs included in this framework are fully described in Appendix \@ref(app:MPs).
+A library of all MPs considered in the MP Framework is provided in @anderson2020gfmp (their Appendix D). MPs considered for this Inside Yelloweye Rockfish rebuilding plan are framework are detailed here in Appendix \@ref(app:MPs). 
+
+All MPs included in this framework are described in Appendix \@ref(app:mps).
+
+### CANDIDATE MPs {#sec:approach4-candidate-mps}
+
+We started with the full set of provisional candidate MPs described in Section TODO (Table \@ref(tab:mps)).
+
+
+
+```{r mps, results='asis'}
+mp <- readr::read_csv(here("mse",  "mp.txt"), comment = "#")
+csasdown::csas_table(mp, caption = "Candidate MPs.", col_names = c("Management procedure", "MP type"))
+```
+
+
+
+
+
 
 ## Reference MPs
 <!-- Only No fishing (NFref), FMSY75 and FMSY -->
 
-*TODO: move MPs into appendix*
+
 
 ## Fixed TAC MPs
 
@@ -96,12 +118,4 @@ The purpose of reference MPs is not to explore viable management strategies but 
 
 ## STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:results4}
 
-We started with the full set of provisional candidate MPs described in Section TODO (Table \@ref(tab:mps)).
-
-TODO: write more here
-
-```{r mps, results='asis'}
-mp <- readr::read_csv(here("mse",  "mp.txt"), comment = "#")
-csasdown::csas_table(mp, caption = "Candidate MPs.", col_names = c("Management procedure", "MP type"))
-```
 
