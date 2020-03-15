@@ -5,7 +5,7 @@ library(sdmTMB)
 library(ggplot2)
 library(dplyr)
 
-set.seed(133)
+set.seed(29210)
 
 d <- tibble::tibble(X = runif(1000, 0, 1), Y = runif(1000, 0, 1))
 d$year <- rep(1:10, each = 100)
@@ -21,9 +21,9 @@ nd$type <- "b_grid"
   out - mean(out)
 }
 
-sigma_O <- 0.2
-sigma_E <- 0.8
-kappa <- 0.5
+sigma_O <- 2
+sigma_E <- 0.5
+kappa <- 0.1
 x = .d$X
 y = .d$Y
 rf_omega <- RandomFields::RMmatern(nu = 1, var = sigma_O^2, scale = 1/kappa)
@@ -32,7 +32,9 @@ omega_s <- .rf_sim(model = rf_omega, x, y)
 
 ggplot(filter(.d, type == "b_grid", year == 1), aes_string("X", "Y", fill = "omega_s")) +
   geom_raster() +
-  scale_fill_gradient2()
+  coord_equal(expand = FALSE) +
+  scale_fill_gradient2() +
+  gfdlm::theme_pbs()
 
 rf_epsilon <- RandomFields::RMmatern(nu = 1, var = sigma_E^2, scale = 1/kappa)
 
@@ -44,27 +46,41 @@ rf_epsilon <- RandomFields::RMmatern(nu = 1, var = sigma_E^2, scale = 1/kappa)
   ungroup() %>%
   arrange(type)
 
-ggplot(.d, aes_string("X", "Y", colour = "eps_st")) +
+ggplot(dplyr::filter(.d, year %in% 1:5),
+  aes_string("X", "Y", colour = "eps_st")) +
   geom_point() +
+  coord_equal(expand = FALSE) +
   scale_color_gradient2() +
-  facet_grid(type~year)
+  facet_grid(type~year) +
+  gfdlm::theme_pbs()
 
-.d$Y_cent <- .d$Y - mean(.d$Y)
-f <- ~ 0 + as.factor(year) + Y_cent + I(Y_cent^2)
+f <- ~ 0 + as.factor(year)
 X_ij <- model.matrix(f, .d)
 
-set.seed(234)
-b_j <- c(rlnorm(10, meanlog = 1, sdlog = 0.2), 0.1, -1.0)
+set.seed(1)
+b_j <- rlnorm(10, meanlog = 0.1, sdlog = 0.2)
 b_j
+log(b_j)
+plot(b_j, type = "o")
 
 .d$eta <- as.numeric(.d$omega_s + .d$eps_st + X_ij %*% b_j)
 .d$y <- exp(.d$eta)
-.d$y[1:1000] <- MASS::rnegbin(1000, mu = exp(.d$eta[1:1000]), theta = 4) # observations
+# .d$y[1:1000] <- MASS::rnegbin(1000, mu = exp(.d$eta[1:1000]), theta = 1.2) # observations
+.d$y[1:1000] <- rpois(1000, lambda = exp(.d$eta[1:1000])) # observations
 
-ggplot(.d, aes_string("X", "Y", colour = "y")) +
+ggplot(dplyr::filter(.d, year %in% 1:5, type == "a_obs"), aes_string("X", "Y", colour = "y")) +
   geom_point() +
   scale_color_viridis_c(trans = "sqrt") +
-  facet_grid(type~year)
+  facet_grid(~year) +
+  coord_equal(expand = FALSE) +
+  gfdlm::theme_pbs()
+
+ggplot(dplyr::filter(.d, year %in% 1:5, type != "a_obs"), aes_string("X", "Y", colour = "y")) +
+  geom_point() +
+  scale_color_viridis_c(trans = "sqrt") +
+  facet_grid(~year) +
+  coord_equal(expand = FALSE) +
+  gfdlm::theme_pbs()
 
 d <- filter(.d, type == "a_obs")
 nd <- filter(.d, type != "a_obs")
@@ -79,16 +95,28 @@ d <- d[!(d$year %in% seq(2, 10, 2) & d$Y < 0.5), ]
 # d <- d[-sample(which(d$year %in% seq(2, 10, 2)), 180), ]
 # d %>% group_by(year) %>% count()
 
-ggplot(d, aes_string("X", "Y", colour = "log(y)")) +
-  geom_point() +
-  scale_color_viridis_c() +
-  facet_wrap(~year)
+actual <- group_by(nd, year) %>%
+  summarise(total = sum(y))
 
-sp <- make_spde(d$X, d$Y, n_knots = 250)
+naive <- group_by(d, year) %>%
+  summarize(total = sum(y)) %>%
+  mutate(total = total / exp(mean(log(total))) * exp(mean(log(actual$total))))
+
+plot(actual$year, actual$total, type = "o")
+lines(naive$year, naive$total)
+
+ggplot(d, aes_string("X", "Y", colour = "y")) +
+  geom_point() +
+  scale_color_viridis_c(trans = "sqrt") +
+  facet_wrap(~year) +
+  coord_equal(expand = FALSE) +
+  gfdlm::theme_pbs()
+
+sp <- make_spde(d$X, d$Y, n_knots = 200)
 # plot_spde(sp)
 
-m <- sdmTMB(y ~ 0 + as.factor(year) + Y_cent + I(Y_cent^2), data = d, spde = sp,
-  family = sdmTMB::nbinom2(link = "log"), include_spatial = TRUE,
+m <- sdmTMB(y ~ 0 + as.factor(year), data = d, spde = sp,
+  family = poisson(link = "log"), include_spatial = TRUE,
   silent = FALSE, time = "year", reml = TRUE)
 m
 
@@ -127,15 +155,20 @@ ggplot(p$data, aes_string("X", "Y", fill = "est_rf")) +
   scale_fill_gradient2() +
   facet_wrap(~year)
 
-.i <- get_index(p, bias_correct = TRUE)
+.i <- get_index(p, bias_correct = FALSE)
 
 actual <- group_by(nd, year) %>%
   summarise(total = sum(y))
+
+naive <- group_by(d, year) %>%
+  summarize(total = sum(y)) %>%
+  mutate(total = total / exp(mean(log(total))) * exp(mean(log(actual$total))))
 
 ggplot(.i, aes(year)) +
   geom_vline(xintercept = seq(2, 10, 2), lty = 2, col = "grey60", lwd = 0.3) +
   geom_ribbon(aes(ymin = lwr, ymax = upr), fill = "grey80") +
   geom_line(aes(y = est), colour = "black") +
   geom_line(data = actual, mapping = aes(y = total), col = "red", lwd = 1.2, lty = 1) +
+  geom_line(data = naive, colour = "blue", aes(y = total)) +
   ggsidekick::theme_sleek() +
   ylab("Total abundance") +  scale_x_continuous(breaks = seq(1, 10, 1))
