@@ -1,5 +1,4 @@
-
-## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:approach2}
+## SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:objectives-metrics}
 
 Clear management and fishery objectives and the performance metrics that measure them must be identified.
 Objectives may span a wide range of policy or legistated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., average catch or variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
