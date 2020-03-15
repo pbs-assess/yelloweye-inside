@@ -1,6 +1,6 @@
 all: _book/resdoc.pdf
 
-_book/resdoc.pdf: index.Rmd 01-introduction.Rmd 02-methods.Rmd 03-mse-results2.Rmd 04-discussion.Rmd 05-appendix-om-description.Rmd 06-appendix-MP-descriptions.Rmd 07-appendix-biological-data.Rmd 08-appendix-catch-data.Rmd 09-appendix-survey-data.Rmd 10-appendix-management-changes.Rmd 11-references.Rmd bib/mpframework-refs.bib bib/refs.bib
+_book/resdoc.pdf: index.Rmd 00-introduction.Rmd 01-decision-context.Rmd 02-objectives.Rmd 03-om.Rmd 04-mp.Rmd 05-simulation.Rmd 06-results.Rmd 07-discussion.Rmd 08-app-biological-data.Rmd 09-app-survey-data.Rmd 10-app-catch-data.Rmd 11-app-om.Rmd 12-app-mp.Rmd 98-environment.Rmd 99-references.Rmd bib/mpframework-refs.bib bib/refs.bib
 	Rscript -e "bookdown::render_book('index.Rmd')"
 
 continuous:

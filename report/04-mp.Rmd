@@ -30,11 +30,6 @@ csasdown::csas_table(mp, caption = "Candidate MPs.", col_names = c("Management p
 
 
 
-```{r mps, results='asis'}
-mp <- readr::read_csv(here("mse",  "mp.txt"), comment = "#")
-csasdown::csas_table(mp, caption = "Candidate MPs.", col_names = c("Management procedure", "MP type"))
-```
-
 ## Reference MPs
 <!-- Only No fishing (NFref), FMSY75 and FMSY -->
 
