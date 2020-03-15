@@ -31,14 +31,16 @@ satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
 mp_sat <- dplyr::filter(pm_min, `LRP 1.5GT` > satisficed_criteria[1], `ST C10` > satisficed_criteria[2]) %>%
   pull(MP)
 mp_sat <- mp_sat[!mp_sat %in% reference_mp]
-mp_sat_b4_cut <- mp_sat
 
 pm_avg_sat <- pm_avg %>% filter(MP %in% mp_sat)
 pm_min_sat <- pm_min %>% filter(MP %in% mp_sat)
 ```
 
-To determine which MPs would be carried forward as satisficed MPs [@miller2010], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)) .
-To obtain a manageable number of MPs for further consideration, we set satisficing thresholds of `r names(satisficed_criteria)[1]` $>$ `r satisficed_criteria[[1]]` and `r names(satisficed_criteria)[2]` $>$ `r satisficed_criteria[[2]]`.
+To determine which MPs would be carried forward as satisficed MPs [@miller2010], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
+All MPs met the satisficing criterion (LRP 1.5GT > 0.95) in individual OMs in the reference set and averaged across all four reference OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
+Since many MPs also generated low catches, we applied an additional satisficing filter retaining only MPs where ST C10 > 50%.
+This left us with Fixed TACs of 10 and 15 t and Islope MPs.
+
 We chose to apply the satisficing criteria to the average performance metrics.
 Applying these criteria resulted in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
 
@@ -61,3 +63,9 @@ In other words, this figure illustrates the worst performance of each MP across 
 knitr::include_graphics(here("mse/figures/ye-tigure-refset-min.png"))
 ```
 
+- Iratio generates low catches within the first decade but generates high catches later on. There is high variability among replicates in each OM.
+- IDX returns gradually lower catches over time.
+- GB_slope appears to hold catch fairly constant between 10-15 t in the reference set.
+- Iratio and GB_slope generates zero catch in the low catch OM. Hence it didn't satisfy the informal `ST C10` performance metric
+- SP MPs generate no catch in the first decade, but increase catches later on, e.g. after 50 years.
+Iratio and GB_slope generates zero catch in the low catch OM. Hence it didn't satisfy the `ST C10` performance metric

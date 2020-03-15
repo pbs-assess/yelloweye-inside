@@ -16,8 +16,12 @@ TODO: explain more results here
 Trade-offs among performance metrics for most of the satisficed MPs were TODO (add something here) within the reference-set scenarios (Figures \@ref(fig:tradeoff-reference) and \@ref(fig:spider-satisficed-mps-avg)).
 TODO (write something more here).
 
+- Low M OM more easily shows the conservation vs. yield tradeoff. To meet satisficing criterion for LRP 1.5GT, ST C10 must be very low.
+
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-no-cpue)).
 TODO (write something more here if desired).
+
+- FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM.
 
 Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
 TODO (write something more here if desired).
@@ -112,6 +116,8 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 \clearpage
 
 ## ROBUSTNESS SET RESULTS
+
+For the Islope MPs, we see a slight loss of catch in the "(B) High CV HBLL projected" OM if the index is actually less precise than assumed in the reference set.
 
 Figure \@ref(fig:tigure-panel-rob)
 Figure \@ref(fig:dots-satisficed-mps-robust)
