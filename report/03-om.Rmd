@@ -1,0 +1,71 @@
+
+## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:methods-approach3}
+
+DLMtool OMs are organized into four main components representing a real fished system:
+
+1. population dynamics of the fish stock (e.g., growth, recruitment, mortality);
+2. fishery dynamics (e.g., selectivity, spatial targeting);
+3. observation processes (e.g., bias and precision in survey indices); and
+4. management implementation (e.g., percentage overages of catch limits).
+
+DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data. The SRA model is used to condition the following OM parameters: <!--not sure these are the correct ones below -->
+
+* unfished recruitment
+* depletion
+* relative fishing effort
+* annual recruitment deviations
+* selectivity parameters (if age or length composition data are included as inputs to the SRA)
+
+Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey.
+
+
+
+
+*from Quang*
+General settings:
+- Max age = 80 years (plus group accumulator age)
+- Use SRA model (cite gfmp)
+- Each replicate fits a different value of M and h (sampled independently)
+- Fix selectivity of fisheries to values from outside YE. Use hook and line for commercial (there is little to no trawl fishery for inside pop)
+- Estimate rec devs after 1950 (age comps only available after 2003)
+- Estimate HBLL selectivity. Mirror the dogfish selectivity in each replicate to match that for HBLL
+- Multinomial annual sample size for age comps based on the number of sampling trips.
+
+- Initial fit did not fit dogfish survey well. Retrospective analysis showed bias in SSB (For model with M and h set to mean priors, rho = 0.25 for 11 years when removing up to 11 years of data). 11 years of data were used primarily to evaluate consistency of the model going back to 2009 which was the terminal year for the 2011 assessment.
+- Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.
+- Next, it was decided to fix the HBLL selectivity to that from the initial fit while also upweighting the dogfish survey. This fit generated small retrospective bias (SSB rho = -0.07) for the fit with M and h mean priors.
+- Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process.
+<!-- I will generate a plot of SSB rho vs. M to show this -->
+
+To isolate the effects of specific sources of uncertainty on performance of MPs, alternative OMs were developed that changed the value (or distribution) of one parameter or data source of interest. OMs are divided into a reference set of core OMs representing the most important plausible model uncertainties, and a robustness set for testing sensitivity to a broader range of structural uncertainties [@rademeyer2007].
+
+### Reference set
+
+From the initial fit, the following OMs were developed as the reference set:
+
+1. Upweight dogfish survey: Uses the initial fit but upweight dogfish selectivity and fix HBLL full selectivity age to 20 years.
+Additional things to mention:
+- Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
+- Future recruitment deviations sampled in log space with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
+- Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in log space.
+
+2. Low catch - to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
+
+3. Episodic recruitment - to address uncertainty in future productivity, an alternative scenario where recruitment is more variable. Rockfish assessments in the Pacific have estimated occasional extreme year classes (examples? POP, boccacio?). SRA may not estimate large cohorts, this could be a limitation of the available data to detect large cohorts. From (1), extreme recruitment is generated on average once every generation (38 years). If y is an extreme recruitment year, then the recruitment is sampled with lognormal with SD = 2.
+
+<!-- I need to add an equation to describe episodic recruitment -->
+
+4. Estimate HBLL selectivity - same as 1 but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
+
+### Robustness set
+
+Two robustness OM were considered:
+
+(A) Low M - Same as (1), but M ~ Lognormal(0.025, 0.2), pessimistic scenario for stock productivity and rebuilding
+
+(B) Higher CV HBLL - Future HBLL index is less precise than in (1). Instead of SD = 0.25, we use the SD and autocorrelation from the index residuals in OM (1). In doing so, this scenario evaluate MPs if we've overestimated the precision of the HBLL survey and conditioning uncertainty (we've generated larger than expected residuals).
+
+
+*TODO. Decide if we will have our own SRA appendix or refer to MP Framework*
+
+Further details on the SRA OM-calibration model are available in Appendix \@ref(app:sra).
