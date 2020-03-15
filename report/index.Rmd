@@ -22,8 +22,8 @@ region: Pacific Region
 abstract: |
   Here is the abstract text.
 
-  Start new paragraphs after a blank line and with 2 spaces indent. 
-  
+  Start new paragraphs after a blank line and with 2 spaces indent.
+
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  csasdown::resdoc_pdf:
@@ -33,7 +33,7 @@ output:
 # End of options to set
 knit: bookdown::render_book
 link-citations: true
-bibliography: [bib/refs.bib, bib/mpframework-refs.bib]
+bibliography: [refs.bib, mpframework-refs.bib]
 csl: csl/csas.csl # or csl/csas-french.csl for French
 # Any extra LaTeX code for the header:
 # header-includes:
