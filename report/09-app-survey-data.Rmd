@@ -38,51 +38,61 @@ In instances where zero hooks were returned with bait the number of baited hooks
 The hook adjusted data (observed numbers) were then passed to the spatiotemporal model to develop the index of abundance.
 
 ```{r}
-include_hbll_fig <- function(file) {
+include_figs <- function(file) {
   knitr::include_graphics(here::here("figs", file), dpi = NA)
 }
 ```
 
+```{r stich-sim-index, fig.cap="Simulation testing abundance index calculation. The solid red line represents the true simulated abundance through time. The dashed and dotted green line represents a ``naive'' design-based estimate, which is calculated here by calculating the abundance with just the observed north or south counts in each year. The dashed blue line represents a geostatistical standardized index that attempts to account for the north-south biennial observations. The shaded blue region represents the modelled 95\\% confidence interval.", out.width="5in"}
+include_figs("geostatistical-sim-stitched-index.png")
+```
+
 \clearpage
 
-```{r, fig.cap="The raw data. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the number of fish caught per hook after accounting for hook competition.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-raw-data.png")
+```{r stich-sim-pred, fig.cap="Simulation testing abundance index calculation. (A) The true simulated (mean) abundance in space and time. (b) The observed (dots) and estimated (colour) counts in space and time from the geostatistical model. The observations occur in north and south regions in alternating years and are ``blind'' to the missing region.", out.width="\\textwidth"}
+include_figs("geostatistical-sim-predicted.png")
 ```
 
-```{r, out.width="4in", fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 400 knots. kmeans clustering algorithm. Samples from all years are shown simultaneously."}
-include_hbll_fig("hbll-joint-spde.png")
+\clearpage
+
+```{r hbll-raw, fig.cap="Inside HBLL survey observations of Yelloweye Rockfish. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the number of fish caught per hook after accounting for hook competition.", out.width="\\textwidth"}
+include_figs("hbll-joint-raw-data.png")
 ```
 
-```{r, out.width="5in", fig.cap="Area per survey grid cell."}
-include_hbll_fig("hbll-area-in-water.png")
+```{r hbll-spde, out.width="4in", eval=FALSE, fig.cap="Stochastic Partial Differential Equation (SPDE) mesh from INLA. 400 knots. kmeans clustering algorithm. Samples from all years are shown simultaneously."}
+include_figs("hbll-joint-spde.png")
 ```
 
-```{r, fig.cap="Baited hooks. Note the substantial difference between the northern and southern areas and the change in the north between 2003--2007 in subsequent years.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-baited.png")
+```{r hbll-area-grid, out.width="5in", fig.cap="Area per survey grid cell that is in water for the inside HBLL survey. The predicted count density for each grid cell is scaled up to the full survey domain based on these areas."}
+include_figs("hbll-area-in-water.png")
 ```
 
-```{r, fig.cap="Hook adjustment factor.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-hook-adjust.png")
+```{r hbll-baited, fig.cap="Proportion baited hooks returned for the inside HBLL survey. Note the substantial difference between the northern and southern areas and the change in the north between 2003--2007 in subsequent years.", out.width="\\textwidth"}
+include_figs("hbll-joint-baited.png")
 ```
 
-```{r, fig.cap="Predicted relative density in space and time.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-prediction-log.png")
+```{r hbll-hook-adjustment, fig.cap="Hook adjustment factor for the inside HBLL survey accounting for the number of hooks and the number of returned baited hooks.", out.width="\\textwidth"}
+include_figs("hbll-joint-hook-adjust.png")
 ```
 
-```{r, fig.cap="The spatial random effects. These are consistent differences from the expectation in space.", out.width="4.2in"}
-include_hbll_fig("hbll-joint-omega.png")
+```{r hbll-predicted-spacetime, fig.cap="Predicted relative density in space and time for the inside HBLL survey. Observed (hook-adjusted) counts are illustrated with circles. Predictions are illustrated with colour shading.", out.width="\\textwidth"}
+include_figs("hbll-joint-prediction-log.png")
 ```
 
-```{r, fig.cap="The spatiotemporal random effects. Note the reversion to the mean in area-year combinations without sampling data. Also note the difference in magnitude between the spatiotemporal and spatial random effects.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-epsilon.png")
+```{r hbll-spatial-re, fig.cap="The spatial random effects. These are consistent spatially correlated differences in expected abundance through time. The values are shown in link (log) space.", out.width="4.2in"}
+include_figs("hbll-joint-omega.png")
 ```
 
-```{r, fig.cap="Randomized quantile residuals from the model shown in space and time.", out.width="\\textwidth"}
-include_hbll_fig("hbll-joint-residual-map.png")
+```{r hbll-spatiotemporal-re, fig.cap="The spatiotemporal random effects. These are spatially correlated deviations that change through time. Note the reversion to the mean in area-year combinations without sampling data. Note the difference in magnitude between the spatial random effects (previous figure) and these spatiotemporal random effects.", out.width="\\textwidth"}
+include_figs("hbll-joint-epsilon.png")
 ```
 
-```{r, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
-include_hbll_fig("hbll-index-components-eps-depth2.png")
+```{r hbll-residuals, eval=FALSE, fig.cap="Randomized quantile residuals from the model shown in space and time.", out.width="\\textwidth"}
+include_figs("hbll-joint-residual-map.png")
+```
+
+```{r hbll-index, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
+include_figs("hbll-index-components-eps-depth2.png")
 ```
 
 \clearpage
@@ -127,31 +137,31 @@ I am creating the index on the rectangles that define the dogfish survey. I over
 \clearpage
 
 ```{r, fig.cap="Raw data", out.width="\\textwidth"}
-include_hbll_fig("dogfish-yelloweye-per-area-data.png")
+include_figs("dogfish-yelloweye-per-area-data.png")
 ```
 
 ```{r, fig.cap="SPDE", out.width="4in"}
-include_hbll_fig("dogfish-joint-spde.png")
+include_figs("dogfish-joint-spde.png")
 ```
 
 ```{r, fig.cap="Spatial residuals with some jittering.", out.width="\\textwidth"}
-include_hbll_fig("dogfish-residual-map.png")
+include_figs("dogfish-residual-map.png")
 ```
 
 ```{r, fig.cap="Prediction with log transformed color scale.", out.width="\\textwidth"}
-include_hbll_fig("dogfish-prediction-log.png")
+include_figs("dogfish-prediction-log.png")
 ```
 
 ```{r, fig.cap="Spatial random effects.", out.width="4.2in"}
-include_hbll_fig("dogfish-omega.png")
+include_figs("dogfish-omega.png")
 ```
 
 ```{r, fig.cap="Spatiotemporal random effects.", out.width="\\textwidth"}
-include_hbll_fig("dogfish-epsilon.png")
+include_figs("dogfish-epsilon.png")
 ```
 
 ```{r, fig.cap="Standardized index.", out.width="5in"}
-include_hbll_fig("dogfish-index-estimated-hook.png")
+include_figs("dogfish-index-estimated-hook.png")
 ```
 
 \clearpage
