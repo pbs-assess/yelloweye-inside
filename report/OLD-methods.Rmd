@@ -140,6 +140,8 @@ For example, we averaged the short-term (ST) catch metrics over only the years 2
 
 *TODO: Clean this up. RF Moved these COSEWIC metrics from MP section but not sure if they are needed. Go through all these and delete if they were not used or explain why they are here ... OR do we need to add them to results if not already? *
 
+*TODO: update: Make short appendix of COSEWIC metrics*
+
 COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@cosewic2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) -->
 
 ##### COSEWIC Metric A

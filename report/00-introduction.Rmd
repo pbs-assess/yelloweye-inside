@@ -93,8 +93,42 @@ The scientific literature describes a large number of MPs for providing catch li
 Since 2017, a partnership agreement between the University of British Columbia (UBC) and DFO [@dfo_dlmtool_2017] has supported development of two open-source software packages for MSE, implemented in the statistical programming environment R [@r2019]: the Data Limited Methods toolkit (DLMtool) [@carruthers2018; @carruthers_hordyk_2018] and the Management Strategy Evaluation toolkit (MSEtool) [@huynh_msetool_2019].
 After several years of development, these packages provide some of the fastest, most flexible and extensible software for conducting MSE for fisheries, ranging from data-poor to data-rich, enabling rapid assessment of multiple MPs according to customizable conservation and fisheries objectives, and evaluation of key trade-offs.
 
+### THE MANAGEMENT PROCEDURE FRAMEWORK FOR GROUNDFISH IN BRITISH COLUMBIA {#sec:introduction-mp-framework}
+
 Concurrently with the development of this document, a Management Procedure Framework for Groundfish in British Columbia [@anderson2020gfmp] has been developed.
 This framework establishes a recommended framework for evaluating performance of a wide range of data-limited MPs for data-limited groundfish species, extensively utilizing the functionality of DLMtool and MSEtool.
 
-This document follows the methods described in [@anderson2020gfmp] to evaluate performance of MP options for setting catch limits, with respect to meeting rebuilding objectives for Inside Yelloweye Rockfish.
-Details of the framework and modifications made for Inside Yelloweye Rockfish are provided next in Section \@ref(sec:methods-mp-framework). 
+We follow the Management Procedure Framework (MP Framework) for selecting MPs for setting catch limits for data-limited groundfish stocks [@anderson2020gfmp].
+The MP Framework utilizes the software packages DLMtool [@carruthers2018], MSEtool [@huynh_msetool_2019] and gfdlm [@gfdlm], implemented in the statistical software R [@r2019].
+This rebuilding plan represents the first application of the MP Framework for providing science advice to support catch decisions.
+The framework follows six best practice steps described below and in greater detail in @anderson2020gfmp.
+
+The best practice steps are based on a review by @punt2016, who identified five key steps in the MSE process (Steps 2--6 below).
+In large part, the DLMtool software has been designed to allow practitioners to follow these steps [Figure \@ref(fig:mse-chart); @carruthers2018].
+The framework also identifies a critical first step, defining the decision context [@gregory2012 and  @cox2016].
+
+(ref:fig-mse-chart) The steps of the MSE process following @punt2016 as implemented in DLMtool. Adapted from @carruthers2018. This figure expands on Figure \@ref(fig:mse-chart-basic).
+
+```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("figs/mse-chart.pdf"))
+```
+
+The six steps are as follows:
+
+  Step 1: Define the decision context.
+
+  Step 2: Selection of objectives and performance metrics.
+
+  Step 3: Selection of uncertainties/specification of operating models.
+
+  Step 4: Identification of candidate management procedures.
+
+  Step 5: Simulation of the application of the management procedures.
+
+  Step 6: Presentation of results and selection of management procedure.
+
+Following selection and implementation of the MP for setting the catch limit, it is also necessary to periodically monitor and evaluate the performance of the MP [@dowling2015a; @carruthers2018]. 
+This may be done through informal means, such as through feedback from fishers and survey information [e.g., @cox2008a], or through more formal statistical measures, where observed data are compared to predictions from the OMs to test whether the system is performing as expected [@carruthers_hordyk_2018; discussed in @anderson2020gfmp].
+
+In the following sections, we describe our approach for developing a candidate rebuilding plan for Inside Yelloweye Rockfish, following the six best practice steps.
+
