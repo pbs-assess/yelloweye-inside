@@ -30,7 +30,7 @@ Details on conditioning the OMs are provided below in Section \@ref(sec:approach
 ## OPERATING MODELS {#sec:approach3-oms}
 
 MSE best practice recommends dividing MSE trials into a "reference set", using a core set of OMs that include the most important uncertainties (e.g., depletion of the stock or range of natural mortality values), and a "robustness set", representing other plausible OM formulations that represent alternative structural hypotheses [@rademeyer2007].
-These authors recommend  that the reference set of OMs include the most important uncertainties, which are both highly plausible and have major impacts on results. 
+These authors recommend  that the reference set of OMs include the most important uncertainties, which should be both highly plausible and have major impacts on results. 
 @punt2016 provide a list of factors which commonly have a large impact on MSE performance due to uncertainty (their Table 3).
 
 Once an agreed-upon reference set of OMs has been determined, a wider range of OMs (the robustness set) should be developed to capture a wider range of uncertainties that may be less plausible but should nonetheless be explored [@rademeyer2007].
@@ -42,35 +42,61 @@ They recommended presenting performance metrics from individual robustness-set s
 This facilitates visualization of performance of MPs that performed well in the reference set under a set of more diverse assumptions [@rademeyer2007].
 More details on visualization of performance metrics from the robustness and reference sets of OMs are provided in Section \@ref(sec:results).
 
-We developed four alternative OMs for inclusion in the reference set and two alternative OMs for inclusion in the robustness set, described below.
+For Inside Yelloweye Rockfish, we established four reference-set OMs encompassing variation in: (1) the weight given to the dogfish survey; (2) the magnitude of the historical catch during the period 1986-2005; (3) uncertainty in future recruitment; and (4) selectivity in the HBLL survey.  
+
+We further established two robustness-set OMs encompassing possible additional sources of uncertainty: (1) a scenario that assumes lower natural mortality than the other OMs; and (2) a scenario that assumes a higher CV in the future HBLL survey.
+
+The base settings for all OMs are provided in Appendix \@ref(app:desc-om-yelloweye).
+Unless otherwise stated, the OMs described below differ only in terms of the specific data or parameters described.
+
+The OM scenarios are listed in Table \@ref(tab:ye-scen) and described below.
+
+
+```{r ye-scen, results='asis'}
+sc <- readRDS(here("mse/om/ye-scenarios.rds"))
+sc <- sc %>%
+  select(-order) %>%
+  mutate(scenario_human = gsub("\\\n", " ", scenario_human))
+  sc %>% select(-scenario) %>%
+  csasdown::csas_table(caption = "Inside Yelloweye Rockfish OM scenarios.",
+    col_names = c("Scenario name", "Set type")) %>%
+  kableExtra::kable_styling(latex_options = c("hold_position"))
+```
 
 ### REFERENCE SET {#sec:approach3-reference}
 
-*TODO: flesh these out a bit*
+The following OMs were developed as the reference set:
 
-From the initial fit, the following OMs were developed as the reference set:
+#### (1) Upweight dogfish survey 
 
-1. Upweight dogfish survey: Uses the initial fit but upweight dogfish selectivity and fix HBLL full selectivity age to 20 years.
+Uses the initial fit but upweight dogfish selectivity and fix HBLL full selectivity age to 20 years.
 Additional things to mention:
-- Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
-- Future recruitment deviations sampled in log space with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
-- Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in log space.
 
-2. Low catch - to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
+#### (2) Low catch 
 
-3. Episodic recruitment - to address uncertainty in future productivity, an alternative scenario where recruitment is more variable. Rockfish assessments in the Pacific have estimated occasional extreme year classes (examples? POP, boccacio?). SRA may not estimate large cohorts, this could be a limitation of the available data to detect large cohorts. From (1), extreme recruitment is generated on average once every generation (38 years). If y is an extreme recruitment year, then the recruitment is sampled with lognormal with SD = 2.
+to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
+
+#### (3) Episodic recruitment
+
+- to address uncertainty in future productivity, an alternative scenario where recruitment is more variable. Rockfish assessments in the Pacific have estimated occasional extreme year classes (examples? POP, boccacio?). SRA may not estimate large cohorts, this could be a limitation of the available data to detect large cohorts. From (1), extreme recruitment is generated on average once every generation (38 years). If y is an extreme recruitment year, then the recruitment is sampled with lognormal with SD = 2.
 
 <!-- I need to add an equation to describe episodic recruitment -->
 
-4. Estimate HBLL selectivity - same as 1 but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
+#### (4) Estimate HBLL selectivity
+
+- same as (1) but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
 
 ### ROBUSTNESS SET {#sec:approach3-robustness}
 
 Two robustness OM were considered:
 
-(A) Low M - Same as (1), but M ~ Lognormal(0.025, 0.2), pessimistic scenario for stock productivity and rebuilding
+#### (A) Low M
 
-(B) Higher CV HBLL - Future HBLL index is less precise than in (1). Instead of SD = 0.25, we use the SD and autocorrelation from the index residuals in OM (1). In doing so, this scenario evaluate MPs if we've overestimated the precision of the HBLL survey and conditioning uncertainty (we've generated larger than expected residuals).
+- Same as (1), but M ~ Lognormal(0.025, 0.2), pessimistic scenario for stock productivity and rebuilding
+
+#### (B) Higher CV HBLL
+
+- Future HBLL index is less precise than in (1). Instead of SD = 0.25, we use the SD and autocorrelation from the index residuals in OM (1). In doing so, this scenario evaluate MPs if we've overestimated the precision of the HBLL survey and conditioning uncertainty (we've generated larger than expected residuals).
 
 ## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
 
@@ -87,6 +113,10 @@ The SRA model was used to condition the following OM parameters: <!--not sure th
 *TODO: edit this whole section and also see Quang's notes in mse/mse-bullets*
 
 *from Quang*
+- Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
+- Future recruitment deviations sampled in log space with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
+- Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in log space.
+
 General settings:
 - Max age = 80 years (plus group accumulator age)
 - Use SRA model (cite gfmp)
