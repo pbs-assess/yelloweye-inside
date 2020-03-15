@@ -91,5 +91,5 @@ png("mse/figures/conditioning/retrospective_M.png", height = 4, width = 4, units
 par(mar = c(5, 4, 1, 1))
 matplot(M_vec, rho, typ = "o", pch = 16, lty = 1, xlab = "Natural mortality", ylab = "SSB Mohn's rho")
 abline(h = 0, lty = 3)
-legend("bottomleft", c("Initial fit", "(1) Upweight dogfish", "(4) Estimate HBLL selectivity"), col = 1:3, pch = 16)
+legend("bottomleft", c("Initial fit", "(1) Upweight dogfish", "(4) Estimate HBLL selectivity"), col = 1:3, pch = 16, cex=0.6, bty="n")
 dev.off()
