@@ -16,11 +16,13 @@ To isolate the effects of specific sources of uncertainty on performance of MPs,
 Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations.
 Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs.
 This is also known as conditioning the OMs.
+
 Where possible, parameter settings for Inside Yelloweye Rockfish OMs were derived from biological data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)).
 Other parameters were derived from the scientific literature and stock assessments for Yelloweye Rockfish in other areas.
+A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in @anderson2020gfmp (their  Appendix C).
+
+The OMs were conditioned using age-composition data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)), survey indices (Appendix \@ref(app:index-data)) and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
 A full description of OM parameter settings and sources is provided in Appendix \@ref(app:desc-om-yelloweye).
-A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in Appendix C of @anderson2020gfmp.
-The OMs were conditioned using commercial and recreational catch data (Appendix \@ref(app:catch-data)), survey indices (Appendix \@ref(app:index-data)), and age-composition data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)).
 
 DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data.
 Details on conditioning the OMs are provided below in Section \@ref(sec:approach3-conditioning).

@@ -1,3 +1,9 @@
+\newpage
+
+`r if(knitr:::is_latex_output()) '\\Appendices'`
+
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+
 # BIOLOGICAL DATA {#app:biological-data}
 
 Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait; Figure \@ref(fig:map-4B)), are a genetically distinct stock from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013].  The inside and outside stocks are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@cosewic2008].

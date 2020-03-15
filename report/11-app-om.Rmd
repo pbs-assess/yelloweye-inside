@@ -1,8 +1,5 @@
-\newpage
 
-`r if(knitr:::is_latex_output()) '\\Appendices'`
-
-`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+\clearpage
 
 ```{r load-oms, message = FALSE}
 knitr_results <- TRUE
