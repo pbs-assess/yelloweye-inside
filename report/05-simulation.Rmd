@@ -1,16 +1,60 @@
+## SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES {#sec:simulation}
 
-## STEP 5: SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES  {#sec:approach5}
+We ran the closed-loop simulations across 250 stochastic replicates using DLMtool version 5.4.2, `r rversion`, and the simulation random seed set to `1`, with the OMs and MPs described above.
+We assessed convergence of the closed-loop simulation by plotting the cumulative performance metrics as replicates were added (Figure \@ref(fig:converge)).
+We deemed 250 replicates sufficient since the rank order of MPs was consistent for this number of replicates (Figure \@ref(fig:converge)).
 
-Once the objectives, performance metrics, calibrated OMs and MPs are fully specified, a closed-loop simulation framework (Figure \@ref(fig:mse-chart)) can be applied to test relative performance of the MPs with respect to meeting the stated objectives.
+(ref:fig-converge)
+Assessing convergence of the closed-loop simulations on consistent rank order of MPs within performance metrics.
+Colours represent individual satisficed and reference MPs.
+Lines that do not cross by the final replicates indicate that rank order among replicates has converged.
+Although not shown, we also checked that the satisficing rules had converged (i.e., the selection of satisficed MPs did not change with additional replicates).
 
-We recommend beginning with a satisficing step, where trial simulations are run to screen out MPs that do not meet a basic set of performance criteria [@miller2010].
-For example, in our illustrative Rex Sole case study (Appendix \@ref(app:mse-rex)), we screened out MPs that did not achieve a long-term 90% probability of keeping the stock above the LRP (LT P40 $\geq$ 0.9) and a short-term 75% probability of yield above 50% MSY (STY $\geq$ 0.75).
-This resulted in **XX** final MPs, plus the four reference MPs.
+```{r converge, fig.cap="(ref:fig-converge)", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-convergence.png"))
+```
 
-DLMtool is designed to follow standard MSE operating procedure (Figure \@ref(fig:mse-chart)), where the OM is used to simulate the various data streams required by the MP at each time step, then the biomass is projected forward under the prescribed MP at each subsequent time step until the projection period is complete.
-Performance is then evaluated through calculation of performance statistics in the OM.
-DLMtool makes use of the C++ programming language and parallel processing, making the simulations computationally efficient [@carruthers2018].
+```{r mp-sat}
+pm_df_list <- readRDS(here("mse/om/ye-pm-all.rds"))
+pm_all <- bind_rows(pm_df_list, .id = "scenario")
+pm_avg <- group_by(pm_all, MP) %>%
+  summarise_if(is.numeric, mean, na.rm = TRUE)
+pm_min <- group_by(pm_all, MP) %>%
+  summarise_if(is.numeric, min, na.rm = TRUE)
+reference_mp <- c("FMSYref75", "NFref", "FMSYref")
 
-For each OM-MP combination, multiple replicate projections are run to account for observation and process errors in the data streams.
-This is achieved by adding stochastic noise to the data (e.g, indices of abundance) before passing them to the MP. Coefficients of variation in the data should be consistent with those in historical observations [@rademeyer2007]. Typically, at least 100 replicate simulations are run for each OM/MP combination.
-We suggest selecting sufficient replicates so that the rank order of MPs across the performance metrics remains consistent regardless of additional iterations [@carruthers_user_2019].
+satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
+mp_sat <- dplyr::filter(pm_min, `LRP 1.5GT` > satisficed_criteria[1], `ST C10` > satisficed_criteria[2]) %>%
+  pull(MP)
+mp_sat <- mp_sat[!mp_sat %in% reference_mp]
+mp_sat_b4_cut <- mp_sat
+
+pm_avg_sat <- pm_avg %>% filter(MP %in% mp_sat)
+pm_min_sat <- pm_min %>% filter(MP %in% mp_sat)
+rversion <- gsub(" \\([0-9-]+\\)", "", devtools::session_info()$platform$version)
+```
+
+To determine which MPs would be carried forward as satisficed MPs [@miller2010], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)) .
+To obtain a manageable number of MPs for further consideration, we set satisficing thresholds of `r names(satisficed_criteria)[1]` $>$ `r satisficed_criteria[[1]]` and `r names(satisficed_criteria)[2]` $>$ `r satisficed_criteria[[2]]`.
+We chose to apply the satisficing criteria to the average performance metrics.
+Applying these criteria resulted in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
+
+(ref:fig-tigure-avg) Average performance of all candidate MPs across the reference set of OMs.
+MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric (LT LRP) and using columns from left to right to break any ties.
+The colour shading reflects the probabilities.
+Outlined cells represent MPs that met a particular performance metric's satisficing criteria.
+Using this set of criteria, MPs would be "satisficed" if cells in *both* "`r names(satisficed_criteria)[1]`" and "`r names(satisficed_criteria)[2]`" were outlined.
+Light grey MPs indicate reference MPs.
+
+```{r tigure-avg, fig.cap="(ref:fig-tigure-avg)", out.width="3.5in"}
+knitr::include_graphics(here("mse/figures/ye-tigure-refset-avg.png"))
+```
+
+(ref:fig-tigure-min) Minimum performance of all candidate MPs across the reference set of OMs.
+This figure is the same as Figure \@ref(fig:tigure-avg) but shows the **minimum** performance metric across the OMs in the reference set for the purposes of applying satisficing rules.
+In other words, this figure illustrates the worst performance of each MP across the reference set of OMs.
+
+```{r tigure-min, fig.cap="(ref:fig-tigure-min)", out.width="3.5in"}
+knitr::include_graphics(here("mse/figures/ye-tigure-refset-min.png"))
+```
+
