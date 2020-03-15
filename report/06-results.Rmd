@@ -1,21 +1,22 @@
-\clearpage
 
 ```{r round2-function}
 round2 <- function(x) sprintf("%.2f",round(x, 2))
 ```
 
-# RESULTS
+*TODO: Take Step 1-5 results out of here and put in appropriate files*
+
+## STEP 6: PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE  {#sec:approach6}
 
 *TODO: all the text is Rex text (Rext). Change to Yelloweye.*
 
-## STEP 1: DEFINE THE DECISION CONTEXT {#sec:results1}
+### STEP 1: DEFINE THE DECISION CONTEXT {#sec:results1}
 
 *TODO: Do we need this step here? Should be in the methods*
 
 The decision to be made is which MP to use to determine catch limits for the period until the next available catch advice. 
 TODO write more here or there should be in the methods.
 
-## STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results2}
+### STEP 2: SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:results2}
 
 We defined the objectives for Yelloweye Rockfish based on
 TODO: write more here.
@@ -47,7 +48,7 @@ Rex:
 
 We measured the performance metrics as probabilities integrated over years and replicates simultaneously.
 
-## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:results3}
+### STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:results3}
 
 We considered the major axes of uncertainty for Yelloweye Rockfish to be:
 

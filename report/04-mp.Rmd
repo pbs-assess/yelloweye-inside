@@ -1,5 +1,5 @@
 
-## STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:methods-approach4}
+## STEP 4: IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:approach4}
 
 @anderson2020gfmp screened all MPs available in DLMtool as of November 2019 along with recent MPs used in BC groundfish reports. DLMtool includes MPs that make different types of management recommendations.
 These recommendations include adjustments to total allowable catch (TAC), effort, or spatial allocation of catch or effort.

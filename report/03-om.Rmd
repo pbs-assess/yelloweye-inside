@@ -1,5 +1,5 @@
 
-## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:methods-approach3}
+## STEP 3: SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:approach3}
 
 DLMtool OMs are organized into four main components representing a real fished system:
 
@@ -18,8 +18,17 @@ DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an
 
 Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations. Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs. This is also known as conditioning the OMs. The OMs were conditioned using catch, survey indices, and age-composition data from the inside Hard Bottom Longline (HBLL) survey.
 
+### DATA {#sec:approach3-data}
 
+- Brief generic text describing data sources that were available
 
+Biological data are described in Appendix \@ref(app:biological-data).
+Catch data are described in Appendix \@ref(app:catch-data).
+Fishery independent survey data are described in Appendix \@ref(app:index-data).
+
+### Conditioning {#sec:approach3-conditioning}
+
+*TODO: edit this and also see Quang's notes in mse/mse-bullets*
 
 *from Quang*
 General settings:
