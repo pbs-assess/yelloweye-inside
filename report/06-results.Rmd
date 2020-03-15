@@ -1,10 +1,13 @@
-# PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE {#sec:results}
+# PRESENTATION OF TRADE-OFFS AMONG MANAGEMENT PROCEDURES {#sec:results}
 
 ## REFERENCE SET RESULTS
 
 Performance within the reference set of OMs varied across MPs and performance metrics (Figures \@ref(fig:tigure-avg), \@ref(fig:tigure-min), \@ref(fig:tigure-panel), and \@ref(fig:dot-lines)).
+
 There was variability in performance among the individual reference-set scenarios with the most variability in both the long-term and entire projection period performance metrics: TODO (Figure \@ref(fig:tigure-panel)).
+
 Between the two performance metrics used in the initial satisficing step, average LRP 1.5GT varied between `r round2(min(pm_avg_sat$"LRP 1.5GT"))` and `r round2(max(pm_avg_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
+
 Minimum LRP 1.5GT varied between `r round2(min(pm_min_sat$"LRP 1.5GT"))` and `r round2(max(pm_min_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
 
 A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across satisficed MPs (Figure \@ref(fig:dot-lines)).
@@ -86,7 +89,6 @@ knitr::include_graphics(here("mse/figures/ye-projections-episodic_recruitment.pn
 knitr::include_graphics(here("mse/figures/ye-projections-upweight_dogfish.png"))
 ```
 
-
 \clearpage
 
 (ref:fig-kobe) B/B~MSY~ and F/F~MSY~ values from the final year of the projections across all replicates.
@@ -111,25 +113,18 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 
 ## ROBUSTNESS SET RESULTS
 
-*TODO: Refer directly to YE results. This is all rex even though the plots say Yelloweye*
+Figure \@ref(fig:tigure-panel-rob)
+Figure \@ref(fig:dots-satisficed-mps-robust)
 
-The "No CPUE Ceq. 50%" robustness scenario represents a markedly different biomass and fishing mortality historical trajectories to any of the reference set scenarios.
-This scenario estimates the stock to be smaller (smaller $R_0$ values in Figure \@ref(fig:sra-conditioned-parameters)) with high $F_t$ values around 2005 (Figure \@ref(fig:F-om)).
-In this scenario, the Itarget MPs are able to achieve LT LRP $>$ 0.60, while the constant catch and surplus production model achieve LT LRP $<$ 0.35 (Figures \@ref(fig:tigure-panel-rob) and \@ref(fig:dots-satisficed-mps-robust)).
-Other performance metrics show less contrast among the MPs, although LT USR also remains higher for the Itarget vs. constant-catch or surplus-production MPs (Figure \@ref(fig:tigure-panel-rob) and \@ref(fig:dots-satisficed-mps-robust)).
+Figure \@ref(fig:tradeoff-robust)
+Figure \@ref(fig:spider-satisficed-mps-robust)
 
-This scenario demonstrates stronger trade-offs among performance metrics than the reference set scenarios (Figures \@ref(fig:tradeoff-robust) and \@ref(fig:spider-satisficed-mps-robust)).
-In particular, there is an obvious trade-off between STC and LT LRP (Figures \@ref(fig:tradeoff-robust)).
-The constant catch MPs achieved the highest STC values but at the expense of lower LT LRP values.
-The Itarget MPs struck more of a balance between LT LRP and STC (Figures \@ref(fig:tradeoff-robust)).
+Figure \@ref(fig:proj-low-m)
+Figure \@ref(fig:proj-high-index-cv)
 
-For the "M increasing" scenario, the satisficed MPs were fairly robust to linear increases in natural mortality in the projection period, with the exception that all satisficed MPs had a considerably lower probability of achieving the long-term catch (LTC) metric (Figures \@ref(fig:tigure-panel-rob)--\@ref(fig:spider-satisficed-mps-robust)).
-Notably, the Itarget satisficed MPs maintained LT LRP $>$ 0.9 despite increasing $M$, whereas the fixed-catch and surplus-production MPs all resulted in LT LRP $<$ 0.9.
-The Itarget MPs were able to ramp down catch as $M$ increased (Figure \@ref(fig:proj-high-index-cv)) to maintain most replicates above the LRP.
+We can examine the sensitivity of the projections to the various OM scenario conditions (Figure \@ref(fig:proj-scenarios)).
+The historical trajectories were most sensitive to the assumptions of ...
 
-By plotting the projections from all scenarios (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:upweight-dogfish)) on the same panels, we can examine the sensitivity of the projections to the various OM scenario conditions (Figure \@ref(fig:proj-scenarios)).
-The historical trajectories were most sensitive to the assumptions of the "No CPUE Ceq. 50%" scenario compared to the other scenarios.
-The projected trajectories were relatively similar across all reference-set scenarios, while differing for the "No CPUE Ceq. 50%" and "M increasing" robustness scenarios.
 Note that sensitivity of the projections does not necessarily correspond to sensitivity of the rank order of MPs (Figure \@ref(fig:tigure-panel-rob)).
 
 (ref:fig-tigure-panel-rob) Performance of satisficed MPs for the robustness set OMs.

@@ -1,4 +1,4 @@
-## SIMULATION OF THE APPLICATION OF THE MANAGEMENT PROCEDURES {#sec:simulation}
+## SIMULATION OF THE APPLICATION OF MANAGEMENT PROCEDURES {#sec:simulation}
 
 We ran the closed-loop simulations across 250 stochastic replicates using DLMtool version 5.4.2, `r rversion`, and the simulation random seed set to `1`, with the OMs and MPs described above.
 We assessed convergence of the closed-loop simulation by plotting the cumulative performance metrics as replicates were added (Figure \@ref(fig:converge)).
