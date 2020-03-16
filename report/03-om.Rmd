@@ -88,6 +88,8 @@ sc <- sc %>%
 
 The following OMs were developed as the reference set:
 
+*TODO: Issue #3. Wondering if we should call OM (1) something like "Base" rather than "Upweight dogfish survey"? Upweight dogfish survey awkwardly implies that it is a modification of another OM ... which it was originally but we trashed that OM. Then we can spend more time describing its settings and sources. It will be much easier to cite when describing the other OMs.*
+
 #### (1) Upweight dogfish survey {#sec:approach3-reference1}
 
 The Inside Yelloweye Rockfish stock is indexed by two fishery-independent surveys: the Hard Bottom Longline Survey (Appendix \@ref(app:index-data), Section \@ref(sec:hbll-index-data)) and the Dogfish Survey (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
@@ -96,6 +98,8 @@ The conditioning SRA model exhibited better retrospective behaviour when the SRA
 *TODO: Quang is this correct? How was the dogfish survey upweighted? If documenting please use the parameter symbols from gfmp Appendix B*
 
 In addition, the age-at-full-selectivity for the HBLL survey was fixed at 20 years. *TODO: Why?*  *TODO: what is the parameter for age-at-full-selectivity? Isn't this set using Length at full selectivity? How was this done?*
+
+*TODO: Need to say that selectivity was fixed in all the other gears as well. Where do we provide sources of fixed selectivity parameters in all the gears in the SRA? In the Conditioning models section below? We also need to explain how the SRA can have multiple gears and how this works when passed back to the OM. RF can pull this from GFMP*
 
 Projected recruitment deviations were sampled in log space with standard deviation $\tau = 0.4$ and autocorrelation $\theta_\textrm{AC} = 0.8$, with $\theta_\textrm{AC}$ estimated post-hoc from the SRA model (see Appendix A of @anderson2020gfmp).
 During the projection period, only the HBLL index is assumed to be available for the MPs, as this index is conducted annually. 
@@ -128,19 +132,26 @@ If a year is randomly selected as an extreme recruitment year, then the recruitm
 
 #### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
 
-- same as (1) but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
+There is a lack of commercial age-composition data for this stock. Furthermore, annual sample sizes of age-composition data from the HBLL survey are very small (Appendix \@ref(app:biological-data)). *TODO: Add Quang's age-comp fits to Conditioning section below*
+This makes estimation of selectivity in the HBLL survey highly uncertain, which led to the choice to fix selectivities for the OMs.
+
+Given very uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the HBLL survey in the "Estimate HBLL selectivity" scenario, utilising the available age-composition data.
 
 ### ROBUSTNESS SET {#sec:approach3-robustness}
 
-Two robustness OM were considered:
-
 #### (A) Low M {#sec:approach3-referenceA}
 
-- Same as (1), but M ~ Lognormal(0.025, 0.2), pessimistic scenario for stock productivity and rebuilding
+The base model assumed mean value of natural mortality *M* of 0.045 $y^{-1}$, drawn 
+from a lognormal distribution with $M \sim Lognormal(0.045, 0.2)$.
+This was based on the value used in the recent rebuilding plan for the Outside Yelloweye stock [@cox2020]. *TODO: I think this is where it came from*
+
+The "Low M" scenario used $M \sim Lognormal(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the reference set scenarios.
 
 #### (B) Higher CV HBLL {#sec:approach3-referenceB}
 
-- Future HBLL index is less precise than in (1). Instead of SD = 0.25, we use the SD and autocorrelation from the index residuals in OM (1). In doing so, this scenario evaluate MPs if we've overestimated the precision of the HBLL survey and conditioning uncertainty (we've generated larger than expected residuals).
+The "Higher CV HBLL" scenario considers the possibility that the projected simulated HBLL index could be too precise in the simulations.
+In this scenarion we used the standard deviation and autocorrelation derived from the HBLL index residuals in the base OM.
+*TODO: Need to explain what this means in plain language*
 
 ## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
 
