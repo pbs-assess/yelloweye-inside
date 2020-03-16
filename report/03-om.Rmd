@@ -157,27 +157,43 @@ The SRA model conditions estimates of the following OM parameters:
 * selectivity parameters (if estimated)
 
 The SRA was run with 250 replicates.
-Each replicate fits a different value of M and h (sampled independently from the distributions shown in Appendix \@ref(fig:desc-stock-maxage-yelloweye)).
+Each replicate fits a different value of M and h (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye)).
+Selectivity for commercial fisheries was fixed to the same values used in the recent Outside Yelloweye Rockfish rebuilding plan for the commercial hook and line fishery [@cox2020].
+*add rec fisheries*
+Selectivity for the HBLL survey was estimated using available age-composition data ... *ONLY IN THE Estimate HBLL selectivity scenario - check what was done in the fixed scenario* 
+Selectivity in the Dogfish Survey was set to mirror selectivity in the HBLL survey, whether it was fixed or estimated. 
+Multinomial annual sample sizes for age-composition data were based on the number of sampling trips in each year. 
 
-- Fix selectivity of fisheries to values from outside YE. Use hook and line for commercial (there is little to no trawl fishery for inside pop)
-- Estimate rec devs after 1950 (age comps only available after 2003)
-- Estimate HBLL selectivity. Mirror the dogfish selectivity in each replicate to match that for HBLL
-- Multinomial annual sample size for age comps based on the number of sampling trips.
+*TODO: define a trip. What does "based on" mean? sample sizes was the number of trips or some function of number of trips?*
+
+Initial attempts to fit the SRA model did not produce good fits to the observed indices of abundance.
+Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and the steepness of the stock-recruit relationship *h*, Mohn's $\rho = 0.25$; @mohn1999).
+For long-lived species like Yelloweye Rockfish, values of Mohn's $\rho > 0.2$ should raise concerns about model specification [@hurtado2015].
+The choice to base retrospective analysis on 11 years of data was primarily to evaluate sensitivity of the model to removal of each year of data, going back to 2009, which was the terminal year for the 2011 assessment.
+
+Upweighting the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) removed this retrospective bias in estimates of spawning biomass (Mohn's $\rho = -0.05$, evaluated at the mean of the distributions for *M* and *h*). 
+However, when this was done, the estimated age-at-full-selectivity in the HBLL survey was estimated to be 40+ years.
+This is inconsistent with the age-composition data, where the modes of the HBLL age-composition data occur at around 20 years.
+An age-at-full selectivity of around 20 years is consistent with that estimated for the hook and line survey in the recent rebuilding plan for Outside Yelloweye Rockfish [@cox2020].
+*TODO: fact check the last sentence. What is the official name of that survey?*
+
+Therefore, in the present analysis, for the "Base" scenario, and all other scenarios except "Estimate HBLL selectivity", it was decided to fix the age-at-full selectivity of the HBLL Survey to 20 years, while also upweighting the dogfish survey. This fit generated small retrospective bias in spawning biomass (Mohn's $\rho = -0.07$, evaluated at the mean of the distributions for *M* and *h*).
+
+Retrospective bias among these fits was sensitive to the value of *M*, with larger retrospective bias in spawning biomass estimates at higher *M* (Figure \ref(fig:mohns-rho).
+
+(ref:fig-mohns-rho) Values of Mohn's $\rho$ for three different model configurations: "Initial fit", "(1) Base", "(4) Estimate HBLL selectivity", across a range of values for *M*.
+
+```{r mse-chart-basic, fig.cap="(ref:fig-mse-chart-basic)", out.width="6.3in"}
+knitr::include_graphics(here::here("mse/figures/conditioning/retrospective_M.png"))
+```
+
+
+
 
 *Note about Low catch fit*
 
 to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
 
-*TODO: how much do we need to talk about the initial fit which we are not using?*
-
-- Initial fit did not fit dogfish survey well. Retrospective analysis showed bias in SSB (For model with M and h set to mean priors, rho = 0.25 for 11 years when removing up to 11 years of data). 11 years of data were used primarily to evaluate consistency of the model going back to 2009 which was the terminal year for the 2011 assessment.
-
-- Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.
-
-- Next, it was decided to fix the HBLL selectivity to that from the initial fit while also upweighting the dogfish survey. This fit generated small retrospective bias (SSB rho = -0.07) for the fit with M and h mean priors.
-
-- Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process.
-<!-- I will generate a plot of SSB rho vs. M to show this -->
 
 To isolate the effects of specific sources of uncertainty on performance of MPs, alternative OMs were developed that changed the value (or distribution) of one parameter or data source of interest. OMs are divided into a reference set of core OMs representing the most important plausible model uncertainties, and a robustness set for testing sensitivity to a broader range of structural uncertainties [@rademeyer2007].
 
