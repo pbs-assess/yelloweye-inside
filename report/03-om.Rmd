@@ -7,26 +7,17 @@ DLMtool OMs are organized into four main components representing a real fished s
 3. observation processes (e.g., bias and precision in survey indices); and
 4. management implementation (e.g., percentage overages of catch limits).
 
-Parameters under the four components are entered into "slots" [terminology referring to a feature of the "S4" object-oriented programming system in R; @r2019], described in detail in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
-
+Parameters under the four components are described in detail in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
 DLMtool allows the incorporation of uncertainty in most OM parameters through optional specification of a distribution.
-See Appendix B of @carruthers2018 for a full list of parameters for which a distribution can be specified.
-To isolate the effects of specific sources of uncertainty on performance of MPs, we recommend development of alternative OMs that change the value (or distribution) of one or more parameters and/or data sources of interest (see next section).
+To isolate the effects of specific sources of uncertainty on performance of MPs, we develop alternative OMs that change the value (or distribution) of one or more parameters and/or data sources of interest (see next section).
 
 Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations.
-Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs.
-This is also known as conditioning the OMs.
-
-DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data.
+DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data [Appendix B; @anderson2020gfmp].
 
 There are two distinct time-periods in the simulation framework:
-
 (1) the historical period, which includes the years from the first year of the observed catch time-series $t_1$ to the final year of the observed catch time series $t_c$ (where "c" represents the "current" year); and
-
 (2) the projection period, which covers the period from the first year after $t_c$ to the final projection year $t_N$.
-
-The historical period is calibrated to historical observations using an age-structured SRA, fully described in Appendix B of @anderson2020gfmp.
-
+The historical period is calibrated to historical observations using an age-structured SRA [Appendix B; @anderson2020gfmp].
 The closed-loop simulation, with application of the MPs and calculation of performance metrics, begins in the first year of the projection period (year $t_{c+1}$).
 
 OM development in the MP Framework follows three steps:
@@ -39,39 +30,28 @@ See Appendix B of @anderson2020gfmp for details.
 
 3. Pass the calibrated parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
 
-Where possible, parameter settings for Inside Yelloweye Rockfish OMs were derived from biological data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)).
-Other parameters were derived from the scientific literature and stock assessments for Yelloweye Rockfish in other areas.
-A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in @anderson2020gfmp (their  Appendix C).
+Where possible, we derived OM settings for Inside Yelloweye Rockfish from biological data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)).
+We derived other parameters from the scientific literature and stock assessments for Yelloweye Rockfish in other areas.
+A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in @anderson2020gfmp (their Appendix C).
 
-The OMs were conditioned using age-composition data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)), survey indices (Appendix \@ref(app:index-data)) and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
+We conditioned the OMs using age-composition data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)), survey indices (Appendix \@ref(app:index-data)), and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
 A full description of OM parameter settings and sources is provided in Appendix \@ref(app:desc-om-yelloweye).
-
 Details on conditioning the OMs are provided below in Section \@ref(sec:approach3-conditioning).
+<!-- TODO: delete this last sentence if there is not a separate section -->
 
 ## OPERATING MODELS {#sec:approach3-oms}
 
-MSE best practice recommends dividing MSE trials into a "reference set", using a core set of OMs that include the most important uncertainties (e.g., depletion of the stock or range of natural mortality values), and a "robustness set", representing other plausible OM formulations that represent alternative structural hypotheses [@rademeyer2007].
-These authors recommend  that the reference set of OMs include the most important uncertainties, which should be both highly plausible and have major impacts on results. 
-@punt2016 provide a list of factors which commonly have a large impact on MSE performance due to uncertainty (their Table 3).
-
-Once an agreed-upon reference set of OMs has been determined, a wider range of OMs (the robustness set) should be developed to capture a wider range of uncertainties that may be less plausible but should nonetheless be explored [@rademeyer2007].
-These may include effects related to environmental change, structural representation of population dynamics, or alternative data sources.
-
+MSE best practice recommends dividing MSE trials into a "reference set", using a core set of OMs that include the most important uncertainties (e.g., depletion of the stock or range of natural mortality values), and a "robustness set", that capture a wider range of uncertainties that may be less plausible but should nonetheless be explored [@rademeyer2007; and discussion in @anderson2020gfmp].
 @anderson2020gfmp recommended presenting performance metrics from the reference and robustness sets separately.
 They recommended that, for most results, reference-set performance metrics should be averaged across all reference set scenarios (an "ensemble approach" to integrate across model uncertainties).
 They recommended presenting performance metrics from individual robustness-set scenarios separately.
 This facilitates visualization of performance of MPs that performed well in the reference set under a set of more diverse assumptions [@rademeyer2007].
-More details on visualization of performance metrics from the robustness and reference sets of OMs are provided in Section \@ref(sec:results).
+Visualization of performance metrics from the robustness and reference sets of OMs are provided in Section \@ref(sec:results).
 
-For Inside Yelloweye Rockfish, we established four reference-set OMs encompassing variation in: (1) the weight given to the dogfish survey; (2) the magnitude of the historical catch during the period 1986-2005; (3) uncertainty in future recruitment; and (4) selectivity in the HBLL survey.  
-
-We further established two robustness-set OMs encompassing possible additional sources of uncertainty: (1) a scenario that assumes lower natural mortality than the other OMs; and (2) a scenario that assumes a higher CV in the future HBLL survey.
-
+For Inside Yelloweye Rockfish, we established four reference-set OMs encompassing variation in: (1) the weight given to the dogfish survey; (2) the magnitude of the historical catch during the period 1986-2005; (3) uncertainty in future recruitment; and (4) selectivity in the HBLL survey (Table \@ref(tab:ye-scen)).  
+We further established two robustness-set OMs encompassing possible additional sources of uncertainty: (1) a scenario that assumes lower natural mortality than the other OMs; and (2) a scenario that assumes a higher CV in the future HBLL survey (Table \@ref(tab:ye-scen)).
 The base settings for all OMs are provided in Appendix \@ref(app:desc-om-yelloweye).
 Unless otherwise stated, the OMs described below differ only in terms of the specific data or parameters described.
-
-The OM scenarios are listed in Table \@ref(tab:ye-scen) and described below.
-
 
 ```{r ye-scen, results='asis'}
 sc <- readRDS(here("mse/om/ye-scenarios2.rds"))
