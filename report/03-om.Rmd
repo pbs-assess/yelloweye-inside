@@ -157,6 +157,17 @@ In this scenarion we used the standard deviation and autocorrelation derived fro
 
 After specifying most of the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
 
+Note that DLMtool currently models all catch as coming from a single fleet.
+However, if the OM is calibrated using the SRA model, the SRA can accommodate multiple fleets, and selectivity is fleet-specific.
+In this case, selectivity in the DLMtool OM in the projection period is replaced with the SRA-calibrated estimate of fishing mortality-at-age in the final year ($t_c$) of the historical period, normalized by dividing by apical fishing mortality in that year.
+This essentially provides the DLMtool OM with selectivity-at-age weighted by catch across all fleets.
+The closed-loop simulation projections therefore assume that the relative selectivities across fleets remains constant in the projection period.
+
+Similarly, if the OM is calibrated using the SRA model, analysts can also specify (or estimate) selectivity parameters for the individual indices of abundance (in this case two fishery-independent surveys and three commercial CPUE series (Figure \@ref(fig:survey-fits)).
+In this case, the SRA passes all of the indices back to DLMtool, preserving the estimated or user-defined selectivities-at-age for each index.
+However, note that the DLMtool MPs only utilize a single index of abundance in the projection period for calculating catch decisions (see Appendix \@ref(app:mps)). In the current study, all MPs (except for the constant-catch MPs) utilize the HBLL survey.
+
+
 The SRA model was used to condition the following OM parameters: <!--not sure these are the correct ones below -->
 
 * unfished recruitment
