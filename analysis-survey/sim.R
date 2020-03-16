@@ -21,8 +21,8 @@ nd$type <- "b_grid"
   out - mean(out)
 }
 
-sigma_O <- 2
-sigma_E <- 0.5
+sigma_O <- 2.2
+sigma_E <- 0.3
 kappa <- 0.1
 x = .d$X
 y = .d$Y
@@ -57,7 +57,7 @@ ggplot(dplyr::filter(.d, year %in% 1:5),
 f <- ~ 0 + as.factor(year)
 X_ij <- model.matrix(f, .d)
 
-set.seed(1)
+set.seed(2939)
 b_j <- rlnorm(10, meanlog = 0.1, sdlog = 0.2)
 b_j
 log(b_j)
@@ -108,12 +108,14 @@ lines(naive$year, naive$total)
 ggplot(d, aes_string("X", "Y", colour = "y")) +
   geom_point() +
   scale_color_viridis_c(trans = "sqrt") +
-  facet_wrap(~year) +
+  facet_wrap(~year, nrow = 2) +
   coord_equal(expand = FALSE) +
-  gfdlm::theme_pbs()
+  gfdlm::theme_pbs() +
+  labs(colour = "Observed count")
+# ggsave(here::here("figs/geostatistical-sim-count.png"), width = 8, height = 3)
 
 sp <- make_spde(d$X, d$Y, n_knots = 200)
-# plot_spde(sp)
+plot_spde(sp)
 
 m <- sdmTMB(y ~ 0 + as.factor(year), data = d, spde = sp,
   family = poisson(link = "log"), include_spatial = TRUE,
@@ -122,15 +124,27 @@ m
 
 p <- predict(m, newdata = nd, return_tmb_object = TRUE, xy_cols = c("X", "Y"))
 
-ggplot(p$data, aes_string("X", "Y", fill = "est")) +
+g1 <- ggplot(p$data, aes_string("X", "Y", fill = "exp(est)")) +
   geom_raster() +
-  scale_fill_viridis_c() +
-  facet_wrap(~year)
+  scale_fill_viridis_c(limits = c(0, exp(max(p$data$est)))) +
+  facet_wrap(~year, ncol = 5) +
+  geom_point(data = d, inherit.aes = FALSE, aes(X, Y, size = y), pch = 21, alpha = 0.38, colour = "black") +
+  scale_size_area() + coord_equal(expand = FALSE) +
+  labs(fill = "Expected\ncount", size = "Observed\ncount")  +
+scale_x_continuous(breaks = seq(0, 1, .5)) +
+  scale_y_continuous(breaks = seq(0, 1, .5)) +
+  ggtitle("(B) Observed (dots) and estimated (colour)")
 
-ggplot(filter(.d, type == "b_grid"), aes_string("X", "Y", fill = "eta")) +
+g2 <- ggplot(filter(.d, type == "b_grid"), aes_string("X", "Y", fill = "exp(eta)")) +
   geom_raster() +
-  scale_fill_viridis_c() +
-  facet_wrap(~year)
+  scale_fill_viridis_c(limits = c(0, exp(max(p$data$est)))) +
+  facet_wrap(~year, ncol = 5) + coord_equal(expand = FALSE) +
+  labs(fill = "Count") +
+  scale_x_continuous(breaks = seq(0, 1, .5)) +
+  scale_y_continuous(breaks = seq(0, 1, .5)) +
+  ggtitle("(A) Actual (simulated)")
+g <- cowplot::plot_grid(g2, g1, nrow = 2)
+ggsave(here::here("figs/geostatistical-sim-predicted.png"), width = 8.5, height = 8)
 
 ggplot(filter(p$data, year == 1), aes_string("X", "Y", fill = "omega_s")) +
   geom_raster() +
@@ -158,17 +172,45 @@ ggplot(p$data, aes_string("X", "Y", fill = "est_rf")) +
 .i <- get_index(p, bias_correct = FALSE)
 
 actual <- group_by(nd, year) %>%
-  summarise(total = sum(y))
+  summarise(total = sum(y)) %>%
+  mutate(type = "Actual")
 
 naive <- group_by(d, year) %>%
   summarize(total = sum(y)) %>%
-  mutate(total = total / exp(mean(log(total))) * exp(mean(log(actual$total))))
+  mutate(total = total / exp(mean(log(total))) * exp(mean(log(actual$total)))) %>%
+  mutate(type = "Naive design-based")
 
-ggplot(.i, aes(year)) +
+.i. <- .i %>%
+  mutate(total = est) %>%
+  mutate(total = total / exp(mean(log(total))) * exp(mean(log(actual$total)))) %>%
+  mutate(type = "Geostatistical")
+
+d_ <- bind_rows(actual, naive) %>%
+  bind_rows(.i.)
+
+ggplot(d_, aes(year, colour = type, fill = type, lty = type)) +
   geom_vline(xintercept = seq(2, 10, 2), lty = 2, col = "grey60", lwd = 0.3) +
-  geom_ribbon(aes(ymin = lwr, ymax = upr), fill = "grey80") +
-  geom_line(aes(y = est), colour = "black") +
-  geom_line(data = actual, mapping = aes(y = total), col = "red", lwd = 1.2, lty = 1) +
-  geom_line(data = naive, colour = "blue", aes(y = total)) +
+  geom_ribbon(aes(ymin = lwr, ymax = upr), colour = NA, alpha = 0.2) +
+  geom_line(aes(y = total)) +
+  # geom_line(data = actual, mapping = aes(y = total), col = "red", lwd = 1.2, lty = 1) +
+  # geom_line(data = naive, colour = "blue", aes(y = total)) +
   ggsidekick::theme_sleek() +
-  ylab("Total abundance") +  scale_x_continuous(breaks = seq(1, 10, 1))
+  ylab("Total abundance") +  scale_x_continuous(breaks = seq(1, 10, 1)) +
+  xlab("Year") +
+  scale_color_brewer(palette = "Set1") +
+  scale_fill_brewer(palette = "Set1") +
+  labs(fill = "Type", colour = "Type", lty = "Type") +
+  scale_linetype_manual(values = c(1, 2, 6))
+
+ggsave(here::here("figs/geostatistical-sim-stitched-index.png"), width = 6, height = 3.4)
+
+optimize_png <- TRUE
+if (optimize_png && !identical(.Platform$OS.type, "windows")) {
+  files_per_core <- 2
+  setwd("figs")
+  system(paste0(
+    "find -X . -name '*.png' -print0 | xargs -0 -n ",
+    files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
+  ))
+  setwd("../")
+}
