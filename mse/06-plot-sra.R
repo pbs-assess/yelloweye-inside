@@ -301,7 +301,7 @@ walk(1:length(HBLL_pred), ~{
     geom_point(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#66C2A5") +
     geom_label(data = Ntrips, mapping = aes(label = N), x = Inf, y = Inf, hjust = "right", vjust = "top", inherit.aes = FALSE) +
     gfplot::theme_pbs() + ggtitle(sc$scenario_human[.x])
-  ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8, dpi = 500)
+  ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8)
 })
 
 # Selectivity HBLL and dogfish
@@ -377,10 +377,10 @@ cat <- data.frame(Year = rep(1918:2019, 3),
                   Scenario = c(rep("All others", 2 * 102), rep("Low catch", 102)))
 
 ggplot(cat, aes(Year, Catch, colour = Fleet, linetype = Scenario)) + geom_line() + gfplot::theme_pbs()
-ggsave("mse/figures/catch.png", width = 5.5, height = 3.5, dpi = 500)
+ggsave("mse/figures/catch.png", width = 5.5, height = 3.5)
 
 ggplot(filter(cat, Scenario != "Low catch"), aes(Year, Catch, colour = Fleet)) + geom_line() + gfplot::theme_pbs()
-ggsave("mse/figures/catch2.png", width = 5.5, height = 3.5, dpi = 500)
+ggsave("mse/figures/catch2.png", width = 5.5, height = 3.5)
 
 ### COSEWIC indicators and probability below LRP/USR in 2019
 COSEWIC_Bdecline_hist <- function(MSEobj, Ref = 0.7, Yr = NULL) {
