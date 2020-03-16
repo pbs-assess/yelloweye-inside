@@ -301,10 +301,12 @@ display_om(oms, "Cbiascv")
 <!-- slot-chunk-begin -->
 ### Iobs {#app:desc-obs-iobs-yelloweye}
 
-*Observation error in the relative abundance indices expressed as a CV. Uniform distribution lower and upper bounds.*
+*Observation error in the relative abundance indices expressed as a SD. Uniform distribution lower and upper bounds.*
 
-```{r desc-obs-iobs-yelloweye, results = knitr_results, echo = knitr_echo}
-display_om(oms, "Iobs")
+This was set to 0.25, based on the SD of the observed HBLL index, except for the robustness scenario "(B) Higher HBLL CV" where this was set to the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index (see Section \@ref(sec:approach3-referenceB)).
+We can not display this parameter here because it is added in the code as `AddIerr` in the "additional index" functionality of DLMtool.
+
+```{r desc-obs-iobs-yelloweye, results = knitr_results, echo = knitr_echo, eval=FALSE}
 ```
 <!-- slot-chunk-end -->
 

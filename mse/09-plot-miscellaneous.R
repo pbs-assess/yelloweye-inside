@@ -93,3 +93,14 @@ matplot(M_vec, rho, typ = "o", pch = 16, lty = 1, xlab = "Natural mortality", yl
 abline(h = 0, lty = 3)
 legend("bottomleft", c("Initial fit", "(1) Base", "(4) Estimate HBLL selectivity"), col = 1:3, pch = 16, cex=0.6, bty="n")
 dev.off()
+
+optimize_png <- TRUE
+if (optimize_png && !identical(.Platform$OS.type, "windows")) {
+  files_per_core <- 4
+  setwd("mse/figures")
+  system(paste0(
+    "find -X . -name '*.png' -print0 | xargs -0 -n ",
+    files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
+  ))
+  setwd("../../")
+}

@@ -48,8 +48,8 @@ They recommended presenting performance metrics from individual robustness-set s
 This facilitates visualization of performance of MPs that performed well in the reference set under a set of more diverse assumptions [@rademeyer2007].
 Visualization of performance metrics from the robustness and reference sets of OMs are provided in Section \@ref(sec:results).
 
-For Inside Yelloweye Rockfish, we established four reference-set OMs encompassing variation in: (1) the weight given to the dogfish survey; (2) the magnitude of the historical catch during the period 1986-2005; (3) uncertainty in future recruitment; and (4) selectivity in the HBLL survey (Table \@ref(tab:ye-scen)).  
-We further established two robustness-set OMs encompassing possible additional sources of uncertainty: (1) a scenario that assumes lower natural mortality than the other OMs; and (2) a scenario that assumes a higher CV in the future HBLL survey (Table \@ref(tab:ye-scen)).
+For Inside Yelloweye Rockfish, we established four reference-set OMs: (1) a baseline OM; (2) an OM reflecting an alternative magnitude of historical catch during the period 1986--2005; (3) an OM allowing for episodic (rare but large) future recruitment; and (4) an OM estimating length selectivity in the HBLL survey (Table \@ref(tab:ye-scen)).
+We further established two robustness-set OMs encompassing possible additional sources of uncertainty: (1) an OM that assumes lower natural mortality than the other OMs; and (2) an OM that assumes a higher CV in the future HBLL survey (Table \@ref(tab:ye-scen)).
 The base settings for all OMs are provided in Appendix \@ref(app:desc-om-yelloweye).
 Unless otherwise stated, the OMs described below differ only in terms of the specific data or parameters described.
 
@@ -68,34 +68,33 @@ sc <- sc %>%
 
 The following OMs were developed as the reference set:
 
-*TODO: Issue #3. Wondering if we should call OM (1) something like "Base" rather than "Upweight dogfish survey"? Upweight dogfish survey awkwardly implies that it is a modification of another OM ... which it was originally but we trashed that OM. Then we can spend more time describing its settings and sources. It will be much easier to cite when describing the other OMs.*
-
-#### (1) Upweight dogfish survey {#sec:approach3-reference1}
+#### (1) Base {#sec:approach3-reference1}
 
 The Inside Yelloweye Rockfish stock is indexed by two fishery-independent surveys: the Hard Bottom Longline Survey (Appendix \@ref(app:index-data), Section \@ref(sec:hbll-index-data)) and the Dogfish Survey (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
 
 The conditioning SRA model exhibited better retrospective behaviour when the SRA model was fit with more weight applied to the Dogfish Survey in the likelihood function (see Section \@ref(sec:approach3-conditioning) below).
 *TODO: Quang is this correct? How was the dogfish survey upweighted? If documenting please use the parameter symbols from gfmp Appendix B*
 
+**TODO: upweighted by multiplying the likelihood elements by 4**
+
 In addition, the age-at-full-selectivity for the HBLL survey was fixed at 20 years. *TODO: Why?*  *TODO: what is the parameter for age-at-full-selectivity? Isn't this set using Length at full selectivity? How was this done?*
 
 *TODO: Need to say that selectivity was fixed in all the other gears as well. Where do we provide sources of fixed selectivity parameters in all the gears in the SRA? In the Conditioning models section below? We also need to explain how the SRA can have multiple gears and how this works when passed back to the OM. RF can pull this from GFMP*
 
-Projected recruitment deviations were sampled in log space with standard deviation $\tau = 0.4$ and autocorrelation $\theta_\textrm{AC} = 0.8$, with $\theta_\textrm{AC}$ estimated post-hoc from the SRA model (see Appendix A of @anderson2020gfmp).
+Projected recruitment deviations were sampled in log space with standard deviation $\tau = 0.4$ and autocorrelation $\theta_\textrm{AC} = 0.8$, with $\theta_\textrm{AC}$ estimated post-hoc from the SRA model [Appendix A of @anderson2020gfmp].
 During the projection period, only the HBLL index is assumed to be available for the MPs, as this index is conducted annually. 
-Projecting only one index of abundance is consistent with many data-limited MPs, which only utilize a single index of abundance (see Appendix \@ref(app:mps)).
+Projecting only one index of abundance is consistent with many data-limited MPs, which only use a single index of abundance (see Appendix \@ref(app:mps)).
 The projected index values were generated with standard deviation $\sigma_I = 0.25$ in log space.
-
-This "Upweight dogfish survey" OM formed the baseline OM, upon which all the other OM scenarios were based.
+This "Base" OM formed the baseline OM, upon which all the other OM scenarios were based.
 
 #### (2) Low catch {#sec:approach3-reference2}
 
+<!-- TODO: SA: I don't think the following is quite right (it is what we intended to do), but we don't actually use the complete catch reconstruction -->
 There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(app:com-catch-data)).
-These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF); and (2) the magnitude unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
-
-A catch reconstruction was done by @haigh2011, which is used in the other scenarios. This reconstruction included doubling the nominal catches of Yelloweye Rockfish for the period 1986 until 2005, as industry did not have confidence in the catch data for those years [@dfo2012].
-
-For the "Low catch" scenario, we did not double the nominal catch for the period 1985---2005.
+These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF) and (2) the magnitude unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
+A catch reconstruction was done by @haigh2011, which is used in the other scenarios.
+This reconstruction included doubling the nominal catches of Yelloweye Rockfish for the period 1986 until 2005, as industry did not have confidence in the catch data for those years [@dfo2012].
+For the "Low catch" scenario, we did not double the nominal catch for the period 1985--2005.
 We used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards.
 
 #### (3) Episodic recruitment {#sec:approach3-reference3}
@@ -105,14 +104,28 @@ For example, very large or even extreme year classes have been estimated for sev
 
 To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" scenario in the reference set of OMs.
 This scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations used in the baseline OM (Section \@ref(sec:approach3-reference1)).
-In this scenario, an extreme recruitment event is generated on average once every generation (38 years), with extreme recruitment years randomly drawn from *TODO an XX distribution (mean, SD)?.*
-If a year is randomly selected as an extreme recruitment year, then the recruitment is sampled from a lognormal distribution with standard deviation $\tau = 2$.
+In this scenario, recruitment deviations $\varepsilon_y$ for each year are generated as:
 
-<!-- TODO: Quang: add an equation to describe episodic recruitment -->
+$$
+\varepsilon_y = 
+\left\{
+\begin{array}{ll}
+\varepsilon^1_y & \eta_y = 0\\
+\varepsilon^2_y & \eta_y = 1,
+\end{array}
+\right.
+$$
+
+where $\varepsilon^1_y$ is the recruitment deviation from OM 1 and
+$\varepsilon^2_y \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
+The paramater $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which indicates whether an extreme recruitment event will occur. 
+One extreme recruitment is expected to occur once every generation (38 years).
 
 #### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
 
-There is a lack of commercial age-composition data for this stock. Furthermore, annual sample sizes of age-composition data from the HBLL survey are very small (Appendix \@ref(app:biological-data)). *TODO: Add Quang's age-comp fits to Conditioning section below*
+There is a lack of commercial age-composition data for this stock.
+Furthermore, annual sample sizes of age-composition data from the HBLL survey are very small (Appendix \@ref(app:biological-data)). 
+*TODO: Add Quang's age-comp fits to Conditioning section below*
 This makes estimation of selectivity in the HBLL survey highly uncertain, which led to the choice to fix selectivities for the OMs.
 
 Given very uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the HBLL survey in the "Estimate HBLL selectivity" scenario, utilising the available age-composition data.
@@ -122,16 +135,25 @@ Given very uncertainties in our choices of selectivities, we allowed the SRA to 
 #### (A) Low M {#sec:approach3-referenceA}
 
 The base model assumed mean value of natural mortality *M* of 0.045 $y^{-1}$, drawn 
-from a lognormal distribution with $M \sim Lognormal(0.045, 0.2)$.
+from a lognormal distribution with $M \sim \textrm{Lognormal}(0.045, 0.2)$.
 This was based on the value used in the recent rebuilding plan for the Outside Yelloweye stock [@cox2020]. *TODO: I think this is where it came from*
 
-The "Low M" scenario used $M \sim Lognormal(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the reference set scenarios.
+The "Low M" scenario used $M \sim \textrm{Lognormal}(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the reference set scenarios.
 
-#### (B) Higher CV HBLL {#sec:approach3-referenceB}
+#### (B) Higher HBLL CV {#sec:approach3-referenceB}
 
-The "Higher CV HBLL" scenario considers the possibility that the projected simulated HBLL index could be too precise in the simulations.
-In this scenarion we used the standard deviation and autocorrelation derived from the HBLL index residuals in the base OM.
-*TODO: Need to explain what this means in plain language*
+```{r higher-cv}
+SRA_highCV <- readRDS(here::here("mse/om/updog_fixsel.rds"))
+Iobs <- SRA_highCV@OM@cpars$Data@AddInd[1, , ] %>% t()
+Ipred <- lapply(SRA_highCV@Misc, getElement, "Ipred")
+Isd <- rbind %>% do.call(lapply(Ipred, function(x, y) apply(log(y/x), 2, function(xx) sd(xx, na.rm = TRUE)), y = Iobs))
+mean_Isd <- mean(Isd[,1])
+range_Isd <- range(Isd[,1])
+```
+
+The "Higher HBLL CV" scenario considers the possibility the HBLL index might be less precise than assumed based on the stratified bootstrap procedure used to estimate the observation CV.
+Instead of an observation SD of 0.25, we use the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index.
+This SD has a mean of `r round2(mean_Isd)` and a range of `r round2(range_Isd[1])`--`r round2(range_Isd[2])`.
 
 ## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
 

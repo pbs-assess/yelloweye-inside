@@ -65,7 +65,7 @@ knitr::include_graphics(here("mse/figures/ye-projections-index.png"))
 
 \clearpage
 
-(ref:fig-proj-updog-fixsel) B/B~MSY~, F/F~MSY~, and catch from the historical and projected time periods for the "Upweight dogfish" OM.
+(ref:fig-proj-updog-fixsel) B/B~MSY~, F/F~MSY~, and catch from the historical and projected time periods for the OM "(1) Base".
 Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
 Thin gray lines represent illustrative simulation replicates.
 The vertical dashed line indicates the last year of the historical period.
@@ -75,19 +75,19 @@ The horizontal dashed lines indicate B/B~MSY~ = 0.8 and 0.4 and F/F~MSY~ = 1.
 knitr::include_graphics(here("mse/figures/ye-projections-updog_fixsel.png"))
 ```
 
-(ref:fig-proj-low-catch) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "Low catch".
+(ref:fig-proj-low-catch) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "(2) Low catch".
 
 ```{r proj-low-catch, fig.cap="(ref:fig-proj-low-catch)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-lowcatch_fixsel.png"))
 ```
 
-(ref:fig-proj-episodic-recruitment) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "Episodic recruitment".
+(ref:fig-proj-episodic-recruitment) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "(3) Episodic recruitment".
 
 ```{r proj-episodic-recruitment, fig.cap="(ref:fig-proj-episodic-recruitment)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-episodic_recruitment.png"))
 ```
 
-(ref:fig-proj-upweight-dogfish) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "Higher steepness".
+(ref:fig-proj-upweight-dogfish) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "(4) Higher steepness".
 
 ```{r proj-upweight-dogfish, fig.cap="(ref:fig-proj-upweight-dogfish)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-upweight_dogfish.png"))
@@ -151,13 +151,13 @@ knitr::include_graphics(here("mse/figures/ye-tradeoff-robset.png"))
 knitr::include_graphics(here("mse/figures/ye-radar-robset.png"))
 ```
 
-(ref:fig-proj-low-m) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "Low M".
+(ref:fig-proj-low-m) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "(A) Low M".
 
 ```{r proj-low-m, fig.cap="(ref:fig-proj-low-m)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-lowM_fixsel.png"))
 ```
 
-(ref:fig-proj-high-index-cv) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "High CV HBLL projected".
+(ref:fig-proj-high-index-cv) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "(B) High HBLL CV".
 
 ```{r proj-high-index-cv, fig.cap="(ref:fig-proj-high-index-cv)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-high_index_cv.png"))

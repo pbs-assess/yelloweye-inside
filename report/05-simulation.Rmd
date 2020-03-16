@@ -4,11 +4,10 @@
 rversion <- gsub(" \\([0-9-]+\\)", "", devtools::session_info()$platform$version)
 ```
 
+<!--
 *From Quang's notes:*
 -  Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
-
-
-*
+-->
 
 We ran the closed-loop simulations across 250 stochastic replicates using DLMtool version 5.4.2, `r rversion`, and the simulation random seed set to `1`, with the OMs and MPs described above.
 We assessed convergence of the closed-loop simulation by plotting the cumulative performance metrics as replicates were added (Figure \@ref(fig:converge)).
@@ -19,6 +18,8 @@ Assessing convergence of the closed-loop simulations on consistent rank order of
 Colours represent individual satisficed and reference MPs.
 Lines that do not cross by the final replicates indicate that rank order among replicates has converged.
 Although not shown, we also checked that the satisficing rules had converged (i.e., the selection of satisficed MPs did not change with additional replicates).
+We only show LRP 1.5GT and ST C10 since these were the main two performance metrics used in the satisficing step.
+Although not shown, we checked the other performance metrics as well.
 
 ```{r converge, fig.cap="(ref:fig-converge)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-convergence.png"))
@@ -42,12 +43,10 @@ pm_avg_sat <- pm_avg %>% filter(MP %in% mp_sat)
 pm_min_sat <- pm_min %>% filter(MP %in% mp_sat)
 ```
 
-To determine which MPs would be carried forward as satisficed MPs [@miller2010], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
+To determine which MPs would be carried forward as satisficed MPs [@miller2010; and discussion in @anderson2020gfmp], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
 All MPs met the satisficing criterion (LRP 1.5GT > 0.95) in individual OMs in the reference set and averaged across all four reference OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
-Since many MPs also generated low catches, we applied an additional satisficing filter retaining only MPs where ST C10 > 50%.
-This left us with Fixed TACs of 10 and 15 t and Islope MPs.
-
-We chose to apply the satisficing criteria to the average performance metrics.
+Since many MPs also generated low catches, we applied an additional satisficing filter retaining only MPs where average ST C10 > 0.50.
+This left us with Fixed TACs of 10 and 15 t and Islope MPs (Figures \@ref(fig:tigure-avg)).
 Applying these criteria resulted in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
 
 (ref:fig-tigure-avg) Average performance of all candidate MPs across the reference set of OMs.
@@ -69,9 +68,24 @@ In other words, this figure illustrates the worst performance of each MP across 
 knitr::include_graphics(here("mse/figures/ye-tigure-refset-min.png"))
 ```
 
-- Iratio generates low catches within the first decade but generates high catches later on. There is high variability among replicates in each OM.
-- IDX returns gradually lower catches over time.
-- GB_slope appears to hold catch fairly constant between 10-15 t in the reference set.
-- Iratio and GB_slope generates zero catch in the low catch OM. Hence it didn't satisfy the informal `ST C10` performance metric
-- SP MPs generate no catch in the first decade, but increase catches later on, e.g. after 50 years.
-Iratio and GB_slope generates zero catch in the low catch OM. Hence it didn't satisfy the `ST C10` performance metric
+We focus on evaluating trade-offs among satisficed MPs in the next section. 
+However, in terms of MPs that did not meet the satisficing criteria (Figure \@ref(fig:proj-not-satisficed-eg)):
+
+- Iratio generated low catches within the first decade but generated high catches later on. There was high variability among replicates in each OM.
+- IDX and IDX_smooth returned gradually lower catches over time.
+- Iratio and GB_slope generated zero catch in the low catch OM; hence, they did not satisfy the ST C10 > 0.50 criteria.
+- The surplus production MPs generated no or very little catch in the first decade, but increased catches later on, e.g. after 50 years.
+
+(ref:fig-proj-not-satisficed-eg) 
+Examples of MPs that were not satisficed for the OM "(1) Base". 
+B/B~MSY~, F/F~MSY~, and catch are shown from the historical and projected time periods.
+Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
+Thin gray lines represent illustrative simulation replicates.
+The vertical dashed line indicates the last year of the historical period.
+The horizontal dashed lines indicate B/B~MSY~ = 0.8 and 0.4 and F/F~MSY~ = 1.
+
+```{r proj-not-satisficed-eg, fig.cap="(ref:fig-proj-not-satisficed-eg)", out.width="0.8\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-projections-not-sat2.png"))
+```
+
+\clearpage
