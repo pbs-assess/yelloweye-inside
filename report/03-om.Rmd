@@ -152,8 +152,8 @@ range_Isd <- range(Isd[,1])
 ```
 
 The "Higher HBLL CV" scenario considers the possibility the HBLL index might be less precise than assumed based on the stratified bootstrap procedure used to estimate the observation CV.
-Instead of an observation SD of 0.25, we use the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index.
-This SD has a mean of `r round2(mean_Isd)` and a range of `r round2(range_Isd[1])`--`r round2(range_Isd[2])` compared to the base OM, which has a an SD drawn from Uniform(0.10, 0.25).
+Instead of an observation SD drawn from Uniform(0.10, 0.25), we use the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index.
+This SD has a mean of `r round2(mean_Isd)` and a range of `r round2(range_Isd[1])`--`r round2(range_Isd[2])`.
 
 ## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
 
