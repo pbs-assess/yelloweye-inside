@@ -17,6 +17,28 @@ Best practice recommends calibrating or conditioning OMs with observed data so t
 Statistical diagnostics or retrospective analyses can then be used to generate a suitable set of OMs.
 This is also known as conditioning the OMs.
 
+DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data.
+
+There are two distinct time-periods in the simulation framework:
+
+(1) the historical period, which includes the years from the first year of the observed catch time-series $t_1$ to the final year of the observed catch time series $t_c$ (where "c" represents the "current" year); and
+
+(2) the projection period, which covers the period from the first year after $t_c$ to the final projection year $t_N$.
+
+The historical period is calibrated to historical observations using an age-structured SRA, fully described in Appendix B of @anderson2020gfmp.
+
+The closed-loop simulation, with application of the MPs and calculation of performance metrics, begins in the first year of the projection period (year $t_{c+1}$).
+
+OM development in the MP Framework follows three steps:
+
+1. Set parameter values and ranges in the OM (Appendix \@ref(app:desc-om-yelloweye)).
+
+2. Pass the OM parameters to the SRA model, which conditions the OM by fitting an age-structured SRA to historical observed catches, indices of abundance, and any available years of age-composition data).
+This results in calibrated estimates of model parameters and estimates of historical biomass and historical fishing mortality (in years $t_1$ to $t_c$), which are consistent with historical observations.
+See Appendix B of @anderson2020gfmp for details.
+
+3. Pass the calibrated parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
+
 Where possible, parameter settings for Inside Yelloweye Rockfish OMs were derived from biological data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)).
 Other parameters were derived from the scientific literature and stock assessments for Yelloweye Rockfish in other areas.
 A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in @anderson2020gfmp (their  Appendix C).
@@ -24,7 +46,6 @@ A list of "default" OM parameter settings recommended for most BC groundfish sto
 The OMs were conditioned using age-composition data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)), survey indices (Appendix \@ref(app:index-data)) and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
 A full description of OM parameter settings and sources is provided in Appendix \@ref(app:desc-om-yelloweye).
 
-DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an extremely efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data.
 Details on conditioning the OMs are provided below in Section \@ref(sec:approach3-conditioning).
 
 ## OPERATING MODELS {#sec:approach3-oms}
@@ -69,8 +90,19 @@ The following OMs were developed as the reference set:
 
 #### (1) Upweight dogfish survey 
 
-Uses the initial fit but upweight dogfish selectivity and fix HBLL full selectivity age to 20 years.
-Additional things to mention:
+The Inside Yelloweye Rockfish stock is indexed by two fishery-independent surveys: the Hard Bottom Longline Survey (Appendix \@ref(app:index-data), Section \@ref(sec:hbll-index-data)) and the Dogfish Survey (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
+
+The conditioning SRA model exhibited better retrospective behaviour when more weight was given to the Dogfish Survey (see Section \@ref(sec:approach3-conditioning) below).
+This was achieved by *TODO: Quang how was the dogfish survey upweighted? Please use the parameter symbols from gfmp Appendix B*
+
+In addition, the age-at-full-selectivity in the HBLL survey was fixed at 20 years. *TODO: Why?*
+Projected recruitment deviations were sampled in log space with standard deviation $\tau = 0.4$ and autocorrelation $\theta_\textrm{AC} = 0.8$, with $\theta_\textrm{AC}$ estimated post-hoc from the SRA model (see Appendix A of @anderson2020gfmp).
+During the projection period, only the HBLL index is assumed to be available for the MPs, as this index is conducted annually. 
+Projecting only one index of abundance is consistent with many data-limited MPs, which only utilize a single index of abundance (see Appendix \@ref(app:mps)).
+The projected index values were generated with standard deviation $\sigma_I = 0.25$ in log space.
+
+The settings in this OM were carried into the other OM scenarios, except for the specific changes described below for each scenario.
+
 
 #### (2) Low catch 
 
@@ -113,9 +145,7 @@ The SRA model was used to condition the following OM parameters: <!--not sure th
 *TODO: edit this whole section and also see Quang's notes in mse/mse-bullets*
 
 *from Quang*
-- Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
-- Future recruitment deviations sampled in log space with SD = 0.4 and autocorrelation = 0.8, the latter estimated post-hoc from the SRA model.
-- Only the HBLL index is assumed to be available for the MPs. Observed values generated with SD = 0.25 in log space.
+-
 
 General settings:
 - Max age = 80 years (plus group accumulator age)
