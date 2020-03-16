@@ -4,15 +4,31 @@ Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Foo
 
 ## Commercial Catch Data {#sec:com-catch-data}
 
-Historical catch data for Inside Yelloweye rockfish suffer from two forms of uncertainty. The first uncertainty is that commercial landings of rockfish other than Pacific Ocean Perch were reported as an aggregate (other rockfish, ORF). To reconstruct historical catches an algorithm was developed to convert ORF landings to Inside Yelloweye Rockfish landings, by fishery sector, using the ratio of Inside Yelloweye catch to ORF, from a period with credible landings data (1997-2005) from the hook and line dockside monitoring program. The ratio was then applied to the period of questionable Yelloweye catch in the reconstruction algorithm [@haigh2011].
+*TODO: please provide the years for which the reconstruction was done*
 
-The second major source of uncertainty in historical catch timeseries is due to unreported catch that was discarded at sea. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets [@haigh2011] using data from a credible period. The catch reconstruction assumes no discarding prior to 1986 and that discards are fully reported in DFO databases since 2006.
+There are two major sources of uncertainty in the historical catch data for Inside Yelloweye rockfish, particularly for the years 19XX to 1995. *TODO*
+The first uncertainty is that commercial landings of rockfish other than Pacific Ocean Perch were reported as an aggregate (other rockfish, ORF).
+To reconstruct historical catches an algorithm was developed by @haigh2011, using data from the hook and line dockside monitoring program.
+These data were used to convert ORF landings to Inside Yelloweye Rockfish landings, by fishery sector, using the ratio of Inside Yelloweye catch to ORF from a period with credible landings data (1997-2005).
+The ratio was then applied to the ORF category in the period 19XX to 2005 (*?*) to reconstruct Yelloweye Rockfish catch [@haigh2011].
 
-Raw commercial catch data for Inside Yelloweye was pulled from the GFCatch database, which is maintained by the groundfish data unit at DFO. An early version of the catch reconstruction algorithm was used to develop the commercial catch time series for the previous assessment of Inside Yelloweye in 2009. However, further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (personal comm. Norm Olsen). As well, ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (personal comm. Maria Surry). For these reasons, the time series of commercial catch used in the current analysis differs from that used in the most recent stock assessment in 2009.
+The second major source of uncertainty is the magnitude unreported catch that was discarded at sea. *TODO: in what period?*
+Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets [@haigh2011] using data from a credible period. *TODO: Please be very specific about years for the reconstruction and the credible period. Why was it credible? Assume it was the 2006 introduction of observer coverage (EM). Please add references (e.g., @stanley2009, there are other good stanley refs, RF can provide them if needed)*.
+The catch reconstruction of @haigh2011 assumes no discarding prior to 1986 and that discards are fully reported in DFO databases since 2006. *TODO: What about discarding between 1986 and 2005? Is this covered by the doubling? If so please explain*
 
-To be consistent with the previous assessment, the total commercial catch for 1986-2005 was doubled [@dfo2012]. The original decision to double the catch for those years was based on feedback from the commercial industry and was intended to account for their lack of confidence in commercial logbooks. In the current analysis we used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards. We perhaps should have used the reconstruction algorithm to obtain catches up until 2006, when full reporting and 100% monitoring was implemented in the groundfish fishery. However, sensitivity analyses demonstrated that the different catch timeseries did not affect our final perception of stock status (*cite figure Sean made*)
+Raw commercial catch data for Inside Yelloweye was extracted from the GFCatch database, which is maintained by the groundfish data unit at DFO.
+An earlier version of the catch reconstruction algorithm was used to develop the commercial catch time series for the previous stock assessment of Inside Yelloweye Rockfish [@yamanaka2011].
+However, further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., *DATE* ).
+As well, ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., *DATE* ).
+For these reasons, the time series of commercial catch used in the current analysis differs from that used in the most recent stock assessment in 2009.
+
+For consistency with the previous assessment for Inside Yelloweye Rockfish [@yamanaka2011], the total commercial catch for 1986-2005 used to calibrate our OMs was doubled.
+@yamanaka2011 made the decision to double the catch for those years, based on feedback from the commercial industry that they did not have confidence in commercial logbooks for this period [@dfo2012].
+In the current analysis we explore one OM scenario where the 1986-2005 commercial catches were not doubled ("Low catch" scenario, Section \ref(sec:approach3-reference2)).
 
 \clearpage
+
+*TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005*
 
 ```{r commcatch, echo = FALSE, warning = FALSE, results = "hide"}
 comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
@@ -42,7 +58,7 @@ tidyr::pivot_longer(comm_catch, -1) %>%
 )
 ```
 
-TODO: plot instead or in addition?
+*TODO: plot instead or in addition?*
 
 \clearpage
 

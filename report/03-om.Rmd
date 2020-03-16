@@ -88,14 +88,15 @@ sc <- sc %>%
 
 The following OMs were developed as the reference set:
 
-#### (1) Upweight dogfish survey 
+#### (1) Upweight dogfish survey {#sec:approach3-reference1}
 
 The Inside Yelloweye Rockfish stock is indexed by two fishery-independent surveys: the Hard Bottom Longline Survey (Appendix \@ref(app:index-data), Section \@ref(sec:hbll-index-data)) and the Dogfish Survey (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
 
-The conditioning SRA model exhibited better retrospective behaviour when more weight was given to the Dogfish Survey (see Section \@ref(sec:approach3-conditioning) below).
+The conditioning SRA model exhibited better retrospective behaviour when the SRA model was fit with more weight applied to the Dogfish Survey in the likelihood function (see Section \@ref(sec:approach3-conditioning) below).
 This was achieved by *TODO: Quang how was the dogfish survey upweighted? Please use the parameter symbols from gfmp Appendix B*
 
-In addition, the age-at-full-selectivity in the HBLL survey was fixed at 20 years. *TODO: Why?*
+In addition, the age-at-full-selectivity for the HBLL survey was fixed at 20 years. *TODO: Why?*  *TODO: what is the parameter for age-at-full-selectivity? Isn't this set using Length at full selectivity? How was this done?*
+
 Projected recruitment deviations were sampled in log space with standard deviation $\tau = 0.4$ and autocorrelation $\theta_\textrm{AC} = 0.8$, with $\theta_\textrm{AC}$ estimated post-hoc from the SRA model (see Appendix A of @anderson2020gfmp).
 During the projection period, only the HBLL index is assumed to be available for the MPs, as this index is conducted annually. 
 Projecting only one index of abundance is consistent with many data-limited MPs, which only utilize a single index of abundance (see Appendix \@ref(app:mps)).
@@ -104,17 +105,23 @@ The projected index values were generated with standard deviation $\sigma_I = 0.
 The settings in this OM were carried into the other OM scenarios, except for the specific changes described below for each scenario.
 
 
-#### (2) Low catch 
+#### (2) Low catch {#sec:approach3-reference2}
 
-to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
+There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(app:com-catch-data)).
+These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF); and (2) the magnitude unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
 
-#### (3) Episodic recruitment
+A catch reconstruction was done by @haigh2011, which is used in the other scenarios. This reconstruction included doubling the nominal catches of Yelloweye Rockfish for the period 1986 until 2005, as industry did not have confidence in the catch data for those years [@dfo2012].
+
+For the Low catch scenario, we did not double the nominal catch for the period 1985---2005.
+We used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards.
+
+#### (3) Episodic recruitment {#sec:approach3-reference3}
 
 - to address uncertainty in future productivity, an alternative scenario where recruitment is more variable. Rockfish assessments in the Pacific have estimated occasional extreme year classes (examples? POP, boccacio?). SRA may not estimate large cohorts, this could be a limitation of the available data to detect large cohorts. From (1), extreme recruitment is generated on average once every generation (38 years). If y is an extreme recruitment year, then the recruitment is sampled with lognormal with SD = 2.
 
 <!-- I need to add an equation to describe episodic recruitment -->
 
-#### (4) Estimate HBLL selectivity
+#### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
 
 - same as (1) but HBLL selectivity is allowed to be estimated to address conditioning uncertainty.
 
@@ -122,11 +129,11 @@ to address uncertainty in historical catch, an alternative scenario was used whe
 
 Two robustness OM were considered:
 
-#### (A) Low M
+#### (A) Low M {#sec:approach3-referenceA}
 
 - Same as (1), but M ~ Lognormal(0.025, 0.2), pessimistic scenario for stock productivity and rebuilding
 
-#### (B) Higher CV HBLL
+#### (B) Higher CV HBLL {#sec:approach3-referenceB}
 
 - Future HBLL index is less precise than in (1). Instead of SD = 0.25, we use the SD and autocorrelation from the index residuals in OM (1). In doing so, this scenario evaluate MPs if we've overestimated the precision of the HBLL survey and conditioning uncertainty (we've generated larger than expected residuals).
 
@@ -156,9 +163,18 @@ General settings:
 - Estimate HBLL selectivity. Mirror the dogfish selectivity in each replicate to match that for HBLL
 - Multinomial annual sample size for age comps based on the number of sampling trips.
 
+*Note about Low catch fit*
+
+to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
+
+*TODO: how much do we need to talk about the initial fit which we are not using?*
+
 - Initial fit did not fit dogfish survey well. Retrospective analysis showed bias in SSB (For model with M and h set to mean priors, rho = 0.25 for 11 years when removing up to 11 years of data). 11 years of data were used primarily to evaluate consistency of the model going back to 2009 which was the terminal year for the 2011 assessment.
+
 - Subsequent that increased likelihood weight (lambda = 4) to dogfish survey also removed retrospective bias (SSB rho = -0.05). However, HBLL age of full selectivity was estimated to be 40+ years, which is inconsistent with the age comps. This is though to be unlikely, since the modes of the HBLL age compars around 20 years, which was what was estimated in the initial fit in previous paragraph, and is also the estimated full selectivity for the HL gear in the outside population.
+
 - Next, it was decided to fix the HBLL selectivity to that from the initial fit while also upweighting the dogfish survey. This fit generated small retrospective bias (SSB rho = -0.07) for the fit with M and h mean priors.
+
 - Retrospective bias among these fits vary depending on the assumption of M, with larger bias at higher M. This is another uncertainty associated with the OM conditioning process.
 <!-- I will generate a plot of SSB rho vs. M to show this -->
 
@@ -166,6 +182,7 @@ To isolate the effects of specific sources of uncertainty on performance of MPs,
 
 The SRA was able to fit to the HBLL survey relative biomass index and TODO indices reasonably well for all OM scenarios (Figure \@ref(fig:survey-fits)).
 The TODO survey was better fit than the TODO, likely due to TODO (Figure \@ref(fig:survey-fits)).
+
 The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
 
 (ref:fig-survey-fits)
