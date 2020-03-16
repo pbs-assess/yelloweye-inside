@@ -205,7 +205,7 @@ Retrospective bias among these fits was sensitive to the value of *M*, with larg
 
 (ref:fig-mohns-rho) Values of Mohn's $\rho$ for three different model configurations: "Initial fit", "(1) Base", "(4) Estimate HBLL selectivity", across a range of values for *M*.
 
-```{r mse-chart-basic, fig.cap="(ref:fig-mse-chart-basic)", out.width="6.3in"}
+```{r mohns-rho, fig.cap="(ref:fig-mse-chart-basic)", out.width="6.3in"}
 knitr::include_graphics(here::here("mse/figures/conditioning/retrospective_M.png"))
 ```
 
