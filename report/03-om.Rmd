@@ -89,11 +89,11 @@ This "Base" OM formed the baseline OM, upon which all the other OM scenarios wer
 
 #### (2) Low catch {#sec:approach3-reference2}
 
+<!-- TODO: SA: I don't think the following is quite right (it is what we intended to do), but we don't actually use the complete catch reconstruction -->
 There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(app:com-catch-data)).
-These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF); and (2) the magnitude unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
-
-A catch reconstruction was done by @haigh2011, which is used in the other scenarios. This reconstruction included doubling the nominal catches of Yelloweye Rockfish for the period 1986 until 2005, as industry did not have confidence in the catch data for those years [@dfo2012].
-
+These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF) and (2) the magnitude unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
+A catch reconstruction was done by @haigh2011, which is used in the other scenarios.
+This reconstruction included doubling the nominal catches of Yelloweye Rockfish for the period 1986 until 2005, as industry did not have confidence in the catch data for those years [@dfo2012].
 For the "Low catch" scenario, we did not double the nominal catch for the period 1985--2005.
 We used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards.
 
@@ -152,7 +152,7 @@ range_Isd <- range(Isd[,1])
 ```
 
 The "Higher HBLL CV" scenario considers the possibility the HBLL index might be less precise than assumed based on the stratified bootstrap procedure used to estimate the observation CV.
-Instead of an observation SD drawn from Uniform(0.10, 0.25), we use the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index.
+Instead of an observation SD of 0.25, we use the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index.
 This SD has a mean of `r round2(mean_Isd)` and a range of `r round2(range_Isd[1])`--`r round2(range_Isd[2])`.
 
 ## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
