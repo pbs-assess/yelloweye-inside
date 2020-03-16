@@ -247,7 +247,7 @@ g <- ggplot(d_utm, aes(X, Y)) +
   scale_fill_viridis_c() +
   coord_fixed() +
   scale_size_area(max_size = 8) +
-  labs(colour = "Hook adjustment\nfactor", fill = "Hook\nadjustment\nfactor")
+  labs(colour = "Hook\nadjustment\nfactor", fill = "Hook\nadjustment\nfactor")
 ggsave("figs/hbll-joint-hook-adjust.png", width = 10, height = 7)
 
 g <- ggplot(d_utm, aes(X, Y)) +
@@ -259,7 +259,7 @@ g <- ggplot(d_utm, aes(X, Y)) +
   scale_fill_viridis_c(option = "C") +
   coord_fixed() +
   scale_size_area(max_size = 8) +
-  labs(colour = "Proportion baited hooks", fill = "Proportion\nbaited hooks")
+  labs(colour = "Proportion\nbaited hooks", fill = "Proportion\nbaited hooks")
 ggsave("figs/hbll-joint-baited.png", width = 10, height = 7)
 
 g <- ggplot(filter(joint_grid_utm, year == 2019), aes(X, Y)) +
@@ -351,7 +351,6 @@ bind_rows(ind_north, ind_south) %>%
     xlim = range(ind$year) + c(-0.3, 0.3)) +
   theme(legend.position = c(0.26, 0.56))
   # guides(colour = FALSE, fill = FALSE)
-ggsave("figs/hbll-index-components-eps-depth-2019-11-25-depth.png", width = 5, height = 4)
 ggsave("figs/hbll-index-components-eps-depth2.png", width = 5, height = 8)
 
 optimize_png <- TRUE
