@@ -19,7 +19,7 @@ fig_dir <- "mse/figures"
 
 sc <- tibble::tribble(
   ~scenario,                ~scenario_human,                  ~scenario_type,
-  "updog_fixsel",           "(1) Based",                      "Reference",
+  "updog_fixsel",           "(1) Base",                       "Reference",
   "lowcatch_fixsel",        "(2) Low catch",                  "Reference",
   "episodic_recruitment",   "(3) Episodic\nrecruitment",      "Reference",
   "upweight_dogfish",       "(4) Estimate\nHBLL selectivity", "Reference",
