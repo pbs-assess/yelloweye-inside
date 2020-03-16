@@ -167,24 +167,18 @@ Similarly, if the OM is calibrated using the SRA model, analysts can also specif
 In this case, the SRA passes all of the indices back to DLMtool, preserving the estimated or user-defined selectivities-at-age for each index.
 However, note that the DLMtool MPs only utilize a single index of abundance in the projection period for calculating catch decisions (see Appendix \@ref(app:mps)). In the current study, all MPs (except for the constant-catch MPs) utilize the HBLL survey.
 
-
-The SRA model was used to condition the following OM parameters: <!--not sure these are the correct ones below -->
+The required input parameters to the SRA model from the DLMtool OM are provided in full in Appendix B of @anderson2020gfmp.
+The SRA model conditions estimates of the following OM parameters: 
 
 * unfished recruitment
-* depletion
-* relative fishing effort
-* annual recruitment deviations
-* selectivity parameters
+* initial depletion (in year $t_c$)
+* relative fishing mortality
+* annual recruitment deviations and autocorrelation in recruitment
+* selectivity parameters (if estimated)
 
-*TODO: edit this whole section and also see Quang's notes in mse/mse-bullets*
+The SRA was run with 250 replicates.
+Each replicate fits a different value of M and h (sampled independently from the distributions shown in Appendix \@ref(fig:desc-stock-maxage-yelloweye)).
 
-*from Quang*
--
-
-General settings:
-- Max age = 80 years (plus group accumulator age)
-- Use SRA model (cite gfmp)
-- Each replicate fits a different value of M and h (sampled independently)
 - Fix selectivity of fisheries to values from outside YE. Use hook and line for commercial (there is little to no trawl fishery for inside pop)
 - Estimate rec devs after 1950 (age comps only available after 2003)
 - Estimate HBLL selectivity. Mirror the dogfish selectivity in each replicate to match that for HBLL
