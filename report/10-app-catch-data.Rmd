@@ -26,9 +26,11 @@ For consistency with the previous assessment for Inside Yelloweye Rockfish [@yam
 @yamanaka2011 made the decision to double the catch for those years, based on feedback from the commercial industry that they did not have confidence in commercial logbooks for this period [@dfo2012].
 In the current analysis we explore one OM scenario where the 1986-2005 commercial catches were not doubled ("Low catch" scenario, Section \ref(sec:approach3-reference2)).
 
-\clearpage
-
 *TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005*
+
+*TODO: This table not rendering, not sure why*
+
+\clearpage
 
 ```{r commcatch, echo = FALSE, warning = FALSE, results = "hide"}
 comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
@@ -41,6 +43,7 @@ csasdown::csas_table(comm_catch,
   kableExtra::column_spec(1, width = "1.0cm") %>%
   kableExtra::column_spec(2:6, width = "1.6cm")
 ```
+
 
 ```{r commcatch2, out.width="\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."}
 tidyr::pivot_longer(comm_catch, -1) %>%
