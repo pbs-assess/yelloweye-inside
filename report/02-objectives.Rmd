@@ -47,28 +47,29 @@ We propose the following performance metrics to measure the objectives, where *B
 
 *TODO: define the years for calculating LRP 1.5 GT, LRP 1 GT, USR 1.5 GT and LT C20*
 
-  * LRP 1.5 GT		P[*B* > 0.4 *B*~MSY~] after 1.5 GT (56 years)
-  * LRP 1 GT		    P[*B* > LRP] after 1 GT (38 years)
-  * USR 1.5 GT		P[*B* > USR] after 56 years
+* LRP 1.5: GT P(*B* > 0.4 *B*~MSY~) after 1.5 GT (56 years)
+* LRP 1GT: P(*B* > LRP) after 1 GT (38 years)
+* USR 1.5GT:    P(*B* > USR) after 56 years
 
-  * ST C10		P[Catch > 10 t] during 2020-2029
-  * ST C15    P[Catch > 15 t] during 2020-2029
-  * ST C20		P[Catch > 20 t] during 2020-2029
-  * LT C20		P[Catch > 20 t] after 1 Generation time
-  * ST AADC   P[AADC during 2020-2029 < AADC during 2012 - 2019]
+* ST C10: P(catch > 10 t) during 2020--2029
+* ST C15: P(catch > 15 t) during 2020--2029
+* ST C20: P(catch > 20 t) during 2020--2029
+* LT C20: P(catch > 20 t) after 1 GT
+* ST AADC: P(AADC during 2020-2029 < AADC during 2012 - 2019)
   
-AADC represents average absolute deviation in catch over $n$ years and is defined as:
+AADC represents average absolute deviation in catch ($C$) over $n$ years and is defined as:
 
-$AADC = \dfrac{1}{n-1}sum_{y=2}^n \mid C_y - C_{y-1} \mid$
+$$
+\textrm{AADC} = \dfrac{1}{n-1}\sum_{y=2}^n \mid C_y - C_{y-1} \mid.
+$$
 
-The baseline period for AADC (2012 - 2019) was selected as this is the period since the start of the 15 t TAC.
-
+The baseline period for AADC (2012--2019) was selected as this is the period since the start of the 15 t TAC.
 We include the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term. *TODO: is this correct?*
 
 In cases where performance metrics are calculated over a range of years, care needs to be taken to clearly report how summary statistics are calculated.
-@anderson2020gfmp suggested calculating performance statistics across replicates and the entire time window as defined for the performance metric.
+@anderson2020gfmp provisionally suggested calculating performance statistics across replicates and the entire time window as defined for the performance metric.
 We follow this protocol here.
-For example, we averaged the short-term (ST) catch metrics over only the years 2020-2029.
+For example, we averaged the short-term (ST) catch metrics over the years 2020--2029.
 
 ## COSEWIC CONSIDERATIONS {#sec:approach2-cosewic}
 

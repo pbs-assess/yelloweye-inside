@@ -5,7 +5,7 @@
 knitr_results <- TRUE
 knitr_echo <- TRUE
 library(purrr)
-sc <- readRDS(here::here("mse/om/ye-scenarios.rds"))
+sc <- readRDS(here::here("mse/om/ye-scenarios2.rds"))
 oms <- sc$scenario %>% set_names() %>%
   map(~ readRDS(here::here(paste0("mse/om/", .x, ".rds")))@OM)
 names(oms) <- sc$scenario_human

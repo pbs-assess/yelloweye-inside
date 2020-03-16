@@ -225,17 +225,17 @@ The spatial random effects ($\omega_s$) are assumed
 to be drawn from a multivariate normal distribution with some covariance matrix
 $\bm{\Sigma}_\omega$:
 
-\begin{equation}
+$$
 \bm{\omega} \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_\omega \right),
-\end{equation}
+$$
 
 and we assume the same for the spatiotemporal random effects, with each time
 slice being given its own independent set of random effects ($\bm{\epsilon}_t$)
 with covariance matrix $\bm{\Sigma}_{\epsilon,t}$:
 
-\begin{equation}
+$$
 \bm{\epsilon}_t \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_{\epsilon,t} \right).
-\end{equation}
+$$
 
 <!-- m <- sdmTMB( -->
 <!--   formula = -->
@@ -275,14 +275,6 @@ I am creating the index on the rectangles that define the dogfish survey. I over
 
 ```{r, fig.cap="Raw data", out.width="\\textwidth"}
 include_figs("dogfish-yelloweye-per-area-data.png")
-```
-
-```{r, fig.cap="SPDE", out.width="4in"}
-include_figs("dogfish-joint-spde.png")
-```
-
-```{r, fig.cap="Spatial residuals with some jittering.", out.width="\\textwidth"}
-include_figs("dogfish-residual-map.png")
 ```
 
 ```{r, fig.cap="Prediction with log transformed color scale.", out.width="\\textwidth"}

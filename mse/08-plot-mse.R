@@ -31,7 +31,7 @@ ref_aadc <- gfdlm:::get_aadc(catch)
 PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "ST C10", "ST C15", "LT C20", "ST AADC")
 
 # Set up and checks -----------------------------------------------------------
-sc <- readRDS("mse/om/ye-scenarios.rds")
+sc <- readRDS("mse/om/ye-scenarios2.rds")
 fig_dir <- "mse/figures"
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
