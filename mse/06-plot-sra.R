@@ -32,10 +32,6 @@ saveRDS(sc, file = "mse/om/ye-scenarios.rds")
 sra_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/", x, ".rds")))
 names(sra_ye) <- sc$scenario
 
-#get converged replicates
-
-#Check this is working ... copied from Rex. All scenarios have the same proportion 0.38
-
 scenarios <- sc$scenario %>% purrr::set_names(sc$scenario_human)
 oms <- map(scenarios, ~ {
   readRDS(paste0("mse/om/", .x, ".rds"))@OM
@@ -305,7 +301,7 @@ walk(1:length(HBLL_pred), ~{
     geom_point(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#66C2A5") +
     geom_label(data = Ntrips, mapping = aes(label = N), x = Inf, y = Inf, hjust = "right", vjust = "top", inherit.aes = FALSE) +
     gfplot::theme_pbs() + ggtitle(sc$scenario_human[.x])
-  ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8, dpi = 500)
+  ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8)
 })
 
 # Selectivity HBLL and dogfish
@@ -381,10 +377,10 @@ cat <- data.frame(Year = rep(1918:2019, 3),
                   Scenario = c(rep("All others", 2 * 102), rep("Low catch", 102)))
 
 ggplot(cat, aes(Year, Catch, colour = Fleet, linetype = Scenario)) + geom_line() + gfplot::theme_pbs()
-ggsave("mse/figures/catch.png", width = 5.5, height = 3.5, dpi = 500)
+ggsave("mse/figures/catch.png", width = 5.5, height = 3.5)
 
 ggplot(filter(cat, Scenario != "Low catch"), aes(Year, Catch, colour = Fleet)) + geom_line() + gfplot::theme_pbs()
-ggsave("mse/figures/catch2.png", width = 5.5, height = 3.5, dpi = 500)
+ggsave("mse/figures/catch2.png", width = 5.5, height = 3.5)
 
 ### COSEWIC indicators and probability below LRP/USR in 2019
 COSEWIC_Bdecline_hist <- function(MSEobj, Ref = 0.7, Yr = NULL) {
@@ -503,9 +499,13 @@ ggsave(here::here("mse/figures/ye-sra-estimated.png"),
        width = 6.5, height = 8.5)
 
 x %>% dplyr::filter(variable %in% c("sigma_R", "h", "L50", "L50_95", "t0", "k", "Linf", "M")) %>%
+  group_by(variable) %>%
+  # mutate(value = ifelse(variable %in% c("h", "M"), value, value + rnorm(n(), value, 0.0001))) %>%
+  ungroup() %>%
   ggplot(aes(value)) +
   # geom_histogram(bins = 40, colour = "grey60") +
-  geom_freqpoly(aes(colour = Scenario), bins = 30) +
+  geom_histogram(bins = 30, colour = "grey40", fill = "white", lwd = 0.4) +
+  # geom_freqpoly(aes(colour = Scenario), bins = 30) +
   facet_wrap(~variable, scales = "free_x")+
   gfdlm::theme_pbs() +
   coord_cartesian(ylim = c(0, 300), expand = FALSE) +

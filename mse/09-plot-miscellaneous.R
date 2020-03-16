@@ -14,7 +14,7 @@ SP_mod <- SP_SS(Data = SRA@OM@cpars$Data, AddInd = 1:5, use_r_prior = TRUE, star
 #Data_lowcatch@Cat[, match(1986:2005, Data_lowcatch@Year)] <- 0.5 * Data_lowcatch@Cat[, match(1986:2005, Data_lowcatch@Year)]
 #SP_mod2 <- SP_SS(Data = Data_lowcatch, AddInd = 1:5, use_r_prior = TRUE, start = list(r_prior = c(0.068, 0.03)))
 
-png("mse/figures/SP_fit.png", height = 3.5, width = 4.5, units = "in", res = 220)
+png("mse/figures/SP_fit.png", height = 4.5, width = 5.5, units = "in", res = 300)
 par(mar = c(5, 4, 1, 1))
 plot(as.numeric(names(SP_mod@B_BMSY)), SP_mod@B_BMSY, typ = "l", lwd = 3, xlab = "Year", ylab = expression(B/B[MSY]),
      ylim = c(0, 2.1))
