@@ -104,25 +104,22 @@ For example, very large or even extreme year classes have been estimated for sev
 
 To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" scenario in the reference set of OMs.
 This scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations used in the baseline OM (Section \@ref(sec:approach3-reference1)).
-In this scenario, an extreme recruitment event is generated on average once every generation (38 years), with extreme recruitment years randomly drawn from *TODO an XX distribution (mean, SD)?.*
-If a year is randomly selected as an extreme recruitment year, then the recruitment is sampled from a lognormal distribution with standard deviation $\tau = 2$.
+In this scenario, recruitment deviations $\varepsilon_y$ for each year are generated as:
 
-<!-- TODO: Quang: add an equation to describe episodic recruitment -->
-<!--
-https://github.com/pbs-assess/yelloweye-inside/blob/fdc8deecbb02e2df219c7d910d895f91fa05b188/mse/04-run-sra-250sim.R#L86
-sporadic_recruitment <- function(x, years = length(x), rate = 1/38, high_sigmaR = 2, plus_one = FALSE) {
-  require(dplyr)
-  nhigh <- rbinom(1, years, rate)
-  high_ind <- sample(1:years, nhigh)
+$$
+\varepsilon_y = 
+\left\{
+\begin{array}{ll}
+\varepsilon^1_y & \eta_y = 0\\
+\varepsilon^2_y & \eta_y = 1,
+\end{array}
+\right.
+$$
 
-  new_samp <- rnorm(nhigh, -0.5 * high_sigmaR^2, high_sigmaR) %>% exp()
-  if(plus_one) new_samp <- new_samp + 1
-
-  x[high_ind] <- new_samp
-
-  return(x)
-}
--->
+where $\varepsilon^1_y$ is the recruitment deviation from OM 1 and
+$\varepsilon^2_y \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
+The paramater $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which indicates whether an extreme recruitment event will occur. 
+One extreme recruitment is expected to occur once every generation (38 years).
 
 #### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
 
@@ -138,16 +135,25 @@ Given very uncertainties in our choices of selectivities, we allowed the SRA to 
 #### (A) Low M {#sec:approach3-referenceA}
 
 The base model assumed mean value of natural mortality *M* of 0.045 $y^{-1}$, drawn 
-from a lognormal distribution with $M \sim Lognormal(0.045, 0.2)$.
+from a lognormal distribution with $M \sim \textrm{Lognormal}(0.045, 0.2)$.
 This was based on the value used in the recent rebuilding plan for the Outside Yelloweye stock [@cox2020]. *TODO: I think this is where it came from*
 
-The "Low M" scenario used $M \sim Lognormal(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the reference set scenarios.
+The "Low M" scenario used $M \sim \textrm{Lognormal}(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the reference set scenarios.
 
 #### (B) Higher HBLL CV {#sec:approach3-referenceB}
 
-The "Higher HBLL CV" scenario considers the possibility that the projected simulated HBLL index could be too precise in the simulations.
-In this scenarion we used the standard deviation and autocorrelation derived from the HBLL index residuals in the base OM.
-*TODO: Need to explain what this means in plain language*
+```{r higher-cv}
+SRA_highCV <- readRDS(here::here("mse/om/updog_fixsel.rds"))
+Iobs <- SRA_highCV@OM@cpars$Data@AddInd[1, , ] %>% t()
+Ipred <- lapply(SRA_highCV@Misc, getElement, "Ipred")
+Isd <- rbind %>% do.call(lapply(Ipred, function(x, y) apply(log(y/x), 2, function(xx) sd(xx, na.rm = TRUE)), y = Iobs))
+mean_Isd <- mean(Isd[,1])
+range_Isd <- range(Isd[,1])
+```
+
+The "Higher HBLL CV" scenario considers the possibility the HBLL index might be less precise than assumed based on the stratified bootstrap procedure used to estimate the observation CV.
+Instead of an observation SD of 0.25, we use the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index.
+This SD has a mean of `r round2(mean_Isd)` and a range of `r round2(range_Isd[1])`--`r round2(range_Isd[2])` compared to the base OM, which has a an SD drawn from Uniform(0.10, 0.25).
 
 ## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
 
