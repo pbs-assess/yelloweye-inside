@@ -32,6 +32,13 @@ The adjustment factor depends on the proportion of observed hooks that are retur
 TODO: add the equation here:
 hook_adjust = - log(Pit) / (1 - Pit)
 
+<!-- mutate(total_hooks = count_target_species + count_non_target_species + -->
+<!--     count_bait_only + count_empty_hooks - count_bent_broken) %>% -->
+<!--   mutate(count_bait_only = replace(count_bait_only, which(count_bait_only == 0), 1)) %>% -->
+<!--   mutate(prop_bait_hooks = count_bait_only / total_hooks) %>% -->
+<!--   mutate(hook_adjust_factor = -log(prop_bait_hooks) / (1 - prop_bait_hooks)) %>% -->
+<!--   mutate(expected_catch = round(count_target_species * hook_adjust_factor)) -->
+
 where P_it is the proportion of observed hooks for set i in year t returned with bait on them.
 
 In instances where zero hooks were returned with bait the number of baited hooks returned was set to one.
@@ -43,13 +50,13 @@ include_figs <- function(file) {
 }
 ```
 
-```{r stich-sim-index, fig.cap="Simulation testing abundance index calculation. The solid red line represents the true simulated abundance through time. The dashed and dotted green line represents a ``naive'' design-based estimate, which is calculated here by calculating the abundance with just the observed north or south counts in each year. The dashed blue line represents a geostatistical standardized index that attempts to account for the north-south biennial observations. The shaded blue region represents the modelled 95\\% confidence interval.", out.width="5in"}
+```{r stich-sim-index, fig.cap="Simulation testing the relative abundance index calculation with alternating north and south observations. The solid red line represents the true simulated abundance through time. The dashed and dotted green line represents a ``naive'' design-based estimate, which is calculated here by calculating the abundance with just the observed north or south counts in each year. The dashed blue line represents a geostatistical standardized index that attempts to account for the north-south biennial observations. The shaded blue region represents the modelled 95\\% confidence interval.", out.width="5in"}
 include_figs("geostatistical-sim-stitched-index.png")
 ```
 
 \clearpage
 
-```{r stich-sim-pred, fig.cap="Simulation testing abundance index calculation. (A) The true simulated (mean) abundance in space and time. (b) The observed (dots) and estimated (colour) counts in space and time from the geostatistical model. The observations occur in north and south regions in alternating years and are ``blind'' to the missing region.", out.width="\\textwidth"}
+```{r stich-sim-pred, fig.cap="Simulation testing the relative abundance index calculation with alternating north and south observations. (A) The true simulated (mean) abundance in space and time. (b) The observed (dots) and estimated (colour) counts in space and time from the geostatistical model. The observations occur in north and south regions in alternating years and are ``blind'' to the missing region. Notice how the spatial temporal model is able to predict what the abundance should be in the ``blind'' region based on the consistent spatial correlation pattern (and to a lesser degree the spatiotemporal correlation pattern).", out.width="\\textwidth"}
 include_figs("geostatistical-sim-predicted.png")
 ```
 
