@@ -186,7 +186,9 @@ We used the SRA to populate the following parameters in the conditioned OMs:
 - $F_{a,y}$ (fishing mortality at age by year)
 - $\varepsilon_{\textrm{R},y}$ for years $t_1$ to $t_c$ (historical recruitment deviations)
 
-The reference and robustness scenarios rendered a range of estimated parameter values (Figures \@ref(fig:sra-conditioned-parameters), \@ref(fig:F-om), \@ref(fig:recdev-om)).
+The reference and robustness scenarios rendered a range of estimated parameter values (Figure \@ref(fig:sra-conditioned-parameters)).
+
+Since all the replicate SRA models converged, we do not show the filtered parameters---they correspond exactly to those described in Appendix \@ref(app:desc-om-yelloweye).
 
 TODO: note that all replicates converged
 
@@ -218,11 +220,9 @@ knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
 (ref:fig-sra-conditioned-parameters2)
 Frequency polygons for parameters input to the SRA. Parameters were sampled stochastically as input into the SRA (see Appendix \@ref(app:desc-om-rex) for ranges). Any samples associated with non-converged SRA models were discarded. Since all SRA models converged, these distributions are the same across scenarios unless they were specified differently in the OM. The large spikes represent fixed parameter values in the OM. sigma_R refers to $\sigma_R$.
 
-```{r sra-conditioned-parameters2, out.width="\\textwidth", fig.asp=0.85, fig.width=7, fig.cap="(ref:fig-sra-conditioned-parameters2)"}
+```{r sra-conditioned-parameters2, out.width="\\textwidth", fig.asp=0.85, fig.width=7, eval=FALSE, fig.cap="(ref:fig-sra-conditioned-parameters2)"}
 knitr::include_graphics(here("mse/figures/ye-sra-filtered.png"))
 ```
-
-<!-- TODO: this fig is kind of weird with the triangles -->
 
 \clearpage
 

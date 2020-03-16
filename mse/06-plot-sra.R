@@ -32,10 +32,6 @@ saveRDS(sc, file = "mse/om/ye-scenarios.rds")
 sra_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/", x, ".rds")))
 names(sra_ye) <- sc$scenario
 
-#get converged replicates
-
-#Check this is working ... copied from Rex. All scenarios have the same proportion 0.38
-
 scenarios <- sc$scenario %>% purrr::set_names(sc$scenario_human)
 oms <- map(scenarios, ~ {
   readRDS(paste0("mse/om/", .x, ".rds"))@OM
@@ -503,9 +499,13 @@ ggsave(here::here("mse/figures/ye-sra-estimated.png"),
        width = 6.5, height = 8.5)
 
 x %>% dplyr::filter(variable %in% c("sigma_R", "h", "L50", "L50_95", "t0", "k", "Linf", "M")) %>%
+  group_by(variable) %>%
+  # mutate(value = ifelse(variable %in% c("h", "M"), value, value + rnorm(n(), value, 0.0001))) %>%
+  ungroup() %>%
   ggplot(aes(value)) +
   # geom_histogram(bins = 40, colour = "grey60") +
-  geom_freqpoly(aes(colour = Scenario), bins = 30) +
+  geom_histogram(bins = 30, colour = "grey40", fill = "white", lwd = 0.4) +
+  # geom_freqpoly(aes(colour = Scenario), bins = 30) +
   facet_wrap(~variable, scales = "free_x")+
   gfdlm::theme_pbs() +
   coord_cartesian(ylim = c(0, 300), expand = FALSE) +
