@@ -201,11 +201,11 @@ An age-at-full selectivity of around 20 years is consistent with that estimated 
 
 Therefore, in the present analysis, for the "Base" scenario, and all other scenarios except "Estimate HBLL selectivity", it was decided to fix the age-at-full selectivity of the HBLL Survey to 20 years, while also upweighting the dogfish survey. This fit generated small retrospective bias in spawning biomass (Mohn's $\rho = -0.07$, evaluated at the mean of the distributions for *M* and *h*).
 
-Retrospective bias among these fits was sensitive to the value of *M*, with larger retrospective bias in spawning biomass estimates at higher *M* (Figure \ref(fig:mohns-rho).
+Retrospective bias among these fits was sensitive to the value of *M*, with larger retrospective bias in spawning biomass estimates at higher *M* (Figure \@ref(fig:mohns-rho)).
 
 (ref:fig-mohns-rho) Values of Mohn's $\rho$ for three different model configurations: "Initial fit", "(1) Base", "(4) Estimate HBLL selectivity", across a range of values for *M*.
 
-```{r mohns-rho, fig.cap="(ref:fig-mse-chart-basic)", out.width="6.3in"}
+```{r mohns-rho, fig.cap="(ref:fig-mohns-rho)", out.width="6.3in"}
 knitr::include_graphics(here::here("mse/figures/conditioning/retrospective_M.png"))
 ```
 
