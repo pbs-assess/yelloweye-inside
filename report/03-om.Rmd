@@ -74,7 +74,7 @@ The OM scenarios are listed in Table \@ref(tab:ye-scen) and described below.
 
 
 ```{r ye-scen, results='asis'}
-sc <- readRDS(here("mse/om/ye-scenarios.rds"))
+sc <- readRDS(here("mse/om/ye-scenarios2.rds"))
 sc <- sc %>%
   select(-order) %>%
   mutate(scenario_human = gsub("\\\n", " ", scenario_human))

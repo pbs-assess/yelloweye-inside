@@ -18,16 +18,16 @@ fig_dir <- "mse/figures"
 # Set up the scenario names ---------------------------------------------------
 
 sc <- tibble::tribble(
-  ~scenario,     ~scenario_human,        ~scenario_type,
-  "updog_fixsel",           "(1) Upweight\ndogfish survey",  "Reference",
-  "lowcatch_fixsel",        "(2) Low catch",                "Reference",
-  "episodic_recruitment",   "(3) Episodic\nrecruitment",     "Reference",
-  "upweight_dogfish",       "(4) Estimate\nHBLL selectivity","Reference",
-  "lowM_fixsel",            "(A) Low M",                    "Robustness",
-  "high_index_cv",          "(B) High CV HBLL\nprojected", "Robustness"
+  ~scenario,                ~scenario_human,                  ~scenario_type,
+  "updog_fixsel",           "(1) Based",                      "Reference",
+  "lowcatch_fixsel",        "(2) Low catch",                  "Reference",
+  "episodic_recruitment",   "(3) Episodic\nrecruitment",      "Reference",
+  "upweight_dogfish",       "(4) Estimate\nHBLL selectivity", "Reference",
+  "lowM_fixsel",            "(A) Low M",                      "Robustness",
+  "high_index_cv",          "(B) High HBLL CV",               "Robustness"
 )
 sc <- mutate(sc, order = seq_len(n()))
-saveRDS(sc, file = "mse/om/ye-scenarios.rds")
+saveRDS(sc, file = "mse/om/ye-scenarios2.rds")
 
 sra_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/", x, ".rds")))
 names(sra_ye) <- sc$scenario
@@ -465,7 +465,7 @@ g2 <- ggplot(high_error, aes(IAC)) + geom_histogram(bins = 15) + gfplot::theme_p
 cowplot::plot_grid(g1, g2)
 ggsave("mse/figures/HBLL_high_CV.png", width = 5, height = 3)
 
-sc2 <- readRDS(here("mse", "om", "ye-scenarios.rds"))
+sc2 <- readRDS(here("mse", "om", "ye-scenarios2.rds"))
 # sc2$scenario_human <- paste0(sc2$order, " - ", sc2$scenario_human)
 x <- oms %>% set_names(sc2$scenario_human) %>%
   map_dfr(~tibble(
