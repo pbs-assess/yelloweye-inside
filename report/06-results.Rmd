@@ -115,9 +115,9 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 
 ## ROBUSTNESS SET RESULTS
 
-The "(A) Low M" robustness scenario lowered the probability of achieving the LRP 1.5GT performance metric from > 0.99 probability in the reference set to a range of 0.75--0.90 (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel-ref)).
+The "(A) Low M" robustness scenario lowered the probability of achieving the LRP 1.5GT performance metric from > 0.99 probability in the reference set to a range of 0.75--0.90 (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)).
 We saw similar declines in the other conservation performance metrics.
-The "(B) High HBLL CV" robustness scenario slightly lowered the probability of achieving the ST C10 performance metric (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel-ref)) presumably because of the added error in the projected HBLL index.
+The "(B) High HBLL CV" robustness scenario slightly lowered the probability of achieving the ST C10 performance metric (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)) presumably because of the added error in the projected HBLL index.
 For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference-set OMs but only achieved this performance metric with a probability of 0.79 in "(B) High HBLL CV".
 
 In contrast to the reference set, where we saw little trade-off between the ST C10 and LRP 1.5GT performance metrics, the "(A) Low M" robustness OM demonstrates a short-term-catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).

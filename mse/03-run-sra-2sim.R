@@ -79,8 +79,8 @@ add_label <- function(xfrac, yfrac, label, pos = 4, ...) {
   text(x, y, label, pos = pos, ...)
 }
 
-plot_retro_pbs <- function(retro, color = NULL) {
-  if(is.null(color) || length(color) != dim(retro@TS)[1]) color <- rich.colors(dim(retro@TS)[1])
+plot_retro_pbs <- function(retro, legend = TRUE) {
+  color <- viridisLite::plasma(length(nyr_label))
   Year_matrix <- matrix(as.numeric(dimnames(retro@TS)$Year), ncol = length(color), nrow = dim(retro@TS)[2], byrow = FALSE)
   xlim <- range(as.numeric(dimnames(retro@TS)$Year))
   nyr_label <- dimnames(retro@TS)$Peel
@@ -93,16 +93,17 @@ plot_retro_pbs <- function(retro, color = NULL) {
     abline(h = 0, col = "grey")
     if(grepl("MSY", as.character(ylab))) abline(h = 1, lty = 3)
     matlines(Year_matrix, matrix_to_plot, col = color, lty = 1)
-    # legend("topleft", legend = nyr_label, lwd = 1, col = color, bty = "n", title = "Years removed:")
+    if (legend)
+      legend(1917, 4000, legend = nyr_label, lwd = 1, col = color, bty = "n", title = "Years removed:", y.intersp = 0.8)
   }
 }
 
 # plot for report -------------------------------------------------------------
 png(here::here("mse/figures/retrospective-spawning-biomass.png"), width = 5, height = 5,
-  res = 220, units = "in")
+  res = 260, units = "in")
 par(mfcol = c(2, 1), mar = c(0, 4, 0, 0), oma = c(4, 0, 1, 1), cex = 0.7, yaxs = "i")
-plot_retro_pbs(ret)
-add_label(0.05, 0.08, "(A) Initial fit")
+plot_retro_pbs(ret, legend = FALSE)
+add_label(0.02, 0.06, "(A) Initial fit")
 box()
 axis(2, at = seq(0, 5000, 1000))
 plot_retro_pbs(ret3)
@@ -110,7 +111,8 @@ axis(2, at = seq(0, 4000, 1000))
 axis(1)
 box()
 mtext("Year", side = 1, line = 2.5, cex = 0.8)
-add_label(0.05, 0.08, "(B) Base OM")
+add_label(0.02, 0.06, "(B) Base OM")
+nyr_label <- dimnames(ret@TS)$Peel
 dev.off()
 # -----------------------------------------------------------------------------
 
