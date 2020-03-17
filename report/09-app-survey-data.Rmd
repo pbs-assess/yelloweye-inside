@@ -8,8 +8,9 @@ The survey uses snap-type circle hooks and squid bait with a two-hour soak time.
 Hook-by-hook data is collected on-board by DFO technicians and stored in a database.
 For further details on survey design see @lochead2004.
 
-The survey domain is divided into northern and southern regions, which are fished in alternating years so that each area is designed to be sampled every other year.
+The survey domain is divided into northern and southern regions, which are fished in alternating years.
 However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
+
 - The survey did not take place in 2006 and 2017.
 - The length of the survey has varied and has lead to inconsistencies in the geographic extents surveyed.
 - Desolation Sound, which falls between the northern and the southern regions, is supposed to be sampled in the southern region, but was sampled along with the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. The Yelloweye Rockfish catch rates are highest in Desolation Sound (Area 15) so not sampling there we expected to affect design-based survey estimates of the southern survey.
@@ -17,17 +18,19 @@ However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
 
 For these reasons, we chose to undertake a geostatistical spatiotemporal model standardization of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design.
 Theoretically, such an approach can account for the above factors.
-We confirmed via simulation that such approach can "stitch" together two survey regions conducted in a north and south region (REF section).
+We confirmed via simulation that such approach can "stitch" together two survey regions conducted in a north and south region (Section \@ref(sec:hbll-sim)).
 
 ### Hook competition {#sec:hbll-hook-competition}
 
 A longline index of species abundance may not be proportional to actual abundance under certain conditions.
-For example, if there is a high degree of competition among species for baited hooks, the actual catch may not accurately reflect the true abundance of less competitive species [@kuriyama2018]. The HBLL survey catch is mostly comprised of Pacific Spiny Dogfish (TODO SP), which are considered a major hook competitor with rockfishes [@obradovich2018].
-As in @yamanaka2011, we applied a hook competition model, which accounts for the competition between individual fish for the bait on hooks, to the HBLL Inside survey data.
+For example, if there is a high degree of competition among species for baited hooks, the actual catch may not accurately reflect the true abundance of less competitive species [@kuriyama2018]. 
+The HBLL survey catch is mostly comprised of Pacific Spiny Dogfish (*Squalus suckleyi*), which are considered a major hook competitor with rockfishes [@obradovich2018].
+As in @yamanaka2011, we applied a hook competition correction, which accounts for the competition between individual fish for the bait on hooks, to the HBLL Inside survey data.
 Hook-by-hook catch data have always been collected on this survey.
-To apply the model, we applied a competition adjustment factor to each set in each year, which scales up the observed number of each species caught to give the expected number of fish caught after accounting for competition.
+To apply the correction, we applied a competition adjustment factor to each set in each year.
+This adjustment factor scales up the observed number of each species caught to give the expected number of fish caught after accounting for competition.
 
-The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them:
+The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them (Figure \@ref(fig:hbll-baited)):
 
 TODO: add the equation here:
 hook_adjust = - log(Pit) / (1 - Pit)
@@ -39,20 +42,13 @@ hook_adjust = - log(Pit) / (1 - Pit)
 <!--   mutate(hook_adjust_factor = -log(prop_bait_hooks) / (1 - prop_bait_hooks)) %>% -->
 <!--   mutate(expected_catch = round(count_target_species * hook_adjust_factor)) -->
 
-where P_it is the proportion of observed hooks for set i in year t returned with bait on them.
-
-In instances where zero hooks were returned with bait the number of baited hooks returned was set to one.
-The hook adjusted data (observed numbers) were then passed to the spatiotemporal model to develop the index of abundance.
-
-Reference these figures:
-
-Figure \@ref(fig:hbll-baited)
-
-Figure \@ref(fig:hbll-hook-adjustment)
+where $P_{i,t}$ is the proportion of observed hooks for set $i$ in year $t$ returned with bait on them.
+In instances where zero hooks were returned with bait, we set the number of baited hooks to one.
+We passed the hook-adjusted data (Figure \@ref(fig:hbll-hook-adjustment)) to the spatiotemporal model to develop the index of abundance.
 
 ### Spatiotemporal HBLL index standardization
 
-We can represent our geostatistical standardization model as:
+We fit a geostatistical spatiotemporal index-standardization model:
 
 \begin{align}
   y_{s,t} &\sim \mathrm{NegBin}(\mu_{s,t}, \phi),\\
@@ -61,34 +57,34 @@ We can represent our geostatistical standardization model as:
 
 where NegBin refers to the negative binomial distribution (the NB2 parameterization [@hilbe2011] where the variance scales quadratically with the mean),
 $\mu_{s,t}$ refers to the expected value in log space at spatial point $s$ and time $t$,
-$\phi$ refers to the dispersion parameter, $\bm{X}$ refers to a design matrix, and
+$\phi$ refers to the dispersion parameter, 
+$\bm{X}$ refers to a design matrix, and
 $\beta$ refers to estimated coefficients (an independent mean for each year).
-The spatial random effects ($\omega_s$) are assumed to be drawn from a multivariate normal distribution with some covariance matrix $\bm{\Sigma}_\omega$:
+The spatial random effects ($\omega_s$) were assumed to be drawn from a multivariate normal distribution with some covariance matrix $\bm{\Sigma}_\omega$:
 
 $$
 \bm{\omega} \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_\omega \right),
 $$
 
-and we assume the same for the spatiotemporal random effects, with each time slice being given its own independent set of random effects ($\bm{\epsilon}_t$) with covariance matrix $\bm{\Sigma}_{\epsilon,t}$:
+and we assumed the same for the spatiotemporal random effects, with each time slice being given its own independent set of random effects ($\bm{\epsilon}_t$) with covariance matrix $\bm{\Sigma}_{\epsilon,t}$:
 
 $$
 \bm{\epsilon}_t \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_{\epsilon,t} \right).
 $$
 
-We allowed for anisotropy in the spatial and spatiotemporal correlation (REF).
+We allowed for anisotropy in the spatial and spatiotemporal correlation (e.g., REF).
 This allows the spatial correlation to decay at different rates north to south and east to west.
-The spatial random effects account for spatial factors that are constant across time, for example, depth and substrate type.
-The spatiotemporal random effects account for factors that vary from year to year spatially such as bottom temperature, water circulation patterns, species interactions, and species movement.
+The spatial random effects accounted for spatial factors that were constant across time, for example, depth and substrate type.
+The spatiotemporal random effects accounted for factors that varied from year-to-year spatially such as bottom temperature, water circulation patterns, species interactions, and species movement.
 As sensitivity analyses, we included alternate versions of our models that (1) also included for depth and (2) did not account for hook competition.
 
-We fit our model with TMB [@tmb], by ... *TODO*
-We checked that the models were consistent with convergence by checking that the maximum gradient across all estimated coefficients was < 0.001 and that the covariance matrix was positive-definite.
+We fit our model with TMB [@tmb], by ... *TODO* REML
+We checked that the model fits were consistent with convergence by checking that the maximum gradient across all estimated coefficients was < 0.001 and that the covariance matrix was positive-definite.
 
-We can project predictions from the model to the full survey domain (Figure \@ref(fig:hbll-area-grid)) using the covariance projection matrix Figure \@ref(fig:hbll-predicted-spacetime).
-We can also look at the individual components of the model.
-The spatial random effects are constant across years (Figure \@ref(fig:hbll-spatial-re)) and the spatiotemporal random effects vary across years (Figure \@ref(fig:hbll-spatiotemporal-re)).
+We projected predictions from the model to the full survey domain (Figure \@ref(fig:hbll-area-grid)) using the covariance projection matrix and the binlinear interpolation mesh provided by INLA (fig and REF) (Figure \@ref(fig:hbll-predicted-spacetime)).
+In terms of the model components, the spatial random effects were, by definition, constant across years (Figure \@ref(fig:hbll-spatial-re)), and the spatiotemporal random effects varied across years (Figure \@ref(fig:hbll-spatiotemporal-re)).
 
-We can then calculate expected biomass $B_t$ in year $t$ as:
+We then calculated expected biomass $B_t$ in year $t$ as:
 
 $$
 B_t = \sum_{j = 1}^{n_j}
@@ -97,11 +93,14 @@ $$
 
 where $j$ references a grid cell within the survey domain and $w_j$ represents the area of that grid cell (Figure \@ref(fig:hbll-area-grid)).
 In other words, we sum the predicted biomass across all grid cells within the survey domain for each year.
-We generated standard errors on the annual estimates of log biomass via the generalized Delta method as implemented in TMB [@tmb].
+We generated standard errors on the annual estimates of log biomass via the generalized delta method as implemented in TMB [@tmb].
 
 The resulting standardized population index accounts for the irregular sampling of the survey domain and hook competition and "stitches" the northern and southern regions into a single population index (Figure \@ref(fig:hbll-index)).
 The inclusion of depth or the exclusion of the hook competition adjustments had relatively minor effects on the population index (Figure \@ref(fig:hbll-index)).
-The model is also able to "fill in" what the index might hypothetically look like for the northern and southern regions independently (Figure \@ref(fig:hbll-index)).
+The model was also able to "fill in" what the index might hypothetically look like for the northern and southern regions independently (Figure \@ref(fig:hbll-index)).
+Note that this statistical interpolation cannot account for one-off events in the unobserved region such as an abnormally high abundance only in the northern region in a year when the southern region was surveyed.
+ 
+### Simulation testing survey "stitching" via spatiotemporal models {#sec:hbll-sim}
 
 We undertook a basic simulation analysis to test that our approach of "stitching" northern and southern regions into a single survey domain was reasonable from a statistical perspective.
 We generated a system that roughly matches the HBLL survey data we worked with in this document.
@@ -111,12 +110,11 @@ TODO: Poisson for simplicity
 We simulated an underlying true mean abundance on a square polygon.
 We then discarded the northern and southern regions in alternating years and attempted to fit a similar spatiotemporal model to the one used for the HBLL index standardization (Figure \@ref(fig:stich-sim-pred)).
 
-Despite the model only seeing alternating northern and southern regions, the model was able to reconstruct the unobserved missing portions based on the estimated spatial correlation, and to a lesser extent of the estimated spatiotemporal correlation
- (Figure \@ref(fig:stich-sim-pred)).
+Despite the model only seeing alternating northern and southern regions, the model was able to reconstruct the unobserved missing portions based on the estimated spatial correlation, and to a lesser extent, the estimated spatiotemporal correlation (Figure \@ref(fig:stich-sim-pred)).
 By projecting the model predictions onto a grid over the full area of the simulated square, our model was able to produce an index that was similar to the true index (Figure \@ref(fig:stich-sim-index)).
 If we instead naively generated the index using an approach to mimic a design-based approach (by summing the observed abundances each year), the resulting index does not reflect the true index in many years (Figure \@ref(fig:stich-sim-index)).
 
-Through experimentation (not shown) we found that the stitching is most accurate at recapturing the true index if the magnitude of spatial correlation deviations ($\omega_s$) is much larger than the magnitude of spatiotemporal correlation deviations ($\epsilon_{s,t}$).
+Through experimentation (not shown) we found that the stitching was most accurate at recapturing the true index if the magnitude of spatial correlation deviations ($\omega_s$) was much larger than the magnitude of spatiotemporal correlation deviations ($\epsilon_{s,t}$).
 This is the case in our HBLL model, where the marginal standard deviation of $\omega_s$ was approximately six times larger than the marginal standard deviation of $\epsilon_{s,t}$.
 
 ```{r}
