@@ -17,8 +17,8 @@ SRA <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", 
                  LWT = list(CAL = 0, CAA = 0))
 ret <- retrospective(SRA, 11)
 saveRDS(list(SRA, ret), file = "mse/scoping/scoping_base.rds")
-#SRA_list <- readRDS("mse/scoping/scoping_base.rds")
-#SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
+SRA_list <- readRDS("mse/scoping/scoping_base.rds")
+SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
 
 plot(SRA, retro = ret, file = "mse/scoping/scoping_base", dir = getwd(),
      open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
@@ -31,9 +31,24 @@ SRA2 <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2",
                  map_s_vul_par = SRA_data$map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
 ret2 <- retrospective(SRA2, 11)
-#saveRDS(list(SRA2, ret2), file = "mse/scoping/scoping_upweight_dogfish.rds")
-#SRA_list <- readRDS("mse/scoping/scoping_upweight_dogfish.rds")
-#SRA2 <- SRA_list[[1]]; ret2 <- SRA_list[[2]]
+saveRDS(list(SRA2, ret2), file = "mse/scoping/scoping_upweight_dogfish.rds")
+SRA_list <- readRDS("mse/scoping/scoping_upweight_dogfish.rds")
+SRA2 <- SRA_list[[1]]; ret2 <- SRA_list[[2]]
+
+# plot for report -------------------------------------------------------------
+# png(here::here("mse/figures/retrospective-equal-weighting.png"), width = 8, height = 5,
+#   res = 220, units = "in")
+# par(mfcol = c(2, 3), mar = c(5, 4, 1, 1), oma = c(0, 0, 2.5, 0), cex = 0.7)
+# plot(ret)
+# dev.off()
+#
+# png(here::here("mse/figures/retrospective-upweight-dogfish-est-sel.png"), width = 8, height = 5,
+#   res = 220, units = "in")
+# par(mfcol = c(2, 3), mar = c(5, 4, 1, 1), oma = c(0, 0, 2.5, 0), cex = 0.7)
+# plot(ret2)
+# dev.off()
+# -----------------------------------------------------------------------------
+
 plot(SRA2, retro = ret2, file = "mse/scoping/scoping_upweight_dogfish", dir = getwd(), open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
      MSY_ref = c(0.4, 0.8), render_args = list(output_format = "word_document"))
 
@@ -48,9 +63,58 @@ SRA3 <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2",
                  s_vul_par = s_vul_par, map_s_vul_par = map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
 ret3 <- retrospective(SRA3, 11)
-#saveRDS(list(SRA3, ret3), file = "mse/scoping/scoping_updog_fixsel.rds")
-#SRA_list <- readRDS("mse/scoping/scoping_updog_fixsel.rds")
-#SRA3 <- SRA_list[[1]]; ret3 <- SRA_list[[2]]
+saveRDS(list(SRA3, ret3), file = "mse/scoping/scoping_updog_fixsel.rds")
+SRA_list <- readRDS("mse/scoping/scoping_updog_fixsel.rds")
+SRA3 <- SRA_list[[1]]; ret3 <- SRA_list[[2]]
+
+#' @param xfrac The fraction over from the left side.
+#' @param yfrac The fraction down from the top.
+#' @param label The text to label with.
+#' @param pos Position to pass to text()
+#' @param ... Anything extra to pass to text(), e.g. cex, col.
+add_label <- function(xfrac, yfrac, label, pos = 4, ...) {
+  u <- par("usr")
+  x <- u[1] + xfrac * (u[2] - u[1])
+  y <- u[4] - yfrac * (u[4] - u[3])
+  text(x, y, label, pos = pos, ...)
+}
+
+plot_retro_pbs <- function(retro, legend = TRUE) {
+  color <- viridisLite::plasma(length(nyr_label))
+  Year_matrix <- matrix(as.numeric(dimnames(retro@TS)$Year), ncol = length(color), nrow = dim(retro@TS)[2], byrow = FALSE)
+  xlim <- range(as.numeric(dimnames(retro@TS)$Year))
+  nyr_label <- dimnames(retro@TS)$Peel
+  # for(i in 1:length(retro@TS_var)) {
+  for(i in 3) {
+    matrix_to_plot <- t(retro@TS[, , i])
+    ylim <- c(0, 1.1 * max(matrix_to_plot, na.rm = TRUE))
+    ylab <- attr(retro, "TS_lab")[i]
+    plot(NULL, NULL, xlim = xlim, ylim = ylim, xlab = "Year", ylab = ylab, axes = FALSE)
+    abline(h = 0, col = "grey")
+    if(grepl("MSY", as.character(ylab))) abline(h = 1, lty = 3)
+    matlines(Year_matrix, matrix_to_plot, col = color, lty = 1)
+    if (legend)
+      legend(1917, 4000, legend = nyr_label, lwd = 1, col = color, bty = "n", title = "Years removed:", y.intersp = 0.8)
+  }
+}
+
+# plot for report -------------------------------------------------------------
+png(here::here("mse/figures/retrospective-spawning-biomass.png"), width = 5, height = 5,
+  res = 260, units = "in")
+par(mfcol = c(2, 1), mar = c(0, 4, 0, 0), oma = c(4, 0, 1, 1), cex = 0.7, yaxs = "i")
+plot_retro_pbs(ret, legend = FALSE)
+add_label(0.02, 0.06, "(A) Initial fit")
+box()
+axis(2, at = seq(0, 5000, 1000))
+plot_retro_pbs(ret3)
+axis(2, at = seq(0, 4000, 1000))
+axis(1)
+box()
+mtext("Year", side = 1, line = 2.5, cex = 0.8)
+add_label(0.02, 0.06, "(B) Base OM")
+nyr_label <- dimnames(ret@TS)$Peel
+dev.off()
+# -----------------------------------------------------------------------------
 
 plot(SRA3, retro = ret3, file = "mse/scoping/scoping_updog_fixsel", dir = getwd(), open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
      MSY_ref = c(0.4, 0.8), render_args = list(output_format = "word_document"))
