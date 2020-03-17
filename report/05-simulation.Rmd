@@ -9,9 +9,9 @@ rversion <- gsub(" \\([0-9-]+\\)", "", devtools::session_info()$platform$version
 -  Projection period of 100 years to facilitate extinction risk for COSEWIC assessment.
 -->
 
-We ran the closed-loop simulations across 250 stochastic replicates using DLMtool version 5.4.2, `r rversion`, and the simulation random seed set to `1`, with the OMs and MPs described above.
+We ran the closed-loop simulations across 250 stochastic replicates using DLMtool version 5.4.2, `r rversion`, and the simulation random seed set to 1.
 We assessed convergence of the closed-loop simulation by plotting the cumulative performance metrics as replicates were added (Figure \@ref(fig:converge)).
-We deemed 250 replicates sufficient since the rank order of MPs was consistent for this number of replicates (Figure \@ref(fig:converge)).
+We deemed 250 replicates sufficient since the rank order of MPs remained consistent by this point as additional replicates were added (Figure \@ref(fig:converge)).
 
 (ref:fig-converge)
 Assessing convergence of the closed-loop simulations on consistent rank order of MPs within performance metrics.
@@ -46,11 +46,11 @@ pm_min_sat <- pm_min %>% filter(MP %in% mp_sat)
 To determine which MPs would be carried forward as satisficed MPs [@miller2010; and discussion in @anderson2020gfmp], we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
 All MPs met the satisficing criterion (LRP 1.5GT > 0.95) in individual OMs in the reference set and averaged across all four reference OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
 Since many MPs also generated low catches, we applied an additional satisficing filter retaining only MPs where average ST C10 > 0.50.
-This left us with Fixed TACs of 10 and 15 t and Islope MPs (Figures \@ref(fig:tigure-avg)).
+This left us with Fixed TACs of 10 t and 15 t and Islope MPs (Figure \@ref(fig:tigure-avg)).
 Applying these criteria resulted in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
 
-Between the two performance metrics used in the initial satisficing step, average LRP 1.5GT was `r round2(max(pm_avg_sat$"LRP 1.5GT"))` and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
-Minimum LRP 1.5GT was `r round2(max(pm_min_sat$"LRP 1.5GT"))` and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
+For the two performance metrics used in the initial satisficing step within the reference set, average LRP 1.5GT was `r round2(max(pm_avg_sat$"LRP 1.5GT"))` for all MPs and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
+Minimum LRP 1.5GT was `r round2(max(pm_min_sat$"LRP 1.5GT"))` for all MPs and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
 
 (ref:fig-tigure-avg) Average performance of all candidate MPs across the reference set of OMs.
 MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric (LT LRP) and using columns from left to right to break any ties.
