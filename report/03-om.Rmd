@@ -188,38 +188,35 @@ Multinomial annual sample sizes for age-composition data were based on the numbe
 
 *TODO: define a trip. What does "based on" mean? sample sizes was the number of trips or some function of number of trips?*
 
+
+*TODO: Simplify the text below and remove discussion of mohn's rho. RF will do this.*
+
 Initial attempts to fit the SRA model did not produce good fits to the observed indices of abundance.
-Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and the steepness of the stock-recruit relationship *h*, Mohn's $\rho = 0.25$; @mohn1999).
-For long-lived species like Yelloweye Rockfish, values of Mohn's $\rho > 0.2$ should raise concerns about model specification [@hurtado2015].
+Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of fishing mortality, spawning biomass and recruitment deviations when sequentially removing 11 years of data (when evaluated at the mean values of *M* and the steepness of the stock-recruit relationship *h*, Figure \@ref(fig:retro-initial)).
 The choice to base retrospective analysis on 11 years of data was primarily to evaluate sensitivity of the model to removal of each year of data, going back to 2009, which was the terminal year for the 2011 assessment.
 
-Upweighting the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) removed this retrospective bias in estimates of spawning biomass (Mohn's $\rho = -0.05$, evaluated at the mean of the distributions for *M* and *h*). 
-However, when this was done, the estimated age-at-full-selectivity in the HBLL survey was estimated to be 40+ years.
-This is inconsistent with the age-composition data, where the modes of the HBLL age-composition data occur at around 20 years.
+Upweighting the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) and fixing age-at-full-selectivity in the HBLL survey to 20 years removed the retrospective pattern. 
 An age-at-full selectivity of around 20 years is consistent with that estimated for the hook and line survey in the recent rebuilding plan for Outside Yelloweye Rockfish [@cox2020].
-*TODO: fact check the last sentence. What is the official name of that survey?*
+*TODO: fact check the last sentence. What is the official name of that survey? Did we fix it at or around 20 years? What did Cox2020 use exactly?*
 
-Therefore, in the present analysis, for the "Base" scenario, and all other scenarios except "Estimate HBLL selectivity", it was decided to fix the age-at-full selectivity of the HBLL Survey to 20 years, while also upweighting the dogfish survey. This fit generated small retrospective bias in spawning biomass (Mohn's $\rho = -0.07$, evaluated at the mean of the distributions for *M* and *h*).
+Therefore, in the present analysis, for the "Base" scenario, and all other scenarios except "Estimate HBLL selectivity", it was decided to fix the age-at-full selectivity of the HBLL Survey to 20 years, while also upweighting the dogfish survey.
 
-Retrospective bias among these fits was sensitive to the value of *M*, with larger retrospective bias in spawning biomass estimates at higher *M* (Figure \@ref(fig:mohns-rho)).
+*TODO: Quang: Is it possible to have the whole legend shown on these plots?*
 
-(ref:fig-mohns-rho) Values of Mohn's $\rho$ for three different model configurations: "Initial fit", "(1) Base", "(4) Estimate HBLL selectivity", across a range of values for *M*.
+(ref:fig-retro-initial) Retrospective patterns for the initial fit *TODO: write properly*.
 
-```{r mohns-rho, fig.cap="(ref:fig-mohns-rho)", out.width="6.3in"}
-knitr::include_graphics(here::here("mse/figures/conditioning/retrospective_M.png"))
+```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="6.3in"}
+knitr::include_graphics(here::here("mse/figures/retrospective-equal-weighting.png"))
+```
+
+(ref:fig-retro-base) Retrospective patterns for the Base scenario *TODO: write properly*.
+
+```{r retro-base, fig.cap="(ref:fig-retro-base)", out.width="6.3in"}
+knitr::include_graphics(here::here("mse/figures/retrospective-upweight-dogfish-fix-sel.png"))
 ```
 
 
-
-
-*Note about Low catch fit*
-
-to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
-
-
-To isolate the effects of specific sources of uncertainty on performance of MPs, alternative OMs were developed that changed the value (or distribution) of one parameter or data source of interest. OMs are divided into a reference set of core OMs representing the most important plausible model uncertainties, and a robustness set for testing sensitivity to a broader range of structural uncertainties [@rademeyer2007].
-
-The SRA was able to fit to the HBLL survey relative biomass index and TODO indices reasonably well for all OM scenarios (Figure \@ref(fig:survey-fits)).
+The SRA was able to fit to indices reasonably well for all OM scenarios (Figure \@ref(fig:survey-fits)).
 The TODO survey was better fit than the TODO, likely due to TODO (Figure \@ref(fig:survey-fits)).
 
 The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
@@ -307,4 +304,12 @@ Lines represent 100 random samples from the replicates.
 ```{r recdev-om, fig.cap="(ref:fig-recdev-om)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"))
 ```
+
+
+
+
+
+*Note about Low catch fit*
+
+to address uncertainty in historical catch, an alternative scenario was used where the 1986-2005 commercial catch was not doubled, and instead the gfdatabase records of commerical catch were used. Compared to (1), this OM implies a relatively smaller stock that has been fished more heavily. Between 1 and 2, relatively large extremes in assumed catches are used to illustrate the effect of catch uncertainty.
 

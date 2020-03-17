@@ -2,6 +2,8 @@
 # Miscellaneous plots generally associated with conditioning OM
 library(MSEtool)
 
+set.seed(382948)
+
 # Plot B/BMSY estimated from state-space surplus production model
 SRA_list <- readRDS("mse/scoping/scoping_base.rds")
 SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
