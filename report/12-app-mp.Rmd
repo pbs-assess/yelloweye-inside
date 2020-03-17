@@ -209,7 +209,7 @@ We also evaluated the same two configurations, applied every 10 years:
 
 *NO META RULES AS IN GFMP?*
 
-
+<!--
 ```{r, mp-hcrs, fig.cap="Proposed provisional harvest control rules associated with model-based MPs.", fig.asp=0.25, fig.width=9, warning=FALSE, out.width="\\textwidth"}
 f <- function (Brel, LRP, TRP, rel_min = 0, rel_max = 1, ...) {
     adj <- rep(rel_max, length(Brel))
@@ -264,5 +264,5 @@ g2 <- make_hcr_fig(filter(pars, type == "HCR-8040"), expression(Estimated~B/B[MS
 
 cowplot::plot_grid(g2, g1, nrow = 1)
 ```
-
+-->
 
