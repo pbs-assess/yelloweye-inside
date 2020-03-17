@@ -46,13 +46,14 @@ where $P_{i,t}$ is the proportion of observed hooks for set $i$ in year $t$ retu
 In instances where zero hooks were returned with bait, we set the number of baited hooks to one.
 We passed the hook-adjusted data (Figure \@ref(fig:hbll-hook-adjustment)) to the spatiotemporal model to develop the index of abundance.
 
-### Spatiotemporal HBLL index standardization
+### Spatiotemporal HBLL index standardization {#sec:hbll-spatiotemporal}
 
 We fit a geostatistical spatiotemporal index-standardization model:
 
 \begin{align}
   y_{s,t} &\sim \mathrm{NegBin}(\mu_{s,t}, \phi),\\
   \mu_{s,t} &= \exp \left( \bm{X}_{s,t} \bm{\beta} + \omega_s + \epsilon_{s,t} \right),
+(\#eq:hbll-model)
 \end{align}
 
 where NegBin refers to the negative binomial distribution (the NB2 parameterization [@hilbe2011] where the variance scales quadratically with the mean),
@@ -210,7 +211,7 @@ We use a spatiotemporal model to estimate the density of Yelloweye Rockfish per 
 
 ### Hook comparison {#sec:dog-hook-comparison}
 
-The survey fished with J-hooks originally and then changed to Circle-hooks in 2005.
+The survey fished with J-hooks originally and then changed to circle hooks in 2005.
 In 2004, @mcfarlane2005 undertook a calibration study to assess the potential for a change in catch rates due to a switch from J-hooks to circle hooks.
 The study only compared catch rates for Spiny Dogfish; however, the hook change likely affected catchability for Yelloweye Rockfish differently than for Spiny Dogfish.
 In the previous assessment, a catchability ratio was estimated using data for all rockfish and this ratio was used to scale the values in the 1980s.
@@ -222,15 +223,15 @@ By estimating the correction factor simultaneously with the standardization mode
 ### Depth {#sec:dog-depth}
 
 In addition to the survey not being designed for rockfishes, and the change in gear type, the shallower depth stratum was dropped in 2004 and later surveys.
-This was done to purposely try to avoid catching Rockfish (because of conservation concerns).
+This was done to purposely try to avoid catching rockfish (because of conservation concerns).
 While depth is not explicitly included in the spatiotemporal model, the spatial random effects should absorb much of the variation driven by depth will also accounting for other spatially varying effects.
 
 ### Hook competition {#sec:dog-hook-competition}
 
 The previous inside Yelloweye Rockfish assessment notes using an exponential hook competition model on the dogfish survey data in 2011.
-However, there are no data on the number of baited and empty hooks available for the Dogfish survey prior to 2019 and the previous assessment does not indicate how they accounted for this.
-Therefore, a hook competition model was not applied to the dogfish survey data in the present analysis.
-To partially account for hook competition, we include the number of dogfish caught (log transformed so is to have a multiplicative effect) as a covariate in the model.
+However, there are no data on the number of baited and empty hooks available for the dogfish survey prior to 2019 and it is unclear how the previous assessment accounted for this.
+Therefore, we did not apply an explicit hook competition model in the present analysis.
+However, to partially account for hook competition, we included the number of dogfish caught (log transformed so is to have a multiplicative effect on observed account) as a covariate in the model.
 
 ### Selectivity {#sec:dog-selectivity}
 
@@ -238,45 +239,40 @@ To partially account for hook competition, we include the number of dogfish caug
 
 ### Spatiotemporal dogfish survey index standardization
 
-We use a similar geostatistical model to that described for the HBLL survey (REF).
-with the addition of dogfish and hook-type covariates.
-Our model includes spatiotemporal random effects ($\epsilon_{s,t}$; defined for locations in space $s$ and time $t$
-and annual predictors for the mean biomass each year:
+We used a similar geostatistical model to that described for the HBLL survey (Section \@ref(sec:hbll-spatiotemporal)) with the addition of Dogfish and hook-type covariates. We included the log Dogfish count and hook-type in the model matrix $\bm{X}_{s,t}$:
 
 \begin{align}
-  y_{s,t} &\sim \mathrm{Tweedie}(\mu_{s,t}, p, \phi), \quad 1 < p < 2,\\
-  \mu_{s,t} &= \exp \left( \bm{X}_{s,t} \bm{\beta} + \omega_s + \epsilon_{s,t} \right).
+  y_{s,t} &\sim \mathrm{NegBin}(\mu_{s,t}, \phi),\\
+  \mu_{s,t} &= \exp \left( \bm{X}_{s,t} \bm{\beta} + \omega_s + \epsilon_{s,t} \right),
+(\#eq:dogfish-model)
 \end{align}
 
-The spatial random effects ($\omega_s$) are assumed
-to be drawn from a multivariate normal distribution with some covariance matrix
-$\bm{\Sigma}_\omega$:
+with symbols defined as above.
+Hook-type is an identifier for J-hook vs. circle-hook.
+
+In our projection of the model predictions onto the survey grid to calculate the standardized relative abundance:
 
 $$
-\bm{\omega} \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_\omega \right),
+B_t = \sum_{j = 1}^{n_j}
+  w_j \cdot \exp \left( \bm{X}_{j,t} \bm{\beta} + \omega_j + \epsilon_{j,t} \right),
 $$
 
-and we assume the same for the spatiotemporal random effects, with each time
-slice being given its own independent set of random effects ($\bm{\epsilon}_t$)
-with covariance matrix $\bm{\Sigma}_{\epsilon,t}$:
+```{r dogfish-model}
+m <- readRDS(here::here("data-generated/dogfish-model.rds"))
+est <- as.list(m$sd_report, "Estimate")
+se <- as.list(m$sd_report, "Std. Error")
+```
 
-$$
-\bm{\epsilon}_t \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_{\epsilon,t} \right).
-$$
+with symbols defined as above, we could predict for a J-hook or a circle hook.
+Choosing one or the other would place more of the uncertainty in the years with one or the other since the offsetting effect's uncertainty would be incorporated in only some years.
+As a compromise, we chose to predict for an average hook type across the data set to distribute this hook-type uncertainty across the timeseries.
+In practice, this meant coding circle hooks as `r round(min(m$data$circle_hook_centered), 2)` and J-hooks as `r round(max(m$data$circle_hook_centered), 2)` in the model-fitting matrix $\bm{X}_{s,t}$ and setting the equivalent predictor in the prediction model matrix to 0.
 
-<!-- m <- sdmTMB( -->
-<!--   formula = -->
-<!--     ye_count ~ 0 + circle_hook_centered + -->
-<!--     as.factor(year) + -->
-<!--     log(dogfish_count) + offset, -->
-<!--   data = d_utm, -->
-<!--   spde = sp, -->
-<!--   time = "year", -->
-<!--   silent = FALSE, -->
-<!--   anisotropy = TRUE, -->
-<!--   reml = TRUE, -->
-<!--   family = nbinom2(link = "log") -->
-<!-- ) -->
+We estimated that J-hooks caught
+`r sprintf("%.1f", round(exp(est$b_j[1]), 1))` times more Yelloweye Rockfish than circle-hooks, all else being equal, but with considerable uncertainty (95% confidence interval (CI): `r sprintf("%.1f", round(exp(est$b_j[1] - 1.96 * se$b_j[1]), 1))` -- `r sprintf("%.1f", round(exp(est$b_j[1] + 1.96 * se$b_j[1]), 1))`).
+We estimated the log Dogfish effect to be `r sprintf("%.2f", round((est$b_j[10]), 2))` (95% CI: `r sprintf("%.2f", round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`).
+This means that we can expect to catch, on average, about `r sprintf("%.2f", -1*round((est$b_j[10]), 2))`% (95% CI: `r sprintf("%.2f", -1*round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", -1*round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`%)
+fewer Yelloweye Rockfish for every 1% also caught on the same skate, presumably due to hook competition.
 
 
 <!--

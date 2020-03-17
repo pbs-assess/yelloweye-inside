@@ -70,6 +70,7 @@ sink("figs/dogfish-model.txt")
 print(m)
 sink()
 saveRDS(m, file = "data-generated/dogfish-model.rds")
+m <- readRDS("data-generated/dogfish-model.rds")
 
 set.seed(82302)
 d_utm$resids <- residuals(m) # randomized quantile residuals
