@@ -49,6 +49,9 @@ Since many MPs also generated low catches, we applied an additional satisficing 
 This left us with Fixed TACs of 10 and 15 t and Islope MPs (Figures \@ref(fig:tigure-avg)).
 Applying these criteria resulted in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
 
+Between the two performance metrics used in the initial satisficing step, average LRP 1.5GT varied between `r round2(min(pm_avg_sat$"LRP 1.5GT"))` and `r round2(max(pm_avg_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
+Minimum LRP 1.5GT varied between `r round2(min(pm_min_sat$"LRP 1.5GT"))` and `r round2(max(pm_min_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
+
 (ref:fig-tigure-avg) Average performance of all candidate MPs across the reference set of OMs.
 MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric (LT LRP) and using columns from left to right to break any ties.
 The colour shading reflects the probabilities.

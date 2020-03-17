@@ -2,23 +2,21 @@
 
 ## REFERENCE SET RESULTS
 
-Performance within the reference set of OMs varied across MPs and performance metrics (Figures \@ref(fig:tigure-avg), \@ref(fig:tigure-min), \@ref(fig:tigure-panel), and \@ref(fig:dot-lines)).
+Performance within the reference set of OMs varied across satisficed MPs (hereafter just "MPs") and performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
+All MPs were able to achieve LRP 1.5GT > 0.99.
+The short-term catch performance metrics at 10 and 15 t (ST C10 and ST C15) showed some contrast across MPs within the reference-set OMs with the fixed TACs of 10 and 15 t, by definition, meeting the respective performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
+The Islope MPs achieved between 0.59 and 0.88 for ST C10, depending on the specific Islope MP and OM (Figures \@ref(fig:tigure-panel)).
 
-TODO: something about variability across reference set scenarios (Figure \@ref(fig:tigure-panel)).
+<!--
+A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across MPs (Figure \@ref(fig:dot-lines)).
+In general, variation performance metric values for any one MP across reference-set OMs was small, with the slight exception of Islope_10_lambda08 for LT C20 (Figure \@ref(fig:dot-lines)).
+-->
 
-Between the two performance metrics used in the initial satisficing step, average LRP 1.5GT varied between `r round2(min(pm_avg_sat$"LRP 1.5GT"))` and `r round2(max(pm_avg_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
+Within the reference set, there was little to no trade-off between LTP 1.5GT and ST C10 since all were able to achieve LRP 1.5 GT > 0.99 (Figures \@ref(fig:tradeoff-reference)).
+Multidimensional trade-offs are challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)) and exemplify some of the warnings about rader plots offered in @anderson2020gfmp.
 
-Minimum LRP 1.5GT varied between `r round2(min(pm_min_sat$"LRP 1.5GT"))` and `r round2(max(pm_min_sat$"LRP 1.5GT"))`, and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
+The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference-set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
 
-A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across satisficed MPs (Figure \@ref(fig:dot-lines)).
-TODO: explain more results here
-
-Trade-offs among performance metrics for most of the satisficed MPs were TODO (add something here) within the reference-set scenarios (Figures \@ref(fig:tradeoff-reference) and \@ref(fig:spider-satisficed-mps-avg)).
-TODO (write something more here).
-
-- Low M OM more easily shows the conservation vs. yield tradeoff. To meet satisficing criterion for LRP 1.5GT, ST C10 must be very low.
-
-The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-no-cpue)).
 TODO (write something more here if desired).
 
 - FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM.
@@ -124,6 +122,8 @@ Figure \@ref(fig:dots-satisficed-mps-robust)
 
 Figure \@ref(fig:tradeoff-robust)
 Figure \@ref(fig:spider-satisficed-mps-robust)
+
+The "Low M OM more easily shows the conservation vs. yield tradeoff. To meet satisficing criterion for LRP 1.5GT, ST C10 must be very low.
 
 Figure \@ref(fig:proj-low-m)
 Figure \@ref(fig:proj-high-index-cv)
