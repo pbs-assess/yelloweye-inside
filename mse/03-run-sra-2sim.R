@@ -17,8 +17,8 @@ SRA <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2", 
                  LWT = list(CAL = 0, CAA = 0))
 ret <- retrospective(SRA, 11)
 saveRDS(list(SRA, ret), file = "mse/scoping/scoping_base.rds")
-#SRA_list <- readRDS("mse/scoping/scoping_base.rds")
-#SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
+SRA_list <- readRDS("mse/scoping/scoping_base.rds")
+SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
 
 plot(SRA, retro = ret, file = "mse/scoping/scoping_base", dir = getwd(),
      open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
@@ -31,9 +31,24 @@ SRA2 <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2",
                  map_s_vul_par = SRA_data$map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
 ret2 <- retrospective(SRA2, 11)
-#saveRDS(list(SRA2, ret2), file = "mse/scoping/scoping_upweight_dogfish.rds")
-#SRA_list <- readRDS("mse/scoping/scoping_upweight_dogfish.rds")
-#SRA2 <- SRA_list[[1]]; ret2 <- SRA_list[[2]]
+saveRDS(list(SRA2, ret2), file = "mse/scoping/scoping_upweight_dogfish.rds")
+SRA_list <- readRDS("mse/scoping/scoping_upweight_dogfish.rds")
+SRA2 <- SRA_list[[1]]; ret2 <- SRA_list[[2]]
+
+# plot for report -------------------------------------------------------------
+png(here::here("mse/figures/retrospective-equal-weighting.png"), width = 8, height = 5,
+  res = 220, units = "in")
+par(mfcol = c(2, 3), mar = c(5, 4, 1, 1), oma = c(0, 0, 2.5, 0), cex = 0.7)
+plot(ret)
+dev.off()
+
+png(here::here("mse/figures/retrospective-upweight-dogfish-est-sel.png"), width = 8, height = 5,
+  res = 220, units = "in")
+par(mfcol = c(2, 3), mar = c(5, 4, 1, 1), oma = c(0, 0, 2.5, 0), cex = 0.7)
+plot(ret2)
+dev.off()
+# -----------------------------------------------------------------------------
+
 plot(SRA2, retro = ret2, file = "mse/scoping/scoping_upweight_dogfish", dir = getwd(), open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
      MSY_ref = c(0.4, 0.8), render_args = list(output_format = "word_document"))
 
@@ -48,9 +63,17 @@ SRA3 <- SRA_scope(OM_condition, data = SRA_data[data_ind], condition = "catch2",
                  s_vul_par = s_vul_par, map_s_vul_par = map_s_vul_par, map_log_rec_dev = SRA_data$map_log_rec_dev,
                  LWT = list(CAL = 0, CAA = 0, Index = c(1, 4, 1, 1, 1)))
 ret3 <- retrospective(SRA3, 11)
-#saveRDS(list(SRA3, ret3), file = "mse/scoping/scoping_updog_fixsel.rds")
-#SRA_list <- readRDS("mse/scoping/scoping_updog_fixsel.rds")
-#SRA3 <- SRA_list[[1]]; ret3 <- SRA_list[[2]]
+saveRDS(list(SRA3, ret3), file = "mse/scoping/scoping_updog_fixsel.rds")
+SRA_list <- readRDS("mse/scoping/scoping_updog_fixsel.rds")
+SRA3 <- SRA_list[[1]]; ret3 <- SRA_list[[2]]
+
+# plot for report -------------------------------------------------------------
+png(here::here("mse/figures/retrospective-upweight-dogfish-fix-sel.png"), width = 8, height = 5,
+  res = 220, units = "in")
+par(mfcol = c(2, 3), mar = c(5, 4, 1, 1), oma = c(0, 0, 2.5, 0), cex = 0.7)
+plot(ret3)
+dev.off()
+# -----------------------------------------------------------------------------
 
 plot(SRA3, retro = ret3, file = "mse/scoping/scoping_updog_fixsel", dir = getwd(), open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
      MSY_ref = c(0.4, 0.8), render_args = list(output_format = "word_document"))
