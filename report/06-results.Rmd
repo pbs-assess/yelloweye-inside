@@ -12,17 +12,14 @@ A dot-and-line plot of the performance metrics aggregated across scenarios helps
 In general, variation performance metric values for any one MP across reference-set OMs was small, with the slight exception of Islope_10_lambda08 for LT C20 (Figure \@ref(fig:dot-lines)).
 -->
 
-Within the reference set, there was virtually no trade-off between LTP 1.5GT and ST C10 since all MPs were able to achieve LRP 1.5 GT > 0.99 (Figures \@ref(fig:tradeoff-reference)).
+Within the reference set, there was virtually no trade-off between LTP 1.5GT and ST C10 since all MPs were able to achieve LRP 1.5 GT > 0.99 (Figure \@ref(fig:tradeoff-reference)).
 Multidimensional trade-offs were challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)) and exemplify some of the warnings about rader plots offered in @anderson2020gfmp.
 
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference-set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
-
 TODO (write something more here if desired).
-
-- FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM.
-
-Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
-TODO (write something more here if desired).
+<!-- - FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM. -->
+Kobe plots demonstrated either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
+Within the reference set and across all satisficed MPs, only the low catch scenario ended up with some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < 0.4 *B*~MSY~) by the final projection year (Figure \@ref(fig:kobe)).
 
 (ref:fig-tigure-panel) Performance of satisficed MPs for the reference set OMs.
 MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:tigure-avg).
@@ -115,24 +112,23 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 
 ## ROBUSTNESS SET RESULTS
 
-The "(A) Low M" robustness scenario lowered the probability of achieving the LRP 1.5GT performance metric from > 0.99 probability in the reference set to a range of 0.75--0.90 (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)).
+The "(A) Low M" robustness scenario lowered the probability of achieving the LRP 1.5GT performance metric from >0.99 probability in the reference set to a range of 0.75--0.90 (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)).
 We saw similar declines in the other conservation performance metrics.
-The "(B) High HBLL CV" robustness scenario slightly lowered the probability of achieving the ST C10 performance metric (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)) presumably because of the added error in the projected HBLL index.
+The "(B) High HBLL CV" robustness scenario slightly lowered the probability of achieving the ST C10 performance metric (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
 For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference-set OMs but only achieved this performance metric with a probability of 0.79 in "(B) High HBLL CV".
 
-In contrast to the reference set, where we saw little trade-off between the ST C10 and LRP 1.5GT performance metrics, the "(A) Low M" robustness OM demonstrates a short-term-catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).
-The "(B) High HBLL CV" robustness scenario again demonstrates little trade-off between ST C10 and LRP 1.5GT.
-Similarly to the reference set, we find the radar plots challenging to interpret but include them to gauge reader interest at the Regional Peer Review meeting and as an illustration of their pitfalls for the MP Framework (Figure \@ref(fig:spider-satisficed-mps-robust)).
+In contrast to the reference set, where we saw little trade-off between the ST C10 and LRP 1.5GT performance metrics, the "(A) Low M" robustness OM demonstrated a short-term-catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).
+The "(B) High HBLL CV" robustness scenario again demonstrated little trade-off between ST C10 and LRP 1.5GT.
+Similarly to the reference set, we found the radar plots challenging to interpret but included them to gauge reader interest at the Regional Peer Review meeting and as an illustration of their pitfalls for the MP Framework (Figure \@ref(fig:spider-satisficed-mps-robust)).
 
-The projection plots illustrate the increased TAC variability across replicates and within individual replicates in the "(B) High HBLL CV" compared to the reference set OM projections (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
-
-In the projection plots for "(A) Low M", the CC_15t MP can take the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
+For the "(A) Low M" OM, the CC_15t MP can take the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
 The FMSYref and FMRYSref75 MPs illustrate that catches would have to be lower in this scenario than in the reference-set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
+There is increased TAC variability across replicates and within individual replicates in the "(B) High HBLL CV" compared to the reference set OM projections (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
+For the "(A) Low M" OM, the Kobe plots indicated that a number of replicates end up with *F* > *F*~MSY~ and *B* < 0.4 *B*~MSY~  (Figure \@ref(fig:kobe)). 
+This occurs across the MPs, although it happens the least for the CC_10t MP, and, among the Islope MPs, it happens the least for Islop_10_lambda04 (Figure \@ref(fig:kobe)).
 
-We can examine the sensitivity of the projections to the various OM scenario conditions (Figure \@ref(fig:proj-scenarios)).
-The historical trajectories were most sensitive to the assumptions of ...
-
-Note that sensitivity of the projections does not necessarily correspond to sensitivity of the rank order of MPs (Figure \@ref(fig:tigure-panel-rob)).
+By comparing the projections across scenarios on the same figure, we can see that *F*/*F*~MSY~, *B*/*B*~MSY~, and catch were most sensitive to the "(A) Low M" OM assumptions and mildly sensitive to the "(4) Estimate HBLL selectivity" OM (Figure \@ref(fig:proj-scenarios)). 
+Note that sensitivity of the projections does not necessarily correspond to sensitivity of the rank order of MPs---what ultimately matters in this decision context (Figures \@ref(fig:tigure-panel) and \@ref(fig:tigure-panel-rob)).
 
 (ref:fig-tigure-panel-rob) Performance of satisficed MPs for the robustness set OMs.
 
