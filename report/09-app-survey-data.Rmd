@@ -81,7 +81,7 @@ The spatial random effects account for spatial factors that are constant across 
 The spatiotemporal random effects account for factors that vary from year to year spatially such as bottom temperature, water circulation patterns, species interactions, and species movement.
 As sensitivity analyses, we included alternate versions of our models that (1) also included for depth and (2) did not account for hook competition.
 
-We fit our model with TMB [@tmb], by ...
+We fit our model with TMB [@tmb], by ... *TODO*
 We checked that the models were consistent with convergence by checking that the maximum gradient across all estimated coefficients was < 0.001 and that the covariance matrix was positive-definite.
 
 We can project predictions from the model to the full survey domain (Figure \@ref(fig:hbll-area-grid)) using the covariance projection matrix Figure \@ref(fig:hbll-predicted-spacetime).
@@ -179,7 +179,7 @@ The survey is a depth stratified longline survey that uses snap on gear with 300
 A more detailed description of survey methods is provided in [@king2012].
 For most of the time series, set-by-set catch of Rockfish has been recorded.
 Beginning in 2019, hook-by-hook data for all captured species was collected on board by DFO technicians, along with biological data for Rockfish.
-We use a spatiotemporal model to estimate the density of Yelloweye Rockfish per km^2^. We calculate the area swept by multiplying the number of hooks deployed by the estimated width swept by the length of two gangions and the estimated distance between hooks (8ft spacing).
+We use a spatiotemporal model to estimate the density of Yelloweye Rockfish per km^2^. We calculate the area swept by multiplying the number of hooks deployed by the estimated width swept by the length of two gagnions and the estimated distance between hooks (8ft spacing).
 
 ### Hook comparison {#sec:dog-hook-comparison}
 
