@@ -9,7 +9,8 @@ The Islope MPs showed some contrast across MPs within the reference set for ST C
 The Islope MPs achieved between 0.59 and 0.88 for ST C10, depending on the specific Islope MP and OM (Figures \@ref(fig:tigure-panel)).
 
 Within the reference set, there was virtually no trade-off between LTP 1.5GT and ST C10 since all MPs were able to achieve LRP 1.5 GT > 0.99 (Figure \@ref(fig:tradeoff-reference)).
-Multidimensional trade-offs were challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)) and exemplify some of the warnings about rader plots offered in @anderson2020gfmp.
+Multidimensional trade-offs were challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)) and exemplify some of the warnings about radar plots offered in @anderson2020gfmp.
+We included them to gauge reader interest at the Regional Peer Review meeting and as an illustration of their pitfalls for the MP Framework.
 
 <!--
 A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across MPs (Figure \@ref(fig:dot-lines)).
@@ -120,7 +121,7 @@ For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving S
 
 In contrast to the reference set, where we saw little trade-off between the ST C10 and LRP 1.5GT performance metrics, Scenario (A) demonstrated a short-term-catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).
 Scenario (B) demonstrated little trade-off between ST C10 and LRP 1.5GT.
-Similar to the reference set, we found the radar plots challenging to interpret but included them to gauge reader interest at the Regional Peer Review meeting and as an illustration of their pitfalls for the MP Framework (Figure \@ref(fig:spider-satisficed-mps-robust)).
+Similar to the reference set, we found the radar plots challenging to interpret (Figure \@ref(fig:spider-satisficed-mps-robust)).
 
 Projection timeseries plots of *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further explain the closed-loop simulation dynamics for the robustness set (Figure \@ref(fig:proj-low-m) and \@ref(fig:proj-high-index-cv)).
 For Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
