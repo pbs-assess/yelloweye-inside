@@ -2,7 +2,7 @@
 
 Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries.
 
-## Commercial Catch Data {#sec:com-catch-data}
+## COMMERCIAL CATCH DATA {#sec:com-catch-data}
 
 *TODO: please provide the years for which the reconstruction was done ---- 1918-2005, but we only used the reconstruction from 1918 to 1985. The "credible period" of data used in the reconstruction is from 1997-2005. see explanation in paragraph 1. They ended in 2005 because that was the last year of data in one of the databases they were using -- MJB* 
 
@@ -56,7 +56,7 @@ tidyr::pivot_longer(comm_catch, -1) %>%
 
 \clearpage
 
-## Recreational Catch Data {#sec:rec-catch-data}
+## RECREATIONAL CATCH DATA {#sec:rec-catch-data}
 
 In 2012, DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data. However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis[@dfo2015].
 
@@ -110,7 +110,7 @@ csasdown::csas_table(rec_wide,
   kableExtra::column_spec(1:13, width = "0.75cm")
 ```
 
-## Food, Social and Ceremonial (FSC) Catch {#sec:fsc-catch-data}
+## FOOD, SOCIAL, AND CEREMONIAL CATCH (FSC) {#sec:fsc-catch-data}
 
 Yelloweye Rockfish are an important traditional food source of coastal First Nations in BC [@eckert2018], including in the inside waters of 4B. Total FSC catch data of Yelloweye Rockfish, as well as other groundfish species, are not available for either the historic or contemporary time period and particularly not available resolved to the species [M. Fetterly and A. Rushton, pers. comm.].
 To account for FSC catch in the last stock assessment, Yamanaka et al. (2011) used a consumption rate (0.23 kg/year/person), which was half of the consumption rate determined in a traditional diet study from Southeast Alaska, applied to the First Nations population near area 4B over the time series (1918-2009).
