@@ -12,8 +12,8 @@ A dot-and-line plot of the performance metrics aggregated across scenarios helps
 In general, variation performance metric values for any one MP across reference-set OMs was small, with the slight exception of Islope_10_lambda08 for LT C20 (Figure \@ref(fig:dot-lines)).
 -->
 
-Within the reference set, there was little to no trade-off between LTP 1.5GT and ST C10 since all were able to achieve LRP 1.5 GT > 0.99 (Figures \@ref(fig:tradeoff-reference)).
-Multidimensional trade-offs are challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)) and exemplify some of the warnings about rader plots offered in @anderson2020gfmp.
+Within the reference set, there was virtually no trade-off between LTP 1.5GT and ST C10 since all MPs were able to achieve LRP 1.5 GT > 0.99 (Figures \@ref(fig:tradeoff-reference)).
+Multidimensional trade-offs were challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)) and exemplify some of the warnings about rader plots offered in @anderson2020gfmp.
 
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference-set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
 
@@ -85,7 +85,7 @@ knitr::include_graphics(here("mse/figures/ye-projections-lowcatch_fixsel.png"))
 knitr::include_graphics(here("mse/figures/ye-projections-episodic_recruitment.png"))
 ```
 
-(ref:fig-proj-upweight-dogfish) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "(4) Higher steepness".
+(ref:fig-proj-upweight-dogfish) Same as Figure \@ref(fig:proj-updog-fixsel) but for the OM "(4) Estimate HBLL selectivity".
 
 ```{r proj-upweight-dogfish, fig.cap="(ref:fig-proj-upweight-dogfish)", out.width="6.5in"}
 knitr::include_graphics(here("mse/figures/ye-projections-upweight_dogfish.png"))
@@ -115,18 +115,19 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 
 ## ROBUSTNESS SET RESULTS
 
-For the Islope MPs, we see a slight loss of catch in the "(B) High CV HBLL projected" OM if the index is actually less precise than assumed in the reference set.
+The "(A) Low M" robustness scenario lowered the probability of achieving the LRP 1.5GT performance metric from > 0.99 probability in the reference set to a range of 0.75--0.90 (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel-ref)).
+We saw similar declines in the other conservation performance metrics.
+The "(B) High HBLL CV" robustness scenario slightly lowered the probability of achieving the ST C10 performance metric (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel-ref)) presumably because of the added error in the projected HBLL index.
+For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference-set OMs but only achieved this performance metric with a probability of 0.79 in "(B) High HBLL CV".
 
-Figure \@ref(fig:tigure-panel-rob)
-Figure \@ref(fig:dots-satisficed-mps-robust)
+In contrast to the reference set, where we saw little trade-off between the ST C10 and LRP 1.5GT performance metrics, the "(A) Low M" robustness OM demonstrates a short-term-catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).
+The "(B) High HBLL CV" robustness scenario again demonstrates little trade-off between ST C10 and LRP 1.5GT.
+Similarly to the reference set, we find the radar plots challenging to interpret but include them to gauge reader interest at the Regional Peer Review meeting and as an illustration of their pitfalls for the MP Framework (Figure \@ref(fig:spider-satisficed-mps-robust)).
 
-Figure \@ref(fig:tradeoff-robust)
-Figure \@ref(fig:spider-satisficed-mps-robust)
+The projection plots illustrate the increased TAC variability across replicates and within individual replicates in the "(B) High HBLL CV" compared to the reference set OM projections (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
 
-The "Low M OM more easily shows the conservation vs. yield tradeoff. To meet satisficing criterion for LRP 1.5GT, ST C10 must be very low.
-
-Figure \@ref(fig:proj-low-m)
-Figure \@ref(fig:proj-high-index-cv)
+In the projection plots for "(A) Low M", the CC_15t MP can take the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
+The FMSYref and FMRYSref75 MPs illustrate that catches would have to be lower in this scenario than in the reference-set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
 
 We can examine the sensitivity of the projections to the various OM scenario conditions (Figure \@ref(fig:proj-scenarios)).
 The historical trajectories were most sensitive to the assumptions of ...
@@ -139,7 +140,7 @@ Note that sensitivity of the projections does not necessarily correspond to sens
 knitr::include_graphics(here("mse/figures/ye-tigure-robset.png"))
 ```
 
-```{r dots-satisficed-mps-robust, fig.cap="Performance of satisficed MPs for the robustness set OMs.", out.width="0.9\\textwidth"}
+```{r dots-satisficed-mps-robust, fig.cap="Performance of satisficed MPs for the robustness set OMs.", out.width="0.9\\textwidth", eval=FALSE}
 knitr::include_graphics(here("mse/figures/ye-dot-robset.png"))
 ```
 
