@@ -1,15 +1,16 @@
 
 # IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:mp}
 
-@anderson2020gfmp screened all MPs available in DLMtool as of November 2019. DLMtool includes data-limited MPs that make different types of management recommendations, including adjustments to total allowable catch (TAC), effort, or spatial allocation of catch or effort.
+@anderson2020gfmp screened all MPs available in DLMtool as of November 2019.
+DLMtool includes data-limited MPs that make different types of management recommendations, including adjustments to total allowable catch (TAC), effort, or spatial allocation of catch or effort.
 This represents a fairly comprehensive set of data-limited MPs available in the primary literature or agency reports to date.
 @anderson2020gfmp also adjusted some of the DLMtool MPs to accommodate the types of data available for BC groundfish (e.g., biennial surveys in several management areas), or to reflect fishery operations.
 The MP Framework only considers MPs that make TAC recommendations, because most groundfish stocks are managed by quotas and TACs.
 
 @anderson2020gfmp excluded certain MPs from the MP Framework based on a number
-of requirements that would rarely be met for BC groundfish stocks. Excluded MPs were those that required: knowledge of absolute abundance; recent age-composition data;  knowledge of depletion; and knowledge of steepness (*h*) of the stock-recruit relationship, since these are likely to be major axes of uncertainty for the stocks to which this framework will be applied.
+of requirements that would rarely be met for BC groundfish stocks.
+Excluded MPs were those that required: knowledge of absolute abundance; recent age-composition data; knowledge of depletion; and knowledge of steepness (*h*) of the stock-recruit relationship, since these are likely to be major axes of uncertainty for the stocks to which this framework will be applied.
 While it is necessary to explore these axes of uncertainty within OMs, implementing MPs real data that require knowledge of these factors would require many additional assumptions.
-
 A library of all MPs considered in the MP Framework is provided in @anderson2020gfmp (their Appendix D).
 MPs considered for this Inside Yelloweye Rockfish rebuilding plan are framework are detailed here in Appendix \@ref(app:mps).
 
@@ -22,56 +23,51 @@ These MPs can be divided into two main categories:
 
 ### CONSTANT-CATCH MPs
 
-As the name implies, constant-catch MPs set the recommended catch to some fixed level, typically based on recent or historical catches.
+Constant-catch MPs set the recommended catch to some fixed level, typically based on recent or historical catches.
 Constant-catch MPs do not incorporate feedback between the management system and the population---they make the same catch recommendation regardless of trends in the population index.
 The current MP being used for Inside Yelloweye Rockfish is a constant-catch MP of 15 t.
 
-Constant-catch MPs considered in this document are provided in Appendix \@ref(app:MPs), Section \@ref(sec:mp-cc).
+We considered three constant-catch MPs: 5 t, 10 t, and 15 t (Appendix \@ref(app:mps), Section \@ref(sec:mp-cc)).
 
 ### INDEX-BASED MPs 
 
-Index-based MPs set the TAC relative to the change in the index over time.
+Index-based MPs, in general, adjust the TAC based changes in a population index over time.
 Index-ratio MPs increase or decrease the TAC in accordance with the ratio of the index from two different time periods.
 Index-slope MPs increase or decrease the TAC in accordance with the estimated slope in the index over recent time. 
-
-A third type, target MPs, adjusts the TAC based on the ratio of the recent index and a target index value.
-These were not considered here as further guidance from management would be needed in order to select the appropriate target value.
+A third type, index-target MPs, adjusts the TAC based on the ratio of the recent index and a fixed target index value.
+We did not consider index-target MP here as further guidance from management would be needed in order to select the appropriate target value.
 For rebuilding plans, the main objective is rebuild the stock above the LRP.
 However, the LRP is not likely to be a desired target stock status.
 
-Index-based MPs were evaluated with either annual updates, or five-yearly updates with fixed TAC between updates. All index-based MPs set a minimum TAC "floor" = 0.5 t, which is approximately the amount of catch required for surveys to continue.
-
-MPs considered in this document are provided in Appendix \@ref(app:MPs), Section \@ref(sec:mp-ibased).
+We evaluated index-based MPs with either annual updates or five-year updates with fixed TAC between updates (denoted "5u"). 
+All index-based MPs set a minimum TAC "floor" = 0.5 t, which is approximately the amount of catch required for scientific surveys to continue.
+We included the index-based MPs: IDX, Iratio, GB_slope, and Islope with a variety of configurations (Appendix \@ref(app:MPs), Section \@ref(sec:mp-ibased)).
 
 ## MODEL-BASED MPs
 
 In addition to the empirical MPs, we considered a surplus production (SP) model.
-We provisionally utilized the SP model coded in MSEtool [@huynh_msetool_2019] and based on @fletcher1978 (see @anderson2020gfmp, their Appendix D) paired with a two alternative harvest control rules (HCRs):
+We used the SP model coded in MSEtool [@huynh_msetool_2019] and based on @fletcher1978 (see @anderson2020gfmp, their Appendix D) paired with a two alternative harvest control rules (HCRs):
 
 1. 80-40% BMSY as the USR and LRP
-
 2. 40-10% B0 as the USR and LRP
 
-We evaluated two assessment frequencies (five and 10 years), with fixed TAC between assessments.
+We evaluated two assessment frequencies (five and 10 years), with a fixed TAC between assessments.
 
 ## REFERENCE MPs
 
-In addition to the empirical and model-based candidate MPs, it is important to include reference MPs.
-Provisionally, we suggest the following reference MPs:
+In addition to the empirical and model-based candidate MPs, we included the following reference MPs:
 
-* No fishing
-* Fishing at F/F~MSY~
-* Fishing at 0.75 F/F~MSY~
+1. No fishing (NFref)
+2. Fishing at F/F~MSY~ (FMSYref)
+3. Fishing at 0.75 F/F~MSY~ (FMSYref75)
 
 The purpose of reference MPs is not to explore viable management strategies but to bound the range of expected or possible performance and contextualize whether differences between performance statistics among MPs are meaningful [@punt2016].
 For example, the "no fishing" reference MPs provides information on maximum possible stock levels and the maximum possible rate of rebuilding under a rebuilding scenario. 
-The "fishing at 0.75 F/F~MSY~" MP illustrates performance under an omniscient manager with perfect information.
-
 
 The full set of candidate MPs we evaluated is provided in Table \@ref(tab:mps). See Appendix \@ref(app:mps) for full descriptions.
 
 ```{r mps, results='asis'}
 mp <- readr::read_csv(here("mse",  "mp.txt"), comment = "#")
-csasdown::csas_table(mp, caption = "Candidate MPs.", col_names = c("Management procedure", "MP type"))
+csasdown::csas_table(mp, caption = "Candidate MPs. \"5u\" and \"10u\" refer to every-five- and every-10-year update intervals; the other MPs were applied annually. Other numbers refer to MP configurations.", col_names = c("Management procedure", "MP type"))
 ```
 
