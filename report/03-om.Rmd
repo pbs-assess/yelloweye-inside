@@ -317,10 +317,10 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_high_index_
 
 The reference and robustness scenarios rendered a range of estimated parameter values (Figure \@ref(fig:sra-conditioned-parameters)).
 
-*TODO: Can we reduce the x-axis range for R0?*
-
 (ref:fig-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. Other parameters: Fishing mortality at age, the historical depletion trajectory, and historical recruitment deviations are also derived from the SRA model. Historical depletion trajectories are shown in Figure \@ref(fig:depletion-om), apical fishing mortality by year are shown in Figure \@ref(fig:F-om), and historical recruitment deviations are shown in Figure \@ref(fig:recdev-om).
 D refers to depletion. AC refers to $\theta_\textrm{AC}$.
+For visualization purposes, the R0 axis limits have been restricted to a maximum of 490 and the AC axis limits to a minimum of 0.76.
+This excludes a small number of replicates.
 
 ```{r sra-conditioned-parameters, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-conditioned-parameters)"}
 knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
