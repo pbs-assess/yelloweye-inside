@@ -186,10 +186,10 @@ While this is unlikely to be true, as First Nations and others would have been c
 ### Selection of Base OM
 
 Initial attempts to fit the SRA model did not produce good fits to the observed indices of abundance.
-Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of fishing mortality, spawning biomass and recruitment deviations when sequentially removing 11 years of data (when evaluated at the mean values of *M* and the steepness of the stock-recruit relationship *h*, Figure \@ref(fig:retro-initial)).
+Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and the steepness of the stock-recruit relationship *h*, Figure \@ref(fig:retro-initial), top panel).
 The choice to base retrospective analysis on 11 years of data was primarily to evaluate sensitivity of the model to removal of each year of data, going back to 2009, which was the terminal year for the 2011 assessment.
 
-Upweighting the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) and fixing age-at-full-selectivity in the HBLL survey to 20 years removed the retrospective pattern. 
+Upweighting the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) and fixing age-at-full-selectivity in the HBLL survey to 20 years removed the retrospective pattern (Figure \@ref(fig:retro-initial), bottom panel). 
 An age-at-full selectivity of around 20 years is consistent with that estimated for the hook and line survey in the recent rebuilding plan for Outside Yelloweye Rockfish [@cox2020].
 *TODO: fact check the last sentence. What is the official name of that survey? Did we fix it at or around 20 years? What did Cox2020 use exactly?*
 
@@ -200,18 +200,10 @@ Selectivity in the Dogfish Survey was set to mirror selectivity in the HBLL surv
 Commercial selectivity was fixed to approximate the selectivity used in the commercial longline fishery for Outside Yelloweye Rockfish [@cox2020].
 *TODO: Recreational selectivity. I think it was set the same as survey?*
 
-*TODO: Quang: Is it possible to have the whole legend shown on these plots?*
-
-(ref:fig-retro-initial) Retrospective patterns for the initial fit *TODO: write properly*.
+(ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and Scenario (1) *TODO: write properly*.
 
 ```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="6.3in"}
-knitr::include_graphics(here::here("mse/figures/retrospective-equal-weighting.png"))
-```
-
-(ref:fig-retro-base) Retrospective patterns for the Base scenario *TODO: write properly*.
-
-```{r retro-base, fig.cap="(ref:fig-retro-base)", out.width="6.3in"}
-knitr::include_graphics(here::here("mse/figures/retrospective-upweight-dogfish-fix-sel.png"))
+knitr::include_graphics(here::here("mse/figures/retrospective-spawning-biomass.png"))
 ```
 
 *TODO: Can we show the selectivity plots?*
