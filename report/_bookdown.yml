@@ -13,7 +13,8 @@ rmd_files: ["index.Rmd",
             "10-app-catch-data.Rmd",
             "11-app-om.Rmd",
             "12-app-mp.Rmd",
-            # "13-app-pinnipeds.Rmd",
+            #"13-app-pinnipeds.Rmd",
+            "14-app-cosewic.Rmd",
             "98-environment.Rmd",
             "99-references.Rmd"]
 delete_merged_file: true

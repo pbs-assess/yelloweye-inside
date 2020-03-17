@@ -2,25 +2,24 @@
 
 Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries.
 
-## Commercial Catch Data {#sec:com-catch-data}
+## COMMERCIAL CATCH DATA {#sec:com-catch-data}
 
-*TODO: please provide the years for which the reconstruction was done ---- There was an issue with how we used the reconstructed (1918-1985) vs raw commercial data (1985-2019), which I tried to explain in paragraph 4. The "credible period" of data used in the reconstruction is from 1997-2005. see explanation in paragraph 1. They ended in 2005 because that was the last year of data in one of the databases they were using -- MJB* 
+*TODO: please provide the years for which the reconstruction was done ---- 1918-2005, but we only used the reconstruction from 1918 to 1985. The "credible period" of data used in the reconstruction is from 1997-2005. see explanation in paragraph 1. They ended in 2005 because that was the last year of data in one of the databases they were using -- MJB* 
 
 Rockfish catch data can be grouped into 3 time periods: historic (1918-1950), early electronic (1951-2005), and modern (2006 onwards). There are two major sources of uncertainty in the historical and early electronic periods for Inside Yelloweye rockfish. The first uncertainty is that rockfish catch, other than Pacific Ocean Perch, was reported as an aggregate (other rockfish, ORF) in historical landings. To reconstruct historical catches an algorithm was developed by Rowan Haigh and Lynn Yamanaka of DFO [@haigh2011]. The reconstruction algorithm applies a ratio calculated from a period with credible landings data from the hook and line dockside monitoring program (1997-2005) and applies it to generate a time series of catch by species, year, fishery sector, and management area [@haigh2011]. "Credible" landings data are taken from reference years where catch knowledge was considered high and stable, beginning in the 1997 with the start of observer trawl coverage and the individual vessel quota system [@haigh2011]. 
 
-The second major source of uncertainty is the magnitude of unreported catch that was released or discarded at sea, prior to the introduction of 100% observer coverage in 2006. The catch reconstruction of @haigh2011 assumes no discarding prior to 1986 and that discards are fully reported in DFO databases since 2006. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets using data from 2000-2004 hook and line observer logs. The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  *TODO: What about discarding between 1986 and 2005? Is this covered by the doubling? If so please explain --- I do not know the answer to this. The reconstruction was completely separate from the last assessment. I think the fishermen decided they didn't trust the log books and so they insisted on doubling the catch for those years, but the algorithm didn't take that concern into account. They found "useful" information in the observer logs. At least that is what is written in the paper --- MJB*
+The second major source of uncertainty is the magnitude of unreported catch that was released or discarded at sea, prior to the introduction of 100% observer coverage in 2006. The catch reconstruction of @haigh2011 assumes no discarding prior to 1986, when the ZN licence was instituted. Prior to that it is assumed all Rockfish were kept. Discards are assumed to be fully reported in DFO databases since 2006 and the introduction of 100% observer coverage. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets using data from 2000-2004 hook and line observer logs. The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  
 
-Raw commercial catch data for Inside Yelloweye was extracted from the GFCatch database, which is maintained by the groundfish data unit at DFO.
-An earlier version of the catch reconstruction algorithm was used to develop the commercial catch time series used in the previous stock assessment for Inside Yelloweye Rockfish [@yamanaka2011], as the final version was not yet published. Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020 ).
-As well, ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020 ).For these reasons, the time series of commercial catch used in the current analysis differs from that used in the most recent stock assessment from 2009.
+The commercial catch time series used in this analysis differs from the one previously reported in 2009, for several reasons. Ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020 ). As well, an earlier version of the catch reconstruction algorithm was used to develop the catch time series for the previous stock assessment by @yamanaka2011, as the final version had not yet been published. Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020 ).
 
-For consistency with the previous assessment for Inside Yelloweye Rockfish [@yamanaka2011], the total commercial catch for 1986-2005 used to calibrate our OMs was doubled.
-@yamanaka2011 made the decision to double the catch for those years, based on feedback from the commercial industry that they did not have confidence in commercial logbooks for this period [@dfo2012].
+The reconstruction algorithm can be applied to all years in the timeseries, up to 2005 because after 2006 there is no need, due to full reporting. However, for this analysis we used the reconstructed catch data from 1918-1985, switching to nominal catch data in 1986. The nominal catch from 1986-2005 was then doubled to calibrate our OMs,to be consistent with the previous assessment [@yamanaka2011]. In 2009, advice from industry representatives indicated that the scale of unreported catch was equal to landed catch. Because discards are estimated as part of the catch reconstruction we decided to stop using the reconstructed catch in 1985 to avoid double counting of discards.   
+*TODO: Sean made a figure proving that it didn't make much difference. Maybe include it here?*
+ 
 In the current analysis we explore one OM scenario where the 1986-2005 commercial catches were not doubled ("Low catch" scenario, Section \ref(sec:approach3-reference2)).
 
-*TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005*
+*TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005 *
 
-*TODO: This table not rendering, not sure why - me neither, but I think it is an issue with col_names   MJB*
+*TODO: This table not rendering, not sure why - me neither, but I think it is an issue with 'col_names' --MJB*
 
 \clearpage
 
@@ -57,7 +56,7 @@ tidyr::pivot_longer(comm_catch, -1) %>%
 
 \clearpage
 
-## Recreational Catch Data {#sec:rec-catch-data}
+## RECREATIONAL CATCH DATA {#sec:rec-catch-data}
 
 In 2012, DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data. However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis[@dfo2015].
 
@@ -111,7 +110,7 @@ csasdown::csas_table(rec_wide,
   kableExtra::column_spec(1:13, width = "0.75cm")
 ```
 
-## Food, Social and Ceremonial (FSC) Catch {#sec:fsc-catch-data}
+## FOOD, SOCIAL, AND CEREMONIAL CATCH (FSC) {#sec:fsc-catch-data}
 
 Yelloweye Rockfish are an important traditional food source of coastal First Nations in BC [@eckert2018], including in the inside waters of 4B. Total FSC catch data of Yelloweye Rockfish, as well as other groundfish species, are not available for either the historic or contemporary time period and particularly not available resolved to the species [M. Fetterly and A. Rushton, pers. comm.].
 To account for FSC catch in the last stock assessment, Yamanaka et al. (2011) used a consumption rate (0.23 kg/year/person), which was half of the consumption rate determined in a traditional diet study from Southeast Alaska, applied to the First Nations population near area 4B over the time series (1918-2009).
