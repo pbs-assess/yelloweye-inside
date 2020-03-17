@@ -71,6 +71,8 @@ In other words, this figure illustrates the worst performance of each MP across 
 knitr::include_graphics(here("mse/figures/ye-tigure-refset-min.png"))
 ```
 
+\clearpage
+
 We focus on evaluating trade-offs among satisficed MPs in the next section. 
 However, in terms of MPs that did not meet the satisficing criteria (Figure \@ref(fig:proj-not-satisficed-eg)):
 
