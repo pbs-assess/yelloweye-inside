@@ -20,7 +20,7 @@ In the current analysis we explore one OM scenario where the 1986-2005 commercia
 
 *TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005*
 
-*TODO: This table not rendering, not sure why*
+*TODO: This table not rendering, not sure why - me neither, but I think it is an issue with col_names   MJB*
 
 \clearpage
 
@@ -129,7 +129,7 @@ Dual fishing trips that could not be mostly attributed to 4B or outside waters w
 Most of the dual fishing trips from the northern part of the study area because this is also where most of the commercial fishing for Yelloweye Rockfish in 4B currently occurs.
 Indigenous fishers from the member First Nations represented by the A-Tlegay Fisheries Society, are largely obtaining Yelloweye Rockfish on dual fishing trips (Christa Rusel, pers. comm.).
 
-In the southern part of the study area, indigenous fishers have little commercial capacity -->[add ref-@ayers2012]<--.
+In the southern part of the study area, indigenous fishers have little commercial capacity
 FSC catch in the Strait of Georgia is, therefore, primarily from small recreational boats (C. Ayers, pers. comm.).
 Similar to how some of the FSC catch is accounted with the commercial catch data, the FSC effort from small boats will be captured in the recreational data from the creel survey program.
 Although FSC fishers are not constrained by recreational catch limits or closures, their boats will be counted on the aerial portion of the creel survey, and therefore contribute to the expanded recreational catch estimates.
