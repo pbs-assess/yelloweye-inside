@@ -68,6 +68,21 @@ get_SSB <- function(x, scenario, mse = NULL, type = c("SSB", "depletion", "MSY")
   left_join(d1, d2, by = "year")
 }
 
+# Depletion, SSB, B/BMSY
+get_SSB2 <- function(x, scenario, mse = NULL, type = c("SSB", "depletion", "MSY")) {
+  type <- match.arg(type)
+
+  if(type == "depletion") depletion <- x@SSB / sapply(x@Misc, getElement, "E0_SR")
+  if(type == "SSB") depletion <- x@SSB
+  if(type == "MSY") depletion <- x@SSB / mse@Misc$MSYRefs$ByYear$SSBMSY[, 1, mse@nyears]
+
+  #if(class(mse) == "Hist") depletion <- x@SSB / mse@Ref$SSBMSY
+  reshape2::melt(depletion[, -nyear]) %>%
+    rename(iteration = Var1) %>%
+    mutate(year = rep(all_years, each = max(iteration))) %>%
+    mutate(scenario = scenario)
+}
+
 get_F <- function(x, scenario) {
 
   .F1 <- map(x@Misc, "F_at_age")
@@ -96,6 +111,23 @@ get_F <- function(x, scenario) {
   left_join(d1, d2, by = "year")
 }
 
+get_F2 <- function(x, scenario) {
+
+  .F1 <- map(x@Misc, "F_at_age")
+  .F <- map_dfc(.F1, ~tibble(.F = apply(.x, 1, max)))
+  .F <- t(as.matrix(.F))
+  row.names(.F) <- NULL
+
+  last_year <- dim(.F)[2]
+  all_years <- seq(x@OM@CurrentYr - x@OM@nyears + 1, x@OM@CurrentYr)
+  all_years <- all_years #[-length(all_years)]
+
+  reshape2::melt(.F) %>%
+    rename(iteration = Var1) %>%
+    mutate(year = rep(all_years, each = max(iteration))) %>%
+    mutate(scenario = scenario)
+}
+
 get_Perr_y <- function(x, scenario) {
   max_age <- x@OM@maxage
   nyears <- x@OM@nyears
@@ -109,54 +141,48 @@ get_Perr_y <- function(x, scenario) {
 
 
 # Depletion -------------------------------------------------------------------
-g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB, type = "depletion") %>%
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB2, type = "depletion") %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
-  ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
-  geom_ribbon(fill = "grey90") +
-  geom_ribbon(fill = "grey70", mapping = aes(ymin = lwr50, ymax = upr50)) +
-  geom_line() +
+  ggplot(aes(year, value, group = iteration)) +
+  geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
   labs(x = "Year", y = "Depletion") + coord_cartesian(expand = FALSE, ylim = c(0, 1.1))
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-depletion-panel.png")),
-  width = 8, height = 4
+  width = 8, height = 5
 )
 
 # SSB -------------------------------------------------------------------------
-g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB, type = "SSB") %>%
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB2, type = "SSB") %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
-  ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
-  geom_ribbon(fill = "grey90") +
-  geom_ribbon(fill = "grey70", mapping = aes(ymin = lwr50, ymax = upr50)) +
-  geom_line() +
+  ggplot(aes(year, value, group = iteration)) +
+  geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
   labs(x = "Year", y = "Spawning biomass") + coord_cartesian(expand = FALSE, ylim = c(0, 8e3))
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-SSB-panel.png")),
-       width = 8, height = 4
+       width = 8, height = 5
 )
 
 #F
-g <- purrr::map2_df(sra_ye, sc$scenario_human, get_F) %>%
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_F2) %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
-  ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
-  geom_ribbon(fill = "grey90") +
-  geom_ribbon(fill = "grey70", mapping = aes(ymin = lwr50, ymax = upr50)) +
-  geom_line() +
+  ggplot(aes(year, value, group = iteration)) +
+  geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
   labs(x = "Year", y = "F") +
   coord_cartesian(ylim = c(0, 0.4), expand = FALSE)
 ggsave(here::here("mse/figures/ye-compare-SRA-F-panel.png"),
-       width = 8, height = 6.75
+       width = 8, height = 5
 )
 
 #Recdevs
 g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
-  dplyr::filter(iteration %in% 1:100) %>%
+  # dplyr::filter(iteration %in% 1:100) %>%
   ggplot(aes(year, y = log(value), group = iteration)) +
-  geom_line(alpha = 0.1) +
+  geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
   labs(x = "Year", y = "Recruitment deviation in log space") +
@@ -164,7 +190,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
 # g
 ggsave(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"),
-       width = 8, height = 6.75
+       width = 8, height = 5
 )
 
 # SSB/SSBMSY  -----------------------------------------------------------------
@@ -182,10 +208,22 @@ g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenario_human, mse =
   geom_line() +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = expression(SSB/SSB[MSY])) + coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
+  labs(x = "Year", y = expression(B/B[MSY])) + coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
   geom_hline(yintercept = c(0.4, 0.8), linetype = 3)
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-MSY-panel.png")),
-       width = 8, height = 4
+       width = 8, height = 5
+)
+
+g <- do.call(rbind, Map(get_SSB2, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye, type = "MSY")) %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
+  ggplot(aes(year, value, group = iteration)) +
+  geom_line(alpha = 0.05) +
+  facet_wrap(vars(scenario)) +
+  gfplot::theme_pbs() +
+  labs(x = "Year", y = expression(B/B[MSY])) + coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
+  geom_hline(yintercept = c(0.4, 0.8), linetype = 3)
+ggsave(file.path(fig_dir, paste0("ye-compare-SRA-MSY-panel-lines.png")),
+  width = 8, height = 5
 )
 
 # Survey plots  ---------------------------------------------------------------

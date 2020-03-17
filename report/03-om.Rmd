@@ -328,8 +328,6 @@ knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
 
 \clearpage
 
-*TODO: How to stop the recdevs and F panels from rendering in the next appendix?*
-
 #### Historical trajectories {#sec:approach3-conditioning-trajectories}
 
 All scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
@@ -342,15 +340,13 @@ In the four unique historical reconstructions (Scenarios (1), (2), (4), and (A))
 In all scenarios except Scenario (A), the median spawning biomass is estimated to be above the LRP.
 The median spawning biomass is estimated to be above the USR in Scenarios (1) and (2); and estimated to be below the USR in (4) and (A).
 
-*TODO: Can we show USR and LRP on the biomass plots? If so, also try to quantify them better. If not delete these stock status statements.*
-
-
 (ref:fig-biomass-om)
-Spawning stock biomass ($B_y$) trajectories for reference and robustness set OMs.
+Spawning stock biomass relative to spawning stock biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.
 Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
+Dotted horizontal lines represent the USR and LRP.
 
 ```{r biomass-om, fig.cap="(ref:fig-biomass-om)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figures/ye-compare-SRA-SSB-panel.png"))
+knitr::include_graphics(here("mse/figures/ye-compare-SRA-MSY-panel.png"))
 ```
 
 The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs follow the same pattern as those for *B* (Figure \@ref(fig:depletion-om)).
@@ -358,7 +354,7 @@ The implied spawning stock biomass depletion trajectories during the historical 
 (ref:fig-depletion-om)
 Spawning stock biomass depletion trajectories for reference and robustness set OMs.
 Depletion is represented as a fraction of $B_0$ (spawning stock biomass at unfished equilibrium).
-Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
+Lines represent individual replicates.
 
 ```{r depletion-om, fig.cap="(ref:fig-depletion-om)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
@@ -368,7 +364,7 @@ Estimates of historical recruitment deviations were similar across scenarios (Fi
 
 (ref:fig-recdev-om)
 Historical recruitment deviations estimated by the SRA model (in log space).
-Lines represent 100 random samples from the replicates.
+Lines represent individual replicates.
 
 ```{r recdev-om, fig.cap="(ref:fig-recdev-om)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"))
@@ -380,14 +376,11 @@ All scenarios predicted large peaks in fishing mortality during the 1980s and 19
 (ref:fig-F-om)
 Apical fishing mortality ($F_y$) trajectories for reference and robustness set OMs.
 Apical fishing mortality is the maximum $F_y$ experienced by fish of any age in a given year.
-Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
+Lines represent individual replicates.
 
 ```{r F-om, fig.cap="(ref:fig-F-om)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 ```
-
-
-
 
 \clearpage
 
