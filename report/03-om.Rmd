@@ -389,6 +389,7 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 
 
 
+\clearpage
 
 *TODO: Extra notes from Quang*
 
