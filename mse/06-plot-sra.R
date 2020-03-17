@@ -482,7 +482,8 @@ x <- oms %>% set_names(sc2$scenario_human) %>%
     M = .x@cpars$M_ageArray[,1,1],
   ), .id = "Scenario") %>%
   reshape2::melt(id.vars = "Scenario") %>%
-  dplyr::filter(!(variable == "R0" & value > 1e7))
+  dplyr::filter(!(variable == "R0" & value > 490)) %>%
+  dplyr::filter(!(variable == "AC" & value < 0.76))
 
 x %>% dplyr::filter(variable %in% c("R0", "AC", "D")) %>%
   ggplot(aes(value)) +
