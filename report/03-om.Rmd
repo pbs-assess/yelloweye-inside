@@ -238,9 +238,9 @@ knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
 
 The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
 
-The SRA model fit the HBLL age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-comp-fit1) to \@ref(fig:sra-comp-fitB)).
+The SRA model fit the HBLL age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-conditioned-comp-fit1) to \@ref(fig:sra-conditioned-comp-fitB)).
 
-We note that in comparing Scenarios (1) and (4), respectively fixing and estimating selectivity in the HBLL survey did not appear to generate very different fits in age composition data (Figures \@ref(fig:sra-comp-fit1) and \@ref(fig:sra-comp-fit4).
+We note that in comparing Scenarios (1) and (4), respectively fixing and estimating selectivity in the HBLL survey did not appear to generate very different fits in age composition data (Figures \@ref(fig:sra-conditioned-comp-fit1) and \@ref(fig:sra-conditioned-comp-fit4).
 
 We also note that in several years, the SRA predicted larger abundance in the plus group (80+ *y*) than in the observed data. 
 A lack of fish older than 80 *y* in the survey could be due to a number of reasons.
