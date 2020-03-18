@@ -217,7 +217,7 @@ The study only compared catch rates for Spiny Dogfish; however, the hook change 
 In the previous assessment, a catchability ratio was estimated using data for all rockfish and this ratio was used to scale the values in the 1980s.
 It is not clear from the previous assessment how this catchability ratio was estimated.
 The previous assessment was quite sensitive to the resulting Dogfish index (because of the large decline from the 1980s), and that decline was largely dependent on the hook ratio.
-In the current analysis, we standardize the population index using a spatiotemporal geostatistical model that accounts for spatial and spatiotemporal correlation in Yelloweye Rockfish abundance while simultaneously accounting for the number of dogfish caught (to partially correct for hook competition) and estimating a correction factor for the hook change.
+In the current analysis, we standardize the population index using a spatiotemporal geostatistical model that accounts for spatial and spatiotemporal correlation in Yelloweye Rockfish abundance while simultaneously accounting for the number of Dogfish caught (to partially correct for hook competition) and estimating a correction factor for the hook change.
 By estimating the correction factor simultaneously with the standardization model, we are able to incorporate uncertainty in the correction factor into the resulting index standard errors.
 
 ### Depth {#sec:dog-depth}
@@ -228,16 +228,16 @@ While depth is not explicitly included in the spatiotemporal model, the spatial 
 
 ### Hook competition {#sec:dog-hook-competition}
 
-The previous inside Yelloweye Rockfish assessment notes using an exponential hook competition model on the dogfish survey data in 2011.
-However, there are no data on the number of baited and empty hooks available for the dogfish survey prior to 2019 and it is unclear how the previous assessment accounted for this.
+The previous inside Yelloweye Rockfish assessment notes using an exponential hook competition model on the Dogfish survey data in 2011.
+However, there are no data on the number of baited and empty hooks available for the Dogfish survey prior to 2019 and it is unclear how the previous assessment accounted for this.
 Therefore, we did not apply an explicit hook competition model in the present analysis.
-However, to partially account for hook competition, we included the number of dogfish caught (log transformed so is to have a multiplicative effect on observed account) as a covariate in the model.
+However, to partially account for hook competition, we included the number of Dogfish caught (log transformed so is to have a multiplicative effect on observed count) as a covariate in the model.
 
 ### Selectivity {#sec:dog-selectivity}
 
 **The circle hooks used now are one size bigger than on HBLL and who knows what the selectivity was with the j-hooks! No rockfish biological data were formerly collected. So, in absence of info, I think we can use the same selectivity as long as we acknowledge the uncertainty (This is a note from one of Dana's emails but I'm not sure what was actually decided for selectivity-MJB)**
 
-### Spatiotemporal dogfish survey index standardization
+### Spatiotemporal Dogfish survey index standardization
 
 We used a similar geostatistical model to that described for the HBLL survey (Section \@ref(sec:hbll-spatiotemporal)) with the addition of Dogfish and hook-type covariates. We included the log Dogfish count and hook-type in the model matrix $\bm{X}_{s,t}$:
 
@@ -250,7 +250,7 @@ We used a similar geostatistical model to that described for the HBLL survey (Se
 with symbols defined as above.
 Hook-type is an identifier for J-hook vs. circle-hook.
 
-*TODO: note: I am creating the index on the rectangles that define the dogfish survey. I overlaid a 500m x 500m grid on the dogfish survey rectangles and am now also removing any of those fine scale grid cells that overlap land.*
+*TODO: note: I am creating the index on the rectangles that define the Dogfish survey. I overlaid a 500m x 500m grid on the Dogfish survey rectangles and am now also removing any of those fine scale grid cells that overlap land.*
 
 *TODO: note: number of yelloweye as part of hook experiment.*
 
