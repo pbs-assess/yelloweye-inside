@@ -1,4 +1,4 @@
-# DEFINE THE DECISION CONTEXT {#sec:decision-context}
+# DEFINITION OF THE DECISION CONTEXT {#sec:decision-context}
 
 Key questions to guide defining the decision context for MSE include:
 
