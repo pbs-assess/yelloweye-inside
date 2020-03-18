@@ -250,6 +250,10 @@ We used a similar geostatistical model to that described for the HBLL survey (Se
 with symbols defined as above.
 Hook-type is an identifier for J-hook vs. circle-hook.
 
+*TODO: note: I am creating the index on the rectangles that define the dogfish survey. I overlaid a 500m x 500m grid on the dogfish survey rectangles and am now also removing any of those fine scale grid cells that overlap land.*
+
+*TODO: note: number of yelloweye as part of hook experiment.*
+
 In our projection of the model predictions onto the survey grid to calculate the standardized relative abundance:
 
 $$
@@ -274,29 +278,9 @@ We estimated the log Dogfish effect to be `r sprintf("%.2f", round((est$b_j[10])
 This means that we can expect to catch, on average, about `r sprintf("%.2f", -1*round((est$b_j[10]), 2))`% (95% CI: `r sprintf("%.2f", -1*round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", -1*round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`%)
 fewer Yelloweye Rockfish for every 1% additional Dogfish caught on the same skate, presumably due to hook competition.
 
-
-<!--
-**Sean's notes**
-Notes:
-
-I'm estimating the index for an "average" hook type. If we estimate for one or the other type then it puts more or less uncertainty into the first or second half of the time series (the estimates themselves are just scaled though).
-
-It is now able to estimate spatiotemporal random effects and with the help of the spatial correlation it seems to be better able to estimate the hook type correction with appropriate uncertainty. You can see the estimated correction factor in the model output:
-
-exp(2.04)
-[1] 7.690609
-
-exp(2.04 + c(-2, 2) * 0.80)
-[1]  1.552707 38.091837
-
-I'm sure thats an exaggeration, but so it is with few data points and no priors. At least by including it in one model we can let the data speak for themselves.
-
-I am creating the index on the rectangles that define the dogfish survey. I overlaid a 500m x 500m grid on the dogfish survey rectangles and am now also removing any of those fine scale grid cells that overlap land.
--->
-
 \clearpage
 
-```{r, fig.cap="Raw data", out.width="\\textwidth"}
+```{r, fig.cap="Raw data (TODO: expand this and the other fig captions in this subsection.", out.width="\\textwidth"}
 include_figs("dogfish-yelloweye-per-area-data.png")
 ```
 
