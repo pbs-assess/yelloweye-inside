@@ -2,7 +2,7 @@
 
 ## REFERENCE SET RESULTS
 
-Performance within the reference set of OMs varied across satisficed MPs (hereafter just "MPs") and performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
+Performance within the reference set of OM scenarios varied across satisficed MPs (hereafter just "MPs") and performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
 All MPs were able to achieve LRP 1.5GT > 0.99.
 The fixed TACs of 10 t and 15 t, by definition, met their respective ST C10 and ST C15 performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
 The Islope MPs showed some contrast across MPs within the reference set for ST C10 and ST C15.
@@ -121,18 +121,18 @@ There were similar declines in the other conservation performance metrics.
 Scenario (B) slightly lowered the probability of achieving the ST C10 performance metric compared to the reference scenarios (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
 For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference-set OMs but only achieved this performance metric with a probability of 0.79 in Scenario (B).
 
-In contrast to the reference set, where there was little trade-off between the ST C10 and LRP 1.5GT performance metrics, Scenario (A) demonstrated a short-term catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).
-Scenario (B) demonstrated little trade-off between ST C10 and LRP 1.5GT.
+In contrast to the reference set, where there was little trade-off between the ST C10 and LRP 1.5GT performance metrics, Scenario (A) demonstrated a short-term catch vs. long-term conservation tradeoff among MPs (Figure \@ref(fig:tradeoff-robust)).
+Scenario (B) demonstrated no trade-off between ST C10 and LRP 1.5GT since all MPs achieved LRP 1.5GT with probability > 0.99.
 Similar to the reference set, we found the radar plots challenging to interpret (Figure \@ref(fig:spider-satisficed-mps-robust)).
 
 Projection timeseries plots of *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further explain the closed-loop simulation dynamics for the robustness set (Figure \@ref(fig:proj-low-m) and \@ref(fig:proj-high-index-cv)).
 For Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
 The FMSYref and FMRYSref75 MPs illustrate that catches would have to be lower in this scenario than in the reference-set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
 There was increased TAC variability across replicates and within individual replicates in Scenario (B) compared to the reference set OM projections (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
-For Scenario (A), the Kobe plots indicated that a number of replicates end up with *F* > *F*~MSY~ and *B* < 0.4 *B*~MSY~  (Figure \@ref(fig:kobe)). 
-This occurred across the MPs, although the least so for the CC_10t MP, and, among the Islope MPs, it occurred the least for Islop_10_lambda04 (Figure \@ref(fig:kobe)).
+For Scenario (A), the Kobe plots indicated that a number of replicates resulted in *F* > *F*~MSY~ and *B* < 0.4 *B*~MSY~  (Figure \@ref(fig:kobe)). 
+This occurred across the MPs, although least for the CC_10t MP, and, among the Islope MPs, it occurred the least for Islope_10_lambda04 (Figure \@ref(fig:kobe)).
 
-By comparing the projections across scenarios on the same figure, we can see that *F*/*F*~MSY~, *B*/*B*~MSY~, and catch were most sensitive to the Scenario (A) assumptions (Figure \@ref(fig:proj-scenarios)). 
+By comparing the projections across scenarios on the same figure, it is clear that *F*/*F*~MSY~, *B*/*B*~MSY~, and catch were most sensitive to the Scenario (A) assumptions (Figure \@ref(fig:proj-scenarios)). 
 Note that sensitivity of the projections does not necessarily correspond to sensitivity of the rank order of MPs---which is likely more important in a decision context (Figures \@ref(fig:tigure-panel) and \@ref(fig:tigure-panel-rob)).
 
 (ref:fig-tigure-panel-rob) Performance of satisficed MPs for the robustness set OMs.
