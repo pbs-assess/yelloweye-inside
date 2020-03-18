@@ -9,8 +9,8 @@ The Islope MPs showed some contrast across MPs within the reference set for ST C
 The Islope MPs achieved between 0.59 and 0.88 for ST C10, depending on the specific Islope MP and OM (Figures \@ref(fig:tigure-panel)).
 
 Within the reference set, there was virtually no trade-off between LTP 1.5GT and ST C10 since all MPs were able to achieve LRP 1.5 GT > 0.99 (Figure \@ref(fig:tradeoff-reference)).
-Multidimensional trade-offs were challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)) and exemplify some of the warnings about radar plots offered in @anderson2020gfmp.
-We included them to gauge reader interest at the Regional Peer Review meeting and as an illustration of their pitfalls for the MP Framework.
+Multidimensional trade-offs were challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)), which exemplifies some of the warnings about radar plots offered in @anderson2020gfmp.
+We included radar plots here to gauge reader interest at the Regional Peer Review meeting and to illustrate their pitfalls for the MP Framework.
 
 <!--
 A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across MPs (Figure \@ref(fig:dot-lines)).
@@ -18,10 +18,11 @@ In general, variation performance metric values for any one MP across reference-
 -->
 
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference-set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
-TODO (write something more here if desired).
-<!-- - FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM. -->
+We note that none of the biomass projections predicted the stock to be below the LRP in the first year of the projection period, and all MPs achieved continuous growth throughout the projection period, albeit at different rates.
+The reference MP FMSYref indicates that catches could be increased without increasing the likelihood of falling below LRP. This is due to current high probability that the stock is currently above LRP across the reference set scenarios. 
+<!--TODO: check this is this true. We should show those results from the SRA (see note at the end of 03-om.Rmd-->
 Kobe plots demonstrated either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
-Within the reference set and across all satisficed MPs, only the low catch scenario ended up with some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < 0.4 *B*~MSY~) by the final projection year (Figure \@ref(fig:kobe)).
+Within the reference set and across all satisficed MPs, only the low catch scenario predicted some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < 0.4 *B*~MSY~) by the final projection year (Figure \@ref(fig:kobe)).
 
 (ref:fig-tigure-panel) Performance of satisficed MPs for the reference set OMs.
 MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:tigure-avg).
@@ -115,23 +116,24 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 ## ROBUSTNESS SET RESULTS
 
 Scenario (A) lowered the probability of achieving the LRP 1.5GT performance metric to a range of 0.75--0.90 compared to > 0.99 in the reference set (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)).
-We saw similar declines in the other conservation performance metrics.
+There were similar declines in the other conservation performance metrics.
+
 Scenario (B) slightly lowered the probability of achieving the ST C10 performance metric compared to the reference scenarios (Figure \@ref(fig:tigure-panel-rob) vs. \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
 For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference-set OMs but only achieved this performance metric with a probability of 0.79 in Scenario (B).
 
-In contrast to the reference set, where we saw little trade-off between the ST C10 and LRP 1.5GT performance metrics, Scenario (A) demonstrated a short-term-catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).
+In contrast to the reference set, where there was little trade-off between the ST C10 and LRP 1.5GT performance metrics, Scenario (A) demonstrated a short-term catch vs. long-term conservation tradeoff (Figure \@ref(fig:tradeoff-robust)).
 Scenario (B) demonstrated little trade-off between ST C10 and LRP 1.5GT.
 Similar to the reference set, we found the radar plots challenging to interpret (Figure \@ref(fig:spider-satisficed-mps-robust)).
 
 Projection timeseries plots of *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further explain the closed-loop simulation dynamics for the robustness set (Figure \@ref(fig:proj-low-m) and \@ref(fig:proj-high-index-cv)).
 For Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
 The FMSYref and FMRYSref75 MPs illustrate that catches would have to be lower in this scenario than in the reference-set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
-There is increased TAC variability across replicates and within individual replicates in Scenario (B) compared to the reference set OM projections (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
+There was increased TAC variability across replicates and within individual replicates in Scenario (B) compared to the reference set OM projections (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
 For Scenario (A), the Kobe plots indicated that a number of replicates end up with *F* > *F*~MSY~ and *B* < 0.4 *B*~MSY~  (Figure \@ref(fig:kobe)). 
-This occurs across the MPs, although it happens the least for the CC_10t MP, and, among the Islope MPs, it happens the least for Islop_10_lambda04 (Figure \@ref(fig:kobe)).
+This occurred across the MPs, although the least so for the CC_10t MP, and, among the Islope MPs, it occurred the least for Islop_10_lambda04 (Figure \@ref(fig:kobe)).
 
 By comparing the projections across scenarios on the same figure, we can see that *F*/*F*~MSY~, *B*/*B*~MSY~, and catch were most sensitive to the Scenario (A) assumptions (Figure \@ref(fig:proj-scenarios)). 
-Note that sensitivity of the projections does not necessarily correspond to sensitivity of the rank order of MPs---what is likely more important in a decision context (Figures \@ref(fig:tigure-panel) and \@ref(fig:tigure-panel-rob)).
+Note that sensitivity of the projections does not necessarily correspond to sensitivity of the rank order of MPs---which is likely more important in a decision context (Figures \@ref(fig:tigure-panel) and \@ref(fig:tigure-panel-rob)).
 
 (ref:fig-tigure-panel-rob) Performance of satisficed MPs for the robustness set OMs.
 
