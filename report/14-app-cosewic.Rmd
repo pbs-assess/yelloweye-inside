@@ -31,37 +31,16 @@ Using a projection period of 100 years, we calculate the probability that the st
 \clearpage
 
 (ref:fig-cosewic-all)
-COSEWIC assessment metrics for Inside Yelloweye Rockfish by OM. 
+COSEWIC assessment metrics for Inside Yelloweye Rockfish by OM. (1) to (4) are the reference set. (A) and (B) are the robustness set.
 
-```{r cosewic-all, fig.cap="(ref:fig-cosewic-all)", out.width="0.8\\textwidth"}
+```{r cosewic-all, fig.cap="(ref:fig-cosewic-all)", out.width="0.75\\textwidth"}
 library(here)
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
 ```
 
-\clearpage
-
 (ref:fig-cosewic-avg)
-COSEWIC measures averaged across OMs for Inside Yelloweye Rockfish. 
+COSEWIC measures averaged across the referens-set OMs for Inside Yelloweye Rockfish. 
 
-```{r cosewic-avg, fig.cap="(ref:fig-cosewic-avg)", out.width="0.8\\textwidth"}
+```{r cosewic-avg, fig.cap="(ref:fig-cosewic-avg)", out.width="0.3\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-avg.png"))
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\clearpage
