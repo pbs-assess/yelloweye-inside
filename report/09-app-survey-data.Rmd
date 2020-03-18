@@ -181,13 +181,13 @@ include_figs("hbll-joint-omega.png")
 include_figs("hbll-joint-epsilon.png")
 ```
 
-```{r hbll-index, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
+```{r hbll-index, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatiotemporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. In the second and third rows, the solid dots represent years with observations and the open dots represent years without observations. Similarly, the dashed vertical lines indicate years with surveys (mostly) in the southern area."}
 include_figs("hbll-index-components-eps-depth2.png")
 ```
 
 \clearpage
 
-```{r stich-sim-pred, fig.cap="Simulation testing the relative abundance index calculation with alternating north and south observations. (A) The true simulated (mean) abundance in space and time. (b) The observed (dots) and estimated (colour) counts in space and time from the geostatistical model. The observations occur in north and south regions in alternating years and are ``blind'' to the missing region. Notice how the spatial temporal model is able to predict what the abundance should be in the ``blind'' region based on the consistent spatial correlation pattern (and to a lesser degree the spatiotemporal correlation pattern).", out.width="\\textwidth"}
+```{r stich-sim-pred, fig.cap="Simulation testing the relative abundance index calculation with alternating north and south observations. (A) The true simulated (mean) abundance in space and time. (b) The observed (dots) and estimated (colour) counts in space and time from the geostatistical model. The observations occur in north and south regions in alternating years and are ``blind'' to the missing region. Notice how the spatiotemporal model is able to predict what the abundance should be in the ``blind'' region based on the consistent spatial correlation pattern (and to a lesser degree the spatiotemporal correlation pattern).", out.width="\\textwidth"}
 include_figs("geostatistical-sim-predicted.png")
 ```
 
@@ -272,7 +272,7 @@ We estimated that J-hooks caught
 `r sprintf("%.1f", round(exp(est$b_j[1]), 1))` times more Yelloweye Rockfish than circle-hooks, all else being equal, but with considerable uncertainty (95% confidence interval (CI): `r sprintf("%.1f", round(exp(est$b_j[1] - 1.96 * se$b_j[1]), 1))` -- `r sprintf("%.1f", round(exp(est$b_j[1] + 1.96 * se$b_j[1]), 1))`).
 We estimated the log Dogfish effect to be `r sprintf("%.2f", round((est$b_j[10]), 2))` (95% CI: `r sprintf("%.2f", round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`).
 This means that we can expect to catch, on average, about `r sprintf("%.2f", -1*round((est$b_j[10]), 2))`% (95% CI: `r sprintf("%.2f", -1*round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", -1*round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`%)
-fewer Yelloweye Rockfish for every 1% also caught on the same skate, presumably due to hook competition.
+fewer Yelloweye Rockfish for every 1% additional Dogfish caught on the same skate, presumably due to hook competition.
 
 
 <!--
