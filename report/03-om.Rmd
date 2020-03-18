@@ -202,7 +202,7 @@ Commercial selectivity was fixed to approximate the selectivity used in the comm
 
 (ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and Scenario (1) *TODO: write properly*.
 
-```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="6.3in"}
+```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="4in"}
 knitr::include_graphics(here::here("mse/figures/retrospective-spawning-biomass.png"))
 ```
 
