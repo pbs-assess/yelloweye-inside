@@ -18,7 +18,50 @@ Yelloweye Rockfish are a long-lived species, which have been aged up to 121 year
 They prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011]. 
 These life history traits make the stock vulnerable to overexploitation by fisheries.
 
-*TODO: Add biological data here*
+
+\clearpage
+
+(ref:fig-length)
+Length at age
+
+```{r length, fig.cap="(ref:fig-length)", out.width="\\textwidth"}
+library(here)
+knitr::include_graphics(here("mse/figures/ye-length.png"))
+```
+
+\clearpage
+
+(ref:fig-weight)
+Weight at length
+
+```{r weight, fig.cap="(ref:fig-weight)", out.width="\\textwidth"}
+library(here)
+knitr::include_graphics(here("mse/figures/ye-weight.png"))
+```
+
+\clearpage
+
+
+(ref:fig-maturity)
+Probability of being mature at age
+
+```{r maturity, fig.cap="(ref:fig-maturity)", out.width="\\textwidth"}
+library(here)
+knitr::include_graphics(here("mse/figures/ye-maturity3.png"))
+```
+
+\clearpage
+
+
+(ref:fig-percent-maturity)
+Percent mature at age 
+
+```{r percent-maturity, fig.cap="(ref:fig-percent-maturity)", out.width="\\textwidth"}
+library(here)
+knitr::include_graphics(here("mse/figures/maturity2.png"))
+```
+
+\clearpage
 
 *TODO: DANA please can you add explanation of generation time and comparison between the inside and outside stocks?*
 
