@@ -22,6 +22,8 @@ P[1 - B_2019/B_1918 < 0.3]
 
 ## EXTINCTION RISK - COSEWIC METRIC E
 
+*The only cosewic metric used was metric E, extinction risk (where extinction = 2%B0 or 5%B0). I can't find any reported results for cosewic metric A (P of 70% decline over last 3 generations...etc.). There are results for metric E for each MP and OM (ref:fig-cosewic-all) and then the average of all OMs for each of 2% and 5%.  Is that your understanding as well?*
+
 We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction.
 Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
 
