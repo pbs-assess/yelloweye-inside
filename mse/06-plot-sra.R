@@ -460,16 +460,14 @@ formals(COSEWIC_P30)$Ref <- 0.3
 mse_ye <- map(sc$scenario, ~readRDS(paste0("mse/om/MSE_", .x, ".rds")))
 YE_historical <- rbind(vapply(mse_ye, COSEWIC_P70, numeric(1), Yr = 3 * 38),
                        vapply(mse_ye, COSEWIC_P50, numeric(1), Yr = 3 * 38),
-                       vapply(mse_ye, COSEWIC_P30, numeric(1), Yr = 3 * 38),
-                       vapply(mse_ye, P_LRP, numeric(1)),
-                       vapply(mse_ye, P_USR, numeric(1))) %>%
-  structure(dimnames = list(c("P70", "P50", "P30", "LRP", "USR"), sc$scenario_human)) %>%
+                       vapply(mse_ye, COSEWIC_P30, numeric(1), Yr = 3 * 38) ) %>%
+  structure(dimnames = list(c("P70", "P50", "P30"), sc$scenario_human)) %>%
   t() %>% as.data.frame()
 
 YE_historical$MP <- factor(sc$scenario_human, levels = sc$scenario_human)
 
 g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenario_human))
-ggsave("mse/figures/historical_indicators.png", height = 4, width = 5)
+ggsave("mse/figures/historical_indicators2.png", height = 4, width = 5)
 
 # Plot episodic recruitment ---------------------------------------------------
 png("mse/figures/rec_dev.png", height = 5, width = 5, units = "in", res = 400)
