@@ -3,7 +3,7 @@
 
 # DATA-LIMITED MANAGEMENT PROCEDURES {#app:mps}
 
-Here we include...
+Here we present the MPs that were evaluated in the current study. See @anderson2020gfmp for a full list of MPs available in the MP Framework.
 
 ## CONSTANT-CATCH MANAGEMENT PROCEDURES {#sec:mp-cc}
 
@@ -120,7 +120,7 @@ Illustrations of the Islope MPs are provided in @anderson2020gfmp (their Appendi
 
 #### IDX: Index-based MP from @cox2020 {#sec:mp-idx}
 
-This MP was used in the rebuilding plan for outside Yelloweye Rockfish in BC [@cox2020] (Figure \@ref(fig:mp-idx-demo)).
+This MP was used in the rebuilding plan for outside Yelloweye Rockfish in BC [@cox2020].
 The MP assigns TAC based on:
 
 $$
@@ -199,10 +199,6 @@ We also evaluated the same two configurations, applied every 10 years:
 - SP_4010_10u
 
 - SP_8040_10u
-
-
-*NO META RULES AS IN GFMP?*
-
 
 
 
