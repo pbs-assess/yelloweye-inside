@@ -23,8 +23,9 @@ vb_f <- fit_vb(dat$survey_samples, sex = "female", method = "tmb",
 vb_a <- gfplot::fit_vb(dat$survey_samples, sex = "all", method = "tmb",
                        too_high_quantile = 1, check_convergence_tmb = check_convergence_tmb,
                        tmb_init = tmb_init)
-plot_growth(object_all = vb_a) + geom_line(data = vb_a$predictions, aes(age, length))
-ggsave("mse/figures/ye-length.png", width = 4, height = 4)
+plot_growth(object_all = vb_a) + geom_line(data = vb_a$predictions, aes(age, length)) +
+  guides(col = FALSE, lty = FALSE)
+ggsave("mse/figures/ye-length.png", width = 4, height = 3)
 
 
 # Plot figure and residual
@@ -49,8 +50,9 @@ lw_f <- fit_length_weight(dat$survey_samples, sex = "female", method = "tmb",
 
 # log_a = -11.24, b = 3.09
 lw_a <- gfplot::fit_length_weight(dat$survey_samples, sex = "all", method = "tmb", too_high_quantile = 1)
-plot_length_weight(object_all = lw_a) + geom_line(data = lw_a$predictions, aes(length, weight))
-ggsave("mse/figures/ye-weight.png", width = 4, height = 4)
+plot_length_weight(object_all = lw_a) + geom_line(data = lw_a$predictions, aes(length, weight)) +
+  guides(col = FALSE, lty = FALSE)
+ggsave("mse/figures/ye-weight.png", width = 4, height = 3)
 
 
 
