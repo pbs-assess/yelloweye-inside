@@ -2,7 +2,7 @@
 
 # INTRODUCTION {#sec:introduction}
 
-The purpose of this project is to provide scientific advice to support revision of the rebuilding plan  for the Inside Population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
+The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the Inside Population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
 The project applies a closed-loop simulation framework [@anderson2020gfmp] to test and identify management procedures (MPs) that meet rebuilding objectives for the Inside population of Yelloweye Rockfish.
 
 ## MOTIVATION - POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
@@ -47,7 +47,7 @@ The stock is considered to be data-limited, due to sparse availability of age-co
 knitr::include_graphics(here::here("figs/InsideYE_Map_new.png"))
 ```
 
-Yelloweye Rockfish are a long-lived species [up to 121 years in B.C. @keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
+Yelloweye Rockfish are a long-lived species [up to 121 years in B.C., @keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
 These life history traits make the stock vulnerable to overexploitation by fisheries.
 The stock was assessed in 2011 as being below the LRP [@yamanaka2011; @dfo2012] and a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@dfo2018].
 The Inside Yelloweye Rockfish stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@cosewic2008], and is anticipated to be reassessed by the COSEWIC in 2020.
