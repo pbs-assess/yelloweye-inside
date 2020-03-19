@@ -26,19 +26,6 @@ In the current analysis we explore one OM scenario where the 1986-2005 commercia
 
 \clearpage
 
-```{r commcatch, echo = FALSE, warning = FALSE, results = "hide"}
-comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
-csasdown::csas_table(comm_catch,
-  format = "latex",
-  col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
-  repeat_header = TRUE,
-  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918-1985) and nominal (1986-2019) catch estimates in tonnes."
-) %>%
-  kableExtra::column_spec(1, width = "1.0cm") %>%
-  kableExtra::column_spec(2:6, width = "1.6cm")
-```
-
-
 ```{r commcatch2, out.width="\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."}
 tidyr::pivot_longer(comm_catch, -1) %>%
   mutate(name = gfutilities::firstup(gsub("_", " ", name))) %>%
@@ -55,7 +42,19 @@ tidyr::pivot_longer(comm_catch, -1) %>%
 )
 ```
 
-*TODO: plot instead or in addition?*
+\clearpage
+
+```{r commcatch, warning = FALSE, results = "asis"}
+comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
+csasdown::csas_table(comm_catch,
+  format = "latex",
+  col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
+  repeat_header = TRUE,
+  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918-1985) and nominal (1986-2019) catch estimates in tonnes."
+) %>%
+  kableExtra::column_spec(1, width = "1.0cm") %>%
+  kableExtra::column_spec(2:6, width = "1.6cm")
+```
 
 \clearpage
 
