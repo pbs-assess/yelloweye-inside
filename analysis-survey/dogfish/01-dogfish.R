@@ -120,7 +120,7 @@ coords <- coord_fixed(xlim = range(joint_grid_utm$X),
   ylim = range(joint_grid_utm$Y))
 
 plot_raw_data <- function(column) {
-  lab <- "Count density\n(units TODO)"
+  lab <- "Relative\ncount density"
   ggplot(d_utm, aes(X, Y)) +
     coords +
     ggcoast +
