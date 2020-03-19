@@ -16,7 +16,7 @@ However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
 - Desolation Sound, which falls between the northern and the southern regions, is supposed to be sampled in the southern region, but was sampled along with the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. The Yelloweye Rockfish catch rates are highest in Desolation Sound (Area 15) so not sampling there we expected to affect design-based survey estimates of the southern survey.
 - The full southern survey was not achieved in 2009 and only 38 stations were fished in the southern Strait of Georgia between Nanaimo and Victoria. Catch rates of most rockfish species caught on this survey decline from the north to the south, so this also has a major effect on the survey index.
 
-For these reasons, we chose to undertake a geostatistical spatiotemporal model standardization of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design.
+For these reasons, we chose to undertake a geostatistical spatiotemporal model standardization of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design (Section \@ref(sec:hbll-spatiotemporal)).
 Theoretically, such an approach can account for the above factors.
 We confirmed via simulation that such approach can "stitch" together two survey regions conducted in a north and south region (Section \@ref(sec:hbll-sim)).
 
@@ -28,22 +28,24 @@ The HBLL survey catch is mostly comprised of Pacific Spiny Dogfish (*Squalus suc
 As in @yamanaka2011, we applied a hook competition correction, which accounts for the competition between individual fish for the bait on hooks, to the HBLL Inside survey data.
 Hook-by-hook catch data have always been collected on this survey.
 To apply the correction, we applied a competition adjustment factor to each set in each year.
-This adjustment factor scales up the observed number of each species caught to give the expected number of fish caught after accounting for competition.
+This adjustment factor, $A_{i,t}$, scales up the observed number of Yelloweye Rockfish caught, $N_{i,t}$, for each set $i$ in each year $t$ to give the expected number of fish caught after accounting for competition, $N_{i,t}^{(0)}$:
 
-The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them (Figure \@ref(fig:hbll-baited)):
+\begin{align}
+N_{i,t}^{(0)} & = \frac{-\ln P_{i,t}}{1 - P_{i,t}} N_{i,t}\\
+              & = A_{i,t} N_{i,t}.
+(\#eq:Nit)
+\end{align}
 
-TODO: add the equation here:
-hook_adjust = - log(Pit) / (1 - Pit)
+The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them, $P_{i,t}$ (Figure \@ref(fig:hbll-baited)):
 
-<!-- mutate(total_hooks = count_target_species + count_non_target_species + -->
-<!--     count_bait_only + count_empty_hooks - count_bent_broken) %>% -->
-<!--   mutate(count_bait_only = replace(count_bait_only, which(count_bait_only == 0), 1)) %>% -->
-<!--   mutate(prop_bait_hooks = count_bait_only / total_hooks) %>% -->
-<!--   mutate(hook_adjust_factor = -log(prop_bait_hooks) / (1 - prop_bait_hooks)) %>% -->
-<!--   mutate(expected_catch = round(count_target_species * hook_adjust_factor)) -->
+$$
+A_{i,t} = - \frac{ \left(\ln(P_{i,t} \right)}{1 - P_{i,t}}.
+(\#eq:hbll-hook-adjustment)
+$$
 
-where $P_{i,t}$ is the proportion of observed hooks for set $i$ in year $t$ returned with bait on them.
-In instances where zero hooks were returned with bait, we set the number of baited hooks to one.
+As $P_{i,t} \rightarrow 0$, $A_{i,t} \rightarrow \infty$, so that the expected number $N_{i,t}^{(0)} \rightarrow \infty$.
+Therefore, in cases where zero hooks were returned with bait, we set the number of baited hooks to one.
+See @anderson2019synopsis (their Appendix G, Section G.5) for further on the details on the hook competition correction.
 We passed the hook-adjusted data (Figure \@ref(fig:hbll-hook-adjustment)) to the spatiotemporal model to develop the index of abundance.
 
 ### Spatiotemporal HBLL index standardization {#sec:hbll-spatiotemporal}
@@ -51,8 +53,8 @@ We passed the hook-adjusted data (Figure \@ref(fig:hbll-hook-adjustment)) to the
 We fit a geostatistical spatiotemporal index-standardization model:
 
 \begin{align}
-  y_{s,t} &\sim \mathrm{NegBin}(\mu_{s,t}, \phi),\\
-  \mu_{s,t} &= \exp \left( \bm{X}_{s,t} \bm{\beta} + \omega_s + \epsilon_{s,t} \right),
+  y_{s,t} &\sim \mathrm{NegBin}\left(\mu_{s,t}, \phi \right),\\
+  \mu_{s,t} &= \exp \left( \bm{X}_{s,t} O_{s,t} + \bm{\beta} + \omega_s + \epsilon_{s,t} \right),
 (\#eq:hbll-model)
 \end{align}
 
@@ -60,8 +62,19 @@ where NegBin refers to the negative binomial distribution (the NB2 parameterizat
 $\mu_{s,t}$ refers to the expected value in log space at spatial point $s$ and time $t$,
 $\phi$ refers to the dispersion parameter, 
 $\bm{X}$ refers to a design matrix, and
-$\beta$ refers to estimated coefficients (an independent mean for each year).
-The spatial random effects ($\omega_s$) were assumed to be drawn from a multivariate normal distribution with a covariance matrix $\bm{\Sigma}_\omega$:
+$\beta$ refers to a vector of estimated coefficients (an independent mean for each year).
+The symbol $O_{s,t}$ represents an "offset" for the number of hooks and the hook-competition-adjustment factor.
+Specifically, it was represented as $\ln \left(S_{i,t} / A_{i,t} \right)$, where $S_{i,t}$ represents the area "swept" by the set.
+We calculated of the area swept based on the number of hooks ($N^\textrm{hooks}_{i,t}$) in set $i$ and year $t$ as:
+
+$$
+N^\textrm{hooks}_{i,t} \cdot 0.0024384 \cdot 0.009144 \cdot 1000.
+$$
+
+The value 0.002438 corresponds to 8 ft between hooks (per km), 0.009144 to an assumed 30 ft area swept around the set that fish are catchable (per km), and 1000 scales the area swept from km to m.
+Note that the 30 ft assumption only serves to scale the density up or down in all years and ultimately affects the survey-catchability estimate but will not influence the shape of the index timeseries.
+
+We assumed that the spatial random effects ($\omega_s$) were drawn from a multivariate normal distribution with a covariance matrix $\bm{\Sigma}_\omega$:
 
 $$
 \bm{\omega} \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_\omega \right).

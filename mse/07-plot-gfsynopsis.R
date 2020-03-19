@@ -69,6 +69,17 @@ if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
 plot_mat_ogive(mat_age)
 ggsave("mse/figures/maturity2.png", width = 5, height = 3)
 
+if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
+  mat_length <- dat$survey_samples %>%
+    fit_mat_ogive(
+      type = "length",
+      months = seq(1, 12))
+} else {
+  mat_length <- NA
+}
+
+plot_mat_ogive(mat_length)
+ggsave("mse/figures/mat_ogive_length.png", width = 5, height = 3)
 
 # Show predicted vs. observed proportions
 prop <- mat_age[[3]]$data %>% group_by(female, age_or_length) %>% summarise(prop_mature = sum(mature)/n()) %>% reshape2::acast(list("female", "age_or_length"))
@@ -81,3 +92,40 @@ ggplot(prop_female, aes(age, prop)) + geom_point() +
 ggsave("mse/figures/ye-maturity3.png", width = 5, height = 3)
 
 # A50 = 14.4, A95 = 27.4, Mat = 0 if age <=7
+
+# Plot maturity by month: ----------------------------------------------------
+gfplot::tidy_maturity_months(dat$survey_samples) %>% gfplot::plot_maturity_months()
+ggsave("mse/figures/ye_ins_mat_months.png", width = 5, height = 3)
+
+# Age frequencies: ----------------------------------------------------------
+
+ages <- gfplot::tidy_ages_raw(dat$survey_samples,
+  survey = c("HBLL INS N", "HBLL INS S"),
+  sample_type = "survey")
+
+survey_col_names = c("HBLL INS N", "HBLL INS S")
+survey_cols = c(RColorBrewer::brewer.pal(length(survey_col_names), "Set2"))
+survey_cols <- stats::setNames(survey_cols, survey_col_names)
+
+g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
+  guides(fill = FALSE, colour = FALSE) +
+  ggtitle("Age frequencies") +
+  labs(y = "Age (years)")
+ggsave("mse/figures/ye_ins_age.png", width = 3, height = 5)
+
+# Length frequencies: ----------------------------------------------------------
+
+len <- gfplot::tidy_lengths_raw(dat$survey_samples,
+  sample_type = "survey",
+  survey = c("HBLL INS N", "HBLL INS S"))
+
+len$survey_abbrev <- factor(len$survey_abbrev,
+  levels = c("HBLL INS N", "HBLL INS S"))
+
+g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
+  bin_size = 2) +
+  guides(colour = FALSE, fill = FALSE) +
+  ggtitle("Length frequencies") +
+  ggplot2::xlab(paste("Length", "(cm)")) +
+  ggplot2::ylab("Relative length frequency")
+ggsave("mse/figures/ye_ins_length.png", width = 3, height = 5)

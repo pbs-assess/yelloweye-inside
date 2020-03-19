@@ -85,7 +85,11 @@ TODO: tidy this
 
 TODO: Not sure where the 0.6375 and 0.12 come from --- whether that's just from experimentation or some analytical solution rounded. It doesn't seem to work out to 0.15... that's fine but we should note it.
 
-TODO: see next temporary chunk; this isn't SD = 0.15!
+TODO: see next temporary chunk; this isn't SD = 0.15 (should be h_alpha <- alphaconv(0.6375, 0.15/0.8)) etc.
+
+TODO: Quang: Even with SD = 0.12, there were some very low values of steepness which generated FMSY < 0.01 I believe, so the smaller SD made it easier to avoid those outliers
+
+TODO: Quang: Even the current histogram shows h samples between 0.5 - 0.9 which should be sufficient coverage
 
 ```{r, eval=FALSE, echo=FALSE}
 alphaconv <- function (m, sd) {
