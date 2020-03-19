@@ -1,6 +1,3 @@
-
-\clearpage
-
 ```{r load-oms, message = FALSE}
 knitr_results <- TRUE
 knitr_echo <- TRUE
@@ -9,6 +6,7 @@ sc <- readRDS(here::here("mse/om/ye-scenarios2.rds"))
 oms <- sc$scenario %>% set_names() %>%
   map(~ readRDS(here::here(paste0("mse/om/", .x, ".rds")))@OM)
 names(oms) <- sc$scenario_human
+nsim <- oms[[1]]@nsim
 ```
 
 ```{r display-om}
@@ -59,6 +57,18 @@ display_om(oms, "maxage")
 
 *Natural mortality rate. Uniform distribution lower and upper bounds.*
 
+Natural mortality and Beverton-Holt steepness are core uncertainties for many stocks.
+We incorporated uncertainty using a Monte Carlo approach, by sampling them from prior distributions generated from meta-analysis:
+
+TODO: M ~ Lognormal(0.045, 0.2) from Hoenig et al. (1983) using maxage = 101 years
+
+We drew M stochastically from a Lognormal(0.045, 0.2) distribution with the seed in R set to 91283:
+
+```{r, eval=FALSE, echo=TRUE}
+set.seed(91283)
+OM@cpars$M <- rlnorm(nsim, log(0.045) - 0.5 * 0.2^2, 0.2)
+```
+
 ```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="M"}
 display_om(oms, "M")
 ```
@@ -68,6 +78,45 @@ display_om(oms, "M")
 ### h {#app:desc-stock-h-yelloweye}
 
 *Steepness of the stock-recruit relationship. Uniform distribution lower and upper bounds with values from 1/5 to 1.*
+
+TODO: tidy this
+- h ~ Transformed Beta(mean = 0.71, sd = 0.15) using Forrest et al. prior
+- For h, sample X ~ Beta(alpha, beta), then transform: h = 0.8 X + 0.2. Alpha and beta are values so that mean(h) = 0.71, sd(h) = 0.15
+
+TODO: Not sure where the 0.6375 and 0.12 come from --- whether that's just from experimentation or some analytical solution rounded. It doesn't seem to work out to 0.15... that's fine but we should note it.
+
+TODO: see next temporary chunk; this isn't SD = 0.15!
+
+```{r, eval=FALSE, echo=FALSE}
+alphaconv <- function (m, sd) {
+  m * (((m * (1 - m))/(sd^2)) - 1)
+}
+betaconv <- function (m, sd) {
+  (1 - m) * (((m * (1 - m))/(sd^2)) - 1)
+}
+h_alpha <- alphaconv(0.6375, 0.12)
+h_beta <- betaconv(0.6375, 0.12)
+h_samps <- rbeta(1e6, h_alpha, h_beta)
+h_samps <- 0.8 * h_samps + 0.2
+mean(h_samps)
+sd(h_samps)
+```
+
+TODO: ... with the seed in R set to 65423:
+
+```{r, eval=TRUE, echo=TRUE}
+set.seed(65423)
+h_alpha <- DLMtool::alphaconv(0.6375, 0.12)
+h_beta <- DLMtool::betaconv(0.6375, 0.12)
+h_samps <- rbeta(nsim, h_alpha, h_beta)
+h_samps <- 0.8 * h_samps + 0.2
+mean(h_samps)
+sd(h_samps)
+```
+
+```{r, eval=FALSE, echo=TRUE}
+OM@cpars$h <- h_samps
+```
 
 ```{r desc-stock-h-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="h"}
 display_om(oms, "h")
