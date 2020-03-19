@@ -40,6 +40,9 @@ csasdown::csas_table(comm_catch,
 
 ```{r commcatch2, out.width="\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes. Note that, although nominal catch for 1986--2005 was doubled in all OMs except the low catch scenario, we do not show the doubled catch in this figure."}
 tidyr::pivot_longer(comm_catch, -1) %>%
+  mutate(name = gfutilities::firstup(gsub("_", " ", name))) %>%
+  mutate(name = gsub("Hook line rockfish", "Hook and line rockfish", name)) %>%
+  mutate(name = gsub("Dogfish lingcod", "Dogfish and lingcod", name)) %>%
   dplyr::filter(name != "Total t") %>% 
   ggplot(aes(year, value, fill = name)) + geom_col(width = 1) +
   gfdlm::theme_pbs() +
@@ -86,21 +89,6 @@ csasdown::csas_table(rec_catch,
 )
 ```
 
-```{r reccatch2, out.width="\\textwidth", fig.width=6, fig.cap="Recreational catch estimates for Inside Yelloweye Rockfish. The figure shows reconstructed (1918-2019) and modern creel survey (1982-2019) catch estimates in tonnes."}
-tidyr::pivot_longer(rec_catch, -1) %>%
-  mutate(name = gfutilities::firstup(gsub("_", " ", name))) %>%
-  mutate(name = gsub("Hook line rockfish", "Hook and line rockfish", name)) %>%
-  mutate(name = gsub("Dogfish lingcod", "Dogfish and lingcod", name)) %>%
-  dplyr::filter(name != "Total t") %>% 
-  ggplot(aes(year, value, fill = name)) + geom_col(width = 1) +
-  gfdlm::theme_pbs() +
-  scale_fill_brewer(palette = "Set2") + 
-  coord_cartesian(expand = FALSE) +
-  labs(fill = "Sector", y = "Catch (t)") +
-  theme(axis.title.x = element_blank(), legend.position = "bottom",
-    plot.margin = margin(t = 11 / 2, r = 11 / 2 + 5, b = 11 / 2, l = 11 / 2)
-)
-```
 
 \clearpage
 
