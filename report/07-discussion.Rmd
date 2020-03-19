@@ -1,5 +1,15 @@
 # DISCUSSION {#sec:discussion}
 
+
+
+## Discussion points
+
+- brief summary of main findings
+- rebuilding plan advice when stock appears not to be in the critical zone
+- assumptions of fixed selectivity in commercialdogfish and recreational gears
+- other key uncertainties
+
+
 *TODO: These two sections are lifted from MPF. Shorten, tailor to YE and refer back to MPF*
 
 ## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
