@@ -140,7 +140,7 @@ We undertook a basic simulation analysis to test that our approach of "stitching
 We generated a system that roughly matches the HBLL survey data we worked with in this document:
 
 * 10 years of observations
-* 100 possible spatial observation locations $s_j$ and $,s_k$ drawn from a Uniform(0, 1) distribution each year.
+* 100 possible spatial observation locations $s_j$ and $s_k$ drawn from a Uniform(0, 1) distribution each year.
 * A marginal SD($\omega_s$) = 2.2
 * A marginal SD($\epsilon_{s,t}$) = 0.3
 * A \mbox{Mat\'ern} parameter $\kappa = 0.1$
@@ -293,7 +293,7 @@ In our projection of the model predictions onto the survey grid to calculate the
 
 $$
 B_t = \sum_{j = 1}^{n_j}
-  w_j \cdot \exp \left( \bm{X}_{j,t} \bm{\beta} + \bar{\bm{O}} \omega_j + \epsilon_{j,t} \right),
+  w_j \cdot \exp \left( \bm{X}_{j,t} \bm{\beta} + \bar{\bm{O}} + \omega_j + \epsilon_{j,t} \right),
 (\#eq:dog-prediction)
 $$
 
