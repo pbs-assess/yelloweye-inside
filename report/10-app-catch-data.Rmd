@@ -113,6 +113,8 @@ csasdown::csas_table(rec_wide,
   kableExtra::column_spec(1:13, width = "0.75cm")
 ```
 
+\clearpage
+
 ## FOOD, SOCIAL, AND CEREMONIAL CATCH (FSC) {#sec:fsc-catch-data}
 
 Yelloweye Rockfish are an important traditional food source of coastal First Nations in BC [@eckert2018], including in the inside waters of 4B. Total FSC catch data of Yelloweye Rockfish, as well as other groundfish species, are not available for either the historic or contemporary time period and particularly not available resolved to the species [M. Fetterly and A. Rushton, pers. comm.].
@@ -145,6 +147,8 @@ csasdown::csas_table(fsc_catch,
   caption = "FSC catch of Inside Yelloweye Rockfish as a proportion of total commercial catch reported to dockside observers from dual fishing trips."
 )
 ```
+
+\clearpage
 
 ## CHRONOLOGY OF MANAGEMENT CHANGES
 
