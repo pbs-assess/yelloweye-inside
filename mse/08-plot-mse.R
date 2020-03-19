@@ -177,7 +177,7 @@ g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
 ggsave("mse/figures/ye-tigure-cosewic-all.png", width = 5.7, height = 5)
 
 g <- dplyr::filter(e_avg, MP %in% union(mp_sat, "NFref")) %>%
-  plot_tigure()
+  plot_tigure() + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
 ggsave("mse/figures/ye-tigure-cosewic-avg.png", width = 2.5, height = 3)
 
 plots <- gfdlm::plot_factory(
