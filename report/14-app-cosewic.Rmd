@@ -24,11 +24,9 @@ P[1 - B_2019/B_1918 < 0.3]
 (ref:fig-cosewic-metrics)
 COSEWIC metric A results for each operating model for Inside Yelloweye Rockfish. 
 
-```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="\\textwidth"}
-library(here)
+```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
 ```
-
 
 ## EXTINCTION RISK - COSEWIC METRIC E
 
@@ -46,7 +44,6 @@ Using a projection period of 100 years, we calculate the probability that the st
 COSEWIC risk of extinction metrics for Inside Yelloweye Rockfish by OM. 
 
 ```{r cosewic-all, fig.cap="(ref:fig-cosewic-all)", out.width="\\textwidth"}
-library(here)
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
 ```
 
@@ -55,7 +52,7 @@ knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
 (ref:fig-cosewic-avg)
 COSEWIC risk of extinction metrics averaged across OMs for Inside Yelloweye Rockfish. 
 
-```{r cosewic-avg, fig.cap="(ref:fig-cosewic-avg)", out.width="0.8\\textwidth"}
+```{r cosewic-avg, fig.cap="(ref:fig-cosewic-avg)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-avg.png"))
 ```
 
