@@ -109,9 +109,15 @@ sd(h_samps)
 TODO: ... with the seed in R set to 65423:
 
 ```{r, eval=TRUE, echo=TRUE}
+alphaconv <- function(m, sd) {
+  m * (((m * (1 - m)) / (sd^2)) - 1)
+}
+betaconv <- function(m, sd) {
+  (1 - m) * (((m * (1 - m)) / (sd^2)) - 1)
+}
+h_alpha <- alphaconv((0.71 - 0.2), 0.12)
+h_beta <- betaconv((0.71 - 0.2), 0.12)
 set.seed(65423)
-h_alpha <- DLMtool::alphaconv((0.71 - 0.2), 0.12)
-h_beta <- DLMtool::betaconv((0.71 - 0.2), 0.12)
 h_samps <- rbeta(nsim, h_alpha, h_beta)
 h_samps <- 0.8 * h_samps + 0.2
 mean(h_samps)
