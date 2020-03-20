@@ -132,3 +132,14 @@ g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
   ggplot2::xlab(paste("Length", "(cm)")) +
   ggplot2::ylab("Relative length frequency")
 ggsave("mse/figures/ye-ins-length.png", width = 3, height = 5)
+
+optimize_png <- TRUE
+if (optimize_png && !identical(.Platform$OS.type, "windows")) {
+  files_per_core <- 4
+  setwd("mse/figures")
+  system(paste0(
+    "find -X . -name 'ye*.png' -print0 | xargs -0 -n ",
+    files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
+  ))
+  setwd("../../")
+}
