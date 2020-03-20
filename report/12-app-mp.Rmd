@@ -132,9 +132,12 @@ $$
 \end{cases}
 $$
 
-where $\delta_\textrm{min}$ is the most negative drop allowed in the relative biomass index before the fishery is closed that year (by default assuming $\textrm{TAC}_\textrm{Floor}$ is 20% of the average catch from the last 5 historical years) and $\Delta I_y$ is the current index value divided by the last observed index value.
+where $\delta_\textrm{min}$ is the most negative drop allowed in the relative biomass index before the fishery is closed that year and $\Delta I_y$ is the current index value divided by the last observed index value.
+We set $\textrm{TAC}_\textrm{Floor} = 5 t$.
 We set $\delta_\textrm{min} = -0.5$ as in [@cox2020].
 The maximum increase in TAC is capped at $\delta_\textrm{max} = 0.25$ by default.
+This means that the TAC in any one year cannot increase by more than 25%, implementing a "slow up" behaviour of the MP.
+The parameters $\delta_\textrm{min}$ and $\delta_\textrm{max}$ could possibly be additionally tuned to adjust the behaviour of the MP.
 
 This MP can be additionally smoothed:
 
@@ -144,8 +147,6 @@ $$
 
 where $\lambda$ controls the degree of smoothing and can range between 0 and 1. @cox2020 used $\lambda=0.5$.
 We define these MPs for DLMtool as "IDX" ($\delta_{\textrm{min}} = -0.5$, $\delta_{\textrm{max}} = 0.25$) and "IDX_smooth" (same as IDX but with $\lambda = 0.5$ to split the difference between the upcoming proposed TAC and the one previously recommended).
-We set $\textrm{TAC}_\textrm{Floor} = 5 t$.
-
 
 We evaluated three configurations of the IDX MPs, applied annually:
 
