@@ -407,8 +407,32 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 
 ### Surplus production model scenario 
 
+The 2011 stock assessment for Inside Yelloweye Rockfish applied a Bayesian state space surplus production (SP) model, fit to catch, commercial CPUE and the HBLL and Dogfish surveys [@yamanaka2011]. 
+The assessment  estimated a 90% (9 times out of ten) probability that the stock was below the LRP, in the critical zone. 
+The assessment results triggered a rebuilding plan [@ifmp2018], which is being updated with the current analyses.
+The SRA models under all OM scenarios in the current analysis predict similar biomass trajectories to that in @yamanaka2011.
+However, only Scenario (B) estimates the stock to have been below the LRP during the 2000s (Figure \@ref(fig:biomass-om)).
+It is not possible to definitively infer why model results diverged between the two analyses due to the large differences in model structure between the SP model used in @yamanaka2011 and the SRA, used here, as well as the addition of 10 years of new data.
 
-- Additional model fit to a state-state surplus production model was done. This model indicates that the stock is below the LRP, output of model is consistent with 2011 assessment which used a similar model. 
-- Reference points MSY = 62 t and FMSY = 0.03 are similar to age-structured OMs but it's the stock status that's much different.
-<!-- Figure has been generated (see mse/09-plot-miscellaneous.R) -->
+However, to explore the effects of model structure on stock status results, we fit a SP model to the catch, CPUE and fishery independent indices of abundance.
+We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp.
+The model used prior probability distributions for the intrinsic rate of population growth, carrying capacity, initial stock size relative to unfished stock size, and catchability coefficients for the indices of abundance, based on those used in @yamanaka2011.
 
+Model results more closely matched those of the previous assessment, estimating the stock to be below the LRP (Figure \@ref(fig:spm-biomass)). 
+Note that median reference point estimates of *B*~MSY~ = **XX**, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t werere similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)).
+
+*TODO: What else do we want to say about this???*
+
+
+(ref:fig-spm-biomass) Median biomass relative to biomass at MSY (*B*/*B*~MSY~) trajectory from the SP model.
+Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
+
+```{r spm-biomass, fig.cap="(ref:fig-spm-biomass)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("mse/figures/SP_fit.png"))
+```
+
+
+*TODO: Quang, please add any more details, including value of BMSY and details about priors*
+
+
+\clearpage
