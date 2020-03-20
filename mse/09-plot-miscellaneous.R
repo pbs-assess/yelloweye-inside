@@ -8,7 +8,11 @@ set.seed(382948)
 SRA_list <- readRDS("mse/scoping/scoping_base.rds")
 SRA <- SRA_list[[1]]; ret <- SRA_list[[2]]
 
-SP_mod <- SP_SS(Data = SRA@OM@cpars$Data, AddInd = 1:5, use_r_prior = TRUE, start = list(r_prior = c(0.068, 0.03)))
+SP_mod <- SP_SS(Data = SRA@OM@cpars$Data, AddInd = 1:5, use_r_prior = TRUE,
+                start = list(r_prior = c(0.068, 0.03), dep = 0.9))
+
+SP_Fox <- SP_SS(Data = SRA@OM@cpars$Data, AddInd = 1:5, use_r_prior = TRUE,
+                start = list(r_prior = c(0.068, 0.03), dep = 0.9, n = 1))
 #plot(SP_mod, dir = getwd(), filename = "mse/scoping/scoping_SP", open_file = FALSE)
 
 # Little to no difference with reconstructed catch (no doubling 1986-2005)
