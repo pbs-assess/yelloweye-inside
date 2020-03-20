@@ -346,7 +346,10 @@ ref_pts %>%
 
 #### Historical trajectories {#sec:approach3-conditioning-trajectories}
 
-None of the scenarios estimated current median spawning biomass to be below the LRP (Figure )
+None of the scenarios estimated current median spawning biomass to be below the LRP (Figure \@ref(fig:biomass-om)). 
+Scenario (B) estimated median spawning biomass to have been below the LRP for most years post-2000 and non-zero probability of being below the LRP in the current year.
+Scenario (2) also had non-zero probability of being below the LRP in the current year, albeint only a tiny portion of the 95% credible interval.
+Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered rebuilt.
 
 All scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
 The credible interval for all scenarios except (A) was very broad, reflecting uncertainties in parameter estimates (Figure \@ref(fig:sra-conditioned-parameters)).
@@ -402,15 +405,8 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 
 \clearpage
 
-*TODO: Extra notes from Quang*
+### Surplus production model scenario 
 
-*TODO: Where do we find table or fig of reference points?*
-
-- Reference points: <!-- See mse/figures/ref_pt_text.csv -->
-- Mean MSY is almost 64 t in OM 1. OMs 2 (lower catches --> smaller stock) and A (low M --> less productive) generate lower MSY compared to OM 1, as expected.
-- Mean FMSY = 0.04 is identical in all except in A, where mean is half of that in the others (also expected due to lower M).
-
-*TODO: Where to put the SP model fit?*
 
 - Additional model fit to a state-state surplus production model was done. This model indicates that the stock is below the LRP, output of model is consistent with 2011 assessment which used a similar model. 
 - Reference points MSY = 62 t and FMSY = 0.03 are similar to age-structured OMs but it's the stock status that's much different.
