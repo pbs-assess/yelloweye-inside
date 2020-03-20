@@ -1,9 +1,3 @@
-\newpage
-
-`r if(knitr:::is_latex_output()) '\\Appendices'`
-
-`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
-
 # FISHERY-INDEPENDENT SURVEY DATA {#app:index-data}
 
 ## HBLL INSIDE SURVEY INDEX {#sec:hbll-index-data}

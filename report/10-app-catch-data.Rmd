@@ -8,18 +8,13 @@ Rockfish catch data can be grouped into 3 time periods: historic (1918-1950), ea
 
 The second major source of uncertainty is the magnitude of unreported catch that was released or discarded at sea, prior to the introduction of 100% observer coverage in 2006. The catch reconstruction of @haigh2011 assumes no discarding prior to 1986, when the ZN licence was instituted. Prior to that it is assumed all Rockfish were kept. Discards are assumed to be fully reported in DFO databases since 2006 and the introduction of 100% observer coverage. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets using data from 2000-2004 hook and line observer logs. The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  
 
-The commercial catch time series used in this analysis (Figure \@ref(commcatch2) and Table \@ref(tab:commcatch)) differs from the one previously reported in 2009, for several reasons. Ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020). As well, an earlier version of the catch reconstruction algorithm was used to develop the time series for the previous stock assessment, as the final version had not yet been published. Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020).
+The commercial catch time series used in this analysis (Figure \@ref(fig:commcatch2) and Table \@ref(tab:commcatch)) differs from the one previously reported in 2009, for several reasons. Ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020). As well, an earlier version of the catch reconstruction algorithm was used to develop the time series for the previous stock assessment, as the final version had not yet been published. Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020).
 
-The reconstruction algorithm could have been applied to all years in the timeseries until to 2005 (after which, full at-sea and dockside monitoring came into effect). However, for this analysis we used the reconstructed catch data from 1918-1985, and switched to the nominal catch data in 1986. The nominal catch from 1986-2005 was then doubled to calibrate our OMs,to be consistent with the previous assessment [@yamanaka2011]. Prior to the previous assessment, DFO saught advice from industry on the reconstructed catch [@DFO2012]. In 2009, advice from industry representatives indicated that the scale of unreported catch was probably equal to landed catch, and they did not have confidence in the catch reconstruction between 1986 and 2005. As a result of this advice, the catch for these years was doubled. Because discards are estimated as part of the catch reconstruction algorithm, we did not use the reconstructed catch for the period 1986-2004, to avoid double counting of discards. As a sensitivity check on this assumption, in the current analysis we explore one OM scenario where the 1986-2005 commercial catches were not doubled (the "low catch" scenario, section \@ref(sec:approach3-reference2)).
+The reconstruction algorithm could have been applied to all years in the timeseries until to 2005 (after which, full at-sea and dockside monitoring came into effect). However, for this analysis we used the reconstructed catch data from 1918-1985, and switched to the nominal catch data in 1986. The nominal catch from 1986-2005 was then doubled to calibrate our OMs,to be consistent with the previous assessment [@dfo2012]. Prior to the previous assessment, DFO saught advice from industry on the reconstructed catch [@dfo2012]. In 2009, advice from industry representatives indicated that the scale of unreported catch was probably equal to landed catch, and they did not have confidence in the catch reconstruction between 1986 and 2005. As a result of this advice, the catch for these years was doubled. Because discards are estimated as part of the catch reconstruction algorithm, we did not use the reconstructed catch for the period 1986-2004, to avoid double counting of discards. As a sensitivity check on this assumption, in the current analysis we explore one OM scenario where the 1986-2005 commercial catches were not doubled (the "low catch" scenario, section \@ref(sec:approach3-reference2)). *TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005 *
 
-
-*TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005 *
-
-\clearpage
 
 ```{r commcatch2, out.width="\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."}
-library(here)
-library(tidyverse)
+
 comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
 
 tidyr::pivot_longer(comm_catch, -1) %>%
@@ -37,6 +32,7 @@ tidyr::pivot_longer(comm_catch, -1) %>%
 )
 ```
 
+
 \clearpage
 
 ```{r commcatch, warning = FALSE, results = "asis"}
@@ -47,7 +43,7 @@ csasdown::csas_table(comm_catch,
   caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918-1985) and nominal (1986-2019) catch estimates in tonnes."
 ) %>%
   kableExtra::column_spec(1, width = "1.0cm") %>%
-  kableExtra::column_spec(2:6, width = "1.6cm")
+  kableExtra::column_spec(2:6, width = "2cm")
 ```
 
 \clearpage
@@ -69,8 +65,11 @@ We followed the same method as in Yamanaka et al. (2011) to estimate the recreat
 \clearpage
 
 ```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
-rec_catch <- readr::read_csv(here("data-raw/rec-allcatch-effort.csv"))
-rec_catch <- rec_catch %>% mutate_if(is.numeric , replace_na, replace = "--") 
+rec_catch <- read.csv(here("data-raw/rec-allcatch-effort.csv"), stringsAsFactors=FALSE, header=TRUE)
+rec_catch <- rec_catch %>% mutate(catch = round(catch, 1)) %>% 
+  mutate(effort= round(effort, 0)) %>% 
+  mutate_if(is.numeric , replace_na, replace = "--")
+
 # make a table of recreational catch
 csasdown::csas_table(rec_catch,
   format = "latex",
@@ -84,14 +83,22 @@ csasdown::csas_table(rec_catch,
 
 \clearpage
 
+```{r recplot, echo=FALSE, warning=FALSE, results="asis"}
+
+```
+
+\clearpage
+
 ```{r recbyarea, echo=FALSE, warning=FALSE, results = "asis"}
-rec_area <- read.csv(here("data-raw/rec-catcheffortbyarea.csv"))
+rec_area <- read.csv(here("data-raw/rec-catcheffortbyarea.csv"), stringsAsFactors=FALSE, header=TRUE)
 
 # organizing the data from long to wide format
 rec_wide <- rec_area %>%
   select(year, tonnes, totaleffort, pfma) %>%
-  tidyr::pivot_wider(names_from = pfma, values_from = c(tonnes, totaleffort)) %>%
-  mutate(effort = rowSums(.[13:23], na.rm = TRUE) / 10000) %>%
+  mutate(tonnes = round(tonnes,1)) %>% 
+  mutate(totaleffort = round(totaleffort, 0)) %>% 
+  pivot_wider(names_from = pfma, values_from = c(tonnes, totaleffort)) %>%
+  mutate(effort = round(rowSums(.[13:23], na.rm = TRUE) / 10000, 0)) %>%
   select(-starts_with("totaleffort")) %>%
   rename_at(vars(starts_with("tonnes_")), list(~ stringr::str_remove(., "tonnes_"))) %>% 
   mutate_if(is.numeric , replace_na, replace = "--")
@@ -136,7 +143,6 @@ The proportion of FSC fisher encountered by the dockside creel monitor was not, 
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
 fsc_catch <- read.csv(here("data-raw/fsc-dmp.csv"))
-fsc_catch <- fsc_catch %>% mutate_if(is.numeric , replace_na, replace = "--")
 csasdown::csas_table(fsc_catch,
   format = "latex",
   col_names = c("Year", "FSC", "Commercial", "Total", "Percent FSC"),

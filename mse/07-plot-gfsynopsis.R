@@ -24,7 +24,8 @@ vb_a <- gfplot::fit_vb(dat$survey_samples, sex = "all", method = "tmb",
                        too_high_quantile = 1, check_convergence_tmb = check_convergence_tmb,
                        tmb_init = tmb_init)
 plot_growth(object_all = vb_a) + geom_line(data = vb_a$predictions, aes(age, length)) +
-  guides(col = FALSE, lty = FALSE)
+  guides(col = FALSE, lty = FALSE)  +
+  ggtitle("Growth")
 ggsave("mse/figures/ye-length.png", width = 4, height = 3)
 
 
@@ -81,7 +82,7 @@ if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
 }
 
 plot_mat_ogive(mat_length)
-ggsave("mse/figures/mat_ogive_length.png", width = 5, height = 3)
+ggsave("mse/figures/mat-ogive-length.png", width = 5, height = 3)
 
 # Show predicted vs. observed proportions
 prop <- mat_age[[3]]$data %>% group_by(female, age_or_length) %>% summarise(prop_mature = sum(mature)/n()) %>% reshape2::acast(list("female", "age_or_length"))
@@ -97,7 +98,7 @@ ggsave("mse/figures/ye-maturity3.png", width = 5, height = 3)
 
 # Plot maturity by month: ----------------------------------------------------
 gfplot::tidy_maturity_months(dat$survey_samples) %>% gfplot::plot_maturity_months()
-ggsave("mse/figures/ye_ins_mat_months.png", width = 5, height = 3)
+ggsave("mse/figures/ye-ins-mat-months.png", width = 5, height = 3)
 
 # Age frequencies: ----------------------------------------------------------
 
@@ -113,7 +114,7 @@ g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
   guides(fill = FALSE, colour = FALSE) +
   ggtitle("Age frequencies") +
   labs(y = "Age (years)")
-ggsave("mse/figures/ye_ins_age.png", width = 3, height = 5)
+ggsave("mse/figures/ye-ins-age.png", width = 3, height = 5)
 
 # Length frequencies: ----------------------------------------------------------
 
@@ -130,4 +131,15 @@ g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
   ggtitle("Length frequencies") +
   ggplot2::xlab(paste("Length", "(cm)")) +
   ggplot2::ylab("Relative length frequency")
-ggsave("mse/figures/ye_ins_length.png", width = 3, height = 5)
+ggsave("mse/figures/ye-ins-length.png", width = 3, height = 5)
+
+optimize_png <- TRUE
+if (optimize_png && !identical(.Platform$OS.type, "windows")) {
+  files_per_core <- 4
+  setwd("mse/figures")
+  system(paste0(
+    "find -X . -name 'ye*.png' -print0 | xargs -0 -n ",
+    files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
+  ))
+  setwd("../../")
+}
