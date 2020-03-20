@@ -325,9 +325,28 @@ This excludes a small number of replicates.
 knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
 ```
 
+Estimated mean and standard deviation for reference points *F*~MSY~, *B*~MSY~ and MSY are provided in Table \@ref(tab:sra-ref-pts). Note the large standard deviations due to the large range of sampled values for *M* and *h* (Appendix \@ref(app:desc-om-yelloweye), Sections \@ref(app:desc-stock-m-yelloweye) and \@ref(app:desc-stock-h-yelloweye)).
+
+*TODO: This table will be updated to include BMSY. Do we need to show MSY?*
+
+```{r sra-ref-pts, results='asis'}
+
+ref_pts <- readr::read_csv(here::here("mse/figures/ref_pt.csv"))
+ref_pts %>%
+  rename("Scenario" = X1) %>% 
+  mutate(Scenario = gsub("\\\n", " ", Scenario)) %>%
+  select(Scenario, FMSY, MSY) %>%
+  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario") %>% 
+  kableExtra::column_spec(1, width = "5cm") %>%
+  kableExtra::column_spec(2:3, width = "3cm")
+
+```
+
 \clearpage
 
 #### Historical trajectories {#sec:approach3-conditioning-trajectories}
+
+None of the scenarios estimated current median spawning biomass to be below the LRP (Figure )
 
 All scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
 The credible interval for all scenarios except (A) was very broad, reflecting uncertainties in parameter estimates (Figure \@ref(fig:sra-conditioned-parameters)).
@@ -340,15 +359,15 @@ In all scenarios except Scenario (A), the median spawning biomass is estimated t
 The median spawning biomass is estimated to be above the USR in Scenarios (1) and (2); and estimated to be below the USR in (4) and (A).
 
 (ref:fig-biomass-om)
-Spawning stock biomass relative to spawning stock biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.
+Spawning stock biomass relative to spawning biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.
 Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
-Dotted horizontal lines represent the USR and LRP.
+Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
 
 ```{r biomass-om, fig.cap="(ref:fig-biomass-om)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-compare-SRA-MSY-panel.png"))
 ```
 
-The implied spawning stock biomass depletion trajectories during the historical period from the eight OMs follow the same pattern as those for *B* (Figure \@ref(fig:depletion-om)).
+The implied spawning biomass depletion trajectories during the historical period from the eight OMs follow the same pattern as those for *B* (Figure \@ref(fig:depletion-om)).
 
 (ref:fig-depletion-om)
 Spawning stock biomass depletion trajectories for reference and robustness set OMs.

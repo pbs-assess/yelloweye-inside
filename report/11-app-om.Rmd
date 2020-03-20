@@ -396,7 +396,3 @@ display_om(oms, "TACSD")
 ```
 <!-- slot-chunk-end -->
 
-# CONDITIONING THE OPERATING MODEL TO DATA
-
-*TODO: Possibly add some of the SRA plots here if too numerous for main document*
-
