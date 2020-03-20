@@ -371,11 +371,21 @@ sel2 <- data.frame(Age = 1:80, Commercial = sra_ye[[1]]@Misc[[1]]$vul[1,,1],
 
 ggplot(sel2, aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::theme_pbs() +
   coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
-ggsave("mse/figures/fishery-selectivity.png", width = 7, height = 4)
+ggsave("mse/figures/fishery-selectivity.png", width = 4, height = 3)
 
 ggplot(filter(sel2, Fleet != "HBLL"), aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::theme_pbs() +
   coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
-ggsave("mse/figures/fishery-selectivity2.png", width = 7, height = 4)
+ggsave("mse/figures/fishery-selectivity2.png", width = 4.5, height = 3)
+
+# Terminal year selectivity
+terminal_year_selectivity <- purrr::map2_df(sra_ye, sc$scenario_human, function(x, y) {
+  data.frame(Age = 1:x@OM@maxage, V = x@OM@cpars$V[1, , x@OM@nyears], Scenario = y)
+})
+ggplot(terminal_year_selectivity, aes(Age, V)) + facet_wrap(~Scenario) + geom_line() + gfplot::theme_pbs() +
+  labs(y = "Selectivity") + xlim(c(0, 40))
+ggsave("mse/figures/fishery-selectivity-terminal-year.png", width = 4.5, height = 3)
+
+
 
 # Histograms of M and h  ------------------------------------------------------
 

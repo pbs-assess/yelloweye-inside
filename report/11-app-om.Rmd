@@ -55,12 +55,11 @@ display_om(oms, "maxage")
 <!-- slot-chunk-begin -->
 ### M {#app:desc-stock-m-yelloweye}
 
-*Natural mortality rate. Uniform distribution lower and upper bounds.*
+*Natural mortality rate.*
 
-Natural mortality and Beverton-Holt steepness are core uncertainties for many stocks.
-We incorporated uncertainty using a Monte Carlo approach, by sampling them from prior distributions generated from meta-analysis:
+Natural mortality is a core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling M from prior distributions generated from meta-analysis:
 
-TODO: M ~ Lognormal(0.045, 0.2) from Hoenig et al. (1983) using maxage = 101 years
+TODO: M ~ Lognormal(0.045, 0.2) from Hoenig et al. (1983) using maxage = 101 years. Also cite Yamanaka et al. (2011) for the standard deviation of 0.2.
 
 We drew M stochastically from a Lognormal(0.045, 0.2) distribution with the seed in R set to 91283:
 
@@ -77,7 +76,9 @@ display_om(oms, "M")
 <!-- slot-chunk-begin -->
 ### h {#app:desc-stock-h-yelloweye}
 
-*Steepness of the stock-recruit relationship. Uniform distribution lower and upper bounds with values from 1/5 to 1.*
+*Steepness of the stock-recruit relationship.*
+
+Steepness is another core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling h from prior distributions generated from meta-analysis:
 
 TODO: tidy this
 - h ~ Transformed Beta(mean = 0.71, sd = 0.15) using Forrest et al. prior
@@ -136,8 +137,9 @@ display_om(oms, "h")
 <!-- slot-chunk-begin -->
 ### Perr {#app:desc-stock-perr-yelloweye}
 
-*Process error, the CV of lognormal recruitment deviations. Uniform distribution lower and upper bounds.*
+*Process error, the CV of lognormal recruitment deviations.*
 
+A value of 0.4 was used as estimated in @cox2020 for the outside population.
 ```{r desc-stock-perr-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "Perr")
 ```
@@ -146,7 +148,9 @@ display_om(oms, "Perr")
 <!-- slot-chunk-begin -->
 ### Linf {#app:desc-stock-linf-yelloweye}
 
-*Maximum length. Uniform distribution lower and upper bounds.*
+*Mean asymptotic length.*
+
+This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-linf-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "Linf")
@@ -156,7 +160,9 @@ display_om(oms, "Linf")
 <!-- slot-chunk-begin -->
 ### K {#app:desc-stock-k-yelloweye}
 
-*von Bertalanffy growth parameter k. Uniform distribution lower and upper bounds.*
+*von Bertalanffy growth parameter k.*
+
+This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-k-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "K")
@@ -166,17 +172,41 @@ display_om(oms, "K")
 <!-- slot-chunk-begin -->
 ### t0 {#app:desc-stock-t0-yelloweye}
 
-*von Bertalanffy theoretical age at length zero. Uniform distribution lower and upper bounds.*
+*von Bertalanffy theoretical age at length zero.*
+
+This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-t0-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "t0")
 ```
 <!-- slot-chunk-end -->
 
+
+<!-- slot-chunk-begin -->
+### Maturity {#app:desc-stock-maturity-yelloweye}
+
+*Maturity ogive.*
+
+Maturity was directly overwritten as an age-based function. Female maturity at age was estimated from Appendix \@ref(app:biological-data) an used here. The minimum age observed to be mature was 7 years and it assumed that younger ages were all immature.
+
+```{r desc-stock-maturity, eval = FALSE, echo = TRUE}
+create_maturity_ogive <- function(A50, A95, maxage, Amin) {
+  ages <- 1:maxage
+  mat_age <- 1/(1 + exp(log(19) * (ages - A50)/(A95 - A50)))
+  return(ifelse(ages < Amin, 0, Amin, mat_age))
+}
+OM@cpars$Mat_age <- create_maturity_ogive(14.4, 27.4, OM@maxage, 7) %>% 
+  array(OM@maxage, OM@nyears + OM@proyears, OM@nsim) %>% aperm(c(3, 1, 2))
+```
+
+<!-- slot-chunk-end -->
+
 <!-- slot-chunk-begin -->
 ### L50 {#app:desc-stock-l50-yelloweye}
 
-*Length at 50% maturity. Uniform distribution lower and upper bounds.*
+*Length at 50% maturity.*
+
+Not used since maturity was directly input as an age-based function. See description of \@ref(app:desc-stock-maturity-yelloweye).
 
 ```{r desc-stock-l50-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "L50")
@@ -186,7 +216,9 @@ display_om(oms, "L50")
 <!-- slot-chunk-begin -->
 ### L50_95 {#app:desc-stock-l50_95-yelloweye}
 
-*Length increment from 50% to 95% maturity. Uniform distribution lower and upper bounds.*
+*Length increment from 50% to 95% maturity.*
+
+Not used since maturity was directly input as an age-based function. See description of \@ref(app:desc-stock-maturity-yelloweye).
 
 ```{r desc-stock-l50_95-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "L50_95")
@@ -198,6 +230,7 @@ display_om(oms, "L50_95")
 
 *Length-weight parameter alpha. Positive real number.*
 
+This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 ```{r desc-stock-a-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "a")
 exp(display_om(oms, "a"))
@@ -208,6 +241,8 @@ exp(display_om(oms, "a"))
 ### b {#app:desc-stock-b-yelloweye}
 
 *Length-weight parameter beta. Positive real number.*
+
+This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-b-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "b")
@@ -233,19 +268,44 @@ display_om(oms, "Fdisc")
 
 *The number of years for the historical spool-up simulation.*
 
+The time series of catch (1918-2019) was used to encapsulate the historical period of the operating model.
+ 
 ```{r desc-fleet-nyears-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "nyears")
 ```
 <!-- slot-chunk-end -->
 
+
 <!-- slot-chunk-begin -->
-### L5 {#app:desc-fleet-l5-yelloweye}
+### Selectivity {#app:desc-fleet-selectivity-yelloweye}
 
 *Shortest length corresponding to 5% vulnerability. Uniform distribution lower and upper bounds.*
 
-Selectivity of recreational and commercial fleets are fixed in SRA_scope, which updates the OM.
+Selectivity of the recreational and commercial fleets was obtained from @cox2020 and fixed in the SRA model, which updates the OM. Selectivity was parameterized as a logistic function by age. For the recreational fleet, the age of 50% and 95% selectivity was 6.7 and 11.5 years, respectively. For the commercial fleet, primarily hook-and-line, the age of 50% and 95% selectivity was 14.4 and 21 years, respectively.
 
-TODO: give here and plot?
+
+(ref:fig-sel-fleet) Selectivity used for the recreational and commercial fleets.
+
+```{r sra-selectivity, fig.cap="(ref:fig-sel-fleet)", out.width="3.8in"}
+knitr::include_graphics(here::here("mse/figures/fishery-selectivity2.png"))
+```
+
+The SRA estimates fishing mortality by age and year. Annually the selectivity in the historical period is obtained by dividing the annual F at age by the apical F. During the projection period, the selectivity is equal to that in the last historical year.
+
+(ref:fig-om-sel) Terminal year selectivity for the operating models.
+
+```{r om-selectivity, fig.cap="(ref:fig-om-sel)", out.width="4.5in"}
+knitr::include_graphics(here::here("mse/figures/fishery-selectivity-terminal-year.png"))
+```
+
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### L5 {#app:desc-fleet-l5-yelloweye}
+
+*Shortest length corresponding to 5% vulnerability.*
+
+Not used since selectivity is updated by the SRA. See description of \@ref(app:desc-fleet-selectivity-yelloweye).
 
 ```{r desc-fleet-l5-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "L5")
@@ -255,11 +315,9 @@ display_om(oms, "L5")
 <!-- slot-chunk-begin -->
 ### LFS {#app:desc-fleet-lfs-yelloweye}
 
-*Shortest length that is fully vulnerable to fishing. Uniform distribution lower and upper bounds.*
+*Shortest length that is fully vulnerable to fishing.*
 
-TODO: give here and plot?
-
-Selectivity of recreational and commercial fleets are fixed in SRA_scope, which updates the OM.
+Not used since selectivity is updated by the SRA. See description of \@ref(app:desc-fleet-selectivity-yelloweye).
 
 ```{r desc-fleet-lfs-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "LFS")
@@ -269,9 +327,9 @@ display_om(oms, "LFS")
 <!-- slot-chunk-begin -->
 ### Vmaxlen {#app:desc-fleet-vmaxlen-yelloweye}
 
-*The vulnerability of fish at `Linf`. Uniform distribution lower and upper bounds. Fraction.*
+*The vulnerability of fish at `Linf`.*
 
-Selectivity of recreational and commercial fleets are fixed in SRA_scope, which updates the OM.
+Not used since selectivity is updated by the SRA. See description of \@ref(app:desc-fleet-selectivity-yelloweye).
 
 ```{r desc-fleet-vmaxlen-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "Vmaxlen")
@@ -373,8 +431,7 @@ We can not display this parameter here because it is added in the code as `AddIe
 
 *A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases more slowly than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution lower and upper bounds.*
 
-We set the hyperstability/hyperdepletion $\beta$ parameter to 1 to imply no hyperstability or hyperdepletion.
-This gets set via the SRA model and so is not specified here.
+We set the hyperstability/hyperdepletion $\beta$ parameter to 1 to imply no hyperstability or hyperdepletion. Since we use the `AddInd` feature to generate the index for the management procedures, this is set in `OM@cpars$AddIbeta`.
 
 ```{r desc-obs-beta-yelloweye, results = knitr_results, echo = knitr_echo, eval=FALSE}
 ```
@@ -387,6 +444,7 @@ This gets set via the SRA model and so is not specified here.
 
 *Mean fraction of TAC taken. Uniform distribution lower and upper bounds.*
 
+No implementation error is the assumption.
 ```{r desc-imp-tacfrac-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "TACFrac")
 ```
@@ -396,6 +454,8 @@ display_om(oms, "TACFrac")
 ### TACSD {#app:desc-imp-tacsd-yelloweye}
 
 *Log-normal CV in the fraction of TAC taken. Uniform distribution lower and upper bounds.*
+
+No implementation error is the assumption.
 
 ```{r desc-imp-tacsd-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "TACSD")
