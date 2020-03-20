@@ -30,15 +30,27 @@ knitr::include_graphics(here("mse/figures/ye-ins-age.png"))
 
 Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:weight). The length-weight curve is of the form:
 
-$\log (W_i) \sim$ Student-t $(df = 3, \log(a) + b \log(L_i), \sigma),$
 
-with $W_i$ and $L_i$ representing the weight and length for fish $i$ and $\sigma$ representing the observation error scale. The degrees of freedom of the Student-t distribution are set to 3 to be robust to outliers. The variables $a$ and $b$ represent the estimated length-weight parameters. Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure for the central BC coast which also influences fecundity as larger females show an increasing number of eggs per unit of body weight (McGreer and Frid 2017).
+$$
+\log (W_i) \sim \operatorname{Student\mhyphen t}
+(df = 3, \log(a) + b \log(L_i), \sigma)
+$$
+
+with $W_i$ and $L_i$ representing the weight and length for fish $i$ and $\sigma$ representing the observation error scale.
+We set the degrees of freedom of the Student-t distribution to 3 to be robust to outliers [@anderson2019synopsis].
+The variables $a$ and $b$ represent the estimated length-weight parameters.
+Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure for the central BC coast which also influences fecundity as larger females show an increasing number of eggs per unit of body weight (TODO REF McGreer and Frid 2017).
 
 Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length). The length-age growth curve is a von Bertalanffy model of the form:
 
-$L_i \sim \operatorname{Log-normal} \left( \log(l_\mathrm{inf} (1 - \exp(-k (A_i - t_0)))), \sigma \right)$ 
+$$
+L_i \sim \operatorname{Log-normal}
+\left( \log(l_\mathrm{inf} (1 - \exp(-k (A_i - t_0)))) -
+\sigma^2 / 2, \sigma \right),
+$$
 
-where $L_i$ and $A_i$ represent the length and age of fish $i$, $l_\mathrm{inf}$, $k$, and $t_0$ represent the von Bertalanffy growth parameters, and $\sigma$ represents the scale parameter. 
+where $L_i$ and $A_i$ represent the length and age of fish $i$, $l_\mathrm{inf}$, $k$, and $t_0$ represent the von Bertalanffy growth parameters, and $\sigma$ represents the scale parameter.
+The model was fit in TMB as described in @anderson2019synopsis.
 
 (ref:fig-length-freq) Length-frequency plot for inside Yelloweye Rockfish from the hard-bottom 
 longline surveys (northern and southern) in inside waters (HBLL INS N/S). Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
