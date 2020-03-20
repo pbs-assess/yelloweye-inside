@@ -3,7 +3,7 @@
 
 # DATA-LIMITED MANAGEMENT PROCEDURES {#app:mps}
 
-Here we include...
+Here we present the MPs that were evaluated in the current study. See @anderson2020gfmp for a full list of MPs available in the MP Framework.
 
 ## CONSTANT-CATCH MANAGEMENT PROCEDURES {#sec:mp-cc}
 
@@ -120,7 +120,7 @@ Illustrations of the Islope MPs are provided in @anderson2020gfmp (their Appendi
 
 #### IDX: Index-based MP from @cox2020 {#sec:mp-idx}
 
-This MP was used in the rebuilding plan for outside Yelloweye Rockfish in BC [@cox2020] (Figure \@ref(fig:mp-idx-demo)).
+This MP was used in the rebuilding plan for outside Yelloweye Rockfish in BC [@cox2020].
 The MP assigns TAC based on:
 
 $$
@@ -144,28 +144,22 @@ $$
 
 where $\lambda$ controls the degree of smoothing and can range between 0 and 1. @cox2020 used $\lambda=0.5$.
 We define these MPs for DLMtool as "IDX" ($\delta_{\textrm{min}} = -0.5$, $\delta_{\textrm{max}} = 0.25$) and "IDX_smooth" (same as IDX but with $\lambda = 0.5$ to split the difference between the upcoming proposed TAC and the one previously recommended).
+We set $\textrm{TAC}_\textrm{Floor} = 5 t$.
 
-*TODO: Which is correct?*
-
-As for all the index-based MPs, we set $\textrm{TAC}_\textrm{Floor} = 0.5 t$ , which is approximately the amount of catch required for surveys to continue.
-
-OR
-
-We assumed the default $\textrm{TAC}_\textrm{Floor}$ of 20% of the average catch from the last 5 historical years)
 
 We evaluated three configurations of the IDX MPs, applied annually:
 
-*TODO: Define the differences between these*
 
-- IDX
+- IDX                : IDX with $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
 
-- IDX_smooth
+- IDX_smooth         : IDX_smooth with $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
+  
 
-- IDX_smooth_yrs5
+- IDX_smooth_yrs5    : IDX with $\Delta I_y = \frac{I_y}{I_{y-5}} -1$
 
-- IDX_yrs5
+- IDX_yrs5           : IDX_smooth with $\Delta I_y = \frac{I_y}{I_{y-5}} -1$ 
 
-We also evaluated the same three configurations, applied every five years:
+We also evaluated the same four configurations, applied every five years:
 
 - IDX_5u
 
@@ -205,10 +199,6 @@ We also evaluated the same two configurations, applied every 10 years:
 - SP_4010_10u
 
 - SP_8040_10u
-
-
-*NO META RULES AS IN GFMP?*
-
 
 
 

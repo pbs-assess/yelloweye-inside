@@ -1,3 +1,9 @@
+\newpage
+
+`r if(knitr:::is_latex_output()) '\\Appendices'`
+
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+
 # FISHERY-INDEPENDENT SURVEY DATA {#app:index-data}
 
 ## HBLL INSIDE SURVEY INDEX {#sec:hbll-index-data}
@@ -140,7 +146,7 @@ We undertook a basic simulation analysis to test that our approach of "stitching
 We generated a system that roughly matches the HBLL survey data we worked with in this document:
 
 * 10 years of observations
-* 100 possible spatial observation locations $s_j$ and $,s_k$ drawn from a Uniform(0, 1) distribution each year.
+* 100 possible spatial observation locations $s_j$ and $s_k$ drawn from a Uniform(0, 1) distribution each year.
 * A marginal SD($\omega_s$) = 2.2
 * A marginal SD($\epsilon_{s,t}$) = 0.3
 * A \mbox{Mat\'ern} parameter $\kappa = 0.1$
@@ -245,7 +251,7 @@ In the hook comparison study, `r sum(d2004$circle_hook)` sets used circle hooks 
 On these experimental sets, `r sum(hook_comparison$j_hook)` Yelloweye Rockfish were caught on J hooks and `r sum(hook_comparison$circle_hook)` were caught on circle hooks Table \@ref(tab:dogfish-hook-comparison).
 Although this represents a relatively small sample size of fish for estimating a hook correction factor for Yelloweye Rockfish,
 by simultaneously estimating the correction factor while standardizing the population index using a geostatistical model, we were able to incorporate uncertainty in the correction factor into the resulting index standard errors (Section \@ref(sec:dog-index-model)).
-Nonetheless, it is important to note that this correction factor is based on a limited number of sets and Yelloweye Rockfish and is driven largely by five sets with one or two more YE caught by circle hooks than J hooks and two sets with 12 and four YE caught by circle hooks vs. zero by J hooks (Table \@ref(tab:dogfish-hook-comparison)).
+Nonetheless, it is important to note that this correction factor is based on a limited number of sets and Yelloweye Rockfish and is driven largely by five sets with one or two more Yelloweye Rockfish caught by circle hooks than J hooks and two sets with 12 and four Yelloweye Rockfish caught by circle hooks vs. zero by J hooks (Table \@ref(tab:dogfish-hook-comparison)).
 
 \clearpage
 
@@ -293,7 +299,7 @@ In our projection of the model predictions onto the survey grid to calculate the
 
 $$
 B_t = \sum_{j = 1}^{n_j}
-  w_j \cdot \exp \left( \bm{X}_{j,t} \bm{\beta} + \bar{\bm{O}} \omega_j + \epsilon_{j,t} \right),
+  w_j \cdot \exp \left( \bm{X}_{j,t} \bm{\beta} + \bar{\bm{O}} + \omega_j + \epsilon_{j,t} \right),
 (\#eq:dog-prediction)
 $$
 
@@ -313,7 +319,7 @@ We calculated the grid cell areas ($w_j$) after removing portion of the fine-sca
 We set up the design matrix $\bm{X}_{j,t}$ to predict for a mean dogfish count and a mean area-swept offset.
 
 The resulting projection of the model onto the fine-scale grid is shown in Figure \@ref(fig:dog-prediction) along with the modelled spatial (Figure \@ref(fig:dog-spatial)) and spatiotemporal (Figure \@ref(fig:dog-spatiotemporal)) random-effect values.
-The standardized index for YE for an average hook type indicates a decline in relative abundance from the 1980s to the next survey in 2004, but with considerable uncertainty (Figure \@ref(fig:dog-standardized-index)).
+The standardized index for Yelloweye Rockfish for an average hook type indicates a decline in relative abundance from the 1980s to the next survey in 2004, but with considerable uncertainty (Figure \@ref(fig:dog-standardized-index)).
 The index remained relatively stationary from 2004 until 2014 with a slight increase in the mean from 2014 to 2019, but again with considerable uncertainty (Figure \@ref(fig:dog-standardized-index)).
 
 \clearpage

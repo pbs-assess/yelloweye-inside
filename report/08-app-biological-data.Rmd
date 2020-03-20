@@ -14,10 +14,31 @@ The two populations are assessed and managed independently using the Groundfish 
 
 *TODO: Explain how the maximum age is younger than the oldest aged fish*
 
-Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum age for inside Yelloweye is 98 years [@keppel2019]. 
+Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum age for the inside Yelloweye Rockfish stock is 101 years (Figure \@ref(fig:age-freq)). 
 They prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011]. 
 These life history traits make the stock vulnerable to overexploitation by fisheries.
 
+(ref:fig-age-freq) Age-frequency plot for inside Yelloweye from the hard-bottom 
+longline surveys (northern and southern) in inside waters (HBLL INS N/S). 
+Female fish are shown as coloured circles and male fish are shown behind as light grey
+circles. The total number of fish aged for a given survey and year are indicated
+along the top of the panels. Diagonal lines are shown at five-year intervals to
+facilitate tracing cohorts through time.
+
+```{r age-freq, fig.cap="(ref:fig-age-freq)"}
+library(here)
+knitr::include_graphics(here("mse/figures/ye_ins_age.png"))
+```
+
+Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both males and females. Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure for the central BC coast which also influences fecundity as larger females show an increasing number of eggs per unit of body weight (McGreer and Frid 2017).
+
+(ref:fig-length-freq) Length-frequency plot for inside Yelloweye Rockfish from the hard-bottom 
+longline surveys (northern and southern) in inside waters (HBLL INS N/S). Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
+
+```{r length-freq, fig.cap="(ref:fig-length-freq)"}
+library(here)
+knitr::include_graphics(here("mse/figures/ye_ins_length.png"))
+```
 
 \clearpage
 
