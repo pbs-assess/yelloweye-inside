@@ -14,7 +14,8 @@ The two populations are assessed and managed independently using the Groundfish 
 
 *TODO: Explain how the maximum age is younger than the oldest aged fish*
 
-Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum reported age for the inside Yelloweye Rockfish stock is 98 years [@keppel2019]. This maximum age is updated to 101 years from additional recent aging data (Figure \@ref(fig:age-freq)). Age data for inside Yelloweye Rockfish, using the break and burn method, are available from various surveys in area 4B from 1984-2018. Directed hard-bottom longline (HBLL) surveys began in area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged. Proportions-at-age of Yelloweye Rockfish are shown by year and sex for the inside stock from the HBLL survey samples (Figure \@ref(fig:age-freq)). Inside Yelloweye Rockfish prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011]. These life history traits make the stock vulnerable to overexploitation by fisheries.
+## Size and Growth
+Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum reported age for the inside stock is 98 years [@keppel2019]. This maximum age is updated to 101 years from additional recent aging data (Figure \@ref(fig:age-freq)). Age data for inside Yelloweye Rockfish, using the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018. Directed hard-bottom longline (HBLL) surveys began in area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged. Proportions-at-age of Yelloweye Rockfish are shown by year and sex for the inside stock from the HBLL survey samples (Figure \@ref(fig:age-freq)), and it is assumed that all ages are independent of subarea. Inside Yelloweye Rockfish prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011]. Their life history traits make the stock vulnerable to overexploitation by fisheries.
 
 (ref:fig-age-freq) Age-frequency plot for inside Yelloweye from the hard-bottom 
 longline surveys (northern and southern) in inside (area 4B) waters (HBLL INS N/S). 
@@ -23,13 +24,19 @@ circles. The total number of fish aged for a given survey and year are indicated
 along the top of the panels. Diagonal lines are shown at five-year intervals to
 facilitate tracing cohorts through time.
 
-```{r age-freq, fig.cap="(ref:fig-age-freq)"}
+```{r age-freq, fig.cap="(ref:fig-age-freq)", out.height="8in"}
 library(here)
-knitr::include_graphics(here("mse/figures/ye-ins-age.png"))
+knitr::include_graphics(here("mse/figures/age-freq.png"))
 ```
 
-Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:weight). The length-weight curve is of the form:
+Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight), and it is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
 
+<<<<<<< HEAD
+=======
+\begin{align}
+log (W_i) &\sim \mathrm{Student-t}(df = 3, \log(a) + b \log(L_i), \sigma),
+\end{align}
+>>>>>>> All biol plots in
 
 $$
 \log (W_i) \sim \operatorname{Student\mhyphen t}
@@ -41,8 +48,9 @@ We set the degrees of freedom of the Student-t distribution to 3 to be robust to
 The variables $a$ and $b$ represent the estimated length-weight parameters.
 Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure for the central BC coast which also influences fecundity as larger females show an increasing number of eggs per unit of body weight (TODO REF McGreer and Frid 2017).
 
-Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length). The length-age growth curve is a von Bertalanffy model of the form:
+Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length-age). The length-age growth curve is a von Bertalanffy model of the form:
 
+<<<<<<< HEAD
 $$
 L_i \sim \operatorname{Log-normal}
 \left( \log(l_\mathrm{inf} (1 - \exp(-k (A_i - t_0)))) -
@@ -51,56 +59,79 @@ $$
 
 where $L_i$ and $A_i$ represent the length and age of fish $i$, $l_\mathrm{inf}$, $k$, and $t_0$ represent the von Bertalanffy growth parameters, and $\sigma$ represents the scale parameter.
 The model was fit in TMB as described in @anderson2019synopsis.
+=======
+\begin{align}
+L_i &\sim \mathrm{Log-normal}\left( \log(l_\mathrm{inf} (1 - \exp(-k (A_i - t_0)))), \sigma \right),
+\end{align}
+
+where $L_i$ and $A_i$ represent the length and age of fish $i$, $l_\mathrm{inf}$, $k$, and $t_0$ represent the von Bertalanffy growth parameters, and $\sigma$ represents the log standard deviation, or scale parameter. The term $- \sigma^2 /2$ represents a 
+lognormal bias adjustment term so we model the mean length rather than the median.
+>>>>>>> All biol plots in
 
 (ref:fig-length-freq) Length-frequency plot for inside Yelloweye Rockfish from the hard-bottom 
 longline surveys (northern and southern) in inside waters (HBLL INS N/S). Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
 
-```{r length-freq, fig.cap="(ref:fig-length-freq)"}
+```{r length-freq, fig.cap="(ref:fig-length-freq)", out.height="8in"}
 library(here)
-knitr::include_graphics(here("mse/figures/ye-ins-length.png"))
+knitr::include_graphics(here("mse/figures/length-freq.png"))
 ```
 
-\clearpage
-
-
-```{r weight, fig.cap=paste0("Length-weight model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples in area 4B."), out.width="\\textwidth"}
+```{r length-weight, fig.cap=paste0("Length-weight model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples in area 4B."), fig.width=7, fig.asp = 0.62}
 library(here)
-knitr::include_graphics(here("mse/figures/ye-weight.png"))
+knitr::include_graphics(here("mse/figures/length-weight.png"))
 ```
 
-\clearpage
-
-
-```{r length, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), out.width="\\textwidth"}
+```{r length-age, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), fig.width=7, fig.asp = 0.62}
 library(here)
-knitr::include_graphics(here("mse/figures/ye-length.png"))
+knitr::include_graphics(here("mse/figures/vb.png"))
 ```
 
+## Maturity
 
-\clearpage
+Yelloweye Rockfish, in addition to being large and long-lived, are also slow to mature. In order to examine age at maturity, sample records from all surveys within area 4B were analyzed for specimens that were identified as male or female with a valid maturity code and for which age was determined using the break and burn or break and bake methods. 
 
+Maturity ogives are fit as logistic regressions to individual fish specimens, which are categorized as mature vs. not mature against length or age (Figure \@ref(fig:percent-maturity)):
 
-(ref:fig-maturity)
-Probability of being mature at age
+\begin{align}
+y_i &\sim \mathrm{Binomial}(\pi_i)\\
+\mathrm{logit} \left( \pi_i \right) &= \beta_0 + \beta_1 x_i + \beta_2 F_i
+\end{align}
 
-```{r maturity, fig.cap="(ref:fig-maturity)", out.width="\\textwidth"}
-library(here)
-knitr::include_graphics(here("mse/figures/ye-maturity3.png"))
-knitr::include_graphics(here("mse/figures/mat-ogive-length.png"))
-```
+where $y_i$ represents a 1 if fish $i$ is considered mature and a 0 if fish $i$
+is considered immature. The $\beta$ parameters represent estimated coefficients,
+$x_i$ represents either the length or age of fish $i$, and $F_i$ represents
+a binary predictor that is 1 if the fish is female and 0 if the fish is male.
+The variable $\pi_i$ represents the expected probability of fish $i$ being
+mature. Models are fit to all available survey samples regardless of time of
+year. Predicted vs. observed proportions mature-at-age are shown in Figure \@ref(fig:prop-mature).
 
-\clearpage
-
-
-(ref:fig-percent-maturity)
-Percent mature at age 
+(ref:fig-percent-maturity) Age- and length-at-maturity ogive plots for inside Yelloweye Rockfish. The solid black lines represent fits to the female fish and the dashed grey lines represent fits to the male fish. The vertical lines indicate the estimated age or length at 50\\% maturity. Text on the panels indicates the estimated age and length at 5, 50 and 95\% maturity for females (F) and males (M). Short rug lines along the top and bottom of each panel represent up to 1500 randomly chosen individual fish with a small amount of random jittering in the case of ages to help differentiate individual fish.
 
 ```{r percent-maturity, fig.cap="(ref:fig-percent-maturity)", out.width="\\textwidth"}
 library(here)
-knitr::include_graphics(here("mse/figures/maturity2.png"))
+knitr::include_graphics(here("mse/figures/mat-ogives.png"))
 ```
 
+(ref:fig-prop-mature) Predicted and observed proportions mature-at-age for inside Yelloweye Rockfish.
+
+```{r prop-mature, fig.cap="(ref:fig-prop-mature)", out.width="\\textwidth"}
+library(here)
+knitr::include_graphics(here("mse/figures/mat-prop.png"))
+```
+
+Maturity frequency by each month is shown in the bubble plot in Figure \@ref(fig:mat-months) for all fish in all surveys within area 4B for which maturity was sampled. Categories of maturity are listed from most immature (top) to most mature (bottom); individual fish, once mature, cycle through the mature stages.
+
+(ref:fig-mat-months)   Maturity-frequency-by-month plot for inside Yelloweye Rockfish. The area of each circle corresponds to the number of fish specimens in a given maturity category for the given month. Female fish are indicated by black circles and male fish are indicated by light grey circles behind. The total number of fish specimens for each month are indicated by the numbers at the top of the plot.
+
+```{r mat-months, fig.cap="(ref:fig-mat-months)", out.width="\\textwidth"}
+library(here)
+knitr::include_graphics(here("mse/figures/mat-months.png"))
+```
+
+
 \clearpage
+
+
 
 *TODO: DANA please can you add explanation of generation time and comparison between the inside and outside stocks?*
 

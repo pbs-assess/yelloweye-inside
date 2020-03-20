@@ -26,7 +26,7 @@ vb_a <- gfplot::fit_vb(dat$survey_samples, sex = "all", method = "tmb",
 plot_growth(object_all = vb_a) + geom_line(data = vb_a$predictions, aes(age, length)) +
   guides(col = FALSE, lty = FALSE)  +
   ggtitle("Growth")
-ggsave("mse/figures/ye-length.png", width = 4, height = 3)
+ggsave("mse/figures/vb.png", width = 4, height = 3)
 
 
 # Plot figure and residual
@@ -53,7 +53,7 @@ lw_f <- fit_length_weight(dat$survey_samples, sex = "female", method = "tmb",
 lw_a <- gfplot::fit_length_weight(dat$survey_samples, sex = "all", method = "tmb", too_high_quantile = 1)
 plot_length_weight(object_all = lw_a) + geom_line(data = lw_a$predictions, aes(length, weight)) +
   guides(col = FALSE, lty = FALSE)
-ggsave("mse/figures/ye-weight.png", width = 4, height = 3)
+ggsave("mse/figures/length-weight.png", width = 4, height = 3)
 
 
 
@@ -69,8 +69,8 @@ if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
   mat_age <- NA
 }
 
-plot_mat_ogive(mat_age)
-ggsave("mse/figures/maturity2.png", width = 5, height = 3)
+ogive_age <- plot_mat_ogive(mat_age)
+ggsave("mse/figures/mat-ogive-age.png", width = 5, height = 3)
 
 if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
   mat_length <- dat$survey_samples %>%
@@ -81,8 +81,12 @@ if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
   mat_length <- NA
 }
 
-plot_mat_ogive(mat_length)
+ogive_length <- plot_mat_ogive(mat_length)
 ggsave("mse/figures/mat-ogive-length.png", width = 5, height = 3)
+
+cowplot::plot_grid(ogive_age, ogive_length, nrow = 2, ncol = 1)
+ggsave("mse/figures/mat-ogives.png", width = 5, height = 6)
+
 
 # Show predicted vs. observed proportions
 prop <- mat_age[[3]]$data %>% group_by(female, age_or_length) %>% summarise(prop_mature = sum(mature)/n()) %>% reshape2::acast(list("female", "age_or_length"))
@@ -92,13 +96,13 @@ prop_female <- data.frame(age = as.numeric(colnames(prop)), prop = prop[2, ])
 ggplot(prop_female, aes(age, prop)) + geom_point() +
   geom_line(data = filter(mat_age[[2]], female == 1), aes(age_or_length, glmm_fe)) + gfplot::theme_pbs() +
   coord_cartesian(xlim = c(0, 60)) + labs(x = "Age (years)", y = "Probability mature")
-ggsave("mse/figures/ye-maturity3.png", width = 5, height = 3)
+ggsave("mse/figures/mat-prop.png", width = 5, height = 3)
 
 # A50 = 14.4, A95 = 27.4, Mat = 0 if age <=7
 
 # Plot maturity by month: ----------------------------------------------------
 gfplot::tidy_maturity_months(dat$survey_samples) %>% gfplot::plot_maturity_months()
-ggsave("mse/figures/ye-ins-mat-months.png", width = 5, height = 3)
+ggsave("mse/figures/mat-months.png", width = 5, height = 3)
 
 # Age frequencies: ----------------------------------------------------------
 
@@ -114,7 +118,7 @@ g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
   guides(fill = FALSE, colour = FALSE) +
   ggtitle("Age frequencies") +
   labs(y = "Age (years)")
-ggsave("mse/figures/ye-ins-age.png", width = 3, height = 5)
+ggsave("mse/figures/age-freq.png", width = 3, height = 5)
 
 # Length frequencies: ----------------------------------------------------------
 
@@ -131,7 +135,7 @@ g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
   ggtitle("Length frequencies") +
   ggplot2::xlab(paste("Length", "(cm)")) +
   ggplot2::ylab("Relative length frequency")
-ggsave("mse/figures/ye-ins-length.png", width = 3, height = 5)
+ggsave("mse/figures/length-freq.png", width = 3, height = 5)
 
 optimize_png <- TRUE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
