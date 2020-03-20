@@ -65,8 +65,6 @@ We followed the same method as in Yamanaka et al. (2011) to estimate the recreat
 \clearpage
 
 ```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
-library(tidyverse)
-library(here)
 rec_catch <- read.csv(here("data-raw/rec-allcatch-effort.csv"), stringsAsFactors=FALSE, header=TRUE)
 rec_catch <- rec_catch %>% mutate(catch = round(catch, 1)) %>% 
   mutate(effort= round(effort, 0)) %>% 
