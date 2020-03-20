@@ -70,7 +70,7 @@ for (i in seq_along(mse)) {
 
 # Report range in reference points for each OM
 ref_pt <- lapply(mse, function(x) {
-  do.call(rbind, lapply(x@Misc$MSYRefs$ByYear[1:2], function(xx) {
+  do.call(rbind, lapply(x@Misc$MSYRefs$ByYear[1:3], function(xx) { # 1:3 = MSY, FMSY, SSBMSY
     mean_ref <- mean(xx[, 1, x@nyears])
     sd_ref <- sd(xx[, 1, x@nyears])
     structure(c(mean_ref, sd_ref / mean_ref), names = c("Mean", "CV"))
@@ -82,7 +82,7 @@ ref_pt_text <- do.call(rbind, lapply(ref_pt, function(x) {
     format(trim = TRUE) %>%
     apply(1, function(xx) paste0(xx[1], " (", xx[2], ")"))
 })) %>%
-  structure(dimnames = list(scenario_human, c("MSY", "FMSY")))
+  structure(dimnames = list(scenario_human, c("MSY", "FMSY", "BMSY")))
 write.csv(ref_pt_text, file = "mse/figures/ref_pt.csv")
 saveRDS(ref_pt_text, "mse/figures/ref_pt.rds")
 
