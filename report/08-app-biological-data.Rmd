@@ -35,11 +35,6 @@ $$
 log (W_i) \sim \mathrm{Student-t}(df = 3, \log(a) + b \log(L_i), \sigma),
 $$
 
-$$
-\log (W_i) \sim \operatorname{Student\mhyphen t}
-(df = 3, \log(a) + b \log(L_i), \sigma)
-$$
-
 with $W_i$ and $L_i$ representing the weight and length for fish $i$ and $\sigma$ representing the observation error scale.
 We set the degrees of freedom of the Student-t distribution to 3 to be robust to outliers [@anderson2019synopsis].
 The variables $a$ and $b$ represent the estimated length-weight parameters.
