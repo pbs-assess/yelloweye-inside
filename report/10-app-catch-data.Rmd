@@ -166,3 +166,5 @@ csasdown::csas_table(timeline,
   kableExtra::column_spec(2, width = "1.75cm") %>%
   kableExtra::column_spec(3, width = "7.5cm")
 ```
+
+\clearpage
