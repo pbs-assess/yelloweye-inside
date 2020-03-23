@@ -4,16 +4,16 @@ Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Foo
 
 ## COMMERCIAL CATCH DATA {#sec:com-catch-data}
 
-Rockfish catch data can be grouped into 3 time periods: historic (1918-1950), early electronic (1951-2005), and modern (2006 onwards). There are two major sources of uncertainty in the historical and early electronic periods for Inside Yelloweye rockfish. The first uncertainty is that rockfish catch, other than Pacific Ocean Perch, was reported as an aggregate (other rockfish, ORF) in historical landings. To reconstruct historical catches an algorithm was developed by Rowan Haigh and Lynn Yamanaka of DFO [@haigh2011]. The reconstruction algorithm applies a ratio calculated from a period with credible landings data from the hook and line dockside monitoring program (1997-2005) and applies it to generate a time series of catch by species, year, fishery sector, and management area [@haigh2011]. "Credible" landings data are taken from reference years where catch knowledge was considered high and stable, beginning in the 1997 with the start of observer trawl coverage and the individual vessel quota system [@haigh2011]. 
+Rockfish catch data can be grouped into 3 time periods: historic (1918-1950), early electronic (1951--2005), and modern (2006 onwards). There are two major sources of uncertainty in the historical and early electronic periods for Inside Yelloweye rockfish. The first uncertainty is that rockfish catch, other than Pacific Ocean Perch, was reported as an aggregate (other rockfish, ORF) in historical landings. To reconstruct historical catches an algorithm was developed by Rowan Haigh and Lynn Yamanaka of DFO [@haigh2011]. The reconstruction algorithm applies a ratio calculated from a period with credible landings data from the hook and line dockside monitoring program (1997--2005) and applies it to generate a time series of catch by species, year, fishery sector, and management area [@haigh2011]. "Credible" landings data are taken from reference years where catch knowledge was considered high and stable, beginning in the 1997 with the start of observer trawl coverage and the individual vessel quota system [@haigh2011]. 
 
-The second major source of uncertainty is the magnitude of unreported catch that was released or discarded at sea, prior to the introduction of 100% observer coverage in 2006. The catch reconstruction of @haigh2011 assumes no discarding prior to 1986, when the ZN licence was instituted. Prior to that it is assumed all Rockfish were kept. Discards are assumed to be fully reported in DFO databases since 2006 and the introduction of 100% observer coverage. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets using data from 2000-2004 hook and line observer logs. The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  
+The second major source of uncertainty is the magnitude of unreported catch that was released or discarded at sea, prior to the introduction of 100% observer coverage in 2006. The catch reconstruction of @haigh2011 assumes no discarding prior to 1986, when the ZN licence was instituted. Prior to that it is assumed all Rockfish were kept. Discards are assumed to be fully reported in DFO databases since 2006 and the introduction of 100% observer coverage. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets using data from 2000--2004 hook and line observer logs. The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  
 
 The commercial catch time series used in this analysis (Figure \@ref(fig:commcatch2) and Table \@ref(tab:commcatch)) differs from the one previously reported in 2009, for several reasons. Ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020). As well, an earlier version of the catch reconstruction algorithm was used to develop the time series for the previous stock assessment, as the final version had not yet been published. Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020).
 
-The reconstruction algorithm could have been applied to all years in the timeseries until to 2005 (after which, full at-sea and dockside monitoring came into effect). However, for this analysis we used the reconstructed catch data from 1918-1985, and switched to the nominal catch data in 1986. The nominal catch from 1986-2005 was then doubled to calibrate our OMs,to be consistent with the previous assessment [@dfo2012]. Prior to the previous assessment, DFO saught advice from industry on the reconstructed catch [@dfo2012]. In 2009, advice from industry representatives indicated that the scale of unreported catch was probably equal to landed catch, and they did not have confidence in the catch reconstruction between 1986 and 2005. As a result of this advice, the catch for these years was doubled. Because discards are estimated as part of the catch reconstruction algorithm, we did not use the reconstructed catch for the period 1986-2004, to avoid double counting of discards. As a sensitivity check on this assumption, in the current analysis we explore one OM scenario where the 1986-2005 commercial catches were not doubled (the "low catch" scenario, section \@ref(sec:approach3-reference2)). *TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005 *
+The reconstruction algorithm could have been applied to all years in the time series until to 2005 (after which, full at-sea and dockside monitoring came into effect). However, for this analysis we used the reconstructed catch data from 1918--1985, and switched to the nominal catch data in 1986. The nominal catch from 1986--2005 was then doubled to calibrate our OMs,to be consistent with the previous assessment [@dfo2012]. Prior to the previous assessment, DFO sought advice from industry on the reconstructed catch [@dfo2012]. In 2009, advice from industry representatives indicated that the scale of unreported catch was probably equal to landed catch, and they did not have confidence in the catch reconstruction between 1986 and 2005. As a result of this advice, the catch for these years was doubled. Because discards are estimated as part of the catch reconstruction algorithm, we did not use the reconstructed catch for the period 1986--2004, to avoid double counting of discards. As a sensitivity check on this assumption, in the current analysis we explore one OM scenario where the 1986--2005 commercial catches were not doubled (the "low-catch" scenario, section \@ref(sec:approach3-reference2)). *TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005 *
 
 
-```{r commcatch2, out.width="\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."}
+```{r commcatch2, out.width="0.8\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."}
 
 comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
 
@@ -40,7 +40,7 @@ csasdown::csas_table(comm_catch,
   format = "latex",
   col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
   repeat_header = TRUE,
-  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918-1985) and nominal (1986-2019) catch estimates in tonnes."
+  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."
 ) %>%
   kableExtra::column_spec(1, width = "1.0cm") %>%
   kableExtra::column_spec(2:6, width = "2cm")
@@ -58,9 +58,9 @@ Historical recreational catch, prior to 1982 was reconstructed for the previous 
 
 ### Creel Survey Data 1982-2019 {#sec:creel-catch-data}
 
-Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys. The surveys cover Pacific Fishery Management Areas (PFMAs) 12-20, 28, and 29 [@zetterberg2010]. Rockfish catch has been recorded in areas 13-19, 28, and 29 since 1982 but was not enumerated by species until 2000. In PFMA 12 rockfish have been counted by species since 2000 [@zetterberg2010].
+Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys. The surveys cover Pacific Fishery Management Areas (PFMAs) 12--20, 28, and 29 [@zetterberg2010]. Rockfish catch has been recorded in areas 13--19, 28, and 29 since 1982 but was not enumerated by species until 2000. In PFMA 12 rockfish have been counted by species since 2000 [@zetterberg2010].
 
-We followed the same method as in Yamanaka et al. (2011) to estimate the recreational catch of Inside Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982-1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982-1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year (Table \@ref(tab:recbyarea)). To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000. We converted rockfish pieces to weight by multiplying by 2.49kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
+We followed the same method as in Yamanaka et al. (2011) to estimate the recreational catch of Inside Yelloweye Rockfish for 1982 to 1999, the average proportion of Yelloweye to total Rockfish catch was calculated for each PFMA in 2000 and 2001. The average proportions were then used to derive estimates of Yelloweye catch from the total Rockfish catch by PFMA between 1982--1999. To estimate catch of Yelloweye in PFMA 12 for the years 1982--1999, the average proportion of Yelloweye in total Rockfish catch over 2000 and 2001 was calculated and applied to the total Rockfish catch for the rest of the SOG in each year (Table \@ref(tab:recbyarea)). To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000. We converted rockfish pieces to weight by multiplying by 2.49 kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
 
 \clearpage
 
@@ -77,9 +77,11 @@ csasdown::csas_table(rec_catch,
   align = c("c", "c", "c"),
   digits = 1,
   repeat_header = TRUE,
-  caption = "Recreational catch estimates for inside Yelloweye Rockfish. The table contains reconstructed (1918-1981) and modern (1982-2019) catch estimates in tonnes."
+  caption = "Recreational catch estimates for inside Yelloweye Rockfish. The table contains reconstructed (1918--1981) and modern (1982--2019) catch estimates in tonnes."
 )
 ```
+
+<!-- TODO: -- represents? -->
 
 \clearpage
 
@@ -90,7 +92,7 @@ csasdown::csas_table(rec_catch,
 \clearpage
 
 ```{r recbyarea, echo=FALSE, warning=FALSE, results = "asis"}
-rec_area <- read.csv(here("data-raw/rec-catcheffortbyarea.csv"), stringsAsFactors=FALSE, header=TRUE)
+rec_area <- readr::read_csv(here("data-raw/rec-catcheffortbyarea.csv"))
 
 # organizing the data from long to wide format
 rec_wide <- rec_area %>%
@@ -101,17 +103,20 @@ rec_wide <- rec_area %>%
   mutate(effort = round(rowSums(.[13:23], na.rm = TRUE) / 10000, 0)) %>%
   select(-starts_with("totaleffort")) %>%
   rename_at(vars(starts_with("tonnes_")), list(~ stringr::str_remove(., "tonnes_"))) %>% 
-  mutate_if(is.numeric , replace_na, replace = "--")
+  mutate_if(is.numeric , replace_na, replace = "--") %>% 
+  rename(Year = year, Effort = effort)
 
 
 # make the table of catch by PFMA and total effort by year
 csasdown::csas_table(rec_wide,
   format = "latex",
   digits = 1,
-  caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019.Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000-2008)."
+  caption = "Estimated yelloweye rockfish (Sebastes ruberrimus) recreational catch in tonnes from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019. Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000--2008)."
 ) %>%
   kableExtra::column_spec(1:13, width = "0.75cm")
 ```
+
+<!-- TODO: -- represents? -->
 
 \clearpage
 
@@ -142,7 +147,9 @@ The proportion of FSC fisher encountered by the dockside creel monitor was not, 
 \clearpage
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
-fsc_catch <- read.csv(here("data-raw/fsc-dmp.csv"))
+fsc_catch <- readr::read_csv(here("data-raw/fsc-dmp.csv")) %>% 
+  dplyr::mutate(year = gsub("total", "Total", year)) %>% 
+  dplyr::mutate(year = gsub("mean", "Mean", year))
 csasdown::csas_table(fsc_catch,
   format = "latex",
   col_names = c("Year", "FSC", "Commercial", "Total", "Percent FSC"),
@@ -155,7 +162,8 @@ csasdown::csas_table(fsc_catch,
 ## CHRONOLOGY OF MANAGEMENT CHANGES
 
 ```{r mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
-timeline <- readr::read_csv(here("data-raw/management-chronology.csv"))
+timeline <- readr::read_csv(here("data-raw/management-chronology.csv")) %>% 
+  dplyr::mutate(Year = gsub("-", "--", Year))
 
 csasdown::csas_table(timeline,
   format = "latex",
