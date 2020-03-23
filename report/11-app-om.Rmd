@@ -66,7 +66,7 @@ display_om(oms, "maxage")
 
 Natural mortality is a core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling M from prior distributions generated from meta-analysis:
 
-TODO: M ~ Lognormal(0.045, 0.2) from Hoenig et al. (1983) using maxage = 101 years. Also cite Yamanaka et al. (2011) for the standard deviation of 0.2.
+TODO: M ~ Lognormal(0.045, 0.2) from Hoenig et al. (1983) using maxage = 101 years (Appendix \@ref(app:biological-data), Figure \@ref(fig:age-freq)). Also cite Yamanaka et al. (2011) for the standard deviation of 0.2.
 
 We drew M stochastically from a Lognormal(0.045, 0.2) distribution with the seed in R set to 91283:
 
@@ -157,7 +157,7 @@ display_om(oms, "Perr")
 
 *Mean asymptotic length.*
 
-This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
+This value was estimated from Appendix \@ref(app:biological-data), Figure \@ref(fig:length-age). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-linf-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "Linf")
@@ -169,7 +169,7 @@ display_om(oms, "Linf")
 
 *von Bertalanffy growth parameter k.*
 
-This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
+This value was estimated from Appendix \@ref(app:biological-data), Figure \@ref(fig:length-age). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-k-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "K")
@@ -181,7 +181,7 @@ display_om(oms, "K")
 
 *von Bertalanffy theoretical age at length zero.*
 
-This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
+This value was estimated from Appendix \@ref(app:biological-data), Figure \@ref(fig:length-age). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-t0-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "t0")
@@ -194,7 +194,7 @@ display_om(oms, "t0")
 
 *Maturity ogive.*
 
-Maturity was directly overwritten as an age-based function. Female maturity at age was estimated from Appendix \@ref(app:biological-data) an used here. The minimum age observed to be mature was 7 years and it assumed that younger ages were all immature.
+Maturity was directly overwritten as an age-based function. Female maturity at age was estimated from Appendix \@ref(app:biological-data), Figure \@ref(fig:percent-maturity) and used here. The minimum age observed to be mature was 7 years and it assumed that younger ages were all immature.
 
 ```{r desc-stock-maturity, eval = FALSE, echo = TRUE}
 create_maturity_ogive <- function(A50, A95, maxage, Amin) {
@@ -237,7 +237,7 @@ display_om(oms, "L50_95")
 
 *Length-weight parameter alpha. Positive real number.*
 
-This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
+This value was estimated from Appendix \@ref(app:biological-data), Figure \@ref(fig:length-weight). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 ```{r desc-stock-a-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "a")
 exp(display_om(oms, "a"))
@@ -249,7 +249,7 @@ exp(display_om(oms, "a"))
 
 *Length-weight parameter beta. Positive real number.*
 
-This value was estimated from Appendix \@ref(app:biological-data). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
+This value was estimated from Appendix \@ref(app:biological-data), Figure \@ref(fig:length-weight). No sexual dimorphism was observed, so this parameter was estimated for both males and females combined.
 
 ```{r desc-stock-b-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "b")
