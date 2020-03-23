@@ -1,29 +1,17 @@
 # COSEWIC CONSIDERATIONS {#app:cosewic}
 
-*TODO: Clean this up. RF Moved these COSEWIC metrics from MP section but not sure if they are needed. Go through all these and delete if they were not used or explain why they are here ... OR do we need to add them to results if not already? *
-
-COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future e.g. Criteria A1,2,3,or 4 in [@cosewic2015]. In order for this analysis to inform the COSEWIC re-assessment, we report the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations. <!--Not sure how the whole discussion around extinction risk (COSEWIC indicator E) came out. From the emails I read this quantitative metric is rarely used by COSEWIC for marine fishes (MJB) 
-2% decline rate on- we estimated that Strait of Georgia lingcod were depressed to 2% B0, and have been recovering from that, so thought that we could use this level. Robyn has a ref to justify the 5%B0 level for the Criteria E.(Forrest et al.2015 defined a stock as 'extirpated' if the biomass was 5% of B0 or less). We applied that threshold here and although 5% arbitrary, simulation testing is needed to find a more appropriate threshold on a stock-specific basis -->
+COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future [@cosewic2015]. 
 
 ## COSEWIC METRIC A
 
-P70 - Probability that population decline hasn't exceeded 70% over 3 generations
-where generation time = 38 years for inside yelloweye
+To inform the COSEWIC re-assessment of Inside Yelloweye Rockfish, we report the following for each OM (Figure \@ref(fig:cosewic-metrics)):
 
-P[1 - B_2019/B_1918 < 0.7]
-
-P50 - Probability that population decline hasn't exceeded 50% over 3 generations
-
-P[1 - B_2019/B_1918 < 0.5]
-
-P30 - Probability that population decline hasn't exceeded 30% over 3 generations
-
-P[1 - B_2019/B_1918 < 0.3]
-
-\clearpage
+1. P70 - Probability that population decline hasn't exceeded 70% over 3 generations. Where generation time is 38 years and probability is calculated as $P[1 - B_2019/B_1918 < 0.7]$
+2. P50 - Probability that population decline hasn't exceeded 50% over 3 generations
+3. P30 - Probability that population decline hasn't exceeded 30% over 3 generations
 
 (ref:fig-cosewic-metrics)
-COSEWIC metric A results for each operating model for Inside Yelloweye Rockfish. 
+Results for COSEWIC metric A, the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations, for each operating model for Inside Yelloweye Rockfish where a generation is equal to 38 years. 
 
 ```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
@@ -31,18 +19,15 @@ knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
 
 ## EXTINCTION RISK - COSEWIC METRIC E
 
-*The only cosewic metric used was metric E, extinction risk (where extinction = 2%B0 or 5%B0). I can't find any reported results for cosewic metric A (P of 70% decline over last 3 generations...etc.). There are results for metric E for each MP and OM (ref:fig-cosewic-all) and then the average of all OMs for each of 2% and 5%.  Is that your understanding as well?*
+In oder to examine the risk of extinction, stock-specific biomass thresholds must be assigned. Below these thresholds the stock would be considered functionally extirpated or extinct. We propose two extinction thresholds of 2%B~0~ and 5%B~0~ to quantititively calculate risk of future extinction for each OM and MP scenario. While we acknowledge that these thresholds are abitrary, precedents exist in the literature [@forrest2015] and simulation testing is required to find more appropriate stock-specific thresholds.
 
-We propose two potential thresholds of 2% B_0 and 5% B_0 to quantititively calculate risk for future extinction.
-Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B0:
+Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B~0~ for each OM (Figure \@ref(fig:cosewic-all)) and the average probability that the stock remains above each threshold over all OMs (Figure \@ref(fig:cosewic-avg)):
 
-`2% B_0` = P[B_y > 0.02 B_0]
-`5% B_0` = P[B_y > 0.05 B_0]
-
-\clearpage
+1. 2%B~0~ = $P[B_y > 0.02 B_0]$
+2. 5%B~0~ = $[B_y > 0.05 B_0]$
 
 (ref:fig-cosewic-all)
-COSEWIC risk of extinction metrics for Inside Yelloweye Rockfish by OM. 
+Risk of extinction for Inside Yelloweye Rockfish by OM and MP. 
 
 ```{r cosewic-all, fig.cap="(ref:fig-cosewic-all)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
@@ -51,7 +36,7 @@ knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
 \clearpage
 
 (ref:fig-cosewic-avg)
-COSEWIC risk of extinction metrics averaged across OMs for Inside Yelloweye Rockfish. 
+Risk of extinction averaged across OMs for Inside Yelloweye Rockfish. 
 
 ```{r cosewic-avg, fig.cap="(ref:fig-cosewic-avg)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-avg.png"))
