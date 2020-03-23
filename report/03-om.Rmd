@@ -116,7 +116,6 @@ One extreme recruitment is expected to occur once every generation (38 years).
 
 There is a lack of commercial age-composition data for this stock.
 Furthermore, annual sample sizes of age-composition data from the HBLL survey are very small (Appendix \@ref(app:biological-data)). 
-*TODO: Add Quang's age-comp fits to Conditioning section below*
 This makes estimation of selectivity in the HBLL survey highly uncertain, which led to the choice to fix selectivities for the OMs.
 
 Given very uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the HBLL survey in this scenario, utilizing the available age-composition data.
@@ -127,7 +126,7 @@ Given very uncertainties in our choices of selectivities, we allowed the SRA to 
 
 The base model assumed mean value of natural mortality *M* of 0.045 $y^{-1}$, drawn 
 from a lognormal distribution with $M \sim \textrm{Lognormal}(0.045, 0.2)$.
-This was based on the value used in the recent rebuilding plan for the Outside Yelloweye stock [@cox2020]. *TODO: I think this is where it came from*
+This was based on the value used in the last stock assessment for the Inside Yelloweye Rockfish stock [@yamanaka2011]. 
 
 This scenario used $M \sim \textrm{Lognormal}(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the reference set scenarios.
 
@@ -177,7 +176,7 @@ The model was initialized under the assumption that spawning biomass ($B_y$) was
 *TODO: check this is the case*
 While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1920, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
 
-### Selection of Base OM
+### Selection of Base OM {#sec:approach3-conditioning-base-om}
 
 Initial attempts to fit the SRA model did not produce good fits to the observed indices of abundance.
 Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and the steepness of the stock-recruit relationship *h*, Figure \@ref(fig:retro-initial), top panel).
@@ -185,17 +184,14 @@ The choice to base retrospective analysis on 11 years of data was primarily to e
 
 Upweighting the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) and fixing age-at-full-selectivity in the HBLL survey to 20 years removed the retrospective pattern (Figure \@ref(fig:retro-initial), bottom panel). 
 
-Therefore, in the present analysis, for Scenario (1), and all other scenarios except Scenario (4), it was decided to fix the age-at-full selectivity of the HBLL Survey to 20 years (Figure \@ref(fig:HBLL-selectivity), top left panel), while also upweighting the dogfish survey.
-
-*TODO: Why was 20 years chosen? To match the commercial LL selectivity for the outside stock? PHMA selectivity for Outside YE was futher to the right with full selectivity around 30, looks like, from the plots*  
-
-*TODO: what is the parameter for age-at-full-selectivity? I think this gets set using Length at full selectivity? Did you change the LFS parameter and eyeball the selectivity curves until they approximated the desired shape?*
+Therefore, in the present analysis, for Scenario (1), and all other scenarios except Scenario (4), it was decided to fix the age-at-full selectivity of the HBLL Survey to 20 years (Figure \@ref(fig:HBLL-selectivity)), while also upweighting the dogfish survey.
 
 Selectivity in the Dogfish Survey was set to mirror selectivity in the HBLL survey, whether it was fixed or estimated.
-There are a number of uncertainties in selectivity due to changes in fishing operations and hook type in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)). 
+Note that there are a number of large uncertainties in selectivity in the Dogfish survey due to changes in fishing operations and hook type in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)). 
 *TODO: Check this is true for Scenario (4)?*
 
-Due to a lack of biological data from commercial and recreational fisheries, selectivity in these gears was also fixed across OM scenarios (Figure \@ref(fig:fishery-selectivity)). Parameter values were chosen so that the selectivity-at-age curves approximated those estimated for the commercial longline and recreational fisheries in @cox2020 for the Outside stock of Yelloweye Rockfish.
+Due to a lack of biological data from commercial and recreational fisheries, selectivity in these gears was also fixed across OM scenarios (Figure \@ref(fig:fishery-selectivity)).
+Parameter values were chosen so that the selectivity-at-age curves approximated those estimated for the commercial longline and recreational fisheries in @cox2020 for the Outside stock of Yelloweye Rockfish (see Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-fleet-selectivity-yelloweye)).
 
 (ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and Scenario (1) *TODO: write properly*.
 
@@ -203,17 +199,6 @@ Due to a lack of biological data from commercial and recreational fisheries, sel
 knitr::include_graphics(here::here("mse/figures/retrospective-spawning-biomass.png"))
 ```
 
-(ref:fig-HBLL-selectivity) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey.
-
-```{r HBLL-selectivity, fig.cap="(ref:fig-HBLL-selectivity)", out.width="6.3in"}
-knitr::include_graphics(here::here("mse/figures/HBLL-selectivity.png"))
-```
-
-(ref:fig-HBLL-selectivity2) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey.
-
-```{r fishery-selectivity, fig.cap="(ref:fig-HBLL-selectivity2)", out.width="3.75in"}
-knitr::include_graphics(here::here("mse/figures/fishery-selectivity2.png"))
-```
 
 ### OM Conditioning Results {#sec:approach3-conditioning-results} 
 
