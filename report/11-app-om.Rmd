@@ -172,8 +172,10 @@ display_om(oms, "Linf")
 
 *von Bertalanffy growth parameter.*
 
+
 This value was estimated from length and age data from the HBLL survey (see Appendix \@ref(app:biological-data)).
 This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
+
 
 ```{r desc-stock-k-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "K")
@@ -184,6 +186,7 @@ display_om(oms, "K")
 ### t0 {#app:desc-stock-t0-yelloweye}
 
 *von Bertalanffy theoretical age at length zero.*
+
 
 This value was estimated from length and age data from the HBLL survey (see Appendix \@ref(app:biological-data)).
 This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
@@ -198,6 +201,7 @@ display_om(oms, "t0")
 ### Maturity {#app:desc-stock-maturity-yelloweye}
 
 *Maturity ogive.*
+
 
 Maturity was directly input as an age-based function.
 Therefore the default DLMtool slots `L50` and `L50_95` were not used.

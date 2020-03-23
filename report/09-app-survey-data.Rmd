@@ -1,33 +1,32 @@
 # FISHERY-INDEPENDENT SURVEY DATA {#app:index-data}
 
+We conditioned the operating models using indices of abundance from the Hard Bottom Long Line (HBLL) Inside survey and the Strait of Georgia Dogfish longline survey. Survey design and modelling of indices for each survey are described here.   
+
 ## HBLL INSIDE SURVEY INDEX {#sec:hbll-index-data}
 
-The Hard Bottom Long Line (HBLL) survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
-The survey is a depth-stratified random design of 2km by 2km survey blocks, which has always taken place on the CCGS Neocaligus vessel.
+The HBLL Inside survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
+The survey is a depth-stratified random design consisting of 2km by 2km survey blocks, which has always taken place on the CCGS Neocaligus vessel.
 The survey uses snap-type circle hooks and squid bait with a two-hour soak time.
-Hook-by-hook data is collected on-board by DFO technicians and stored in a database.
+Hook-by-hook data, which has been collected since the start of the survey, is electronically collected and stored in a database.
 For further details on survey design see @lochead2004.
 
 The survey domain is divided into northern and southern regions, which are fished in alternating years.
 However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
 
 - The survey did not take place in 2006 and 2017.
-- The length of the survey has varied and has lead to inconsistencies in the geographic extents surveyed.
-- Desolation Sound, which falls between the northern and the southern regions, is supposed to be sampled in the southern region, but was sampled along with the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. The Yelloweye Rockfish catch rates are highest in Desolation Sound (Area 15) so not sampling there we expected to affect design-based survey estimates of the southern survey.
-- The full southern survey was not achieved in 2009 and only 38 stations were fished in the southern Strait of Georgia between Nanaimo and Victoria. Catch rates of most rockfish species caught on this survey decline from the north to the south, so this also has a major effect on the survey index.
+- The length of the survey has varied annually, and has lead to inconsistencies in the geographic extent surveyed between years.
+- Desolation Sound, which falls between the northern and the southern regions, is supposed to be sampled in the southern region, but was sampled as part of the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. Catch rates of Yelloweye are highest in Desolation Sound (Area 15) so we expected there to be an effect of not sampling there on survey estimates from the southern survey.
+- The full southern survey was not achieved in 2009 and only 38 stations were fished in the southern Strait of Georgia between Nanaimo and Victoria. Catch rates of most rockfish species caught on this survey decline from the north to the south, so this also could have a major effect on the survey index in that year.
 
-For these reasons, we chose to undertake a geostatistical spatiotemporal model standardization of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design (Section \@ref(sec:hbll-spatiotemporal)).
-Theoretically, such an approach can account for the above factors.
-We confirmed via simulation that such approach can "stitch" together two survey regions conducted in a north and south region (Section \@ref(sec:hbll-sim)).
+We applied a geostatistical spatiotemporal model standardization of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design (Section \@ref(sec:hbll-spatiotemporal)). We confirmed via simulation that this approach can "stitch" together the north and south survey regions (Section \@ref(sec:hbll-sim)).
 
 ### Hook competition {#sec:hbll-hook-competition}
 
 A longline index of species abundance may not be proportional to actual abundance under certain conditions.
 For example, if there is a high degree of competition among species for baited hooks, the actual catch may not accurately reflect the true abundance of less competitive species [@kuriyama2018].
-The HBLL survey catch is mostly comprised of North Pacific Spiny Dogfish (*Squalus suckleyi*; hereafter "dogfish"), which are considered a major hook competitor with rockfishes [@obradovich2018].
-As in @yamanaka2011, we applied a hook competition correction, which accounts for the competition between individual fish for the bait on hooks, to the HBLL Inside survey data.
-Hook-by-hook catch data have always been collected on this survey.
-To apply the correction, we applied a competition adjustment factor to each set in each year.
+The HBLL Inside survey catch is mostly comprised of North Pacific Spiny Dogfish (*Squalus suckleyi*; hereafter "dogfish"), which are potentially a major hook competitor with rockfishes [@obradovich2018].
+As in @yamanaka2011, we applied a hook competition correction, which accounts for the competition between individual fish for the bait on hooks, to the HBLL Inside survey data. 
+To apply the correction, a competition adjustment factor is estimated for each set, in each year.
 This adjustment factor, $A_{i,t}$, scales up the observed number of Yelloweye Rockfish caught, $N_{i,t}$, for each set $i$ in each year $t$ to give the expected number of fish caught after accounting for competition, $N_{i,t}^{(0)}$:
 
 \begin{align}
@@ -45,7 +44,7 @@ $$
 
 As $P_{i,t} \rightarrow 0$, $A_{i,t} \rightarrow \infty$, so that the expected number $N_{i,t}^{(0)} \rightarrow \infty$.
 Therefore, in cases where zero hooks were returned with bait, we set the number of baited hooks to one.
-See @anderson2019synopsis (their Appendix G, Section G.5) for further on the details on the hook competition correction.
+See @anderson2019synopsis (their Appendix G, Section G.5) for further details on the hook competition correction.
 We passed the hook-adjusted data (Figure \@ref(fig:hbll-hook-adjustment)) to the spatiotemporal model to develop the index of abundance.
 
 ### Spatiotemporal HBLL index standardization {#sec:hbll-spatiotemporal}
@@ -224,8 +223,8 @@ d2004 <- m$data %>% dplyr::filter(year == 2004)
 hook_comparison <- d2004 %>% select(circle_hook, ye_count, fe_begin_retrieval_time) %>% reshape2::dcast(fe_begin_retrieval_time~circle_hook, value.var = "ye_count") %>% select(-fe_begin_retrieval_time) %>% rename(j_hook = `0`, circle_hook = `1`)
 ```
 
-The Dogfish Survey samples nine locations in the Strait of Georgia that were historically fished by the commercial dogfish fishery [@king2012].
-The survey was first carried out in 1986, with subsequent sampling in 1989, 2005, 2011, 2014, and 2019.
+The Dogfish Survey samples nine locations in the Strait of Georgia that were historically fished by the commercial Dogfish fishery [@king2012].
+The survey began in 1986, and subsequently sampling has occurred in 1989, 2005, 2011, 2014, and 2019.
 The survey is a depth stratified longline survey that uses snap on gear with 300 circle hooks baited with Pacific Herring and a two-hour soak time.
 A more detailed description of survey methods is provided in @king2012.
 For most of the time series, set-by-set catch of rockfish has been recorded.
@@ -235,17 +234,17 @@ We use a spatiotemporal model to estimate the density of Yelloweye Rockfish per 
 ### Hook comparison {#sec:dog-hook-comparison}
 
 The survey fished with J hooks originally and then changed to circle hooks in 2005.
-In 2004, @mcfarlane2005 undertook a calibration study to assess the potential for a change in catch rates due to a switch from J hooks to circle hooks.
-The study only compared catch rates for dogfish; however, the hook change likely affected catchability for Yelloweye Rockfish differently than for dogfish.
-In the previous assessment, a catchability ratio was estimated using data for all rockfish and this ratio was used to scale the values in the 1980s.
-It is not clear from the previous assessment how this catchability ratio was estimated.
+In 2004, @mcfarlane2005 undertook a calibration study to assess the potential for a change in catch rates due to the change in hook type.
+However, the study compared catch rates for dogfish only, and the hook change likely affected catchability for Yelloweye Rockfish differently than for dogfish.
+The previous assessment attempted to deal with this by estimating a catchability ratio, using data for all rockfish, to scale the catch in the 1980s.
+It is not clear from their description how this catchability ratio was estimated.
 The previous assessment was quite sensitive to the resulting dogfish index (because of the large decline from the 1980s), and that decline was largely dependent on the hook ratio.
 
 In the hook comparison study, `r sum(d2004$circle_hook)` sets used circle hooks and `r sum(d2004$circle_hook)` sets used J hooks.
 On these experimental sets, `r sum(hook_comparison$j_hook)` Yelloweye Rockfish were caught on J hooks and `r sum(hook_comparison$circle_hook)` were caught on circle hooks Table \@ref(tab:dogfish-hook-comparison).
 Although this represents a relatively small sample size of fish for estimating a hook correction factor for Yelloweye Rockfish,
 by simultaneously estimating the correction factor while standardizing the population index using a geostatistical model, we were able to incorporate uncertainty in the correction factor into the resulting index standard errors (Section \@ref(sec:dog-index-model)).
-Nonetheless, it is important to note that this correction factor is based on a limited number of sets and Yelloweye Rockfish and is driven largely by five sets with one or two more Yelloweye Rockfish caught by circle hooks than J hooks and two sets with 12 and four Yelloweye Rockfish caught by circle hooks vs. zero by J hooks (Table \@ref(tab:dogfish-hook-comparison)).
+Nonetheless, it is important to note that this correction factor is based on a limited number of sets. It is driven largely by five sets with one or two more Yelloweye Rockfish caught by circle hooks than J hooks and two sets with 12 and four Yelloweye Rockfish caught by circle hooks vs. zero by J hooks (Table \@ref(tab:dogfish-hook-comparison)).
 
 \clearpage
 
@@ -264,14 +263,14 @@ While depth is not explicitly included in the spatiotemporal model, the spatial 
 
 ### Hook competition {#sec:dog-hook-competition}
 
-The previous inside Yelloweye Rockfish assessment notes using an exponential hook competition model on the Dogfish Survey data in 2011.
+The previous inside Yelloweye Rockfish assessment indicates they used an exponential hook competition model on the Dogfish Survey data in 2011.
 However, there are no data on the number of baited and empty hooks available for the Dogfish Survey prior to 2019 and it is unclear how the previous assessment accounted for this.
 Therefore, we did not apply an explicit hook competition model in the present analysis.
 However, to partially account for hook competition, we included the number of dogfish caught (log transformed so as to have a multiplicative effect on observed account) as a covariate in the model.
 
 ### Selectivity {#sec:dog-selectivity}
 
-**The circle hooks used now are one size bigger than on HBLL and who knows what the selectivity was with the j-hooks! No rockfish biological data were formerly collected. So, in absence of info, I think we can use the same selectivity as long as we acknowledge the uncertainty (This is a note from one of Dana's emails but I'm not sure what was actually decided for selectivity-MJB)**
+** TO DO: The circle hooks used now are one size bigger than on HBLL and who knows what the selectivity was with the j-hooks! No rockfish biological data were formerly collected. So, in absence of info, I think we can use the same selectivity as long as we acknowledge the uncertainty (This is a note from one of Dana's emails but I'm not sure what was actually decided for selectivity-MJB)**
 
 ### Spatiotemporal Dogfish Survey index standardization {#sec:dog-index-model}
 
