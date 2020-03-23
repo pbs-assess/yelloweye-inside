@@ -199,7 +199,7 @@ Due to a lack of biological data from commercial and recreational fisheries, sel
 
 (ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and Scenario (1) *TODO: write properly*.
 
-```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="5.3in"}
+```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="4.25in"}
 knitr::include_graphics(here::here("mse/figures/retrospective-spawning-biomass.png"))
 ```
 
@@ -211,7 +211,7 @@ knitr::include_graphics(here::here("mse/figures/HBLL-selectivity.png"))
 
 (ref:fig-HBLL-selectivity2) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey.
 
-```{r fishery-selectivity, fig.cap="(ref:fig-fishery-selectivity)", out.width="6.3in"}
+```{r fishery-selectivity, fig.cap="(ref:fig-HBLL-selectivity2)", out.width="3.75in"}
 knitr::include_graphics(here::here("mse/figures/fishery-selectivity2.png"))
 ```
 
@@ -331,18 +331,15 @@ Estimated mean and standard deviation for reference points *F*~MSY~, *B*~MSY~ an
 
 
 ```{r sra-ref-pts, results='asis'}
-
 ref_pts <- readr::read_csv(here::here("mse/figures/ref_pt.csv"))
-
 ref_pts %>%
   rename("Scenario" = X1) %>% 
   mutate(Scenario = gsub("\\\n", " ", Scenario)) %>%
   select(Scenario, FMSY, BMSY, MSY) %>%
-  rename("FMSY (/y)" = FMSY, "BMSY (t)" = BMSY, "MSY (t)" = MSY) %>% 
-  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario") %>% 
+  rename("F~MSY~ (/y)" = FMSY, "B~MSY~ (t)" = BMSY, "MSY (t)" = MSY) %>% 
+  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario. Standard deviations across replicates are shown in parentheses. TODO, right?") %>% 
   kableExtra::column_spec(1, width = "5cm") %>%
   kableExtra::column_spec(2:4, width = "5cm")
-
 ```
 
 \clearpage
