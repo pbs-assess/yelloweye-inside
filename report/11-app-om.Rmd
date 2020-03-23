@@ -262,6 +262,16 @@ display_om(oms, "Fdisc")
 ## FLEET SLOT DESCRIPTIONS {#app:desc-fleet-yelloweye}
 
 <!-- slot-chunk-begin -->
+### CurrentYr {#app:desc-fleet-currentyr-yelloweye}
+
+*The current calendar year (final year) of the historical simulations ($t_c$).*
+
+```{r desc-fleet-currentyr-yelloweye, results = knitr_results, echo = knitr_echo}
+display_om(oms, "CurrentYr")
+```
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
 ### nyears {#app:desc-fleet-nyears-yelloweye}
 
 *The number of years for the historical period.*
@@ -280,9 +290,8 @@ display_om(oms, "nyears")
 Selectivities for all commercial and survey fleets were directly input as age-based logistic functions in the SRA model.
 Therefore the default DLMtool slots describing selectivity-at-length were not used.
 
-Selectivity-at-age in the HBLL survey was set to give full selectivity-at-age = 20 *y*, in all scenarios except Scenario (4), where it was estimated using available age-composition data (Figure \@ref(fig:HBLL-selectivity)).
-See Section \@ref(sec:approach3-conditioning-base-om).
-Selectivity in the Dogfish Survey was set to mirror selectivity in the HBLL survey.
+Selectivity-at-age in the HBLL survey was set to give full selectivity-at-age = 20 *y*, in all scenarios except Scenario (4), where selectivity-at-age was estimated using available age-composition data (Figure \@ref(fig:HBLL-selectivity)).
+Due to large uncertainties in selectivity-at-age in the Dogfish survey, selectivity in this survey was set to mirror selectivity in the HBLL survey.
 
 (ref:fig-HBLL-selectivity) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey.
 
@@ -292,8 +301,8 @@ knitr::include_graphics(here::here("mse/figures/HBLL-selectivity.png"))
 
 Selectivities-at-age in the recreational and commercial fleets were based on the values used in @cox2020 (Figure \@ref(fig:sra-selectivity)).
 Selectivity was fixed in the SRA model, for all OM scenarios.
-For the recreational fleet, the age-at-50% and 95% selectivity was 6.7 and 11.5 years, respectively.
-For the commercial hook and line fleet, the age-at-50% and 95% selectivity was 14.4 and 21 years, respectively.
+For the recreational fleet, the age-at-50% and 95% selectivity was 6.7 *y* and 11.5 *y*, respectively.
+For the commercial hook and line fleet, the age-at-50% and 95% selectivity was 14.4 *y* and 21 *y*, respectively.
 
 (ref:fig-sel-fleet) Selectivities-at-age used in the SRA model for the recreational and commercial fleets.
 
@@ -301,7 +310,7 @@ For the commercial hook and line fleet, the age-at-50% and 95% selectivity was 1
 knitr::include_graphics(here::here("mse/figures/fishery-selectivity2.png"))
 ```
 
-For the projeciton period ($t > t_c$), the DLMtool OM only accommodates one fishing fleet.
+For the projection period ($t > t_c$), the DLMtool OM only accommodates one fishing fleet.
 In analyses with more than one fishing fleet, selectivity-at-age is passed from the SRA back to the DLMtool OM as an average catch-weighted selectivity function, based on normalized SRA estimates of relative fishing mortality by age and year $F_{a,y}$ (see Appendix A of @anderson2020gfmp).
 The closed-loop simulation projections assume that the relative selectivities across fleets remains constant, as estimated by the SRA in the final historical year($t_c$) (Figure \@ref(fig:om-selectivity)).
 
@@ -313,35 +322,15 @@ knitr::include_graphics(here::here("mse/figures/fishery-selectivity-terminal-yea
 
 <!-- slot-chunk-end -->
 
+\clearpage
 
-<!-- slot-chunk-begin -->
-### Vmaxlen {#app:desc-fleet-vmaxlen-yelloweye}
-
-*The vulnerability of fish at `Linf`.*
-
-Not used since selectivity is updated by the SRA. See description of \@ref(app:desc-fleet-selectivity-yelloweye).
-
-```{r desc-fleet-vmaxlen-yelloweye, results = knitr_results, echo = knitr_echo}
-display_om(oms, "Vmaxlen")
-```
-<!-- slot-chunk-end -->
-
-<!-- slot-chunk-begin -->
-### CurrentYr {#app:desc-fleet-currentyr-yelloweye}
-
-*The current calendar year (final year) of the historical simulations (e.g., 2019).*
-
-```{r desc-fleet-currentyr-yelloweye, results = knitr_results, echo = knitr_echo}
-display_om(oms, "CurrentYr")
-```
-<!-- slot-chunk-end -->
 
 ## OBS SLOT DESCRIPTIONS {#app:desc-obs-yelloweye}
 
 <!-- slot-chunk-begin -->
 ### Cobs {#app:desc-obs-cobs-yelloweye}
 
-*Log-normal catch obs observation error expressed as a CV. Uniform distribution lower and upper bounds.*
+*Log-normal catch obs observation error expressed as a CV. Uniform distribution.*
 
 ```{r desc-obs-cobs-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "Cobs")
