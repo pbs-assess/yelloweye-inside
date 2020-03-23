@@ -50,21 +50,6 @@ The model was fit in TMB as described in @anderson2019synopsis.
 (ref:fig-length-freq) Length-frequency plot for inside Yelloweye Rockfish from the hard-bottom 
 longline surveys (northern and southern) in inside waters (HBLL INS N/S). Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
 
-```{r length-freq, fig.cap="(ref:fig-length-freq)", out.height="8in"}
-library(here)
-knitr::include_graphics(here("mse/figures/length-freq.png"))
-```
-
-```{r length-weight, fig.cap=paste0("Length-weight model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples in area 4B."), fig.width=7, fig.asp = 0.62}
-library(here)
-knitr::include_graphics(here("mse/figures/length-weight.png"))
-```
-
-```{r length-age, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), fig.width=7, fig.asp = 0.62}
-library(here)
-knitr::include_graphics(here("mse/figures/vb.png"))
-```
-
 \clearpage
 
 ## Maturity {#sec:maturity}
