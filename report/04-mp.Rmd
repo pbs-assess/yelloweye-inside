@@ -48,8 +48,8 @@ We included the index-based MPs: IDX, Iratio, GB_slope, and Islope with a variet
 In addition to the empirical MPs, we considered a surplus production (SP) model.
 We used the SP model coded in MSEtool [@huynh_msetool_2019] and based on @fletcher1978 (see @anderson2020gfmp, their Appendix D) paired with a two alternative harvest control rules (HCRs):
 
-1. 80-40% BMSY as the USR and LRP
-2. 40-10% B0 as the USR and LRP
+1. 80-40% B~MSY~ as the USR and LRP
+2. 40-10% B~0~ as the USR and LRP
 
 We evaluated two assessment frequencies (five and 10 years), with a fixed TAC between assessments.
 
