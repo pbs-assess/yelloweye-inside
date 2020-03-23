@@ -40,6 +40,13 @@ display_om <- function(om, slot) {
 
 # INSIDE YELLOWEYE ROCKFISH OPERATING MODEL DEFINITION {#app:desc-om-yelloweye}
 
+Here we demonstrate the specification of the initial OM before conditioning with the stock reduction analysis (SRA) model.
+We use a convenience function `display_om()` we have written to display the contents of various parameters in the OMs.
+The object `oms` is a list of the operating models across the various scenarios.
+If a given "slot" or OM parameter is entered as a single value then `display_om()` outputs a single (or range) of values.
+Where a range of values is displayed, this represents the lower and upper boundaries of a uniform distribution.
+Where a "slot" or OM parameter is defined based on a stochastic distribution other than a uniform distribution, we demonstrate the sampling from that distribution here along with the stochastic seed used to generate consistent samples.
+
 ## STOCK SLOT DESCRIPTIONS {#app:desc-stock-yelloweye}
 
 <!-- slot-chunk-begin -->
