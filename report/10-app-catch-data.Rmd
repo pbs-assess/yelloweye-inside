@@ -10,11 +10,9 @@ The second major source of uncertainty is the magnitude of unreported catch that
 
 The commercial catch time series used in this analysis (Figure \@ref(fig:commcatch2) and Table \@ref(tab:commcatch)) differs from the one previously reported in 2009, for several reasons. Ongoing quality control and updates to the groundfish catch database may result in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020). As well, an earlier version of the catch reconstruction algorithm was used to develop the time series for the previous stock assessment, as the final version had not yet been published. Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020).
 
-The reconstruction algorithm could have been applied to all years in the time series until to 2005 (after which, full at-sea and dockside monitoring came into effect). However, for this analysis we used the reconstructed catch data from 1918--1985, and switched to the nominal catch data in 1986. The nominal catch from 1986--2005 was then doubled to calibrate our OMs,to be consistent with the previous assessment [@dfo2012]. Prior to the previous assessment, DFO sought advice from industry on the reconstructed catch [@dfo2012]. In 2009, advice from industry representatives indicated that the scale of unreported catch was probably equal to landed catch, and they did not have confidence in the catch reconstruction between 1986 and 2005. As a result of this advice, the catch for these years was doubled. Because discards are estimated as part of the catch reconstruction algorithm, we did not use the reconstructed catch for the period 1986--2004, to avoid double counting of discards. As a sensitivity check on this assumption, in the current analysis we explore one OM scenario where the 1986--2005 commercial catches were not doubled (the "low-catch" scenario, section \@ref(sec:approach3-reference2)). *TODO: We used doubled commercial catches from 1986 to 2005 so these should be reflected in this table. Only the Low catch scenario used nominal catch from 1986-2005 *
-
+The reconstruction algorithm could have been applied to all years in the time series until to 2005 (after which, full at-sea and dockside monitoring came into effect). However, for this analysis we used the reconstructed catch data from 1918--1985, and switched to the nominal catch data in 1986. The nominal catch from 1986--2005 was then doubled to calibrate our OMs,to be consistent with the previous assessment [@dfo2012]. Prior to the previous assessment, DFO sought advice from industry on the reconstructed catch [@dfo2012]. In 2009, advice from industry representatives indicated that the scale of unreported catch was probably equal to landed catch, and they did not have confidence in the catch reconstruction between 1986 and 2005. As a result of this advice, the catch for these years was doubled. Because discards are estimated as part of the catch reconstruction algorithm, we did not use the reconstructed catch for the period 1986--2004, to avoid double counting of discards. As a sensitivity check on this assumption, in the current analysis we explore one OM scenario where the 1986--2005 commercial catches were not doubled (the "low-catch" scenario, section \@ref(sec:approach3-reference2)). 
 
 ```{r commcatch2, out.width="0.8\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."}
-
 comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
 
 tidyr::pivot_longer(comm_catch, -1) %>%
@@ -36,14 +34,15 @@ tidyr::pivot_longer(comm_catch, -1) %>%
 \clearpage
 
 ```{r commcatch, warning = FALSE, results = "asis"}
+
 csasdown::csas_table(comm_catch,
   format = "latex",
   col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
   repeat_header = TRUE,
-  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."
+  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes. Although nominal catch is shown, total catch for each year between 1986-2005 was doubled in all OMs except the 'Low Catch' scenario. This was done for consistency with the previous stock assessment in 2012."
 ) %>%
   kableExtra::column_spec(1, width = "1.0cm") %>%
-  kableExtra::column_spec(2:6, width = "2cm")
+  kableExtra::column_spec(2:6, width = "2cm")  
 ```
 
 \clearpage
