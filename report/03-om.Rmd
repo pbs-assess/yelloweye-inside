@@ -426,7 +426,7 @@ An alternative Fox model (not shown) where $B_{MSY}$ is approximately 37% of unf
 (ref:fig-spm-biomass) Biomass relative to biomass at MSY (*B*/*B*~MSY~) trajectory from the SP model.
 Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
 
-```{r spm-biomass, fig.cap="(ref:fig-spm-biomass)", out.width="\\textwidth"}
+```{r spm-biomass, fig.cap="(ref:fig-spm-biomass)", out.width="0.8\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/SP_fit.png"))
 ```
 
