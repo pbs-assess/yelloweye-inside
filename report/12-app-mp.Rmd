@@ -139,6 +139,10 @@ The maximum increase in TAC is capped at $\delta_\textrm{max} = 0.25$ by default
 This means that the TAC in any one year cannot increase by more than 25%, implementing a "slow up" behaviour of the MP.
 The parameters $\delta_\textrm{min}$ and $\delta_\textrm{max}$ could possibly be additionally tuned to adjust the behaviour of the MP.
 
+Note that the slow-up--fast-down behaviour due to how $\delta_\textrm{min}$ and $\delta_\textrm{max}$ are set here, combined with the simulated survey index variability, can result in the MP "ratcheting" down the TAC despite an overall increasing index (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
+Furthermore, we implemented the MP exactly as described above and in @cox2020, which only uses $\textrm{TAC}_\textrm{Floor}$ if $\Delta I_y \leq \delta_\textrm{min}$.
+This does not stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$.
+
 This MP can be additionally smoothed:
 
 $$
@@ -170,7 +174,7 @@ We also evaluated the same four configurations, applied every five years:
 
 - IDX_yrs5_5u
 
-Illustrations of the IDX MPs are provided in @anderson2020gfmp (their Appendix D)
+Illustrations of the IDX MPs are provided in @anderson2020gfmp (their Appendix D).
 
 ## MODEL-BASED MANAGEMENT PROCEDURES {#sec:mp-model-based}
 
