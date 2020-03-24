@@ -15,7 +15,6 @@ The two populations are assessed and managed independently using the Groundfish 
 *TODO: Explain how the maximum age is younger than the oldest aged fish*
 
 ## Size and Growth {#sec:growth}
-
 *TODO: EK please could you clarify the first three sentences about max age.*
 
 Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum reported age for the inside stock is 98 years [@keppel2019].
@@ -26,14 +25,14 @@ Proportions-at-age of Yelloweye Rockfish are shown by year and sex for the insid
 Inside Yelloweye Rockfish prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
 Their life history traits make the stock vulnerable to overexploitation by fisheries.
 
-(ref:fig-age-freq) Age-frequency plot for inside Yelloweye Rockfish from the hard-bottom 
+(ref:fig-age-freq) Age-frequency plot for inside Yelloweye from the hard-bottom 
 longline surveys (northern and southern) in inside (area 4B) waters (HBLL INS N/S). 
 Female fish are shown as coloured circles and male fish are shown behind as light grey
 circles. The total number of fish aged for a given survey and year are indicated
 along the top of the panels. Diagonal lines are shown at five-year intervals to
 facilitate tracing cohorts through time.
 
-Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both sexes. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight), and it is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
+Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight), and it is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
 
 $$
 \log (W_i) \sim \operatorname{Student-t}(df = 3, \log(a) + b \log(L_i), \sigma),
@@ -42,7 +41,7 @@ $$
 with $W_i$ and $L_i$ representing the weight and length for fish $i$ and $\sigma$ representing the observation error scale.
 We set the degrees of freedom of the Student-t distribution to 3 to be robust to outliers [@anderson2019synopsis].
 The variables $a$ and $b$ represent the estimated length-weight parameters.
-Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure for the central BC coast which also influences fecundity as larger females show an increasing number of eggs per unit of body weight [@mcgreer2017].
+Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure for the central BC coast which also influences fecundity as larger females show an increasing number of eggs per unit of body weight (TODO REF McGreer and Frid 2017).
 
 Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length-age). The length-age growth curve is a von Bertalanffy model of the form:
 
@@ -57,7 +56,7 @@ lognormal bias adjustment term so we model the mean length rather than the media
 The model was fit in TMB as described in @anderson2019synopsis.
 
 (ref:fig-length-freq) Length-frequency plot for inside Yelloweye Rockfish from the hard-bottom 
-longline surveys (northern and southern) in inside (area 4B) waters (HBLL INS N/S). Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
+longline surveys (northern and southern) in inside waters (HBLL INS N/S). Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
 
 \clearpage
 
@@ -105,7 +104,7 @@ library(here)
 knitr::include_graphics(here("mse/figures/length-weight.png"))
 ```
 
-```{r length-age, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), out.width="0.6\\textwidth"}
+```{r length-age, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), out.width="0.6\\textwidth"}
 library(here)
 knitr::include_graphics(here("mse/figures/vb.png"))
 ```
@@ -127,12 +126,9 @@ library(here)
 knitr::include_graphics(here("mse/figures/mat-months.png"))
 ```
 
-\clearpage
-
 ## Summary table of biological data availability
-Biological research survey data are maintained in GFBio, the Groundfish Biological Samples database [@databases2019]. The above plots include all available research data for Yelloweye Rockfish from all surveys in area 4B (Figure \@ref(fig:map-4B)), except for the age and length frequency plots (Figures \@ref(fig:age-freq), \@ref(fig:length-freq)) which include only HBLL INS N/S survey data. A summary of all available survey data for Yelloweye Rockfish in area 4B is presented in Table \@ref(tab:survey-data).
 
-```{r survey-data, results='asis'}
+```{r test, results='asis'}
 dat <- readRDS(here("data-generated/yelloweye-rockfish-ins-privacy.rds"))
 sum <- dat$survey_samples  
 sum <- sum %>%
