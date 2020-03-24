@@ -9,7 +9,8 @@ The project applies a closed-loop simulation framework [@anderson2020gfmp] to te
 
 The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@dfo2006; @dfo2009].
 The PA Framework [@dfo2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds to be avoided with high probability.
-The approach requires that fishing mortality be adjusted in relation to two levels of stock status---an Upper Stock Reference (USR) and a Limit Reference Point (LRP) (Figure \@ref(fig:pa-illustration)). The LRP and USR delineate three stock status zones ("healthy", "cautious", and "critical").
+The approach requires that fishing mortality be adjusted in relation to two levels of stock status---an Upper Stock Reference (USR) and a Limit Reference Point (LRP) (Figure \@ref(fig:pa-illustration)).
+The LRP and USR delineate three stock status zones ("critical", "cautious", and "healthy").
 
 Canadian fish stocks that have been assessed as being below the Limit Reference Point (LRP), i.e., in the critical zone [@dfo2009], require a rebuilding plan to rebuild the stock above the LRP [@dfo2013].
 
@@ -21,7 +22,7 @@ knitr::include_graphics(here::here("figs/pa-framework.png"))
 
 In June 2019, major amendments to Canada's *Fisheries Act* legislated many key components of the SFF, encoded in the Fish Stocks provisions ([Section 6 of the *Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547)).
 The Fish Stocks provisions require that major fish stocks be managed at sustainable levels, specifically at biomass levels above the LRP.
-Furthermore,  Sections 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan must be established to rebuild the stock above the LRP.
+Furthermore,  Sections 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan shall be established to rebuild the stock above the LRP.
 Major fish stocks will be designated under regulations, with the first batch of major fish stocks due to be designated in Fall 2020.
 
 The guidance for the development of rebuilding plans in Canada [@dfo2013] states that rebuilding plans should be based upon objectives characterised by:
@@ -31,13 +32,14 @@ The guidance for the development of rebuilding plans in Canada [@dfo2013] states
 3. An agreed-upon acceptable probability of reaching the target.
 
 Rebuilding plans should also include planned management measures, milestone objectives, and should undergo regular (no more than three years) performance reviews, in addition to annual monitoring and evaluation. 
-Current guidance states that the timelines should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring.
+Current guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring.
 
 ## BACKGROUND {#sec:introduction-background}
 
 Inside Yelloweye Rockfish is a fish stock occurring in British Columbia, in Groundfish Management Area 4B (Figure \@ref(fig:map-4B)).
 The stock is expected to be designated as a major fish stock in Fall 2020, and its management will therefore be legislated under the Fish Stocks provisions.
-Inside Yelloweye is a data-limited stock. There is sparse availability of age-composition data, a lack of biological data from commercial, recreational, and First Nations' fisheries, and uncertainty in the magnitude of historical catches.
+Inside Yelloweye Rockfish is a data-limited stock.
+There is sparse availability of age-composition data, a lack of biological data from commercial, recreational, and First Nations' fisheries, and uncertainty in the magnitude of historical catches.
 
 (ref:fig-map-4B) Map of Groundfish Management Area 4B showing rockfish conservation areas (RCAs) and the boundaries separating the Inside Yelloweye Rockfish designatable unit (DU) from the Outside Yelloweye Rockfish DU. The red lines indicate a proposed adjustment to the range for the Inside DU, based on recent genetic evidence <!--DANA has source for this-->. 
 

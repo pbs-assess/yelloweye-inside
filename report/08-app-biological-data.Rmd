@@ -15,7 +15,16 @@ The two populations are assessed and managed independently using the Groundfish 
 *TODO: Explain how the maximum age is younger than the oldest aged fish*
 
 ## Size and Growth {#sec:growth}
-Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum reported age for the inside stock is 98 years [@keppel2019]. This maximum age is updated to 101 years from additional recent aging data (Figure \@ref(fig:age-freq)). Age data for inside Yelloweye Rockfish, using the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018. Directed hard-bottom longline (HBLL) surveys began in area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged. Proportions-at-age of Yelloweye Rockfish are shown by year and sex for the inside stock from the HBLL survey samples (Figure \@ref(fig:age-freq)), and it is assumed that all ages are independent of subarea. Inside Yelloweye Rockfish prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011]. Their life history traits make the stock vulnerable to overexploitation by fisheries.
+
+*TODO: EK please could you clarify the first three sentences about max age.*
+
+Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum reported age for the inside stock is 98 years [@keppel2019].
+This maximum age is updated to 101 years from additional recent aging data (Figure \@ref(fig:age-freq)). 
+Age data for inside Yelloweye Rockfish, derived from the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018.
+Directed hard-bottom longline (HBLL) surveys began in Area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged.
+Proportions-at-age of Yelloweye Rockfish are shown by year and sex for the inside stock from the HBLL survey samples (Figure \@ref(fig:age-freq)), and it is assumed that all ages are independent of subarea.
+Inside Yelloweye Rockfish prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
+Their life history traits make the stock vulnerable to overexploitation by fisheries.
 
 (ref:fig-age-freq) Age-frequency plot for inside Yelloweye Rockfish from the hard-bottom 
 longline surveys (northern and southern) in inside (area 4B) waters (HBLL INS N/S). 
