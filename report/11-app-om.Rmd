@@ -328,46 +328,22 @@ knitr::include_graphics(here::here("mse/figures/fishery-selectivity-terminal-yea
 ## OBS SLOT DESCRIPTIONS {#app:desc-obs-yelloweye}
 
 <!-- slot-chunk-begin -->
-### Cobs {#app:desc-obs-cobs-yelloweye}
-
-*Log-normal catch obs observation error expressed as a CV. Uniform distribution.*
-
-```{r desc-obs-cobs-yelloweye, results = knitr_results, echo = knitr_echo}
-display_om(oms, "Cobs")
-```
-<!-- slot-chunk-end -->
-
-<!-- slot-chunk-begin -->
-### Cbiascv {#app:desc-obs-cbiascv-yelloweye}
-
-*Log-normal CV controlling the sampling of bias in catch observations for each simulation. Uniform distribution lower and upper bounds.*
-
-```{r desc-obs-cbiascv-yelloweye, results = knitr_results, echo = knitr_echo}
-display_om(oms, "Cbiascv")
-```
-<!-- slot-chunk-end -->
-
-<!-- slot-chunk-begin -->
 ### Iobs {#app:desc-obs-iobs-yelloweye}
 
-*Observation error in the relative abundance indices expressed as a SD. Uniform distribution lower and upper bounds.*
+*Observation error in the relative abundance indices expressed as a SD. Uniform distribution.*
 
-This was set to 0.25, based on the SD of the observed HBLL index, except for the robustness scenario "(B) Higher HBLL CV" where this was set to the SD and autocorrelation from the index residuals in OM (1) for future projections of the HBLL index (see Section \@ref(sec:approach3-referenceB)).
-We can not display this parameter here because it is added in the code as `AddIerr` in the "additional index" functionality of DLMtool.
+This parameter ($\sigma_I$) sets the standard deviation in simulated survey indices for the projection period.
+We set $\sigma_I = 0.25$, based on the standard deviation of the observed HBLL index for all scenarios except Scenario (B), where $\sigma_I$ was set based on the standard deviation and autocorrelation from the index residuals in Scenario (1) (see Section \@ref(sec:approach3-referenceB)).
 
-```{r desc-obs-iobs-yelloweye, results = knitr_results, echo = knitr_echo, eval=FALSE}
-```
 <!-- slot-chunk-end -->
 
 <!-- slot-chunk-begin -->
 ### beta {#app:desc-obs-beta-yelloweye}
 
-*A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases more slowly than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution lower and upper bounds.*
+*A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases more slowly than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution*
 
-We set the hyperstability/hyperdepletion $\beta$ parameter to 1 to imply no hyperstability or hyperdepletion. Since we use the `AddInd` feature to generate the index for the management procedures, this is set in `OM@cpars$AddIbeta`.
-
-```{r desc-obs-beta-yelloweye, results = knitr_results, echo = knitr_echo, eval=FALSE}
-```
+We set the hyperstability/hyperdepletion parameter $\beta = 1$  to imply no hyperstability or hyperdepletion.
+`
 <!-- slot-chunk-end -->
 
 ## IMP SLOT DESCRIPTIONS {#app:desc-imp-yelloweye}
@@ -375,9 +351,10 @@ We set the hyperstability/hyperdepletion $\beta$ parameter to 1 to imply no hype
 <!-- slot-chunk-begin -->
 ### TACFrac {#app:desc-imp-tacfrac-yelloweye}
 
-*Mean fraction of TAC taken. Uniform distribution lower and upper bounds.*
+*Mean fraction of TAC taken. Uniform distribution.*
 
-No implementation error is the assumption.
+We assumed no implementation error.
+
 ```{r desc-imp-tacfrac-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "TACFrac")
 ```
@@ -386,9 +363,9 @@ display_om(oms, "TACFrac")
 <!-- slot-chunk-begin -->
 ### TACSD {#app:desc-imp-tacsd-yelloweye}
 
-*Log-normal CV in the fraction of TAC taken. Uniform distribution lower and upper bounds.*
+*Log-normal CV in the fraction of TAC taken. Uniform distribution.*
 
-No implementation error is the assumption.
+We assumed no implementation error.
 
 ```{r desc-imp-tacsd-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "TACSD")
