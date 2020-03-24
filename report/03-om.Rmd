@@ -5,7 +5,7 @@ DLMtool OMs are organized into four main components representing a real fished s
 1. population dynamics of the fish stock (e.g., growth, recruitment, mortality);
 2. fishery dynamics (e.g., selectivity, spatial targeting);
 3. observation processes (e.g., bias and precision in survey indices); and
-4. management implementation (e.g., percentage overages of catch limits).
+4. management implementation (e.g., percentage of overages of catch limits).
 
 Equations and parameters describing the four components are provided in detail in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
 DLMtool allows the incorporation of uncertainty in many OM parameters through optional specification of a probability distribution.
@@ -102,6 +102,7 @@ As for the other scenarios, we used the reconstructed catch up to 1985 and the n
 Long-lived, late-maturing species such as Pacific rockfishes often exhibit episodic, or periodic, recruitment strategies, characterized by high fecundity and occasional very large recruitment events [@winemiller1992; @rose2001; @winemiller2005].
 For example, very large or even extreme year classes have been observed for several BC rockfish species [**REFS** *RF checking for bocaccio and POP refs*].
 
+
 To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" scenario.
 This scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations used in the Scenario (1).
 In this scenario, recruitment deviations $\varepsilon_y$ for each year are generated as:
@@ -126,7 +127,7 @@ One extreme recruitment is expected to occur once every generation (38 years).
 Annual sample sizes of age-composition data from the HBLL survey are very small (Appendix \@ref(app:biological-data)). 
 This makes estimation of selectivity in the HBLL survey highly uncertain, which led to the choice to fix survey selectivity.
 
-Given very uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the HBLL survey in this scenario, utilizing the available HBLL survey age-composition data.
+Given large uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the HBLL survey in this scenario, utilizing the available HBLL survey age-composition data.
 
 ### ROBUSTNESS SET {#sec:approach3-robustness}
 
@@ -178,7 +179,6 @@ See Appendix B of @anderson2020gfmp for details on these parameters.
 The SRA was run with 250 replicates.
 Each replicate used a different value of *M* and *h* (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye)).
 The model was initialized under the assumption that spawning biomass ($B_y$) was in an unfished equilibrium state prior to 1920, the first year of the time series, i.e., $B_1 = B_0$.
-*TODO: check this is the case*
 While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1920, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
 
 ### Selection of Base OM {#sec:approach3-conditioning-base-om}
@@ -317,7 +317,7 @@ knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
 
 Estimated mean and standard deviation for reference points *F*~MSY~, *B*~MSY~ and MSY are provided in Table \@ref(tab:sra-ref-pts). Note the large standard deviations due to the large range of sampled values for *M* and *h* (Appendix \@ref(app:desc-om-yelloweye), Sections \@ref(app:desc-stock-m-yelloweye) and \@ref(app:desc-stock-h-yelloweye)).
 
-*TODO: Some of the leading numbers are showing up in the column to the left*
+*TODO: Some of the leading numbers are showing up in the column to the left - Tried to fix but couldnt' figure it out MJB*
 
 
 ```{r sra-ref-pts, results='asis'}
@@ -327,9 +327,8 @@ ref_pts %>%
   mutate(Scenario = gsub("\\\n", " ", Scenario)) %>%
   select(Scenario, FMSY, BMSY, MSY) %>%
   rename("F~MSY~ (/y)" = FMSY, "B~MSY~ (t)" = BMSY, "MSY (t)" = MSY) %>% 
-  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario. Standard deviations across replicates are shown in parentheses. TODO, right?") %>% 
-  kableExtra::column_spec(1, width = "5cm") %>%
-  kableExtra::column_spec(2:4, width = "5cm")
+  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario. Standard deviations across replicates are shown in parentheses.") %>% 
+  kableExtra::column_spec(1:5, width = "5cm") 
 ```
 
 \clearpage
@@ -338,8 +337,8 @@ ref_pts %>%
 
 None of the scenarios estimated current median spawning biomass to be below the LRP (Figure \@ref(fig:biomass-om)). 
 Scenario (B) estimated median spawning biomass to have been below the LRP for most years post-2000 and non-zero probability of being below the LRP in the current year.
-Scenario (2) also had non-zero probability of being below the LRP in the current year, albeint only a tiny portion of the 95% credible interval.
-Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered rebuilt.
+Scenario (2) also had non-zero probability of being below the LRP in the current year, albeit only a tiny portion of the 95% credible interval.
+Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered rebuilt above the LRP.
 
 All scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
 The credible interval for all scenarios except (A) was very broad, reflecting uncertainties in parameter estimates (Figure \@ref(fig:sra-conditioned-parameters)).
@@ -405,7 +404,8 @@ However, only Scenario (A) estimates the stock to have been below the LRP during
 It is not possible to definitively infer why model results diverged between the two analyses due to the large differences in model structure between the SP model used in @yamanaka2011 and the SRA, used here, as well as the addition of 10 years of new data.
 
 However, to explore the effects of model structure on stock status results, we fit a SP model to the catch, CPUE and fishery independent indices of abundance. 
-We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp, and was configured to closely resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood. The model set $B_{MSY}$ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth as a likelihood penalty. The prior was normally distributed with mean of 0.068 and standard deviation of 0.03 based on values used in @yamanaka2011.
+We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp,
+which was configured to resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood. The model set $B_{MSY}$ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth as a likelihood penalty. The prior was normally distributed with a mean of 0.068 and standard deviation of 0.03 based on values used in @yamanaka2011.
 
 Model results more closely matched those of the previous assessment, estimating the stock to be below the LRP (Figure \@ref(fig:spm-biomass)). From the SP model, the reference points *B*~MSY~ = 1844 t, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t. MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), although *B*~MSY~ is approximately 35% higher for the SP model than in the SRA. 
 
