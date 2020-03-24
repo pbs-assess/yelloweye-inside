@@ -100,7 +100,7 @@ As for the other scenarios, we used the reconstructed catch up to 1985 and the n
 #### (3) Episodic recruitment {#sec:approach3-reference3}
 
 Long-lived, late-maturing species such as Pacific rockfishes often exhibit episodic, or periodic, recruitment strategies, characterized by high fecundity and occasional very large recruitment events [@winemiller1992; @rose2001; @winemiller2005].
-For example, very large or even extreme year classes have been observed for several BC rockfish species [**REFS** *RF checking for bocaccio and POP refs*].
+Very large or even extreme year classes have been observed for several BC rockfish species [e.g., Pacific Ocean Perch: @haigh2019; Bocaccio: @haigh2020].
 
 
 To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" scenario.
@@ -153,19 +153,18 @@ This $\sigma_I$ has a mean of `r round2(mean_Isd)` and a range of `r round2(rang
 
 ## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
 
-After specifying most of the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
+After specifying the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
 
-Note that DLMtool currently models all catch as coming from a single fleet.
+Note that the DLMtool OM combines all fleets into a single fleet.
 However, if the OM is calibrated using the SRA model, the SRA can accommodate multiple fleets, and selectivity is fleet-specific.
-In this case, selectivity in the DLMtool OM in the projection period is replaced with the SRA-calibrated estimate of fishing mortality-at-age in the final year ($t_c$) of the historical period, normalized by dividing by apical fishing mortality in that year.
-This essentially provides the DLMtool OM with selectivity-at-age weighted by catch across all fleets.
-The closed-loop simulation projections therefore assume that the relative selectivities across fleets remains constant in the projection period.
+In this case, combined fishery selectivity for the projection period is replaced with the SRA-calibrated estimates of fishing mortality-at-age in the final year ($t_c$) of the historical period, normalized by dividing by apical fishing mortality in that year.
+This essentially provides the DLMtool OM with relative selectivity-at-age, weighted by catch across all fleets.
+The closed-loop simulation projections therefore assume that the relative selectivity across fleets remains constant in the projection period.
 
 Similarly, if the OM is calibrated using the SRA model, analysts can also specify (or estimate) selectivity parameters for the individual indices of abundance (in this case two fishery-independent surveys and three commercial CPUE series (Figure \@ref(fig:survey-fits)).
 In this case, the SRA passes all of the indices back to DLMtool, preserving the estimated or user-defined selectivities-at-age for each index.
-However, note that the DLMtool MPs only utilize a single index of abundance in the projection period for calculating catch decisions (see Appendix \@ref(app:mps)). In the current study, all MPs (except for the constant-catch MPs) utilize the HBLL survey.
-
-The required input parameters to the SRA model from the DLMtool OM are provided in full in Appendix B of @anderson2020gfmp.
+However, note that the DLMtool MPs only utilize a single index of abundance in the projection period (see Appendix \@ref(app:mps)).
+In the current study, all MPs (except for the constant-catch MPs) utilize the HBLL survey.
 
 We used the SRA to populate the following parameters in the conditioned OMs:
 
@@ -176,43 +175,42 @@ We used the SRA to populate the following parameters in the conditioned OMs:
 - $F_{a,y}$ (fishing mortality at age by year)
 
 See Appendix B of @anderson2020gfmp for details on these parameters.
+
 The SRA was run with 250 replicates.
-Each replicate used a different value of *M* and *h* (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye)).
-The model was initialized under the assumption that spawning biomass ($B_y$) was in an unfished equilibrium state prior to 1920, the first year of the time series, i.e., $B_1 = B_0$.
-While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1920, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
+Each replicate used a different value of *M* and *h* (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye), except for Scenario (A), which used a different distribution for *M*).
+The model was initialized under the assumption that spawning biomass ($B_y$) was in an unfished equilibrium state prior to 1918, the first year of the time series, i.e., $B_1 = B_0$.
+While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1918, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
 
 ### Selection of Base OM {#sec:approach3-conditioning-base-om}
 
 Initial attempts to fit the SRA model did not produce good fits to the observed indices of abundance.
-Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and the steepness of the stock-recruit relationship *h*, Figure \@ref(fig:retro-initial), top panel).
-The choice to base retrospective analysis on 11 years of data was primarily to evaluate sensitivity of the model to removal of each year of data, going back to 2009, which was the terminal year for the 2011 assessment.
+Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and *h*, Figure \@ref(fig:retro-initial), top panel).
+The choice to base retrospective analysis on 11 years of data was primarily to evaluate sensitivity of the model to removal of each year of data, going back to 2009, the terminal year for the 2011 assessment.
 
-Upweighting the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) and fixing age-at-full-selectivity in the HBLL survey to 20 years removed the retrospective pattern (Figure \@ref(fig:retro-initial), bottom panel). 
-
+Increasing the likelihood weight for the SRA fit to the Dogfish Survey ($\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp) and fixing age-at-full-selectivity in the HBLL survey to 20 years removed the retrospective pattern (Figure \@ref(fig:retro-initial), bottom panel). 
 Therefore, in the present analysis, for Scenario (1), and all other scenarios except Scenario (4), it was decided to fix the age-at-full selectivity of the HBLL Survey to 20 years (Figure \@ref(fig:HBLL-selectivity)), while also upweighting the dogfish survey.
 
-Selectivity in the Dogfish Survey was set to mirror selectivity in the HBLL survey, whether it was fixed or estimated.
-Note that there are a number of large uncertainties in selectivity in the Dogfish survey due to changes in fishing operations and hook type in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)). 
-*TODO: Check this is true for Scenario (4)?*
-
-Due to a lack of biological data from commercial and recreational fisheries, selectivity in these gears was also fixed across OM scenarios (Figure \@ref(fig:fishery-selectivity)).
-Parameter values were chosen so that the selectivity-at-age curves approximated those estimated for the commercial longline and recreational fisheries in @cox2020 for the Outside stock of Yelloweye Rockfish (see Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-fleet-selectivity-yelloweye)).
-
-(ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and Scenario (1) *TODO: write properly*.
+(ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and Scenario (1). Coloured lines represent estimates of spawning biomass with $X$ years of data removed, where $X$ is shown in the legend for each series.
 
 ```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="4.25in"}
 knitr::include_graphics(here::here("mse/figures/retrospective-spawning-biomass.png"))
 ```
 
+There are a number of large uncertainties in selectivity in the Dogfish survey due the absence of biological data from this survey, and changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
+Selectivity in the Dogfish survey was set to mirror selectivity in the HBLL survey, whether it was estimated (Scenario (4)) or fixed (all other scenarios).
+
+Due to a lack of biological data from commercial and recreational fisheries, selectivity in these gears was fixed in all OM scenarios (Figure \@ref(fig:fishery-selectivity)).
+Parameter values were set so that the selectivity-at-age curves approximated those estimated by @cox2020 for the commercial longline and recreational fisheries for outside Yelloweye Rockfish (see Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-fleet-selectivity-yelloweye)).
+As noted above, these selectivities were returned to the DLMtool OMs as a combined-fleet selectivity curve from the terminal year ($t_c$) of the historical period (Figure \@ref(fig:om-selectivity)).
 
 ### OM Conditioning Results {#sec:approach3-conditioning-results} 
 
 #### Fits to survey indices {#sec:approach3-conditioning-indices}
 
-All replicates in all OMs converged.
 The SRA was able to fit to the indices of abundance reasonably well for all OM scenarios (Figure \@ref(fig:survey-fits)).
-For all scenarios, the estimated index fell within the observed confidence intervals in most years, although there were a few outliers.
-The fit to the early 1986  and 1989 observations in the Dogfish Survey was slightly better in Scenario (A), consistent with a less productive, more depleted stock, although these two observations are more uncertain than those in recent years due to changes in fishing operations and hook type in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
+All replicates achieved convergence in all scenarios.
+For all scenarios, the estimated index fell within the observed confidence intervals in most years, although there were some outliers (Figure \@ref(fig:survey-fits)).
+The fit to the early 1986  and 1989 observations in the Dogfish Survey was slightly better in Scenario (A), consistent with a less productive, more depleted stock, although these two observations are more uncertain than those in recent years due to changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
 Fits to commercial CPUE series was generally good due to the short time stanzas for each series (Figure \@ref(fig:survey-fits)).
 
 (ref:fig-survey-fits)
@@ -229,9 +227,9 @@ The SRA models fit the catch data almost perfectly by design, via setting the st
 
 The SRA model fit the HBLL age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-conditioned-comp-fit1) to \@ref(fig:sra-conditioned-comp-fitB)).
 
-We note that in comparing Scenarios (1) and (4), respectively fixing and estimating selectivity in the HBLL survey did not appear to generate very different fits in age composition data (Figures \@ref(fig:sra-conditioned-comp-fit1) and \@ref(fig:sra-conditioned-comp-fit4).
+We note that in comparing Scenarios (1) and (4), respectively fixing and estimating selectivity in the HBLL survey did not appear to generate very different fits in age composition data (Figures \@ref(fig:sra-conditioned-comp-fit1) and \@ref(fig:sra-conditioned-comp-fit4)).
 
-We also note that in several years, the SRA predicted larger abundance in the plus group (80+ *y*) than in the observed data. 
+In several years, the SRA predicted larger abundance in the plus group (80+ *y*) than in the observed data. 
 A lack of fish older than 80 *y* in the survey could be due to a number of reasons.
 For example, total mortality could have been greater in the past than estimated in our OMs.
 This could be represented in the OMs in two ways.
@@ -243,7 +241,8 @@ The estimated plus group was slightly reduced in most years for this scenario (F
 
 This issue is a challenge for very long-lived species with poor age-composition sampling.
 With such small sample sizes, there is a relatively small chance of observing very old fish.
-In addition, large structural uncertainties in the model and available data (e.g., the dogfish survey, catch data) may have resulted in misspecification of relative age-composition.
+In addition, large structural uncertainties in the model and available data (e.g., the Dogfish survey, catch data) may have resulted in misspecification of relative age-compositions.
+
 *TODO: check this. RF made it up!*
 
 \clearpage
@@ -301,21 +300,20 @@ Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for Scenario (B).
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_high_index_cv.png"))
 ```
 
-
 #### Parameter estimates {#sec:approach3-conditioning-parameters}
 
 The reference and robustness scenarios rendered a range of estimated parameter values (Figure \@ref(fig:sra-conditioned-parameters)).
 
-(ref:fig-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. Other parameters: Fishing mortality at age, the historical depletion trajectory, and historical recruitment deviations are also derived from the SRA model. Historical depletion trajectories are shown in Figure \@ref(fig:depletion-om), apical fishing mortality by year are shown in Figure \@ref(fig:F-om), and historical recruitment deviations are shown in Figure \@ref(fig:recdev-om).
-D refers to depletion. AC refers to $\theta_\textrm{AC}$.
-For visualization purposes, the R0 axis limits have been restricted to a maximum of 490 and the AC axis limits to a minimum of 0.76.
+(ref:fig-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. AC refers to $\theta_\textrm{AC}$. D refers to depletion ($B_{t_c}/B_0$).
+For visualization purposes, the *R*~0~ axis limits have been restricted to a maximum of 490 and the AC axis limits to a minimum of 0.76.
 This excludes a small number of replicates.
 
 ```{r sra-conditioned-parameters, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-conditioned-parameters)"}
 knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
 ```
 
-Estimated mean and standard deviation for reference points *F*~MSY~, *B*~MSY~ and MSY are provided in Table \@ref(tab:sra-ref-pts). Note the large standard deviations due to the large range of sampled values for *M* and *h* (Appendix \@ref(app:desc-om-yelloweye), Sections \@ref(app:desc-stock-m-yelloweye) and \@ref(app:desc-stock-h-yelloweye)).
+Estimated mean and standard deviation for reference points *F*~MSY~, *B*~MSY~ and MSY are provided in Table \@ref(tab:sra-ref-pts).
+Note the large standard deviations due to the large range of sampled values for *M* and *h* (Appendix \@ref(app:desc-om-yelloweye), Sections \@ref(app:desc-stock-m-yelloweye) and \@ref(app:desc-stock-h-yelloweye)).
 
 *TODO: Some of the leading numbers are showing up in the column to the left - Tried to fix but couldnt' figure it out MJB*
 
@@ -338,21 +336,19 @@ ref_pts %>%
 None of the scenarios estimated current median spawning biomass to be below the LRP (Figure \@ref(fig:biomass-om)). 
 Scenario (B) estimated median spawning biomass to have been below the LRP for most years post-2000 and non-zero probability of being below the LRP in the current year.
 Scenario (2) also had non-zero probability of being below the LRP in the current year, albeit only a tiny portion of the 95% credible interval.
-Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered rebuilt above the LRP.
+Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered to have rebuilt above the LRP.
 
 All scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
 The credible interval for all scenarios except (A) was very broad, reflecting uncertainties in parameter estimates (Figure \@ref(fig:sra-conditioned-parameters)).
-Note that trajectories are identical for Scenarios (1), (3) and (B).
+Note that trajectories are identical for Scenarios (1), (3) and (B), as Scenarios (3) and (B) only differ from Scenario (1) in the treatment of parameters in the projection period.
 The very narrow credible interval for Scenario (A) reflects the very low fixed value of *M* in this scenario, restricting the range of possible outcomes.
-This is because Scenarios (3) and (B) only differ from Scenario (1) in the treatment of parameters in the projection period.
 
-In the four unique historical reconstructions (Scenarios (1), (2), (4), and (A)), all indicate 30 and 50% declines in spawning biomass have likely occurred.
-In all scenarios except Scenario (A), the median spawning biomass is estimated to be above the LRP.
-The median spawning biomass is estimated to be above the USR in Scenarios (1) and (2); and estimated to be below the USR in (4) and (A).
+In all scenarios except Scenario (A), the current median spawning biomass is estimated to be above the LRP.
+The median spawning biomass is estimated to be above the USR in Scenarios (1) and (2); and estimated to be below the USR in scenarios (4) and (A).
 
 (ref:fig-biomass-om)
-Spawning stock biomass relative to spawning biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.
-Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates.
+Spawning biomass relative to spawning biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.
+Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates, respectively.
 Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
 
 ```{r biomass-om, fig.cap="(ref:fig-biomass-om)", out.width="\\textwidth"}
@@ -362,8 +358,8 @@ knitr::include_graphics(here("mse/figures/ye-compare-SRA-MSY-panel.png"))
 The implied spawning biomass depletion trajectories during the historical period from the eight OMs follow the same pattern as those for *B* (Figure \@ref(fig:depletion-om)).
 
 (ref:fig-depletion-om)
-Spawning stock biomass depletion trajectories for reference and robustness set OMs.
-Depletion is represented as a fraction of $B_0$ (spawning stock biomass at unfished equilibrium).
+Spawning biomass depletion trajectories for reference and robustness set OMs.
+Depletion is represented as a fraction of $B_0$ (spawning biomass at unfished equilibrium).
 Lines represent individual replicates.
 
 ```{r depletion-om, fig.cap="(ref:fig-depletion-om)", out.width="\\textwidth"}
@@ -397,21 +393,27 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 ### Surplus production model scenario 
 
 The 2011 stock assessment for Inside Yelloweye Rockfish applied a Bayesian state space surplus production (SP) model, fit to catch, commercial CPUE and the HBLL and Dogfish surveys [@yamanaka2011]. 
-The assessment  estimated a 90% (9 times out of ten) probability that the stock was below the LRP, in the critical zone. 
-The assessment results triggered a rebuilding plan [@ifmp2018], which is being updated with the current analyses.
+The assessment  estimated a 90% (nine times out of 10) probability that the stock was below the LRP, i.e., in the critical zone. 
+The assessment results triggered a rebuilding plan [@ifmp2018], which is being updated here.
 The SRA models under all OM scenarios in the current analysis predict similar biomass trajectories to that in @yamanaka2011.
 However, only Scenario (A) estimates the stock to have been below the LRP during the 2000s (Figure \@ref(fig:biomass-om)).
 It is not possible to definitively infer why model results diverged between the two analyses due to the large differences in model structure between the SP model used in @yamanaka2011 and the SRA, used here, as well as the addition of 10 years of new data.
 
-However, to explore the effects of model structure on stock status results, we fit a SP model to the catch, CPUE and fishery independent indices of abundance. 
+However, to explore the effects of model structure on stock status results, we fit a SP model to the catch, CPUE and fishery-independent indices of abundance. 
 We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp,
-which was configured to resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood. The model set $B_{MSY}$ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth as a likelihood penalty. The prior was normally distributed with a mean of 0.068 and standard deviation of 0.03 based on values used in @yamanaka2011.
+which was configured to resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood.
+The SP model set $B_{MSY}$ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth (*r*) as a likelihood penalty.
+The prior probability distribution for *r* was normally distributed with a mean of 0.068 and standard deviation of 0.03, based on values used in @yamanaka2011.
 
-Model results more closely matched those of the previous assessment, estimating the stock to be below the LRP (Figure \@ref(fig:spm-biomass)). From the SP model, the reference points *B*~MSY~ = 1844 t, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t. MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), although *B*~MSY~ is approximately 35% higher for the SP model than in the SRA. 
+Model results more closely matched those of the previous assessment, estimating the stock to be below the LRP (Figure \@ref(fig:spm-biomass)).
+The SP model estimated the reference points *B*~MSY~ = 1844 t, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t.
+MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), but the estimate of *B*~MSY~ was approximately 35% higher for the SP model than the SRA. 
 
-An alternative Fox model (not shown) where $B_{MSY}$ is approximately 37% of unfished biomass also did not appreciably change the perception of stock status.
+An alternative Fox model (not shown), where $B_{MSY}$ was approximately 37% of unfished biomass, did not appreciably change the perception of stock status.
 
-*TODO: What else do we want to say about this???*
+Results suggest that differences in estimated stock status between the current OMs and the previous stock assessment [@yamanaka2011] are in large part due to the choice of model structure.
+We note that very similar findings were made by @cox2020 in the rebuilding plan for the outside stock of Yelloweye Rockfish.
+Their analyses, also based on age-structured models, also predicted the current stock status to be above the LRP, i.e., not in need of rebuilding. 
 
 (ref:fig-spm-biomass) Biomass relative to biomass at MSY (*B*/*B*~MSY~) trajectory from the SP model.
 Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
@@ -419,8 +421,6 @@ Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
 ```{r spm-biomass, fig.cap="(ref:fig-spm-biomass)", out.width="0.8\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/SP_fit.png"))
 ```
-
-
 
 
 \clearpage
