@@ -1,17 +1,17 @@
 # SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:objectives-metrics}
 
-Clear management and fishery objectives and the performance metrics that measure them must be identified.
-Objectives may span a wide range of policy or legistated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., average catch or variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
+Clear management and fishery objectives, and the performance metrics that measure them, must be identified.
+Objectives may span a wide range of policy or legislated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., average catch or variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
 Fully quantified objectives include a metric, the desired probability of success, and a time frame to achieve the objective (e.g., probability of maintaining the stock above the LRP is greater than 0.95 [19 times out of 20], over 1.5 generations of the stock).
 Performance metrics are quantified measures of the objectives, calculated in the OM at each time step of the projections.
 
-The original rebuilding plan objectives for Inside Yelloweye Rockfish were published in 2018 [@ifmp2018; their Appendix 9]. The original rebuilding plan objective was to
+The original rebuilding plan objectives for Inside Yelloweye were published in 2018 [@ifmp2018; their Appendix 9]. The original rebuilding plan objective was to
 rebuild the stock above the LRP over 80 years with 56% probability of success; with the additional milestone to achieve positive biomass trends within each 10 year period.
 The MP that was agreed upon to meet these objectives was to maintain the combined TAC (commercial, recreational, FSC, biological survey) below 15 tonnes annually [@ifmp2018].
 
-Here we present a set of refined objectives and associated performance metrics for the rebuilding plan for Inside Yelloweye Rockfish.
+We present a set of refined objectives and associated performance metrics for the rebuilding plan for Inside Yelloweye Rockfish.
 Key provisional conservation objectives are guided by the PA Framework
-[@dfo2006; @dfo2009], rebuilding plan guidance [@dfo2013], and regional precedent [@cox2019; @cox2020].
+[@dfo2006; @dfo2009], rebuilding plan guidance document [@dfo2013], and regional precedents [@cox2019; @cox2020].
 Additional objectives related to fisheries yield and variability in annual fisheries yield are based on precedents in other DFO Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019; @cox2020].
 
 The proposed core conservation objective is:
@@ -36,25 +36,23 @@ In addition, we propose refining the milestones identified in the original rebui
 5. Achieve positive biomass trends within each 10 year period *for as long as the stock remains below the LRP*.
 
 Current rebuilding guidance only provides for objectives to build stocks out of the critical zone [@dfo2013], with milestones intended to ensure progress is achieved during the rebuilding process.
-The 10 year period identified in the milestones for the Inside Yelloweye Rockfish rebuilding plan [@ifmp2018] reflected an assumption that rebuilding could be very slow for this stock.
+The 10 year period identified in the milestones for the current Inside Yelloweye rebuilding plan [@ifmp2018] reflected an assumption that rebuilding could be very slow for this stock.
 We adjusted the milestone to reflect the assumption that, once the stock is rebuilt (i.e., no longer in the critical zone), the milestone would no longer be required.
-The rebuilding guidance does discuss having longer-term objectives to keep rebuilding stocks into the healthy zone.
+The rebuilding guidance does discuss having longer-term objectives to keep rebuilding stocks into the healthy zone, above the USR.
 However, this is supposed to be achieved beyond the period and scope of the rebuilding plan [@dfo2013].
 We have interpreted this milestone in its strictest sense (i.e., the rebuilding plan is to rebuild the stock out of the critical zone), but the milestone could be revised in the future to require that positive biomass trends should be achieved until the stock is in the healthy zone.
 This is a decision to be made at Step 1 of future processes by fisheries managers, First Nations and stakeholders.
 
 We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, and GT represents generation time:
 
-*TODO: define the years for calculating LRP 1.5 GT, LRP 1 GT, USR 1.5 GT and LT C20*
-
 * LRP 1.5: GT P(*B* > 0.4 *B*~MSY~) after 1.5 GT (56 years)
 * LRP 1GT: P(*B* > LRP) after 1 GT (38 years)
-* USR 1.5GT:    P(*B* > USR) after 56 years
+* USR 1.5GT: P(*B* > USR) after 56 years
 
 * ST C10: P(catch > 10 t) during 2020--2029
 * ST C15: P(catch > 15 t) during 2020--2029
 * ST C20: P(catch > 20 t) during 2020--2029
-* LT C20: P(catch > 20 t) after 1 GT
+* LT C20: P(catch > 20 t) after 1 GT (38 years)
 * ST AADC: P(AADC during 2020-2029 < AADC during 2012 - 2019)
   
 AADC represents average absolute deviation in catch ($C$) over $n$ years and is defined as:
@@ -63,7 +61,7 @@ $$
 \textrm{AADC} = \dfrac{1}{n-1}\sum_{y=2}^n \mid C_y - C_{y-1} \mid.
 $$
 
-The baseline period for AADC (2012--2019) was selected as this is the period since the start of the 15 t TAC.
+The baseline period for AADC (2012--2019) was selected because it is the period since the start of the 15 t TAC.
 We include the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term. *TODO: is this correct?*
 
 In cases where performance metrics are calculated over a range of years, care needs to be taken to clearly report how summary statistics are calculated.
