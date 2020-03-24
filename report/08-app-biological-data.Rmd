@@ -77,6 +77,8 @@ Maturity frequency by each month is shown in the bubble plot in Figure \@ref(fig
 
 *TODO: DANA please can you add explanation of generation time and comparison between the inside and outside stocks?*
 
+\clearpage
+
 (ref:fig-mat-months)   Maturity-frequency-by-month plot for inside Yelloweye Rockfish. The area of each circle corresponds to the number of fish specimens in a given maturity category for the given month. Female fish are indicated by black circles and male fish are indicated by light grey circles behind. The total number of fish specimens for each month are indicated by the numbers at the top of the plot.
 
 ```{r age-freq, fig.cap="(ref:fig-age-freq)", out.width="3in"}
@@ -115,3 +117,26 @@ knitr::include_graphics(here("mse/figures/mat-prop.png"))
 library(here)
 knitr::include_graphics(here("mse/figures/mat-months.png"))
 ```
+
+## Summary table of biological data availability
+
+```{r test, results='asis'}
+dat <- readRDS(here("data-generated/yelloweye-rockfish-ins-privacy.rds"))
+sum <- dat$survey_samples  
+sum <- sum %>%
+  group_by(year) %>%
+  summarise(
+    specimens = sum(!is.na(specimen_id)),
+    length = sum(!is.na(length)),
+    weight = sum(!is.na(weight)),
+    maturity = sum(!is.na(maturity_name)),
+    aged = sum(!is.na(age)),
+    age_specimen_collected = sum(!is.na(age_specimen_collected))) %>%
+  mutate(specimens = gsub("\\\n", " ", specimens))
+sum %>%
+  csasdown::csas_table(caption = "Inside Yelloweye Rockfish biological data.",
+    col_names = c("Year", "Specimens", "Lengths", "Weights", "Maturities", "Ages", "Age specimen collected")) %>%
+  kableExtra::kable_styling(latex_options = c("hold_position"))
+```
+
+\clearpage
