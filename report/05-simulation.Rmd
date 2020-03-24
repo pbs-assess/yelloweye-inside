@@ -1,4 +1,4 @@
-## SIMULATION OF THE APPLICATION OF MANAGEMENT PROCEDURES {#sec:simulation}
+# SIMULATION OF THE APPLICATION OF MANAGEMENT PROCEDURES {#sec:simulation}
 
 ```{r rversion}
 rversion <- gsub(" \\([0-9-]+\\)", "", devtools::session_info()$platform$version)
