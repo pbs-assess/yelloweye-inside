@@ -6,24 +6,19 @@
 
 # BIOLOGICAL DATA {#app:biological-data}
 
-Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait; Figure \@ref(fig:map-4B)), are a genetically distinct stock from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013].  The inside and outside stocks are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@cosewic2008].
-
-The northerly boundary between the two genetic populations is found in the middle of the Queen Charlotte Strait, north of Malcolm Island.
-Understanding of the Southern boundary has recently changed based on analyses presented in @andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations.
-The two populations are assessed and managed independently using the Groundfish Management Area 4B to define the inside stock despite the fact that Area 4B extends past the boundaries of the biological population (Figure \@ref(fig:map-4B)).
+Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait; Figure \@ref(fig:map-4B)), are a genetically distinct stock from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013]. The northerly boundary between the two genetic populations is found in the middle of the Queen Charlotte Strait, north of Malcolm Island. Understanding of the Southern boundary has recently changed based on analyses presented in @andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations.
+The two populations are assessed and managed independently using the Groundfish Management Area 4B to define the inside stock despite the fact that Area 4B extends past the boundaries of the biological population (Figure \@ref(fig:map-4B)). The inside and outside stocks are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@cosewic2008].
 
 *TODO: Explain how the maximum age is younger than the oldest aged fish*
 
 ## Size and Growth {#sec:growth}
 *TODO: EK please could you clarify the first three sentences about max age.*
 
-Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C. although the maximum reported age for the inside stock is 98 years [@keppel2019].
+Yelloweye Rockfish are a long-lived species, which have been aged up to 121 years in B.C., although the maximum reported age for the inside stock is 98 years [@keppel2019].
 This maximum age is updated to 101 years from additional recent aging data (Figure \@ref(fig:age-freq)). 
 Age data for inside Yelloweye Rockfish, derived from the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018.
 Directed hard-bottom longline (HBLL) surveys began in Area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged.
 Proportions-at-age of Yelloweye Rockfish are shown by year and sex for the inside stock from the HBLL survey samples (Figure \@ref(fig:age-freq)), and it is assumed that all ages are independent of subarea.
-Inside Yelloweye Rockfish prefer rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
-Their life history traits make the stock vulnerable to overexploitation by fisheries.
 
 (ref:fig-age-freq) Age-frequency plot for inside Yelloweye from the hard-bottom 
 longline surveys (northern and southern) in inside (area 4B) waters (HBLL INS N/S). 
@@ -41,7 +36,7 @@ $$
 with $W_i$ and $L_i$ representing the weight and length for fish $i$ and $\sigma$ representing the observation error scale.
 We set the degrees of freedom of the Student-t distribution to 3 to be robust to outliers [@anderson2019synopsis].
 The variables $a$ and $b$ represent the estimated length-weight parameters.
-Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure for the central BC coast which also influences fecundity as larger females show an increasing number of eggs per unit of body weight (TODO REF McGreer and Frid 2017).
+Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure on the central BC coast, which also influences fecundity, as larger females show an increasing number of eggs per unit of body weight [@mcgreer2017].
 
 Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length-age). The length-age growth curve is a von Bertalanffy model of the form:
 
