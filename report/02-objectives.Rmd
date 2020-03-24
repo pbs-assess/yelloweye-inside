@@ -6,7 +6,7 @@ Fully quantified objectives include a metric, the desired probability of success
 Performance metrics are quantified measures of the objectives, calculated in the OM at each time step of the projections.
 
 The original rebuilding plan objective was to
-rebuild the stock above the LRP over 80 years with 56% probability of success; with the additional milestone to achieve positive biomass trends within each 10 year period.
+rebuild the stock above the LRP over 80 years with 56% probability of success, with the additional milestone to achieve positive biomass trends within each 10 year period.
 The MP that was agreed upon to meet these objectives was to maintain the combined TAC (commercial, recreational, FSC, biological survey) below 15 tonnes annually [@ifmp2018].
 
 We present a set of refined objectives and associated performance metrics for the rebuilding plan for Inside Yelloweye Rockfish.
@@ -41,7 +41,7 @@ However, this is supposed to be achieved beyond the period and scope of the rebu
 We have interpreted this milestone in its strictest sense (i.e., the rebuilding plan is to rebuild the stock out of the critical zone), but the milestone could be revised in the future to require that positive biomass trends should be achieved until the stock is in the healthy zone.
 This is a decision to be made at Step 1 of future processes by fisheries managers, First Nations and stakeholders.
 
-We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, and GT represents generation time:
+We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, GT represents generation time, and *AADC* represents average absolute deviation in catch ($C$) over $n$ years:
 
 * LRP 1.5: GT P(*B* > 0.4 *B*~MSY~) after 1.5 GT (56 years)
 * LRP 1GT: P(*B* > LRP) after 1 GT (38 years)
@@ -53,11 +53,11 @@ We propose the following performance metrics to measure the objectives, where *B
 * LT C20: P(catch > 20 t) after 1 GT (38 years)
 * ST AADC: P(AADC during 2020-2029 < AADC during 2012 - 2019)
 
-We include the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term.
+We include the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term (note: *ST* = short term, *LT* = long term).
 
 *TODO: SA, please can you clarify the equation or text for AADC? Not clear how the baseline 2012-2019 is incorporated*
 
-AADC represents average absolute deviation in catch ($C$) over $n$ years and is defined as:
+AADC is defined as:
 
 $$
 \textrm{AADC} = \dfrac{1}{n-1}\sum_{y=2}^n \mid C_y - C_{y-1} \mid.
@@ -69,5 +69,5 @@ A baseline period for AADC (2012--2019) was selected because it is the period si
 In cases where performance metrics are calculated over a range of years, care needs to be taken to clearly report how summary statistics are calculated.
 @anderson2020gfmp provisionally suggested calculating performance statistics across replicates and the entire time window as defined for the performance metric.
 We follow this protocol here.
-For example, we averaged the short-term (ST) catch metrics over the years 2020--2029.
+For example, we averaged the short-term catch metrics over the years 2020--2029.
 
