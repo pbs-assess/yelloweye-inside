@@ -38,7 +38,7 @@ N_{i,t}^{(0)} & = \frac{-\log P_{i,t}}{1 - P_{i,t}} N_{i,t}\\
 The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them, $P_{i,t}$ (Figure \@ref(fig:hbll-baited)):
 
 $$
-A_{i,t} = - \frac{ \left(\log(P_{i,t} \right)}{1 - P_{i,t}}.
+A_{i,t} = - \frac{ \log P_{i,t}}{1 - P_{i,t}}.
 (\#eq:hbll-hook-adjustment)
 $$
 

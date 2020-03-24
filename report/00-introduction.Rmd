@@ -71,8 +71,7 @@ In output-controlled fisheries, such as the quota-managed BC groundfish fishery,
 MPs can vary greatly in their data demands, from very data-rich approaches, including statistical catch-at-age stock assessments with harvest control rules, to simple data rules ("data-limited" approaches), which only rely on catch data and an index of abundance (e.g., @geromont2015; @carruthers2016).
 
 Closed-loop simulation is distinguished from conventional stock assessment approaches because it simulates feedback between implementation of the MPs and the underlying system representing the fish stock and its environment, which is described by one or more operating models (OMs).
-This approach not only takes into account the effect of the MPs on the system but also the future data collected from the system, and its use in the MPs [@punt2016].
-The steps of MSE are described in Section \@ref(sec:methods-mp-framework) [see also @punt2016; @carruthers2018; @anderson2020gfmp].
+This approach not only takes into account the effect of the MPs on the system but also the future data collected from the system, and its use in the MPs [@punt2016; @carruthers2018; @anderson2020gfmp].
 
 (ref:fig-mse-chart-basic) Illustration of the fisheries closed-loop simulation process following @punt2016. The management procedure may be based on a simple data rule (e.g., decrease the allowable catch x% if the survey index decreases y%) or it might be an estimation model combined with a harvest control rule.
 
