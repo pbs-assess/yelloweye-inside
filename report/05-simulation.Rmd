@@ -77,7 +77,7 @@ We focus on evaluating trade-offs among satisficed MPs in the next section.
 However, in terms of MPs that did not meet the satisficing criteria (Figure \@ref(fig:proj-not-satisficed-eg)):
 
 - Iratio generated low catches within the first decade but generated high catches later on. There was high variability among replicates in each OM.
-- IDX and IDX_smooth returned gradually lower catches over time.
+- IDX and IDX_smooth returned gradually lower catches over time. See Appendix \@ref(app:mps) Section \@ref(sec:mp-idx) for details.
 - Iratio and GB_slope generated zero catch in the low catch OM; hence, they did not satisfy the ST C10 > 0.50 criteria.
 - The surplus production MPs generated no or very little catch in the first decade, but increased catches later on, e.g. after 50 years.
 
