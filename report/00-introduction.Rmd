@@ -2,7 +2,7 @@
 
 # INTRODUCTION {#sec:introduction}
 
-The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the Inside Population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
+The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the Inside population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
 The project applies a closed-loop simulation framework [@anderson2020gfmp] to test and identify management procedures (MPs) that meet rebuilding objectives for the Inside population of Yelloweye Rockfish.
 
 ## MOTIVATION - POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
@@ -22,7 +22,7 @@ knitr::include_graphics(here::here("figs/pa-framework.png"))
 
 In June 2019, major amendments to Canada's *Fisheries Act* legislated many key components of the SFF, encoded in the Fish Stocks provisions ([Section 6 of the *Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547)).
 The Fish Stocks provisions require that major fish stocks be managed at sustainable levels, specifically at biomass levels above the LRP.
-Furthermore,  Sections 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan shall be established to rebuild the stock above the LRP.
+Furthermore,  Section 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan shall be established to rebuild the stock above the LRP.
 Major fish stocks will be designated under regulations, with the first batch of major fish stocks due to be designated in Fall 2020.
 
 The guidance for the development of rebuilding plans in Canada [@dfo2013] states that rebuilding plans should be based upon objectives characterised by:
