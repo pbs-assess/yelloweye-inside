@@ -6,12 +6,12 @@ COSEWIC and DFO have different criteria for assessing the status of marine fish 
 
 To inform the COSEWIC re-assessment of Inside Yelloweye Rockfish, we report the following for each OM (Figure \@ref(fig:cosewic-metrics)):
 
-1. P70 - Probability that population decline hasn't exceeded 70% over 3 generations. Where generation time is 38 years and probability is calculated as $P[1 - B_2019/B_1918 < 0.7]$
+1. P70 - Probability that population decline hasn't exceeded 70% over 3 generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} < 0.7]$
 2. P50 - Probability that population decline hasn't exceeded 50% over 3 generations
 3. P30 - Probability that population decline hasn't exceeded 30% over 3 generations
 
 (ref:fig-cosewic-metrics)
-Results for COSEWIC metric A, the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations, for each operating model for Inside Yelloweye Rockfish where a generation is equal to 38 years. 
+Results for COSEWIC metric A, the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations, for each operating model for Inside Yelloweye Rockfish where one generation is equal to 38 years. 
 
 ```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
@@ -19,7 +19,7 @@ knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
 
 ## EXTINCTION RISK - COSEWIC METRIC E
 
-In oder to examine the risk of extinction, stock-specific biomass thresholds must be assigned. Below these thresholds the stock would be considered functionally extirpated or extinct. We propose two extinction thresholds of 2%B~0~ and 5%B~0~ to quantititively calculate risk of future extinction for each OM and MP scenario. While we acknowledge that these thresholds are abitrary, precedents exist in the literature [@forrest2015] and simulation testing is required to find more appropriate stock-specific thresholds.
+In order to examine the risk of extinction, stock-specific biomass thresholds must be assigned. Below these thresholds the stock would be considered functionally extirpated or extinct. We propose two extinction thresholds of 2%B~0~ and 5%B~0~ to quantitatively calculate risk of future extinction for each OM and MP scenario. While we acknowledge that these thresholds are arbitrary, precedents exist in the literature [@forrest2015] and simulation testing is required to find more appropriate stock-specific thresholds.
 
 Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B~0~ for each OM (Figure \@ref(fig:cosewic-all)) and the average probability that the stock remains above each threshold over all OMs (Figure \@ref(fig:cosewic-avg)):
 
