@@ -5,7 +5,7 @@
 The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the Inside population of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
 The project applies a closed-loop simulation framework [@anderson2020gfmp] to test and identify management procedures (MPs) that meet rebuilding objectives for the Inside population of Yelloweye Rockfish.
 
-## MOTIVATION - POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
+## MOTIVATION: POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
 
 The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@dfo2006; @dfo2009].
 The PA Framework [@dfo2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds to be avoided with high probability.
@@ -36,7 +36,7 @@ Current guidance states that the timelines for rebuilding should be 1.5 to 2 tim
 
 ## BACKGROUND {#sec:introduction-background}
 
-Inside Yelloweye Rockfish occurs in Groundfish Management Area 4B in British Columbia (BC) (Figure \@ref(fig:map-4B)).
+The Inside Yelloweye Rockfish stock occurs in Groundfish Management Area 4B in British Columbia (BC) (Figure \@ref(fig:map-4B)).
 The stock is expected to be designated as a major fish stock in Fall 2020, and its management will therefore be legislated under the Fish Stocks provisions.
 Inside Yelloweye Rockfish is considered a data-limited stock.
 There is sparse availability of age-composition data, a lack of biological data from commercial, recreational, and First Nations' fisheries, and uncertainty in the magnitude of historical catches.
