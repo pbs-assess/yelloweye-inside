@@ -5,13 +5,13 @@ DLMtool OMs are organized into four main components representing a real fished s
 1. population dynamics of the fish stock (e.g., growth, recruitment, mortality);
 2. fishery dynamics (e.g., selectivity, spatial targeting);
 3. observation processes (e.g., bias and precision in survey indices); and
-4. management implementation (e.g., percentage overages of catch limits).
+4. management implementation (e.g., percentage of overages of catch limits).
 
-Parameters under the four components are described in detail in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
+Parameters under the four components are described, in detail, in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
 DLMtool allows the incorporation of uncertainty in most OM parameters through optional specification of a distribution.
 To isolate the effects of specific sources of uncertainty on performance of MPs, we develop alternative OMs that change the value (or distribution) of one or more parameters and/or data sources of interest (see next section).
 
-Best practice recommends calibrating or conditioning OMs with observed data so they can reproduce historical observations.
+Best practice recommends calibrating, or conditioning, OMs with observed data, so they can reproduce historical observations.
 DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data [Appendix B; @anderson2020gfmp].
 
 There are two distinct time-periods in the simulation framework:
@@ -25,19 +25,18 @@ OM development in the MP Framework follows three steps:
 1. Set parameter values and ranges in the OM (Appendix \@ref(app:desc-om-yelloweye)).
 
 2. Pass the OM parameters to the SRA model, which conditions the OM by fitting an age-structured SRA to historical observed catches, indices of abundance, and any available years of age-composition data).
-This results in calibrated estimates of model parameters and estimates of historical biomass and historical fishing mortality (in years $t_1$ to $t_c$), which are consistent with historical observations.
+This results in calibrated estimates of model parameters and estimates of historical biomass and fishing mortality (in years $t_1$ to $t_c$), which are consistent with historical observations.
 See Appendix B of @anderson2020gfmp for details.
 
 3. Pass the calibrated parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
 
-Where possible, we derived OM settings for Inside Yelloweye Rockfish from biological data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)).
+Where possible, we derived OM settings for Inside Yelloweye from biological data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)).
 We derived other parameters from the scientific literature and stock assessments for Yelloweye Rockfish in other areas.
 A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in @anderson2020gfmp (their Appendix C).
 
 We conditioned the OMs using age-composition data from the inside Hard Bottom Longline (HBLL) survey (Appendix \@ref(app:biological-data)), survey indices (Appendix \@ref(app:index-data)), and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
 A full description of OM parameter settings and sources is provided in Appendix \@ref(app:desc-om-yelloweye).
 Details on conditioning the OMs are provided below in Section \@ref(sec:approach3-conditioning).
-<!-- TODO: delete this last sentence if there is not a separate section -->
 
 ## OPERATING MODELS {#sec:approach3-oms}
 
@@ -84,14 +83,14 @@ This OM formed the baseline OM, upon which all the other OM scenarios were based
 
 There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)).
 These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF) and (2) the magnitude unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
-For consistency with @yamanaka2011, all scenarios except (2) included doubling the nominal catches of Yelloweye Rockfish for the period 1986---2005, as industry did not have confidence in the catch data for those years, indicating that total catch may have been double the nominal catch for that period [@dfo2012; see  Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)].
+For consistency with @yamanaka2011, all scenarios except (2) included doubling the nominal catches of Yelloweye Rockfish for the period 1986--2005, as industry did not have confidence in the catch data for those years, indicating that total catch may have been double the nominal catch for that period [@dfo2012; see  Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)].
 For this scenario, to test model sensitivity to the assumption of large unreported catch, we did not double the nominal catch for the period 1985--2005.
 We used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards.
 
 #### (3) Episodic recruitment {#sec:approach3-reference3}
 
 Long-lived, late-maturing species such as Pacific rockfishes often exhibit episodic, or periodic, recruitment strategies, characterized by high fecundity and occasional very large recruitment events [@winemiller1992; @rose2001; @winemiller2005].
-For example, very large or even extreme year classes have been estimated for several BC rockfish species [*TODO: examples: POP?, Boccacio, Yelloweye??*].
+For example, very large or even extreme year classes have been estimated for several BC rockfish species [*TODO: DANA examples: POP?, Boccacio, Yelloweye??*].
 
 To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" scenario in the reference set of OMs.
 This scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations used in the baseline OM (Section \@ref(sec:approach3-reference1)).
@@ -109,7 +108,7 @@ $$
 
 where $\varepsilon^1_y$ is the recruitment deviation from OM 1 and
 $\varepsilon^2_y \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
-The paramater $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which indicates whether an extreme recruitment event will occur. 
+The parameter $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which indicates whether an extreme recruitment event will occur. 
 One extreme recruitment is expected to occur once every generation (38 years).
 
 #### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
@@ -118,13 +117,13 @@ There is a lack of commercial age-composition data for this stock.
 Furthermore, annual sample sizes of age-composition data from the HBLL survey are very small (Appendix \@ref(app:biological-data)). 
 This makes estimation of selectivity in the HBLL survey highly uncertain, which led to the choice to fix selectivities for the OMs.
 
-Given very uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the HBLL survey in this scenario, utilizing the available age-composition data.
+Given high uncertainty in our choice of selectivity, we allowed the SRA to estimate selectivity for the HBLL survey in this scenario, utilizing the available age-composition data. <!-- this description is a bit confusing as it indicates the HBLL selectivity is fixed and estimated. need to specify which OMs had fixed selectivity in the sentence above --> 
 
 ### ROBUSTNESS SET {#sec:approach3-robustness}
 
 #### (A) Low M {#sec:approach3-referenceA}
 
-The base model assumed mean value of natural mortality *M* of 0.045 $y^{-1}$, drawn 
+The base model assumed a mean value for natural mortality *M* of 0.045 $y^{-1}$, drawn 
 from a lognormal distribution with $M \sim \textrm{Lognormal}(0.045, 0.2)$.
 This was based on the value used in the last stock assessment for the Inside Yelloweye Rockfish stock [@yamanaka2011]. 
 
@@ -173,7 +172,6 @@ See Appendix B of @anderson2020gfmp for details on these parameters.
 The SRA was run with 250 replicates.
 Each replicate used a different value of *M* and *h* (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye)).
 The model was initialized under the assumption that spawning biomass ($B_y$) was in an unfished equilibrium state prior to 1920, the first year of the time series, i.e., $B_1 = B_0$.
-*TODO: check this is the case*
 While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1920, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
 
 ### Selection of Base OM {#sec:approach3-conditioning-base-om}
@@ -312,7 +310,7 @@ knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
 
 Estimated mean and standard deviation for reference points *F*~MSY~, *B*~MSY~ and MSY are provided in Table \@ref(tab:sra-ref-pts). Note the large standard deviations due to the large range of sampled values for *M* and *h* (Appendix \@ref(app:desc-om-yelloweye), Sections \@ref(app:desc-stock-m-yelloweye) and \@ref(app:desc-stock-h-yelloweye)).
 
-*TODO: Some of the leading numbers are showing up in the column to the left*
+*TODO: Some of the leading numbers are showing up in the column to the left - Tried to fix but couldnt' figure it out MJB*
 
 
 ```{r sra-ref-pts, results='asis'}
@@ -322,9 +320,8 @@ ref_pts %>%
   mutate(Scenario = gsub("\\\n", " ", Scenario)) %>%
   select(Scenario, FMSY, BMSY, MSY) %>%
   rename("F~MSY~ (/y)" = FMSY, "B~MSY~ (t)" = BMSY, "MSY (t)" = MSY) %>% 
-  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario. Standard deviations across replicates are shown in parentheses. TODO, right?") %>% 
-  kableExtra::column_spec(1, width = "5cm") %>%
-  kableExtra::column_spec(2:4, width = "5cm")
+  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario. Standard deviations across replicates are shown in parentheses.") %>% 
+  kableExtra::column_spec(1:5, width = "5cm") 
 ```
 
 \clearpage
@@ -333,8 +330,8 @@ ref_pts %>%
 
 None of the scenarios estimated current median spawning biomass to be below the LRP (Figure \@ref(fig:biomass-om)). 
 Scenario (B) estimated median spawning biomass to have been below the LRP for most years post-2000 and non-zero probability of being below the LRP in the current year.
-Scenario (2) also had non-zero probability of being below the LRP in the current year, albeint only a tiny portion of the 95% credible interval.
-Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered rebuilt.
+Scenario (2) also had non-zero probability of being below the LRP in the current year, albeit only a tiny portion of the 95% credible interval.
+Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered rebuilt above the LRP.
 
 All scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
 The credible interval for all scenarios except (A) was very broad, reflecting uncertainties in parameter estimates (Figure \@ref(fig:sra-conditioned-parameters)).
@@ -400,7 +397,8 @@ However, only Scenario (A) estimates the stock to have been below the LRP during
 It is not possible to definitively infer why model results diverged between the two analyses due to the large differences in model structure between the SP model used in @yamanaka2011 and the SRA, used here, as well as the addition of 10 years of new data.
 
 However, to explore the effects of model structure on stock status results, we fit a SP model to the catch, CPUE and fishery independent indices of abundance. 
-We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp, and was configured to closely resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood. The model set $B_{MSY}$ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth as a likelihood penalty. The prior was normally distributed with mean of 0.068 and standard deviation of 0.03 based on values used in @yamanaka2011.
+We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp,
+which was configured to resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood. The model set $B_{MSY}$ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth as a likelihood penalty. The prior was normally distributed with a mean of 0.068 and standard deviation of 0.03 based on values used in @yamanaka2011.
 
 Model results more closely matched those of the previous assessment, estimating the stock to be below the LRP (Figure \@ref(fig:spm-biomass)). From the SP model, the reference points *B*~MSY~ = 1844 t, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t. MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), although *B*~MSY~ is approximately 35% higher for the SP model than in the SRA. 
 
