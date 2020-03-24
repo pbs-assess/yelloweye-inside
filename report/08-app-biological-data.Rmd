@@ -9,7 +9,7 @@
 Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait; Figure \@ref(fig:map-4B)), are a genetically distinct stock from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013]. The northerly boundary between the two genetic populations is found in the middle of the Queen Charlotte Strait, north of Malcolm Island. Understanding of the Southern boundary has recently changed based on analyses presented in @andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations.
 The two populations are assessed and managed independently using the Groundfish Management Area 4B to define the inside stock despite the fact that Area 4B extends past the boundaries of the biological population (Figure \@ref(fig:map-4B)). The inside and outside stocks are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@cosewic2008].
 
-*TODO: Explain how the maximum age is younger than the oldest aged fish*
+*TODO: DANA Explain how the maximum age is younger than the oldest aged fish*
 
 ## Size and Growth {#sec:growth}
 *TODO: EK please could you clarify the first three sentences about max age.*
