@@ -19,33 +19,61 @@ The robustness set scenarios generally produced lower probabilities of meeting t
 We presented a number of visualiations to show trade-offs among conservation and catch objectives [see also @anderson2020gfmp].
 The visualisations present trade-off results in different tabular and graphic formats, intended to support the process of selecting the final MP.
 We found the radar plot visualizations difficult to interpret.
-While these plots can be useful for rapid visualization of multiple trade-offs, and have been recommended for visualization of MSE results [@punt2017], they become more difficult to interpret as more metrics ("spokes") are added, are very sensitive to the order in which the metrics are placed, and have been shown to be less interpretable that Cartesian plots [@diehl2010; @feldman2013; @albo2016].
+While these plots can be useful for rapid visualization of multiple trade-offs, and have been recommended for visualization of MSE results [@punt2017], they become more difficult to interpret as more metrics ("spokes") are added.
+They are very sensitive to the order in which the metrics are placed, and have been shown to be less interpretable that Cartesian plots [@diehl2010; @feldman2013; @albo2016].
 We presented radar plots here to gauge interest from RPR participants.
 
-
-- rebuilding plan advice when stock appears not to be in the critical zone
-
-## NATURAL MORTALITY
+## NATURAL MORTALITY {#sec:discussion-m}
 
 MSE best practice recommends dividing MSE trials into a reference set and robustness set [@rademeyer2007; @punt2016].
 The purpose of the robustness set is to represent OM formulations that represent alternative  hypotheses to those in the reference set [@rademeyer2007].
 These authors recommend that candidate MPs should perform well across both reference and robustness scenarios.
 In our study, the two robustness scenarios performed differently from the reference set scenarios, especially Scenario (A).
 This low productivity scenario was the only scenario where the median biomass was estimated to be in the critical zone at the start of the projection period.
-For all other scenarios we sampled from a prior probability distribution for *M* that matched that used in the previous stock assessment [@yamanaka2011].
-Other Yelloweye Rockfish assessments have used lower values for *M*.
+For all other scenarios we sampled from a prior probability distribution for *M* with mean 0.045 *y*^-1^, which matched that used in the previous stock assessment [@yamanaka2011].
+Other Yelloweye Rockfish assessments have used lower values for *M*, closer to or lower than those used in Scenario (A) (mean 0.025 *y*^-1^ ).
 The recent rebuilding plan for the outside stock of Yelloweye Rockfish estimated median values for *M* between 0.031 *y*^-1^ and 0.044 *y*^-1^, depending on the OM.
 The 2008 COSEWIC assessment and status report for inside and outside Yelloweye Rockfish stocks [@cosewic2008] used a value of *M* = 0.02 *y*^-1^, citing the 2001 stock assessment for the inside stock [@yamanaka2001].
-Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye Rockfish use a value of a value of *M* = 0.02 *y*^-1^.
+Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye Rockfish use a value of a value of *M* = 0.02 *y*^-1^ [@wood2019].
 
 *TODO: DANA. Add something about predation scenarios in SOG*
 
-## KEY UNCERTAINTIES
+## STOCK STATUS {#sec:discussion-status}
 
-*TODO*
+*TODO: Someone please check this. It might be a bit waffly*
+
+Out of all the reference and robustness set OMs, only Scenario (A) estimated median spawning biomass to be below the LRP in 2010.
+The rebuilding plan for the inside stock of Yelloweye Rockfish was triggered by the 2010 stock assessment [@yamanaka2011], which estimated the stock to be below the LRP with high probability.
+The 2010 assessment used a surplus production (SP) model, with fundamentally different structural assumptions to the SRA used for conditioning OMs in the current assessment.
+While it is not possible, and probably not useful, to definitively identify which differences between the current OMs and the 2010 assessment resulted in different perceptions of stock status, some of our results are informative in this respect.
+
+We fit a SP model, similar to that used by @yamanaka2011, and obtained much lower biomass and stock status estimates than those from all the OMs.
+Furthermore, while the MSY and *F*~MSY~ estimates were similar to those from the SRA models, the estimate of *B*~MSY~ was higher for the SP model than our Scenario (1).
+These two factors in the SP model (lower biomass and higher reference points) would lead to a more pessimistic assessment of stock status.
+The SP-fitting exercise suggests that model structure, rather than the addition of ten years of new data since the last assessment, was a major factor contributing to different perceptions of stock status between the current OMs and the previous assessment.
+
+@cox2020 found similar differences between their age-structured OMs, which did not estimate stock status to be below the LRP, and the 2014 SP-based assessment of the outside stock of Yelloweye Rockfish [@yamanaka2018], which found the stock to be below the LRP, triggering a rebuilding plan.
+@cox2020 noted that structural differences between SP and age-structured models would be expected to produce different results, particularly due to differences in the formulation of productivity.
+We were able to more closely mimic the stock status estimates of @yamanaka2011 when we forced the stock to have lower productivity in Scenario (A), although the mean value of *M* used in Scenario (A) was lower than that used by @yamanaka2011.
+@cox2020 noted that age-structured models allows for lags in recruitment to fisheries, surveys, and the spawning stock.
+These differences are controlled by fishery selectivity-at-age, survey selectivity-at-age and maturity-at-age, respectively, in age-structured models and can be over-simplified in aggregate SP models.
+Our Scenario (4), where we estimated survey selectivity-at-age, resulted in lower estimates of stock status, implying that assumptions about selectivity were a contributing factor to perceptions of stock status (see Section \@ref(sec:discussion-uncertainties)).
+@cox2020 also noted that their SP-based MPs tended to underestimate biomass, which we also found in the current study, where the SP MPs generated no catch in the first decade of the projections.
+
+Despite differences in perception of stock status among some of our OMs, and between this and the previous stock assessment, we note that the MP Framework provides a method for integrating across uncertainties in stock status and reference points (see Section \@ref(sec:discussion-implicit)), even when these quantities are uncertain.
+In particular, the inclusion of Scenario (A) in the robustness set provides decision-makers with an alternative view of stock status and performance of MPs under this view.
+
+## KEY UNCERTAINTIES {#sec:discussion-uncertainties}
+
+Selectivity was a major source of uncertainty in our OMs.
+There are no available age-composition data for commercial or recreational fisheries, and none from the Dogfish survey.
+Age-composition data from the HBLL survey were sparse and only from recent years.
+
+
+
 
 - assumptions of fixed selectivity in commercialdogfish and recreational gears
-- other key uncertainties
+- other key uncertainties ... FSC
 
 ## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
 
