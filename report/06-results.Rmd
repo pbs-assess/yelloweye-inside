@@ -22,7 +22,7 @@ We note that none of the biomass projections predicted the stock to be below the
 The reference MP FMSYref suggests that catches could be increased without increasing the likelihood of falling below LRP. This is due to high probability that the stock is currently above LRP across the reference set scenarios. 
 
 Kobe plots demonstrated either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
-Within the reference set and across all MPs, only the Scenario (2) predicted some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
+Within the reference set and across all MPs, only Scenario (2) predicted some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
 
 (ref:fig-tigure-panel) Performance of satisficed MPs for the reference set scenarios.
 MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:tigure-avg).
