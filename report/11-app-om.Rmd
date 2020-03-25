@@ -73,8 +73,12 @@ This was based on the Hoenig equation [@hoenig1983] using an assumed maximum age
 The exception was Scenario (A), which used the distribution $M \sim \textrm{Lognormal}(0.025, 0.2)$.
 
 ```{r, eval=FALSE, echo=TRUE}
+# pseudo code:
 set.seed(91283)
 OM@cpars$M <- rlnorm(nsim, log(0.045) - 0.5 * 0.2^2, 0.2)
+
+set.seed(91283)
+OM_Scenario_A@cpars$M <- rlnorm(nsim, log(0.025) - 0.5 * 0.2^2, 0.2)
 ```
 
 ```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions of natural mortality (\\emph{M}) used in the OM scenarios. All OMs used the same distributions except \"(A) Low M\"."}
@@ -87,26 +91,8 @@ display_om(oms, "M")
 
 *Steepness of the stock-recruit relationship.*
 
-Steepness (*h*) is another core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010 and used in @yamanaka2011, where $X \sim \textrm{Beta}(\alpha = 9.6, \beta = 5.5)$, which is then transformed to $h = 0.8 X + 0.2$. 
-
+Steepness (*h*) is another core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010 and used in @yamanaka2011, where $X \sim \textrm{Beta}(\alpha = 9.6, \beta = 5.5)$, which was then transformed to $h = 0.8 X + 0.2$.
 The values for $\alpha$ and $\beta$ were selected to give mean *h* = 0.71 and standard deviation 0.1. While the standard deviation of 0.1 is lower than the value of 0.15 given in @yamanaka2011, a larger standard deviation is more likely to generate lower values of *h* with *F*~MSY~ < 0.01, which seemed implausible. The value of 0.1 still gave steepness values between 0.5--0.9, which appeared to be a sufficiently wide range of coverage.
-
-```{r, eval=FALSE, echo=FALSE}
-alphaconv <- function (m, sd) {
-  m * (((m * (1 - m))/(sd^2)) - 1)
-}
-betaconv <- function (m, sd) {
-  (1 - m) * (((m * (1 - m))/(sd^2)) - 1)
-}
-h_alpha <- alphaconv((0.71 - 0.2) / 0.8, 0.12)
-h_beta <- betaconv((0.71 - 0.2) / 0.8, 0.12)
-h_samps <- rbeta(1e6, h_alpha, h_beta)
-h_samps <- 0.8 * h_samps + 0.2
-mean(h_samps)
-sd(h_samps)
-```
-
-TODO: ... with the seed in R set to 65423:
 
 ```{r, eval=TRUE, echo=TRUE}
 alphaconv <- function(m, sd) {
@@ -120,8 +106,8 @@ h_beta <- betaconv((0.71 - 0.2), 0.12)
 set.seed(65423)
 h_samps <- rbeta(nsim, h_alpha, h_beta)
 h_samps <- 0.8 * h_samps + 0.2
-mean(h_samps)
-sd(h_samps)
+round(mean(h_samps), 2)
+round(sd(h_samps), 2)
 ```
 
 ```{r, eval=FALSE, echo=TRUE}
