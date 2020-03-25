@@ -132,16 +132,22 @@ $$
 \end{cases}
 $$
 
-where $\delta_\textrm{min}$ is the most negative drop allowed in the relative biomass index before the fishery is closed that year and $\Delta I_y$ is the current index value divided by the last observed index value.
+where $\delta_\textrm{min}$ is the most negative drop allowed in the relative biomass index before the fishery is closed that year and $\Delta I_y$ is defined as:
+
+$$
+\Delta I_y = \frac{I_y}{I_{y-n}} - 1,
+$$
+
+where $I_y$ refers to a population index value in year $y$ and $n$ determines the reference year.
 We set $\textrm{TAC}_\textrm{Floor} = 5 t$.
-We set $\delta_\textrm{min} = -0.5$ as in [@cox2020].
+We set $\delta_\textrm{min} = -0.5$ as in @cox2020.
 The maximum increase in TAC is capped at $\delta_\textrm{max} = 0.25$ by default.
 This means that the TAC in any one year cannot increase by more than 25%, implementing a "slow up" behaviour of the MP.
 The parameters $\delta_\textrm{min}$ and $\delta_\textrm{max}$ could possibly be additionally tuned to adjust the behaviour of the MP.
 
 Note that the slow-up--fast-down behaviour due to how $\delta_\textrm{min}$ and $\delta_\textrm{max}$ are set here, combined with the simulated survey index variability, can result in the MP "ratcheting" down the TAC despite an overall increasing index (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
 Furthermore, we implemented the MP exactly as described above and in @cox2020, which only uses $\textrm{TAC}_\textrm{Floor}$ if $\Delta I_y \leq \delta_\textrm{min}$.
-This does not stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$.
+This does not stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$ (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
 
 This MP can be additionally smoothed:
 
