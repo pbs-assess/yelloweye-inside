@@ -98,7 +98,6 @@ We elected to include FSC catches in the southern region with recreational catch
 We recognize large uncertainties in FSC catch in our analyses.
 Future applications of the MP Framework for this stock would benefit from more detailed collaborative work with First Nations in Area 4B.
 
-
 ## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
 
 This MP Framework, and all MSE processes, differ from conventional stock assessments in the way science advice is delivered.
@@ -139,9 +138,10 @@ In line with guidance for rebuilding plans in Canada (@dfo2013), we recommend re
 
 We are grateful to the members of our technical advisory group Adam Keizer, Maureen Finn, Roger Kanno for helpful discussions and guidance regarding objectives for the rebuilding plan.
 
-Strachan Tucker ...
+Strachan Tucker (DFO) provided data on Pinniped abundance and rockfish consumption rates.
 
-People who helped with questions about FSC ...
+We are very grateful to C. Ayers, M. Fetterly, Christa Rusel, A. Rushton and P. Zetterberg who provided very helpful advice regarding FSC catch. *TODO. DANA please can you provide first names and organizations?*
 
-Others ...
+We thank Tom Carruthers and Adrian Hordyk (UBC) for early guidance on this rebuilding plan and their ever-helpful willingness to add new features to the DLMtool software on request.
 
+*TODO: Others*
