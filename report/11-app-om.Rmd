@@ -343,7 +343,7 @@ We set $\sigma_I = 0.25$, based on the standard deviation of the observed HBLL i
 *A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases more slowly than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution*
 
 We set the hyperstability/hyperdepletion parameter $\beta = 1$  to imply no hyperstability or hyperdepletion.
-`
+
 <!-- slot-chunk-end -->
 
 ## IMP SLOT DESCRIPTIONS {#app:desc-imp-yelloweye}
