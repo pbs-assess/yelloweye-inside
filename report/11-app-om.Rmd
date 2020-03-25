@@ -87,21 +87,9 @@ display_om(oms, "M")
 
 *Steepness of the stock-recruit relationship.*
 
-Steepness (*h*) is another core uncertainty for most stocks. 
-We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010, where $X \sim \textrm{Beta}(0.025, 0.2)$, which is then transformed to $h = 0.8 X + 0.2$. 
-The values 0.025 and 0.2 were selected to give mean *h* = 0.71 and standard deviation  0.15.
-<!-- We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a transformed Beta distribution such that the resulting mean was 0.71 and the resulting standard deviation was 0.12 [@forrest2010]. -->
-<!-- Based on @forrest2010, the standard deviation should be approximately 0.2; however, 0.12 gave most samples between 0.5--0.9, which is a wide range of coverage, and lower values of *h* generated some samples with *F*~MSY~ < 0.01, which seemed implausible. -->
+Steepness (*h*) is another core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010 and used in @yamanaka2011, where $X \sim \textrm{Beta}(\alpha = 9.6, \beta = 5.5)$, which is then transformed to $h = 0.8 X + 0.2$. 
 
-*TODO: March 23. RF cleaned up the text above but not sure what to do with the rest of this section. Was steepness transformed as written? Which chunk below is correct?*
-
-TODO: Not sure where the 0.6375 and 0.12 come from --- whether that's just from experimentation or some analytical solution rounded. It doesn't seem to work out to 0.15... that's fine but we should note it.
-
-TODO: see next temporary chunk; this isn't SD = 0.15 (should be h_alpha <- alphaconv(0.6375, 0.15/0.8)) etc.
-
-TODO: Quang: Even with SD = 0.12, there were some very low values of steepness which generated FMSY < 0.01 I believe, so the smaller SD made it easier to avoid those outliers
-
-TODO: Quang: Even the current histogram shows h samples between 0.5 - 0.9 which should be sufficient coverage
+The values for $\alpha$ and $\beta$ were selected to give mean *h* = 0.71 and standard deviation 0.1. While the standard deviation of 0.1 is lower than the value of 0.15 given in @yamanaka2011, a larger standard deviation is more likely to generate lower values of *h* with *F*~MSY~ < 0.01, which seemed implausible. The value of 0.1 still gave steepness values between 0.5--0.9, which appeared to be a sufficiently wide range of coverage.
 
 ```{r, eval=FALSE, echo=FALSE}
 alphaconv <- function (m, sd) {
