@@ -77,7 +77,7 @@ set.seed(91283)
 OM@cpars$M <- rlnorm(nsim, log(0.045) - 0.5 * 0.2^2, 0.2)
 ```
 
-```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="M"}
+```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions of natural mortality (*M*) used in the OM scenarios. All OMs used the same distributions except \"(A) Low M\"."}
 display_om(oms, "M")
 ```
 <!-- slot-chunk-end -->
@@ -138,7 +138,7 @@ sd(h_samps)
 OM@cpars$h <- h_samps
 ```
 
-```{r desc-stock-h-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="h"}
+```{r desc-stock-h-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions of steepness (*h*) used in the OM scenarios. All OMs used the same *h* samples."}
 display_om(oms, "h")
 ```
 <!-- slot-chunk-end -->
