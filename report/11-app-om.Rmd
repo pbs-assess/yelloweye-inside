@@ -77,7 +77,7 @@ set.seed(91283)
 OM@cpars$M <- rlnorm(nsim, log(0.045) - 0.5 * 0.2^2, 0.2)
 ```
 
-```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="M"}
+```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions of natural mortality (\\emph{M}) used in the OM scenarios. All OMs used the same distributions except \"(A) Low M\"."}
 display_om(oms, "M")
 ```
 <!-- slot-chunk-end -->
@@ -87,19 +87,9 @@ display_om(oms, "M")
 
 *Steepness of the stock-recruit relationship.*
 
-Steepness (*h*) is another core uncertainty for most stocks. 
-We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010, where $X \sim \textrm{Beta}(0.025, 0.2)$, which is then transformed to $h = 0.8 X + 0.2$. 
-The values 0.025 and 0.2 were selected to give mean *h* = 0.71 and standard deviation  0.15.
+Steepness (*h*) is another core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010 and used in @yamanaka2011, where $X \sim \textrm{Beta}(\alpha = 9.6, \beta = 5.5)$, which is then transformed to $h = 0.8 X + 0.2$. 
 
-*TODO: March 23. RF cleaned up the text above but not sure what to do with the rest of this section. Was steepness transformed as written? Which chunk below is correct?*
-
-TODO: Not sure where the 0.6375 and 0.12 come from --- whether that's just from experimentation or some analytical solution rounded. It doesn't seem to work out to 0.15... that's fine but we should note it.
-
-TODO: see next temporary chunk; this isn't SD = 0.15 (should be h_alpha <- alphaconv(0.6375, 0.15/0.8)) etc.
-
-TODO: Quang: Even with SD = 0.12, there were some very low values of steepness which generated FMSY < 0.01 I believe, so the smaller SD made it easier to avoid those outliers
-
-TODO: Quang: Even the current histogram shows h samples between 0.5 - 0.9 which should be sufficient coverage
+The values for $\alpha$ and $\beta$ were selected to give mean *h* = 0.71 and standard deviation 0.1. While the standard deviation of 0.1 is lower than the value of 0.15 given in @yamanaka2011, a larger standard deviation is more likely to generate lower values of *h* with *F*~MSY~ < 0.01, which seemed implausible. The value of 0.1 still gave steepness values between 0.5--0.9, which appeared to be a sufficiently wide range of coverage.
 
 ```{r, eval=FALSE, echo=FALSE}
 alphaconv <- function (m, sd) {
@@ -138,7 +128,7 @@ sd(h_samps)
 OM@cpars$h <- h_samps
 ```
 
-```{r desc-stock-h-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="h"}
+```{r desc-stock-h-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions of steepness (\\emph{h}) used in the OM scenarios. All OMs used the same \\emph{h} samples."}
 display_om(oms, "h")
 ```
 <!-- slot-chunk-end -->
@@ -343,7 +333,7 @@ We set $\sigma_I = 0.25$, based on the standard deviation of the observed HBLL i
 *A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases more slowly than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution*
 
 We set the hyperstability/hyperdepletion parameter $\beta = 1$  to imply no hyperstability or hyperdepletion.
-`
+
 <!-- slot-chunk-end -->
 
 ## IMP SLOT DESCRIPTIONS {#app:desc-imp-yelloweye}
