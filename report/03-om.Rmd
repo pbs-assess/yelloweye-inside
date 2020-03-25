@@ -30,7 +30,7 @@ See Appendix B of @anderson2020gfmp for details.
 
 3. Pass the calibrated parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
 
-Where possible, we derived OM settings from biological data from the inside HBLL survey (Appendix \@ref(app:biological-data)).
+Where possible, we derived OM settings from all available survey biological data from area 4B, primarily from the inside HBLL surveys (Appendix \@ref(app:biological-data)).
 We derived other parameters from the scientific literature and stock assessments for Yelloweye Rockfish in other areas (see Appendix \@ref(app:desc-om-yelloweye) for details).
 A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in @anderson2020gfmp (their Appendix C).
 
@@ -68,11 +68,11 @@ The following OMs were developed as the reference set. We hereafter refer to the
 #### (1) Base {#sec:approach3-reference1}
 
 Parameter settings for the Base OM are provided in Appendix \@ref(app:desc-om-yelloweye).
-Data sources are provided in Appendices \@ref(app:biological-data) to \@ref(app:catch-data).
+Data sources are provided in Appendices \@ref(app:biological-data) through \@ref(app:catch-data).
 We here provide a brief description of the Base OM assumptions that were adjusted in other scenarios.
 
 There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)).
-These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF) and (2) the magnitude unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
+These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF; rockfish species other thatn Pacific Ocean Perch) and (2) the magnitude of unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
 For consistency with @yamanaka2011, we doubled the nominal catch data for the period 1986---2005, as industry did not have confidence in the catch data for those years [@dfo2012; see  Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)].
 
 Projected recruitment deviations were sampled in log space with standard deviation $\tau = 0.4$ and autocorrelation $\theta_\textrm{AC} = 0.8$, where $\theta_\textrm{AC}$ was estimated post-hoc from the SRA model [Appendix A of @anderson2020gfmp].
@@ -124,10 +124,10 @@ One extreme recruitment is expected to occur once every generation (38 years).
 
 #### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
 
-Annual sample sizes of age-composition data from the HBLL survey are very small (Appendix \@ref(app:biological-data)). 
-This makes estimation of selectivity in the HBLL survey highly uncertain, which led to the choice to fix survey selectivity.
+Annual sample sizes of age-composition data from research surveys are very small (Appendix \@ref(app:biological-data)). 
+This makes estimation of selectivity in the surveys highly uncertain, which led to the choice to fix survey selectivity.
 
-Given large uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the HBLL survey in this scenario, utilizing the available HBLL survey age-composition data.
+Given large uncertainties in our choices of selectivities, we allowed the SRA to estimate selectivity for the surveys in this scenario, utilizing the available survey age-composition data.
 
 ### ROBUSTNESS SET {#sec:approach3-robustness}
 
@@ -214,7 +214,7 @@ The fit to the early 1986  and 1989 observations in the Dogfish Survey was sligh
 Fits to commercial CPUE series was generally good due to the short time stanzas for each series (Figure \@ref(fig:survey-fits)).
 
 (ref:fig-survey-fits)
-SRA model fits to the HBLL, Dogfish, and three commercial CPUE relative  indices.
+SRA model fits to the HBLL, Dogfish, and three commercial CPUE relative indices.
 Panels from left to right represent OM scenarios.
 Thin lines represent individual SRA model fits across stochastic draws from the various OM parameters.
 Dots represent index mean and line segments represent 2 times the standard errors as entered into the SRA models.
@@ -225,7 +225,7 @@ knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
 
 The SRA models fit the catch data almost perfectly by design, via setting the standard deviations of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
 
-The SRA model fit the HBLL age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-conditioned-comp-fit1) to \@ref(fig:sra-conditioned-comp-fitB)).
+The SRA model fit the survey age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-conditioned-comp-fit1) to \@ref(fig:sra-conditioned-comp-fitB)).
 
 We note that in comparing Scenarios (1) and (4), respectively fixing and estimating selectivity in the HBLL survey did not appear to generate very different fits in age composition data (Figures \@ref(fig:sra-conditioned-comp-fit1) and \@ref(fig:sra-conditioned-comp-fit4)).
 
@@ -248,7 +248,7 @@ In addition, large structural uncertainties in the model and available data (e.g
 \clearpage
 
 (ref:fig-sra-comp-fit1)
-SRA model fits to the HBLL age composition data for Scenario (1), showing observed  (points) and estimated (green lines) proportions. Sample sizes (N) are based on the number of sampling trips in each year.
+SRA model fits to the survey age composition data for Scenario (1), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are based on the number of sampling trips in each year.
 
 ```{r sra-conditioned-comp-fit1, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit1)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_updog_fixsel.png"))
@@ -366,7 +366,7 @@ Lines represent individual replicates.
 knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
 ```
 
-Estimates of historical recruitment deviations were similar across scenarios (Figure \@ref(recdev-om)).
+Estimates of historical recruitment deviations were similar across scenarios (Figure \@ref(fig:recdev-om)).
 
 (ref:fig-recdev-om)
 Historical recruitment deviations estimated by the SRA model (in log space).
