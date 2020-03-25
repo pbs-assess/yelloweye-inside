@@ -90,6 +90,8 @@ display_om(oms, "M")
 Steepness (*h*) is another core uncertainty for most stocks. 
 We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010, where $X \sim \textrm{Beta}(0.025, 0.2)$, which is then transformed to $h = 0.8 X + 0.2$. 
 The values 0.025 and 0.2 were selected to give mean *h* = 0.71 and standard deviation  0.15.
+<!-- We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a transformed Beta distribution such that the resulting mean was 0.71 and the resulting standard deviation was 0.12 [@forrest2010]. -->
+<!-- Based on @forrest2010, the standard deviation should be approximately 0.2; however, 0.12 gave most samples between 0.5--0.9, which is a wide range of coverage, and lower values of *h* generated some samples with *F*~MSY~ < 0.01, which seemed implausible. -->
 
 *TODO: March 23. RF cleaned up the text above but not sure what to do with the rest of this section. Was steepness transformed as written? Which chunk below is correct?*
 
