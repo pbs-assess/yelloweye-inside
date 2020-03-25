@@ -93,7 +93,7 @@ set.seed(91283)
 M_samps <- rlnorm(OM@nsim, log(0.045) - 0.5 * 0.2^2, 0.2)
 OM@cpars$M <- M_samps
 
-# Sample steepness h ~ transformed beta with mean = 0.71, sd = 0.15.
+# Sample steepness h ~ transformed beta with mean = 0.71, sd = 0.1.
 # x = (h - 0.2)/0.8 where x ~ Beta(mean = 0.6375, sd = 0.12)
 h_alpha <- alphaconv(0.6375, 0.12)
 h_beta <- betaconv(0.6375, 0.12)
