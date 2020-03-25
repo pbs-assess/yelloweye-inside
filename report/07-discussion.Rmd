@@ -52,7 +52,7 @@ Furthermore, while the MSY and *F*~MSY~ estimates were similar to those from the
 These two factors in the SP model (lower biomass and higher reference points) would lead to a more pessimistic assessment of stock status.
 The SP-fitting exercise suggests that model structure, rather than the addition of ten years of new data since the last assessment, was a major factor contributing to different perceptions of stock status between the current OMs and the previous assessment.
 
-@cox2020 found similar differences between their age-structured OMs, which did not estimate stock status to be below the LRP, and the 2014 SP-based assessment of the outside stock of Yelloweye Rockfish [@yamanaka2018], which found the stock to be below the LRP, triggering a rebuilding plan.
+@cox2020 found similar differences between their age-structured OMs, which did not estimate stock status to be below the LRP, and the 2014 SP-based assessment of the outside stock of Yelloweye Rockfish [@yamanaka2018yelloweyeoutside], which found the stock to be below the LRP, triggering a rebuilding plan.
 @cox2020 noted that structural differences between SP and age-structured models would be expected to produce different results, particularly due to differences in the formulation of productivity.
 We were able to more closely mimic the stock status estimates of @yamanaka2011 when we forced the stock to have lower productivity in Scenario (A), although the mean value of *M* used in Scenario (A) was lower than that used by @yamanaka2011.
 @cox2020 noted that age-structured models allows for lags in recruitment to fisheries, surveys, and the spawning stock.
@@ -65,15 +65,39 @@ In particular, the inclusion of Scenario (A) in the robustness set provides deci
 
 ## KEY UNCERTAINTIES {#sec:discussion-uncertainties}
 
-Selectivity was a major source of uncertainty in our OMs.
+### Selectivity {#sec:discussion-uncertainties-selectivity}
+
+Selectivity was the major source of uncertainty in our OMs.
 There are no available age-composition data for commercial or recreational fisheries, and none from the Dogfish survey.
+We therefore fixed selectivity for all these gears.
+Our fixed values of selectivity were the most defensible we could identify.
+Commercial and recreational selectivities were set to match those for the outside stock [@cox2020].
+We set selectivity in the Dogfish survey to mirror that in the HBLL survey.
+
 Age-composition data from the HBLL survey were sparse and only from recent years.
+Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
+We therefore fixed age-at-full-selectivity at 20 *y*, and upweighted the likelihood weight for the Dogfish survey, which greatly improved the retrospective behaviour.
+To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL in Scenario (2), which slightly changed the perception of stock status.
 
+While we could have explored other fixed selectivity assumptions in different gears, we believe we used the most plausible values we could identify, and for the HBLL survey, included an alternative scenario in the reference set.
+In future applications of the MP Framework for this stock, other plausible assumptions could be explored, if recommended.
 
+### Historical catch {#sec:discussion-uncertainties-catch}
 
+The other major source of uncertainty in our analyses is the magnitude of historical catch at various times in the historical period, due to reporting of rockfishes other than Pacific Ocean Perch in an aggregate category before 1950, and large uncertainty in the magnitude of unreported catch during the period 1986--2005.
+A reconstruction of historical catch data to 2005 was done by @haigh2011, which attempted to parse out Yelloweye Rockfish from the aggregated rockfish category, and to account for unreported catches.
+The reconstructed catches were used in the previous stock assessment [@yamanaka2011].
+While there has been some controversy over reconstructed catch data for both the outside and inside Yelloweye stocks, re-evaluation of the reconstruction was outside the scope of this rebuilding plan and remains the best available time series of historical catches.
+We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in Scenario (2). Performance of MPs was not appreciably different from other reference set scenarios.
 
-- assumptions of fixed selectivity in commercialdogfish and recreational gears
-- other key uncertainties ... FSC
+There are also large uncertainties in recreational catch data. We followed the same approach to reconstructing historical recreational catch data and estimating current recreational catch data as @yamanaka2011.
+
+We deviated from @yamanaka2011 in our treatment of FSC catch. These authors applied an algorithm to explicitly estimate FSC catch.
+After discussions with local First Nation representatives in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because much of the rockfish catch is understood to be caught under dual fishing licenses and would therefore be included in DFO databases.
+We elected to include FSC catches in the southern region with recreational catches, because much of the rockfish catch is understood to be caught from small vessels, which would likely already be counted by DFO overflights.
+We recognize large uncertainties in FSC catch in our analyses.
+Future applications of the MP Framework for this stock would benefit from more detailed collaborative work with First Nations in Area 4B.
+
 
 ## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
 
