@@ -1,6 +1,6 @@
 # DISCUSSION {#sec:discussion}
 
-We applied a new MP Framework for Pacific groundfishes [@anderson2020gfmp] to evaluate alternative MPs to meet rebuilding objectives for the inside stock of Yelloweye rockfish.
+We applied a new MP Framework for Pacific groundfishes [@anderson2020gfmp] to evaluate alternative MPs to meet rebuilding objectives for the inside stock of Yelloweye Rockfish.
 This is the first application of the MP Framework for decision-making.
 
 We evaluated the performance of 31 data-limited MPs (and three reference MPs) with respect to meeting the objectives described in Section \@ref(sec:objectives-metrics).
@@ -76,7 +76,7 @@ Commercial and recreational selectivities were set to match those reported for t
 Age-composition data from the area 4B surveys were sparse and only collected from recent years.
 Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
 We therefore fixed age-at-full-selectivity at 20 y, and upweighted the Dogfish survey likelihood component, which greatly improved the retrospective behaviour.
-To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL in Scenario (2), which slightly changed the perception of stock status.
+To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL in Scenario (4), which slightly changed the perception of stock status.
 
 While we could have explored other fixed selectivity assumptions, we believe we used the most plausible values, and, for the HBLL survey, included an alternative scenario in the reference set.
 Future applications of the MP Framework for this stock could explore other selectivity scenarios, if recommended.
