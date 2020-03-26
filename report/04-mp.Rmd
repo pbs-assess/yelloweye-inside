@@ -11,7 +11,7 @@ While it is necessary to explore these axes of uncertainty within OMs, implement
 
 The MP Framework only considers MPs that make TAC recommendations, because most groundfish stocks are managed by quotas and TACs.
 A library of all MPs considered in the MP Framework is provided in @anderson2020gfmp (their Appendix D).
-MPs that were considered for the current rebuilding plan are are detailed here in Appendix \@ref(app:mps).
+MPs that were considered for the current rebuilding plan are detailed here in Appendix \@ref(app:mps).
 
 We evaluated two main types of MPs: empirical (data-based) and model-based MPs.
 We also evaluated three reference MPs.
@@ -51,7 +51,7 @@ We used the SP model coded in MSEtool [@huynh_msetool_2019] and based on @fletch
 1. 80% B~MSY~ and 40% B~MSY~ as the USR and LRP, respectively; and
 2. 40% B~0~ and 10% B~0~ as the USR and LRP, respectively.
 
-We evaluated two assessment frequencies (five and 10 years), with a fixed TAC between assessments (Appendix \@ref(app:MPs), Section \@ref(sec:mp-sp)).
+We evaluated two assessment frequencies (five and 10 years), with a fixed TAC between assessments (Appendix \@ref(app:mps), Section \@ref(sec:mp-sp)).
 
 ## REFERENCE MPs
 
