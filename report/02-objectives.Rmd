@@ -43,7 +43,7 @@ This is a decision to be made at Step 1 of future processes by fisheries manager
 
 We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, GT represents generation time, and AADC represents average absolute deviation in catch ($C$) over $n$ years:
 
-* LRP 1.5: GT P(*B* > 0.4 *B*~MSY~) after 1.5 GT (56 years)
+* LRP 1.5GT: P(*B* > 0.4 *B*~MSY~) after 1.5 GT (56 years)
 * LRP 1GT: P(*B* > LRP) after 1 GT (38 years)
 * USR 1.5GT: P(*B* > USR) after 56 years
 

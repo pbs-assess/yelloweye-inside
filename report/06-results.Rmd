@@ -45,13 +45,13 @@ knitr::include_graphics(here("mse/figures/ye-dot-refset-avg.png"))
 
 \clearpage
 
-```{r tradeoff-reference, fig.cap="Trade-off between LT LRP and STC average performance metrics across the reference-set scenarios.", out.width="5in"}
+```{r tradeoff-reference, fig.cap="Trade-off between LRP 1.5GT and ST C10 average performance metrics across the reference-set scenarios.", out.width="5in"}
 knitr::include_graphics(here("mse/figures/ye-tradeoff-refset-avg.png"))
 ```
 
 \clearpage
 
-```{r spider-satisficed-mps-avg, fig.cap="Radar-plot representation of average performance metric trade-offs for the reference-set scenarios. The outside of the hexagon represents a performance metric probability of 1.0 in the middle represents a value of 0. Dashed lines represent reference MPs.", out.width="5in"}
+```{r spider-satisficed-mps-avg, fig.cap="Radar-plot representation of average performance metric trade-offs for the reference-set scenarios. The outside of the hexagon represents a performance metric probability of 1 while the middle represents a value of 0. Dashed lines represent reference MPs.", out.width="5in"}
 knitr::include_graphics(here("mse/figures/ye-radar-refset-avg.png"))
 ```
 
@@ -128,7 +128,7 @@ Similar to the reference set, we found the radar plots challenging to interpret 
 Projection timeseries plots of *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further explain the closed-loop simulation results for the robustness set (Figure \@ref(fig:proj-low-m) and \@ref(fig:proj-high-index-cv)).
 For example, in Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
 The Kobe plots indicated that a number of replicates resulted in *F* > *F*~MSY~ and *B* < LRP  (Figure \@ref(fig:kobe)). 
-The FMSYref and FMRYSref75 MPs illustrate that catches would have to be lower in Scenario (A) than in the reference-set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
+The FMSYref and FMSYref75 MPs illustrate that catches would have to be lower in Scenario (A) than in the reference-set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
 This occurred across the MPs, although least for the CC_10t MP, and, among the Islope MPs, it occurred the least for Islope_10_lambda04 (Figure \@ref(fig:kobe)).
 
 There was increased TAC variability across replicates and within individual replicates in Scenario (B) compared to the reference set OM projections, most likely due to increased variability in the projected index (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
@@ -146,7 +146,7 @@ knitr::include_graphics(here("mse/figures/ye-tigure-robset.png"))
 knitr::include_graphics(here("mse/figures/ye-dot-robset.png"))
 ```
 
-```{r tradeoff-robust, fig.cap="Trade-off plot between LT LRP and STC performance metric values for satisficed MPs for the robustness set OMs.", out.width="6in"}
+```{r tradeoff-robust, fig.cap="Trade-off plot between LRP 1.5GT and ST C10 performance metric values for satisficed MPs for the robustness set OMs.", out.width="6in"}
 knitr::include_graphics(here("mse/figures/ye-tradeoff-robset.png"))
 ```
 

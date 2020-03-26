@@ -55,7 +55,7 @@ For the two performance metrics used in the initial satisficing step within the 
 Minimum LRP 1.5GT was `r round2(max(pm_min_sat$"LRP 1.5GT"))` for all MPs and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
 
 (ref:fig-tigure-avg) Average performance of all candidate MPs across the reference set scenarios.
-MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric (LT LRP) and using columns from left to right to break any ties.
+MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric (LRP 1.5GT) and using columns from left to right to break any ties.
 The colour shading reflects the probabilities.
 Outlined cells represent MPs that met a particular performance metric's satisficing criteria.
 Using this set of criteria, MPs would be "satisficed" if cells in *both* "`r names(satisficed_criteria)[1]`" and "`r names(satisficed_criteria)[2]`" were outlined.
