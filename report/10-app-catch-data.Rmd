@@ -126,7 +126,7 @@ To account for FSC catch in the last stock assessment, Yamanaka et al. (2011) us
 This approach assumes that the consumption rate of Yelloweye Rockfish by First Nations has remained constant through time, despite the fact that European colonization is known to have impacted most aspects of Indigenous society over this same time period.
 A decline in the amount of fish and seafood consumed by First Nations in BC has been attributed to numerous social, ecological, and economic factors including the loss of traditional territories, diminished traditional knowledge transmission, and barriers such as poverty that makes buying boats and fishing gear unattainable for many communities [@marushka2019].
 Specific to the southern part of our study area, the Coast Salish people have seen their relationship to marine resources eroded due to the development of commercial and recreational fisheries, as well as policy and political decisions [@ayers2012].
-We did not, therefore, follow the methods used in Yamanaka et al. (2011).
+We did not, therefore, follow the methods used in @yamanaka2011.
 
 The only FSC data that are available are from the commercial dockside monitoring program (DMP) between 2006 and 2019 (Table \@ref(tab:fsc-catch)). These data were collected from "dual fishing" trips which occur when indigenous fishers choose to keep some of the catch obtained during a commercial fishing trip for FSC purposes.
 Both commercial and FSC catch are monitored during the offload.
