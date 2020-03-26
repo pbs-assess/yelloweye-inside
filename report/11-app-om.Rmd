@@ -95,19 +95,15 @@ Steepness (*h*) is another core uncertainty for most stocks. We incorporated unc
 The values for $\alpha$ and $\beta$ were selected to give mean *h* = 0.71 and standard deviation 0.1. While the standard deviation of 0.1 is lower than the value of 0.15 given in @yamanaka2011, a larger standard deviation is more likely to generate lower values of *h* with *F*~MSY~ < 0.01, which seemed implausible. The value of 0.1 still gave steepness values between 0.5--0.9, which appeared to be a sufficiently wide range of coverage.
 
 ```{r, eval=TRUE, echo=TRUE}
-alphaconv <- function(m, sd) {
-  m * (((m * (1 - m)) / (sd^2)) - 1)
-}
-betaconv <- function(m, sd) {
-  (1 - m) * (((m * (1 - m)) / (sd^2)) - 1)
-}
+alphaconv <- function(m, sd) m * (((m * (1 - m)) / (sd^2)) - 1)
+betaconv <- function(m, sd) (1 - m) * (((m * (1 - m)) / (sd^2)) - 1)
+
 h_alpha <- alphaconv((0.71 - 0.2), 0.12)
 h_beta <- betaconv((0.71 - 0.2), 0.12)
 set.seed(65423)
-h_samps <- rbeta(nsim, h_alpha, h_beta)
-h_samps <- 0.8 * h_samps + 0.2
-round(mean(h_samps), 2)
-round(sd(h_samps), 2)
+h_samps <- 0.8 * rbeta(nsim, h_alpha, h_beta) + 0.2
+mean(h_samps) %>% round(2)
+sd(h_samps) %>% round(2)
 ```
 
 ```{r, eval=FALSE, echo=TRUE}
@@ -206,7 +202,6 @@ This parameter was estimated for both males and females combined, as no sexual d
 
 ```{r desc-stock-a-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "a")
-exp(display_om(oms, "a"))
 ```
 <!-- slot-chunk-end -->
 
@@ -266,10 +261,10 @@ display_om(oms, "nyears")
 Selectivities for all commercial and survey fleets were directly input as age-based logistic functions in the SRA model.
 Therefore the default DLMtool slots describing selectivity-at-length were not used.
 
-Selectivity-at-age in the HBLL survey was set to give full selectivity-at-age = 20 *y*, in all scenarios except Scenario (4), where selectivity-at-age was estimated using available age-composition data (Figure \@ref(fig:HBLL-selectivity)).
+Selectivity-at-age in the HBLL survey was set to give 5% selectivity at 6.8 *y* and full selectivity at age = 22 *y*, in all scenarios except Scenario (4), where selectivity-at-age was estimated using available age-composition data (Figure \@ref(fig:HBLL-selectivity)).
 Due to large uncertainties in selectivity-at-age in the Dogfish survey, selectivity in this survey was set to mirror selectivity in the HBLL survey.
 
-(ref:fig-HBLL-selectivity) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey.
+(ref:fig-HBLL-selectivity) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey within simulation replicates.
 
 ```{r HBLL-selectivity, fig.cap="(ref:fig-HBLL-selectivity)", out.width="6.3in"}
 knitr::include_graphics(here::here("mse/figures/HBLL-selectivity.png"))
@@ -304,9 +299,27 @@ knitr::include_graphics(here::here("mse/figures/fishery-selectivity-terminal-yea
 ## OBS SLOT DESCRIPTIONS {#app:desc-obs-yelloweye}
 
 <!-- slot-chunk-begin -->
+### Cobs {#app:desc-obs-cobs-yelloweye}
+
+*Observation error in the catch expressed as a SD.*
+
+This parameter ($\sigma_C$) sets the standard deviation of the simulated catch for the projection period. The DLMtool operating model can generate $\sigma_C$ based on the residuals between the predicted and observed catch. Since the SRA model conditions the OM on observed catch, the predicted catch will match the observed catch and thus, $\sigma_C < 0.01$.
+
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
+### Cbias {#app:desc-obs-cbias-yelloweye}
+
+*Bias in the catch.*
+
+This parameter controls the bias, expressed as the ratio of simulated observed to true catches, i.e. under/overreporting, for the projection period. The DLMtool operating model can estimate the bias parameter as the ratio of mean observed and mean predicted catch. Since the SRA model conditions the OM on observed catch, the ratio is 1.
+
+<!-- slot-chunk-end -->
+
+<!-- slot-chunk-begin -->
 ### Iobs {#app:desc-obs-iobs-yelloweye}
 
-*Observation error in the relative abundance indices expressed as a SD. Uniform distribution.*
+*Observation error in the relative abundance indices expressed as a SD.*
 
 This parameter ($\sigma_I$) sets the standard deviation in simulated survey indices for the projection period.
 We set $\sigma_I = 0.25$, based on the standard deviation of the observed HBLL index for all scenarios except Scenario (B), where $\sigma_I$ was set based on the standard deviation and autocorrelation from the index residuals in Scenario (1) (see Section \@ref(sec:approach3-referenceB)).
