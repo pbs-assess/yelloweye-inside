@@ -104,13 +104,12 @@ ggsave("mse/figures/mat-prop.png", width = 5, height = 3)
 gfplot::tidy_maturity_months(dat$survey_samples) %>% gfplot::plot_maturity_months()
 ggsave("mse/figures/mat-months.png", width = 5, height = 3)
 
-# Age frequencies: ----------------------------------------------------------
-
+# Age frequencies (by survey, HBLL INS only): ---------------------------------
 ages <- gfplot::tidy_ages_raw(dat$survey_samples,
   survey = c("HBLL INS N", "HBLL INS S"),
   sample_type = "survey")
 
-survey_col_names = c("HBLL INS N", "HBLL INS S")
+survey_col_names = c("HBLL INS N", "HBLL INS S", "HBLL OUT S", "OTHER")
 survey_cols = c(RColorBrewer::brewer.pal(length(survey_col_names), "Set2"))
 survey_cols <- stats::setNames(survey_cols, survey_col_names)
 
@@ -118,10 +117,45 @@ g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
   guides(fill = FALSE, colour = FALSE) +
   ggtitle("Age frequencies") +
   labs(y = "Age (years)")
-ggsave("mse/figures/age-freq.png", width = 3, height = 5)
+ggsave("mse/figures/age-freq-hbll.png", width = 3, height = 5)
 
-# Length frequencies: ----------------------------------------------------------
+# Age frequencies (by survey, all surveys): ----------------------------------------------------------
+ages <- gfplot::tidy_ages_raw(dat$survey_samples,
+  survey = c("HBLL INS N", "HBLL INS S", "HBLL OUT S", "OTHER"),
+  sample_type = "survey")
 
+survey_col_names = c("HBLL INS N", "HBLL INS S", "HBLL OUT S", "OTHER")
+survey_cols = c(RColorBrewer::brewer.pal(length(survey_col_names), "Set2"))
+survey_cols <- stats::setNames(survey_cols, survey_col_names)
+
+g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
+  guides(fill = FALSE, colour = FALSE) +
+  ggtitle("Age frequencies") +
+  labs(y = "Age (years)")+
+  scale_x_continuous(
+    breaks =
+      c(1986, 1990, 1994, 1998, 2002, 2006, 2010, 2014, 2018))
+ggsave("mse/figures/age-freq-by-all-surveys.png", width = 6, height = 5)
+
+# Age frequencies (all surveys combined): ------------------------------------
+# ages <- dat$survey_samples %>%
+#   mutate(survey_abbrev = "All surveys") %>%
+#   gfplot::tidy_ages_raw(
+#     survey = "All surveys",
+#     sample_type = "survey")
+#
+# survey_col_names = c("All surveys")
+# survey_cols = c(RColorBrewer::brewer.pal(length(survey_col_names), "Set2"))
+# survey_cols <- stats::setNames(survey_cols, survey_col_names)
+#
+# g_ages <-
+#   gfplot::plot_ages(ages, survey_cols = survey_cols) +
+#   guides(fill = FALSE, colour = FALSE) +
+#   ggtitle("Age frequencies")  +
+#   labs(y = "Age (years)", x = "Years")
+# ggsave("mse/figures/age-freq-all-surveys-combined.png", width = 3, height = 5)
+
+# Length frequencies (HBLL INS only): ----------------------------------------------------------
 len <- gfplot::tidy_lengths_raw(dat$survey_samples,
   sample_type = "survey",
   survey = c("HBLL INS N", "HBLL INS S"))
@@ -135,7 +169,43 @@ g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
   ggtitle("Length frequencies") +
   ggplot2::xlab(paste("Length", "(cm)")) +
   ggplot2::ylab("Relative length frequency")
-ggsave("mse/figures/length-freq.png", width = 3, height = 5)
+ggsave("mse/figures/length-freq-hbll.png", width = 3, height = 5)
+
+# Length frequencies (by survey, all surveys): ----------------------------------------------------------
+len <- gfplot::tidy_lengths_raw(dat$survey_samples,
+  sample_type = "survey",
+  survey = c("HBLL INS N", "HBLL INS S", "HBLL OUT S", "OTHER")) %>%
+  filter(total > 20)
+
+len$survey_abbrev <- factor(len$survey_abbrev,
+  levels = c("HBLL INS N", "HBLL INS S", "HBLL OUT S", "OTHER"))
+
+g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
+  bin_size = 2) +
+  guides(colour = FALSE, fill = FALSE) +
+  ggtitle("Length frequencies") +
+  ggplot2::xlab(paste("Length", "(cm)")) +
+  ggplot2::ylab("Relative length frequency")
+ggsave("mse/figures/length-freq-by-all-surveys.png", width = 5, height = 6)
+
+# Length frequencies (all surveys combined): ----------------------------------------------------------
+# len <- dat$survey_samples %>%
+#   filter(!is.na(length)) %>%
+#   mutate(survey_abbrev = "All surveys") %>%
+#   gfplot::tidy_lengths_raw(
+#     survey = "All surveys",
+#     sample_type = "survey")
+#
+# len$survey_abbrev <- factor(len$survey_abbrev,
+#   levels ="All surveys")
+#
+# g_lengths <- gfplot::plot_lengths(len, survey_cols = NULL,
+#   bin_size = 2) +
+#   #guides(colour = FALSE, fill = FALSE) +
+#   ggtitle("Length frequencies") +
+#   ggplot2::xlab(paste("Length", "(cm)")) +
+#   ggplot2::ylab("Relative length frequency")
+# ggsave("mse/figures/length-freq-all-surveys-combined.png", width = 3, height = 5)
 
 optimize_png <- TRUE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
