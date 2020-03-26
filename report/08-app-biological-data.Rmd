@@ -20,13 +20,6 @@ Age data for inside Yelloweye Rockfish, derived from the break and burn or break
 Directed hard-bottom longline (HBLL) surveys began in Area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged.
 Proportions-at-age of Yelloweye Rockfish are shown by year and sex in Figure \@ref(fig:age-freq), and it is assumed that all ages are independent of subarea.
 
-(ref:fig-age-freq) Age-frequency plot for Inside Yelloweye Rockfish from all available surveys in Area 4B: hard-bottom 
-longline surveys (northern and southern) in inside waters (HBLL INS N/S), hard-bottom longline surveys in outside waters (a small portion of area 4B was included in this survey in 2014 and 2016; HBLL OUT S), and "OTHER" surveys including jig surveys in 1985 and 1986 and a bottom trawl survey in 2005. 
-Female fish are shown as coloured circles and male fish are shown behind as light grey
-circles. The total number of fish aged for a given survey and year are indicated
-along the top of the panels. Diagonal lines are shown at five-year intervals to
-facilitate tracing cohorts through time.
-
 Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight), and it is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
 
 $$
@@ -49,9 +42,6 @@ $$
 where $L_i$ and $A_i$ represent the length and age of fish $i$, $l_\mathrm{inf}$, $k$, and $t_0$ represent the von Bertalanffy growth parameters, and $\sigma$ represents the scale parameter. The term $- \sigma^2 /2$ represents a 
 lognormal bias adjustment term so we model the mean length rather than the median.
 The model was fit in TMB as described in @anderson2019synopsis.
-
-(ref:fig-length-freq) Length-frequency plot for Inside Yelloweye Rockfish from all available surveys in Area 4B: hard-bottom 
-longline surveys (northern and southern) in inside waters (HBLL INS N/S), hard-bottom longline surveys in outside waters (a small portion of area 4B was included in this survey in 2014 and 2016; HBLL OUT S), and "OTHER" surveys including jig surveys in 1985 and 1986 and a bottom trawl survey in 2005. Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
 
 ## Maturity {#sec:maturity}
 
@@ -80,14 +70,24 @@ Maturity frequency by each month is shown in the bubble plot in Figure \@ref(fig
 
 \clearpage
 
-(ref:fig-mat-months)   Maturity-frequency-by-month plot for inside Yelloweye Rockfish. The area of each circle corresponds to the number of fish specimens in a given maturity category for the given month. Female fish are indicated by black circles and male fish are indicated by light grey circles behind. The total number of fish specimens for each month are indicated by the numbers at the top of the plot.
+(ref:fig-age-freq) Age-frequency plot for Inside Yelloweye Rockfish from all available surveys in Area 4B: hard-bottom 
+longline surveys (northern and southern) in inside waters (HBLL INS N/S), hard-bottom longline surveys in outside waters (a small portion of area 4B was included in this survey in 2014 and 2016; HBLL OUT S), and "OTHER" surveys including jig surveys in 1985 and 1986 and a bottom trawl survey in 2005. 
+Female fish are shown as coloured circles and male fish are shown behind as light grey
+circles. The total number of fish aged for a given survey and year are indicated
+along the top of the panels. Diagonal lines are shown at five-year intervals to
+facilitate tracing cohorts through time.
 
-```{r age-freq, fig.cap="(ref:fig-age-freq)", out.width="3in"}
+
+```{r age-freq, fig.cap="(ref:fig-age-freq)", out.width="6in"}
 library(here)
 knitr::include_graphics(here("mse/figures/age-freq.png"))
 ```
 
-```{r length-freq, fig.cap="(ref:fig-length-freq)", out.width="3in"}
+(ref:fig-length-freq) Length-frequency plot for Inside Yelloweye Rockfish from all available surveys in Area 4B: hard-bottom 
+longline surveys (northern and southern) in inside waters (HBLL INS N/S), hard-bottom longline surveys in outside waters (a small portion of area 4B was included in this survey in 2014 and 2016; HBLL OUT S), and "OTHER" surveys including jig surveys in 1985 and 1986 and a bottom trawl survey in 2005. Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
+
+
+```{r length-freq, fig.cap="(ref:fig-length-freq)", out.width="5in"}
 library(here)
 knitr::include_graphics(here("mse/figures/length-freq.png"))
 ```
@@ -114,12 +114,16 @@ library(here)
 knitr::include_graphics(here("mse/figures/mat-prop.png"))
 ```
 
+(ref:fig-mat-months)   Maturity-frequency-by-month plot for inside Yelloweye Rockfish. The area of each circle corresponds to the number of fish specimens in a given maturity category for the given month. Female fish are indicated by black circles and male fish are indicated by light grey circles behind. The total number of fish specimens for each month are indicated by the numbers at the top of the plot.
+
 ```{r mat-months, fig.cap="(ref:fig-mat-months)", out.width="0.6\\textwidth"}
 library(here)
 knitr::include_graphics(here("mse/figures/mat-months.png"))
 ```
 
-## Summary table of biological data availability
+\clearpage
+
+## SUMMARY TABLE OF BIOLOGICAL DATA AVAILABILITY
 
 ```{r test, results='asis'}
 dat <- readRDS(here("data-generated/yelloweye-rockfish-ins-privacy.rds"))
