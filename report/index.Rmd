@@ -1,7 +1,7 @@
 ---
 title: "Evaluation of potential rebuilding strategies for Inside Yelloweye Rockfish (*Sebastes ruberrimus*) in British Columbia"
 author: |
-  Dana.R. Haggarty^1^,
+  Dana R. Haggarty^1^,
   Quang C. Huynh^2^,
   Sean C. Anderson^1^,
   Midoli Bresch^1^,
