@@ -72,7 +72,7 @@ There are no available age-composition data for commercial or recreational fishe
 We therefore fixed selectivity for all these gears.
 Commercial and recreational selectivities were set to match those reported for the outside stock [@cox2020] and we set selectivity in the Dogfish survey to mirror the value used for the HBLL survey.
 
-Age-composition data from the HBLL survey were sparse and only collected from recent years.
+Age-composition data from the area 4B surveys were sparse and only collected from recent years.
 Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
 We therefore fixed age-at-full-selectivity at 20 *y*, and upweighted the likelihood weight for the Dogfish survey, which greatly improved the retrospective behaviour.
 To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL in Scenario (2), which slightly changed the perception of stock status.

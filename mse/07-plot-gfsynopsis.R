@@ -135,7 +135,7 @@ g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
   scale_x_continuous(
     breaks =
       c(1986, 1990, 1994, 1998, 2002, 2006, 2010, 2014, 2018))
-ggsave("mse/figures/age-freq-by-all-surveys.png", width = 6, height = 5)
+ggsave("mse/figures/age-freq.png", width = 6, height = 5)
 
 # Age frequencies (all surveys combined): ------------------------------------
 # ages <- dat$survey_samples %>%
@@ -186,7 +186,7 @@ g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
   ggtitle("Length frequencies") +
   ggplot2::xlab(paste("Length", "(cm)")) +
   ggplot2::ylab("Relative length frequency")
-ggsave("mse/figures/length-freq-by-all-surveys.png", width = 5, height = 6)
+ggsave("mse/figures/length-freq.png", width = 5, height = 6)
 
 # Length frequencies (all surveys combined): ----------------------------------------------------------
 # len <- dat$survey_samples %>%

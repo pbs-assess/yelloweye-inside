@@ -5,7 +5,7 @@ DLMtool OMs are organized into four main components representing a real fished s
 1. population dynamics of the fish stock (e.g., growth, recruitment, mortality);
 2. fishery dynamics (e.g., selectivity, spatial targeting);
 3. observation processes (e.g., bias and precision in survey indices); and
-4. management implementation (e.g., percentage of overages of catch limits).
+  4. management implementation (e.g., percentage of overages of catch limits).
 
 Equations and parameters describing the four components are provided in detail in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
 DLMtool allows the incorporation of uncertainty in many OM parameters through optional specification of a probability distribution.
@@ -30,11 +30,11 @@ See Appendix B of @anderson2020gfmp for details.
 
 3. Pass the calibrated parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
 
-Where possible, we derived OM settings from all available survey biological data from area 4B, primarily from the inside HBLL surveys (Appendix \@ref(app:biological-data)).
+Where possible, we derived OM settings from all available survey biological data from area 4B, which is primarily collected on the inside HBLL surveys (Appendix \@ref(app:biological-data)).
 We derived other parameters from the scientific literature and stock assessments for Yelloweye Rockfish in other areas (see Appendix \@ref(app:desc-om-yelloweye) for details).
 A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in @anderson2020gfmp (their Appendix C).
 
-We conditioned the OMs with the SRA, using age-composition data from the inside HBLL survey (Appendix \@ref(app:biological-data)), survey indices (Appendix \@ref(app:index-data)), and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
+We conditioned the OMs with the SRA, using age-composition data research surveys (Appendix \@ref(app:biological-data)), inside HBLL survey indices (Appendix \@ref(app:index-data)), and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
 Details on conditioning the OMs are provided below in Section \@ref(sec:approach3-conditioning).
 
 ## OPERATING MODELS {#sec:approach3-oms}
@@ -164,7 +164,7 @@ The closed-loop simulation projections therefore assume that the relative select
 Similarly, if the OM is calibrated using the SRA model, analysts can also specify (or estimate) selectivity parameters for the individual indices of abundance (in this case two fishery-independent surveys and three commercial CPUE series (Figure \@ref(fig:survey-fits)).
 In this case, the SRA passes all of the indices back to DLMtool, preserving the estimated or user-defined selectivities-at-age for each index.
 However, note that the DLMtool MPs only utilize a single index of abundance in the projection period (see Appendix \@ref(app:mps)).
-In the current study, all index-based MPs utilize the HBLL survey. Model-based MPs utilize all historical indices, but only the HBLL survey in the projection period.
+In the current study, all index-based MPs utilize the inside HBLL survey. Model-based MPs utilize all historical indices, but only the HBLL survey in the projection period.
 
 We used the SRA to populate the following parameters in the conditioned OMs:
 
