@@ -4,7 +4,7 @@ author: |
   Dana R. Haggarty^1^,
   Quang C. Huynh^2^,
   Sean C. Anderson^1^,
-  Midoli Bresch^1^,
+  Midoli J. Bresch^1^,
   Elise A. Keppel^1^,
   Robyn E. Forrest^1^
 author_list: "Haggarty, D.R.,  Huynh, Q.C.,  Anderson, S.C., Bresch, M., Keppel, E.A., Forrest, R.E."
