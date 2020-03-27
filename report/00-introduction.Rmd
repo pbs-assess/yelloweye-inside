@@ -61,7 +61,7 @@ The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [
 
 Yelloweye Rockfish are a long-lived species [up to 121 years in B.C., @keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
 These life history traits make the species vulnerable to overexploitation by fisheries.
-Inside Yelloweye Rockfish is considered a data-limited stock.
+The inside stock is considered to be data-limited.
 There is sparse availability of age-composition data, a lack of biological data from commercial, recreational, and First Nations' fisheries, and uncertainty in the magnitude of historical catches.
 
 ## MANAGEMENT STRATEGY EVALUATION (MSE) {#sec:introduction-mse}

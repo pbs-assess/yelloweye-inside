@@ -20,9 +20,11 @@ report_number: nnn
 region: Pacific Region
 
 abstract: |
-  Under Canadian policy and legislation, fish stocks that have been assessed as being below the Limit Reference Point (LRP) require a rebuilding plan to rebuild the stock above the LRP. Rebuilding plans should be based upon objectives characterised by: a target, a desired time to reach the target, and an agreed-upon acceptable probability of reaching the target. Rebuilding plans should be regularly re-evaluated.
+  Under Canadian policy and legislation, fish stocks that have been assessed as being below the Limit Reference Point (LRP) require a rebuilding plan to rebuild the stock above the LRP. Rebuilding plans should be based upon objectives characterised by: a target, a desired time to reach the target, and an agreed-upon acceptable probability of reaching the target. Rebuilding plans should also include planned management measures or management procedures (MPs), milestone objectives, and should undergo regular evaluation.
   
-  The inside stock of Yelloweye Rockfish (*Sebastes ruberrimus*, Inside Yelloweye Rockfish) is a data-limited stock, occurring in Groundfish Management Area 4B (Queen Charlotte Strait, Strait of Georgia, and Strait of Juan de Fuca) in British Columbia (BC). The stock was assessed as being below the LRP in 2010, resulting in a published rebuilding plan. It is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern. The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes, which has not been re-evaluated.
+  The inside stock of Yelloweye Rockfish (*Sebastes ruberrimus*, Inside Yelloweye Rockfish) is a data-limited stock, occurring in Groundfish Management Area 4B (Queen Charlotte Strait, Strait of Georgia, and Strait of Juan de Fuca) in British Columbia (BC). The stock was assessed as being below the LRP in 2010, resulting in a published rebuilding plan. It is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern. The currently-implemented MP is an annual fixed TAC of 15 metric tonnes, which has not been re-evaluated.
+  
+  The purpose of this project is to provide scientific advice to support re-evaluation of the rebuilding plan for Inside Yelloweye Rockfish. The project applies a closed-loop simulation framework (the MP Framework) to test and identify MPs that meet rebuilding objectives for the Inside population of Yelloweye Rockfish.
 
 
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
