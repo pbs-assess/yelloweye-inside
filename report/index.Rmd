@@ -20,9 +20,10 @@ report_number: nnn
 region: Pacific Region
 
 abstract: |
-  Here is the abstract text.
+  Under Canadian policy and legislation, fish stocks that have been assessed as being below the Limit Reference Point (LRP) require a rebuilding plan to rebuild the stock above the LRP. Rebuilding plans should be based upon objectives characterised by: a target, a desired time to reach the target, and an agreed-upon acceptable probability of reaching the target. Rebuilding plans should be regularly re-evaluated.
+  
+  The inside stock of Yelloweye Rockfish (*Sebastes ruberrimus*, Inside Yelloweye Rockfish) is a data-limited stock, occurring in Groundfish Management Area 4B (Queen Charlotte Strait, Strait of Georgia, and Strait of Juan de Fuca) in British Columbia (BC). The stock was assessed as being below the LRP in 2010, resulting in a published rebuilding plan. It is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern. The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes, which has not been re-evaluated.
 
-  Start new paragraphs after a blank line and with 2 spaces indent.
 
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
