@@ -109,14 +109,14 @@ $$
 \varepsilon_{R,y} = 
 \left\{
 \begin{array}{ll}
-\varepsilon^1_{R,y} & \eta_y = 0\\
-\varepsilon^2_{R,y} & \eta_y = 1,
+\varepsilon^{(1)}_{R,y} & \eta_y = 0\\
+\varepsilon^{(3)}_{R,y} & \eta_y = 1,
 \end{array}
 \right.
 $$
 
-where $\varepsilon^1_{R,y}$ is the recruitment deviation from Scenario (1) and
-$\log\varepsilon^2_y \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
+where $\varepsilon^{(1)}_{R,y}$ is the recruitment deviation from Scenario (1) and
+$\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
 The paramater $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which selects whether an extreme recruitment event will occur. 
 We assume that one extreme recruitment is expected to occur once every generation (38 years).
 
