@@ -3,11 +3,12 @@ title: "Evaluation of potential rebuilding strategies for Inside Yelloweye Rockf
 author: |
   Dana R. Haggarty^1^,
   Quang C. Huynh^2^,
+  Robyn E. Forrest^1^,
   Sean C. Anderson^1^,
   Midoli J. Bresch^1^,
-  Elise A. Keppel^1^,
-  Robyn E. Forrest^1^
-author_list: "Haggarty, D.R.,  Huynh, Q.C.,  Anderson, S.C., Bresch, M., Keppel, E.A., Forrest, R.E."
+  Elise A. Keppel^1^
+  
+author_list: "Haggarty, D.R.,  Huynh, Q.C., Forrest, R.E.,  Anderson, S.C., Bresch, M., Keppel, E.A."
 address: |
   ^1^Pacific Biological Station\
      Fisheries and Oceans Canada, 3190 Hammond Bay Road\
