@@ -17,12 +17,16 @@ The robustness-set scenarios generally produced lower probabilities of meeting t
 
 We presented a number of visualizations to show trade-offs among conservation and catch objectives [see also @anderson2020gfmp].
 The visualizations present trade-off results in different tabular and graphical formats, intended to support the process of selecting the final MP.
+Because all the MPs met the LRP 1.5 GT objective under the reference-set scenarios, there were no strong trade-offs between conservation and catch objectives.
+Of the two robustness-set scenarios, trade-offs were most apparent under the Low M scenario, where the probability of meeting the LRP 1.5GT objective decreased as the probability of achieving an ST C10 increased.
 We found the radar plot visualizations difficult to interpret.
 While these plots can be useful for rapid visualization of multiple trade-offs, and have been recommended for visualization of MSE results [@punt2017], they become more difficult to interpret as more metrics ("spokes") are added.
 They are very sensitive to the order in which the metrics are placed, and have been shown to be less interpretable that Cartesian plots [@diehl2010; @feldman2013; @albo2016].
 We presented radar plots here to gauge interest from RPR participants and solicit feedback on whether to include them in future applications of the MP Framework.
 
-TODO: include something here about we did and didn't see in tradeoffs and focus a bit less on radar plots
+*TODO: include something here about we did and didn't see in tradeoffs and focus a bit less on radar plots*
+
+<!-- RF added two sentences above, 3rd and 4th sentences. More can be added-->
 
 ## NATURAL MORTALITY {#sec:discussion-m}
 
@@ -46,8 +50,6 @@ Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye 
 The rebuilding plan for the inside stock of Yelloweye Rockfish was triggered by the 2010 stock assessment [@yamanaka2011], which estimated the stock to be below the LRP with high probability.
 Out of all the reference- and robustness-set OMs explored in our analysis, only Scenario (A) estimated median spawning biomass to be below the LRP in 2010.
 The 2010 assessment used a surplus production (SP) model, with fundamentally different structural assumptions to the SRA used for conditioning OMs in the current assessment.
-<!-- SA: not sure we need the following and I don't think it's entirely accurate, although I understand the gist of it -->
-<!-- While it is not possible, and probably not useful, to definitively identify which differences between the current OMs and the 2010 assessment resulted in different perceptions of stock status, some of our results are informative in this respect. -->
 As a check, we fit a SP model, similar to that used by @yamanaka2011, and obtained much lower biomass and stock status estimates than those from the SRA OMs.
 Furthermore, while the MSY and *F*~MSY~ estimates were similar to those from the SRA models, the estimate of *B*~MSY~ was higher for the SP model than our Scenario (1).
 These two factors in the SP model (lower biomass and higher reference points) would lead to a more pessimistic assessment of stock status.

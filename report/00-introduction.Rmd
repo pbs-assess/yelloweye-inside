@@ -3,7 +3,7 @@
 # INTRODUCTION {#sec:introduction}
 
 The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the inside stock of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
-The project applies a closed-loop simulation framework [@anderson2020gfmp] to test and identify management procedures (MPs) that meet rebuilding objectives for the Inside population of Yelloweye Rockfish.
+The project applies a closed-loop simulation framework [@anderson2020gfmp] to evaluate the performance of alternative management procedures (MPs) with respect to rebuilding objectives for the inside stock of Yelloweye Rockfish (hereafter Inside Yelloweye Rockfish).
 
 ## MOTIVATION: POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
 
@@ -36,7 +36,7 @@ Current guidance states that the timelines for rebuilding should be 1.5 to 2 tim
 
 ## BACKGROUND {#sec:introduction-background}
 
-The inside stock of Yelloweye Rockfish (hereafter Inside Yelloweye Rockfish) stock occurs in Groundfish Management Area 4B in British Columbia (BC) (Figure \@ref(fig:map-4B)).
+Inside Yelloweye Rockfish occur in Groundfish Management Area 4B in British Columbia (BC) (Figure \@ref(fig:map-4B)).
 The stock is expected to be designated as a major fish stock in Fall 2020, and its management will therefore be legislated under the Fish Stocks provisions.
 The stock was assessed as being below the LRP in 2010 [@yamanaka2011; @dfo2012].
 In response, a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@ifmp2018].

@@ -5,7 +5,7 @@ DLMtool OMs are organized into four main components representing a real fished s
 1. population dynamics of the fish stock (e.g., growth, recruitment, mortality);
 2. fishery dynamics (e.g., selectivity, spatial targeting);
 3. observation processes (e.g., bias and precision in survey indices); and
-  4. management implementation (e.g., percentage of overages of catch limits).
+4. management implementation (e.g., percentage of overages of catch limits).
 
 Equations and parameters describing the four components are provided in detail in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
 DLMtool allows the incorporation of uncertainty in many OM parameters through optional specification of a probability distribution.
