@@ -41,7 +41,7 @@ The stock is expected to be designated as a major fish stock in Fall 2020, and i
 The stock was assessed as being below the LRP in 2010 [@yamanaka2011; @dfo2012].
 In response, a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@ifmp2018].
 The Inside Yelloweye stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@cosewic2008], and is anticipated to be reassessed by the COSEWIC in 2020.
-Results from this project may inform the COSEWIC reassessment and, potentially, a SARA Recovery Potential Assessment, should one be required.
+Results from this project may inform the COSEWIC reassessment and, potentially, a SARA Recovery Potential Assessment, should one be required (see Appendix \@ref(app:cosewic)).
 
 (ref:fig-map-4B) Map of Groundfish Management Area 4B showing rockfish conservation areas (RCAs) and the boundaries separating the Inside Yelloweye Rockfish designatable unit (DU) from the Outside Yelloweye Rockfish DU. The red lines indicate a proposed adjustment to the range for the Inside DU, based on recent genetic evidence [@andrews2018; @siegle2011; @siegle2013]<!--DANA has source for this-->. 
 

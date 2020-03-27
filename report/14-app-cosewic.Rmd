@@ -1,6 +1,17 @@
 # COSEWIC CONSIDERATIONS {#app:cosewic}
 
-COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are more focused on the probability of decline over past generations and the probability of continued declines in the future [@cosewic2015]. 
+COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are focused on the probability of decline over past generations and the probability of continued declines in the future [@cosewic2015].
+
+*TODO: this section needs to link better to the next sections. e.g. ... (RF made this up):*
+
+In particular COSEWIC Metric A measure probabities that the stock has declined by 70%, 50% and 30% over the past three generations. *what are the threshold probabilities and what do they do if they are exceeded?*
+
+COSEWIC Metric E measures probability of extinction of the stock *over how many generations?*
+*What are the threshold probabilities and what do they do if they are exceeded?*
+
+*DANA: Something about extinction not being defined definitively and what has been used in the past in Canada*
+
+
 
 ## COSEWIC METRIC A
 
@@ -11,7 +22,7 @@ To inform the COSEWIC re-assessment of Inside Yelloweye Rockfish, we report the 
 3. P30 - Probability that population decline hasn't exceeded 30% over 3 generations
 
 (ref:fig-cosewic-metrics)
-Results for COSEWIC metric A, the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations, for each operating model for Inside Yelloweye Rockfish where one generation is equal to 38 years. 
+Results for COSEWIC metric A, the probability that the stock has declined at least 30%, 50%, and 70% over the past 3 generations, for each OM, where one generation is equal to 38 years. 
 
 ```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
@@ -19,9 +30,15 @@ knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
 
 ## EXTINCTION RISK - COSEWIC METRIC E
 
-In order to examine the risk of extinction, stock-specific biomass thresholds must be assigned. Below these thresholds the stock would be considered functionally extirpated or extinct. We propose two extinction thresholds of 2%B~0~ and 5%B~0~ to quantitatively calculate risk of future extinction for each OM and MP scenario. While we acknowledge that these thresholds are arbitrary, precedents exist in the literature [@forrest2015] and simulation testing is required to find more appropriate stock-specific thresholds.
+In order to evaluate the probability of future extinction under candidate MPs, stock-specific extinction thresholds must be assigned.
+Below these thresholds the stock would be considered functionally extirpated or extinct.
+We propose two candidate extinction thresholds of 2%B~0~ and 5%B~0~.
+While we acknowledge that these thresholds are arbitrary, precedents exist in the literature [e.g., @forrest2015 used 5%B~0~].
+We suggest that simulation-testing of alternative thresholds could be used to identify stock-specific extinction thresholds.
 
-Using a projection period of 100 years, we calculate the probability that the stock remains above 2% and 5% B~0~ for each OM (Figure \@ref(fig:cosewic-all)) and the average probability that the stock remains above each threshold over all OMs (Figure \@ref(fig:cosewic-avg)):
+*TODO: I seem to remember 0.2B0 coming from somewhere in the literature as well ... a Canadian stock?*
+
+Using a projection period of 100 years, we calculated the probability that the stock remains above 2% and 5% B~0~ for each OM scenario individually (Figure \@ref(fig:cosewic-all)), and the average probability that the stock remains above each threshold across all scenarios (Figure \@ref(fig:cosewic-avg)):
 
 1. 2%B~0~ = $P[B_y > 0.02 B_0]$
 2. 5%B~0~ = $[B_y > 0.05 B_0]$

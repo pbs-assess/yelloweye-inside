@@ -176,3 +176,8 @@ knitr::include_graphics(here("mse/figures/ye-projections-scenarios.png"))
 ```
 
 \clearpage
+
+## COSEWIC CONSIDERATIONS
+
+We present results with respect to meeting two alternative COSEWIC criteria (probabilities of past stock declines and probabilities of future extinction) in Appendix \@ref(app:cosewic).
+
