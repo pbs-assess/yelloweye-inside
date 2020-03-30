@@ -4,7 +4,7 @@ The Inside Yelloweye stock is also listed under the *Species at Risk Act* (SARA)
 
 ## COSEWIC METRIC A
 
-COSEWIC Metric A measures the probability that the stock has declined by 70%, 50% and 30% over the past three generations. These probability thresholds are used to assign status designations of endangered, threatened, and species of special concern respectively, although other factors, such as cause of decline, are considered [@COSEWIC2015].
+COSEWIC Metric A measures the probability that the stock has declined by 70%, 50% and 30% over the past three generations. These probability thresholds are used to assign status designations of endangered, threatened, and species of special concern respectively, although other factors, such as cause of decline, are considered [@cosewic2015].
 To inform the COSEWIC re-assessment of Inside Yelloweye Rockfish, we report the following for each OM (Figure \@ref(fig:cosewic-metrics)):
 
 1. P70 - Probability that population decline hasn't exceeded 70% over 3 generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} < 0.7]$
@@ -24,7 +24,7 @@ COSEWIC Metric E measures the probability of extinction of the stock. A stock is
 
 In order to evaluate the probability of future extinction under candidate MPs, stock-specific extinction thresholds must be assigned.
 Below these thresholds the stock would be considered functionally extirpated or extinct.
-We propose two candidate extinction thresholds of 2%B~0~ and 5%B~0~.
+We propose two candidate extinction thresholds of 2%*B*~0~ and 5%*B*~0~.
 These arebitrary thresholds were informed by precedents in the literature [e.g., @forrest2015 used 5%*B*~0~] and historical depletion estimates for other species in the Strait of Georgia e.g. Ling Cod in the Strait of Georgia have been depleted to as low as 2%*B*~0~ but are recovering [@logan2005]. 
 We suggest that, in the future, simulation-testing of alternative thresholds could be used to identify stock-specific extinction thresholds.
 
