@@ -1,10 +1,10 @@
 # CATCH DATA {#app:catch-data}
 
-Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries.
+Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries. Management of Inside Yelloweye fisheries began in 1986, with the introduction of the "ZN" category commercial licence and daily bag limits for recreational fishermen. A chronology of management changes for recreational and commercial fisheries are shown in Tables \@ref(tab:rec-mgt-changes) and \@ref(tab:comm-mgt-changes).
 
 ## COMMERCIAL CATCH DATA {#sec:com-catch-data}
 
-Rockfish catch data can be grouped into 3 time periods: historic (1918-1950), early electronic (1951--2005), and modern (2006 onwards). There are two major sources of uncertainty in the historical and early electronic periods for Inside Yelloweye Rockfish. The first uncertainty is that rockfish catch, other than Pacific Ocean Perch (*Sebastes alutus*), was reported as an aggregate (other rockfish, ORF) in the historic period. To reconstruct historical catches an algorithm was developed by DFO authors [@haigh2011]. The reconstruction algorithm applies a ratio calculated from a period with credible landings data from the hook and line dockside monitoring program (1997--2005) and applies it to generate a time series of catch by species, year, fishery sector, and management area [@haigh2011]. "Credible" landings data are taken from reference years where catch knowledge was considered high and stable, beginning in the 1997 with the start of observer trawl coverage and the individual vessel quota system [@haigh2011]. 
+Rockfish catch data can be grouped into 3 time periods: historic (1918-1950), early electronic (1951--2005), and modern (2006 onwards). There are two major sources of uncertainty in the historical and early electronic periods for Inside Yelloweye Rockfish. The first uncertainty is that rockfish catch, other than Pacific Ocean Perch (*Sebastes alutus*), was reported as an aggregate (other rockfish, ORF) in the historic period. To reconstruct historical catches an algorithm was developed by DFO authors [@haigh2011]. The reconstruction algorithm applies a ratio calculated from a period with credible landings data from the hook and line dockside monitoring program (1997--2005) and applies it to generate a time series of catch by species, year, fishery sector, and management area [@haigh2011]. "Credible" landings data are taken from reference years where catch knowledge was considered high and stable, beginning in 1997 with the start of observer trawl coverage and the individual vessel quota system [@haigh2011]. 
 
 The second major source of uncertainty is the magnitude of unreported catch that was released or discarded at sea, prior to the introduction of 100% observer coverage in 2006. The catch reconstruction of @haigh2011 assumes no discarding prior to 1986, when the ZN licence was instituted. Prior to that it is assumed all Rockfish were kept. Discards are assumed to be fully reported in DFO databases since 2006 and the introduction of 100% observer coverage. Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye discarded by a fishery to fishery-specific landed targets using data from 2000--2004 hook and line observer logs. The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  
 
@@ -160,14 +160,14 @@ csasdown::csas_table(fsc_catch,
 
 ## CHRONOLOGY OF MANAGEMENT CHANGES
 
-```{r mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
+```{r rec-mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
 timeline <- readr::read_csv(here("data-raw/management-chronology.csv")) %>% 
   dplyr::mutate(Year = gsub("-", "--", Year))
 
 csasdown::csas_table(timeline,
   format = "latex",
   col.names = c("Year", "Area", "Management Action"),
-  caption = "History of management changes for the recreational fishery from 1986 to 2019."
+  caption = "History of management changes for the recreational Rockfish fishery from 1986 to 2019."
 ) %>%
   kableExtra::column_spec(1, width = "2.5cm") %>%
   kableExtra::column_spec(2, width = "1.75cm") %>%
@@ -175,3 +175,19 @@ csasdown::csas_table(timeline,
 ```
 
 \clearpage
+
+```{r comm-mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
+
+comm_timeline <- readr::read_csv(here("data-raw/comm-management.csv")) %>% 
+  dplyr::mutate(Year = gsub("-", "--", Year))
+
+csasdown::csas_table(comm_timeline,
+  format = "latex",
+  col.names = c("Year", "Area", "Management Action"),
+  caption = "History of management changes for the commercial Rockfish fishery in area 4B from 1986 to 2019."
+)%>%
+  kableExtra::column_spec(1, width = "2.5cm") %>%
+  kableExtra::column_spec(2, width = "1.75cm") %>%
+  kableExtra::column_spec(3, width = "7.5cm")
+
+```
