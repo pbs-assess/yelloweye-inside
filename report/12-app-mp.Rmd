@@ -70,11 +70,11 @@ The TAC is subject to the following conditions that limit the rate at which the 
 
 We evaluated three configurations of GB_slope, each applied annually:
 
-- GB_slope_lambda1:   $\lambda = 1$	  $I^\textrm{slope}_{y-1}$ is calculated from index in the preceding 5 years
+- GB_slope_lambda1:   $\lambda = 1$	and  $\beta_I$ is calculated from index in the preceding 5 years
 
-- GB_slope_lambda05:  $\lambda = 0.5$	$I^\textrm{slope}_{y-1}$ is calculated from the preceding 5 years 
+- GB_slope_lambda05:  $\lambda = 0.5$	and $\beta_I$ is calculated from the preceding 5 years 
 
-- GB_slope_yrs10:     $\lambda = 1$	  $I^\textrm{slope}_{y-1}$ is calculated from the preceding 10 years
+- GB_slope_yrs10:     $\lambda = 1$	and  $\beta_I$ is calculated from the preceding 10 years
 
 We also evaluated the same three configurations, applied every five years:
 
@@ -98,15 +98,15 @@ $$
 
 where, in the first projection year, $\textrm{TAC}^*$ is $(1-x)$ multiplied by the mean catch from the last 5 historical years.
 In subsequent years, $\textrm{TAC}^*$ is the TAC from the previous year.
-Again, $\lambda$ is a gain or smoothing parameter, and $\beta I$ is the slope of the ln abundance index over the past $n$ years.
+Again, $\lambda$ is a gain or smoothing parameter, and $\beta_I$ is the slope of the ln abundance index over the past $n$ years.
 
 As for the GB_slope MPs, we evaluated three configurations of the Islope MPs, applied annually:
 
-- Islope_10_lambda04:  $\lambda = 0.4$	$I^{slope}_{y-1}$ is calculated from the preceding 10 years
+- Islope_10_lambda04:  $\lambda = 0.4$ and $\beta_I$ is calculated from the preceding 10 years
 
-- Islope_10_lambda08:  $\lambda = 0.8$	  $I^{slope}_{y-1}$ is calculated from the preceding 10 years
+- Islope_10_lambda08:  $\lambda = 0.8$ and $\beta_I$ is calculated from the preceding 10 years
 
-- Islope_5_lambda04:   $\lambda = 0.4$	  $I^{slope}_{y-1}$ is calculated from index in the preceding 5 years
+- Islope_5_lambda04:   $\lambda = 0.4$ and $\beta_I$ is calculated from index in the preceding 5 years
 
 We also evaluated the same three configurations, applied every five years:
 

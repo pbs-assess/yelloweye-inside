@@ -39,7 +39,7 @@ We did not consider an index-target MP here, as further guidance from management
 Also, for rebuilding plans, the main objective is to rebuild the stock above the LRP.
 However, the LRP is not likely to be a desired final target stock status.
 
-We evaluated index-based MPs with either annual updates or five-year updates (denoted "5u"), which used fixed TAC between updates, i.e., the last recommended TAC. 
+We evaluated index-based MPs with either annual updates or five-year updates (denoted "5u") with fixed TAC between updates, i.e., the last recommended TAC. 
 All index-based MPs set a minimum TAC "floor" = 0.5 t, which is approximately the amount of catch required for scientific surveys to continue.
 We included the following index-based MPs: Iratio, Islope, GB_slope and IDX, with a variety of configurations (Appendix \@ref(app:mps), Section \@ref(sec:mp-ibased)).
 
