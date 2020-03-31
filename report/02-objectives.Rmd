@@ -2,11 +2,11 @@
 
 Clear management and fishery objectives, and the performance metrics that measure them, must be identified.
 Objectives may span a wide range of policy or legislated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., average catch or variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
-Fully quantified objectives include a metric, the desired probability of success, and a time frame to achieve the objective (e.g., probability of maintaining the stock above the LRP is greater than 0.95 [19 times out of 20], over 1.5 generations of the stock).
+Fully quantified objectives include a metric or target, the desired probability of success, and a time frame to achieve the objective (e.g., probability of maintaining the stock above the LRP is greater than 0.95 [19 times out of 20], over 1.5 generations of the stock).
 Performance metrics are quantified measures of the objectives, calculated in the OM at each time step of the projections.
 
 The original rebuilding plan objective was to
-rebuild the stock above the LRP over 80 years with 56% probability of success, with the additional milestone to achieve positive biomass trends within each 10 year period.
+rebuild the stock above the LRP over 80 years with 56% probability of success. An additional milestone objective was to achieve positive biomass trends within each 10 year period.
 The MP that was agreed upon to meet these objectives was to maintain the combined TAC (commercial, recreational, FSC, biological survey) below 15 tonnes annually [@ifmp2018].
 
 We present a set of refined objectives and associated performance metrics for the rebuilding plan for Inside Yelloweye Rockfish.
