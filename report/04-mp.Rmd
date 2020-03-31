@@ -11,7 +11,7 @@ While it is necessary to explore these axes of uncertainty within OMs, implement
 
 The MP Framework only considers MPs that make TAC recommendations, because most groundfish stocks are managed by quotas and TACs.
 A library of all MPs considered in the MP Framework is provided in @anderson2020gfmp (their Appendix D).
-MPs that were considered for the current rebuilding plan are detailed here in Appendix \@ref(app:mps).
+MPs that were considered for the current rebuilding plan are detailed in Appendix \@ref(app:mps) of this document.
 
 We evaluated two main types of MPs: empirical (data-based) and model-based MPs.
 We also evaluated three reference MPs.
@@ -58,8 +58,8 @@ We evaluated two assessment frequencies (five and 10 years), with a fixed TAC be
 In addition to the empirical and model-based candidate MPs, we included the following reference MPs:
 
 1. No fishing (NFref)
-2. Fishing at F/F~MSY~ (FMSYref)
-3. Fishing at 0.75 F/F~MSY~ (FMSYref75)
+2. Fishing at *F*/*F*~MSY~ (FMSYref)
+3. Fishing at 0.75 *F*/*F*~MSY~ (FMSYref75)
 
 The purpose of reference MPs is not to explore viable management strategies but to bound the range of expected or possible performance and contextualize whether differences between performance statistics among MPs are meaningful [@punt2016].
 For example, the "no fishing" reference MP provides information on maximum possible stock levels and the maximum possible rate of rebuilding under a rebuilding scenario.
