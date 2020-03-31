@@ -1,7 +1,7 @@
 # DISCUSSION {#sec:discussion}
 
-We applied a new MP Framework for Pacific groundfishes [@anderson2020gfmp] to evaluate alternative MPs to meet rebuilding objectives for the inside stock of Yelloweye Rockfish.
-This is the first application of the MP Framework for decision-making.
+We applied a new MP Framework for Pacific groundfishes [@anderson2020gfmp] to evaluate the ability of alternative MPs to meet rebuilding objectives for Inside Yelloweye Rockfish.
+This is the first application of the MP Framework for decision-making purposes.
 
 We evaluated the performance of 31 data-limited MPs (and three reference MPs) with respect to meeting the objectives described in Section \@ref(sec:objectives-metrics).
 We screened out MPs that did not meet both satisficing criteria LRP 1.5GT > 0.9 and ST C10 > 0.50 across the reference-set scenarios, resulting in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
@@ -16,13 +16,13 @@ The Islope MPs showed some contrast across MPs within the reference set for ST C
 The robustness-set scenarios generally produced lower probabilities of meeting the ST C10 metric.
 
 We presented a number of visualizations to show trade-offs among conservation and catch objectives [see also @anderson2020gfmp].
-The visualizations present trade-off results in different tabular and graphical formats, intended to support the process of selecting the final MP.
+The visualizations present trade-offs in different tabular and graphical formats, intended to support the process of selecting the final MP.
 Because all the MPs met the LRP 1.5 GT objective under the reference-set scenarios, there were no strong trade-offs between conservation and catch objectives.
 Of the two robustness-set scenarios, trade-offs were most apparent under the Low M scenario, where the probability of meeting the LRP 1.5GT objective decreased as the probability of achieving an ST C10 increased.
+
 We found the radar plot visualizations difficult to interpret.
 While these plots can be useful for rapid visualization of multiple trade-offs, and have been recommended for visualization of MSE results [@punt2017], they become more difficult to interpret as more metrics ("spokes") are added.
-They are very sensitive to the order in which the metrics are placed, and have been shown to be less interpretable that Cartesian plots [@diehl2010; @feldman2013; @albo2016].
-We presented radar plots here to gauge interest from RPR participants and solicit feedback on whether to include them in future applications of the MP Framework.
+They are also very sensitive to the order in which the metrics are placed, and have been shown to be less interpretable that Cartesian plots [@diehl2010; @feldman2013; @albo2016]. We presented radar plots here to gauge interest from RPR participants and solicit feedback on whether to include them in future applications of the MP Framework.
 
 *TODO: include something here about we did and didn't see in tradeoffs and focus a bit less on radar plots*
 
@@ -44,8 +44,6 @@ Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye 
 *TODO: DANA. Add something about predation scenarios in SOG*
 
 ## STOCK STATUS {#sec:discussion-status}
-
-*TODO: Someone please check this. It might be a bit waffly*
 
 The rebuilding plan for the inside stock of Yelloweye Rockfish was triggered by the 2010 stock assessment [@yamanaka2011], which estimated the stock to be below the LRP with high probability.
 Out of all the reference- and robustness-set OMs explored in our analysis, only Scenario (A) estimated median spawning biomass to be below the LRP in 2010.
@@ -78,23 +76,23 @@ Commercial and recreational selectivities were set to match those reported for t
 Age-composition data from the area 4B surveys were sparse and only collected from recent years.
 Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
 We therefore fixed age-at-full-selectivity at 20 y, and upweighted the Dogfish survey likelihood component, which greatly improved the retrospective behaviour.
-To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL in Scenario (4), which slightly changed the perception of stock status.
+To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL selectivity in Scenario (4), which slightly changed the perception of stock status.
 
 While we could have explored other fixed selectivity assumptions, we believe we used the most plausible values, and, for the HBLL survey, included an alternative scenario in the reference set.
 Future applications of the MP Framework for this stock could explore other selectivity scenarios, if recommended.
 
 ### Historical catch {#sec:discussion-uncertainties-catch}
 
-The other major source of uncertainty in our analyses is the magnitude of historical catch, due to reporting of rockfishes other than Pacific Ocean Perch in an aggregate category before 1950, and large uncertainty in the magnitude of unreported catch during the period 1986--2005.
-A reconstruction of historical catch data to 2005 was done by @haigh2011 attempted to parse out Yelloweye Rockfish from the aggregated rockfish category and to account for unreported catches.
+The other major source of uncertainty in our analyses is the magnitude of historical commercial and recreational catch. Uncertainty regarding commercial catch is due to reporting of rockfishes other than Pacific Ocean Perch in an aggregate category before 1950, and large uncertainty in the magnitude of unreported catch during the period 1986--2005.
+A reconstruction of historical catch data to 2005 was done by @haigh2011 and attempted to parse out Yelloweye Rockfish from the aggregated rockfish category and to account for unreported catches.
 The reconstructed catches were used in the previous stock assessment [@yamanaka2011].
 While there has been some controversy over reconstructed catch data, for both the outside and inside Yelloweye stocks, re-evaluation of the reconstruction was outside the scope of this rebuilding plan and it remains the best available time series of historical catches.
-We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in Scenario (2). Performance of MPs was not appreciably different from other reference-set scenarios.
-There are also large uncertainties in recreational catch data. We followed the same approach to reconstructing historical recreational catch data and estimating current recreational catch data as @yamanaka2011.
+We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in Scenario (2) but performance of MPs was not appreciably different from other reference-set scenarios.
+We followed the same approach to reconstructing historical recreational catch data and estimating current recreational catch data as @yamanaka2011.
 
 We deviated from @yamanaka2011 in our treatment of FSC catch. These authors applied an algorithm to explicitly estimate FSC catch.
 After discussions with local First Nation representatives in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because most of the rockfish catch is understood to be caught under dual fishing licenses and would therefore be included in DFO databases.
-We elected to include FSC catches in the southern region with recreational catches, because most of the rockfish catch is understood to be caught from small vessels, which would likely already be counted by DFO overflights.
+We elected to include FSC catches in the southern region with recreational catches, because most of the rockfish catch is understood to be caught from small vessels, so effort, at least, is likely already counted by DFO overflights.
 We recognize large uncertainties in FSC catch in our analyses.
 Future applications of the MP Framework for this stock would benefit from more detailed collaborative work with First Nations to quantify FSC catch in Area 4B.
 
@@ -140,8 +138,7 @@ We are grateful to the members of our technical advisory group, Adam Keizer, Mau
 
 Strachan Tucker (DFO) provided data on Pinniped abundance and rockfish consumption rates.
 
-We are very grateful to C. Ayers, M. Fetterly, Christa Rusel, A. Rushton and P. Zetterberg who provided very helpful advice regarding FSC catch. *TODO. DANA please can you provide first names and organizations?*
+We are very grateful to C. Ayers, M. Fetterly, Christa Rusel, A. Rushton and P. Zetterberg who provided very helpful advice regarding FSC catch. *TODO. DANA please can you provide first names and organizations? Others? *
 
 We thank Tom Carruthers and Adrian Hordyk (UBC) for early guidance on this rebuilding plan and their ever-helpful willingness to add new features to the DLMtool software on request.
 
-*TODO: Others*
