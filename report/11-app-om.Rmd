@@ -54,7 +54,7 @@ Where a "slot" or OM parameter is defined based on a stochastic distribution oth
 
 *The maximum age of individuals that is simulated.*
 
-The maximum observed age of Inside Yelloweye Rockfish is 98 *y* [@keppel2019].
+The maximum observed age of Inside Yelloweye Rockfish is 101 *y* [@databases2019].
 Here we set a maximum age of 80 *y*, noting that the maximum age class is treated as a plus group once the OM is conditioned by the SRA [@anderson2020gfmp].
 
 ```{r desc-stock-maxage-yelloweye, results = knitr_results, echo = knitr_echo}
@@ -131,7 +131,7 @@ display_om(oms, "Perr")
 
 *Mean asymptotic length.*
 
-This value was estimated from length and age data from the HBLL survey (see Appendix \@ref(app:biological-data)).
+This value was estimated from length and age data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
 This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
 
 ```{r desc-stock-linf-yelloweye, results = knitr_results, echo = knitr_echo}
@@ -145,7 +145,7 @@ display_om(oms, "Linf")
 *von Bertalanffy growth parameter.*
 
 
-This value was estimated from length and age data from the HBLL survey (see Appendix \@ref(app:biological-data)).
+This value was estimated from length and age data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
 This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
 
 
@@ -160,7 +160,7 @@ display_om(oms, "K")
 *von Bertalanffy theoretical age at length zero.*
 
 
-This value was estimated from length and age data from the HBLL survey (see Appendix \@ref(app:biological-data)).
+This value was estimated from length and age data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
 This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
 
 
@@ -177,7 +177,7 @@ display_om(oms, "t0")
 
 Maturity was directly input as an age-based function.
 Therefore the default DLMtool slots `L50` and `L50_95` were not used.
-Female maturity-at-age was estimated using maturity and age data from the HBLL survey (Appendix \@ref(app:biological-data)).
+Female maturity-at-age was estimated using maturity and age data from the survey data collected in Area 4B (Appendix \@ref(app:biological-data)).
 The minimum age observed to be mature was seven years and it assumed that younger ages were all immature.
 
 ```{r desc-stock-maturity, eval = FALSE, echo = TRUE}
@@ -197,7 +197,7 @@ OM@cpars$Mat_age <- create_maturity_ogive(14.4, 27.4, OM@maxage, 7) %>%
 
 *Length-weight parameter alpha.*
 
-This value was estimated from length and weight data from the HBLL survey (see Appendix \@ref(app:biological-data)).
+This value was estimated from length and weight data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
 This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
 
 ```{r desc-stock-a-yelloweye, results = knitr_results, echo = knitr_echo}
@@ -210,7 +210,7 @@ display_om(oms, "a")
 
 *Length-weight parameter beta. Positive real number.*
 
-This value was estimated from length and weight data from the HBLL survey (see Appendix \@ref(app:biological-data)).
+This value was estimated from length and weight data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
 This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
 
 ```{r desc-stock-b-yelloweye, results = knitr_results, echo = knitr_echo}
