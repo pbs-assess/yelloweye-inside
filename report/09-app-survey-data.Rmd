@@ -29,11 +29,10 @@ As in @yamanaka2011, we applied a hook competition correction, which accounts fo
 To apply the correction, a competition adjustment factor is estimated for each set, in each year.
 This adjustment factor, $A_{i,t}$, scales up the observed number of Yelloweye Rockfish caught, $N_{i,t}$, for each set $i$ in each year $t$ to give the expected number of fish caught after accounting for competition, $N_{i,t}^{(0)}$:
 
-\begin{align}
-N_{i,t}^{(0)} & = \frac{-\log P_{i,t}}{1 - P_{i,t}} N_{i,t}\\
-              & = A_{i,t} N_{i,t}.
+$$
+N_{i,t}^{(0)} = A_{i,t} N_{i,t}.
 (\#eq:Nit)
-\end{align}
+$$
 
 The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them, $P_{i,t}$ (Figure \@ref(fig:hbll-baited)):
 
@@ -58,7 +57,7 @@ We fit a geostatistical spatiotemporal index-standardization model:
 \end{align}
 
 where NegBin refers to the negative binomial distribution (the NB2 parameterization [@hilbe2011] where the variance scales quadratically with the mean),
-$\mu_{s,t}$ refers to the expected value in log space at spatial point $s$ and time $t$,
+$y_{s,t}$ and $\mu_{s,t}$ refers to the observed and expected value, respectively, at spatial point $s$ and time $t$,
 $\phi$ refers to the dispersion parameter,
 $\bm{X}$ refers to a design matrix, and
 $\beta$ refers to a vector of estimated coefficients (an independent mean for each year).
@@ -283,9 +282,9 @@ We included the log dogfish count and hook-type in the model matrix $\bm{X}_{s,t
 (\#eq:dogfish-model)
 \end{align}
 
-with symbols defined as above.
+with symbols defined as in Equation \@ref(eq:hbll-model).
 Hook-type is an identifier for J-hook vs. circle-hook.
-The offset represents the log(area swept), as defined above.
+The offset represents the log(area swept), as previously defined.
 We fit our model with sdmTMB [@sdmtmb] as described above with 300 knots.
 
 In our projection of the model predictions onto the survey grid to calculate the standardized relative abundance:
@@ -304,8 +303,8 @@ In practice, this meant coding circle hooks as `r round(min(m$data$circle_hook_c
 We estimated that J hooks caught
 `r sprintf("%.1f", round(exp(est$b_j[1]), 1))` times more Yelloweye Rockfish than circle-hooks, all else being equal, but with considerable uncertainty (95% confidence interval (CI): `r sprintf("%.1f", round(exp(est$b_j[1] - 1.96 * se$b_j[1]), 1))` -- `r sprintf("%.1f", round(exp(est$b_j[1] + 1.96 * se$b_j[1]), 1))`).
 We estimated the log dogfish effect to be `r sprintf("%.2f", round((est$b_j[10]), 2))` (95% CI: `r sprintf("%.2f", round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`).
-This means that we can expect to catch, on average, about `r sprintf("%.2f", -1*round((est$b_j[10]), 2))`% (95% CI: `r sprintf("%.2f", -1*round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", -1*round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`%)
-fewer Yelloweye Rockfish for every 1% also caught on the same set, presumably due to hook competition.
+This means that we can expect to catch, on average, about `r sprintf("%.2f", -1*round((est$b_j[10]), 2))` (95% CI: `r sprintf("%.2f", -1*round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", -1*round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`)
+fewer Yelloweye Rockfish for every additional dogfish also caught on the same set, presumably due to hook competition.
 
 In Equation \@ref(eq:dog-prediction), we set up the prediction grid cells, indexed by $j$, by overlaying a 500 m x 500 m grid on the survey-domain rectangles defined in TODO (Figure \@ref(fig:dog-raw)).
 We calculated the grid cell areas ($w_j$) after removing portion of the fine-scale grid cells that overlapped land.
