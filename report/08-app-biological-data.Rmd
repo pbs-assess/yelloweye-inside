@@ -6,19 +6,16 @@
 
 # BIOLOGICAL DATA {#app:biological-data}
 
-Inside Yelloweye Rockfish, which reside in area 4B (Strait of Georgia, Johnstone Strait, and Queen Charlotte Strait; Figure \@ref(fig:map-4B)), are a genetically distinct stock from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013]. The northerly boundary between the two genetic populations is found in the middle of the Queen Charlotte Strait, north of Malcolm Island. Understanding of the Southern boundary has recently changed based on analyses presented in @andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations.
-The two populations are assessed and managed independently using the Groundfish Management Area 4B to define the inside stock despite the fact that Area 4B extends past the boundaries of the biological population (Figure \@ref(fig:map-4B)). The inside and outside stocks are considered two separate designatable units by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) [@cosewic2008].
+Inside Yelloweye Rockfish, which reside in area 4B (Figure \@ref(fig:map-4B)), are genetically distinct from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013]. The northerly boundary between the two stocks is found in the middle of the Queen Charlotte Strait, north of Malcolm Island. Understanding of the Southern boundary has recently changed, based on analyses presented in @andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations. Groundfish management area 4B is used to define the inside stock, despite the fact that area 4B extends beyond the boundaries of the biological population (Figure \@ref(fig:map-4B)). The inside and outside stocks are also considered two separate designatable units by COSEWIC [@cosewic2008].
 
-*TODO: DANA Explain how the maximum age is younger than the oldest aged fish*
+## AGE, SIZE, AND GROWTH {#sec:growth}
 
-## Age, Size and Growth {#sec:growth}
-
-Yelloweye Rockfish are a long-lived species, which have been reported up to 121 years of age for the outside stock, and 98 years for the inside stock [@keppel2019]. This maximum age for Inside Yelloweye is updated here to 101 years from additional recent aging data (Figure \@ref(fig:age-freq)). 
+Yelloweye Rockfish are a long-lived species, with a reported maximum age of 121 for the outside stock [@keppel2019]. Max age for Inside Yelloweye is 101 years, updated from the previously reported max age of 98 years, based on additional recent aging data (Figure \@ref(fig:age-freq)). 
 Age data for inside Yelloweye Rockfish, derived from the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018.
 Directed hard-bottom longline (HBLL) surveys began in Area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged.
-Proportions-at-age of Yelloweye Rockfish are shown by year and sex in Figure \@ref(fig:age-freq), and it is assumed that all ages are independent of subarea.
+Proportions-at-age of Yelloweye Rockfish are shown by year and sex in Figure \@ref(fig:age-freq). It is assumed that all ages are independent of subarea.
 
-Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight for inside Yelloweye Rockfish is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight), and it is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
+Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight). It is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
 
 $$
 \log (W_i) \sim \operatorname{Student-t}(df = 3, \log(a) + b \log(L_i), \sigma),
@@ -27,8 +24,6 @@ $$
 with $W_i$ and $L_i$ representing the weight and length for fish $i$ and $\sigma$ representing the observation error scale.
 We set the degrees of freedom of the Student-t distribution to 3 to be robust to outliers [@anderson2019synopsis].
 The variables $a$ and $b$ represent the estimated length-weight parameters.
-Size and age structure of Yelloweye and other rockfish have been shown to be truncated under high fishing pressure on the central BC coast, which also influences fecundity, as larger females show an increasing number of eggs per unit of body weight [@mcgreer2017].
-
 Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length-age). The length-age growth curve is a von Bertalanffy model of the form:
 
 $$
@@ -41,7 +36,7 @@ where $L_i$ and $A_i$ represent the length and age of fish $i$, $l_\mathrm{inf}$
 lognormal bias adjustment term so we model the mean length rather than the median.
 The model was fit in TMB as described in @anderson2019synopsis.
 
-## Maturity {#sec:maturity}
+## MATURITY {#sec:maturity}
 
 Yelloweye Rockfish, in addition to being large and long-lived, are also slow to mature. In order to examine age at maturity, sample records from all surveys within area 4B were analyzed for specimens that were identified as male or female with a valid maturity code and for which age was determined using the break and burn or break and bake methods. 
 
@@ -64,7 +59,10 @@ year. Predicted vs. observed proportions mature-at-age are shown in Figure \@ref
 
 Maturity frequency by each month is shown in the bubble plot in Figure \@ref(fig:mat-months) for all fish in all surveys within area 4B for which maturity was sampled. Categories of maturity are listed from most immature (top) to most mature (bottom); individual fish, once mature, cycle through the mature stages.
 
-*TODO: DANA please can you add explanation of generation time and comparison between the inside and outside stocks?*
+## GENERATION TIME
+
+Rebuilding guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring. A recent analysis for the Outside Yelloweye Rockfish stock estimated generation time at approximately 38 years [@cox2020]. We fixed generation time for Inside Yelloweye to be equal to that estimated for Outside Yelloweye to align rebuilding timeframes between the two stocks.  
+
 
 \clearpage
 
@@ -121,7 +119,7 @@ knitr::include_graphics(here("mse/figures/mat-months.png"))
 
 \clearpage
 
-## SUMMARY TABLE OF BIOLOGICAL DATA AVAILABILITY
+## SUMMARY TABLE OF BIOLOGICAL DATA AVAILABLE
 
 ```{r test, results='asis'}
 dat <- readRDS(here("data-generated/yelloweye-rockfish-ins-privacy.rds"))
