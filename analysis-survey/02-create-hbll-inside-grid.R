@@ -3,6 +3,7 @@ library(dplyr)
 # email from Dana:
 d2 <- readRDS("data-raw/complete_research_blocks_table.rds")
 area <- readRDS("data-raw/All_HBLL_Blocks_Area_Water.rds") %>%
+  filter(SS_ID %in% c(39, 40)) %>%
   dplyr::select(block = BLOCK_DESI, area = Area_Water_km2)
 
 d2 <- d2 %>%
