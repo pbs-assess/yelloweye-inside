@@ -303,8 +303,8 @@ In practice, this meant coding circle hooks as `r round(min(m$data$circle_hook_c
 We estimated that J hooks caught
 `r sprintf("%.1f", round(exp(est$b_j[1]), 1))` times more Yelloweye Rockfish than circle-hooks, all else being equal, but with considerable uncertainty (95% confidence interval (CI): `r sprintf("%.1f", round(exp(est$b_j[1] - 1.96 * se$b_j[1]), 1))` -- `r sprintf("%.1f", round(exp(est$b_j[1] + 1.96 * se$b_j[1]), 1))`).
 We estimated the log dogfish effect to be `r sprintf("%.2f", round((est$b_j[10]), 2))` (95% CI: `r sprintf("%.2f", round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`).
-This means that we can expect to catch, on average, about `r sprintf("%.2f", -1*round((est$b_j[10]), 2))` (95% CI: `r sprintf("%.2f", -1*round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", -1*round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`)
-fewer Yelloweye Rockfish for every additional dogfish also caught on the same set, presumably due to hook competition.
+This means that we can expect to catch, on average, about `r -10 * round(est$b_j[10], 2)`% (95% CI: `r  -10 * round(est$b_j[10] - 1.96 * se$b_j[10], 2)`% -- `r -10 * round(est$b_j[10] + 1.96 * se$b_j[10], 2)`%)
+fewer Yelloweye Rockfish for every 10% additional dogfish also caught on the same set, presumably due to hook competition.
 
 In Equation \@ref(eq:dog-prediction), we set up the prediction grid cells, indexed by $j$, by overlaying a 500 m x 500 m grid on the survey-domain rectangles defined in TODO (Figure \@ref(fig:dog-raw)).
 We calculated the grid cell areas ($w_j$) after removing portion of the fine-scale grid cells that overlapped land.
