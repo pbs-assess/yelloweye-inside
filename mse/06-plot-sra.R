@@ -441,7 +441,7 @@ COSEWIC_Bdecline_hist <- function(MSEobj, Ref = 0.7, Yr = NULL) {
   if(year_start < 1) year_start <- 1
   SSB <- apply(MSEobj@SSB_hist, c(1, 3), sum)
   metric <- 1 - SSB[, MSEobj@nyears]/SSB[, year_start]
-  out <- sum(metric < Ref)/length(metric)
+  out <- sum(metric > Ref)/length(metric)
   return(out)
 }
 
@@ -476,7 +476,7 @@ YE_historical <- rbind(vapply(mse_ye, COSEWIC_P70, numeric(1), Yr = 3 * 38),
 
 YE_historical$MP <- factor(sc$scenario_human, levels = sc$scenario_human)
 
-g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenario_human)) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
+g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenario_human)) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE) + scale_fill_viridis_c(limits = c(0, 1), begin = 0.15, end = 1, alpha = 0.6, option = "D", direction = -1)
 ggsave("mse/figures/historical_indicators2.png", height = 3.2, width = 3)
 
 YE_ref_pt <- rbind(vapply(mse_ye, P_LRP, numeric(1), Yr = 102),

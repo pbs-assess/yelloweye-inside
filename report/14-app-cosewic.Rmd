@@ -5,17 +5,16 @@ The Inside Yelloweye stock is also listed under the *Species at Risk Act* (SARA)
 ## COSEWIC METRIC A
 
 COSEWIC Metric A measures the probability that the stock has declined by 70%, 50% and 30% after three generations, where one generation for Inside Yelloweye Rockfish is defined as 38 years.
-Note that three generations under this definition is 114 years.
-Since our historical period (1918-2019) is 102 years, we use this as an approximation of three generations.
+Note that three generations under this definition is 114 years but since our historical period (1918-2019) is 102 years, we use this as an approximation of three generations.
 These probability thresholds are used to assign status designations of endangered, threatened, and species of special concern respectively, although other factors, such as cause of decline, are also considered [@cosewic2015].
 To inform the COSEWIC re-assessment of Inside Yelloweye Rockfish, we report the following for each OM (Figure \@ref(fig:cosewic-metrics)):
 
-1. P70 - Probability that the stock is above 70% of *B*~1918~ after three generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} < 0.7]$
-2. P50 - Probability that the stock is above 50% of *B*~1918~ after three generations
-3. P30 - Probability that the stock is above 30% of *B*~1918~ after three generations
+1. P70 - Probability that the stock is below 70% of *B*~1918~ after three generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} > 0.7]$
+2. P50 - Probability that the stock is below 50% of *B*~1918~ after three generations
+3. P30 - Probability that the stock is below 30% of *B*~1918~ after three generations
 
 (ref:fig-cosewic-metrics)
-Results for COSEWIC metric A, the probability that the stock is above 70%, 50%, and 30% of *B*~1918~ after the past three generations, for each OM, where one generation is defined as 38 years. 
+Results for COSEWIC metric A, the probability that the stock is below 70%, 50%, and 30% of *B*~1918~ after the past three generations, for each OM, where one generation is defined as 38 years. 
 
 ```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
@@ -36,8 +35,10 @@ Using a projection period of 100 years, we calculated the probability that the s
 1. 2%B~0~ = $P[B_y > 0.02 B_0]$
 2. 5%B~0~ = $[B_y > 0.05 B_0]$
 
+The results of this analysis show that there is a very low risk of extinction under these thresholds. 
+
 (ref:fig-cosewic-all)
-Risk of extinction for Inside Yelloweye Rockfish by OM and MP. 
+Probability that the Inside Yelloweye Rockfish stock remains above 2% and 5% of *B*~0~, by OM and MP. 
 
 ```{r cosewic-all, fig.cap="(ref:fig-cosewic-all)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
@@ -46,7 +47,7 @@ knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
 \clearpage
 
 (ref:fig-cosewic-avg)
-Risk of extinction averaged across OMs for Inside Yelloweye Rockfish. 
+Probability that the stock remains above 2% and 5% of *B*~0~, averaged across OMs for Inside Yelloweye Rockfish. 
 
 ```{r cosewic-avg, fig.cap="(ref:fig-cosewic-avg)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-avg.png"))
