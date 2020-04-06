@@ -57,6 +57,7 @@ We fit a geostatistical spatiotemporal index-standardization model:
 \end{align}
 
 where NegBin refers to the negative binomial distribution (the NB2 parameterization [@hilbe2011] where the variance scales quadratically with the mean),
+$\phi$ represents the dispersion parameter,
 $y_{s,t}$ and $\mu_{s,t}$ refers to the observed and expected value, respectively, at spatial point $s$ and time $t$,
 $\phi$ refers to the dispersion parameter,
 $\bm{X}$ refers to a design matrix, and
@@ -81,12 +82,14 @@ $$
 We constrained the spatial random effects to follow a \mbox{Mat\'ern} covariance
 function, which defines the rate with which spatial correlation decays with
 distance.
-The \mbox{Mat\'ern} function describes the covariance $\Phi \left( s_j, s_k \right)$ between spatial locations $s_j$ and $s_k$ as:
+The \mbox{Mat\'ern} function describes the covariance $\Phi_\omega \left( s_j, s_k \right)$ between spatial locations $s_j$ and $s_k$ as:
 
-$$\Phi\left( s_j,s_k \right) = \tau^2/\Gamma(\nu)2^{\nu - 1}
-    (\kappa d_{jk})^\nu K_\nu \left( \kappa d_{jk} \right),$$
+$$
+\Phi_\omega\left( s_j,s_k \right) = \tau_\omega^2/\Gamma(\nu)2^{\nu - 1}
+    (\kappa d_{jk})^\nu K_\nu \left( \kappa d_{jk} \right),
+$$
 
-where $\tau^2$ represents the spatial variance, $\Gamma$ represents the Gamma
+where $\tau_\omega^2$ represents the spatial variance, $\Gamma$ represents the Gamma
 function, $K_\nu$ represents the Bessel function, $d_{jk}$ represents the
 Euclidean distance between locations $s_j$ and $s_k$, and $\kappa$ represents
 a scaling parameter that is estimated [e.g., @lindgren2011]. The parameter $\nu$
@@ -102,8 +105,14 @@ $$
 $$
 
 This covariance matrix is also constrained to follow a \mbox{Mat\'ern} covariance
-function with the same $\kappa$ but its own $\tau^2$ (spatial variance).
-Although we described the \mbox{Mat\'ern} function above using the simple isometric form for simplicity (spatial correlation is the same in all directions), we actually allowed for anisotropy in the spatial and spatiotemporal correlation [e.g., @thorson2015].
+function with the same $\kappa$ but its own $\tau_\epsilon^2$ (spatial variance):
+
+$$
+\Phi_\epsilon\left( s_j,s_k \right) = \tau_\epsilon^2/\Gamma(\nu)2^{\nu - 1}
+    (\kappa d_{jk})^\nu K_\nu \left( \kappa d_{jk} \right).
+$$
+
+Although we have described the \mbox{Mat\'ern} functions above using the simple isometric form for simplicity (spatial correlation is the same in all directions), we actually allowed for anisotropy in the spatial and spatiotemporal correlation [e.g., @thorson2015].
 
 The spatial random effects accounted for spatial factors that were constant across time, for example, depth and substrate type.
 The spatiotemporal random effects accounted for factors that varied spatially from year-to-year, such as bottom temperature, water circulation patterns, species interactions, and species movement.
