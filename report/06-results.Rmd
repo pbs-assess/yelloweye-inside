@@ -9,8 +9,8 @@ The Islope MPs showed some contrast across MPs within the reference set for ST C
 The Islope MPs achieved between 0.59 and 0.88 for ST C10, depending on the specific Islope MP and OM (Figures \@ref(fig:tigure-panel)).
 
 Within the reference set, there was virtually no trade-off between LRP 1.5GT and ST C10 since all MPs were able to achieve LRP 1.5 GT > 0.99 (Figure \@ref(fig:tradeoff-reference)).
-Multidimensional trade-offs were challenging to interpret via a radar plot for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)), which exemplifies some of the warnings about radar plots offered in @anderson2020gfmp.
-We included radar plots here to gauge reader interest at the Regional Peer Review meeting and to illustrate their pitfalls for the MP Framework.
+Multidimensional trade-offs are sometimes represented using radar plots. However, these were challenging to interpret for this closed-loop-simulation (Figure \@ref(fig:spider-satisficed-mps-avg)), which exemplifies some of the warnings about radar plots offered in @anderson2020gfmp.
+We include radar plots here to gauge reader interest at the Regional Peer Review meeting and to illustrate their pitfalls for the MP Framework.
 
 <!--
 A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across MPs (Figure \@ref(fig:dot-lines)).
@@ -19,7 +19,7 @@ In general, variation performance metric values for any one MP across reference-
 
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further demonstrate performance across the various MPs and reference-set OMs (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
 We note that none of the biomass projections predicted the stock to be below the LRP in the first year of the projection period, and all MPs achieved continuous growth throughout the projection period, albeit at different rates.
-The reference MP FMSYref suggests that catches could be increased without increasing the likelihood of falling below LRP. This is due to high probability that the stock is currently above LRP across the reference set scenarios. 
+The reference MP FMSYref suggests that catches could be increased without increasing the likelihood of falling below the LRP. This is due to high probability that the stock is currently above the LRP, across the reference set scenarios. 
 
 Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
 Within the reference set and across all MPs, only Scenario (2) produced some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
@@ -123,7 +123,7 @@ For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving S
 
 Scenario (A) demonstrated a trade-off between ST C10 and LRP 1.5GT among MPs (Figure \@ref(fig:tradeoff-robust)).
 Scenario (B) demonstrated no trade-off between ST C10 and LRP 1.5GT since all MPs achieved LRP 1.5GT with probability > 0.99.
-Similar to the reference set, we found the radar plots challenging to interpret (Figure \@ref(fig:spider-satisficed-mps-robust)).
+Similar to the results for the reference set, we found the radar plots challenging to interpret (Figure \@ref(fig:spider-satisficed-mps-robust)).
 
 Projection timeseries plots of *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further explain the closed-loop simulation results for the robustness set (Figure \@ref(fig:proj-low-m) and \@ref(fig:proj-high-index-cv)).
 For example, in Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
