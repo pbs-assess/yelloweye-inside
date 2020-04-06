@@ -47,7 +47,7 @@ Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye 
 
 The rebuilding plan for the inside stock of Yelloweye Rockfish was triggered by the 2010 stock assessment [@yamanaka2011], which estimated the stock to be below the LRP with high probability.
 Out of all the reference- and robustness-set OMs explored in our analysis, only Scenario (A) estimated median spawning biomass to be below the LRP in 2010.
-The 2010 assessment used a surplus production (SP) model, with fundamentally different structural assumptions to the SRA used for conditioning OMs in the current assessment.
+The 2010 assessment used a surplus production (SP) model, with fundamentally different structural assumptions to the SRA used for conditioning OMs in our analysis.
 As a check, we fit a SP model, similar to that used by @yamanaka2011, and obtained much lower biomass and stock status estimates than those from the SRA OMs.
 Furthermore, while the MSY and *F*~MSY~ estimates were similar to those from the SRA models, the estimate of *B*~MSY~ was higher for the SP model than our Scenario (1).
 These two factors in the SP model (lower biomass and higher reference points) would lead to a more pessimistic assessment of stock status.
@@ -73,9 +73,9 @@ There are no available age-composition data for commercial or recreational fishe
 We therefore fixed selectivity for all these gears.
 Commercial and recreational selectivities were set to match those reported for the outside stock [@cox2020] and we set selectivity in the Dogfish survey to mirror the value used for the HBLL survey.
 
-Age-composition data from the area 4B surveys were sparse and only collected from recent years.
+Age-composition data from the area 4B surveys were sparse and have only been collected in recent years.
 Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
-We therefore fixed age-at-full-selectivity at 20 y, and upweighted the Dogfish survey likelihood component, which greatly improved the retrospective behaviour.
+We therefore fixed age-at-full-selectivity at 22 y, and upweighted the Dogfish survey likelihood component, which greatly improved the retrospective behaviour.
 To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL selectivity in Scenario (4), which slightly changed the perception of stock status.
 
 While we could have explored other fixed selectivity assumptions, we believe we used the most plausible values, and, for the HBLL survey, included an alternative scenario in the reference set.
@@ -84,16 +84,16 @@ Future applications of the MP Framework for this stock could explore other selec
 ### Historical catch {#sec:discussion-uncertainties-catch}
 
 The other major source of uncertainty in our analyses is the magnitude of historical commercial and recreational catch. Uncertainty regarding commercial catch is due to reporting of rockfishes other than Pacific Ocean Perch in an aggregate category before 1950, and large uncertainty in the magnitude of unreported catch during the period 1986--2005.
-A reconstruction of historical catch data to 2005 was done by @haigh2011 and attempted to parse out Yelloweye Rockfish from the aggregated rockfish category and to account for unreported catches.
+A reconstruction of historical catch data to 2005 was done by @haigh2011, which attempted to parse out Yelloweye Rockfish from the aggregated rockfish category and to account for unreported catches.
 The reconstructed catches were used in the previous stock assessment [@yamanaka2011].
-While there has been some controversy over reconstructed catch data, for both the outside and inside Yelloweye stocks, re-evaluation of the reconstruction was outside the scope of this rebuilding plan and it remains the best available time series of historical catches.
+While there has been some controversy over reconstructed catch data, for both the outside and inside Yelloweye stocks, re-evaluation of the reconstruction was outside the scope of this work and it remains the best available time series of historical catches.
 We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in Scenario (2) but performance of MPs was not appreciably different from other reference-set scenarios.
 We followed the same approach to reconstructing historical recreational catch data and estimating current recreational catch data as @yamanaka2011.
 
-We deviated from @yamanaka2011 in our treatment of FSC catch. These authors applied an algorithm to explicitly estimate FSC catch.
-After discussions with local First Nation representatives in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because most of the rockfish catch is understood to be caught under dual fishing licenses and would therefore be included in DFO databases.
-We elected to include FSC catches in the southern region with recreational catches, because most of the rockfish catch is understood to be caught from small vessels, so effort, at least, is likely already counted by DFO overflights.
-We recognize large uncertainties in FSC catch in our analyses.
+We deviated from @yamanaka2011 in our treatment of FSC catch. They applied an algorithm to explicitly estimate FSC catch, based on assumptions about consumption rates.
+After discussions with local First Nation representatives in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because most of the rockfish catch is understood to be caught under dual fishing licenses and would therefore be included in DFO commercial catch databases.
+We elected to assume FSC catches in the southern region were accounted for in recreational catches, because most of the rockfish catch is caught from small vessels, so effort, at least, is likely already counted by DFO overflights.
+We recognize the large uncertainties surrounding FSC catch.
 Future applications of the MP Framework for this stock would benefit from more detailed collaborative work with First Nations to quantify FSC catch in Area 4B.
 
 ## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
@@ -101,7 +101,7 @@ Future applications of the MP Framework for this stock would benefit from more d
 This MP Framework, and all MSE processes, differ from conventional stock assessments in the way science advice is delivered [@anderson2020gfmp].
 In most BC groundfish stock assessments [e.g., @yamanaka2011; @starr2017; @forrest2019], catch advice is presented in the form of decision tables, where probabilities of breaching reference points (e.g., probability of the stock falling below the LRP) are presented over a range of possible future TAC levels.
 This approach depends on explicit reporting of reference points and estimation of stock status.
-Following the production of a decision table, it is then the job of the decision-makers to select a future TAC based on the probabilities presented, taking into consideration other factors such as the economic needs of the fishery combined with some risk tolerance.
+Following the production of a decision table, it is then the job of the decision-makers to select a future TAC based on the probabilities presented, taking into consideration other factors such as the economic needs of the fishery and some level of risk tolerance.
 In this process, consideration of risk occurs at the final step of the decision-making process and may not always be transparent or be related to agreed-upon objectives.
 
 MP frameworks differ from conventional assessments in two key ways: (1) reference points and stock status are not explicitly reported (or at least not emphasized); and (2) objectives related to the probability of breaching reference points must be agreed upon at the beginning of the process, (i.e., Section \@ref(sec:objectives-metrics)).
@@ -118,7 +118,7 @@ This framework implicitly preserves the intent of these policies despite the fac
 In general, the purpose of an MP framework is to identify and select a robust MP that can be left in place for an agreed amount of time.
 Interim checks between assessments are also recommended to ensure the selected MP is performing as expected.
 In addition to the best practice steps described in Section \@ref(sec:introduction-mp-framework), @carruthers2018 describe a final evaluation step, where performance of the selected MP is formally reviewed once it has been implemented.
-Departures from an MP's predicted performance have been termed "exceptional circumstances", where the observed system dynamics fall outside the range of scenarios specified in the OM(s), over which an MP was demonstrated to be robust [@butterworth2008].
+Departures from an MP's predicted performance have been termed "exceptional circumstances", where the observed system dynamics fall outside the range of scenarios specified in the OM(s) over which an MP was demonstrated to be robust [@butterworth2008].
 Evidence for exceptional circumstances, occurring within the recommended assessment interval, would trigger a review of the OM(s) and MP, possibly resulting in a new OM, or an adjustment to the selected MP [@carruthers_hordyk_2018].
 These authors list several examples of MSEs where formal protocols for detecting exceptional circumstances have been established.
 In general, formal protocols have included monitoring the biomass index, catch, and sometimes other data-types such as age-composition data, and comparing observations to the OM predictions.
