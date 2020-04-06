@@ -18,7 +18,7 @@ The proposed core conservation objective is:
 
 1. Rebuild the stock above the LRP over 56 years (1.5 generations) with at least 95% [19 times out of 20] probability of success.
 
-The rebuilding time-frame was modified from 80 years in the original rebuilding plan [@ifmp2018] to 56 years to reflect the rebuilding guidance [@dfo2013] that rebuilding should be achieved within 1.5 to 2 generation times, based on the generation time for outside Yelloweye Rockfish [@cox2020].
+Based on the estimated generation time for outside Yelloweye Rockfish [@cox2020], the original rebuilding time-frame of 80 years [@ifmp2018] was adjusted to 56 years in this analysis, reflecting the guidance that rebuilding should be achieved within 1.5 to 2 generation times [@dfo2013].
 The probability of success was increased from 56% to 95% to reflect rebuilding guidance that the probability of rebuilding should be high, and international best practice, where policies in numerous jurisdictions aim to keep stocks above the LRP with 90-95% probability [18 to 19 times out of 20][@sainsbury2008; @mcilgorm2013].
 
 We also propose the following additional objectives:
@@ -41,7 +41,7 @@ However, this is supposed to be achieved beyond the period and scope of the rebu
 We have interpreted this milestone in its strictest sense (i.e., the rebuilding plan is to rebuild the stock out of the critical zone), but the milestone could be revised in the future to require that positive biomass trends should be achieved until the stock is in the healthy zone.
 This is a decision to be made at Step 1 of future processes by fisheries managers, First Nations and stakeholders.
 
-We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, GT represents generation time, and AADC represents average absolute deviation in catch ($C$) over $n$ years:
+We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, *F*~MSY~ refers to the fishing mortality that produces MSY over the long term, GT represents generation time, and AADC represents average absolute deviation in catch ($C$) over $n$ years (note: *ST* = short term, *LT* = long term):
 
 * LRP 1.5GT: P(*B* > 0.4 *B*~MSY~) after 1.5 GT (56 years)
 * LRP 1GT: P(*B* > LRP) after 1 GT (38 years)
@@ -53,7 +53,7 @@ We propose the following performance metrics to measure the objectives, where *B
 * LT C20: P(catch > 20 t) after 1 GT (38 years)
 * ST AADC: P(AADC~2020--2029~ < AADC~2012--2019~)
 
-We included the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term (note: *ST* = short term, *LT* = long term).
+We included the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term.
 
 We calculated AADC~2020--2029~ as:
 
