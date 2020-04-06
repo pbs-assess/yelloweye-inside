@@ -22,9 +22,9 @@ pm_avg_sat <- pm_avg %>% filter(MP %in% mp_sat)
 pm_min_sat <- pm_min %>% filter(MP %in% mp_sat)
 ```
 
-We ran the closed-loop simulations across 250 stochastic replicates using DLMtool version 5.4.2, `r rversion`, and the simulation random seed set to 1. The length of the projection period was 100 years to facilitate calculation of extinction risk for COSEWIC assessment (Appendix \@ref(app:cosewic)).
+We ran the closed-loop simulations across 250 stochastic replicates using DLMtool version 5.4.2, `r rversion`, and the simulation random seed set to 1. The length of the projection period was set at 100 years to facilitate calculation of the extinction risk assessment criteria for COSEWIC (Appendix \@ref(app:cosewic)).
 We assessed convergence of the closed-loop simulation by plotting the cumulative performance metrics as replicates were added (Figure \@ref(fig:converge)).
-We deemed 250 replicates sufficient since the rank order of MPs remained consistent by this point as additional replicates were added (Figure \@ref(fig:converge)).
+We deemed 250 replicates sufficient, since the rank order of MPs remained consistent as additional replicates were added (Figure \@ref(fig:converge)).
 
 @anderson2020gfmp recommended filtering MPs with a "satisficing" step, where trial simulations are run to screen out MPs that do not meet a basic set of performance criteria [@miller2010; see @anderson2020gfmp].
 We set the following criteria to determine which MPs are satisficed: LRP 1.5GT > 0.9 and ST C10 > 0.5.
