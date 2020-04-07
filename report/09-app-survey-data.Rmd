@@ -1,16 +1,16 @@
 # FISHERY-INDEPENDENT SURVEY DATA {#app:index-data}
 
-We conditioned the operating models using indices of abundance from the Hard Bottom Longline (HBLL) Inside survey and the Strait of Georgia Dogfish Longline survey. Survey design and modelling of indices for each survey are described here.   
+We conditioned the operating models using indices of abundance from the inside Hard Bottom Longline (HBLL) survey and the Strait of Georgia Dogfish Longline survey. Survey design and modelling of indices for each survey are described here.   
 
-## HBLL INSIDE SURVEY INDEX {#sec:hbll-index-data}
+## INSIDE HBLL SURVEY INDEX {#sec:hbll-index-data}
 
-The HBLL Inside survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
-The survey is a depth-stratified random design consisting of 2km by 2km survey blocks, which has always taken place on the CCGS Neocaligus vessel.
+The Inside HBLL survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
+The survey has a depth-stratified random design consisting of 2km by 2km survey blocks, which has always taken place on the CCGS Neocaligus vessel.
 The survey uses snap-type circle hooks and squid bait with a two-hour soak time.
 Hook-by-hook data, which has been collected since the start of the survey, is electronically collected and stored in a database.
 For further details on survey design see @lochead2004.
 
-The survey domain is divided into northern and southern regions, which are fished in alternating years.
+The survey area is divided into northern and southern regions, which are fished in alternating years.
 However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
 
 - The survey did not take place in 2006 and 2017.
@@ -24,8 +24,8 @@ We applied a geostatistical spatiotemporal model standardization of the HBLL ind
 
 A longline index of species abundance may not be proportional to actual abundance under certain conditions.
 For example, if there is a high degree of competition among species for baited hooks, the actual catch may not accurately reflect the true abundance of less competitive species [@kuriyama2018].
-The HBLL Inside survey catch is mostly comprised of North Pacific Spiny Dogfish (*Squalus suckleyi*; hereafter "Dogfish"), which are potentially a major hook competitor with rockfishes [@obradovich2018].
-As in @yamanaka2011, we applied a hook competition correction, which accounts for the competition between individual fish for the bait on hooks, to the HBLL Inside survey data. 
+The Inside HBLL survey catch is mostly comprised of North Pacific Spiny Dogfish (*Squalus suckleyi*; hereafter "Dogfish"), which are potentially a major hook competitor with rockfishes [@obradovich2018].
+As in @yamanaka2011, we applied a hook competition correction, which accounts for the competition between individual fish for the bait on hooks, to the HBLL survey data. 
 To apply the correction, a competition adjustment factor is estimated for each set, in each year.
 This adjustment factor, $A_{i,t}$, scales up the observed number of Yelloweye Rockfish caught, $N_{i,t}$, for each set $i$ in each year $t$ to give the expected number of fish caught after accounting for competition, $N_{i,t}^{(0)}$:
 
@@ -155,7 +155,7 @@ We generated a system that roughly matches the HBLL survey data we worked with i
 * A Poisson observation process (for simplicity vs. a negative binomial)
 
 We simulated the underlying true mean abundance on a complete [0, 1] grid with 25 x 25 evenly sized grid cells.
-We then discarded the northern and southern regions (above or below 0.5) in alternating years to render approximately 50 observations per year and attempted to fit the same form of spatiotemporal model as the one used for the HBLL index standardization (Figure \@ref(fig:stich-sim-pred)).
+We then discarded the northern and southern regions (above or below 0.5) in alternating years, to render approximately 50 observations per year, and attempted to fit the same form of spatiotemporal model as the one used for the HBLL index standardization (Figure \@ref(fig:stich-sim-pred)).
 
 Despite the model only observing alternating northern and southern regions, the model was able to reconstruct the unobserved missing portions based on the estimated spatial correlation, and to a lesser extent, the estimated spatiotemporal correlation (Figure \@ref(fig:stich-sim-pred)).
 By projecting the model predictions onto a grid over the full area of the simulated square, our model was able to produce an index that was similar to the true index (Figure \@ref(fig:stich-sim-index)).
@@ -278,7 +278,7 @@ However, to partially account for hook competition, we included the number of do
 
 ### Selectivity {#sec:dog-selectivity}
 
-** TO DO: Do we want to say something about selectivity here?**
+*TODO: Do we want to say something about selectivity here?*
 
 ### Spatiotemporal Dogfish Survey index standardization {#sec:dog-index-model}
 
