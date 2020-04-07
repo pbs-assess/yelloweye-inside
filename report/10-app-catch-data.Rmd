@@ -51,11 +51,11 @@ csasdown::csas_table(comm_catch,
 
 In 2012, DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data. However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis[@dfo2015].
 
-### Reconstructed Historical Recreational Catch {#sec:recon-rec-catch-data}
+### Reconstructed historical recreational catch {#sec:recon-rec-catch-data}
 
 Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a recreational fishing resort[@yamanaka2011]. We used the same historical time series of reconstructed recreational catch for the current analysis (Table \@ref(tab:reccatch)).
 
-### Creel Survey Data 1982-2019 {#sec:creel-catch-data}
+### Creel survey data 1982-2019 {#sec:creel-catch-data}
 
 Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys. The surveys cover Pacific Fishery Management Areas (PFMAs) 12--20, 28, and 29 [@zetterberg2010]. Rockfish catch has been recorded in areas 13--19, 28, and 29 since 1982 but was not enumerated by species until 2000. In PFMA 12 rockfish have been counted by species since 2000 [@zetterberg2010].
 
