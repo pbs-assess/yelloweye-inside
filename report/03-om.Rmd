@@ -60,7 +60,7 @@ sc <- sc %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
 ```
 
-### REFERENCE SET {#sec:approach3-reference}
+### Reference set {#sec:approach3-reference}
 
 The following OMs were developed as the reference set. We hereafter refer to them by their numbers, e.g., Scenario (1), or letters, e.g., Scenario (A).
 
@@ -126,7 +126,7 @@ This makes estimation of selectivity in the surveys highly uncertain, which led 
 
 Given large uncertainty in our choice of selectivity, we allowed the SRA to estimate selectivity for the surveys in this scenario and utilized the available survey age-composition data.
 
-### ROBUSTNESS SET {#sec:approach3-robustness}
+### Robustness set {#sec:approach3-robustness}
 
 #### (A) Low M {#sec:approach3-referenceA}
 
@@ -178,7 +178,7 @@ Each replicate used a different value of *M* and *h* (sampled independently from
 The model was initialized under the assumption that spawning biomass ($B_y$) was in an unfished equilibrium state prior to 1918, the first year of the time series, i.e., $B_{1918} = B_0$.
 While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1918, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
 
-### Selection of Base OM {#sec:approach3-conditioning-base-om}
+### Selection of base OM {#sec:approach3-conditioning-base-om}
 
 Initial attempts to fit the SRA model did not produce good fits to the dogfish survey.
 Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and *h*, Figure \@ref(fig:retro-initial), top panel).
@@ -202,7 +202,7 @@ As a result, selectivity for these gears was fixed in all OM scenarios (Figure \
 Parameter values were set so that the selectivity-at-age curves approximated those estimated by @cox2020 for the commercial longline and recreational fisheries for outside Yelloweye Rockfish (see Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-fleet-selectivity-yelloweye)).
 As noted above, these selectivities were returned to the DLMtool OMs as a combined-fleet selectivity curve from the terminal year ($t_c$) of the historical period (Figure \@ref(fig:om-selectivity)).
 
-### OM Conditioning Results {#sec:approach3-conditioning-results} 
+### OM conditioning results {#sec:approach3-conditioning-results} 
 
 #### Fits to data {#sec:approach3-conditioning-indices}
 
