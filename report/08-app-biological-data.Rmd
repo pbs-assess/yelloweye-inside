@@ -136,7 +136,8 @@ sum <- sum %>%
   mutate(specimens = gsub("\\\n", " ", specimens))
 sum %>%
   csasdown::csas_table(caption = "Inside Yelloweye Rockfish biological data.",
-    col_names = c("Year", "Specimens", "Lengths", "Weights", "Maturities", "Ages", "Age specimen collected")) %>%
+    col_names = c("Year", "Specimens", "Lengths", "Weights", "Maturities", "Ages", "Age specimen collected"),
+    align = c( "c", "c", "c", "c", "c", "c", "c")) %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
 ```
 
