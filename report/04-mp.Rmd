@@ -21,7 +21,7 @@ We also evaluated three reference MPs.
 Empirical MPs make use of catch and population index data.
 These MPs can be divided into two main categories: constant-catch MPs and index-based MPs.
 
-### CONSTANT-CATCH MPs
+### Constant-catch MPs
 
 Constant-catch MPs set the recommended catch to some fixed level, typically based on recent or historical catches.
 Constant-catch MPs do not incorporate feedback between the management system and the population---they make the same catch recommendation regardless of trends in the population index.
@@ -29,7 +29,7 @@ The current MP being used for Inside Yelloweye Rockfish is a constant-catch MP o
 
 We considered three constant-catch MPs: 5 t, 10 t, and 15 t (Appendix \@ref(app:mps), Section \@ref(sec:mp-cc)).
 
-### INDEX-BASED MPs 
+### Index-based MPs 
 
 Index-based MPs, in general, adjust the TAC based on changes in a population index over time.
 Index-ratio MPs increase or decrease the TAC in accordance with the ratio of the index from two different time periods.
