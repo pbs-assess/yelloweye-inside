@@ -136,9 +136,11 @@ In line with guidance for rebuilding plans in Canada [@dfo2013], we recommend re
 
 We are grateful to the members of our technical advisory group, Adam Keizer, Maureen Finn, and Roger Kanno for helpful discussions and guidance regarding objectives for the rebuilding plan.
 
-Strachan Tucker (DFO) provided data on Pinniped abundance and rockfish consumption rates.
+Strahan Tucker (DFO) provided data on Pinniped abundance and rockfish consumption rates.
 
-We are very grateful to C. Ayers, M. Fetterly, Christa Rusel, A. Rushton and P. Zetterberg who provided very helpful advice regarding FSC catch. *TODO. DANA please can you provide first names and organizations? Others? *
+We are very grateful to Cheri Ayers and Christa Rusel, both fisheries consultants working with local First Nations; and Mark Fetterly, Aleta Rushton and Patrik Zetterberg from DFO, who provided very helpful advice regarding FSC catch. 
+
+Ross Claytor and Dwayne Lepitzki from COSEWIC provided useful guidance on the development of performance metrics that we be of use for COSEWIC assessments. 
 
 We thank Tom Carruthers and Adrian Hordyk (UBC) for early guidance on this rebuilding plan and their ever-helpful willingness to add new features to the DLMtool software on request.
 
