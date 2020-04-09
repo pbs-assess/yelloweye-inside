@@ -80,13 +80,6 @@ csasdown::csas_table(rec_catch,
 )
 ```
 
-<!-- TODO: -- represents? -->
-
-\clearpage
-
-```{r recplot, echo=FALSE, warning=FALSE, results="asis"}
-
-```
 
 \clearpage
 
@@ -115,7 +108,6 @@ csasdown::csas_table(rec_wide,
   kableExtra::column_spec(1:13, width = "0.75cm")
 ```
 
-<!-- TODO: -- represents? -->
 
 \clearpage
 
