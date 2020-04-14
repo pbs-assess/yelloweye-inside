@@ -13,16 +13,15 @@ Preliminary results have not identified Yelloweye Rockfish in scat from Harbour 
 It should be noted that this analysis is limited in temporal and spatial scope and the sample sizes for the data that have been analyzed to date are relatively small. 
 In addition, the preliminary data available are the percent of species' DNA reads relative to total DNA reads and are not yet calibrated in terms of biomass yields to correct for methodological and biological biases (S. Tucker, DFO Science, pers. comm., April 7, 2020).    
 
-Steller Sea Lions were decimated in BC, by hunting and directed predator culls, but their abundance began to increase following protection in 1970 [@ford2014; @olesiuk2018]. Inside Yelloweye Rockfish are at higher risk of predation by Steller Sea Lions during the winter, because sea lions aggregate at breeding rookeries along the outer coast during the summer, although a small number of animals (~500) have recently been observed year-round in the Strait of Georgia (S. Tucker, DFO Science, pers. comm., April 7, 2020).
+Steller Sea Lions were decimated in BC, by hunting and directed predator culls, but their abundance began to increase following protection in 1970 [@ford2014; @olesiuk2018]. Inside Yelloweye Rockfish are at higher risk of predation by Steller Sea Lions during the winter, because sea lions aggregate at breeding rookeries along the outer coast during the summer, although a small number of animals (~500) have recently been observed year-round in the Strait of Georgia [@majewski2020].
 Winter population estimates for sea lions are less certain than summer estimates because the animals spend more time in the water than hauled out on land and are more widely dispersed, making them more difficult to count.
 Steller Sea Lion abundance in BC is approximately 1.25 fold higher in the winter, as animals from adjacent jurisdictions overwinter in BC waters [@olesiuk2018].
 Yamanaka et al. (2011) found that the proportion of Steller Sea Lions wintering in inside waters was fairly constant over time, at 4.8% of the winter counts in Southern BC. 
 Using this proportion, they estimated the number of Stellar Sea Lions in 4B decreased to a low of around 500 animals in 1970 and then increased to approximately the abundance recorded at the beginning of the time series in 1913 (1,897 in 1913, vs. 1,837 in 2010).
-Since 2010, the Steller Sea Lion population in BC has continued to increase [@olesiuk2018] (add Majeski et al. under review).
-Population growth is now estimated to be around 4% per year and the total BC population is likely between 1.3 and 1.6 times the historical levels [@olesiuk2018]. 
- 
+Since 2010, Steller Sea Lion counts in BC have continued to increase [@olesiuk2018]; however, the estimated abundance from the 2017 survey falls within the CI of the 2013 estimate [@majewski2020]. 
+
 Mortality rates of Yelloweye Rockfish from Steller Sea Lion predation were probably lower in the middle of the time series, when predator controls of Steller Sea Lions were in place (1912-1968 [@ford2014]), and have likely increased with the recovery of the population to a level similar to, or higher than, at the beginning of the time series.
 Following the methods in Yamanaka et al. (2011) we make a crude estimate of the total tonnes of Yelloweye Rockfish consumed by the average annual abundance of Steller Sea Lions (909 animals between 1979-2008), which collectively require 5939 tonnes of food annually. 
 Using the proportion of Yelloweye Rockfish found in the recent scat analyses (0.1%), we estimate that Steller Sea Lions consume approximately 5.9 tonnes/year of Yelloweye Rockfish. 
 This estimate is lower than the estimated consumption by all three species of pinnipeds reported in Yamanaka et al. (2011): 10 tonnes for Steller Sea Lions, 72 tonnes by Harbour Seals and 23 tonnes by California Sea Lions, for a possible total of 105 tonnes (lower bound 29, upper 400). 
-<!--TODO: Still waiting on some additional information from Strahan-->
+
