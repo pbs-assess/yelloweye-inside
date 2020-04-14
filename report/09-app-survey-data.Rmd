@@ -5,7 +5,7 @@ We conditioned the operating models using indices of abundance from the inside H
 ## INSIDE HBLL SURVEY INDEX {#sec:hbll-index-data}
 
 The Inside HBLL survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
-The survey has a depth-stratified random design consisting of 2km by 2km survey blocks, which has always taken place on the CCGS Neocaligus vessel.
+The survey has a depth-stratified random design consisting of 2km by 2km survey blocks, and has always taken place on the CCGS Neocaligus vessel.
 The survey uses snap-type circle hooks and squid bait with a two-hour soak time.
 Hook-by-hook data, which has been collected since the start of the survey, is electronically collected and stored in a database.
 For further details on survey design see @lochead2004.
@@ -276,10 +276,6 @@ However, there are no data on the number of baited and empty hooks available for
 Therefore, we did not apply an explicit hook competition model in the present analysis.
 However, to partially account for hook competition, we included the number of dogfish caught (log transformed so as to have a multiplicative effect on observed account) as a covariate in the model.
 
-### Selectivity {#sec:dog-selectivity}
-
-*TODO: Do we want to say something about selectivity here?*
-
 ### Spatiotemporal Dogfish Survey index standardization {#sec:dog-index-model}
 
 We used a similar geostatistical model to that described for the HBLL survey (Section \@ref(sec:hbll-spatiotemporal)) with the addition of dogfish and hook-type covariates.
@@ -315,7 +311,8 @@ We estimated the log dogfish effect to be `r sprintf("%.2f", round((est$b_j[10])
 This means that we can expect to catch, on average, about `r -10 * round(est$b_j[10], 2)`% (95% CI: `r  -10 * round(est$b_j[10] - 1.96 * se$b_j[10], 2)`% -- `r -10 * round(est$b_j[10] + 1.96 * se$b_j[10], 2)`%)
 fewer Yelloweye Rockfish for every 10% additional dogfish also caught on the same set, presumably due to hook competition.
 
-In Equation \@ref(eq:dog-prediction), we set up the prediction grid cells, indexed by $j$, by overlaying a 500 m x 500 m grid on the survey-domain rectangles defined in TODO (Figure \@ref(fig:dog-raw)).
+In Equation \@ref(eq:dog-prediction), we set up the prediction grid cells, indexed by $j$, by overlaying a 500 m x 500 m grid on the survey-domain. 
+Because the Dogfish Survey uses fixed stations rather than a randomly-sampled grid, rectangles were manually drawn around all of the historically fished longline sets in order to delineate the area sampled (Figure \@ref(fig:dog-raw)).
 We calculated the grid cell areas ($w_j$) after removing portion of the fine-scale grid cells that overlapped land.
 We set up the design matrix $\bm{X}_{j,t}$ to predict for a mean dogfish count and a mean area-swept offset.
 
