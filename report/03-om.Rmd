@@ -66,8 +66,8 @@ The following OMs were developed as the reference set. We hereafter refer to the
 
 #### (1) Base {#sec:approach3-reference1}
 
-Parameter settings for the Base OM are provided in Appendix \@ref(app:desc-om-yelloweye).
 Data sources are provided in Appendices \@ref(app:biological-data) through \@ref(app:catch-data).
+Parameter settings for the Base OM are provided in Appendix \@ref(app:desc-om-yelloweye).
 We provide a brief description of the Base OM assumptions that were adjusted in other scenarios.
 
 There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)).
@@ -79,7 +79,7 @@ Projected recruitment deviations were sampled in log space with standard deviati
 The Inside Yelloweye Rockfish stock is indexed by two fishery-independent surveys: the inside Hard Bottom Longline Survey (Appendix \@ref(app:index-data), Section \@ref(sec:hbll-index-data)) and the Dogfish Survey (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
 The SRA model exhibited better retrospective behaviour when the SRA model was fit with more likelihood weight applied to the Dogfish Survey. The age of full selectivity in the HBLL survey was fixed at 22 years (see Section \@ref(sec:approach3-conditioning) below).
 
-Historical commerical CPUE was also available and used as an index of abundance for conditioning the OM [@yamanaka2011]. Following the decisions made for the 2011 assessment, the time series was divided into three stanzas (1986-1990, 1995-2001, and 2003-2005) wherein fishery behaviour changed in reponse to management regulations (Appendix \@ref(app:catch-data), Section \@ref(sec:management-changes) ). 
+Historical commerical CPUE was also available and used as an index of abundance for conditioning the OM [@yamanaka2011]. Following the decisions made for the 2011 assessment, the time series was divided into three stanzas (1986-1990, 1995-2001, and 2003-2005) wherein fishery behaviour changed in reponse to management regulations (Appendix \@ref(app:catch-data), Section \@ref(sec:management-changes)). 
 
 Natural mortality (*M*) was sampled  from a prior probability distribution based on that used by @yamanaka2011, where $M \sim \textrm{Lognormal}(0.045, 0.2)$ (Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-stock-m-yelloweye)).
 
