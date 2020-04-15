@@ -242,7 +242,7 @@ Large structural uncertainties in the model and available data (e.g., the Dogfis
 \clearpage
 
 (ref:fig-sra-comp-fit1)
-SRA model fits to the survey age composition data for Scenario (1), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are based on the number of sampling trips in each year.
+SRA model fits to the survey age composition data for Scenario (1), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
 
 ```{r sra-conditioned-comp-fit1, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit1)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_updog_fixsel.png"))
