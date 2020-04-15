@@ -93,7 +93,7 @@ library(here)
 knitr::include_graphics(here("mse/figures/length-weight.png"))
 ```
 
-```{r length-age, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), out.width="0.6\\textwidth"}
+```{r length-age, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Female model fit is indicated as a solid black line, male model fit is indicated as a dashed grey line, and combined sex model fit is indicated by a thin black line. Text shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), out.width="0.6\\textwidth"}
 library(here)
 knitr::include_graphics(here("mse/figures/vb.png"))
 ```
