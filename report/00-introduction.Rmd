@@ -20,7 +20,7 @@ Canadian fish stocks that have been assessed as being below the LRP, i.e., in th
 knitr::include_graphics(here::here("figs/pa-framework.png"))
 ```
 
-In June 2019, major amendments to Canada's *Fisheries Act* legislated many key components of the SFF, encoded in the Fish Stocks provisions ([Section 6 of the *Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547)).
+In June 2019, major amendments to Canada's *Fisheries Act* legislated many key components of the SFF, which are encoded in the Fish Stocks provisions ([Section 6 of the *Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547)).
 The Fish Stocks provisions require that major stocks be managed at sustainable levels, specifically at biomass levels above the LRP.
 Furthermore,  Section 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan shall be established to rebuild the stock above the LRP.
 Major fish stocks will be designated under regulations, with the first batch of stocks due to be designated in the fall of 2020.
@@ -31,7 +31,7 @@ The guidance for the development of rebuilding plans in Canada [@dfo2013] states
 2. A desired time to reach the target.
 3. An agreed-upon acceptable probability of reaching the target.
 
-Rebuilding plans should also include planned management measures, milestone objectives, and should undergo regular (every three years) performance reviews, in addition to annual monitoring and evaluation. 
+Rebuilding plans should also include planned management measures (i.e., MPs), milestone objectives, and should undergo regular performance reviews (every three years), in addition to annual monitoring and evaluation. 
 Current guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring.
 
 ## BACKGROUND {#sec:introduction-background}
@@ -54,7 +54,7 @@ The milestone objective is to "achieve positive trends within each 10 year perio
 The current MP for Inside Yelloweye Rockfish aims to keep the total annual catch (commercial, recreational, First Nations food, social and ceremonial (FSC), and survey) below 15 tonnes (see Appendix 9 of @ifmp2018 for details).
 
 The guidance for rebuilding plans in Canada states that there should be a high probability of rebuilding fish stocks out of the critical zone within the stated time-frame [@dfo2013].
-Part of the motivation for this project was the concern, expressed by fisheries managers, that the 56% probability of success stated in the current rebuilding plan [@ifmp2018] is inconsistent with the definition of high probability.
+Part of the motivation for this project was concern, expressed by fisheries managers, that the 56% probability of success stated in the current rebuilding plan [@ifmp2018] is inconsistent with the definition of high probability.
 
 The guidance document also identifies some recommended management measures, which include: keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock [@dfo2013].
 The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [@ifmp2018], which has not been simulation-tested.
@@ -65,13 +65,13 @@ The inside stock is considered to be data-limited, as there is sparse availabili
 
 ## MANAGEMENT STRATEGY EVALUATION (MSE) {#sec:introduction-mse}
 
-Worldwide, the provision of scientific advice for managing fisheries has been moving towards MSE, or management-oriented approaches [e.g., @butterworth1999; @rademeyer2007; @berkson2015; @geromont2015; @punt2016; @carruthers2016].
+Worldwide, the provision of scientific advice for managing fisheries has been moving towards MSE (or management-oriented) approaches [e.g., @butterworth1999; @rademeyer2007; @berkson2015; @geromont2015; @punt2016; @carruthers2016].
 MSE focuses on identifying MPs that perform best, with respect to meeting agreed-upon policy and fishery objectives, when implemented in a "closed-loop" simulation environment (Figure \@ref(fig:mse-chart-basic)).
 In output-controlled fisheries, such as the quota-managed BC groundfish fishery, MPs describe management measures for setting catch limits.
-MPs can vary greatly in their data demands, from very data-rich approaches, including statistical catch-at-age stock assessments with harvest control rules, to simple data rules ("data-limited" approaches), which only rely on catch data and an index of abundance (e.g., @geromont2015; @carruthers2016).
+MPs can vary greatly in their data demands, from very data-rich approaches, including statistical catch-at-age stock assessments with harvest control rules, to simple data rules ("data-limited" approaches), which only rely on catch data and an index of abundance [e.g., @geromont2015; @carruthers2016].
 
-Closed-loop simulation is distinguished from conventional stock assessment approaches because it simulates feedback between implementation of the MPs and the underlying system (the fish stock and its environment), which is described by one or more operating models (OMs).
-This approach takes into account the effect of the MPs on the system, as well as the future data collected from the system and its use in the MPs [@punt2016; @carruthers2018; @anderson2020gfmp].
+Closed-loop simulation is distinguished from conventional stock assessment approaches because it simulates feedback between implementation of MPs and the underlying system (the fish stock and its environment), which is described by one or more operating models (OMs).
+The closed-loop simulation approach takes into account the effect of the MPs on the system, as well as the future data collected from the system and its use in the MPs [@punt2016; @carruthers2018; @anderson2020gfmp].
 
 (ref:fig-mse-chart-basic) Illustration of the fisheries closed-loop simulation process following @punt2016. The management procedure may be based on a simple data rule (e.g., decrease the allowable catch x% if the survey index decreases y%) or it might be an estimation model combined with a harvest control rule.
 
@@ -90,9 +90,9 @@ After several years of development, these packages provide some of the fastest, 
 ### The Management Procedure Framework for Groundfish in British Columbia {#sec:introduction-mp-framework}
 
 Concurrently with the development of this document, a Management Procedure Framework (MP Framework) for Groundfish in British Columbia [@anderson2020gfmp] has been developed for evaluating performance of a wide range of MPs for data-limited groundfish species.
-The MP Framework extensively utilizes the functionality of DLMtool and MSEtool, supported by an R package gfdlm [@gfdlm] written by the authors of @anderson2020gfmp, which houses tools and custom visualizations.
+The MP Framework extensively utilizes the functionality of DLMtool and MSEtool, supported by an R package gfdlm [@gfdlm] written by the authors of @anderson2020gfmp, which houses a suite of software support tools and custom visualizations.
 
-We follow the MP Framework for selecting MPs used to set catch limits for data-limited groundfish stocks [@anderson2020gfmp].
+We follow the MP Framework for selecting MPs to set catch limits for data-limited groundfish stocks [@anderson2020gfmp].
 Our evaluation of the Inside Yelloweye rebuilding plan represents the first application of the MP Framework for providing science advice in support of catch decisions.
 The framework follows six best practice steps described below and in greater detail in @anderson2020gfmp.
 
