@@ -44,11 +44,11 @@ The 2008 COSEWIC assessment and status report for inside and outside Yelloweye R
 Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye Rockfish have used a value of *M* = 0.02 *y*^-1^ [@wood2019].
 
 
-It is likely that natural mortality rates have varied with time due to changes in predator populations in the Strait of Georgia. 
+It is likely that natural mortality rates have varied over time, due to changes in predator populations in the Strait of Georgia. 
 Yelloweye Rockfish occupy a relatively high trophic position [@olson2020] and Steller Sea Lions, Orca Whales (*Orcinus orca*) and Chinook Salmon (*Oncorhynchus tshawytscha*) are the only predators of Yelloweye Rockfish listed in a large data-base of predator-prey interactions (database assembled for @dunne2016; @szoboszlai2015). 
-All three predator species populations have experienced major changes in the last century.
+Populations of all three predator species have experienced large fluctuations in the last century.
 Steller Sea Lion abundance was greatly reduced due to hunting and predator controls, but have now recovered to historic levels (see Appendix F) [@olesiuk2018]. 
-The Southern Resident population of Orca Whales is endangered and the Northern Resident population is threatened [@cosewic2008b] and the cause of decline of both populations is attributed to the declining abundance of Chinook Salmon [@ford2010]. 
+The Southern Resident population of Orca Whales is endangered and the Northern Resident population is threatened [@cosewic2008b]. The cause of decline for both populations is attributed to the declining abundance of Chinook Salmon [@ford2010]. 
 Future projects might investigate the effects of time-varying natural mortality on Inside Yelloweye Rockfish.
 
 ## Rockfish Conservation Areas {#sec:discussion-rca}
@@ -56,10 +56,10 @@ Future projects might investigate the effects of time-varying natural mortality 
 As part of the rockfish conservation strategy, 164 Rockfish Conservation Areas (RCAs), in which fisheries targeting or catching rockfish as bycatch are prohibited, were established in BC waters between 2004-2006 [@yamanaka2010]. 
 There are 130 RCAs in area 4B (Figure \@ref(fig:map-4B)) that protect an estimated 267 km^2 of rockfish habitat, amounting to 22% of available rockfish habitat in inside waters [@haggarty2018]. 
 Although RCAs were established as one measure to help rebuild rockfish populations [@yamanaka2010], this analysis does not consider any possible effects of the closures. 
-Remotely Operated Vehicle (ROV) surveys of RCAs in inside waters found that there was no difference in the abundance or size of Yelloweye Rockfish inside versus outside of RCAs indicating that rockfish populations had not yet recovered at the time of study (3-7 years after RCA establishment) [@haggarty2016b]. 
-It is expected that given the late age at maturity and longevity of rockfishes, it will take upwards of 20 years for long-lived rockfish to show responses to closed areas [@starr2015]. 
+Remotely Operated Vehicle (ROV) surveys of RCAs in inside waters found that there was no difference in the abundance or size of Yelloweye Rockfish inside RCAs at the time of study (3-7 years after RCA establishment) [@haggarty2016b]. 
+It is expected that, given the late age-at-maturity and longevity of rockfishes, it will take upwards of 20 years for populations to show responses to closed areas [@starr2015]. 
 The RCAs in the inside waters have now been in place for 14 to 16 years, so we might expect to find increased densities and sizes of rockfish in RCAs soon. 
-DFO, in partnership with biologists from the Washington Department of Fish and Wildlife (WDFW) and the National Ocean and Atmospheric Administration (NOAA) undertook an ROV survey of several RCAs in the Strait of Georgia in the fall of 2018 on board the CCGS Vector. 
+DFO, in partnership with biologists from the Washington Department of Fish and Wildlife (WDFW) and the National Ocean and Atmospheric Administration (NOAA), undertook an ROV survey of several RCAs in the Strait of Georgia in the fall of 2018 on board the CCGS Vector. 
 Unfortunately, results from this survey were not available in time to be included in this project. 
 
 ## STOCK STATUS {#sec:discussion-status}
