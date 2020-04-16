@@ -1,7 +1,7 @@
 # SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:objectives-metrics}
 
 Clear management and fishery objectives must be identified, along with the performance metrics that measure them.
-Objectives may span a wide range of policy or legislated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., maintaining an average catch or variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
+Objectives may span a wide range of policy or legislated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., maintaining an average catch or reducing variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
 Fully quantified objectives include a metric or target, the desired probability of success, and a time frame to achieve the objective (e.g., probability of maintaining the stock above the LRP is greater than 0.95 [19 times out of 20], over 1.5 generations of the stock).
 Performance metrics are quantified measures of the objectives. In closed-loop simulation, they are calculated in the OM at each time step of the projections.
 
@@ -21,7 +21,7 @@ The proposed core conservation objective is:
 1. Rebuild the stock above the LRP over 56 years (1.5 generations) with at least 95% [19 times out of 20] probability of success.
 
 We adjusted the original rebuilding time-frame of 80 years [@ifmp2018] to 56 years in this analysis, based on the estimated generation time for outside Yelloweye Rockfish [@cox2020], reflecting the guidance that rebuilding should be achieved within 1.5 to 2 generation times [@dfo2013].
-The probability of success was increased from 56% to 95% to reflect rebuilding guidance that the probability of rebuilding should be high, and international best practice, where policies in numerous jurisdictions aim to keep stocks above the LRP with 90-95% probability [18 to 19 times out of 20][@sainsbury2008; @mcilgorm2013].
+The desired probability of success was increased from 56% to 95% to reflect rebuilding guidance that the probability of rebuilding should be high, and international best practice, where policies in numerous jurisdictions aim to keep stocks above the LRP with 90-95% probability [18 to 19 times out of 20][@sainsbury2008; @mcilgorm2013].
 
 We also propose the following additional objectives, further specified in Section \@ref(sec:objectives-metrics-pm):
 
