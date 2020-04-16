@@ -189,6 +189,7 @@ Illustrations of the IDX MPs are provided in @anderson2020gfmp (their Appendix D
 In addition to the empirical MPs described above, we evaluated a surplus production (SP) model, paired with a harvest control rule as a model-based MP.
 Here, we use the surplus production model implemented in MSEtool [@huynh_msetool_2019] and TMB [@tmb], based on @fletcher1978.
 The SP model used in this framework is fully documented in @anderson2020gfmp (their Appendix D).
+Note that the SP model utilizes all available indices in the historical period, but only the HBLL survey in the projection period.
 
 We paired the model with two ramped harvest control rules (Figure \@ref(fig:mp-hcrs)):
 
