@@ -27,12 +27,23 @@ We assessed convergence of the closed-loop simulation by plotting the cumulative
 We deemed 250 replicates sufficient, since the rank order of MPs remained consistent as additional replicates were added (Figure \@ref(fig:converge)).
 
 @anderson2020gfmp recommended filtering MPs with a "satisficing" step, where trial simulations are run to screen out MPs that do not meet a basic set of performance criteria [@miller2010; see @anderson2020gfmp].
-We set the following criteria to determine which MPs are satisficed: LRP 1.5GT > 0.9 and ST C10 > 0.5.
+We initially set the following criteria to determine which MPs are satisficed: LRP 1.5GT > 0.9.
 To determine which MPs would be carried forward as satisficed MPs, we began by assessing average and minimum performance across all candidate MPs for the reference set of OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
 All MPs met the satisficing criterion (LRP 1.5GT > 0.9), both in individual reference set scenarios and averaged across all four reference OMs (Figures \@ref(fig:tigure-avg) and \@ref(fig:tigure-min)).
-Since many MPs also generated low catches, we applied an additional satisficing filter retaining only MPs where average ST C10 > 0.50.
-This resulted in constant-catch TACs of 10 t and 15 t and Islope MPs being satisficed (Figure \@ref(fig:tigure-avg)).
-Applying these criteria resulted in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
+Since many MPs also generated low catches, we applied an additional satisficing filter, retaining only MPs where average ST C10 > 0.50.
+This resulted in only constant-catch TACs of 10 t and 15 t and Islope MPs being satisficed (Figure \@ref(fig:tigure-avg)).
+The `r gfutilities::number_to_word(length(mp_sat))` satisficed MPs were `r gfutilities::commify(sort(mp_sat))` (see Appendix \@ref(app:mps) for descriptions).
+
+Within the reference set, average LRP 1.5GT was `r round2(max(pm_avg_sat$"LRP 1.5GT"))` for all MPs and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
+Minimum LRP 1.5GT was `r round2(max(pm_min_sat$"LRP 1.5GT"))` for all MPs and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
+
+We focus on evaluating trade-offs among satisficed MPs in Section \@ref(sec:results). 
+However, in terms of MPs that did not meet the satisficing criteria (Figure \@ref(fig:proj-not-satisficed-eg)):
+
+- Iratio generated low catches within the first decade but generated high catches later on. There was high variability among replicates in each OM.
+- IDX and IDX_smooth returned gradually lower catches over time. See Appendix \@ref(app:mps) Section \@ref(sec:mp-idx) for details.
+- Iratio and GB_slope generated zero catch in the low catch OM; hence, they did not satisfy the ST C10 > 0.50 criteria.
+- The surplus production MPs generated no or very little catch in the first decade, but increased catches later on, e.g., after 50 years.
 
 (ref:fig-converge)
 Assessing convergence of the closed-loop simulations on consistent rank order of MPs within performance metrics.
@@ -40,14 +51,11 @@ Colours represent individual satisficed and reference MPs.
 Lines that do not cross by the final replicates indicate that rank order among replicates has converged.
 Although not shown, we also checked that the satisficing rules had converged (i.e., the selection of satisficed MPs did not change with additional replicates).
 We only show LRP 1.5GT and ST C10 since these were the main two performance metrics used in the satisficing step.
-Although not shown, we checked the other performance metrics as well.
+The other performance metrics were also checked (not shown).
 
 ```{r converge, fig.cap="(ref:fig-converge)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-convergence.png"))
 ```
-
-For the two performance metrics used in the initial satisficing step within the reference set, average LRP 1.5GT was `r round2(max(pm_avg_sat$"LRP 1.5GT"))` for all MPs and ST C10 varied between `r round2(min(pm_avg_sat$"ST C10"))` and `r round2(max(pm_avg_sat$"ST C10"))` (Figure \@ref(fig:tigure-avg) and \@ref(fig:tigure-panel)).
-Minimum LRP 1.5GT was `r round2(max(pm_min_sat$"LRP 1.5GT"))` for all MPs and ST C10 varied between `r round2(min(pm_min_sat$"ST C10"))` and `r round2(max(pm_min_sat$"ST C10"))` across MPs within the reference set (Figure \@ref(fig:tigure-min) and \@ref(fig:tigure-panel)).
 
 (ref:fig-tigure-avg) Average performance of all candidate MPs across the reference set scenarios.
 MPs are ordered by decreasing performance metric values from top to bottom starting with the left-most performance metric (LRP 1.5GT) and using columns from left to right to break any ties.
@@ -69,14 +77,6 @@ knitr::include_graphics(here("mse/figures/ye-tigure-refset-min.png"))
 ```
 
 \clearpage
-
-We focus on evaluating trade-offs among satisficed MPs in the next section. 
-However, in terms of MPs that did not meet the satisficing criteria (Figure \@ref(fig:proj-not-satisficed-eg)):
-
-- Iratio generated low catches within the first decade but generated high catches later on. There was high variability among replicates in each OM.
-- IDX and IDX_smooth returned gradually lower catches over time. See Appendix \@ref(app:mps) Section \@ref(sec:mp-idx) for details.
-- Iratio and GB_slope generated zero catch in the low catch OM; hence, they did not satisfy the ST C10 > 0.50 criteria.
-- The surplus production MPs generated no or very little catch in the first decade, but increased catches later on, e.g., after 50 years.
 
 (ref:fig-proj-not-satisficed-eg) 
 Examples of MPs that were not satisficed for Scenario (1). 
