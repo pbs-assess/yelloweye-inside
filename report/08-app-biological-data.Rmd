@@ -10,8 +10,8 @@ Inside Yelloweye Rockfish, which reside in area 4B (Figure \@ref(fig:map-4B)), a
 
 ## AGE, SIZE, AND GROWTH {#sec:growth}
 
-Yelloweye Rockfish are a long-lived species, with a reported maximum age of 121 for the outside stock [@keppel2019]. The maximum age for Inside Yelloweye is 101 years, updated from the previously reported max age of 98 years, based on additional recent aging data (Figure \@ref(fig:age-freq)). 
-Age data for inside Yelloweye Rockfish, derived from the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018.
+Yelloweye Rockfish are a long-lived species, with a reported maximum age of 121 *y* for the outside stock [@keppel2019]. The maximum observed age for the inside Yelloweye Rockfish stock is 101 years, updated from the previously reported max age of 98 years, based on additional recent aging data (Figure \@ref(fig:age-freq)). 
+Age data for Inside Yelloweye Rockfish, derived from the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018.
 Directed hard-bottom longline (HBLL) surveys began in Area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged.
 Proportions-at-age of Yelloweye Rockfish are shown by year and sex in Figure \@ref(fig:age-freq). It is assumed that all ages are independent of subarea.
 
@@ -21,7 +21,7 @@ $$
 \log (W_i) \sim \operatorname{Student-t}(df = 3, \log(a) + b \log(L_i), \sigma),
 $$
 
-with $W_i$ and $L_i$ representing the weight and length for fish $i$ and $\sigma$ representing the observation error scale.
+with $W_i$ and $L_i$ representing the weight and length for fish $i$, respectively, and $\sigma$ representing the observation error scale.
 We set the degrees of freedom of the Student-t distribution to 3 to be robust to outliers [@anderson2019synopsis].
 The variables $a$ and $b$ represent the estimated length-weight parameters.
 Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length-age). The length-age growth curve is a von Bertalanffy model of the form:
