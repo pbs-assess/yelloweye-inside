@@ -78,8 +78,8 @@ We used the same historical time series of reconstructed recreational catch for 
 
 ### Creel survey data 1982-2019 {#sec:creel-catch-data}
 
-Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys.
-The surveys cover Pacific Fishery Management Areas (PFMAs) 12--20, 28, and 29 [@zetterberg2010]. Rockfish catch has been recorded in areas 13--19, 28, and 29 since 1982 but was not enumerated by species until 2000.
+Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys in all PFMAs (Figure \@ref(fig:map-4B)).
+The surveys cover PFMAs 12--20, 28, and 29 [@zetterberg2010]. Rockfish catch has been recorded in areas 13--19, 28, and 29 since 1982 but was not enumerated by species until 2000.
 In PFMA 12 rockfish have been counted by species since 2000, with no records prior to 2000 [@zetterberg2010].
 
 We followed the same method as in @yamanaka2011 to estimate the recreational catch of Inside Yelloweye Rockfish from 1982 to 1999.
