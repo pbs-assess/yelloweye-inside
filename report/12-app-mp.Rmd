@@ -33,7 +33,7 @@ $$
 \frac{I_{y-3} + I_{y-4} + I_{y-5}} {3} \right. ,
 $$
 
-where $\alpha$ is the ratio of the mean index in the most recent two years of the time series and the mean index in years 3--5 before the current year.
+where $\alpha$ is the ratio of the mean index in the most recent two years and the mean index in years 3--5 before the current year.
 
 We evaluated two configurations of the index-ratio MPs, which differ in the time periods used to calculate $\alpha$, applied annually:
 
@@ -97,6 +97,7 @@ $$
 $$
 
 where, in the first projection year, $\textrm{TAC}^*$ is $(1-x)$ multiplied by the mean catch from the last 5 historical years.
+We set $x=0$ for all configurations of the Islope MP.
 In subsequent years, $\textrm{TAC}^*$ is the TAC from the previous year.
 Again, $\lambda$ is a gain or smoothing parameter, and $\beta_I$ is the slope of the ln abundance index over the past $n$ years.
 
@@ -120,7 +121,7 @@ Illustrations of the Islope MPs are provided in @anderson2020gfmp (their Appendi
 
 #### IDX: Index-based MP from @cox2020 {#sec:mp-idx}
 
-This MP was used in the rebuilding plan for outside Yelloweye Rockfish in BC [@cox2020].
+This MP was used in the rebuilding plan for Outside Yelloweye Rockfish in BC [@cox2020].
 The MP assigns TAC based on:
 
 $$
@@ -145,7 +146,7 @@ The maximum increase in TAC is capped at $\delta_\textrm{max} = 0.25$ by default
 This means that the TAC in any one year cannot increase by more than 25%, implementing a "slow up" behaviour of the MP.
 The parameters $\delta_\textrm{min}$ and $\delta_\textrm{max}$ could possibly be additionally tuned to adjust the behaviour of the MP.
 
-Note that the slow-up--fast-down behaviour due to how $\delta_\textrm{min}$ and $\delta_\textrm{max}$ are set here, combined with the simulated survey index variability, can result in the MP "ratcheting" down the TAC despite an overall increasing index (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
+Note that the "slow-up--fast-down" behaviour determined by settings for $\delta_\textrm{min}$ and $\delta_\textrm{max}$, combined with the simulated survey index variability, can result in the MP "ratcheting" down the TAC despite an overall increasing index (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
 Furthermore, we implemented the MP exactly as described above and in @cox2020, which only uses $\textrm{TAC}_\textrm{Floor}$ if $\Delta I_y \leq \delta_\textrm{min}$.
 This does not stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$ (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
 
@@ -193,18 +194,19 @@ Note that the SP model utilizes all available indices in the historical period, 
 
 We paired the model with two ramped harvest control rules (Figure \@ref(fig:mp-hcrs)):
 
-1. HCR-8040: Above 80% of estimated *B*/*B*~MSY~, $F_y = \hat{F}_\textrm{MSY}$; at 40% of estimated *B*/*B*~MSY~, $F_y = 0$; between 40% and 80%, interpolate the adjustment factor linearly.
-Note that this reference point is based on *B*~MSY~ whereas HCR-4010 is based on *B*~0~.
+1. HCR-8040: Above 80% of $\hat{B}/\hat{B}_\textrm{MSY}$, $F_y = \hat{F}_\textrm{MSY}$; at or below 40% of estimated $\hat{B}/\hat{B}_\textrm{MSY}$, $F_y = 0$; between 40% and 80%, interpolate the adjustment factor linearly.
+Note that the hat notation indicates the reference point was estimated in the SP MP. 
 This HCR creates operational control points that mimic the provisional biological upper stock reference and limit reference points from DFO's Sustainable Fisheries Framework (Figure \@ref(fig:pa-illustration)), where operational control points define the thresholds of management action (i.e., reducing fishing mortality).
 
-2. HCR-4010: Above 40% of estimated *B*/*B*~0~ (biomass divided by unfished equilibrium spawning biomass), $F_y = \hat{F}_\textrm{MSY}$; at 10% of estimated *B*/*B*~0~, $F_y = 0$; between 10% and 40%, interpolate the adjustment factor linearly.
+2. HCR-4010: Above 40% of estimated $\hat{B}/\hat{B}_0$ (biomass divided by unfished equilibrium spawning biomass), $F_y = \hat{F}_\textrm{MSY}$; at 10% of estimated $\hat{B}/\hat{B}_0$, $F_y = 0$; between 10% and 40%, interpolate the adjustment factor linearly.
 This is a commonly applied HCR in the fisheries literature and on the US West Coast [e.g., @berger_2019].
+Note that this reference point is based on MP estimates of *B*~0~, whereas HCR-8040 is based on *B*~MSY~.
 
 We evaluated two configurations of the SP model MPs, applied every five years:
 
-- SP_8040_5u: SP Model paired with HCR-8040
+- SP_8040_5u: SP model paired with HCR-8040
 
-- SP_4010_5u: SP Model paired with HCR-4010
+- SP_4010_5u: SP model paired with HCR-4010
 
 We also evaluated the same two configurations, applied every 10 years:
 
