@@ -40,12 +40,13 @@ display_om <- function(om, slot) {
 
 # INSIDE YELLOWEYE ROCKFISH OPERATING MODEL DEFINITION {#app:desc-om-yelloweye}
 
-Here we demonstrate the specification of the initial OM before conditioning with the stock reduction analysis (SRA) model.
-We use a convenience function `display_om()` we have written to display the contents of various parameters in the OMs.
+Here we describe the specification of the initial OM before conditioning with the SRA model.
+The operating model is fully described in Appendix A of @anderson2020gfmp.
+We use a convenience function `display_om()` to display the contents of various parameters in the OMs.
 The object `oms` is a list of the operating models across the various scenarios.
-If a given "slot" or OM parameter is entered as a single value then `display_om()` outputs a single (or range) of values.
+If a given "slot" or OM parameter is entered as a single value then `display_om()` outputs a single value.
 Where a range of values is displayed, this represents the lower and upper boundaries of a uniform distribution.
-Where a "slot" or OM parameter is defined based on a stochastic distribution other than a uniform distribution, we demonstrate the sampling from that distribution here along with the stochastic seed used to generate consistent samples.
+Where a "slot" or OM parameter is defined based on a stochastic distribution other than a uniform distribution, we demonstrate the sampling from that distribution along with the stochastic seed used to generate consistent samples.
 
 ## STOCK SLOT DESCRIPTIONS {#app:desc-stock-yelloweye}
 
@@ -174,11 +175,10 @@ display_om(oms, "t0")
 
 *Maturity ogive.*
 
-
 Maturity was directly input as an age-based function.
 Therefore the default DLMtool slots `L50` and `L50_95` were not used.
 Female maturity-at-age was estimated using maturity and age data from the survey data collected in Area 4B (Appendix \@ref(app:biological-data)).
-The minimum age observed to be mature was seven years and it assumed that younger ages were all immature.
+The minimum observed age of maturity was seven years and it assumed that younger ages were all immature.
 
 ```{r desc-stock-maturity, eval = FALSE, echo = TRUE}
 create_maturity_ogive <- function(A50, A95, maxage, Amin) {
@@ -215,18 +215,6 @@ This parameter was estimated for both males and females combined, as no sexual d
 
 ```{r desc-stock-b-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "b")
-```
-<!-- slot-chunk-end -->
-
-<!-- slot-chunk-begin -->
-### Fdisc {#app:desc-stock-fdisc-yelloweye}
-
-*Fraction of discarded fish that die. Uniform distribution.*
-
-Not used, we assumed all sources of mortality are included in the catch data.
-
-```{r desc-stock-fdisc-yelloweye, results = knitr_results, echo = knitr_echo}
-display_om(oms, "Fdisc")
 ```
 <!-- slot-chunk-end -->
 
@@ -271,7 +259,7 @@ knitr::include_graphics(here::here("mse/figures/HBLL-selectivity.png"))
 ```
 
 Selectivities-at-age in the recreational and commercial fleets were based on the values used in @cox2020 (Figure \@ref(fig:sra-selectivity)).
-Selectivity was fixed in the SRA model, for all OM scenarios.
+Commercial and recreational selectivity was fixed in the SRA model, for all OM scenarios.
 For the recreational fleet, the age-at-50% and 95% selectivity was 6.7 *y* and 11.5 *y*, respectively.
 For the commercial hook and line fleet, the age-at-50% and 95% selectivity was 14.4 *y* and 21 *y*, respectively.
 
@@ -285,7 +273,7 @@ For the projection period ($t > t_c$), the DLMtool OM only accommodates one fish
 In analyses with more than one fishing fleet, selectivity-at-age is passed from the SRA back to the DLMtool OM as an average catch-weighted selectivity function, based on normalized SRA estimates of relative fishing mortality by age and year $F_{a,y}$ (see Appendix A of @anderson2020gfmp).
 The closed-loop simulation projections assume that the relative selectivities across fleets remains constant, as estimated by the SRA in the final historical year($t_c$) (Figure \@ref(fig:om-selectivity)).
 
-(ref:fig-om-sel) Selectivity-at-age in years $t \geq t_c$ for the combined commercial and recreational fleets.
+(ref:fig-om-sel) Selectivity-at-age in years $t \geq t_c$ for the combined commercial and recreational fleets in the OM projections.
 
 ```{r om-selectivity, fig.cap="(ref:fig-om-sel)", out.width="4.5in"}
 knitr::include_graphics(here::here("mse/figures/fishery-selectivity-terminal-year.png"))
