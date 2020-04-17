@@ -83,13 +83,11 @@ The surveys cover PFMAs 12--20, 28, and 29 [@zetterberg2010]. Rockfish catch has
 In PFMA 12 rockfish have been counted by species since 2000, with no records prior to 2000 [@zetterberg2010].
 
 We followed the same method as in @yamanaka2011 to estimate the recreational catch of Inside Yelloweye Rockfish from 1982 to 1999.
-For PFMAs other than PFMA 12, first the average proportion of Yelloweye Rockfish to total rockfish catch was calculated for each PFMA in 2000 and 2001.
+First, for all PFMAs other than PFMA 12, the average proportion of Yelloweye Rockfish to total rockfish catch was calculated for each PFMA in 2000 and 2001.
 The average proportions were then used to derive estimates of Yelloweye Rockfish catch from the total rockfish catch by PFMA between 1982--1999.
-To estimate catch of Yelloweye Rockfish in PFMA 12 for the years 1982--1999, the average proportion of Yelloweye Rockfish in the total rockfish catch over 2000 and 2001 was calculated and then applied to the total rockfish catch for the rest of the SOG in each year (Table \@ref(tab:recbyarea)).
+The previous assessment assumed that the proportion of Yelloweye Rockfish catch in PFMA 12, out of the total Yelloweye catch in the SOG, would remain relatively constant over time. Therefore, to estimate catch of Yelloweye Rockfish in PFMA 12 for the years 1982--1999, the proportion of Yelloweye Rockfish caught in PFMA 12, out of the total Yelloweye Rockfish caught in the SOG in 2000 and 2001, was calculated. The average proportion over 2000 and 2001 was then multiplied by the total Yelloweye Rockfish catch estimated for the rest of the SOG (sum of areas 13--19, 28 and 29) to estimate Yelloweye Rockfish catch in PFMA 12 by year. (Table \@ref(tab:recbyarea)).
 To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000.
 We converted rockfish pieces to weight by multiplying by 2.49 kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
-
-<!-- RF: If the proportion of YE from PFMA 12 was applied to the total rockfish catch from the rest of SOG wouldn't this greatly overestimate the catch in Area 12? Wouldn't it be essentially double counting the catch from all other areas (more or less, depending on the proportion)?-->
 
 \clearpage
 
