@@ -1,6 +1,10 @@
 # COSEWIC CONSIDERATIONS {#app:cosewic}
 
-The Inside Yelloweye stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@cosewic2008], and is anticipated to be reassessed by the COSEWIC in 2020. COSEWIC and DFO have different criteria for assessing the status of marine fish stocks. DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are focused on the probability of decline over past generations and the probability of continued declines in the future [@cosewic2015]. COSEWIC applies a set of quantitative assessment criteria and guidelines to develop and assign a status to the stock in question. To inform the reassessment of Inside Yelloweye Rockfish, we report results for two of COSEWIC's quantitative assessment criteria that may be applicable to this stock, Metric A and Metric E.
+The Inside Yelloweye Rockfish stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@cosewic2008], and is anticipated to be reassessed by COSEWIC in 2020.
+COSEWIC and DFO have different criteria for assessing the status of marine fish stocks.
+DFO focuses on current status relative to some reference state or threshold, while COSEWIC criteria (based on IUCN Red List categories) are focused on the probability of decline over past generations and the probability of continued declines in the future [@cosewic2015].
+COSEWIC applies a set of quantitative assessment criteria and guidelines to develop and assign a status to the stock in question.
+To inform the reassessment of Inside Yelloweye Rockfish, we report results for two of COSEWIC's quantitative assessment criteria that may be applicable to this stock, Metric A and Metric E.
 
 ## COSEWIC METRIC A
 
@@ -9,12 +13,12 @@ Note that three generations under this definition is 114 years but since our his
 These probability thresholds are used to assign status designations of endangered, threatened, and species of special concern respectively, although other factors, such as cause of decline, are also considered [@cosewic2015].
 To inform the COSEWIC re-assessment of Inside Yelloweye Rockfish, we report the following for each OM (Figure \@ref(fig:cosewic-metrics)):
 
-1. P70 - Probability that the stock is below 70% of *B*~1918~ after three generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} > 0.7]$
-2. P50 - Probability that the stock is below 50% of *B*~1918~ after three generations
-3. P30 - Probability that the stock is below 30% of *B*~1918~ after three generations
+1. P70 - Probability that the stock is below 70% of *B*~1918~ after three generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} > 0.7]$.
+2. P50 - Probability that the stock is below 50% of *B*~1918~ after three generations.
+3. P30 - Probability that the stock is below 30% of *B*~1918~ after three generations.
 
 (ref:fig-cosewic-metrics)
-Results for COSEWIC metric A, the probability that the stock is below 70%, 50%, and 30% of *B*~1918~ after the past three generations, for each OM, where one generation is defined as 38 years. 
+Results for COSEWIC metric A, the probability that the stock is below 70%, 50%, and 30% of *B*~1918~ after the past three generations, for each OM scenario, where one generation is defined as 38 years. 
 
 ```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
@@ -22,20 +26,20 @@ knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
 
 ## EXTINCTION RISK - COSEWIC METRIC E
 
-COSEWIC Metric E measures the probability of extinction of the stock. A stock is designated as endangered if the extinction risk is 20% within 20 years (or five generations, whichever is longer) and threatened if there is a 10% probability of extinction within 10 years. Criteria E is seldom applied to marine fishes, due to heavy reliance on data and assumptions for parameters that are inputs to population viability analyses (Ross Claytor, COSEWIC, pers.comm, January 29, 2020). Another issue with estimating extinction risk involves setting some threshold for extinction, which is not explicitly defined in the COSEWIC criteria [@cosewic2015].  
+COSEWIC Metric E measures the probability of future extinction of the stock. A stock is designated as endangered if the probability of extinction is 20% within 20 years (or five generations, whichever is longer) and threatened if there is a 10% probability of extinction within 10 years. Criteria E is seldom applied to marine fishes, due to heavy reliance on data, and assumptions about parameters required as inputs to population viability analyses (Ross Claytor, COSEWIC, pers.comm, January 29, 2020). Another issue with estimating extinction risk involves setting some threshold for extinction, which is not explicitly defined in the COSEWIC criteria [@cosewic2015].  
 
 In order to evaluate the probability of future extinction under candidate MPs, stock-specific extinction thresholds must be assigned.
 Below these thresholds the stock would be considered functionally extirpated or extinct.
 We propose two candidate extinction thresholds of 2%*B*~0~ and 5%*B*~0~.
-These arbitrary thresholds were informed by precedents in the literature [e.g., @forrest2015 used 5%*B*~0~] and historical depletion estimates for other species in the Strait of Georgia e.g. Lingcod in the Strait of Georgia have been depleted to as low as 2%*B*~0~ but are recovering [@logan2005]. 
+These arbitrary thresholds were informed by precedents in the literature [e.g., @forrest2015 used 5%*B*~0~] and historical depletion estimates for other species in the Strait of Georgia e.g. Lingcod in the Strait of Georgia have been estimated to be depleted to as low as 2%*B*~0~ but are recovering [@logan2005]. 
 In the future, simulation-testing of alternative thresholds could be used to identify stock-specific extinction thresholds.
 
-Using a projection period of 100 years, we calculated the probability that the stock remains above 2% and 5% *B*~0~ for each OM scenario individually (Figure \@ref(fig:cosewic-all)), and the average probability that the stock remains above each threshold across all scenarios (Figure \@ref(fig:cosewic-avg)):
+Using a projection period of 100 years, we calculated the probability that the stock remains above 2% and 5% *B*~0~ under the five satisficed MPs for each OM scenario individually (Figure \@ref(fig:cosewic-all)), and the average probability that the stock remains above each threshold across all scenarios (Figure \@ref(fig:cosewic-avg)):
 
 1. 2%B~0~ = $P[B_y > 0.02 B_0]$
 2. 5%B~0~ = $[B_y > 0.05 B_0]$
 
-The results of this analysis show that there is a very low risk of extinction under these thresholds. 
+The results of this analysis show that there is a very low risk of extinction under the satisficed MPs, using these thresholds.
 
 (ref:fig-cosewic-all)
 Probability that the Inside Yelloweye Rockfish stock remains above 2% and 5% of *B*~0~, by OM and MP. 
