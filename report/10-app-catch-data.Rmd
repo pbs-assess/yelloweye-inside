@@ -89,8 +89,6 @@ The previous assessment assumed that the proportion of Yelloweye Rockfish catch 
 To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000.
 We converted rockfish pieces to weight by multiplying by 2.49 kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
 
-<!-- RF: If the proportion of YE from PFMA 12 was applied to the total rockfish catch from the rest of SOG wouldn't this greatly overestimate the catch in Area 12? Wouldn't it be essentially double counting the catch from all other areas (more or less, depending on the proportion)?-->
-
 \clearpage
 
 ```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
