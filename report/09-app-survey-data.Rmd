@@ -10,19 +10,19 @@ The survey uses snap-type circle hooks and squid bait with a two-hour soak time.
 Hook-by-hook data, which has been collected since the start of the survey, is electronically collected and stored in a database.
 For further details on survey design see @lochead2004.
 
-The survey area is divided into northern and southern regions, which are fished in alternating years.
+The survey area is divided into northern and southern regions (Figure \@ref(fig:map-HBLL-NS)), which are fished in alternating years.
+The border between the two regions occurs approximately at the northern ends of Pacific Fishery Management Areas (PFMAs) 14 and 15 (Figure \@ref(fig:map-4B)).
 However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
 
 (ref:fig-map-HBLL-NS) Map of HBLL survey blocks indicating the northern (blue) and southern (green) regions. RCAs (orange blocks) are also shown.
 
-```{r map-map-HBLL-NS, fig.cap="(ref:fig-map-4B)", out.width="3.8in"}
+```{r map-HBLL-NS, fig.cap="(ref:fig-map-HBLL-NS)", out.width="3.8in"}
 knitr::include_graphics(here::here("figs/YE_Inside_2019_HBLL_L.png"))
 ```
 
-
 - The survey did not take place in 2006 and 2017.
 - The length of the survey has varied annually, and has lead to inconsistencies in the geographic extent surveyed between years.
-- Desolation Sound, which falls between the northern and the southern regions, is allocated as part of the southern region, but was sampled as part of the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. Catch rates of Yelloweye Rockfish are highest in Desolation Sound (PFMA 15; Figure \@ref(fig:map-4B)). Therefore, we expect the lack of sampling in 2009 and 2018 to have an effect on survey estimates from the southern survey.
+- Desolation Sound (PFMA 15) is allocated as part of the southern region, but was sampled as part of the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. Catch rates of Yelloweye Rockfish are highest in Desolation Sound (PFMA 15; Figure \@ref(fig:map-4B)). Therefore, we expect the lack of sampling in 2009 and 2018 to have an effect on survey estimates from the southern survey.
 - The full southern survey was not completed in 2009 where only 38 blocks were fished in the southern Strait of Georgia, and only between Nanaimo and Victoria. This is in contrast to normal years when approximately 70 blocks are fished as far north as Campbell River. Catch rates of most rockfish species caught on this survey tend to decline from the north to the south, so this could also have a major effect on the survey index in that year.
 
 We applied a geostatistical spatiotemporal model to standardize of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design (Section \@ref(sec:hbll-spatiotemporal)).
