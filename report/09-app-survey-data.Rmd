@@ -15,10 +15,11 @@ However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
 
 - The survey did not take place in 2006 and 2017.
 - The length of the survey has varied annually, and has lead to inconsistencies in the geographic extent surveyed between years.
-- Desolation Sound, which falls between the northern and the southern regions, is supposed to be sampled in the southern region, but was sampled as part of the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. Catch rates of Yelloweye are highest in Desolation Sound (Area 15) so we expected the lack of sampling in 2009 and 2018 to have an effect on survey estimates from the southern survey.
-- The full southern survey was not achieved in 2009 where only 38 blocks were fished in the southern Strait of Georgia between Nanaimo and Victoria. This is in contrast to normal years when approximately 70 blocks are fished as far north as Campbell River. Catch rates of most rockfish species caught on this survey decline from the north to the south, so this could also have a major effect on the survey index in that year.
+- Desolation Sound, which falls between the northern and the southern regions, is allocated as part of the southern region, but was sampled as part of the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. Catch rates of Yelloweye Rockfish are highest in Desolation Sound (Area 15) so we expect the lack of sampling in 2009 and 2018 to have an effect on survey estimates from the southern survey.
+- The full southern survey was not completed in 2009 where only 38 blocks were fished in the southern Strait of Georgia, and only between Nanaimo and Victoria. This is in contrast to normal years when approximately 70 blocks are fished as far north as Campbell River. Catch rates of most rockfish species caught on this survey tend to decline from the north to the south, so this could also have a major effect on the survey index in that year.
 
-We applied a geostatistical spatiotemporal model standardization of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design (Section \@ref(sec:hbll-spatiotemporal)). We confirmed, via simulation, that this approach can "stitch" together the north and south survey regions (Section \@ref(sec:hbll-sim)).
+We applied a geostatistical spatiotemporal model to standardize of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design (Section \@ref(sec:hbll-spatiotemporal)).
+We confirmed, via simulation, that this approach can "stitch" together the north and south survey regions with relatively little bias (Section \@ref(sec:hbll-sim)).
 
 ### Hook competition {#sec:hbll-hook-competition}
 
