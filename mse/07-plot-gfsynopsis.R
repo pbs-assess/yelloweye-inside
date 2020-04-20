@@ -23,20 +23,27 @@ vb_f <- fit_vb(dat$survey_samples, sex = "female", method = "tmb",
 vb_a <- gfplot::fit_vb(dat$survey_samples, sex = "all", method = "tmb",
                        too_high_quantile = 1, check_convergence_tmb = check_convergence_tmb,
                        tmb_init = tmb_init)
+
+#----------------------------------------------------
+# use this plot to plot vb for both sexes combined
 # plot_growth(object_all = vb_a) + geom_line(data = vb_a$predictions, aes(age, length)) +
 #   guides(col = FALSE, lty = FALSE)  +
 #   ggtitle("Growth")
+#----------------------------------------------------
 
+#----------------------------------------------------
+# use this section to plot both male and female, as well as combined parameters
 g <- plot_growth(object_f = vb_f, object_m = vb_m, lab_x = 0.6, lab_x_gap = 0.20) +
   geom_line(data = vb_a$predictions, aes(age, length)) +
   guides(col = FALSE, lty = FALSE)  +
   ggtitle("Growth")
 
-ann_vb(g, vb_a$pars,
+gfplot:::ann_vb(g, vb_a$pars,
   "Both sexes", col = "black",
   x = 0.35*max(vb_a$predictions$age),
   y = 0.36*max(vb_a$predictions$length),
   gap = 0.06 * max(vb_a$predictions$length))
+#-----------------------------------------------------
 
 ggsave("mse/figures/vb.png", width = 4, height = 3)
 
