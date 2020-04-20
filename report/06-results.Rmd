@@ -19,7 +19,6 @@ In general, variation performance metric values for any one MP across reference-
 
 The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)) further demonstrate performance across the various MPs and reference-set OMs.
 We note that none of the biomass projections predicted the stock to be below the LRP in the first year of the projection period, and all MPs achieved continuous growth throughout the projection period, albeit at different rates (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
-The reference MP FMSYref suggests that catches could be increased without increasing the likelihood of falling below the LRP. This is due to high probability that the stock is currently above the LRP, across the reference set scenarios. 
 
 Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
 Within the reference set and across all MPs, only Scenario (2) produced some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
