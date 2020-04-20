@@ -73,7 +73,7 @@ MPs can vary greatly in their data demands, from very data-rich approaches, incl
 Closed-loop simulation is distinguished from conventional stock assessment approaches because it simulates feedback between implementation of MPs and the underlying system (the fish stock and its environment), which is described by one or more operating models (OMs).
 The closed-loop simulation approach takes into account the effect of the MPs on the system, as well as the future data collected from the system and its use in the MPs [@punt2016; @carruthers2018; @anderson2020gfmp].
 
-(ref:fig-mse-chart-basic) Illustration of the fisheries closed-loop simulation process following @punt2016. The management procedure may be based on a simple data rule (e.g., decrease the allowable catch x% if the survey index decreases y%) or it might be an estimation model combined with a harvest control rule.
+(ref:fig-mse-chart-basic) Illustration of the fisheries closed-loop simulation process from @anderson2020gfmp following @punt2016. The management procedure may be based on a simple data rule (e.g., decrease the allowable catch x% if the survey index decreases y%) or it might be an estimation model combined with a harvest control rule.
 
 ```{r mse-chart-basic, fig.cap="(ref:fig-mse-chart-basic)", out.width="6.3in"}
 knitr::include_graphics(here::here("figs/mse-chart-simple2.png"))
@@ -89,8 +89,8 @@ After several years of development, these packages provide some of the fastest, 
 
 ### The Management Procedure Framework for Groundfish in British Columbia {#sec:introduction-mp-framework}
 
-Concurrently with the development of this document, a Management Procedure Framework (MP Framework) for Groundfish in British Columbia [@anderson2020gfmp] has been developed for evaluating performance of a wide range of MPs for data-limited groundfish species.
-The MP Framework extensively utilizes the functionality of DLMtool and MSEtool, supported by an R package gfdlm [@gfdlm] written by the authors of @anderson2020gfmp, which houses a suite of software support tools and custom visualizations.
+Concurrently with the development of this document, a management procedure framework (MP Framework) for Groundfish in British Columbia [@anderson2020gfmp] has been developed for evaluating performance of a wide range of MPs for data-limited groundfish species.
+The MP Framework uses the functionality of DLMtool and MSEtool extensively, supported by an R package gfdlm [@gfdlm] written by the authors of @anderson2020gfmp, which houses a suite of software support tools and custom visualizations.
 
 We follow the MP Framework for selecting MPs to set catch limits for data-limited groundfish stocks [@anderson2020gfmp].
 Our evaluation of the Inside Yelloweye rebuilding plan represents the first application of the MP Framework for providing science advice in support of catch decisions.
@@ -100,8 +100,7 @@ The best practice steps are based on a review by @punt2016, who identified five 
 An additional first step of the MP Framework, defining the decision context, was identified by @gregory2012 and @cox2016.
 In large part, the DLMtool software has been designed to allow practitioners to follow these steps [Figure \@ref(fig:mse-chart); @carruthers2018].
 
-
-(ref:fig-mse-chart) The steps of the MSE process following @punt2016 as implemented in DLMtool. Adapted from @carruthers2018. This figure expands on Figure \@ref(fig:mse-chart-basic).
+(ref:fig-mse-chart) The steps of the MSE process following @punt2016 as implemented in DLMtool. Copied from @anderson2020gfmp and adapted from @carruthers2018. This figure expands on Figure \@ref(fig:mse-chart-basic).
 
 ```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("figs/mse-chart.pdf"))
@@ -109,7 +108,7 @@ knitr::include_graphics(here::here("figs/mse-chart.pdf"))
 
 The six steps are as follows:
 
-  Step 1: Define the decision context.
+  Step 1: Definition of the decision context.
 
   Step 2: Selection of objectives and performance metrics.
 

@@ -148,7 +148,7 @@ The parameters $\delta_\textrm{min}$ and $\delta_\textrm{max}$ could possibly be
 
 Note that the "slow-up--fast-down" behaviour determined by settings for $\delta_\textrm{min}$ and $\delta_\textrm{max}$, combined with the simulated survey index variability, can result in the MP "ratcheting" down the TAC despite an overall increasing index (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
 Furthermore, we implemented the MP exactly as described above and in @cox2020, which only uses $\textrm{TAC}_\textrm{Floor}$ if $\Delta I_y \leq \delta_\textrm{min}$.
-This does not stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$ (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
+This does *not* stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$ (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
 
 This MP can be additionally smoothed:
 
@@ -190,7 +190,7 @@ Illustrations of the IDX MPs are provided in @anderson2020gfmp (their Appendix D
 In addition to the empirical MPs described above, we evaluated a surplus production (SP) model, paired with a harvest control rule as a model-based MP.
 Here, we use the surplus production model implemented in MSEtool [@huynh_msetool_2019] and TMB [@tmb], based on @fletcher1978.
 The SP model used in this framework is fully documented in @anderson2020gfmp (their Appendix D).
-Note that the SP model utilizes all available indices in the historical period, but only the HBLL survey in the projection period.
+Note that the SP model uses all available indices in the historical period, but only the HBLL survey in the projection period.
 
 We paired the model with two ramped harvest control rules (Figure \@ref(fig:mp-hcrs)):
 

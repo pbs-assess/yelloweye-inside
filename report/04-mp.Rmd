@@ -6,7 +6,7 @@ DLMtool includes a comprehensive set of data-limited MPs that make different typ
 @anderson2020gfmp excluded certain MPs from the MP Framework that had requirements that would rarely be met for BC groundfish stocks.
 Excluded MPs were those that required: knowledge of absolute abundance; recent age-composition data; knowledge of depletion; and knowledge of steepness (*h*) of the stock-recruit relationship, since these are likely to be major axes of uncertainty for the stocks to which this framework will be applied.
 While it is necessary to explore these axes of uncertainty within OMs, implementing MPs that require knowledge of these factors would require many additional assumptions.
-@anderson2020gfmp also adjusted some of the DLMtool MPs to accommodate the types of data available for BC groundfish (e.g., biennial surveys in several management areas), or to reflect fishery operations.
+@anderson2020gfmp also adjusted some of the DLMtool MPs to accommodate the types of data available for BC groundfish (e.g., biennial surveys in several management areas).
 
 The MP Framework only considers MPs that make TAC recommendations, because most groundfish stocks are managed by quotas and TACs.
 A library of all MPs considered in the MP Framework is provided in @anderson2020gfmp (their Appendix D).
