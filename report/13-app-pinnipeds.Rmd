@@ -20,7 +20,7 @@ Steller Sea Lion abundance in BC is approximately 1.25 fold higher in the winter
 Using this proportion, they estimated the number of Stellar Sea Lions in 4B decreased to a low of around 500 animals in 1970 and then increased to approximately the abundance recorded at the beginning of the time series in 1913 (1,897 in 1913, vs. 1,837 in 2010).
 Since 2010, Steller Sea Lion counts in BC have continued to increase [@olesiuk2018]; however, the estimated abundance from the 2017 survey falls within the CI of the 2013 estimate [@majewski2020].   
 
-Mortality rates of Yelloweye Rockfish from Steller Sea Lion predation were probably lower in the second half of the 1900's (1959 and 1999), when fewer than 1,000 animals were estimated to be in inside waters (data presented in Tables F4 and F5 of [@yamanaka2011]) and have likely increased with the recovery of the Steller Sea Lion population to a level similar to, or higher than it was in the early 1900's.
+Mortality rates of Yelloweye Rockfish from Steller Sea Lion predation were probably lower in the second half of the 1900's (1959 and 1999), when fewer than 1,000 animals were estimated to be in inside waters (data presented in Tables F4 and F5 of @yamanaka2011) and have likely increased with the recovery of the Steller Sea Lion population to a level similar to, or higher than it was in the early 1900's.
 Further investigations into Steller Sea Lion predation of Yelloweye Rockfish in space and time would be useful to refine mortality estimates as would methods to incorporate time-varying mortality. 
 
 
