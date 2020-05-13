@@ -247,6 +247,8 @@ For most of the time series, set-by-set catch of rockfish has been recorded.
 Beginning in 2019, hook-by-hook data for all captured species were collected on board, along with biological data for rockfish.
 We use a spatiotemporal model to estimate the density of Yelloweye Rockfish per km^2^. We calculated the area swept by multiplying the number of hooks deployed by the estimated distance between hooks (8 ft spacing) and the estimated width swept (the length of two gagnions).
 
+The Dogfish survey is not designed to index Rockfish, so there are several important differences between the inside HBLL and Dogfish survey designs. Perhaps the most significant difference is that the HBLL specifically targets habitats suitable for rockfish (i.e. hard bottom), whereas the Dogfish survey visits sites that were important in the commercial fishery that have mainly soft sediment bottoms. The Dogfish survey also uses slightly larger circle hooks than the HBLL survey; herring bait instead of squid; fishes 300 hooks per set instead of 225; and the hooks are spaced 1.8m apart instead of 2.4m. We use the Dogfish survey in this analysis because it provides the longest time series of fishery independent data for inside Yelloweye Rockfish and because it was used in the previous assessment in 2011. 
+
 ### Hook comparison {#sec:dog-hook-comparison}
 
 The survey fished with J hooks originally and then changed to circle hooks in 2005.
