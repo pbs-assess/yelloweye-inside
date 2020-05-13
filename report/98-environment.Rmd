@@ -51,18 +51,22 @@ get_sha <- function(path) {
   }
   out
 }
-sha_gfmp <- get_sha("pbs-assess/gfmp")
+# sha_gfmp <- get_sha("pbs-assess/gfmp")
+sha_gfmp <- "c5da749"
 sha_gfdlm <- get_sha("pbs-assess/gfdlm")
+sha_gfdlm <- "b895686"
 # sha_gfdata <- get_sha("pbs-assess/gfdata")
-sha_gfdata <- "7e075bc"
-sha_gfplot <- get_sha("pbs-assess/gfplot")
+sha_gfdata <- "7292039"
+# sha_gfplot <- get_sha("pbs-assess/gfplot")
+sha_gfplot <- "e0b36c0"
 # sha_mse <- get_sha("pbs-assess/MSEtool")
 sha_mse <- "fa1498c"
 # sha_dlm <- get_sha("DLMtool/DLMtool")
 sha_dlm <- "fa971cf"
 # sha_csasdown <- get_sha("pbs-assess/csasdown")
-sha_csasdown <- "6f02ce3"
-sha_ye <- get_sha("pbs-assess/yelloweye-inside")
+sha_csasdown <- "f9d5081"
+# sha_ye <- get_sha("pbs-assess/yelloweye-inside")
+sha_ye <- "2f9a8a4"
 ```
 
 The source code for this document is available at:\

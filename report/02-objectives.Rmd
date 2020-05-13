@@ -65,13 +65,13 @@ We selected 10 t, 15 t and 20 t as catch targets, representing catch levels span
 We calculated AADC~2020--2029~ as:
 
 $$
-\textrm{AADC}_\textrm{2020-2029} = \dfrac{1}{8}\sum_{y=2021}^{2029} \mid C_y - C_{y-1} \mid.
+\textrm{AADC}_\textrm{2020-2029} = \dfrac{1}{9}\sum_{y=2021}^{2029} \mid C_y - C_{y-1} \mid.
 $$
 
 A baseline period (2012--2019) was selected because it is the period since the start of the 15 t TAC. We calculated AADC~2012--2019~ as:
 
 $$
-\textrm{AADC}_\textrm{2012-2019} = \dfrac{1}{6}\sum_{y=2013}^{2019} \mid C_y - C_{y-1} \mid.
+\textrm{AADC}_\textrm{2012-2019} = \dfrac{1}{7}\sum_{y=2013}^{2019} \mid C_y - C_{y-1} \mid.
 $$
 
 In cases where performance metrics are calculated over a range of years, care needs to be taken to clearly report how summary statistics are calculated.

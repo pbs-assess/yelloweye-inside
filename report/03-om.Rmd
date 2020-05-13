@@ -79,10 +79,10 @@ The SRA model exhibited better retrospective behaviour when the SRA model was fi
 
 Historical commerical CPUE was also available and used as an index of abundance for conditioning the OM [@yamanaka2011]. Following the decisions made for the 2011 assessment, the time series was divided into three stanzas (1986-1990, 1995-2001, and 2003-2005), representing periods when fishery behaviour is likely to have changed in reponse to management regulations (Appendix \@ref(app:catch-data), Section \@ref(sec:management-changes)). 
 
-Natural mortality (*M*) was sampled  from a prior probability distribution based on that used by @yamanaka2011, where $M \sim \textrm{Lognormal}(0.045, 0.2)$ (Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-stock-m-yelloweye)).
+Natural mortality (*M*) was sampled  from a probability distribution based on that used by @yamanaka2011, where $M \sim \textrm{Lognormal}(0.045, 0.2)$ (Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-stock-m-yelloweye)).
 
 During the projection period, only the HBLL index was assumed to be available for the MPs, as this survey is conducted annually. Projecting only one index of abundance is consistent with many data-limited MPs, which only use a single index of abundance (see Appendix \@ref(app:mps)).
-Observation error in the projected index values was simulated with random deviates from a lognormal distribution with mean of 1 and standard deviation of 0.25.
+Observation error in the projected index values was simulated with random deviates from a lognormal distribution with mean of 1 and standard deviation of 0.25 based on the estimated observation error in the HBLL index.
 
 All other OM scenarios were adjusted from this baseline OM and differed only in terms of adjustments to key parameters or data sources, described below.
 
@@ -338,7 +338,7 @@ The implied spawning biomass depletion trajectories during the historical period
 Estimates of historical recruitment deviations were similar across scenarios (Figure \@ref(fig:recdev-om)).
 
 Estimated historical apical fishing mortality varied across scenarios, with larger values estimated for Scenarios (4) and (A), the more depleted trajectories (Figure \@ref(fig:F-om)).
-All scenarios predicted large peaks in fishing mortality during the 1980s and 1990s. 
+All scenarios predicted large peaks in fishing mortality during the 1980s and 1990s (Figure \@ref(fig:F-om)).
 
 (ref:fig-biomass-om)
 Spawning biomass relative to spawning biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.

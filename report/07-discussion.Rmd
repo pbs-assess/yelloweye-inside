@@ -42,7 +42,7 @@ Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye 
 It is likely that natural mortality rates have varied over time, due to changes in predator populations in the Strait of Georgia. 
 Yelloweye Rockfish occupy a relatively high trophic position [@olson2020] and Steller Sea Lions, Orca Whales (*Orcinus orca*) and Chinook Salmon (*Oncorhynchus tshawytscha*) are the only predators of Yelloweye Rockfish listed in a large data-base of predator-prey interactions (database assembled for @dunne2016; @szoboszlai2015). 
 Populations of all three predator species have experienced large fluctuations in the last century.
-Steller Sea Lion abundance was greatly reduced due to hunting and predator controls, but have now recovered to historic levels [@olesiuk2018; and see Appendix F]. 
+Steller Sea Lion abundance was greatly reduced due to hunting and predator controls, but have now recovered to historical levels [@olesiuk2018; and see Appendix F]. 
 The Southern Resident population of Orca Whales is endangered and the Northern Resident population is threatened [@cosewic2008b]. The cause of decline for both populations is attributed to the declining abundance of Chinook Salmon [@ford2010]. 
 Future projects might investigate the effects of time-varying natural mortality on Inside Yelloweye Rockfish.
 
@@ -93,7 +93,7 @@ We therefore fixed age-at-full-selectivity at 22 *y*, and upweighted the Dogfish
 To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL selectivity in Scenario (4), which slightly changed the perception of stock status.
 
 While we could have explored other fixed selectivity assumptions, we believe we used the most plausible values, and, for the HBLL survey, included an alternative scenario in the reference set.
-Future applications of the MP Framework for this stock could explore other selectivity scenarios, if recommended.
+Future applications of the MP Framework for this stock could explore other selectivity scenarios.
 
 ### Historical catch {#sec:discussion-uncertainties-catch}
 
