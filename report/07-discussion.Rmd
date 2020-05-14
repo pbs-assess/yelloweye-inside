@@ -75,7 +75,7 @@ These differences are controlled by fishery selectivity-at-age, survey selectivi
 Our Scenario (4), where we estimated survey selectivity-at-age, resulted in lower estimates of stock status, implying that assumptions about selectivity were a contributing factor to perceptions of stock status (see Section \@ref(sec:discussion-uncertainties-selectivity)).
 @cox2020 also noted that their SP-based MPs tended to underestimate biomass, which we also found in the current study, where the SP MPs generated no catch in the first decade of the projections.
 
-Despite differences in perception of stock status among some of our OMs, and between this and the previous stock assessment, we note that the MP Framework provides a method for integrating across uncertainties in stock status and reference points (see Section \@ref(sec:discussion-implicit)), even when these quantities are uncertain.
+Despite differences in perception of stock status among some of our OMs, and between this and the previous stock assessment, we note that the MP Framework provides a method for integrating across the major uncertainties in stock status and reference points (see Section \@ref(sec:discussion-implicit)) that are prevalent for this stock.
 In particular, the inclusion of Scenario (A) in the robustness set provides decision-makers with an alternative view of stock status and performance of MPs.
 
 ## KEY UNCERTAINTIES {#sec:discussion-uncertainties}
