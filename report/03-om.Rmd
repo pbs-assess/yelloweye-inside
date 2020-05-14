@@ -404,8 +404,6 @@ SP model results more closely matched those of the previous assessment, estimati
 The model estimated the reference points *B*~MSY~ = 1844 t, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t.
 MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), but the estimate of *B*~MSY~ was approximately 35% higher for the SP model than the SRA. 
 
-An alternative Fox model (not shown) did not appreciably change the perception of stock status.
-
 Results suggest that differences in estimated stock status between the current analysis and the previous stock assessment [@yamanaka2011] are in large part due to the choice of model structure.
 We note that very similar findings were made by @cox2020 in the rebuilding plan for the outside stock of Yelloweye Rockfish.
 Their analysis, also based on age-structured models, predicted the current stock status for Outside Yelloweye Rockfish to be above the LRP, i.e., not in need of rebuilding, in contrast to results obtained by the SP model used in the 2014 stock assessment [@yamanaka2018yelloweyeoutside]. 
