@@ -59,7 +59,7 @@ year. Predicted vs. observed proportions mature-at-age are shown in Figure \@ref
 
 Maturity frequency by each month is shown in the bubble plot in Figure \@ref(fig:mat-months) for all fish in all surveys within area 4B for which maturity was sampled. Categories of maturity are listed from most immature (top) to most mature (bottom); individual fish, once mature, cycle through the mature stages.
 
-## GENERATION TIME
+## GENERATION TIME {#sec:generation}
 
 Rebuilding guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring. A recent analysis for the Outside Yelloweye Rockfish stock estimated generation time at approximately 38 years [@cox2020]. We fixed generation time for Inside Yelloweye to be equal to that estimated for Outside Yelloweye to align rebuilding timeframes between the two stocks.  
 
