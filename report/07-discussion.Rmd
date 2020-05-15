@@ -29,7 +29,7 @@ They are also very sensitive to the order in which the metrics are placed, and h
 The purpose of the robustness set is to explore OM formulations that represent alternative  hypotheses to those in the reference set [@rademeyer2007; @punt2016].
 Candidate MPs should perform well across both reference and robustness scenarios [@rademeyer2007].
 In our study, the two robustness-set scenarios performed differently from the reference-set scenarios, especially Scenario (A).
-This low mortality/low productivity scenario was the only one where the median biomass was estimated to be in the critical zone at the start of the projection period.
+This low mortality/low productivity scenario ($M \sim \textrm{Lognormal}(0.025, 0.2)$) was the only one where the median biomass was estimated to be in the critical zone at the start of the projection period.
 For all other scenarios, we sampled from a probability distribution for *M* with mean 0.045 y^-1^, which matched that used in the previous stock assessment [@yamanaka2011].
 
 The rate of natural mortality of fish populations is of one of the most important, yet most difficult parameters to estimate. 
