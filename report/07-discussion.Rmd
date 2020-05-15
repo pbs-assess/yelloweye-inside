@@ -4,21 +4,21 @@ We applied a new MP Framework for Pacific groundfishes [@anderson2020gfmp] to ev
 This is the first application of the MP Framework for decision-making purposes.
 
 We evaluated the performance of 31 data-limited MPs (and three reference MPs) with respect to meeting the objectives described in Section \@ref(sec:objectives-metrics).
-We screened out MPs that did not meet both satisficing criteria LRP 1.5GT > 0.9 and ST C10 > 0.50 across the OM reference-set scenarios, resulting in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
-All remaining MPs achieved the conservation metrics LRP 1.5 GT, USR 1.5GT and LRP 1GT with greater than 0.98 probability (49 times out of 50) across all four OM reference-set scenarios.
-This was largely because none of the reference-set OMs estimated the stock to be in the critical zone in 2020---the start of the projection period.
-Within the two OM robustness-set scenarios, OM Scenario (B), which simulated higher variability in the future HBLL survey, performed similarly to the OM reference-set scenarios.
+We screened out MPs that did not meet both satisficing criteria LRP 1.5GT > 0.9 and ST C10 > 0.50 across the OM reference set scenarios, resulting in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
+All remaining MPs achieved the conservation metrics LRP 1.5 GT, USR 1.5GT and LRP 1GT with greater than 0.98 probability (49 times out of 50) across all four OM reference set scenarios.
+This was largely because none of the reference set OMs estimated the stock to be in the critical zone in 2020---the start of the projection period.
+Within the two OM robustness set scenarios, OM Scenario (B), which simulated higher variability in the future HBLL survey, performed similarly to the OM reference set scenarios.
 However, under OM Scenario (A), the Low M scenario, the probabilities of meeting the performance metric LRP 1.5GT ranged from 0.75 (75 times out of 100) to 0.9 (nine times out of 10), with the current MP (CC_15t) having the lowest probability in this range.
 
 Whereas the rebuilding plan guidance [@dfo2013] only describes objectives related to rebuilding, we also evaluated performance of MPs with respect to three average-catch objectives and one catch-variability objective.
 The CC_10t and CC_15t MPs, by definition, met their respective ST C10 and ST C15 performance metrics.
 The Islope MPs showed some contrast across MPs within the reference set for ST C10 and ST C15, depending on the MP configuration and the OM scenario.
-The OM robustness-set scenarios generally produced lower probabilities of meeting the ST C10 metric.
+The OM robustness set scenarios generally produced lower probabilities of meeting the ST C10 metric.
 
 We presented a number of visualizations to show trade-offs among conservation and catch objectives [see also @anderson2020gfmp].
 The visualizations present trade-offs in different tabular and graphical formats, intended to support the process of selecting the final MP.
-Because all the MPs met the LRP 1.5 GT objective under the OM reference-set scenarios, there were no strong trade-offs between conservation and catch objectives.
-Of the two OM robustness-set scenarios, trade-offs were most apparent under the Low M scenario, where the probability of meeting the LRP 1.5GT objective decreased as the probability of achieving an ST C10 increased.
+Because all the MPs met the LRP 1.5 GT objective under the OM reference set scenarios, there were no strong trade-offs between conservation and catch objectives.
+Of the two OM robustness set scenarios, trade-offs were most apparent under the Low M scenario, where the probability of meeting the LRP 1.5GT objective decreased as the probability of achieving an ST C10 increased.
 
 We found the radar plot visualizations difficult to interpret.
 While these plots can be useful for rapid visualization of multiple trade-offs, and have been recommended for visualization of MSE results [@punt2017], they become more difficult to interpret as more metrics ("spokes") are added.
@@ -28,7 +28,7 @@ They are also very sensitive to the order in which the metrics are placed, and h
 
 The purpose of the robustness set is to explore OM formulations that represent alternative  hypotheses to those in the reference set [@rademeyer2007; @punt2016].
 Candidate MPs should perform well across both OM reference and robustness scenarios [@rademeyer2007].
-In our study, the two OM robustness-set scenarios performed differently from the OM reference-set scenarios, especially OM Scenario (A).
+In our study, the two OM robustness set scenarios performed differently from the OM reference set scenarios, especially OM Scenario (A).
 This low mortality/low productivity scenario ($M \sim \textrm{Lognormal}(0.025, 0.2)$) was the only one where the median biomass was estimated to be in the critical zone at the start of the projection period.
 For all other OM scenarios, we sampled from a probability distribution for *M* with mean 0.045 y^-1^, which matched that used in the previous stock assessment [@yamanaka2011].
 
@@ -60,7 +60,7 @@ However, results from this survey were not available in time to be included in t
 ## STOCK STATUS {#sec:discussion-status}
 
 The rebuilding plan for the inside stock of Yelloweye Rockfish was triggered by the 2010 stock assessment [@yamanaka2011], which estimated the stock to be below the LRP with high probability.
-Out of all the reference- and robustness-set OMs explored in our analysis, only OM Scenario (A) estimated median spawning biomass to be below the LRP in 2010.
+Out of all the reference  and robustness set OMs explored in our analysis, only OM Scenario (A) estimated median spawning biomass to be below the LRP in 2010.
 The 2010 assessment used a surplus production (SP) model, with fundamentally different structural assumptions to the SRA used for conditioning OMs in our analysis.
 As a check, we fit a SP model, similar to that used by @yamanaka2011, and obtained much lower biomass and stock status estimates than those from the SRA OMs.
 Furthermore, while the MSY and *F*~MSY~ estimates were similar to those from the SRA models, the estimate of *B*~MSY~ was higher for the SP model than our OM Scenario (1).
@@ -102,7 +102,7 @@ A reconstruction of historical catch data to 2005 was done by @haigh2011, which 
 The reconstructed catches were used in the previous stock assessment [@yamanaka2011].
 While there has been some controversy over reconstructed catch data, for both the outside and inside Yelloweye stocks, re-evaluation of the reconstruction was outside the scope of this work and it remains the best available time series of historical catches.
 We therefore followed the same approach to reconstructing historical recreational catch data and estimating current recreational catch data as @yamanaka2011.
-We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in OM Scenario (2) but performance of MPs was not appreciably different from other OM reference-set scenarios.
+We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in OM Scenario (2) but performance of MPs was not appreciably different from other OM reference set scenarios.
 
 We deviated from @yamanaka2011 in our treatment of FSC catch. They applied an algorithm to explicitly estimate FSC catch, based on assumptions about consumption rates.
 After discussions with local First Nation representatives in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because most of the rockfish catch is understood to be caught under dual fishing licences and would therefore be included in DFO commercial catch databases.

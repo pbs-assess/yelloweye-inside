@@ -43,7 +43,7 @@ MSE best practice recommends dividing MSE trials into a "reference set" of core 
 They recommended that, for most results, reference set performance metrics should be averaged across all OM reference set scenarios (an ensemble approach to integrate across OM uncertainties) but that performance metrics from individual OM robustness set scenarios should be presented separately. 
 Presenting robustness results separately allows managers to see how MPs that performed well in the reference set perform under a set of more diverse assumptions [@rademeyer2007].
 
-For Inside Yelloweye Rockfish, we established four reference-set OMs: (1) a baseline OM; (2) an OM reflecting an alternative assumption about the magnitude of historical catch during the period 1986--2005; (3) an OM allowing for episodic (rare but large) future recruitment events; and (4) an OM estimating selectivity in the HBLL survey (Table \@ref(tab:ye-scen)).
+For Inside Yelloweye Rockfish, we established four reference set OMs: (1) a baseline OM; (2) an OM reflecting an alternative assumption about the magnitude of historical catch during the period 1986--2005; (3) an OM allowing for episodic (rare but large) future recruitment events; and (4) an OM estimating selectivity in the HBLL survey (Table \@ref(tab:ye-scen)).
 
 We further established two robustness set OMs encompassing additional sources of uncertainty: (A) an OM that assumes lower natural mortality than the other OMs; and (B) an OM that assumes a higher coefficient of variation (CV) in the future HBLL survey (Table \@ref(tab:ye-scen)).
 
