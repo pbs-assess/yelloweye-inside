@@ -100,7 +100,7 @@ Very large or even extreme year classes have been observed for several BC rockfi
 
 To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" scenario.
 This scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations that was used in Scenario (1).
-In the Episodic recruitment scenario, recruitment deviations $\varepsilon_{R,y}$ for each year are generated as:
+In the Episodic recruitment scenario, recruitment deviations $\varepsilon_{R,y}$ for each year of the projection period are generated as:
 
 $$
 \varepsilon_{R,y} = 
