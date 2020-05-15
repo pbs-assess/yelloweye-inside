@@ -95,6 +95,8 @@ knitr::include_graphics(here("mse/figures/ye-projections-upweight_dogfish.png"))
 (ref:fig-kobe) *B*/*B*~MSY~ and *F*/*F*~MSY~ values from the final year of the projections across all replicates.
 Dots represent individual replicates.
 Contour lines indicate two-dimensional kernel-density-smoothed quantiles at 0.25, 0.50, and 0.75 levels, calculated in log space.
+The vertical dashed lines shows B/B~MSY~ = 0.4 (left) and 0.8 (right).
+The horizontal dashed line shows F/F~MSY~ = 1.
 
 ```{r kobe, fig.cap="(ref:fig-kobe)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-kobe.png"))
@@ -105,6 +107,8 @@ knitr::include_graphics(here("mse/figures/ye-kobe.png"))
 (ref:fig-worm) Trajectory of *B*/*B*~MSY~ and *F*/*F*~MSY~ values summarized across replicates.
 The solid line corresponds to the median value.
 Each diamond represents the 50% quantile of *B*/*B*~MSY~ (horizontal) and *F*/*F*~MSY~ (vertical).
+The vertical dashed lines shows B/B~MSY~ = 0.4 (left) and 0.8 (right).
+The horizontal dashed line shows F/F~MSY~ = 1.
 
 ```{r worm, fig.cap="(ref:fig-worm)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-worms.png"))
@@ -169,6 +173,7 @@ knitr::include_graphics(here("mse/figures/ye-projections-high_index_cv.png"))
 Colours represent the reference- and robustness-set scenarios.
 Lines represent medians and shaded regions represent 50% quantiles.
 Satisficed and reference MPs are shown from top to bottom.
+The vertical dashed line indicates the last year of the historical period.
 
 ```{r proj-scenarios, fig.cap="(ref:fig-proj-scenarios)", out.width="0.9\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-projections-scenarios.png"))
