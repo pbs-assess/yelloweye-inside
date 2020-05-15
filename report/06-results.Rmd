@@ -37,6 +37,8 @@ knitr::include_graphics(here("mse/figures/ye-tigure-refset.png"))
 Dot-and-line plot of performance metrics across scenarios.
 Dots represent average performance metric values and thin lines represent the range of values across scenarios.
 Thick lines represent the range of values across scenarios after dropping the high and low values.
+Reference MPs are indicated by open circles (True).
+Non-reference MPs are indicated by closed circles (False).
 
 ```{r dot-lines, fig.cap="(ref:fig-dot-lines)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-dot-refset-avg.png"))
@@ -44,7 +46,7 @@ knitr::include_graphics(here("mse/figures/ye-dot-refset-avg.png"))
 
 \clearpage
 
-```{r tradeoff-reference, fig.cap="Trade-off between LRP 1.5GT and ST C10 average performance metrics across the reference-set scenarios.", out.width="5in"}
+```{r tradeoff-reference, fig.cap="Trade-off between LRP 1.5GT and ST C10 average performance metrics across the reference-set scenarios.Reference MPs are indicated by open circles (True). Non-reference MPs are indicated by closed circles (False).", out.width="5in"}
 knitr::include_graphics(here("mse/figures/ye-tradeoff-refset-avg.png"))
 ```
 
@@ -149,7 +151,7 @@ knitr::include_graphics(here("mse/figures/ye-tigure-robset.png"))
 knitr::include_graphics(here("mse/figures/ye-dot-robset.png"))
 ```
 
-```{r tradeoff-robust, fig.cap="Trade-off plot between LRP 1.5GT and ST C10 performance metric values for satisficed MPs for the robustness set OMs.", out.width="6in"}
+```{r tradeoff-robust, fig.cap="Trade-off plot between LRP 1.5GT and ST C10 performance metric values for satisficed MPs for the robustness set OMs. Reference MPs are indicated by open circles (True). Non-reference MPs are indicated by closed circles (False).", out.width="6in"}
 knitr::include_graphics(here("mse/figures/ye-tradeoff-robset.png"))
 ```
 
