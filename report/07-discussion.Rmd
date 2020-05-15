@@ -46,7 +46,7 @@ Steller Sea Lion abundance was greatly reduced due to hunting and predator contr
 The Southern Resident population of Orca Whales is endangered and the Northern Resident population is threatened [@cosewic2008b]. The cause of decline for both populations is attributed to the declining abundance of Chinook Salmon [@ford2010]. 
 Future projects might investigate the effects of time-varying natural mortality on Inside Yelloweye Rockfish.
 
-## Rockfish Conservation Areas {#sec:discussion-rca}
+## ROCKFISH CONSERVATION AREAS {#sec:discussion-rca}
 
 As part of the rockfish conservation strategy, 164 Rockfish Conservation Areas (RCAs), in which fisheries targeting or catching rockfish as bycatch are prohibited, were established in BC waters between 2004-2006 [@yamanaka2010]. 
 There are 130 RCAs in Area 4B (Figure \@ref(fig:map-4B)) that protect an estimated 267 km^2 of rockfish habitat, amounting to 22% of available rockfish habitat in inside waters [@haggarty2018]. 
