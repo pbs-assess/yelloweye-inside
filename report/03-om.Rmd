@@ -17,7 +17,7 @@ DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an
 There are two distinct time-periods in the simulation framework:
 (1) the historical period, which includes all years from the first year of the observed catch time series $t_1$ to the final year of the observed catch time series $t_c$ (where "c" represents the "current" year); and
 (2) the projection period, which covers the period from the first year after $t_c$ to the final projection year $t_N$.
-The historical period is calibrated to historical observations using the SRA [see Appendix B of @anderson2020gfmp].
+The historical period is conditioned on historical observations using the SRA [see Appendix B of @anderson2020gfmp].
 The closed-loop simulations, with application of the MPs and calculation of performance metrics, begin in the first year of the projection period (year $t_{c+1}$).
 
 OM development in the MP Framework follows three steps:
@@ -25,9 +25,9 @@ OM development in the MP Framework follows three steps:
 1. Set parameter values and ranges in the OM.
 
 2. Pass the OM parameters to the SRA model, which conditions the OM by fitting to historical observed catches, indices of abundance, and any available years of age-composition data.
-This results in calibrated estimates of model parameters and estimates of historical biomass and historical fishing mortality (in years $t_1$ to $t_c$), which are consistent with historical observations.
+This results in conditioned estimates of model parameters and estimates of historical biomass and historical fishing mortality (in years $t_1$ to $t_c$), which are consistent with historical observations.
 
-3. Pass the calibrated parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
+3. Pass the conditioned parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
 
 Where possible, we derived OM settings from all available survey biological data from area 4B, which is primarily collected on the inside hard bottom longline (HBLL) surveys (Appendix \@ref(app:biological-data)).
 We derived other parameters from the scientific literature and stock assessments for Yelloweye Rockfish in other areas (see Appendix \@ref(app:desc-om-yelloweye) for details).
@@ -151,12 +151,12 @@ This $\sigma_I$ has a mean of `r round2(mean_Isd)` and a range of `r round2(rang
 After specifying the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
 
 Note that the DLMtool OM combines all fleets into a single fleet.
-However, if the OM is calibrated using the SRA model, the SRA can accommodate multiple fleets, and selectivity is fleet-specific.
-In this case, fishery selectivity in the OM for the projection period is replaced with the SRA-calibrated estimates of fishing mortality-at-age in the final year  of the historical period ($t_c$), normalized by dividing by apical fishing mortality in that year.
+However, if the OM is conditioned using the SRA model, the SRA can accommodate multiple fleets, and selectivity is fleet-specific.
+In this case, fishery selectivity in the OM for the projection period is replaced with the SRA-conditioned estimates of fishing mortality-at-age in the final year  of the historical period ($t_c$), normalized by dividing by apical fishing mortality in that year.
 This essentially provides the DLMtool OM with relative selectivity-at-age, weighted by catch across all fleets.
 The closed-loop simulation projections therefore assume that the relative selectivity across fleets remains constant in the projection period.
 
-Similarly, if the OM is calibrated using the SRA model, analysts can also specify (or estimate) selectivity parameters for the individual indices of abundance (in this case two fishery-independent surveys and three commercial CPUE series (Figure \@ref(fig:survey-fits))).
+Similarly, if the OM is conditioned using the SRA model, analysts can also specify (or estimate) selectivity parameters for the individual indices of abundance (in this case two fishery-independent surveys and three commercial CPUE series (Figure \@ref(fig:survey-fits))).
 In this case, the SRA passes all of the indices back to DLMtool, preserving the estimated or user-defined selectivities-at-age for each index.
 However, note that the DLMtool MPs only utilize a single index of abundance (see Appendix \@ref(app:mps)).
 In the current study, all index-based MPs utilize the inside HBLL survey.
