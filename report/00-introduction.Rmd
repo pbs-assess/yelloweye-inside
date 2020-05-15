@@ -103,7 +103,7 @@ In large part, the DLMtool software has been designed to allow practitioners to 
 (ref:fig-mse-chart) The steps of the MSE process following @punt2016 as implemented in DLMtool. Copied from @anderson2020gfmp and adapted from @carruthers2018. This figure expands on Figure \@ref(fig:mse-chart-basic).
 
 ```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("figs/mse-chart.pdf"))
+knitr::include_graphics(here::here("figs/mse-chart.png"))
 ```
 
 The six steps are as follows:
