@@ -384,7 +384,7 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 
 \clearpage
 
-## Surplus production model scenario 
+## SURPLUS PRODUCTION MODEL SCENARIO
 
 The 2011 stock assessment for Inside Yelloweye Rockfish applied a Bayesian state space surplus production (SP) model, fit to catch, commercial CPUE, and the HBLL and Dogfish surveys [@yamanaka2011]. 
 The assessment estimated a 90% [nine times out of 10] probability that the stock was below the LRP, i.e., in the critical zone. 
