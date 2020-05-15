@@ -40,7 +40,7 @@ Results from conditioning the OMs are provided below in Section \@ref(sec:approa
 
 MSE best practice recommends dividing MSE trials into a "reference set" of core OMs that include the most important uncertainties (e.g., depletion of the stock or range of natural mortality values), and a "robustness set", to capture a wider range of uncertainties that may be less plausible but should nonetheless be explored [@rademeyer2007].
 @anderson2020gfmp recommended presenting performance metrics from the reference and robustness sets separately.
-They recommended that, for most results, reference set performance metrics should be averaged across all reference set scenarios (an ensemble approach to integrate across OM uncertainties) but that performance metrics from individual robustness set scenarios should be presented separately. 
+They recommended that, for most results, reference set performance metrics should be averaged across all OM reference set scenarios (an ensemble approach to integrate across OM uncertainties) but that performance metrics from individual OM robustness set scenarios should be presented separately. 
 Presenting robustness results separately allows managers to see how MPs that performed well in the reference set perform under a set of more diverse assumptions [@rademeyer2007].
 
 For Inside Yelloweye Rockfish, we established four reference-set OMs: (1) a baseline OM; (2) an OM reflecting an alternative assumption about the magnitude of historical catch during the period 1986--2005; (3) an OM allowing for episodic (rare but large) future recruitment events; and (4) an OM estimating selectivity in the HBLL survey (Table \@ref(tab:ye-scen)).
@@ -54,19 +54,19 @@ sc <- sc %>%
   mutate(scenario_human = gsub("\\\n", " ", scenario_human))
   sc %>% select(-scenario) %>%
   csasdown::csas_table(caption = "Inside Yelloweye Rockfish OM scenarios.",
-    col_names = c("Scenario name", "Set type")) %>%
+    col_names = c("OM Scenario name", "Set type")) %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
 ```
 
 ### Reference set {#sec:approach3-reference}
 
-The following OMs were developed as the reference set. We hereafter refer to them by their numbers, e.g., Scenario (1), or letters, e.g., Scenario (A).
+The following OMs were developed as the reference set. We hereafter refer to them by their numbers, e.g., OM Scenario (1), or letters, e.g., OM Scenario (A).
 
 #### (1) Base {#sec:approach3-reference1}
 
 Data sources are provided in Appendices \@ref(app:biological-data) through \@ref(app:catch-data).
 Parameter settings for the Base OM are provided in Appendix \@ref(app:desc-om-yelloweye).
-We here provide a brief description of the Base OM assumptions that were adjusted in other scenarios.
+We here provide a brief description of the Base OM assumptions that were adjusted in other OM scenarios.
 
 There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)).
 These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF; rockfish species other than Pacific Ocean Perch) and (2) the magnitude of unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
@@ -88,9 +88,9 @@ All other OM scenarios were adjusted from this baseline OM and differed only in 
 
 #### (2) Low catch {#sec:approach3-reference2}
 
-In the "Low catch" scenario, we test model sensitivity to the assumption of large unreported catch for the period 1986--2005.
+In the "Low catch" OM scenario, we test model sensitivity to the assumption of large unreported catch for the period 1986--2005.
 Instead of doubling nominal catch data for this period, the SRA was fit to the nominal catch data.
-As for the other scenarios, we used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards.
+As for the other OM scenarios, we used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards.
 
 #### (3) Episodic recruitment {#sec:approach3-reference3}
 
@@ -98,9 +98,9 @@ Long-lived, late-maturing species such as Pacific rockfishes often exhibit episo
 Very large or even extreme year classes have been observed for several BC rockfish species [e.g., Pacific Ocean Perch: @haigh2019; Bocaccio: @haigh2020].
 
 
-To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" scenario.
-This scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations that was used in Scenario (1).
-In the Episodic recruitment scenario, recruitment deviations $\varepsilon_{R,y}$ for each year of the projection period are generated as:
+To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" OM scenario.
+This OM scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations that was used in OM Scenario (1).
+In the Episodic recruitment OM scenario, recruitment deviations $\varepsilon_{R,y}$ for each year of the projection period are generated as:
 
 $$
 \varepsilon_{R,y} = 
@@ -112,7 +112,7 @@ $$
 \right.
 $$
 
-where $\varepsilon^{(1)}_{R,y}$ is the recruitment deviation from Scenario (1) and
+where $\varepsilon^{(1)}_{R,y}$ is the recruitment deviation from OM Scenario (1) and
 $\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
 The paramater $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which selects whether an extreme recruitment event will occur. 
 We assume that an extreme recruitment event is expected to occur once every generation (38 years).
@@ -120,15 +120,15 @@ We assume that an extreme recruitment event is expected to occur once every gene
 #### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
 
 Annual sample sizes of age-composition data from research surveys are very small (Appendix \@ref(app:biological-data)). 
-This makes estimation of selectivity in the surveys highly uncertain, which led to the choice to fix survey selectivity in the other scenarios.
+This makes estimation of selectivity in the surveys highly uncertain, which led to the choice to fix survey selectivity in the other OM scenarios.
 
-Given large uncertainty in our choice of selectivity, we allowed the SRA to estimate selectivity for the surveys in this scenario and utilized the available survey age-composition data.
+Given large uncertainty in our choice of selectivity, we allowed the SRA to estimate selectivity for the surveys in this OM scenario and utilized the available survey age-composition data.
 
 ### Robustness set {#sec:approach3-robustness}
 
 #### (A) Low M {#sec:approach3-referenceA}
 
-Lower values of natural mortality have been used for Inside Yelloweye Rockfish [@yamanaka2001; @cosewic2008; @wood2019]. This scenario used a lower mean in the distribution for *M*, with $M \sim \textrm{Lognormal}(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the other scenarios. 
+Lower values of natural mortality have been used for Inside Yelloweye Rockfish [@yamanaka2001; @cosewic2008; @wood2019]. This OM scenario used a lower mean in the distribution for *M*, with $M \sim \textrm{Lognormal}(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the other OM scenarios. 
 
 #### (B) Higher HBLL CV {#sec:approach3-referenceB}
 
@@ -141,8 +141,8 @@ mean_Isd <- mean(Isd[,1])
 range_Isd <- range(Isd[,1])
 ```
 
-This scenario considers the possibility that the future HBLL index might be less precise than assumed in the other scenarios.
-Instead of an observation standard deviation $\sigma_I = 0.25$, we use the standard deviation ($\sigma_I$) and autocorrelation ($\theta_\textrm{AC}$) from the index residuals in Scenario (1), obtained from the SRA fit to the HBLL index.
+This OM scenario considers the possibility that the future HBLL index might be less precise than assumed in the other OM scenarios.
+Instead of an observation standard deviation $\sigma_I = 0.25$, we use the standard deviation ($\sigma_I$) and autocorrelation ($\theta_\textrm{AC}$) from the index residuals in OM Scenario (1), obtained from the SRA fit to the HBLL index.
 
 This $\sigma_I$ has a mean of `r round2(mean_Isd)` and a range of `r round2(range_Isd[1])`--`r round2(range_Isd[2])`.
 
@@ -172,7 +172,7 @@ We used the SRA to populate the following parameters in the conditioned OMs:
 See Appendix B of @anderson2020gfmp for details on these parameters.
 
 The SRA was run for 250 replicates.
-Each replicate used a different value of *M* and *h* (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye), except for Scenario (A), which used a different distribution for *M*).
+Each replicate used a different value of *M* and *h* (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye), except for OM Scenario (A), which used a different distribution for *M*).
 The model was initialized under the assumption that spawning biomass ($B_y$) was in an unfished equilibrium state prior to 1918, the first year of the time series, i.e., $B_{1918} = B_0$.
 While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1918, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
 
@@ -183,15 +183,15 @@ Furthermore, retrospective analysis showed persistent retrospective bias in annu
 The choice to base retrospective analysis on 11 years of data was primarily to evaluate sensitivity of the model to removal of each year of data, going back to 2009, the terminal year for the 2011 assessment.
 
 Increasing the likelihood weight for the SRA fit to the Dogfish survey [$\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp], and fixing age-at-full-selectivity in the HBLL survey to 22 years, removed the retrospective pattern (Figure \@ref(fig:retro-initial), bottom panel). 
-Therefore, for Scenario (1) and all other scenarios except Scenario (4), we fixed the age-at-full selectivity of the HBLL Survey at 22 years (Figure \@ref(fig:HBLL-selectivity)), while also upweighting the Dogfish survey.
+Therefore, for OM Scenario (1) and all other OM scenarios except Scenario (4), we fixed the age-at-full selectivity of the HBLL Survey at 22 years (Figure \@ref(fig:HBLL-selectivity)), while also upweighting the Dogfish survey.
 
-(ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and Scenario (1). Coloured lines represent estimates of spawning biomass with $X$ years of data removed, where $X$ is shown in the legend for each series.
+(ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and OM Scenario (1). Coloured lines represent estimates of spawning biomass with $X$ years of data removed, where $X$ is shown in the legend for each series.
 
 ```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="4.25in"}
 knitr::include_graphics(here::here("mse/figures/retrospective-spawning-biomass.png"))
 ```
 
-There are a number of factors that increase uncertainty in estimating selectivity for the Dogfish survey e.g. the absence of biological data from this survey, and changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)). There are also several differences between the HBLL and Dogfish longline surveys (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)), but, for the reasons mentioned, we cannot reliably estimate the selectivity for the Dogfish survey. Out of necessity, selectivity in the Dogfish survey was set to mirror selectivity in the HBLL survey, whether it was estimated (Scenario (4)) or fixed (all other scenarios).
+There are a number of factors that increase uncertainty in estimating selectivity for the Dogfish survey e.g. the absence of biological data from this survey, and changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)). There are also several differences between the HBLL and Dogfish longline surveys (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)), but, for the reasons mentioned, we cannot reliably estimate the selectivity for the Dogfish survey. Out of necessity, selectivity in the Dogfish survey was set to mirror selectivity in the HBLL survey, whether it was estimated (OM Scenario (4)) or fixed (all other OM scenarios).
 
 Age composition data from the commerical fishery were available from a single fishing trip in 1989, and length samples from 2002--2019 were identified from the recreational fishery. Attempts to fit the SRA model to these data did not produce satisfactory estimates of selectivity. The estimated values of the age of full selectivity were very high, suggesting that most ages were not completely vulnerable to the fishery, and significantly differed from values estimated for the Outside Yelloweye population [@cox2020]. Since it is unlikely that selectivity varies to such an extent between geographical regions, these data were not further considered. 
 
@@ -205,9 +205,9 @@ As noted above, these selectivities were returned to the DLMtool OMs as a combin
 
 The predicted catch in the SRA models matched the catch data by design, which was achieved by setting the standard deviation of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
 
-The SRA was able to fit to the indices of abundance reasonably well (Figure \@ref(fig:survey-fits)) and convergence was achieved for all replicates in all scenarios.
-For all scenarios, the estimated index fell within the observed confidence intervals in most years, although there were some outliers (Figure \@ref(fig:survey-fits)).
-The fit to the early 1986  and 1989 observations in the Dogfish Survey was slightly better in Scenario (A), which is consistent with a less productive, more depleted stock. However, these two observations are more uncertain than those in recent years, due to changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
+The SRA was able to fit to the indices of abundance reasonably well (Figure \@ref(fig:survey-fits)) and convergence was achieved for all replicates in all OM scenarios.
+For all OM scenarios, the estimated index fell within the observed confidence intervals in most years, although there were some outliers (Figure \@ref(fig:survey-fits)).
+The fit to the early 1986  and 1989 observations in the Dogfish Survey was slightly better in OM Scenario (A), which is consistent with a less productive, more depleted stock. However, these two observations are more uncertain than those in recent years, due to changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
 Fits to the commercial CPUE series were generally good, due to the short time stanzas for each series (Figure \@ref(fig:survey-fits)).
 
 (ref:fig-survey-fits)
@@ -220,7 +220,7 @@ Dots represent index mean and line segments represent 2 times the standard error
 knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
 ```
 
-The SRA model fit the survey age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-conditioned-comp-fit1) to \@ref(fig:sra-conditioned-comp-fitB)). We note that in comparing Scenarios (1) and (4) it appears that fixing or estimating selectivity in the HBLL survey did not generate very different fits to the age composition data (Figures \@ref(fig:sra-conditioned-comp-fit1) and \@ref(fig:sra-conditioned-comp-fit4)).
+The SRA model fit the survey age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-conditioned-comp-fit1) to \@ref(fig:sra-conditioned-comp-fitB)). We note that in comparing OM Scenarios (1) and (4) it appears that fixing or estimating selectivity in the HBLL survey did not generate very different fits to the age composition data (Figures \@ref(fig:sra-conditioned-comp-fit1) and \@ref(fig:sra-conditioned-comp-fit4)).
 
 For most years, the SRA predicted larger abundance in the plus group (80+ *y*) than what was observed. 
 A lack of fish older than 80 *y* in the survey suggested that total mortality could have been greater in the past than estimated in our OMs.
@@ -228,8 +228,8 @@ This could be represented in the OMs in two ways.
 First, *M* could be increased in the models. 
 However, our preliminary model investigations indicated that increasing *M* also increases retrospective bias.
 Secondly, the catch history could be changed to predict higher values of fishing mortality.
-This was done in Scenario (2) by assuming lower catches in 1986-2005, which resulted in a slightly smaller stock (Figure \@ref(fig:biomass-om)) and higher fishing mortality (Figure \@ref(fig:F-om)).
-However, the estimated plus group was only slightly reduced in most years for this scenario (Figure \@ref(fig:sra-conditioned-comp-fit2)).
+This was done in OM Scenario (2) by assuming lower catches in 1986-2005, which resulted in a slightly smaller stock (Figure \@ref(fig:biomass-om)) and higher fishing mortality (Figure \@ref(fig:F-om)).
+However, the estimated plus group was only slightly reduced in most years for this OM scenario (Figure \@ref(fig:sra-conditioned-comp-fit2)).
 
 This issue is a challenge for very long-lived species with poor age-composition sampling.
 With such small sample sizes, there is a relatively small chance of observing very old fish.
@@ -239,7 +239,7 @@ Large structural uncertainties in the model and available data (e.g., the Dogfis
 \clearpage
 
 (ref:fig-sra-comp-fit1)
-SRA model fits to the survey age composition data for Scenario (1), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
+SRA model fits to the survey age composition data for OM Scenario (1), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
 
 ```{r sra-conditioned-comp-fit1, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit1)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_updog_fixsel.png"))
@@ -248,7 +248,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_updog_fixse
 \clearpage
 
 (ref:fig-sra-comp-fit2)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for Scenario (2).
+Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (2).
 
 ```{r sra-conditioned-comp-fit2, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit2)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowcatch_fixsel.png"))
@@ -257,7 +257,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowcatch_fi
 \clearpage
 
 (ref:fig-sra-comp-fit3)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for Scenario (3).
+Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (3).
 
 ```{r sra-conditioned-comp-fit3, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit3)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_episodic_recruitment.png"))
@@ -266,7 +266,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_episodic_re
 \clearpage
 
 (ref:fig-sra-comp-fit4)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for Scenario (4).
+Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (4).
 
 ```{r sra-conditioned-comp-fit4, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit4)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_upweight_dogfish.png"))
@@ -276,7 +276,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_upweight_do
 \clearpage
 
 (ref:fig-sra-comp-fitA)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for Scenario (A).
+Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (A).
 
 ```{r sra-conditioned-comp-fitA, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitA)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowM_fixsel.png"))
@@ -285,7 +285,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowM_fixsel
 \clearpage
 
 (ref:fig-sra-comp-fitB)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for Scenario (B).
+Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (B).
 
 ```{r sra-conditioned-comp-fitB, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitB)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_high_index_cv.png"))
@@ -293,7 +293,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_high_index_
 
 #### Parameter estimates {#sec:approach3-conditioning-parameters}
 
-The reference and robustness scenarios rendered a range of estimated parameter values (Figure \@ref(fig:sra-conditioned-parameters)).
+The OM reference and robustness scenarios rendered a range of estimated parameter values (Figure \@ref(fig:sra-conditioned-parameters)).
 
 (ref:fig-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. AC refers to $\theta_\textrm{AC}$. D refers to depletion ($B_{t_c}/B_0$).
 For visualization purposes, the *R*~0~ axis limits have been restricted to a maximum of 490 and the AC axis limits to a minimum of 0.76.
@@ -309,10 +309,10 @@ The CVs are large due to the large range of sampled values for *M* and *h* (Appe
 ```{r sra-ref-pts, results='asis'}
 ref_pts <- readr::read_csv(here::here("mse/figures/ref_pt.csv"))
 ref_pts %>%
-  rename("Scenario" = X1) %>% 
-  mutate(Scenario = gsub("\\\n", " ", Scenario)) %>%
-  select(Scenario, FMSY, BMSY, MSY) %>%
+  mutate(X1 = gsub("\\\n", " ", X1)) %>%
+  select(X1, FMSY, BMSY, MSY) %>%
   rename("F~MSY~ (/y)" = FMSY, "B~MSY~ (t)" = BMSY, "MSY (t)" = MSY) %>% 
+  rename("OM Scenario" = X1) %>% 
   csasdown::csas_table(caption = "Estimated reference points for each OM Scenario. Standard deviations across replicates are shown in parentheses.") %>% 
   kableExtra::column_spec(1:5, width = "5cm") 
 ```
@@ -321,23 +321,23 @@ ref_pts %>%
 
 #### Historical trajectories {#sec:approach3-conditioning-trajectories}
 
-In all scenarios, except Scenario (A), the median spawning biomass in 2019 is estimated to be above the LRP (Figure \@ref(fig:biomass-om)). 
-Scenario (A) estimated median spawning biomass to have been below the LRP for most years after 2000 and less than 50% probability of being above the LRP in 2019 (Figure \@ref(fig:ref-pt)).
-Scenario (2) and Scenario (4) also had a small probability of being below the LRP in the current year.
-Therefore, according to all the reference set scenarios and one robustness set scenario, the stock can already be considered to have rebuilt above the LRP. 
-The median spawning biomass is estimated to be above the USR in Scenarios (1), (2), (3), and (B); and estimated to be below the USR in scenarios (4) and (A).
+In all OM scenarios, except OM Scenario (A), the median spawning biomass in 2019 is estimated to be above the LRP (Figure \@ref(fig:biomass-om)). 
+OM Scenario (A) estimated median spawning biomass to have been below the LRP for most years after 2000 and less than 50% probability of being above the LRP in 2019 (Figure \@ref(fig:ref-pt)).
+OM Scenario (2) and OM Scenario (4) also had a small probability of being below the LRP in the current year.
+Therefore, according to all the reference set OM scenarios and one robustness set OM scenario, the stock can already be considered to have rebuilt above the LRP. 
+The median spawning biomass is estimated to be above the USR in OM Scenarios (1), (2), (3), and (B); and estimated to be below the USR in OM Scenarios (4) and (A).
 
-All scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
-The credible interval for all scenarios except (A) was very broad, arising from uncertainties in natural mortality and steepness (Figure \@ref(fig:sra-conditioned-parameters)).
-Note that trajectories are identical for Scenarios (1), (3) and (B), as Scenarios (3) and (B) only differ from Scenario (1) in the treatment of parameters in the projection period.
-The very narrow credible interval for Scenario (A) reflects the very low fixed value of *M* in this scenario, restricting the range of possible outcomes.
+All OM scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
+The credible interval for all OM scenarios except (A) was very broad, arising from uncertainties in natural mortality and steepness (Figure \@ref(fig:sra-conditioned-parameters)).
+Note that trajectories are identical for OM Scenarios (1), (3) and (B), as OM Scenarios (3) and (B) only differ from OM Scenario (1) in the treatment of parameters in the projection period.
+The very narrow credible interval for OM Scenario (A) reflects the very low fixed value of *M* in this OM scenario, restricting the range of possible outcomes.
 
 The implied spawning biomass depletion trajectories during the historical period from the eight OMs follow the same pattern as those for *B* (Figure \@ref(fig:depletion-om)).
 
-Estimates of historical recruitment deviations were similar across scenarios (Figure \@ref(fig:recdev-om)).
+Estimates of historical recruitment deviations were similar across OM scenarios (Figure \@ref(fig:recdev-om)).
 
-Estimated historical apical fishing mortality varied across scenarios, with larger values estimated for Scenarios (4) and (A), the more depleted trajectories (Figure \@ref(fig:F-om)).
-All scenarios predicted large peaks in fishing mortality during the 1980s and 1990s (Figure \@ref(fig:F-om)).
+Estimated historical apical fishing mortality varied across OM scenarios, with larger values estimated for OM Scenarios (4) and (A), the more depleted trajectories (Figure \@ref(fig:F-om)).
+All OM scenarios predicted large peaks in fishing mortality during the 1980s and 1990s (Figure \@ref(fig:F-om)).
 
 (ref:fig-biomass-om)
 Spawning biomass relative to spawning biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.
@@ -384,13 +384,13 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 
 \clearpage
 
-## SURPLUS PRODUCTION MODEL SCENARIO
+## SURPLUS PRODUCTION MODEL OM SCENARIO
 
 The 2011 stock assessment for Inside Yelloweye Rockfish applied a Bayesian state space surplus production (SP) model, fit to catch, commercial CPUE, and the HBLL and Dogfish surveys [@yamanaka2011]. 
 The assessment estimated a 90% [nine times out of 10] probability that the stock was below the LRP, i.e., in the critical zone. 
 The assessment results triggered a rebuilding plan [@ifmp2018], which is updated in this document.
 The SRA models under all OM scenarios in the current analysis predict similar biomass trajectories to that in @yamanaka2011.
-However, only Scenario (A) estimates the stock to have been below the LRP during the 2000s (Figure \@ref(fig:biomass-om)).
+However, only OM Scenario (A) estimates the stock to have been below the LRP during the 2000s (Figure \@ref(fig:biomass-om)).
 It is not possible to definitively infer why model results diverged between the two analyses, due to the large differences in model structure between the SP model used in @yamanaka2011 and the SRA used here, as well as the addition of 10 years of new data.
 
 However, to explore the effects of model structure on stock status, we fit a SP model to the currently-available catch, CPUE and fishery-independent indices of abundance. 

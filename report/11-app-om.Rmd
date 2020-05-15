@@ -43,7 +43,7 @@ display_om <- function(om, slot) {
 Here we describe the specification of the initial OM before conditioning with the SRA model.
 The operating model is fully described in Appendix A of @anderson2020gfmp.
 We use a convenience function `display_om()` to display the contents of various parameters in the OMs.
-The object `oms` is a list of the operating models across the various scenarios.
+The object `oms` is a list of the operating models across the various OM scenarios.
 If a given "slot" or OM parameter is entered as a single value then `display_om()` outputs a single value.
 Where a range of values is displayed, this represents the lower and upper boundaries of a uniform distribution.
 Where a "slot" or OM parameter is defined based on a stochastic distribution other than a uniform distribution, we demonstrate the sampling from that distribution along with the stochastic seed used to generate consistent samples.
@@ -71,7 +71,7 @@ display_om(oms, "maxage")
 The rate of natural mortality *M* is a core uncertainty for this stock, as for many stocks. 
 We incorporated uncertainty using a Monte Carlo approach, by sampling *M* from a prior probability distribution based on that used by @yamanaka2011, where $M \sim \textrm{Lognormal}(0.045, 0.2)$ (with the seed in R set to 91283).
 This was based on the Hoenig equation [@hoenig1983] using an assumed maximum age of 101 years.
-The exception was Scenario (A), which used the distribution $M \sim \textrm{Lognormal}(0.025, 0.2)$.
+The exception was OM Scenario (A), which used the distribution $M \sim \textrm{Lognormal}(0.025, 0.2)$.
 
 ```{r, eval=FALSE, echo=TRUE}
 # pseudo code:
@@ -249,7 +249,7 @@ display_om(oms, "nyears")
 Selectivities for all commercial and survey fleets were directly input as age-based logistic functions in the SRA model.
 Therefore the default DLMtool slots describing selectivity-at-length were not used.
 
-Selectivity-at-age in the HBLL survey was set to give 5% selectivity at 6.8 *y* and full selectivity at age = 22 *y*, in all scenarios except Scenario (4), where selectivity-at-age was estimated using available age-composition data (Figure \@ref(fig:HBLL-selectivity)).
+Selectivity-at-age in the HBLL survey was set to give 5% selectivity at 6.8 *y* and full selectivity at age = 22 *y*, in all OM scenarios except Scenario (4), where selectivity-at-age was estimated using available age-composition data (Figure \@ref(fig:HBLL-selectivity)).
 Due to large uncertainties in selectivity-at-age in the Dogfish survey, selectivity in this survey was set to mirror selectivity in the HBLL survey.
 
 (ref:fig-HBLL-selectivity) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey within simulation replicates.
@@ -310,7 +310,7 @@ This parameter controls the bias, expressed as the ratio of simulated observed t
 *Observation error in the relative abundance indices expressed as a SD.*
 
 This parameter ($\sigma_I$) sets the standard deviation in simulated survey indices for the projection period.
-We set $\sigma_I = 0.25$, based on the standard deviation of the observed HBLL index for all scenarios except Scenario (B), where $\sigma_I$ was set based on the standard deviation and autocorrelation from the index residuals in Scenario (1) (see Section \@ref(sec:approach3-referenceB)).
+We set $\sigma_I = 0.25$, based on the standard deviation of the observed HBLL index for all OM scenarios except Scenario (B), where $\sigma_I$ was set based on the standard deviation and autocorrelation from the index residuals in OM Scenario (1) (see Section \@ref(sec:approach3-referenceB)).
 
 <!-- slot-chunk-end -->
 

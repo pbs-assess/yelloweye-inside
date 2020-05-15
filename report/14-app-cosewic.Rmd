@@ -38,7 +38,7 @@ These arbitrary thresholds were informed by precedents in the literature [e.g., 
 In the future, simulation-testing of alternative thresholds could be used to identify stock-specific extinction thresholds.
 
 Using a projection period of 100 years, we calculated the probability that, on average throughout the whole 100 year projection period, the stock remains above 2% and 5% *B*~0~ under the five satisficed MPs and the no fishing reference MP for each OM scenario individually (Figure \@ref(fig:cosewic-all)).
-We also calculated the average probability that the stock remains above each threshold under these MPs across all reference-set scenarios (Figure \@ref(fig:cosewic-avg)):
+We also calculated the average probability that the stock remains above each threshold under these MPs across all OM reference-set scenarios (Figure \@ref(fig:cosewic-avg)):
 
 1. 2%B~0~ = $P[B_y > 0.02 B_0]$ on average during the whole projection period
 2. 5%B~0~ = $[B_y > 0.05 B_0]$ on average during the whole projection period
