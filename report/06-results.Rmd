@@ -114,10 +114,10 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 
 ## ROBUSTNESS SET RESULTS
 
-Scenario (A) reduced the probability of achieving the LRP 1.5GT performance metric to a range of 0.75--0.90 compared to > 0.99 across the reference set (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)).
+Scenario (A), Low M, reduced the probability of achieving the LRP 1.5GT performance metric to a range of 0.75--0.90 compared to > 0.99 across the reference set (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)).
 There were similar declines in the other conservation performance metrics.
 
-Scenario (B) slightly reduced the probability of achieving the ST C10 performance metric compared to the reference scenarios (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
+Scenario (B), High HBLL CV, slightly reduced the probability of achieving the ST C10 performance metric compared to the reference scenarios (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
 For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference-set OMs but only achieved this performance metric with a probability of 0.79 in Scenario (B).
 
 Scenario (A) demonstrated a trade-off between ST C10 and LRP 1.5GT among MPs (Figure \@ref(fig:tradeoff-robust)).
