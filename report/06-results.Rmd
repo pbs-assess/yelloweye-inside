@@ -63,7 +63,7 @@ knitr::include_graphics(here("mse/figures/ye-radar-refset-avg.png"))
 
 \clearpage
 
-```{r proj-index, fig.cap="Historical and projected HBLL-inside survey relative abundance index values. Vertical dashed line represents 2019. The shaded region represents the 95\\% quantile and individual lines represent four sample replicates.", out.width="\\textwidth"}
+```{r proj-index, fig.cap="Historical and projected HBLL-inside survey relative abundance index values. Vertical dashed line represents 2019. The shaded region represents the 95\\% quantile of the simulated index values and individual lines represent four sample replicates.", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-projections-index.png"))
 ```
 
