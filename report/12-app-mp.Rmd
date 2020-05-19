@@ -49,7 +49,7 @@ We also evaluated the same two configurations, applied every five years:
 
 ### Index-Slope MPs {#sec:mp-islope}
 
-Index-slope MPs fit a linear regression to population index data and make a catch recommendation based on the slope of the regression. 
+Index-slope MPs fit a linear regression of population index data compared to time and make a catch recommendation based on the slope of the regression. 
 They are closely related to index-ratio MPs.
 Here we describe three main "families" of index-slope MPs.
 

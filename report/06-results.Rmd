@@ -2,7 +2,7 @@
 
 ## REFERENCE SET RESULTS
 
-Performance within the reference set of OM scenarios varied across satisficed MPs (hereafter just "MPs") and performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
+Performance within the OM reference set of scenarios varied across satisficed MPs (hereafter just "MPs") and performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
 All MPs were able to achieve LRP 1.5GT > 0.99.
 The fixed TACs of 10 t and 15 t, by definition, met their respective ST C10 and ST C15 performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
 The Islope MPs showed some contrast across MPs within the reference set for ST C10 and ST C15.
@@ -12,25 +12,25 @@ Within the reference set, there was virtually no trade-off between LRP 1.5GT and
 Multidimensional trade-offs are sometimes represented using radar plots. However, these were challenging to interpret for this analysis (Figure \@ref(fig:spider-satisficed-mps-avg)), which exemplifies some of the warnings about radar plots offered in @anderson2020gfmp.
 We include radar plots here to gauge reader interest at the Regional Peer Review meeting and to illustrate their potential pitfalls for the MP Framework.
 
-We note that OM scenario (3), Episodic recruitment, yielded near identical results to OM scenario (1) (e.g., Figure \@ref(fig:fig-tigure-panel)).
-This scenario modeled the likelihood of an extreme recruitment event to occur approximately once every generation (38 years) (Section\@ref(sec:approach3-reference3)).
+We note that OM Scenario (3), Episodic recruitment, yielded near identical results to OM Scenario (1) (e.g., Figure \@ref(fig:tigure-panel)).
+This OM scenario modeled the likelihood of an extreme recruitment event to occur approximately once every generation (38 years) (Section\@ref(sec:approach3-reference3)).
 This assumption produced no contrast in results, likely due to long lag effects.
 Future adaptations of this framework to Inside Yelloweye Rockfish might explore alternative assumptions about the period and magnitude of extreme recruitment events.
 
 <!--
 A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across MPs (Figure \@ref(fig:dot-lines)).
-In general, variation performance metric values for any one MP across reference-set OMs was small, with the slight exception of Islope_10_lambda08 for LT C20 (Figure \@ref(fig:dot-lines)).
+In general, variation performance metric values for any one MP across reference set OMs was small, with the slight exception of Islope_10_lambda08 for LT C20 (Figure \@ref(fig:dot-lines)).
 -->
 
-The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)) further demonstrate performance across the various MPs and reference-set OMs.
+The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)) further demonstrate performance across the various MPs and reference set OMs.
 We note that none of the biomass projections predicted the stock to be below the LRP in the first year of the projection period, and all MPs achieved continuous growth throughout the projection period, albeit at different rates (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
 
 Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
-Within the reference set and across all MPs, only Scenario (2) produced some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
+Within the reference set and across all MPs, only OM Scenario (2) produced some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
 
-(ref:fig-tigure-panel) Performance of satisficed MPs for the reference set scenarios.
+(ref:fig-tigure-panel) Performance of satisficed MPs for the OM reference set scenarios.
 MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:tigure-avg)).
-These are the same data underlying Figure \@ref(fig:tigure-avg) and Figure \@ref(fig:tigure-min) but shown for individual reference-set scenarios, and only for satisficed MPs.
+These are the same data underlying Figure \@ref(fig:tigure-avg) and Figure \@ref(fig:tigure-min) but shown for individual OM reference set scenarios, and only for satisficed MPs.
 
 ```{r tigure-panel, fig.cap="(ref:fig-tigure-panel)", out.width="0.8\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-tigure-refset.png"))
@@ -39,9 +39,9 @@ knitr::include_graphics(here("mse/figures/ye-tigure-refset.png"))
 \clearpage
 
 (ref:fig-dot-lines)
-Dot-and-line plot of performance metrics across scenarios.
-Dots represent average performance metric values and thin lines represent the range of values across scenarios.
-Thick lines represent the range of values across scenarios after dropping the high and low values.
+Dot-and-line plot of performance metrics across OM scenarios.
+Dots represent average performance metric values and thin lines represent the range of values across OM scenarios.
+Thick lines represent the range of values across OM scenarios after dropping the high and low values.
 Reference MPs are indicated by open circles (True).
 Non-reference MPs are indicated by closed circles (False).
 
@@ -51,19 +51,19 @@ knitr::include_graphics(here("mse/figures/ye-dot-refset-avg.png"))
 
 \clearpage
 
-```{r tradeoff-reference, fig.cap="Trade-off between LRP 1.5GT and ST C10 average performance metrics across the reference-set scenarios.Reference MPs are indicated by open circles (True). Non-reference MPs are indicated by closed circles (False).", out.width="5in"}
+```{r tradeoff-reference, fig.cap="Trade-off between LRP 1.5GT and ST C10 average performance metrics across the OM reference set scenarios. Reference MPs are indicated by open circles (True). Non-reference MPs are indicated by closed circles (False).", out.width="5in"}
 knitr::include_graphics(here("mse/figures/ye-tradeoff-refset-avg.png"))
 ```
 
 \clearpage
 
-```{r spider-satisficed-mps-avg, fig.cap="Radar-plot representation of average performance metric trade-offs for the reference-set scenarios. The outside of the hexagon represents a performance metric probability of 1 while the middle represents a value of 0. Dashed lines represent reference MPs.", out.width="5in"}
+```{r spider-satisficed-mps-avg, fig.cap="Radar-plot representation of average performance metric trade-offs for the OM reference set scenarios. The outside of the hexagon represents a performance metric probability of 1 while the middle represents a value of 0. Dashed lines represent reference MPs.", out.width="5in"}
 knitr::include_graphics(here("mse/figures/ye-radar-refset-avg.png"))
 ```
 
 \clearpage
 
-```{r proj-index, fig.cap="Historical and projected HBLL-inside survey relative abundance index values. Vertical dashed line represents 2019. The shaded region represents the 95\\% quantile and individual lines represent four sample replicates.", out.width="\\textwidth"}
+```{r proj-index, fig.cap="Historical and projected HBLL-inside survey relative abundance index values. Vertical dashed line represents 2019. The shaded region represents the 95\\% quantile of the simulated index values and individual lines represent four sample replicates.", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-projections-index.png"))
 ```
 
@@ -125,26 +125,26 @@ knitr::include_graphics(here("mse/figures/ye-worms.png"))
 
 ## ROBUSTNESS SET RESULTS
 
-Scenario (A), Low M, reduced the probability of achieving the LRP 1.5GT performance metric to a range of 0.75--0.90 compared to > 0.99 across the reference set (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)).
+OM Scenario (A), Low M, reduced the probability of achieving the LRP 1.5GT performance metric to a range of 0.75--0.90 compared to > 0.99 across the reference set (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)).
 There were similar declines in the other conservation performance metrics.
 
-Scenario (B), High HBLL CV, slightly reduced the probability of achieving the ST C10 performance metric compared to the reference scenarios (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
-For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference-set OMs but only achieved this performance metric with a probability of 0.79 in Scenario (B).
+OM Scenario (B), High HBLL CV, slightly reduced the probability of achieving the ST C10 performance metric compared to the OM reference scenarios (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
+For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference set OMs but only achieved this performance metric with a probability of 0.79 in OM Scenario (B).
 
-Scenario (A) demonstrated a trade-off between ST C10 and LRP 1.5GT among MPs (Figure \@ref(fig:tradeoff-robust)).
-Scenario (B) demonstrated no trade-off between ST C10 and LRP 1.5GT since all MPs achieved LRP 1.5GT with probability > 0.99.
+OM Scenario (A) demonstrated a trade-off between ST C10 and LRP 1.5GT among MPs (Figure \@ref(fig:tradeoff-robust)).
+OM Scenario (B) demonstrated no trade-off between ST C10 and LRP 1.5GT since all MPs achieved LRP 1.5GT with probability > 0.99.
 Similar to the results for the reference set, we found the radar plots challenging to interpret (Figure \@ref(fig:spider-satisficed-mps-robust)).
 
 Projection timeseries plots of *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further explain the closed-loop simulation results for the robustness set (Figure \@ref(fig:proj-low-m) and \@ref(fig:proj-high-index-cv)).
-For example, in Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
+For example, in OM Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
 The Kobe plots indicated that a number of replicates resulted in *F* > *F*~MSY~ and *B* < LRP  (Figure \@ref(fig:kobe)). 
-The FMSYref and FMSYref75 MPs illustrate that catches would have to be lower in Scenario (A) than in the reference-set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
+The FMSYref and FMSYref75 MPs illustrate that catches would have to be lower in OM Scenario (A) than in the reference set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
 This occurred across the MPs, although least for the CC_10t MP, and, among the Islope MPs, it occurred the least for Islope_10_lambda04 (Figure \@ref(fig:kobe)).
 
-There was increased TAC variability across replicates and within individual replicates in Scenario (B) compared to the reference set OM projections, most likely due to increased variability in the projected index (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
+There was increased TAC variability across replicates and within individual replicates in OM Scenario (B) compared to the reference set OM projections, most likely due to increased variability in the projected index (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
 
-By comparing the projections across scenarios on the same figure, it is clear that *F*/*F*~MSY~, *B*/*B*~MSY~, and catch were most sensitive to the Scenario (A) assumptions (Figure \@ref(fig:proj-scenarios)). 
-Note that the rank order of MPs, which is likely more important in a decision context, differed under Scenario (A) compared to the reference set scenarios (Figures \@ref(fig:tigure-panel) and \@ref(fig:tigure-panel-rob)).
+By comparing the projections across OM scenarios on the same figure, it is clear that *F*/*F*~MSY~, *B*/*B*~MSY~, and catch were most sensitive to the OM Scenario (A) assumptions (Figure \@ref(fig:proj-scenarios)). 
+Note that the rank order of MPs, which is likely more important in a decision context, differed under OM Scenario (A) compared to the OM reference set scenarios (Figures \@ref(fig:tigure-panel) and \@ref(fig:tigure-panel-rob)).
 
 (ref:fig-tigure-panel-rob) Performance of satisficed MPs for the robustness set OMs.
 
@@ -177,7 +177,7 @@ knitr::include_graphics(here("mse/figures/ye-projections-high_index_cv.png"))
 ```
 
 (ref:fig-proj-scenarios) B/B~MSY~, F/F~MSY~, and catch from the historical and projected time periods.
-Colours represent the reference- and robustness-set scenarios.
+Colours represent the OM reference and robustness set scenarios.
 Lines represent medians and shaded regions represent 50% quantiles.
 Satisficed and reference MPs are shown from top to bottom.
 The vertical dashed line indicates the last year of the historical period.
