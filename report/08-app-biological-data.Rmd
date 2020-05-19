@@ -61,7 +61,20 @@ Maturity frequency by each month is shown in the bubble plot in Figure \@ref(fig
 
 ## GENERATION TIME {#sec:generation}
 
-Rebuilding guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring. A recent analysis for the Outside Yelloweye Rockfish stock estimated generation time at approximately 38 years [@cox2020]. We fixed generation time for Inside Yelloweye to be equal to that estimated for Outside Yelloweye to align rebuilding timeframes between the two stocks.  
+Rebuilding guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring. 
+A recent analysis for the Outside Yelloweye Rockfish stock estimated generation time at approximately 38 years which was the average age of the modeled unfished spawning stock [@cox2020]. 
+We fixed generation time for Inside Yelloweye to be equal to that estimated for Outside Yelloweye Rockfish to align rebuilding timeframes between the two stocks.  
+However, previous generation time estimates from COSEWIC and Pre-COSEWIC reports have been calculated using age at (age at 50% maturity + 1/M). 
+In 2008, they used a natural mortality rate of 0.02 and age at 50% maturity for females in the inside stock of 37.5 years, for a generation time of 70 years [@cosewic2008], which is now thought to be higher than it probably is. 
+In 2018, this was revised to be 40.5 to 45.0 years using a natural mortality of 0.038 and 50% maturity of 14.2 or 18.7 years depending on if data from commercial and research data sets were used, respectively [@keppel2019]. 
+Using this formula and the median estimate of natural mortality used in our baseline OM, 0.045, and the inside 50% maturity presented in @ref:fig-percent-maturity, the generation time would be 36 for females and 40 for males. 
+There is, of course, great uncertainty associated with the estimation of generation time using this formula given that natural mortality is usually listed as the major axis of uncertainty in any stock assessment (e.g. @gertseva2017, this analysis). 
+Maturity estimates are also uncertain given that maturity is assessed macroscopic classification rather than using histological methods in BC. 
+Lastly, age estimates are also subject to error (see Appendix A of GF synopsis (or add plot to this appendix for precision estimates of Yelloweye Rockfish ages).
+
+
+
+
 
 
 \clearpage
