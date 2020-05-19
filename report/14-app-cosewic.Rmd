@@ -13,12 +13,12 @@ Note that three generations under this definition is 114 years but since our his
 These probability thresholds are used to assign status designations of endangered, threatened, and species of special concern respectively, although other factors, such as cause of decline, are also considered [@cosewic2015].
 To inform the COSEWIC re-assessment of Inside Yelloweye Rockfish, we report the following for each OM (Figure \@ref(fig:cosewic-metrics)):
 
-1. P70 - Probability that the stock is below 70% of *B*~1918~ after three generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} > 0.7]$.
-2. P50 - Probability that the stock is below 50% of *B*~1918~ after three generations.
-3. P30 - Probability that the stock is below 30% of *B*~1918~ after three generations.
+1. P70 - Probability that, on average, the stock was below 70% of *B*~1918~ over three generations, where generation time is 38 years and probability is calculated as $P[1 - B_{2019}/B_{1918} > 0.7]$.
+2. P50 - Probability that, on average, the stock was below 50% of *B*~1918~ over three generations.
+3. P30 - Probability that, on average, the stock was below 30% of *B*~1918~ over three generations.
 
 (ref:fig-cosewic-metrics)
-Results for COSEWIC metric A, the probability that the stock is below 70%, 50%, and 30% of *B*~1918~ after the past three generations, for each OM scenario, where one generation is defined as 38 years. 
+Results for COSEWIC metric A, the probability that the stock was on average below 70%, 50%, and 30% of *B*~1918~ over the past three generations, for each OM scenario, where one generation is defined as 38 years. 
 
 ```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
 knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
