@@ -12,11 +12,6 @@ Within the reference set, there was virtually no trade-off between LRP 1.5GT and
 Multidimensional trade-offs are sometimes represented using radar plots. However, these were challenging to interpret for this analysis (Figure \@ref(fig:spider-satisficed-mps-avg)), which exemplifies some of the warnings about radar plots offered in @anderson2020gfmp.
 We include radar plots here to gauge reader interest at the Regional Peer Review meeting and to illustrate their potential pitfalls for the MP Framework.
 
-We note that OM Scenario (3), Episodic recruitment, yielded near identical results to OM Scenario (1) (e.g., Figure \@ref(fig:tigure-panel)).
-This OM scenario modeled the likelihood of an extreme recruitment event to occur approximately once every generation (38 years) (Section\@ref(sec:approach3-reference3)).
-This assumption produced no contrast in results, likely due to long lag effects.
-Future adaptations of this framework to Inside Yelloweye Rockfish might explore alternative assumptions about the period and magnitude of extreme recruitment events.
-
 <!--
 A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across MPs (Figure \@ref(fig:dot-lines)).
 In general, variation performance metric values for any one MP across reference set OMs was small, with the slight exception of Islope_10_lambda08 for LT C20 (Figure \@ref(fig:dot-lines)).
@@ -28,6 +23,13 @@ We note that none of the biomass projections predicted the stock to be below the
 Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
 Within the reference set and across all MPs, only OM Scenario (2) produced some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
 
+We note that OM Scenario (3), Episodic recruitment, yielded near identical results to the Base OM Scenario (1) (e.g., Figure \@ref(fig:tigure-panel)).
+The Episodic recruitment scenario modeled the likelihood of an extreme recruitment event to occur approximately once every generation (38 years) (Section \@ref(sec:approach3-reference3)).
+Despite the Episodic recruitment scenario predicting some fairly extreme large recruitment events it also predicted extreme low recruitment events (Figure \@ref(fig:recdev-om-proj)) and it is likely that these effects counter-balanced one another, producing no contrast in final results.
+It is also possible that long lag effects prevented single large recruitment events from affecting MP performance.
+Future adaptations of this framework might explore alternative assumptions about the period and magnitude of extreme recruitment events for Inside Yelloweye Rockfish.
+Exploration of alternative probability distributions for projected recruitment deviations (e.g., skewed or heavy-tailed distributions) could also be explored.
+
 (ref:fig-tigure-panel) Performance of satisficed MPs for the OM reference set scenarios.
 MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:tigure-avg)).
 These are the same data underlying Figure \@ref(fig:tigure-avg) and Figure \@ref(fig:tigure-min) but shown for individual OM reference set scenarios, and only for satisficed MPs.
@@ -35,6 +37,7 @@ These are the same data underlying Figure \@ref(fig:tigure-avg) and Figure \@ref
 ```{r tigure-panel, fig.cap="(ref:fig-tigure-panel)", out.width="0.8\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-tigure-refset.png"))
 ```
+
 
 \clearpage
 
@@ -119,6 +122,16 @@ The horizontal dashed line shows F/F~MSY~ = 1.
 
 ```{r worm, fig.cap="(ref:fig-worm)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-worms.png"))
+```
+
+\clearpage
+
+(ref:fig-recdev-om-proj)
+Historical recruitment deviations estimated by the SRA model (left of the vertical dashed line) and projected recruitment deviations (right of the vertical dashed line) for the six OM scenarios.
+Lines represent individual replicates. For clarity, only the first 50 replicates are shown. The vertical dashed line represents the last year of the historical period (2019).
+
+```{r recdev-om-proj, fig.cap="(ref:fig-recdev-om-proj)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-nat-recdev-panel-proj.png"))
 ```
 
 \clearpage

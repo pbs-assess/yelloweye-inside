@@ -218,7 +218,8 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
   gfplot::theme_pbs() +
   labs(x = "Year", y = "Recruitment deviations in log space") +
   coord_cartesian(ylim = c(-4., 3.5), expand = FALSE) +
-  geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
+  geom_hline(yintercept = 1, lty = 2, alpha = 0.6) +
+  geom_vline(xintercept = 2019, lty = 2, alpha = 0.6)
 #print(g)
 ggsave(here::here("mse/figures/ye-compare-SRA-log-recdev-panel-proj.png"),
        width = 8, height = 5)
@@ -233,7 +234,8 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
   gfplot::theme_pbs() +
   labs(x = "Year", y = "Recruitment deviations") +
   coord_cartesian(ylim = c(0, exp(3.)), expand = FALSE) +
-  geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
+  geom_hline(yintercept = 1, lty = 2, alpha = 0.6)+
+  geom_vline(xintercept = 2019, lty = 2, alpha = 0.6)
 #print(g)
 ggsave(here::here("mse/figures/ye-compare-SRA-nat-recdev-panel-proj.png"),
        width = 8, height = 5)
