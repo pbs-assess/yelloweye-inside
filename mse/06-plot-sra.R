@@ -33,6 +33,7 @@ sra_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/", x, ".rds")))
 names(sra_ye) <- sc$scenario
 
 scenarios <- sc$scenario %>% purrr::set_names(sc$scenario_human)
+
 oms <- map(scenarios, ~ {
   readRDS(paste0("mse/om/", .x, ".rds"))@OM
 })
@@ -139,6 +140,18 @@ get_Perr_y <- function(x, scenario) {
     mutate(scenario = scenario)
 }
 
+# Also plot recruitment deviations for the whole historical and projection period
+get_Perr_y_proj <- function(x, scenario) {
+  max_age <- x@OM@maxage
+  nyears <- x@OM@nyears+x@OM@proyears
+  perr_y <- x@OM@cpars$Perr_y[,max_age:(max_age+nyears-1), drop=FALSE]
+  all_years <- seq(x@OM@CurrentYr - x@OM@nyears + 1, x@OM@CurrentYr+x@OM@proyears)
+  reshape2::melt(perr_y) %>%
+    rename(iteration = Var1) %>%
+    mutate(year = rep(all_years, each = max(iteration))) %>%
+    mutate(scenario = scenario)
+}
+
 
 # Depletion -------------------------------------------------------------------
 g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB2, type = "depletion") %>%
@@ -185,13 +198,45 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "Recruitment deviation in log space") +
+  labs(x = "Year", y = "Recruitment deviations in log space") +
   coord_cartesian(ylim = c(-1.5, 1.7), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
 # g
 ggsave(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"),
        width = 8, height = 5
 )
+
+# Recdevs for the whole historical and projection period
+# Only plot the first 50 replicates (plot too dense and takes too long with too many)
+# Log space
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
+  dplyr::filter(iteration %in% 1:50) %>%
+  ggplot(aes(year, y = log(value), group = iteration)) +
+  geom_line(alpha = 0.15) +
+  facet_wrap(vars(scenario)) +
+  gfplot::theme_pbs() +
+  labs(x = "Year", y = "Recruitment deviations in log space") +
+  coord_cartesian(ylim = c(-4., 3.5), expand = FALSE) +
+  geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
+#print(g)
+ggsave(here::here("mse/figures/ye-compare-SRA-log-recdev-panel-proj.png"),
+       width = 8, height = 5)
+
+# Natural space
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
+  dplyr::filter(iteration %in% 1:50) %>%
+  ggplot(aes(year, y = value, group = iteration)) +
+  geom_line(alpha = 0.15) +
+  facet_wrap(vars(scenario)) +
+  gfplot::theme_pbs() +
+  labs(x = "Year", y = "Recruitment deviations") +
+  coord_cartesian(ylim = c(0, exp(3.)), expand = FALSE) +
+  geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
+#print(g)
+ggsave(here::here("mse/figures/ye-compare-SRA-nat-recdev-panel-proj.png"),
+       width = 8, height = 5)
 
 # SSB/SSBMSY  -----------------------------------------------------------------
 #sra <- readRDS("mse/om/upweight_dogfish.rds")

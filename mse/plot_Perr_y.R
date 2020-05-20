@@ -49,7 +49,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   coord_cartesian(ylim = c(-3.5, 3.5), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
  #print(g)
-.ggsave("ye-projections-recdev-panel-rep_1-50.png",
+.ggsave("ye-projections-log-recdev-panel-log-rep_1-50.png",
        width = 8, height = 5)
 
 g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
@@ -63,5 +63,5 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   coord_cartesian(ylim = c(0, exp(3.)), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
 #print(g)
-.ggsave("ye-projections-recdev-panel-exp-rep_1-50.png",
+.ggsave("ye-projections-nat-recdev-panel-rep_1-50.png",
         width = 8, height = 5)
