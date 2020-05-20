@@ -95,6 +95,8 @@ As for the other OM scenarios, we used the reconstructed catch up to 1985 and th
 #### (3) Episodic recruitment {#sec:approach3-reference3}
 
 Long-lived, late-maturing species such as Pacific rockfishes often exhibit episodic, or periodic, recruitment strategies characterized by high fecundity and occasional very large recruitment events [@winemiller1992; @rose2001; @winemiller2005].
+This life history strategy is sometimes called the storage effect (@warner1985) because strong recruitment events are stored in the adult population and are capable of contributing to reproduction, sometimes significantly, when favourable conditions return. 
+Longevity in rockfish is thought to have evolved as a strategy for weathering un-favourable conditions.
 Very large or even extreme year classes have been observed for several BC rockfish species [e.g., Pacific Ocean Perch: @haigh2019; Bocaccio: @haigh2020].
 
 
