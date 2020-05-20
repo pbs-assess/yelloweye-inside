@@ -45,10 +45,23 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   geom_line(alpha = 0.15) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "Recruitment deviation in log space") +
+  labs(x = "Year", y = "Recruitment deviations in log space") +
   coord_cartesian(ylim = c(-3.5, 3.5), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
  print(g)
 .ggsave("ye-projections-recdev-panel-rep_1-50.png",
        width = 8, height = 5)
 
+g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
+  mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
+  dplyr::filter(iteration %in% 1:50) %>%
+  ggplot(aes(year, y = value, group = iteration)) +
+  geom_line(alpha = 0.15) +
+  facet_wrap(vars(scenario)) +
+  gfplot::theme_pbs() +
+  labs(x = "Year", y = "Recruitment deviations") +
+  coord_cartesian(ylim = c(0, exp(3.)), expand = FALSE) +
+  geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
+print(g)
+.ggsave("ye-projections-recdev-panel-exp-rep_1-50.png",
+        width = 8, height = 5)
