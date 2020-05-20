@@ -115,7 +115,8 @@ $$
 where $\varepsilon^{(1)}_{R,y}$ is the recruitment deviation from OM Scenario (1) and
 $\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
 The paramater $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which selects whether an extreme recruitment event will occur. 
-We assume that an extreme recruitment event is expected to occur once every generation (38 years).
+We assume that an extreme recruitment event is expected to occur once every generation (38 years), based on the observation that strong recruitment events in Inside Yelloweye Rockfish were present in 1948 and 1970. 
+Although recent environmental conditions may be favourable for some species of rockfishes [@haigh2020; @lincandeo2020], we don't yet have any evidence of recent strong recruitment events for Inside Yelloweye Rockfish that might indicate more frequent episodic or spasmodic recruitment events. 
 
 #### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
 
