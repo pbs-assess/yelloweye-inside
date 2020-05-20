@@ -48,7 +48,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   labs(x = "Year", y = "Recruitment deviations in log space") +
   coord_cartesian(ylim = c(-3.5, 3.5), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
- print(g)
+ #print(g)
 .ggsave("ye-projections-recdev-panel-rep_1-50.png",
        width = 8, height = 5)
 
@@ -62,6 +62,6 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   labs(x = "Year", y = "Recruitment deviations") +
   coord_cartesian(ylim = c(0, exp(3.)), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
-print(g)
+#print(g)
 .ggsave("ye-projections-recdev-panel-exp-rep_1-50.png",
         width = 8, height = 5)
