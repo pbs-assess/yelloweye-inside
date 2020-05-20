@@ -43,7 +43,11 @@ It is likely that natural mortality rates have varied over time, due to changes 
 Yelloweye Rockfish occupy a relatively high trophic position [@olson2020] and Steller Sea Lions, Orca Whales (*Orcinus orca*) and Chinook Salmon (*Oncorhynchus tshawytscha*) are the only predators of Yelloweye Rockfish listed in a large data-base of predator-prey interactions (database assembled for @dunne2016; @szoboszlai2015). 
 Populations of all three predator species have experienced large fluctuations in the last century.
 Steller Sea Lion abundance was greatly reduced due to hunting and predator controls, but have now recovered to historical levels [@olesiuk2018; and see Appendix F]. 
-The Southern Resident population of Orca Whales is endangered and the Northern Resident population is threatened [@cosewic2008b]. The cause of decline for both populations is attributed to the declining abundance of Chinook Salmon [@ford2010]. 
+The Southern Resident population of Orca Whales is endangered and the Northern Resident population is threatened [@cosewic2008b]. The cause of decline for both populations is attributed to the declining abundance of Chinook Salmon [@ford2010].
+Pacific Halibut have also been observed preying on Yelloweye Rockfish in the Gulf of Alaska (@livingston2017); however, Pacific Halibut are not very abundant in inside waters (see data for 2018 IPHC survey in @anderson2019synopsis). 
+Lingcod are likely predators of juvenile Yelloweye Rockfish as they are known predators of rockfish species. 
+However, stomach content studies are often not able to resolve rockfish species beyond unidentified rockfish (i.e. @beaudreau2007, @livingston2017).
+Lingcod in the Strait of Georgia also suffered major population declines and were thought to have been fished down to 2% of historic levels in 1990 but the population has increased since [@logan2005; @holt2016]. 
 Future projects might investigate the effects of time-varying natural mortality on Inside Yelloweye Rockfish.
 
 ## ROCKFISH CONSERVATION AREAS {#sec:discussion-rca}
