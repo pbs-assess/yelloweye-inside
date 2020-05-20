@@ -163,3 +163,5 @@ Rowan Haigh provided advice on the historical catch reconstruction.
 
 We thank Tom Carruthers and Adrian Hordyk (UBC) for early guidance on this rebuilding plan and their cheerful willingness to add new features to the DLMtool software on request.
 
+Finally we thank Dayv Lowry and Kendra Holt for insightful reviews that greatly improved the working paper.
+
