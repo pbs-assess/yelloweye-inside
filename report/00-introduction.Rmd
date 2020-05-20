@@ -120,7 +120,7 @@ The six steps are as follows:
 
   Step 6: Presentation of results and selection of management procedure.
 
-After selection and implementation of the MP for setting the catch limit, a final necessary step is to periodically monitor and evaluate the performance of the MP [@dfo2013; @dowling2015a; @carruthers2018]. 
+After selection and implementation of the MP for setting the catch limit (Figure \@ref(fig:mse-chart); e.g., applying the selected MP algorithm to the observed survey index), a final necessary step is to periodically monitor and evaluate the performance of the MP [@dfo2013; @dowling2015a; @carruthers2018]. 
 This may be done through informal means, e.g., via feedback from fishers and survey information [e.g., @cox2008a], or through more formal statistical measures, where observed data are compared to predictions from the OMs to test whether the system is performing as expected [@butterworth2008; @carruthers_hordyk_2018; discussed in @anderson2020gfmp].
 
 In the following sections, we describe our approach for developing a candidate rebuilding plan for Inside Yelloweye Rockfish, following the six best practice steps.
