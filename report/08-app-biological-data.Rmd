@@ -10,10 +10,12 @@ Inside Yelloweye Rockfish, which reside in area 4B (Figure \@ref(fig:map-4B)), a
 
 ## AGE, SIZE, AND GROWTH {#sec:growth}
 
-Yelloweye Rockfish are a long-lived species, with a reported maximum age of 121 *y* for the outside stock [@keppel2019]. The maximum observed age for the inside Yelloweye Rockfish stock is 101 years, updated from the previously reported max age of 98 years, based on additional recent aging data (Figure \@ref(fig:age-freq)). 
+Yelloweye Rockfish are a long-lived species, with a reported maximum age of 121 *y* for the outside stock [@keppel2019]. The maximum observed age for the inside Yelloweye Rockfish stock is 101 years, updated from the previously reported max age of 98 years based on additional recent ageing data (Figure \@ref(fig:age-freq)). 
 Age data for Inside Yelloweye Rockfish, derived from the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018.
 Directed hard-bottom longline (HBLL) surveys began in Area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged.
 Proportions-at-age of Yelloweye Rockfish are shown by year and sex in Figure \@ref(fig:age-freq). It is assumed that all ages are independent of subarea.
+Human error can occur in reading ages from otoliths. Ageing precision for inside Yelloweye Rockfish is plotted in Figure \@ref(fig:age-precision) which displays ages for fish that were aged twice by independent technicians, including each technicians' reported range of possible ages.
+
 
 Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight). It is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
 
@@ -72,15 +74,6 @@ There is, of course, great uncertainty associated with the estimation of generat
 Maturity estimates, especially the classification of mature and immature individuals when done macroscopically, are also imprecise [@head2016]. 
 Lastly, age estimates are also subject to error (Figure \@ref(fig:age-precision) replotted from Appendix A of the BC Groundfish Data Synopsis Report [@anderson2019synopsis]).
 
-(ref:fig-age-precision) Ageing precision plot for all Yelloweye Rockfish. Each dot and cross-hatch represents an individual fish that has been aged twice. The x-axis represents the age and upper and lower ends of the possible age range recorded for the initial ('primary') ageing of the fish. The y-axis represents the equivalent values recorded for the second ('precision') ageing of the fish by a different technician. The dashed diagonal line represents a perfect one-to-one agreement between the two ages. 300 fish have been randomly sampled from all Yelloweye Rockfish precision-aged, and a small amount of random jitter has been added to both axes to reduce overplotting with the same jitter value added to both the x and y axes for a given fish.
-
-
-```{r age-precision, fig.cap="(ref:fig-age-precision)", out.width="5in"}
-library(here)
-knitr::include_graphics(here("figs/ye-age-precision.png"))
-```
-
-
 
 
 \clearpage
@@ -97,6 +90,17 @@ facilitate tracing cohorts through time.
 library(here)
 knitr::include_graphics(here("mse/figures/age-freq.png"))
 ```
+
+
+(ref:fig-age-precision) Ageing precision plot for inside Yelloweye Rockfish. Each dot and cross-hatch represents an individual fish that has been aged twice. The x-axis represents the age and upper and lower ends of the possible age range recorded for the initial ('primary') ageing of the fish. The y-axis represents the equivalent values recorded for the second ('precision') ageing of the fish by a different technician. The dashed diagonal line represents a perfect one-to-one agreement between the two ages. 300 fish have been randomly sampled from all Yelloweye Rockfish precision-aged, and a small amount of random jitter has been added to both axes to reduce overplotting with the same jitter value added to both the x and y axes for a given fish.
+
+
+```{r age-precision, fig.cap="(ref:fig-age-precision)", out.width="4in"}
+library(here)
+knitr::include_graphics(here("figs/ye-ins-age-precision.png"))
+```
+
+
 
 (ref:fig-length-freq) Length-frequency plot for Inside Yelloweye Rockfish from all available surveys in Area 4B: hard-bottom 
 longline surveys (northern and southern) in inside waters (HBLL INS N/S), hard-bottom longline surveys in outside waters (a small portion of area 4B was included in this survey in 2014 and 2016; HBLL OUT S), and "OTHER" surveys including jig surveys in 1985 and 1986 and a bottom trawl survey in 2005. Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
