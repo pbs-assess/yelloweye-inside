@@ -53,7 +53,7 @@ Future projects might investigate the effects of time-varying natural mortality 
 ## ROCKFISH CONSERVATION AREAS {#sec:discussion-rca}
 
 As part of the rockfish conservation strategy, 164 Rockfish Conservation Areas (RCAs), in which fisheries targeting or catching rockfish as bycatch are prohibited, were established in BC waters between 2004-2006 [@yamanaka2010]. 
-There are 130 RCAs in Area 4B (Figure \@ref(fig:map-4B)) that protect an estimated 267 km^2 of rockfish habitat, amounting to 22% of available rockfish habitat in inside waters [@haggarty2018]. 
+There are 130 RCAs in Area 4B (Figure \@ref(fig:map-4B)) that protect an estimated 267 square kilometres of rockfish habitat, amounting to 22% of available rockfish habitat in inside waters [@haggarty2018]. 
 Although RCAs were established as one measure to help rebuild rockfish populations [@yamanaka2010], this analysis does not consider any possible effects of the closures. 
 Remotely Operated Vehicle (ROV) surveys of RCAs in inside waters found that there was no difference in the abundance or size of Yelloweye Rockfish inside RCAs at the time of study (3-7 years after RCA establishment) [@haggarty2016b]. 
 It is expected that, given the late age-at-maturity and longevity of rockfishes, it will take upwards of 20 years for populations to show responses to closed areas [@starr2015]. 
