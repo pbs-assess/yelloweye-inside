@@ -45,7 +45,7 @@ Results from this project may inform the COSEWIC reassessment and, potentially, 
 
 (ref:fig-map-4B) Map of Groundfish Management Area 4B showing rockfish conservation areas (RCAs) and the boundaries separating the Inside Yelloweye Rockfish designatable unit (DU) from the Outside Yelloweye Rockfish DU. The red lines indicate a proposed adjustment to the range for the Inside DU, based on recent genetic evidence [@andrews2018; @siegle2011; @siegle2013]. 
 
-```{r map-4B, fig.cap="(ref:fig-map-4B)", out.width="3.8in"}
+```{r map-4B, fig.cap="(ref:fig-map-4B)", out.width="5in"}
 knitr::include_graphics(here::here("figs/InsideYE_Map_new.png"))
 ```
 
