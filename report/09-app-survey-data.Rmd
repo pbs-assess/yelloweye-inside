@@ -6,7 +6,7 @@ We conditioned the operating models using indices of abundance from the inside H
 
 The Inside HBLL survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
 The survey has a depth-stratified random design consisting of 2km by 2km survey blocks, and has always taken place on the CCGS Neocaligus vessel.
-The survey uses snap-type circle hooks and squid bait with a two-hour soak time.
+The survey uses size 13/0 snap-type circle hooks and squid bait with a two-hour soak time.
 Hook-by-hook data, which has been collected since the start of the survey, is electronically collected and stored in a database.
 For further details on survey design see @lochead2004.
 
@@ -16,7 +16,7 @@ However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
 
 (ref:fig-map-HBLL-NS) Map of HBLL survey blocks indicating the northern (blue) and southern (green) regions. RCAs (orange blocks) are also shown.
 
-```{r map-HBLL-NS, fig.cap="(ref:fig-map-HBLL-NS)", out.width="3.8in"}
+```{r map-HBLL-NS, fig.cap="(ref:fig-map-HBLL-NS)", out.width="5in"}
 knitr::include_graphics(here::here("figs/YE_Inside_2019_HBLL_L.png"))
 ```
 
@@ -241,7 +241,7 @@ hook_comparison <- d2004 %>% select(circle_hook, ye_count, fe_begin_retrieval_ti
 
 The Dogfish survey samples nine locations in the Strait of Georgia that were historically fished by the commercial Dogfish fishery [@king2012].
 The survey began in 1986 and sampling has occurred in 1989, 2005, 2011, 2014, and 2019.
-The survey is a depth-stratified longline survey that uses snap on gear with 300 circle hooks baited with Pacific Herring and a two-hour soak time.
+The survey is a depth-stratified longline survey that uses snap on gear with 300 size 14/0circle hooks baited with Pacific Herring and a two-hour soak time.
 A more detailed description of survey methods is provided in @king2012.
 For most of the time series, set-by-set catch of rockfish has been recorded.
 Beginning in 2019, hook-by-hook data for all captured species were collected on board, along with biological data for rockfish.
