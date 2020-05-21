@@ -110,7 +110,7 @@ We therefore followed the same approach to reconstructing historical recreationa
 We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in OM Scenario (2) but performance of MPs was not appreciably different from other OM reference set scenarios.
 
 We deviated from @yamanaka2011 in our treatment of FSC catch. They applied an algorithm to explicitly estimate FSC catch, based on assumptions about consumption rates.
-After discussions with local First Nation representatives in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because most of the rockfish catch is understood to be caught under dual fishing licences and would therefore be included in DFO commercial catch databases.
+After discussions with Fisheries Biologists who work with local First Nations in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because most of the rockfish catch is understood to be caught under dual fishing licences and would therefore be included in DFO commercial catch databases.
 We elected to assume FSC catches in the southern region were accounted for in recreational catches, because most of the rockfish catch is caught from small vessels, so effort, at least, is likely already counted by DFO overflights.
 We recognize the large uncertainties surrounding FSC catch.
 Future applications of the MP Framework for this stock would benefit from more detailed collaborative work with First Nations to quantify contemporary and historical FSC catch in Area 4B.
@@ -168,5 +168,5 @@ Rowan Haigh provided advice on the historical catch reconstruction.
 
 We thank Tom Carruthers and Adrian Hordyk (UBC) for early guidance on this rebuilding plan and their cheerful willingness to add new features to the DLMtool software on request.
 
-Finally we thank Dayv Lowry and Kendra Holt for insightful reviews that greatly improved the working paper.
+Finally we thank Dayv Lowry (WDFW) and Kendra Holt (DFO) for insightful reviews that greatly improved the working paper.
 
