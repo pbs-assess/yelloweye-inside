@@ -8,6 +8,7 @@ rmd_files: ["index.Rmd",
             "05-simulation.Rmd",
             "06-results.Rmd",
             "07-discussion.Rmd",
+            "99-references.Rmd",
             "08-app-biological-data.Rmd",
             "09-app-survey-data.Rmd",
             "10-app-catch-data.Rmd",
@@ -15,6 +16,5 @@ rmd_files: ["index.Rmd",
             "12-app-mp.Rmd",
             "13-app-pinnipeds.Rmd",
             "14-app-cosewic.Rmd",
-            "98-environment.Rmd",
-            "99-references.Rmd"]
+            "98-environment.Rmd"]
 delete_merged_file: true
