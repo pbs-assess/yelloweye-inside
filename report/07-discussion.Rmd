@@ -64,19 +64,20 @@ However, results from this survey were not available in time to be included in t
 ## STOCK STATUS {#sec:discussion-status}
 
 The rebuilding plan for the inside stock of Yelloweye Rockfish was triggered by the 2010 stock assessment [@yamanaka2011], which estimated the stock to be below the LRP with high probability.
-Out of all the reference  and robustness set OMs explored in our analysis, only OM Scenario (A) estimated median spawning biomass to be below the LRP in 2010.
+Out of all the reference  and robustness set OMs explored in our analysis, only OM Scenario (A), Low M, estimated median spawning biomass to be below the LRP in 2010.
+In all OM scenarios, log recruitment deviations began to increase after 2000, albeit still below zero, likely tracking slight increases in the HBLL index during this period. 
 The 2010 assessment used a surplus production (SP) model, with fundamentally different structural assumptions to the SRA used for conditioning OMs in our analysis.
-As a check, we fit a SP model, similar to that used by @yamanaka2011, and obtained much lower biomass and stock status estimates than those from the SRA OMs.
-Furthermore, while the MSY and *F*~MSY~ estimates were similar to those from the SRA models, the estimate of *B*~MSY~ was higher for the SP model than our OM Scenario (1).
-These two factors in the SP model (lower biomass and higher reference points) would lead to a more pessimistic assessment of stock status.
+As a check, we fit a SP model, similar to that used by @yamanaka2011, and obtained much lower biomass and stock status estimates than from the reference set SRA OMs.
+Furthermore, the estimate of *B*~MSY~ was higher for the SP model than our OM Scenario (1), while the *F*~MSY~ estimate from the SP model was lower than those from the reference set SRA models, indicating lower productivity in the SP model.
+The fact that the SP model had lower estimated productivity and biomass, and higher *B*~MSY~ would lead to a more pessimistic assessment of stock status.
 The SP-fitting exercise suggests that model structure, rather than the addition of ten years of new data since the last assessment, was a major factor contributing to different perceptions of stock status between the current OMs and the previous assessment.
 
-In a recent evaluation of the outside stock of Yelloweye Rockfish, @cox2020 found similar differences between their age-structured OMs, which did not estimate stock status to be below the LRP, and the 2014 SP-based assessment [@yamanaka2018yelloweyeoutside], which found the stock to be below the LRP, triggering a rebuilding plan.
+In a recent evaluation of the outside stock of Yelloweye Rockfish, @cox2020 found similar differences between their age-structured OMs, which estimated stock status to be above the LRP, and the 2014 SP-based assessment [@yamanaka2018yelloweyeoutside], which found the stock to be below the LRP, triggering a rebuilding plan.
 @cox2020 noted that structural differences between SP and age-structured models would be expected to produce different results, particularly due to differences in the formulation of productivity.
-We were able to essentially mimic the stock status estimates of @yamanaka2011 when we forced the stock to have lower productivity in OM Scenario (A), although the mean value of *M* used in OM Scenario (A) was lower than that used by @yamanaka2011.
-@cox2020 noted that age-structured models allow for lags in recruitment to fisheries, surveys, and the spawning stock, characteristics that are more realistic for a long-lived species like Yelloweye Rockfish.
+We were able to mimic the stock status estimates of @yamanaka2011 when we forced the stock to have lower productivity in OM Scenario (A), although the mean value of *M* used in OM Scenario (A) was lower than that used by @yamanaka2011 to develop the productivity prior for their SP model.
+@cox2020 noted that age-structured models allow for lags in recruitment to fisheries, surveys, and the spawning stock, characteristics that can promote resilience and are more realistic for a long-lived species like Yelloweye Rockfish.
 These differences are controlled by fishery selectivity-at-age, survey selectivity-at-age and maturity-at-age, respectively, in age-structured models and can be over-simplified in aggregate SP models.
-Our OM Scenario (4), where we estimated survey selectivity-at-age, resulted in lower estimates of stock status, implying that assumptions about selectivity were a contributing factor to perceptions of stock status (see Section \@ref(sec:discussion-uncertainties-selectivity)).
+Our OM Scenario (4), where we estimated survey selectivity-at-age, resulted in lower estimates of stock status, implying that assumptions about selectivity were a contributing factor to perceptions of stock status (see Section \@ref(sec:discussion-uncertainties-selectivity)), most likely resulting from impacts on other parameter estimates such as *R*~0~ and autocorrelation in recruitment.
 @cox2020 also noted that their SP-based MPs tended to underestimate biomass, which we also found in the current study, where the SP MPs generated no catch in the first decade of the projections.
 
 Despite differences in perception of stock status among some of our OMs, and between this and the previous stock assessment, we note that the MP Framework provides a method for integrating across the major uncertainties in stock status and reference points (see Section \@ref(sec:discussion-implicit)) that are prevalent for this stock.
