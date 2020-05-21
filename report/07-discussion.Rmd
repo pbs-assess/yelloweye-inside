@@ -91,7 +91,9 @@ Selectivity was a major source of uncertainty in our OMs.
 There are no available age-composition data for commercial or recreational fisheries, and none from the Dogfish survey.
 We therefore fixed selectivity for all these gears.
 Commercial and recreational selectivities were set to match those reported for the outside stock [@cox2020] and we set selectivity in the Dogfish survey to mirror the value used for the HBLL survey.
-However, it was noted during the Outside Yelloweye Rebuilding process that additional biological sampling should be undertaken to inform the selectivity  of commercial, recreational and FSC catches [@dfo2020_oyesar], and this recommendation equally applies to the inside population. 
+However, it was noted during the Outside Yelloweye Rebuilding process that additional biological sampling should be undertaken to inform the selectivity of commercial, recreational and FSC catches [@dfo2020], and this recommendation equally applies to the inside population. Full biological data, including otoliths from Yelloweye Rockfish were collected on the Dogfish survey in 2019 for the first time.
+Although the ages were not yet available for this work, they may inform selectivity of the Dogfish survey for future work. 
+We also initiated project in August 2019 to compare the HBLL and Dogfish gear by fishing some of the Dogfish survey sites with both the HBLL and Dogfish survey gear. These data may also inform the comparability of the two surveys.  
 
 Age-composition data from the area 4B surveys were sparse and have only been collected in recent years.
 Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
@@ -100,9 +102,7 @@ To separate the effects of upweighting the Dogfish survey from fixing HBLL selec
 
 While we could have explored other fixed selectivity assumptions, we believe we used the most plausible values, and, for the HBLL survey, included an alternative OM scenario in the reference set.
 Future applications of the MP Framework for this stock could explore other selectivity OM scenarios.
-On the Dogfish survey in 2019, we collected full biological data, including otoliths from Yelloweye Rockfish for the first time.
-Although the ages were not yet available for this work, they may inform selectivity of the Dogfish survey for future work. 
-We also initiated a project in August 2019 to compare the HBLL and Dogfish gear by fishing some of the Dogfish survey sites with both the HBLL and Dogfish survey gear and these data may also inform the comparability of the two surveys.  
+
 
 ### Historical catch {#sec:discussion-uncertainties-catch}
 
