@@ -93,7 +93,7 @@ We therefore fixed selectivity for all these gears.
 Commercial and recreational selectivities were set to match those reported for the outside stock [@cox2020] and we set selectivity in the Dogfish survey to mirror the value used for the HBLL survey.
 However, it was noted during the Outside Yelloweye Rebuilding process that additional biological sampling should be undertaken to inform the selectivity of commercial, recreational and FSC catches [@dfo2020], and this recommendation equally applies to the inside population. Full biological data, including otoliths from Yelloweye Rockfish were collected on the Dogfish survey in 2019 for the first time.
 Although the ages were not yet available for this work, they may inform selectivity of the Dogfish survey for future work. 
-We also initiated project in August 2019 to compare the HBLL and Dogfish gear by fishing some of the Dogfish survey sites with both the HBLL and Dogfish survey gear. These data may also inform the comparability of the two surveys.  
+We also initiated a project in August 2019 to compare the HBLL and Dogfish gear by fishing some of the Dogfish survey sites with both the HBLL and Dogfish survey gear. These data may also inform the comparability of the two surveys.  
 
 Age-composition data from the area 4B surveys were sparse and have only been collected in recent years.
 Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
