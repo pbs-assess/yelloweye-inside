@@ -74,7 +74,7 @@ However, the results of the survey have not been calibrated to account for uncer
 ### Reconstructed historical recreational catch {#sec:recon-rec-catch-data}
 
 Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a recreational fishing resort [@yamanaka2011].
-We used the same historical time series of reconstructed recreational catch for the current analysis (Table \@ref(tab:reccatch)).
+We used the same historical time series of reconstructed recreational catch for the current analysis (Table \@ref(tab:rectable)).
 
 ### Creel survey data 1982-2019 {#sec:creel-catch-data}
 
@@ -94,20 +94,36 @@ We converted rockfish pieces to weight by multiplying by 2.49 kg, which was the 
 
 \clearpage
 
-```{r reccatch, echo=FALSE, warning=FALSE, results="asis"}
-rec_catch <- read.csv(here("data-raw/rec-allcatch-effort.csv"), stringsAsFactors=FALSE, header=TRUE)
+```{r reccatch, out.width="0.8\\textwidth", fig.width=6, fig.cap="Recreational catch for Inside Yelloweye Rockfish. The black line indicates reconstructed catch and the bars are creel survey data. The data are a combination of reconstructed catch (1918--1981), catch parsed from total rockfish catch in creel surveys (1982-1999), and catch from species specific creel surveys (1982--2019)."}
+rec_catch <- readr::read_csv(here("data-raw/rec-allcatch-effort.csv"))
+ 
+# make a bar plot of recreational catch
+ggplot() + 
+  geom_line(data=filter(rec_catch, year <= 1981), aes(year, catch) ) +
+  geom_col(data=filter(rec_catch, year %in% 1982:1999), aes(year, catch, fill="#999999"), width = 1 ) +
+  geom_col(data=filter(rec_catch, year >= 2000), aes(year, catch, fill = "#E69F00"), width = 1 ) +
+  gfdlm::theme_pbs() +
+  coord_cartesian(expand = FALSE) +
+  labs( y = "Catch (t)") +
+  theme(axis.title.x = element_blank(), legend.position = "bottom",
+    plot.margin = margin(t = 11 / 2, r = 11 / 2 + 5, b = 11 / 2, l = 11 / 2) ) +
+  scale_fill_discrete(name = "Data Source", labels = c("Creel Survey:all rockfish", "Creel Survey:species specific"))
+
+```
+
+```{r rectable, echo = FALSE, warning = FALSE, results = "asis"}
+# make a table of recreational catch
 rec_catch <- rec_catch %>% mutate(catch = round(catch, 1)) %>% 
   mutate(effort= round(effort, 0)) %>% 
-  mutate_if(is.numeric , replace_na, replace = "--")
+  mutate_if(is.numeric , replace_na, replace = "--") 
 
-# make a table of recreational catch
 csasdown::csas_table(rec_catch,
   format = "latex",
   col_names = c("Year", "Catch (t)", "Effort (boat trips)"),
   align = c("c", "c", "c"),
   digits = 1,
   repeat_header = TRUE,
-  caption = "Reconstructed (1918--1981) and modern (1982--2019) recreational catch estimates for Inside Yelloweye Rockfish (tonnes)."
+  caption = "Recreational catch for Inside Yelloweye. The data are a combination of reconstructed catch (1918--1981), catch parsed from total rockfish catch in creel surveys (1982-1999), and catch from species specific creel surveys (1982--2019)."
 )
 ```
 
