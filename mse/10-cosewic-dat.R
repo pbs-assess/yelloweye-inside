@@ -47,3 +47,13 @@ apical_f <- map_dfr(sra_ye, get_apical_f, .id = "scenario") %>%
 out <- left_join(ssb, biomass) %>%
   left_join(apical_f) %>%
   as_tibble()
+
+p <- c(0.025, 0.5, 0.975)
+p_names <- map_chr(p, ~paste0(.x*100))
+
+p_funs <- map(p, ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
+  set_names(nm = p_names)
+
+summaries <- out %>%
+  group_by(scenario, year) %>%
+  summarize_at(vars(biomass, ssb, apical_f), p_funs)
