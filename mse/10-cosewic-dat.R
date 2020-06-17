@@ -48,8 +48,9 @@ out <- left_join(ssb, biomass) %>%
   left_join(apical_f) %>%
   as_tibble()
 
+# get median and 95% intervals for ssb, b, f
 p <- c(0.025, 0.5, 0.975)
-p_names <- map_chr(p, ~paste0(.x*100))
+p_names <- c("lwr", "med", "upr")
 
 p_funs <- map(p, ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
   set_names(nm = p_names)
