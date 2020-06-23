@@ -357,14 +357,37 @@ walk(names(plots$projections), ~ {
   plot = plots$projections_scenarios
 )
 
+# SAR figs:
+
+pm_df_list_all <- c(pm_df_list, pm_df_list_rob)
+g <- map(pm_df_list_all, dplyr::filter, MP %in% mp_sat) %>%
+  set_names(c(scenarios_ref_human, scenarios_rob_human)) %>%
+  gfdlm::plot_tigure_facet(ncol = 2)
+.ggsave("tigure-all-6",
+  width = 6.6, height = 7.25,
+  plot = g + pm_angle
+)
+
+mp_ref <- reference_mp
+tradeoff <- c("LRP 2GT", "ST C10")
+out1 <- pm_df_list_rob %>%
+  map(dplyr::filter, MP %in% union(mp_sat, mp_ref[mp_ref != "NFref"])) %>%
+  set_names(scenarios_rob_human)
+
+out2 <- pm_df_list %>%
+  map(dplyr::filter, MP %in% union(mp_sat, mp_ref[mp_ref != "NFref"])) %>%
+  set_names(scenarios_ref_human)
+
+g <- c(out1[1], out2[1]) %>% gfdlm::plot_tradeoff(tradeoff[1], tradeoff[2], custom_pal = custom_pal) + coord_equal(xlim = c(0.5, 1.005), ylim = c(0.5, 1.005), expand = FALSE) + ggplot2::facet_wrap(~scenario, ncol = 2) + theme(panel.spacing.x = grid::unit(13, "pt"))
+.ggsave("tradeoffs-SAR", width = 6, height = 2.6, plot = g)
+
 optimize_png <- TRUE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   files_per_core <- 4
-  setwd("mse/figures")
+  setwd(fig_dir2)
   system(paste0(
     "find -X . -name '*.png' -print0 | xargs -0 -n ",
     files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
   ))
   setwd("../../")
 }
-
