@@ -58,3 +58,22 @@ p_funs <- map(p, ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
 summaries <- out %>%
   group_by(scenario, year) %>%
   summarize_at(vars(biomass, ssb, apical_f), p_funs)
+
+# Survey Indices  ---------------------------------------------------------------
+survey_names = c("HBLL", "Dogfish", "CPUE 86-90", "CPUE 95-01", "CPUE 03-05")
+
+I_sd <- sra_ye[[1]]@data$I_sd %>% structure(dimnames = list(all_years, survey_names)) %>%
+  as.data.frame() %>% cbind(data.frame(Year = all_years)) %>%
+  reshape2::melt(id.vars = c("Year"), variable.name = "survey", value.name = "SD")
+
+Index <- sra_ye[[1]]@data$Index %>% structure(dimnames = list(all_years, survey_names)) %>%
+  as.data.frame() %>% cbind(data.frame(Year = all_years)) %>%
+  reshape2::melt(id.vars = c("Year"), variable.name = "survey") %>% left_join(I_sd, by = c("Year", "survey"))
+
+Index$lower <- exp(log(Index$value) - 2 * Index$SD)
+Index$upper <- exp(log(Index$value) + 2 * Index$SD)
+
+# drop CPUE series
+Index <- Index %>% filter(survey == c("HBLL", "Dogfish"))
+
+
