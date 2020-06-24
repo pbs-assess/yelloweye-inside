@@ -73,7 +73,6 @@ Index <- sra_ye[[1]]@data$Index %>% structure(dimnames = list(all_years, survey_
 Index$lower <- exp(log(Index$value) - 2 * Index$SD)
 Index$upper <- exp(log(Index$value) + 2 * Index$SD)
 
-# drop CPUE series
-Index <- Index %>% filter(survey == c("HBLL", "Dogfish"))
+
 
 
