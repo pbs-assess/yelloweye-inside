@@ -19,11 +19,9 @@ FMSY <- DLMtool::PNOF
 `AAVC` <- DLMtool::AAVY
 `ST C10` <- gfdlm::pm_factory("LTY", 0.5 - 1e-4, c(1, 10))
 `ST C15` <- gfdlm::pm_factory("LTY", 0.75 - 1e-4, c(1, 10))
-#`LT C20` <- gfdlm::pm_factory("LTY", 1 - 1e-4, c(56, 56))
 
-# May 11 2020. New PMs requested by Dayv Lowry (reviewer)
-`LRP 2GT` <- gfdlm::pm_factory("SBMSY", 0.4, c(76, 76))
-`USR 2GT` <- gfdlm::pm_factory("SBMSY", 0.8, c(76, 76))
+`LRP 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.4, c(76, 76))
+`USR 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.8, c(76, 76))
 `LT C20` <- gfdlm::pm_factory("LTY", 1 - 1e-4, c(76, 76))
 
 mse_temp <- readRDS("mse/om/MSE_upweight_dogfish.rds")
@@ -31,26 +29,14 @@ catch <- apply(mse_temp@CB_hist[1, , (102 - 8 + 1):102, ], 2, sum) # Catch since
 rm(mse_temp)
 ref_aadc <- gfdlm:::get_aadc(catch)
 `ST AADC` <- gfdlm::pm_factory("AADC", ref_aadc, c(1, 10))
-# `AADC 1GT` <- gfdlm::pm_factory("AADC", ref_aadc, c(1, 38))
 
-# May 11 2020. Inlcude 2GT PMs
-PM <- c("LRP 2GT", "USR 2GT", "LRP 1GT", "ST C10", "ST C15", "LT C20", "ST AADC")
+# May 11 2020. Inlcude 1.5GT PMs
+PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "ST C10", "ST C15", "LT C20", "ST AADC")
 
 # Set up and checks -----------------------------------------------------------
 sc <- readRDS("mse/om/ye-scenarios2.rds")
 fig_dir <- "mse/figures"
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
-
-# May 11 2020 put 2GT results in own folder
-fig_dir2 <- "mse/figures-2GT"
-if (!dir.exists(fig_dir2)) dir.create(fig_dir2)
-
-# # FIXME: temp.
-# sc <- tibble::tribble(
-#   ~scenario,     ~scenario_human,        ~scenario_type,
-#   "upweight_dogfish_nr",    "(4) Estimate HBLL selectivity","Reference",
-#   "upweight_dogfish",       "(4b) Estimate HBLL selectivity\n(Reconstructed catch until 2006)","Reference"
-# )
 
 .ggsave <- function(filename, width, height, ...) {
   ggsave(file.path(fig_dir2, paste0(sp, "-", filename, ".png")),
@@ -93,8 +79,8 @@ ref_pt_text <- do.call(rbind, lapply(ref_pt, function(x) {
     apply(1, function(xx) paste0(xx[1], " (", xx[2], ")"))
 })) %>%
   structure(dimnames = list(scenario_human, c("MSY", "FMSY", "BMSY")))
-write.csv(ref_pt_text, file = "mse/figures-2GT/ref_pt.csv")
-saveRDS(ref_pt_text, "mse/figures-2GT/ref_pt.rds")
+write.csv(ref_pt_text, file = "mse/figures/ref_pt.csv")
+saveRDS(ref_pt_text, "mse/figures/ref_pt.rds")
 
 # COSEWIC metric E, Probability that the biomass is at least 2, 5 % B0 within the projection period
 COSEWIC_E <- function(MSEobj, Ref = 0.02, Yrs = c(1, 100)) {
@@ -127,38 +113,20 @@ pm_df_list_rob <- map(mse[scenarios_rob], ~ gfdlm::get_probs(.x, PM)) # Robustne
 pm_df <- bind_rows(pm_df_list, .id = "scenario") # All as a data.frame
 pm_avg <- group_by(pm_df, MP) %>% summarise_if(is.numeric, mean)
 pm_min <- group_by(pm_df, MP) %>% summarise_if(is.numeric, min)
-saveRDS(pm_df_list, file = here("mse","om", "ye-pm-all-2GT.rds"))
-saveRDS(pm_df_list_rob, file = here("mse","om", "ye-pm-all-rob-2GT.rds"))
-
-#saveRDS(pm_df, file = "mse/om/ye-pm-all.rds")
-
-# # FIXME:
-# pm_angle <- theme(
-#   axis.text.x.top = element_text(angle = 60, hjust = 0)
-# )
-#
-# x <- pm_df_list[[1]] %>% dplyr::filter(MP %in% pm_df_list[[2]]$MP) %>%
-#   arrange(`LRP 1.5GT`, `USR 1.5GT`, `LRP 1GT`, `ST C10`)
-# plot_tigure(x, mp_order = x$MP) + pm_angle
-# ggsave("mse/figures-2GT/tigure_upweight_dogfish.png", width = 5, height = 6.5)
-# plot_tigure(pm_df_list[[2]], mp_order = x$MP) + pm_angle
-# ggsave("mse/figures-2GT/tigure_upweight_dogfish_recon_catch.png", width = 5, height = 6.5)
-# plot_scenario_projections(mse)
-# ggsave("mse/figures-2GT/proj.pdf", width = 10, height = 42, limitsize = FALSE)
-# .pm_df_list %>% set_names(sc$scenario_human) %>% plot_tigure_facet() + pm_angle
-# ggsave("mse/figures-2GT/tigure_upweight_dogfish_recon_catch_comparison.png", width = 7.5, height = 6.5)
+saveRDS(pm_df_list, file = here("mse","om", "ye-pm-all.rds"))
+saveRDS(pm_df_list_rob, file = here("mse","om", "ye-pm-all-rob.rds"))
 
 # Average across OMs
 pm_avg <- group_by(pm_df, MP) %>% summarise_if(is.numeric, mean)
 pm_min <- group_by(pm_df, MP) %>% summarise_if(is.numeric, min)
 
-# May 11 2020. Average across OMs ... base satisficing on LRP 2GT
-satisficed_criteria <- c("LRP 2GT" = 0.9, "ST C10" = 0.5)
+# May 11 2020. Average across OMs
+satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
 
 # satisficed MPs
 mp_sat <- dplyr::filter(
   pm_avg,
-  `LRP 2GT` > satisficed_criteria[1],
+  `LRP 1.5GT` > satisficed_criteria[1],
   `ST C10` > satisficed_criteria[2]
 ) %>%
   pull(MP)
@@ -186,11 +154,11 @@ g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
   theme(
     plot.margin = margin(t = 11 / 2 - 5, r = 11 / 2 + 15, b = 11 / 2, l = 11 / 2 - 5)
   )
-ggsave("mse/figures-2GT/ye-tigure-cosewic-all.png", width = 5.7, height = 5)
+ggsave("mse/figures/ye-tigure-cosewic-all.png", width = 5.7, height = 5)
 
 g <- dplyr::filter(e_avg, MP %in% union(mp_sat, "NFref")) %>%
   plot_tigure() + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
-ggsave("mse/figures-2GT/ye-tigure-cosewic-avg.png", width = 2.5, height = 3)
+ggsave("mse/figures/ye-tigure-cosewic-avg.png", width = 2.5, height = 3)
 
 plots <- gfdlm::plot_factory(
   mse_list = mse,
@@ -202,7 +170,7 @@ plots <- gfdlm::plot_factory(
   mp_ref = reference_mp,
   custom_pal = custom_pal,
   eg_scenario = "updog_fixsel",
-  tradeoff = c("LRP 2GT", "ST C10"),
+  tradeoff = c("LRP 1.5GT", "ST C10"),
   satisficed_criteria = satisficed_criteria,
   skip_projections = FALSE, # TRUE for speed!
   catch_breaks = seq(0, 30, 10),
@@ -369,7 +337,7 @@ g <- map(pm_df_list_all, dplyr::filter, MP %in% mp_sat) %>%
 )
 
 mp_ref <- reference_mp
-tradeoff <- c("LRP 2GT", "ST C10")
+tradeoff <- c("LRP 1.5GT", "ST C10")
 out1 <- pm_df_list_rob %>%
   map(dplyr::filter, MP %in% union(mp_sat, mp_ref[mp_ref != "NFref"])) %>%
   set_names(scenarios_rob_human)
