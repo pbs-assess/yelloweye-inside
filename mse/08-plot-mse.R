@@ -19,15 +19,18 @@ FMSY <- DLMtool::PNOF
 `AAVC` <- DLMtool::AAVY
 `ST C10` <- gfdlm::pm_factory("LTY", 0.5 - 1e-4, c(1, 10))
 `ST C15` <- gfdlm::pm_factory("LTY", 0.75 - 1e-4, c(1, 10))
-`LT C20` <- gfdlm::pm_factory("LTY", 1 - 1e-4, c(56, 56))
+
+`LRP 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.4, c(76, 76))
+`USR 1.5GT` <- gfdlm::pm_factory("SBMSY", 0.8, c(76, 76))
+`LT C20` <- gfdlm::pm_factory("LTY", 1 - 1e-4, c(76, 76))
 
 mse_temp <- readRDS("mse/om/MSE_upweight_dogfish.rds")
 catch <- apply(mse_temp@CB_hist[1, , (102 - 8 + 1):102, ], 2, sum) # Catch since 2012
 rm(mse_temp)
 ref_aadc <- gfdlm:::get_aadc(catch)
 `ST AADC` <- gfdlm::pm_factory("AADC", ref_aadc, c(1, 10))
-# `AADC 1GT` <- gfdlm::pm_factory("AADC", ref_aadc, c(1, 38))
 
+# May 11 2020. Inlcude 1.5GT PMs
 PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "ST C10", "ST C15", "LT C20", "ST AADC")
 
 # Set up and checks -----------------------------------------------------------
@@ -35,15 +38,8 @@ sc <- readRDS("mse/om/ye-scenarios2.rds")
 fig_dir <- "mse/figures"
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
-# # FIXME: temp.
-# sc <- tibble::tribble(
-#   ~scenario,     ~scenario_human,        ~scenario_type,
-#   "upweight_dogfish_nr",    "(4) Estimate HBLL selectivity","Reference",
-#   "upweight_dogfish",       "(4b) Estimate HBLL selectivity\n(Reconstructed catch until 2006)","Reference"
-# )
-
 .ggsave <- function(filename, width, height, ...) {
-  ggsave(file.path(fig_dir, paste0(sp, "-", filename, ".png")),
+  ggsave(file.path(fig_dir2, paste0(sp, "-", filename, ".png")),
     width = width, height = height, ...
   )
 }
@@ -108,6 +104,7 @@ e_avg <- e_df_list[sc$scenario_type == "Reference"] %>%
   bind_rows(.id = "scenario") %>%
   group_by(MP) %>%
   summarise_if(is.numeric, mean)
+
 pm_df_list <- map(mse[scenarios_ref], ~ gfdlm::get_probs(.x, PM)) # List with all OMs and PMs
 
 # Satisficing -----------------------------------------------------------------
@@ -119,28 +116,11 @@ pm_min <- group_by(pm_df, MP) %>% summarise_if(is.numeric, min)
 saveRDS(pm_df_list, file = here("mse","om", "ye-pm-all.rds"))
 saveRDS(pm_df_list_rob, file = here("mse","om", "ye-pm-all-rob.rds"))
 
-#saveRDS(pm_df, file = "mse/om/ye-pm-all.rds")
-
-# # FIXME:
-# pm_angle <- theme(
-#   axis.text.x.top = element_text(angle = 60, hjust = 0)
-# )
-#
-# x <- pm_df_list[[1]] %>% dplyr::filter(MP %in% pm_df_list[[2]]$MP) %>%
-#   arrange(`LRP 1.5GT`, `USR 1.5GT`, `LRP 1GT`, `ST C10`)
-# plot_tigure(x, mp_order = x$MP) + pm_angle
-# ggsave("mse/figures/tigure_upweight_dogfish.png", width = 5, height = 6.5)
-# plot_tigure(pm_df_list[[2]], mp_order = x$MP) + pm_angle
-# ggsave("mse/figures/tigure_upweight_dogfish_recon_catch.png", width = 5, height = 6.5)
-# plot_scenario_projections(mse)
-# ggsave("mse/figures/proj.pdf", width = 10, height = 42, limitsize = FALSE)
-# .pm_df_list %>% set_names(sc$scenario_human) %>% plot_tigure_facet() + pm_angle
-# ggsave("mse/figures/tigure_upweight_dogfish_recon_catch_comparison.png", width = 7.5, height = 6.5)
-
 # Average across OMs
 pm_avg <- group_by(pm_df, MP) %>% summarise_if(is.numeric, mean)
 pm_min <- group_by(pm_df, MP) %>% summarise_if(is.numeric, min)
 
+# May 11 2020. Average across OMs
 satisficed_criteria <- c("LRP 1.5GT" = 0.9, "ST C10" = 0.5)
 
 # satisficed MPs
@@ -321,7 +301,7 @@ pg <- ggplotGrob(g)
 for(i in which(grepl("strip-r", pg$layout$name))){
   pg$grobs[[i]]$layout$clip <- "off"
 }
-png(file.path(fig_dir, paste0(sp, "-", "projections-index", ".png")), width = 10, height = 10, units = "in", res = 160)
+png(file.path(fig_dir2, paste0(sp, "-", "projections-index", ".png")), width = 10, height = 10, units = "in", res = 160)
 grid::grid.draw(pg)
 dev.off()
 # .ggsave("projections-index", width = 10, height = 9, plot = g)
@@ -345,10 +325,34 @@ walk(names(plots$projections), ~ {
   plot = plots$projections_scenarios
 )
 
+# SAR figs:
+
+pm_df_list_all <- c(pm_df_list, pm_df_list_rob)
+g <- map(pm_df_list_all, dplyr::filter, MP %in% mp_sat) %>%
+  set_names(c(scenarios_ref_human, scenarios_rob_human)) %>%
+  gfdlm::plot_tigure_facet(ncol = 2)
+.ggsave("tigure-all-6",
+  width = 6.6, height = 7.25,
+  plot = g + pm_angle
+)
+
+mp_ref <- reference_mp
+tradeoff <- c("LRP 1.5GT", "ST C10")
+out1 <- pm_df_list_rob %>%
+  map(dplyr::filter, MP %in% union(mp_sat, mp_ref[mp_ref != "NFref"])) %>%
+  set_names(scenarios_rob_human)
+
+out2 <- pm_df_list %>%
+  map(dplyr::filter, MP %in% union(mp_sat, mp_ref[mp_ref != "NFref"])) %>%
+  set_names(scenarios_ref_human)
+
+g <- c(out1[1], out2[1]) %>% gfdlm::plot_tradeoff(tradeoff[1], tradeoff[2], custom_pal = custom_pal) + coord_equal(xlim = c(0.5, 1.005), ylim = c(0.5, 1.005), expand = FALSE) + ggplot2::facet_wrap(~scenario, ncol = 2) + theme(panel.spacing.x = grid::unit(13, "pt"))
+.ggsave("tradeoffs-SAR", width = 6, height = 2.6, plot = g)
+
 optimize_png <- TRUE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   files_per_core <- 4
-  setwd("mse/figures")
+  setwd(fig_dir2)
   system(paste0(
     "find -X . -name '*.png' -print0 | xargs -0 -n ",
     files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
