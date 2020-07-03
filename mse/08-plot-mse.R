@@ -39,7 +39,7 @@ fig_dir <- "mse/figures"
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
 .ggsave <- function(filename, width, height, ...) {
-  ggsave(file.path(fig_dir2, paste0(sp, "-", filename, ".png")),
+  ggsave(file.path(fig_dir, paste0(sp, "-", filename, ".png")),
     width = width, height = height, ...
   )
 }
@@ -301,7 +301,7 @@ pg <- ggplotGrob(g)
 for(i in which(grepl("strip-r", pg$layout$name))){
   pg$grobs[[i]]$layout$clip <- "off"
 }
-png(file.path(fig_dir2, paste0(sp, "-", "projections-index", ".png")), width = 10, height = 10, units = "in", res = 160)
+png(file.path(fig_dir, paste0(sp, "-", "projections-index", ".png")), width = 10, height = 10, units = "in", res = 160)
 grid::grid.draw(pg)
 dev.off()
 # .ggsave("projections-index", width = 10, height = 9, plot = g)
@@ -352,7 +352,7 @@ g <- c(out1[1], out2[1]) %>% gfdlm::plot_tradeoff(tradeoff[1], tradeoff[2], cust
 optimize_png <- TRUE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   files_per_core <- 4
-  setwd(fig_dir2)
+  setwd(fig_dir)
   system(paste0(
     "find -X . -name '*.png' -print0 | xargs -0 -n ",
     files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
