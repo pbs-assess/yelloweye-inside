@@ -1,7 +1,7 @@
 # SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:objectives-metrics}
 
 Clear management and fishery objectives must be identified, along with the performance metrics that measure them.
-Objectives may span a wide range of policy or legislated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., maintaining an average catch or reducing variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas).
+Objectives may span a wide range of policy or legislated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., maintaining an average catch or reducing variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas). In a rebuilding scenario, conservation objectives must take precedence. However, in a simulation framework it is possible to examine trade-offs between conservation and other short and long-term fishery objectives, so long as the primary conservation objective is met. 
 Fully quantified objectives include a metric or target, the desired probability of success, and a time frame to achieve the objective (e.g., probability of maintaining the stock above the LRP is greater than 0.95 [19 times out of 20], over 1.5 generations of the stock).
 Performance metrics are quantified measures of the objectives. In closed-loop simulation, they are calculated in the OM at each time step of the projections.
 
