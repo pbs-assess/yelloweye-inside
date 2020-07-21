@@ -92,6 +92,8 @@ The average proportion over 2000 and 2001 was then multiplied by the total Yello
 To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000.
 We converted rockfish pieces to weight by multiplying by 2.49 kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
 
+We did not develop a CPUE index for the recreational fishery, despite the availability of recent creel survey data. Since the imposition of management procedures aimed at conservation of Rockfish there has been a shift towards active avoidance of Rockfish in recreational fisheries. As a result, there is concern that a CPUE series for the recreational fishery would not be responsive to changes in abundance and therefore could be misleading for assessment purposes. 
+
 \clearpage
 
 ```{r reccatch, out.width="0.8\\textwidth", fig.width=6, fig.cap="Recreational catch for Inside Yelloweye Rockfish. The black line indicates reconstructed catch and the bars are creel survey data. The data are a combination of reconstructed catch (1918--1981), catch parsed from total rockfish catch in creel surveys (1982-1999), and catch from species specific creel surveys (1982--2019)."}
