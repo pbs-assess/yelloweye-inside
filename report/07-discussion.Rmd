@@ -81,7 +81,7 @@ Our OM Scenario (4), where we estimated survey selectivity-at-age, resulted in l
 @cox2020 also noted that their SP-based MPs tended to underestimate biomass, which we also found in the current study, where the SP MPs generated no catch in the first decade of the projections.
 
 Despite differences in perception of stock status among some of our OMs, and between this and the previous stock assessment, we note that the MP Framework provides a method for integrating across the major uncertainties in stock status and reference points (see Section \@ref(sec:discussion-implicit)) that are prevalent for this stock.
-In particular, the inclusion of OM Scenario (A) in the robustness set provides decision-makers with an alternative view of stock status and performance of MPs.
+In particular, the inclusion of OM Scenario (A) in the robustness set provides decision-makers with an alternative view of stock status and performance of MPs. In cases such as these, where the data available are not sufficient to resolve the different estimates of stock status a "weight of evidence" approach can be used to make management decisions [@kronlund2020]. A weight of evidence approach considers the combined contributions of individual studies (totality of evidence) and enlists expert judgement to assign weights for each line of evidence (individual studies or operating models). 
 
 ## KEY UNCERTAINTIES {#sec:discussion-uncertainties}
 
