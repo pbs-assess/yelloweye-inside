@@ -42,7 +42,7 @@ In addition to the above objectives, we propose refining the milestones identifi
 6. Achieve positive biomass trends within each 10 year period *for as long as the stock remains below the LRP*.
 
 The 10 year period identified in the milestones for the current Inside Yelloweye rebuilding plan [@ifmp2018] reflected an assumption that rebuilding out of the critical zone could be very slow for this stock.
-We adjusted the milestone to reflect the assumption that, once the stock is rebuilt (i.e., no longer in the critical zone), the milestone would no longer be required.
+We adjusted the milestone to reflect the assumption that, once the stock is no longer in the critical zone, the milestone would no longer be required.
 The current rebuilding guidance [@dfo2013] only provides for objectives to build stocks out of the critical zone, with milestones intended to ensure progress is achieved during the rebuilding process.
 The guidance does discuss having longer-term objectives to keep rebuilding stocks into the healthy zone, above the USR.
 However, this is supposed to be achieved beyond the period and scope of the rebuilding plan [@dfo2013].
