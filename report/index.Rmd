@@ -36,7 +36,7 @@ abstract: |
   We discuss major uncertainties, including uncertainty in natural mortality, selectivity, and historical catches, noting that we attempted to account for these uncertainties by evaluating performance of MPs across multiple OMs. We highlight issues regarding estimates of current stock status for Inside Yelloweye Rockfish, and the role of reference points in the MP Framework. We make recommendations for assessment frequency and suggest triggers for re-assessment. Performance of MPs with respect to meeting two alternative assessment criteria for the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) are also evaluated.
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
- csasdown::resdoc_pdf:
+ csasdown::resdoc_word:
    french: false
   # csasdown::resdoc_word
 # ------------

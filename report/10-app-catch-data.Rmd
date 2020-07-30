@@ -92,7 +92,7 @@ The average proportion over 2000 and 2001 was then multiplied by the total Yello
 To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000.
 We converted rockfish pieces to weight by multiplying by 2.49 kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
 
-We did not develop a CPUE index for the recreational fishery, despite the availability of recent creel survey data. Since the imposition of management procedures aimed at conservation of Rockfish there has been a shift towards active avoidance of Rockfish in recreational fisheries. As a result, there is concern that a CPUE series for the recreational fishery would not be responsive to changes in abundance and therefore could be misleading for assessment purposes. 
+We did not develop a CPUE index for the recreational fishery, despite the availability of recent creel survey data. Since the imposition of management procedures aimed at conservation of rockfishes (Table \@ref(tab:rec-mgt-changes)) there has been a shift towards active avoidance of Rockfish in recreational fisheries. As a result, there is concern that a CPUE series for the recreational fishery would not be responsive to changes in abundance and therefore could be misleading for assessment purposes. 
 
 \clearpage
 
@@ -175,7 +175,11 @@ The only FSC data that are available are from the commercial dockside monitoring
 These data were collected from "dual fishing" trips, which occur when indigenous fishers choose to keep some of the catch obtained during a commercial fishing trip for FSC purposes.
 Both commercial and FSC catch are monitored during the offload.
 Between 0 and 0.8 tonnes amounting to an average of 5.6% of the total commercial catch has been landed on dual fishing trips in this time period.
-The FSC catch from these dual trips is included in the annual totals for commercial catch within the groundfish sector databases. In the North of 4B, FSC catch may be included in dual commercial-FSC trips and some of these trips occurred both inside and outside area 4B. If sets were more than 50% inside 4B they were included in the data, if they were less than or equal to 50% inside 4B they were excluded.Most of the dual fishing trip records are from the northern part of the study area because this is also where most of the commercial fishing for Yelloweye Rockfish in 4B occurs.
+The FSC catch from these dual trips is included in the annual totals for commercial catch within the groundfish sector databases. 
+The DMP catch data can only be resolved to the trip level rather than the set level, so some of the dual fishing data may be from outside of area 4B (i.e. include the catch of Outside Yelloweye). 
+In order to deal with this, if more than 50% of the sets on a trip took place in 4B, we included them in the commercial catch data for 4B.
+Conversely, we excluded trips that had 50% or more sets completed outside of 4B. 
+Most of the dual fishing trip took place in the northern part of the study area because this is also where most of the commercial fishing for Yelloweye Rockfish in 4B currently takes place.
 Indigenous fishers from the member First Nations represented by the A-Tlegay Fisheries Society, are largely obtaining Yelloweye Rockfish on dual fishing trips (C. Rusel, pers. comm., November 8, 2019).
 
 In the southern part of the study area, indigenous fishers have little commercial capacity.
