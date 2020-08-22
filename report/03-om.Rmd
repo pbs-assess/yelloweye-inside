@@ -394,9 +394,8 @@ The assessment estimated a 90% [nine times out of 10] probability that the stock
 The assessment results triggered a rebuilding plan [@ifmp2018], which is updated in this document.
 The SRA models under all OM scenarios in the current analysis predict similar biomass trajectories to that in @yamanaka2011.
 However, only OM Scenario (A) estimates the stock to have been below the LRP during the 2000s (Figure \@ref(fig:biomass-om)).
-It is not possible to definitively infer why model results diverged between the two analyses, due to the large differences in model structure between the SP model used in @yamanaka2011 and the SRA used here, as well as the addition of 10 years of new data.
 
-However, to explore the effects of model structure on stock status, we fit a SP model to the currently-available catch, CPUE and fishery-independent indices of abundance. 
+Model results diverged between the two analyses due to large differences in model structure between the SP model used in @yamanaka2011 and the SRA used here. To explore the effects of model structure on stock status, we fit a SP model to the currently-available catch, CPUE and fishery-independent indices of abundance. 
 We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp,
 which was configured to resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood.
 The SP model set *B*~MSY~ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth (*r*) as a likelihood penalty.
@@ -404,17 +403,31 @@ The prior probability distribution for *r* was normally distributed with a mean 
 
 SP model results more closely matched those of the previous assessment, estimating the stock to be below the LRP (Figure \@ref(fig:spm-biomass)).
 The model estimated the reference points *B*~MSY~ = 1844 t, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t.
-MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), but the estimate of *B*~MSY~ was approximately 35% higher for the SP model than the SRA. 
-
-Results suggest that differences in estimated stock status between the current analysis and the previous stock assessment [@yamanaka2011] are in large part due to the choice of model structure.
-We note that very similar findings were made by @cox2020 in the rebuilding plan for the outside stock of Yelloweye Rockfish.
+MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), but the estimate of *B*~MSY~ was approximately 35% higher for the SP model than the SRA. We note that very similar findings were made by @cox2020 in the rebuilding plan for the outside stock of Yelloweye Rockfish.
 Their analysis, also based on age-structured models, predicted the current stock status for Outside Yelloweye Rockfish to be above the LRP, i.e., not in need of rebuilding, in contrast to results obtained by the SP model used in the 2014 stock assessment [@yamanaka2018yelloweyeoutside]. 
+
+Notably, the biomass trends for the inside population since 2000 also differs between the two types of models. A flat, stable trend (below the LRP) was estimated in the SP model. On the other hand, many of the OMs developed from the SRA indicated that stock size has been increasing, although the trend is much flatter in the Low M scenario. We attempted four alternative model fits in an attempt to find scenarios that would mirror the biomass trend estimated in the SP model (Figure \@ref(fig:alt-SRA-fit)).  
+
+First, the dogfish survey was further downweighted with a likelihood weighting factor $\lambda = 0.1$. This did not change the spawning biomass trend and the resulting stock status was more optimistic compared to the Base OM. Second, the 2019 dogfish survey value was excluded from the likelihood since the observed mean is higher than in previous recent years (with $\lambda = 4$ following the Base OM). This scenario also did not appreciably affect the spawning biomass trend and magnitude. Third, the survey age comps was downweighted with $\lambda = 0.1$. Similar to the first alternative, the spawning biomass trend was similar to the Base OM although the resultant stock status was somewhat less optimistic. Finally, the survey age comps were removed from the likelihood with $\lambda = 0$. This scenario estimated the stock to be below the LRP in concordance with the SP model. 
+
+These results suggest that differences in estimated stock status between the current analysis and the previous stock assessment [@yamanaka2011] are in large part due to the data types included in the respective models and model structure. Both use catch and indices of abundance although the SP model leaves out the age compositions. When the two models use the same data types, i.e., excluding the age compositions from the likelihood with fixed assumptions regarding survey selectivity, both behave more similarly.
+
+The age-structured model was chosen over the SP model to develop operating models for inside yelloweye rockfish on first principles. The age-structured model is more realistic in modeling delays in stock productivity over time. A single cohort contributes to the spawning biomass (and vulnerable biomass) over several years as it progresses through the age structure of the population. This mechanism can explain the increasing biomass estimated in the SRA. As fishing mortality decreased from catch reductions in the late 1990s into 2000, the spawning biomass started to increase. The age of 5% maturity is lower than the age of 5% selectivity of the commercial fleet which would allow portions of cohorts to spawn before significant vulnerability to fishing. While the productivity delay is modeled here, the effect is not as may not be as dramatic as predicted due to the maturity and selectivity schedules.
+
+For the SP model, this delay may be implicitly incorporated in the production function of the SP model but the biomass predicted in a given year is explicitly a function of the biomass observed in the previous year. Furthermore, the stock biomass in the SP model is implicitly vulnerable biomass since there are no explicit assumptions about selectivity. There is more difficulty in explaining the productivity of the stock mechanistically as all biological processes regarding growth, natural mortality, and maturity is incorporated in the intrinsic rate parameter *r*.
 
 (ref:fig-spm-biomass) Biomass relative to biomass at MSY (*B*/*B*~MSY~) trajectory from the SP model.
 Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
 
 ```{r spm-biomass, fig.cap="(ref:fig-spm-biomass)", out.width="0.8\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/SP_fit.png"))
+```
+
+
+(ref:fig-alt-SRA-fit) Relative spawning biomass (*B*/*B*~MSY~) from alternative fits to the SRA that downweighted or eliminated data from the likelihood. Mean values of natural mortality and steepness were used. Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
+
+```{r alt-SRA-fit, fig.cap="(ref:fig-alt-SRA-fit)"}
+knitr::include_graphics(here::here("mse/figures/alt_SRA_fit.png"))
 ```
 
 

@@ -1,4 +1,4 @@
-library(DLMtool) # version 5.4.1 to be released on CRAN for CSAS
+library(DLMtool) # version 5.4.3 to be released on CRAN for CSAS
 library(MSEtool) # version 1.5 to be released on CRAN for CSAS
 library(dplyr)
 library(reshape2)
