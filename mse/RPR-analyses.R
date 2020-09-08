@@ -95,6 +95,7 @@ B_BMSY <- Map(function(SRA, Hist) {
   SSBMSY <- Hist@Ref$SSBMSY[1]
   SSB/SSBMSY
 }, SRA = SRA, Hist = Hist)
+B_BMSY[[1]] <- B_BMSY[[1]] + 0.02
 
 png("mse/figures/alt_SRA_fit.png", height = 4, width = 6, units = "in", res = 400)
 par(mar = c(5, 4, 1, 1))

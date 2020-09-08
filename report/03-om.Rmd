@@ -424,7 +424,7 @@ knitr::include_graphics(here::here("mse/figures/SP_fit.png"))
 ```
 
 
-(ref:fig-alt-SRA-fit) Relative spawning biomass (*B*/*B*~MSY~) from alternative fits to the SRA that downweighted or eliminated data from the likelihood. Mean values of natural mortality and steepness were used. Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
+(ref:fig-alt-SRA-fit) Relative spawning biomass (*B*/*B*~MSY~) from alternative fits to the SRA that downweighted or eliminated data from the likelihood. Mean values of natural mortality and steepness were used. Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~). The Base and Exclude 2019 dogfish scenarios overlap and the corresponding lines are jittered in the figure for clarity.
 
 ```{r alt-SRA-fit, fig.cap="(ref:fig-alt-SRA-fit)"}
 knitr::include_graphics(here::here("mse/figures/alt_SRA_fit.png"))
