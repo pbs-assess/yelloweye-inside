@@ -1,3 +1,5 @@
+FRENCH <- FALSE
+
 library("dplyr")
 library("DLMtool")
 library("MSEtool")
@@ -5,6 +7,7 @@ library("here")
 library("purrr")
 library("cowplot")
 library("ggplot2")
+library(rosettafish)
 
 species_name <- "Inside Yelloweye Rockfish"
 starting_year <- 1918
@@ -12,7 +15,12 @@ ending_year <- 2019
 all_years <- seq(starting_year, ending_year)
 nyear <- length(all_years)
 
-fig_dir <- "mse/figures"
+if (!FRENCH) {
+  fig_dir <- "mse/figures"
+} else {
+  dir.create("mse/figures-french", showWarnings = FALSE)
+  fig_dir <- "mse/figures-french"
+}
 #if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
 # Set up the scenario names ---------------------------------------------------
@@ -26,6 +34,16 @@ sc <- tibble::tribble(
   "lowM_fixsel",            "(A) Low M",                      "Robustness",
   "high_index_cv",          "(B) High HBLL CV",               "Robustness"
 )
+
+sc_french <- c(
+  "(1) Base",
+  "(2) Faibles prises",
+  "(3) Recrutement\népisodique",
+  "(4) Estimation de la\nsélectivité du RPFD",
+  "(A) Faible M ",
+  "(B) CV élevé\ndu RPFD")
+if (FRENCH) sc$scenario_human <- sc_french
+
 sc <- mutate(sc, order = seq_len(n()))
 saveRDS(sc, file = "mse/om/ye-scenarios2.rds")
 
@@ -160,7 +178,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB2, type = "depletion") %>%
   geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "Depletion") + coord_cartesian(expand = FALSE, ylim = c(0, 1.1))
+  labs(x = en2fr("Year", FRENCH), y = en2fr("Depletion", FRENCH)) + coord_cartesian(expand = FALSE, ylim = c(0, 1.1))
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-depletion-panel.png")),
   width = 8, height = 5
 )
@@ -172,7 +190,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_SSB2, type = "SSB") %>%
   geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "Spawning biomass") + coord_cartesian(expand = FALSE, ylim = c(0, 8e3))
+  labs(x = en2fr("Year", FRENCH), y = en2fr("Spawning biomass", FRENCH)) + coord_cartesian(expand = FALSE, ylim = c(0, 8e3))
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-SSB-panel.png")),
        width = 8, height = 5
 )
@@ -184,7 +202,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_F2) %>%
   geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "F") +
+  labs(x = en2fr("Year", FRENCH), y = "F") +
   coord_cartesian(ylim = c(0, 0.4), expand = FALSE)
 ggsave(here::here("mse/figures/ye-compare-SRA-F-panel.png"),
        width = 8, height = 5
@@ -198,7 +216,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "Recruitment deviations in log space") +
+  labs(x = en2fr("Year", FRENCH), y =  en2fr("Recruitment deviations in log space", FRENCH)) +
   coord_cartesian(ylim = c(-1.5, 1.7), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
 # g
@@ -216,7 +234,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
   geom_line(alpha = 0.15) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "Recruitment deviations in log space") +
+  labs(x = en2fr("Year", FRENCH), y = en2fr("Recruitment deviations in log space", FRENCH)) +
   coord_cartesian(ylim = c(-4., 3.5), expand = FALSE) +
   geom_hline(yintercept = 1, lty = 2, alpha = 0.6) +
   geom_vline(xintercept = 2019, lty = 2, alpha = 0.6)
@@ -232,7 +250,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
   geom_line(alpha = 0.15) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = "Recruitment deviations") +
+  labs(x = en2fr("Year", FRENCH), y = en2fr("Recruitment deviations", FRENCH)) +
   coord_cartesian(ylim = c(0, exp(3.)), expand = FALSE) +
   geom_hline(yintercept = 1, lty = 2, alpha = 0.6)+
   geom_vline(xintercept = 2019, lty = 2, alpha = 0.6)
@@ -255,7 +273,7 @@ g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenario_human, mse =
   geom_line() +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = expression(B/B[MSY])) + coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
+  labs(x = en2fr("Year", FRENCH), y = expression(B/B[MSY])) + coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
   geom_hline(yintercept = c(0.4, 0.8), linetype = 3)
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-MSY-panel.png")),
        width = 8, height = 5
@@ -267,7 +285,7 @@ g <- do.call(rbind, Map(get_SSB2, x = sra_ye, scenario = sc$scenario_human, mse 
   geom_line(alpha = 0.05) +
   facet_wrap(vars(scenario)) +
   gfplot::theme_pbs() +
-  labs(x = "Year", y = expression(B/B[MSY])) + coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
+  labs(x = en2fr("Year", FRENCH), y = expression(B/B[MSY])) + coord_cartesian(expand = FALSE, ylim = c(0, 5)) +
   geom_hline(yintercept = c(0.4, 0.8), linetype = 3)
 ggsave(file.path(fig_dir, paste0("ye-compare-SRA-MSY-panel-lines.png")),
   width = 8, height = 5
@@ -318,7 +336,7 @@ g <- ggplot(filter(surv, year >= 1980), aes(year, value, group = paste(iter, sur
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
-  ylab("Index") + xlab("Year") + labs(colour = "Survey", fill = "Survey") + coord_cartesian(xlim = c(1980, 2020))
+  ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + labs(colour = en2fr("Survey", FRENCH), fill = en2fr("Survey", FRENCH)) + coord_cartesian(xlim = c(1980, 2020))
 ggsave("mse/figures/ye-index-fits.png", width = 15, height = 10)
 
 # Plot HBLL  ------------------------------------------------------------------
@@ -331,7 +349,7 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "HBLL"), aes(year, value, grou
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
-  ylab("Index") + xlab("Year") + coord_cartesian(xlim = c(1980, 2020))
+  ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + coord_cartesian(xlim = c(1980, 2020))
 ggsave("mse/figures/ye-index-HBLL.png", width = 8, height = 5)
 
 g <- ggplot(filter(surv, year >= 2000 & survey == "HBLL"), aes(year, value, group = paste(iter))) +
@@ -342,7 +360,7 @@ g <- ggplot(filter(surv, year >= 2000 & survey == "HBLL"), aes(year, value, grou
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
-  ylab("Index") + xlab("Year") + coord_cartesian(xlim = c(2000, 2020))
+  ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + coord_cartesian(xlim = c(2000, 2020))
 ggsave("mse/figures/ye-index-HBLL2.png", width = 8, height = 5)
 
 # Plot dogfish  ---------------------------------------------------------------
@@ -354,7 +372,7 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "Dogfish"), aes(year, value, g
   gfplot::theme_pbs() +
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
-  ylab("Index") + xlab("Year") + coord_cartesian(xlim = c(1980, 2020))
+  ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + coord_cartesian(xlim = c(1980, 2020))
 ggsave("mse/figures/ye-index-dogfish.png", width = 8, height = 5)
 
 # Plot HBLL age comps, report N = sampling trips for the multinomial likelihood in the SRA -----------
@@ -379,14 +397,19 @@ HBLL_pred <- lapply(sc$scenario, function(xx) {
 })
 
 dir.create("mse/figures/conditioning", showWarnings = FALSE)
+dir.create("mse/figures-french/conditioning", showWarnings = FALSE)
+
+if (FRENCH) .dir <- "mse/figures-french/conditioning/HBLL_age_comp_" else .dir <- "mse/figures/conditioning/HBLL_age_comp_"
 walk(1:length(HBLL_pred), ~{
   g <- ggplot(HBLL_pred[[.x]], aes(Age, Frequency, group = Iter)) + facet_wrap(~Year, scales = "free_y") +
     geom_line(alpha = 0.05, colour = "#66C2A5") +
     geom_line(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE) +
     geom_point(data = HBLL_obs, mapping = aes(x = Age, y = Frequency), inherit.aes = FALSE, pch = 21, colour = "grey40", fill = "#66C2A5") +
     geom_label(data = Ntrips, mapping = aes(label = N), x = Inf, y = Inf, hjust = "right", vjust = "top", inherit.aes = FALSE) +
-    gfplot::theme_pbs() + ggtitle(sc$scenario_human[.x])
-  ggsave(paste0("mse/figures/conditioning/HBLL_age_comp_", sc$scenario[.x], ".png"), width = 10, height = 8)
+    gfplot::theme_pbs() + ggtitle(sc$scenario_human[.x]) +
+    xlab(en2fr("Age", FRENCH)) +
+    ylab(en2fr("Frequency", FRENCH))
+  ggsave(paste0(.dir, sc$scenario[.x], ".png"), width = 10, height = 8)
 })
 
 # Selectivity HBLL and dogfish
