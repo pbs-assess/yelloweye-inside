@@ -556,6 +556,10 @@ YE_ref_pt <- rbind(vapply(mse_ye, P_LRP, numeric(1), Yr = 102),
 
 YE_ref_pt$MP <- factor(sc$scenario_human, levels = sc$scenario_human)
 
+if (FRENCH) {
+  names(YE_ref_pt)[1:2] <- en2fr(names(YE_ref_pt)[1:2], FRENCH)
+}
+
 g <- gfdlm::plot_tigure(YE_ref_pt, mp_order = rev(sc$scenario_human), french = FRENCH) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
 ggsave(paste0(fig_dir, "/historical_indicators_ref_pt.png"), height = 3.2, width = 2.5)
 
