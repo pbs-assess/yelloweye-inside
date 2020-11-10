@@ -204,7 +204,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_F2) %>%
   gfplot::theme_pbs() +
   labs(x = en2fr("Year", FRENCH), y = "F") +
   coord_cartesian(ylim = c(0, 0.4), expand = FALSE)
-ggsave(here::here("mse/figures/ye-compare-SRA-F-panel.png"),
+ggsave(here::here(paste0(fig_dir, "/ye-compare-SRA-F-panel.png")),
        width = 8, height = 5
 )
 
@@ -220,7 +220,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y) %>%
   coord_cartesian(ylim = c(-1.5, 1.7), expand = FALSE) +
   geom_hline(yintercept = 0, lty = 2, alpha = 0.6)
 # g
-ggsave(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"),
+ggsave(here::here(paste0(fig_dir, "/ye-compare-SRA-recdev-panel.png")),
        width = 8, height = 5
 )
 
@@ -239,7 +239,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
   geom_hline(yintercept = 1, lty = 2, alpha = 0.6) +
   geom_vline(xintercept = 2019, lty = 2, alpha = 0.6)
 #print(g)
-ggsave(here::here("mse/figures/ye-compare-SRA-log-recdev-panel-proj.png"),
+ggsave(here::here(paste0(fig_dir, "/ye-compare-SRA-log-recdev-panel-proj.png")),
        width = 8, height = 5)
 
 # Natural space
@@ -255,7 +255,7 @@ g <- purrr::map2_df(sra_ye, sc$scenario_human, get_Perr_y_proj) %>%
   geom_hline(yintercept = 1, lty = 2, alpha = 0.6)+
   geom_vline(xintercept = 2019, lty = 2, alpha = 0.6)
 #print(g)
-ggsave(here::here("mse/figures/ye-compare-SRA-nat-recdev-panel-proj.png"),
+ggsave(here::here(paste0(fig_dir, "/ye-compare-SRA-nat-recdev-panel-proj.png")),
        width = 8, height = 5)
 
 # SSB/SSBMSY  -----------------------------------------------------------------
@@ -337,7 +337,7 @@ g <- ggplot(filter(surv, year >= 1980), aes(year, value, group = paste(iter, sur
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
   ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + labs(colour = en2fr("Survey", FRENCH), fill = en2fr("Survey", FRENCH)) + coord_cartesian(xlim = c(1980, 2020))
-ggsave("mse/figures/ye-index-fits.png", width = 15, height = 10)
+ggsave(paste0(fig_dir, "/ye-index-fits.png"), width = 15, height = 10)
 
 # Plot HBLL  ------------------------------------------------------------------
 #plot(1:5, col = RColorBrewer::brewer.pal(5, "Set2"), pch = 16)
@@ -350,7 +350,7 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "HBLL"), aes(year, value, grou
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
   ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + coord_cartesian(xlim = c(1980, 2020))
-ggsave("mse/figures/ye-index-HBLL.png", width = 8, height = 5)
+ggsave(paste0(fig_dir, "/ye-index-HBLL.png"), width = 8, height = 5)
 
 g <- ggplot(filter(surv, year >= 2000 & survey == "HBLL"), aes(year, value, group = paste(iter))) +
   geom_line(alpha = 0.05, colour = "#66C2A5") +
@@ -361,7 +361,7 @@ g <- ggplot(filter(surv, year >= 2000 & survey == "HBLL"), aes(year, value, grou
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
   ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + coord_cartesian(xlim = c(2000, 2020))
-ggsave("mse/figures/ye-index-HBLL2.png", width = 8, height = 5)
+ggsave(paste0(fig_dir, "/ye-index-HBLL2.png"), width = 8, height = 5)
 
 # Plot dogfish  ---------------------------------------------------------------
 g <- ggplot(filter(surv, year >= 1980 & survey == "Dogfish"), aes(year, value, group = paste(iter))) +
@@ -373,7 +373,7 @@ g <- ggplot(filter(surv, year >= 1980 & survey == "Dogfish"), aes(year, value, g
   scale_color_brewer(palette = "Set2", direction = -1) +
   scale_fill_brewer(palette = "Set2", direction = -1) +
   ylab(en2fr("Index value", FRENCH)) + xlab(en2fr("Year", FRENCH)) + coord_cartesian(xlim = c(1980, 2020))
-ggsave("mse/figures/ye-index-dogfish.png", width = 8, height = 5)
+ggsave(paste0(fig_dir, "/ye-index-dogfish.png"), width = 8, height = 5)
 
 # Plot HBLL age comps, report N = sampling trips for the multinomial likelihood in the SRA -----------
 SRA_data <- readRDS("mse/scoping/SRA_data.rds")
@@ -431,7 +431,7 @@ g <- sel %>%
   gfplot::theme_pbs() + facet_wrap(~scenario_human) +
   ylab("HBLL selectivity") + xlab("Age") +
   coord_cartesian(expand = FALSE, ylim = c(-0.01, 1.1))
-ggsave("mse/figures/HBLL-selectivity.png", width = 8, height = 5)
+ggsave(paste0(fig_dir, "/HBLL-selectivity.png"), width = 8, height = 5)
 
 # Fishery selectivity  --------------------------------------------------------
 sel2 <- data.frame(Age = 1:80, Commercial = sra_ye[[1]]@Misc[[1]]$vul[1,,1],
@@ -441,11 +441,11 @@ sel2 <- data.frame(Age = 1:80, Commercial = sra_ye[[1]]@Misc[[1]]$vul[1,,1],
 
 ggplot(sel2, aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::theme_pbs() +
   coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
-ggsave("mse/figures/fishery-selectivity.png", width = 4, height = 3)
+ggsave(paste0(fig_dir, "/fishery-selectivity.png"), width = 4, height = 3)
 
 ggplot(filter(sel2, Fleet != "HBLL"), aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::theme_pbs() +
   coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
-ggsave("mse/figures/fishery-selectivity2.png", width = 4.5, height = 3)
+ggsave(paste0(fig_dir, "/fishery-selectivity2.png"), width = 4.5, height = 3)
 
 # Terminal year selectivity
 terminal_year_selectivity <- purrr::map2_df(sra_ye, sc$scenario_human, function(x, y) {
@@ -453,7 +453,7 @@ terminal_year_selectivity <- purrr::map2_df(sra_ye, sc$scenario_human, function(
 })
 ggplot(terminal_year_selectivity, aes(Age, V)) + facet_wrap(~Scenario) + geom_line() + gfplot::theme_pbs() +
   labs(y = "Selectivity") + xlim(c(0, 40))
-ggsave("mse/figures/fishery-selectivity-terminal-year.png", width = 4.5, height = 3)
+ggsave(paste0(fig_dir, "/fishery-selectivity-terminal-year.png"), width = 4.5, height = 3)
 
 
 
@@ -473,20 +473,20 @@ samps <- data.frame(M = sra_ye[[1]]@OM@cpars$M, h = sra_ye[[1]]@OM@cpars$h, lowM
 
 ggplot(samps, aes(M)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.045, linetype = 2) +
   gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
-ggsave("mse/figures/M.png", height = 4, width = 5)
+ggsave(paste0(fig_dir, "/M.png"), height = 4, width = 5)
 
 ggplot(samps, aes(lowM)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.045, linetype = 2) +
   gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
-ggsave("mse/figures/lowM.png", height = 4, width = 5)
+ggsave(paste0(fig_dir, "/lowM.png"), height = 4, width = 5)
 
 ggplot(samps, aes(h)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.71, linetype = 2) +
   gfplot::theme_pbs() + labs(x = "Steepness", ylab = "Frequency")
-ggsave("mse/figures/steepness.png", height = 4, width = 5)
+ggsave(paste0(fig_dir, "/steepness.png"), height = 4, width = 5)
 
 samps <- data.frame(M = c(samps$M, samps$lowM), Scenario = rep(c("All others", "Low M"), each = 250))
 ggplot(samps, aes(M, colour = Scenario)) + geom_freqpoly(bins = 20) +
   gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
-ggsave("mse/figures/lowM.png", height = 4, width = 5)
+ggsave(paste0(fig_dir, "/lowM.png"), height = 4, width = 5)
 
 #### Low/high catch  ----------------------------------------------------------
 cat <- data.frame(Year = rep(1918:2019, 3),
@@ -495,10 +495,10 @@ cat <- data.frame(Year = rep(1918:2019, 3),
                   Scenario = c(rep("All others", 2 * 102), rep("Low catch", 102)))
 
 ggplot(cat, aes(Year, Catch, colour = Fleet, linetype = Scenario)) + geom_line() + gfplot::theme_pbs()
-ggsave("mse/figures/catch.png", width = 5.5, height = 3.5)
+ggsave(paste0(fig_dir, "/catch.png"), width = 5.5, height = 3.5)
 
 ggplot(filter(cat, Scenario != "Low catch"), aes(Year, Catch, colour = Fleet)) + geom_line() + gfplot::theme_pbs()
-ggsave("mse/figures/catch2.png", width = 5.5, height = 3.5)
+ggsave(paste0(fig_dir, "/catch2.png"), width = 5.5, height = 3.5)
 
 ### COSEWIC indicators and probability below LRP/USR in 2019
 COSEWIC_Bdecline_hist <- function(MSEobj, Ref = 0.7, Yr = NULL) {
@@ -547,7 +547,7 @@ YE_historical <- rbind(vapply(mse_ye, COSEWIC_P70, numeric(1), Yr = 3 * 38),
 YE_historical$MP <- factor(sc$scenario_human, levels = sc$scenario_human)
 
 g <- gfdlm::plot_tigure(YE_historical, mp_order = rev(sc$scenario_human)) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE) + scale_fill_viridis_c(limits = c(0, 1), begin = 0.15, end = 1, alpha = 0.6, option = "D", direction = -1)
-ggsave("mse/figures/historical_indicators2.png", height = 3.2, width = 3)
+ggsave(paste0(fig_dir, "/historical_indicators2.png"), height = 3.2, width = 3)
 
 YE_ref_pt <- rbind(vapply(mse_ye, P_LRP, numeric(1), Yr = 102),
                    vapply(mse_ye, P_USR, numeric(1), Yr = 102)) %>%
@@ -556,12 +556,12 @@ YE_ref_pt <- rbind(vapply(mse_ye, P_LRP, numeric(1), Yr = 102),
 
 YE_ref_pt$MP <- factor(sc$scenario_human, levels = sc$scenario_human)
 
-g <- gfdlm::plot_tigure(YE_ref_pt, mp_order = rev(sc$scenario_human)) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
-ggsave("mse/figures/historical_indicators_ref_pt.png", height = 3.2, width = 2.5)
+g <- gfdlm::plot_tigure(YE_ref_pt, mp_order = rev(sc$scenario_human), french = FRENCH) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
+ggsave(paste0(fig_dir, "/historical_indicators_ref_pt.png"), height = 3.2, width = 2.5)
 
 
 # Plot episodic recruitment ---------------------------------------------------
-png("mse/figures/rec_dev.png", height = 5, width = 5, units = "in", res = 400)
+png(paste0(fig_dir, "/rec_dev.png"), height = 5, width = 5, units = "in", res = 400)
 par(mfrow = c(2, 1), mar = c(2, 3, 1, 1), oma = c(3, 2, 0, 0))
 matplot(1918:2119, t(sra_ye[[1]]@OM@cpars$Perr_y[26:28, -c(1:79)]), typ = 'l', lty = 1, xlab = "", ylab = "")
 abline(v = 2019, lty = 2)
@@ -590,7 +590,7 @@ g1 <- ggplot(high_error, aes(Isd)) + geom_histogram(bins = 15) + gfplot::theme_p
 g2 <- ggplot(high_error, aes(IAC)) + geom_histogram(bins = 15) + gfplot::theme_pbs() + labs(x = "HBLL autocorrelation")
 
 cowplot::plot_grid(g1, g2)
-ggsave("mse/figures/HBLL_high_CV.png", width = 5, height = 3)
+ggsave(paste0(fig_dir, "/HBLL_high_CV.png"), width = 5, height = 3)
 
 sc2 <- readRDS(here("mse", "om", "ye-scenarios2.rds"))
 x <- oms %>% set_names(sc2$scenario_human) %>%
@@ -618,7 +618,7 @@ x %>% dplyr::filter(variable %in% c("R0", "AC", "D")) %>%
   xlab("Parameter value") + ylab("Count") +
   scale_colour_brewer(palette = "Dark2")
 
-ggsave(here::here("mse/figures/ye-sra-estimated.png"),
+ggsave(here::here(paste0(fig_dir, "/ye-sra-estimated.png")),
        width = 6.5, height = 8.5)
 
 x %>% dplyr::filter(variable %in% c("sigma_R", "h", "L50", "L50_95", "t0", "k", "Linf", "M")) %>%
@@ -632,5 +632,5 @@ x %>% dplyr::filter(variable %in% c("sigma_R", "h", "L50", "L50_95", "t0", "k", 
   xlab("Parameter value") + ylab("Count") +
   scale_colour_brewer(palette = "Dark2")
 
-ggsave(here::here("mse/figures/ye-sra-filtered.png"),
+ggsave(here::here(paste0(fig_dir, "/ye-sra-filtered.png")),
        width = 6.5, height = 5.5)
