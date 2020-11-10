@@ -1,3 +1,5 @@
+FRENCH <- FALSE
+
 library("DLMtool")
 library("MSEtool")
 library("dplyr")
@@ -35,7 +37,21 @@ PM <- c("LRP 1.5GT", "USR 1.5GT", "LRP 1GT", "ST C10", "ST C15", "LT C20", "ST A
 
 # Set up and checks -----------------------------------------------------------
 sc <- readRDS("mse/om/ye-scenarios2.rds")
-fig_dir <- "mse/figures"
+
+sc_french <- c(
+  "(1) Base",
+  "(2) Faibles prises",
+  "(3) Recrutement\népisodique",
+  "(4) Estimation de la\nsélectivité du RPFD",
+  "(A) Faible M ",
+  "(B) CV élevé\ndu RPFD")
+if (FRENCH) sc$scenario_human <- sc_french
+
+if (!FRENCH) {
+  fig_dir <- "mse/figures"
+} else {
+  fig_dir <- "mse/figures-french"
+}
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
 
 .ggsave <- function(filename, width, height, ...) {
@@ -150,15 +166,15 @@ mp_eg_not_sat <- c(
 
 g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
   set_names(sc$scenario_human) %>%
-  plot_tigure_facet() +
+  plot_tigure_facet(french = FRENCH) +
   theme(
     plot.margin = margin(t = 11 / 2 - 5, r = 11 / 2 + 15, b = 11 / 2, l = 11 / 2 - 5)
   )
-ggsave("mse/figures/ye-tigure-cosewic-all.png", width = 5.7, height = 5)
+ggsave(paste0(fig_dir, "/ye-tigure-cosewic-all.png"), width = 5.7, height = 5)
 
 g <- dplyr::filter(e_avg, MP %in% union(mp_sat, "NFref")) %>%
-  plot_tigure() + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
-ggsave("mse/figures/ye-tigure-cosewic-avg.png", width = 2.5, height = 3)
+  plot_tigure(french = FRENCH) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
+ggsave(paste0(fig_dir, "/ye-tigure-cosewic-avg.png"), width = 2.5, height = 3)
 
 plots <- gfdlm::plot_factory(
   mse_list = mse,
@@ -176,7 +192,7 @@ plots <- gfdlm::plot_factory(
   catch_breaks = seq(0, 30, 10),
   catch_ylim = c(0, 40),
   survey_type = "AddInd",
-  skip_worms = FALSE # memory problems
+  french = FRENCH
 )
 
 # rm(mse) # memory problems
@@ -240,7 +256,7 @@ pm_df_list_rob <- purrr::map(mse[scenarios_rob], ~ gfdlm::get_probs(.x, PM_radar
 radar_robset <- pm_df_list_rob %>%
   map(dplyr::filter, MP %in% MPs) %>%
   set_names(scenarios_rob_human) %>%
-  plot_radar_facet(custom_pal = custom_pal) +
+  plot_radar_facet(custom_pal = custom_pal, french = FRENCH) +
   theme(
     panel.spacing.x = grid::unit(60, "pt"),
     plot.margin = margin(t = 11 / 2, r = 11 / 2, b = 11 / 2, l = 11 / 2 + 6),
@@ -252,7 +268,7 @@ radar_refset_avg <- pm_avg %>%
   select(-`LRP 1GT`) %>%
   dplyr::filter(MP %in% MPs) %>%
   list() %>%
-  plot_radar_facet(custom_pal = custom_pal) +
+  plot_radar_facet(custom_pal = custom_pal, french = FRENCH) +
   theme(
     plot.margin = margin(t = 11 / 2, r = 11 / 2, b = 11 / 2, l = 11 / 2 + 10),
       strip.background = element_blank(),
@@ -330,7 +346,7 @@ walk(names(plots$projections), ~ {
 pm_df_list_all <- c(pm_df_list, pm_df_list_rob)
 g <- map(pm_df_list_all, dplyr::filter, MP %in% mp_sat) %>%
   set_names(c(scenarios_ref_human, scenarios_rob_human)) %>%
-  gfdlm::plot_tigure_facet(ncol = 2)
+  gfdlm::plot_tigure_facet(ncol = 2, french = FRENCH)
 .ggsave("tigure-all-6",
   width = 6.6, height = 7.25,
   plot = g + pm_angle
