@@ -1,3 +1,5 @@
+FRENCH <- FALSE
+
 library(reshape2)
 library(dplyr)
 library(gfplot)
@@ -33,13 +35,15 @@ vb_a <- gfplot::fit_vb(dat$survey_samples, sex = "all", method = "tmb",
 
 #----------------------------------------------------
 # use this section to plot both male and female, as well as combined parameters
-g <- plot_growth(object_f = vb_f, object_m = vb_m, lab_x = 0.6, lab_x_gap = 0.20) +
+g <- plot_growth(object_f = vb_f, object_m = vb_m, lab_x = 0.6, lab_x_gap = 0.20, french = FRENCH) +
   geom_line(data = vb_a$predictions, aes(age, length)) +
   guides(col = FALSE, lty = FALSE)  +
-  ggtitle("Growth")
+  ggtitle(en2fr("Growth", FRENCH)) +
+  xlab(en2fr("Age (years)", FRENCH)) +
+  ylab(paste(en2fr("Length", FRENCH), "(cm)"))
 
 gfplot:::ann_vb(g, vb_a$pars,
-  "Both sexes", col = "black",
+  en2fr("Both sexes", FRENCH), col = "black",
   x = 0.35*max(vb_a$predictions$age),
   y = 0.36*max(vb_a$predictions$length),
   gap = 0.06 * max(vb_a$predictions$length))
@@ -70,7 +74,7 @@ lw_f <- fit_length_weight(dat$survey_samples, sex = "female", method = "tmb",
 
 # log_a = -11.24, b = 3.09
 lw_a <- gfplot::fit_length_weight(dat$survey_samples, sex = "all", method = "tmb", too_high_quantile = 1)
-plot_length_weight(object_all = lw_a) + geom_line(data = lw_a$predictions, aes(length, weight)) +
+plot_length_weight(object_all = lw_a, french = FRENCH) + geom_line(data = lw_a$predictions, aes(length, weight)) +
   guides(col = FALSE, lty = FALSE)
 ggsave("mse/figures/length-weight.png", width = 4, height = 3)
 

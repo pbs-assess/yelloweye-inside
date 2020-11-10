@@ -51,3 +51,6 @@ mse/scoping/*.Rmd
 report/resdoc.Rmd
 report/resdoc.tex
 report/knitr-*
+*.so
+*.o
+*.cpp
