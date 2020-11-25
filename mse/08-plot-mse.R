@@ -1,5 +1,7 @@
 FRENCH <- FALSE
 
+if (FRENCH) options(OutDec = ",")
+
 library("DLMtool")
 library("MSEtool")
 library("dplyr")

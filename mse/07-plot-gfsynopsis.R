@@ -1,5 +1,7 @@
 FRENCH <- FALSE
 
+if (FRENCH) options(OutDec = ",")
+
 library(reshape2)
 library(dplyr)
 library(gfplot)
