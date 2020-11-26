@@ -1,0 +1,84 @@
+# SELECTION OF OBJECTIVES AND PERFORMANCE METRICS  {#sec:objectives-metrics}
+
+Clear management and fishery objectives must be identified, along with the performance metrics that measure them.
+Objectives may span a wide range of policy or legislated objectives (e.g., maintaining the stock above the LRP), economic objectives (e.g., maintaining an average catch or reducing variability in catch), and cultural objectives (e.g., maintaining minimum required access to the stock or specific fishing areas). In a rebuilding scenario, conservation objectives must take precedence. However, in a simulation framework it is possible to examine trade-offs between conservation and other short and long-term fishery objectives, so long as the primary conservation objective is met. 
+Fully quantified objectives include a metric or target, the desired probability of success, and a time frame to achieve the objective (e.g., probability of maintaining the stock above the LRP is greater than 0.95 [19 times out of 20], over 1.5 generations of the stock).
+Performance metrics are quantified measures of the objectives. In closed-loop simulation, they are calculated in the OM at each time step of the projections.
+
+The original rebuilding plan objective was to
+rebuild the stock above the LRP over 80 years with 56% probability of success. An additional milestone objective was to achieve positive biomass trends within each 10 year period.
+The MP that was agreed upon to meet these objectives was to maintain the combined TAC (commercial, recreational, FSC, biological survey) below 15 tonnes annually [@ifmp2018].
+
+## OBJECTIVES AND MILESTONES {#sec:objectives-metrics-obj}
+
+We present a set of refined objectives and associated performance metrics for the rebuilding plan for Inside Yelloweye Rockfish.
+Key provisional conservation objectives are guided by the PA Framework
+[@dfo2006; @dfo2009], the rebuilding plan guidance document [@dfo2013], and regional precedents [@cox2019; @cox2020].
+Additional objectives related to fisheries yield and variability in annual fisheries yield are based on precedents in other DFO Pacific Region analyses [e.g., @cox2008a; @forrest2018; @cox2019; @cox2020].
+
+The proposed core conservation objective is:
+
+1. Rebuild the stock above the LRP over 56 years (1.5 generations) with at least 95% [19 times out of 20] probability of success.
+
+We adjusted the original rebuilding time-frame of 80 years [@ifmp2018] to 56 years in this analysis, based on the estimated generation time for outside Yelloweye Rockfish [@cox2020], reflecting the guidance that rebuilding should be achieved within 1.5 to 2 generation times [@dfo2013].
+For more information on generation time, please see Appendix \@ref(app:biological-data), Section \@ref(sec:generation).
+The desired probability of success was increased from 56% to 95% to reflect rebuilding guidance that the probability of rebuilding should be high, and international best practice, where policies in numerous jurisdictions aim to keep stocks above the LRP with 90-95% probability [18 to 19 times out of 20][@sainsbury2008; @mcilgorm2013].
+
+We also propose the following additional objectives, further specified in Section \@ref(sec:objectives-metrics-pm):
+
+2. Rebuild the stock above the USR over 56 years (1.5 generations).
+
+3. Rebuild the stock above the LRP over 38 years (1 generation).
+
+4. Given the above conservation objectives are achieved, maintain an average target catch in the short and long term.
+
+5. Given the above conservation objectives are achieved, minimize variability in fisheries catch from year to year.
+
+Note that we did not assign target probabilities to these objectives as they are provided for the purpose of evaluating trade-offs with Objective 1.
+However, we screened out MPs that did not meet a minimum probability of maintaining catch above 10 t in the short-term (see Section \@ref(sec:simulation)).
+
+In addition to the above objectives, we propose refining the milestones identified in the original rebuilding plan [@ifmp2018] with the italicized text as follows:
+
+6. Achieve positive biomass trends within each 10 year period *for as long as the stock remains below the LRP*.
+
+The 10 year period identified in the milestones for the current Inside Yelloweye rebuilding plan [@ifmp2018] reflected an assumption that rebuilding out of the critical zone could be very slow for this stock.
+We adjusted the milestone to reflect the assumption that, once the stock is no longer in the critical zone, the milestone would no longer be required.
+The current rebuilding guidance [@dfo2013] only provides for objectives to build stocks out of the critical zone, with milestones intended to ensure progress is achieved during the rebuilding process.
+The guidance does discuss having longer-term objectives to keep rebuilding stocks into the healthy zone, above the USR.
+However, this is supposed to be achieved beyond the period and scope of the rebuilding plan [@dfo2013].
+
+## PERFORMANCE METRICS {#sec:objectives-metrics-pm}
+
+We propose the following performance metrics to measure the objectives, where *B* represents spawning biomass, MSY refers to maximum sustainable yield, *B*~MSY~ refers to equilibrium spawning biomass at MSY, GT represents generation time, and AADC represents average absolute deviation in catch ($C$) over $n$ years (note: *ST* = short term, *LT* = long term).
+We define the LRP and USR as 0.4*B*~MSY~ and 0.8*B*~MSY~, respectively, following the provisional definitions in the PA Framework [@dfo2006], as used in the 2010 stock assessment [@yamanaka2011].
+In the closed-loop simulations, all reference points and performance metrics are calculated in the OM.
+Raw performance metrics are calculated in each of the 100 years of the projection period and summarized according to the time-frame of interest:
+
+1. **LRP 1.5GT**: P(*B* > 0.4 *B*~MSY~) after 1.5 GT (in 2075, year 56 of the projection period)
+2. **USR 1.5GT**: P(*B* > 0.8 *B*~MSY~) after 1.5 GT (in 2075, year 56 of the projection period)
+3. **LRP 1GT**: P(*B* > 0.4 *B*~MSY~) after 1 GT (in 2057, year 38 of the projection period)
+4. **ST C10**: P(average catch > 10 t) during 2020--2029, years 1--10 of the projection period  
+5. **ST C15**: P(average catch > 15 t) during 2020--2029, years 1--10 of the projection period
+<!-- 6. ST C20: P(catch > 20 t) during 2020--2029 RF: we don't report this one-->
+6. **LT C20**: P(average catch > 20 t) after 1 GT (in 2057, year 38 of the projection period)
+7. **ST AADC**: P(AADC~2020--2029~ < AADC~2012--2019~)
+
+We included the performance metric LRP 1 GT as a check that the MPs do not crash the stock in the short term.
+We selected 10 t, 15 t and 20 t as catch targets, representing catch levels spanning 5 t below and above the current 15 t TAC.
+
+We calculated AADC~2020--2029~ as:
+
+$$
+\textrm{AADC}_\textrm{2020-2029} = \dfrac{1}{9}\sum_{y=2021}^{2029} \mid C_y - C_{y-1} \mid.
+$$
+
+A baseline period (2012--2019) was selected because it is the period since the start of the 15 t TAC. We calculated AADC~2012--2019~ as:
+
+$$
+\textrm{AADC}_\textrm{2012-2019} = \dfrac{1}{7}\sum_{y=2013}^{2019} \mid C_y - C_{y-1} \mid.
+$$
+
+In cases where performance metrics are calculated over a range of years, care needs to be taken to clearly report how summary statistics are calculated.
+@anderson2020gfmp provisionally suggested calculating performance statistics across replicates and years for the entire time window defined for the performance metric.
+We follow this protocol here.
+For example, we averaged the short-term catch metrics over replicates and the years 2020--2029.

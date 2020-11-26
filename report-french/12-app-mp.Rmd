@@ -1,0 +1,273 @@
+
+\newpage
+
+# DATA-LIMITED MANAGEMENT PROCEDURES {#app:mps}
+
+Here we present the MPs that were evaluated in the current study. See @anderson2020gfmp for a full list of MPs available in the MP Framework.
+
+## CONSTANT-CATCH MANAGEMENT PROCEDURES {#sec:mp-cc}
+
+We evaluated three alternative constant-catch MPs: 
+
+- CC_5t:  Constant annual catch of 5 t
+- CC_10t: Constant annual catch of 10 t 
+- CC_15t: Constant annual catch of 15 t
+
+## INDEX-BASED MPs {#sec:mp-ibased}
+
+### Index-ratio MPs {#sec:mp-iratio}
+
+Index-ratio MPs base their TAC recommendation in year $y$ on last year's catch $C_{y-1}$ multiplied by the ratio of the average population index in a recent time period (e.g., the last two years) compared to the average population index in a previous short period. Therefore the reference population index is a moving window average.
+
+The TAC is calculated as:
+
+$$
+\textrm{TAC}_y = \alpha C_{y-1},
+$$
+
+where, for example,
+
+$$
+\alpha =
+\left. \frac{I_{y-1} + I_{y-2}} {2} \middle/
+\frac{I_{y-3} + I_{y-4} + I_{y-5}} {3} \right. ,
+$$
+
+where $\alpha$ is the ratio of the mean index in the most recent two years and the mean index in years 3--5 before the current year.
+
+We evaluated two configurations of the index-ratio MPs, which differ in the time periods used to calculate $\alpha$, applied annually:
+
+- Iratio_23:     ratio of the last 2 years to the previous 3 years
+
+- Iratio_55:     ratio of the last 5 years to the previous 5 years
+
+We also evaluated the same two configurations, applied every five years:
+
+- Iratio_23_5u:  same as Iratio_23
+
+- Iratio_55_5u:  same as Iratio_23
+
+### Index-Slope MPs {#sec:mp-islope}
+
+Index-slope MPs fit a linear regression of population index data compared to time and make a catch recommendation based on the slope of the regression. 
+They are closely related to index-ratio MPs.
+Here we describe three main "families" of index-slope MPs.
+
+#### GB_slope: Geromont and Butterworth index slope {#sec:mp-gb-slope}
+
+This MP adjusts TAC based on previous catch and the trend in a relative abundance index to aim for relatively stable catch rates [@geromont2015].
+The TAC is calculated as:
+
+$$
+\textrm{TAC}_y= C_{y-1}(1+\lambda \beta_I),
+$$
+
+where $C_{y-1}$ is catch from the previous year, $\beta_I$ is the slope of a linear regression of the ln abundance index over the last $n$ years (default of $n = 5$), and $\lambda$ is a control parameter between 0 and 1 that adjusts how quickly TAC is adjusted based on the slope of the index. The default $\lambda$ value is 1 in DLMtool.
+The TAC is subject to the following conditions that limit the rate at which the TAC can be adjusted up or down:
+
+- if next TAC > 1.2 last catch, then TAC = 1.2 $\times$ last catch
+- if next TAC < 0.8 last catch, then TAC = 0.8 $\times$ last catch.
+
+We evaluated three configurations of GB_slope, each applied annually:
+
+- GB_slope_lambda1:   $\lambda = 1$	and  $\beta_I$ is calculated from index in the preceding 5 years
+
+- GB_slope_lambda05:  $\lambda = 0.5$	and $\beta_I$ is calculated from the preceding 5 years 
+
+- GB_slope_yrs10:     $\lambda = 1$	and  $\beta_I$ is calculated from the preceding 10 years
+
+We also evaluated the same three configurations, applied every five years:
+
+- GB_slope_lambda1_5u
+
+- GB_slope_lambda05_5u
+
+- GB_slope_yrs10_5u
+
+Illustrations of the GB_slope MPs are provided in @anderson2020gfmp (their Appendix D)
+
+#### Islope: Index slope tracking {#sec:mp-islope-track}
+
+These MPs incrementally adjust the TAC in an attempt to maintain a constant relative abundance index.
+The MPs are similar to "GB_slope" with the addition of a parameter that determines the TAC in the first projection year ($\textrm{TAC}^*$) and different choices of the $\lambda$ parameter.
+The TAC is calculated as:
+
+$$
+\textrm{TAC}_y = \textrm{TAC}^*(1+\lambda \beta_I),
+$$
+
+where, in the first projection year, $\textrm{TAC}^*$ is $(1-x)$ multiplied by the mean catch from the last 5 historical years.
+We set $x=0$ for all configurations of the Islope MP.
+In subsequent years, $\textrm{TAC}^*$ is the TAC from the previous year.
+Again, $\lambda$ is a gain or smoothing parameter, and $\beta_I$ is the slope of the ln abundance index over the past $n$ years.
+
+As for the GB_slope MPs, we evaluated three configurations of the Islope MPs, applied annually:
+
+- Islope_10_lambda04:  $\lambda = 0.4$ and $\beta_I$ is calculated from the preceding 10 years
+
+- Islope_10_lambda08:  $\lambda = 0.8$ and $\beta_I$ is calculated from the preceding 10 years
+
+- Islope_5_lambda04:   $\lambda = 0.4$ and $\beta_I$ is calculated from index in the preceding 5 years
+
+We also evaluated the same three configurations, applied every five years:
+
+- Islope_10_lambda04_5u
+
+- Islope_10_lambda08_5u
+
+- Islope_5_lambda04_5u
+
+Illustrations of the Islope MPs are provided in @anderson2020gfmp (their Appendix D)
+
+#### IDX: Index-based MP from @cox2020 {#sec:mp-idx}
+
+This MP was used in the rebuilding plan for Outside Yelloweye Rockfish in BC [@cox2020].
+The MP assigns TAC based on:
+
+$$
+\textrm{TAC}_y =
+\begin{cases}
+\textrm{TAC}_\textrm{Floor}, & \textrm{if}\ \Delta I_y \leq \delta_\textrm{min} \\
+(1 + \Delta I_y ) \textrm{TAC}_{y-1}, & \textrm{if}\ \delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max} \\
+(1 + \delta_\textrm{max}) \textrm{TAC}_{y-1}, & \textrm{if}\ \Delta I_y \gt \delta_\textrm{max},
+\end{cases}
+$$
+
+where $\delta_\textrm{min}$ is the most negative drop allowed in the relative biomass index before the fishery is closed that year and $\Delta I_y$ is defined as:
+
+$$
+\Delta I_y = \frac{I_y}{I_{y-n}} - 1,
+$$
+
+where $I_y$ refers to a population index value in year $y$ and $n$ determines the reference year.
+We set $\textrm{TAC}_\textrm{Floor} = 5 t$.
+We set $\delta_\textrm{min} = -0.5$ as in @cox2020.
+The maximum increase in TAC is capped at $\delta_\textrm{max} = 0.25$ by default.
+This means that the TAC in any one year cannot increase by more than 25%, implementing a "slow up" behaviour of the MP.
+The parameters $\delta_\textrm{min}$ and $\delta_\textrm{max}$ could possibly be additionally tuned to adjust the behaviour of the MP.
+
+Note that the "slow-up--fast-down" behaviour determined by settings for $\delta_\textrm{min}$ and $\delta_\textrm{max}$, combined with the simulated survey index variability, can result in the MP "ratcheting" down the TAC despite an overall increasing index (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
+Furthermore, we implemented the MP exactly as described above and in @cox2020, which only uses $\textrm{TAC}_\textrm{Floor}$ if $\Delta I_y \leq \delta_\textrm{min}$.
+This does *not* stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$ (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
+
+This MP can be additionally smoothed:
+
+$$
+\textrm{TAC}_y = \lambda \cdot \textrm{TAC}_y + (1-\lambda) \textrm{TAC}_{y-1},
+$$
+
+where $\lambda$ controls the degree of smoothing and can range between 0 and 1. @cox2020 used $\lambda=0.5$.
+We define these MPs for DLMtool as "IDX" ($\delta_{\textrm{min}} = -0.5$, $\delta_{\textrm{max}} = 0.25$) and "IDX_smooth" (same as IDX but with $\lambda = 0.5$ to split the difference between the upcoming proposed TAC and the one previously recommended).
+
+We evaluated three configurations of the IDX MPs, applied annually:
+
+
+- IDX                : IDX with $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
+
+- IDX_smooth         : IDX_smooth with $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
+  
+
+- IDX_smooth_yrs5    : IDX with $\Delta I_y = \frac{I_y}{I_{y-5}} -1$
+
+- IDX_yrs5           : IDX_smooth with $\Delta I_y = \frac{I_y}{I_{y-5}} -1$ 
+
+We also evaluated the same four configurations, applied every five years:
+
+- IDX_5u
+
+- IDX_smooth_5u
+
+- IDX_smooth_yrs5_5u
+
+- IDX_yrs5_5u
+
+Illustrations of the IDX MPs are provided in @anderson2020gfmp (their Appendix D).
+
+## MODEL-BASED MANAGEMENT PROCEDURES {#sec:mp-model-based}
+
+### Surplus Production Model {#sec:mp-sp}
+
+In addition to the empirical MPs described above, we evaluated a surplus production (SP) model, paired with a harvest control rule as a model-based MP.
+Here, we use the surplus production model implemented in MSEtool [@huynh_msetool_2019] and TMB [@tmb], based on @fletcher1978.
+The SP model used in this framework is fully documented in @anderson2020gfmp (their Appendix D).
+Note that the SP model uses all available indices in the historical period, but only the HBLL survey in the projection period.
+
+We paired the model with two ramped harvest control rules (Figure \@ref(fig:mp-hcrs)):
+
+1. HCR-8040: Above 80% of $\hat{B}/\hat{B}_\textrm{MSY}$, $F_y = \hat{F}_\textrm{MSY}$; at or below 40% of estimated $\hat{B}/\hat{B}_\textrm{MSY}$, $F_y = 0$; between 40% and 80%, interpolate the adjustment factor linearly.
+Note that the hat notation indicates the reference point was estimated in the SP MP. 
+This HCR creates operational control points that mimic the provisional biological upper stock reference and limit reference points from DFO's Sustainable Fisheries Framework (Figure \@ref(fig:pa-illustration)), where operational control points define the thresholds of management action (i.e., reducing fishing mortality).
+
+2. HCR-4010: Above 40% of estimated $\hat{B}/\hat{B}_0$ (biomass divided by unfished equilibrium spawning biomass), $F_y = \hat{F}_\textrm{MSY}$; at 10% of estimated $\hat{B}/\hat{B}_0$, $F_y = 0$; between 10% and 40%, interpolate the adjustment factor linearly.
+This is a commonly applied HCR in the fisheries literature and on the US West Coast [e.g., @berger_2019].
+Note that this reference point is based on MP estimates of *B*~0~, whereas HCR-8040 is based on *B*~MSY~.
+
+We evaluated two configurations of the SP model MPs, applied every five years:
+
+- SP_8040_5u: SP model paired with HCR-8040
+
+- SP_4010_5u: SP model paired with HCR-4010
+
+We also evaluated the same two configurations, applied every 10 years:
+
+- SP_4010_10u
+
+- SP_8040_10u
+
+
+
+```{r, mp-hcrs, fig.cap="Proposed provisional harvest control rules associated with model-based MPs.", fig.asp=0.38, fig.width=7.5, out.width="0.8\\textwidth"}
+f <- function (Brel, LRP, TRP, rel_min = 0, rel_max = 1, ...) {
+    adj <- rep(rel_max, length(Brel))
+    adj[Brel <= LRP] <- rel_min
+    cond <- Brel > LRP & Brel < TRP
+    adj[cond] <- (rel_max - rel_min)/(TRP - LRP) * (Brel[cond] -
+        LRP) + rel_min
+    adj
+}
+
+pars4010 <- expand.grid(
+  Brel = seq(0, 1, length.out = 200),
+  LRP = c(0.1),
+  TRP = c(0.4),
+  type = "HCR-4010", stringsAsFactors = FALSE)
+pars4010$tac <- purrr::pmap_dbl(pars4010, f)
+
+pars8040 <- expand.grid(
+  Brel = seq(0, 1, length.out = 200),
+  LRP = c(0.4),
+  TRP = c(0.8),
+  type = "HCR-8040", stringsAsFactors = FALSE)
+pars8040$tac <- purrr::pmap_dbl(pars8040, f)
+
+parsMSY <- expand.grid(
+  Brel = seq(0, 1, length.out = 200),
+  LRP = NA,
+  TRP = NA,
+  type = "HCR-MSY", stringsAsFactors = FALSE)
+parsMSY$tac <- 1
+
+pars <- bind_rows(pars8040, pars4010) %>%
+  bind_rows(parsMSY)
+
+pars$type <- as.factor(pars$type)
+pars$type <- forcats::fct_relevel(pars$type, "HCR-MSY", "HCR-4010", "HCR-8040")
+
+make_hcr_fig <- function(dat, xlab = expression(Estimated~B/B[0])) {
+  ggplot(dat, aes(Brel, tac)) +
+  geom_line() +
+  ggsidekick::theme_sleek() +
+  labs(
+    x = xlab,
+    y = "TAC adjustment factor\n(proportion of MSY)"
+  ) +
+  geom_vline(aes(xintercept = LRP), lty = 2, alpha = 0.4) +
+  geom_vline(aes(xintercept = TRP), lty = 2, alpha = 0.4)
+}
+
+g1 <- make_hcr_fig(filter(pars, type == "HCR-4010")) + ggtitle("HCR-4010")
+g2 <- make_hcr_fig(filter(pars, type == "HCR-8040"), expression(Estimated~B/B[MSY])) + ggtitle("HCR-8040")
+
+cowplot::plot_grid(g2, g1, nrow = 1)
+```
+

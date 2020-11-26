@@ -54,3 +54,6 @@ report/knitr-*
 *.so
 *.o
 *.cpp
+report-french/resdoc.Rmd
+report-french/resdoc.tex
+report-french/knitr-*

@@ -1,0 +1,119 @@
+---
+title: "Evaluation of potential rebuilding strategies for Inside Yelloweye Rockfish (*Sebastes ruberrimus*) in British Columbia"
+author: |
+  Dana R. Haggarty^1^,
+  Quang C. Huynh^2^,
+  Robyn E. Forrest^1^,
+  Sean C. Anderson^1^,
+  Midoli J. Bresch^1^,
+  Elise A. Keppel^1^
+  
+author_list: "Haggarty, D.R.,  Huynh, Q.C., Forrest, R.E.,  Anderson, S.C., Bresch, M.J., Keppel, E.A."
+address: |
+  ^1^Pacific Biological Station\
+     Fisheries and Oceans Canada, 3190 Hammond Bay Road\
+     Nanaimo, British Columbia, V9T 6N7, Canada\
+  ^2^Institute for the Oceans and Fisheries\
+     University of British Columbia AERL, 2202 Main Mall\
+     Vancouver, British Columbia, V6T 1Z4, Canada\
+year: 2020
+report_number: nnn
+region: Pacific Region
+
+abstract: |
+  Under Canadian policy and legislation, fish stocks that have been assessed as being below the Limit Reference Point (LRP) require a rebuilding plan to grow the stock above the LRP. Rebuilding plans should be based upon objectives characterised by (1) a target, (2) a desired time to reach the target, (3) and an acceptable probability of reaching the target. Rebuilding plans should also include planned management measures or management procedures (MPs), milestone objectives, and should undergo regular evaluation.
+  
+  The inside stock of Yelloweye Rockfish (*Sebastes ruberrimus*, Inside Yelloweye Rockfish) is a data-limited stock, occurring in Groundfish Management Area 4B (Queen Charlotte Strait, Strait of Georgia, and Strait of Juan de Fuca) in British Columbia (BC). The stock was assessed as being below the LRP in 2010, resulting in a published rebuilding plan. It is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern. The current MP for rebuilding is a fixed annual total allowable catch (TAC) of 15 metric tonnes, which has not been re-evaluated since the last assessment.
+  
+  The purpose of this project is to provide scientific advice to support re-evaluation of the rebuilding plan for Inside Yelloweye Rockfish. We apply a new management strategy evaluation (MSE) framework (the MP Framework), recently developed for BC groundfishes, to evaluate the performance of alternative data-limited MPs, with respect to meeting rebuilding objectives. The MP Framework follows six best-practice steps for MSE: (1) defining the decision context, (2) setting objectives and performance metrics, (3) specifying operating models (OMs) to represent the underlying system and calculate performance metrics, (4) selecting candidate MPs, (5) conducting closed-loop simulations to evaluate performance of the MPs, and (6) presenting results to facilitate evaluation of trade-offs.
+  
+  We followed this framework to evaluate the performance of 34 data-limited MPs with respect to meeting the principal objective, which is to rebuild the stock above the LRP over 1.5 generations with at least 95% [19 times out of 20] probability of success. We also evaluated performance of MPs with respect to two additional conservation metrics, four average-catch objectives, and one catch-variability objective. To account for uncertainty in underlying population dynamics and data sources, we developed six alternative OM scenarios, which differed with respect to specific model and data assumptions. These OM scenarios were divided into a "reference set" (four OMs) and a "robustness set" (two OMs). We conditioned all OMs on observed catch data, indices of abundance, and available age composition data. We used closed-loop simulation to evaluate the performance of the MPs and screened out MPs that did not meet a basic set of criteria, resulting in five remaining candidate MPs: annual constant-catch MPs of 10 tonnes or 15 tonnes, and three MPs that adjust the TAC based on the relative slope of the inside hard-bottom longline (HBLL) survey index of abundance.
+  
+  All five final MPs met the principle objective with greater than 0.98 probability (49 times out of 50), across all four OM reference set scenarios. This was largely because none of the reference set OMs estimated the stock to be below the LRP in 2020. Within the two OM robustness set scenarios, the scenario that simulated higher variability in the future HBLL survey performed similarly to the reference set scenarios. However, under the scenario that assumed a lower rate of natural mortality for the stock ("Low M"), all MPs had lower probabilities of meeting the principle objective, with the lowest probability achieved by the current MP (constant catch of 15 t).
+  
+  We present a number of visualizations to show trade-offs among conservation and catch objectives for the different MPs across alternative OM scenarios. The visualizations present trade-offs in tabular and graphical formats, intended to support the process of selecting the final MP. Because all the MPs met the principle objective under the reference set scenarios, there were no strong trade-offs between conservation and catch objectives. Of the two OM robustness set scenarios, trade-offs were most apparent under the Low M scenario, where the probability of meeting the principle objective decreased as the probability of achieving an average short-term catch of 10 t increased.
+  
+  We discuss major uncertainties, including uncertainty in natural mortality, selectivity, and historical catches, noting that we attempted to account for these uncertainties by evaluating performance of MPs across multiple OMs. We highlight issues regarding estimates of current stock status for Inside Yelloweye Rockfish, and the role of reference points in the MP Framework. We make recommendations for assessment frequency and suggest triggers for re-assessment. Performance of MPs with respect to meeting two alternative assessment criteria for the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) are also evaluated.
+header: "Draft working paper --- Do not cite or circulate" # or "" to omit
+output:
+ csasdown::resdoc_pdf:
+   french: true
+  # csasdown::resdoc_word
+# ------------
+# End of options to set
+knit: bookdown::render_book
+link-citations: true
+bibliography: [refs.bib, mpframework-refs.bib]
+csl: csl/csas.csl # or csl/csas-french.csl for French
+# Any extra LaTeX code for the header:
+# header-includes:
+# - \usepackage{etex}
+
+---
+
+```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
+library(knitr)
+if (is_latex_output()) {
+  knitr_figs_dir <- "knitr-figs-pdf/"
+  knitr_cache_dir <- "knitr-cache-pdf/"
+  fig_out_type <- "png"
+} else {
+  knitr_figs_dir <- "knitr-figs-docx/"
+  knitr_cache_dir <- "knitr-cache-docx/"
+  fig_out_type <- "png"
+}
+fig_asp <- 0.618
+fig_width <- 7.5
+fig_out_width <- "5.5in"
+fig_dpi <- 180
+fig_align <- "center"
+fig_pos <- "htb"
+opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>",
+  fig.path = knitr_figs_dir,
+  cache.path = knitr_cache_dir,
+  fig.asp = fig_asp,
+  fig.width = fig_width,
+  out.width = fig_out_width,
+  echo = FALSE,
+  autodep = TRUE,
+  cache = TRUE,
+  cache.comments = FALSE,
+  dev = fig_out_type,
+  dpi = fig_dpi,
+  fig.align = fig_align,
+  fig.pos = fig_pos
+)
+options(xtable.comment = FALSE)
+options(kableExtra.latex.load_packages = FALSE)
+```
+
+```{r load-libraries, cache=FALSE}
+library(gfutilities)
+library(csasdown)
+library(RColorBrewer)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(here)
+filter <- dplyr::filter
+options(tinytex.verbose = TRUE)
+knitr::opts_chunk$set(crop = NULL)
+round2 <- function(x, never_perfect = TRUE) {
+  out <- sprintf("%.2f",round(x, 2))
+  if (out == "1.00" && never_perfect)
+    out <- "> 0.99"
+  if (out == "0.00" && never_perfect)
+    out <- "< 0.01"
+  out
+}
+```
+
+<!-- The math symbols greater and less than seem to render in RStudio Rmd files when inside $$..$$ chunks but tinytex doesn't recognize them unless the following are defined -->
+\newcommand{\lt}{\ensuremath <}
+\newcommand{\gt}{\ensuremath >}
+\mathchardef\mhyphen="2D
