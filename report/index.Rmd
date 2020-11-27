@@ -89,6 +89,7 @@ opts_chunk$set(
 )
 options(xtable.comment = FALSE)
 options(kableExtra.latex.load_packages = FALSE)
+options(french = FALSE)
 ```
 
 ```{r load-libraries, cache=FALSE}
