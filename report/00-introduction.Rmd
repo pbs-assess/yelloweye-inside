@@ -57,7 +57,7 @@ The guidance for rebuilding plans in Canada states that there should be a high p
 Part of the motivation for this project was concern, expressed by fisheries managers, that the 56% probability of success stated in the current rebuilding plan [@ifmp2018] is inconsistent with the definition of high probability.
 
 The guidance document also identifies some recommended management measures, which include: keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock [@dfo2013].
-The current rebuilding plan implements an annual fixed TAC of 15 metric tonnes [@ifmp2018], which has not been simulation-tested.
+The current rebuilding plan implements an annual fixed total allowable catch (TAC) of 15 metric tonnes [@ifmp2018], which has not been simulation-tested.
 
 Yelloweye Rockfish are a long-lived species [up to 121 years in B.C., @keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
 These life history traits make the species vulnerable to overexploitation by fisheries.
