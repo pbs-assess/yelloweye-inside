@@ -1,6 +1,7 @@
 FRENCH <- FALSE
 
 if (FRENCH) options(OutDec = ",")
+if (FRENCH) options(french = TRUE)
 
 library("DLMtool")
 library("MSEtool")
