@@ -114,7 +114,3 @@ round2 <- function(x, never_perfect = TRUE) {
 }
 ```
 
-<!-- The math symbols greater and less than seem to render in RStudio Rmd files when inside $$..$$ chunks but tinytex doesn't recognize them unless the following are defined -->
-\newcommand{\lt}{\ensuremath <}
-\newcommand{\gt}{\ensuremath >}
-\mathchardef\mhyphen="2D
