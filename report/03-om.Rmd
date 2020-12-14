@@ -62,7 +62,7 @@ sc <- sc %>%
 
 The following OMs were developed as the reference set. We hereafter refer to them by their numbers, e.g., OM Scenario (1).
 
-#### Reference set: (1) Base {#sec:approach3-reference1}
+#### (1) Base {#sec:approach3-reference1}
 
 Data sources are provided in Appendices \@ref(app:biological-data) through \@ref(app:catch-data).
 Parameter settings for the Base OM are provided in Appendix \@ref(app:desc-om-yelloweye).
