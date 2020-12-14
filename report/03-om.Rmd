@@ -205,6 +205,7 @@ Parameter values were set so that the selectivity-at-age curves approximated tho
 As noted above, these selectivities were returned to the DLMtool OMs as a combined-fleet selectivity curve from the terminal year ($t_c$) of the historical period (Figure \@ref(fig:om-selectivity)).
 
 ### OM conditioning results {#sec:approach3-conditioning-results} 
+The following sections describe the results of conditioning the OMs.
 
 #### Fits to data {#sec:approach3-conditioning-indices}
 
