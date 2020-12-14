@@ -60,9 +60,9 @@ sc <- sc %>%
 
 ### Reference set {#sec:approach3-reference}
 
-The following OMs were developed as the reference set. We hereafter refer to them by their numbers, e.g., OM Scenario (1), or letters, e.g., OM Scenario (A).
+The following OMs were developed as the reference set. We hereafter refer to them by their numbers, e.g., OM Scenario (1).
 
-#### (1) Base {#sec:approach3-reference1}
+#### Reference set: (1) Base {#sec:approach3-reference1}
 
 Data sources are provided in Appendices \@ref(app:biological-data) through \@ref(app:catch-data).
 Parameter settings for the Base OM are provided in Appendix \@ref(app:desc-om-yelloweye).
@@ -128,6 +128,8 @@ This makes estimation of selectivity in the surveys highly uncertain, which led 
 Given large uncertainty in our choice of selectivity, we allowed the SRA to estimate selectivity for the surveys in this OM scenario and utilized the available survey age-composition data.
 
 ### Robustness set {#sec:approach3-robustness}
+
+The following OMs were developed as the robustness set. We hereafter refer to them by their letters.
 
 #### (A) Low M {#sec:approach3-referenceA}
 
