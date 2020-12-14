@@ -116,7 +116,7 @@ $$
 
 where $\varepsilon^{(1)}_{R,y}$ is the recruitment deviation from OM Scenario (1) and
 $\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
-The paramater $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which selects whether an extreme recruitment event will occur. 
+The parameter $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which selects whether an extreme recruitment event will occur. 
 We assume that an extreme recruitment event is expected to occur once every generation (38 years), based on the observation that strong recruitment events in Inside Yelloweye Rockfish were present in 1948 and 1970. 
 Although recent environmental conditions may be favourable for some species of rockfishes [@haigh2020; @lincandeo2020], we don't yet have any evidence of recent strong recruitment events for Inside Yelloweye Rockfish that might indicate more frequent episodic or spasmodic recruitment events. 
 
@@ -251,7 +251,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_updog_fixse
 \clearpage
 
 (ref:fig-sra-comp-fit2)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (2).
+SRA model fits to the survey age composition data for OM Scenario (2), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
 
 ```{r sra-conditioned-comp-fit2, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit2)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowcatch_fixsel.png"))
@@ -260,7 +260,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowcatch_fi
 \clearpage
 
 (ref:fig-sra-comp-fit3)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (3).
+SRA model fits to the survey age composition data for OM Scenario (3), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
 
 ```{r sra-conditioned-comp-fit3, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit3)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_episodic_recruitment.png"))
@@ -269,7 +269,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_episodic_re
 \clearpage
 
 (ref:fig-sra-comp-fit4)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (4).
+SRA model fits to the survey age composition data for OM Scenario (4), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
 
 ```{r sra-conditioned-comp-fit4, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit4)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_upweight_dogfish.png"))
@@ -279,7 +279,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_upweight_do
 \clearpage
 
 (ref:fig-sra-comp-fitA)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (A).
+SRA model fits to the survey age composition data for OM Scenario (A), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
 
 ```{r sra-conditioned-comp-fitA, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitA)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowM_fixsel.png"))
@@ -288,7 +288,7 @@ knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowM_fixsel
 \clearpage
 
 (ref:fig-sra-comp-fitB)
-Same as Figure \@ref(fig:sra-conditioned-comp-fit1) for OM Scenario (B).
+SRA model fits to the survey age composition data for OM Scenario (B), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
 
 ```{r sra-conditioned-comp-fitB, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitB)"}
 knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_high_index_cv.png"))

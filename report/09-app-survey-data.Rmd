@@ -323,7 +323,7 @@ fewer Yelloweye Rockfish for every 10% additional Dogfish also caught on the sam
 
 In Equation \@ref(eq:dog-prediction), we set up the prediction grid cells, indexed by $j$, by overlaying a 500 m x 500 m grid on the survey-domain. 
 Because the Dogfish survey uses fixed stations rather than a randomly sampled grid, rectangles were manually drawn around all of the historically fished longline sets in order to delineate the area sampled (Figure \@ref(fig:dog-raw)).
-We calculated the grid cell areas ($w_j$) after removing portion of the fine-scale grid cells that overlapped land.
+We calculated the grid cell areas ($w_j$) after removing a portion of the fine-scale grid cells that overlapped land.
 We set up the design matrix $\bm{X}_{j,t}$ to predict for a mean Dogfish count and a mean area-swept offset.
 
 The resulting projection of the model onto the fine-scale grid is shown in Figure \@ref(fig:dog-prediction) along with the modelled spatial (Figure \@ref(fig:dog-spatial)) and spatiotemporal (Figure \@ref(fig:dog-spatiotemporal)) random-effect values.
