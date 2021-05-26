@@ -267,6 +267,43 @@ ggsave(here::here(paste0(fig_dir, "/ye-compare-SRA-nat-recdev-panel-proj.png")),
 mse_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
 names(mse_ye) <- sc$scenario
 
+get_SSB_LRP <- function(x, mse, mult = 0.4) {
+  depletion <- x@SSB / (mse@Misc$MSYRefs$ByYear$SSBMSY[, 1, mse@nyears] * mult)
+  m <- as.data.frame(depletion[,-nyear])
+  reshape::melt(m) %>% select(-variable) %>%
+    mutate(year = rep(all_years, each = nrow(depletion))) %>%
+    mutate(iter = rep(1:nrow(m), ncol(m))) %>%
+    select(year, value, iter)
+}
+get_SSB_MSY <- function(x, mse) {
+  ssb <- x@SSB
+  bmsy <- data.frame(bmsy = mse@Misc$MSYRefs$ByYear$SSBMSY[, 1, mse@nyears])
+  bmsy$iter <- 1:nrow(bmsy)
+  m <- as.data.frame(ssb[,-nyear])
+  result <- reshape::melt(m) %>% select(-variable) %>%
+    mutate(year = rep(all_years, each = nrow(ssb))) %>%
+    mutate(iter = rep(1:nrow(m), ncol(m))) %>%
+    select(year, value, iter)
+  left_join(result, bmsy, by = "iter")
+}
+
+out <- purrr::map2(sra_ye, mse_ye, get_SSB_LRP)
+names(out) <- sc$scenario
+out[["lowM_fixsel"]] <- NULL
+out[["high_index_cv"]] <- NULL
+out <- dplyr::bind_rows(out, .id = "scenario") %>% rename(b_lrp = value)
+saveRDS(out, "data-generated/ye-inside-b-lrp.rds")
+
+out <- purrr::map2(sra_ye, mse_ye, get_SSB_MSY)
+names(out) <- sc$scenario
+out[["lowM_fixsel"]] <- NULL
+out[["high_index_cv"]] <- NULL
+out <- dplyr::bind_rows(out, .id = "scenario") %>% rename(b = value) %>% tibble::as_tibble() %>%
+  rename(run = scenario)
+saveRDS(out, "data-generated/ye-inside-b-mcmc.rds")
+
+dd <- do.call(rbind, Map(get_SSB_LRP, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye))
+
 g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye, type = "MSY")) %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
