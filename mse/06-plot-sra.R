@@ -267,6 +267,43 @@ ggsave(here::here(paste0(fig_dir, "/ye-compare-SRA-nat-recdev-panel-proj.png")),
 mse_ye <- lapply(sc$scenario, function(x) readRDS(paste0("mse/om/MSE_", x, ".rds")))
 names(mse_ye) <- sc$scenario
 
+get_SSB_LRP <- function(x, mse, mult = 0.4) {
+  depletion <- x@SSB / (mse@Misc$MSYRefs$ByYear$SSBMSY[, 1, mse@nyears] * mult)
+  m <- as.data.frame(depletion[,-nyear])
+  reshape::melt(m) %>% select(-variable) %>%
+    mutate(year = rep(all_years, each = nrow(depletion))) %>%
+    mutate(iter = rep(1:nrow(m), ncol(m))) %>%
+    select(year, value, iter)
+}
+get_SSB_MSY <- function(x, mse) {
+  ssb <- x@SSB
+  bmsy <- data.frame(bmsy = mse@Misc$MSYRefs$ByYear$SSBMSY[, 1, mse@nyears])
+  bmsy$iter <- 1:nrow(bmsy)
+  m <- as.data.frame(ssb[,-nyear])
+  result <- reshape::melt(m) %>% select(-variable) %>%
+    mutate(year = rep(all_years, each = nrow(ssb))) %>%
+    mutate(iter = rep(1:nrow(m), ncol(m))) %>%
+    select(year, value, iter)
+  left_join(result, bmsy, by = "iter")
+}
+
+out <- purrr::map2(sra_ye, mse_ye, get_SSB_LRP)
+names(out) <- sc$scenario
+out[["lowM_fixsel"]] <- NULL
+out[["high_index_cv"]] <- NULL
+out <- dplyr::bind_rows(out, .id = "scenario") %>% rename(b_lrp = value)
+saveRDS(out, "data-generated/ye-inside-b-lrp.rds")
+
+out <- purrr::map2(sra_ye, mse_ye, get_SSB_MSY)
+names(out) <- sc$scenario
+out[["lowM_fixsel"]] <- NULL
+out[["high_index_cv"]] <- NULL
+out <- dplyr::bind_rows(out, .id = "scenario") %>% rename(b = value) %>% tibble::as_tibble() %>%
+  rename(run = scenario)
+saveRDS(out, "data-generated/ye-inside-b-mcmc.rds")
+
+dd <- do.call(rbind, Map(get_SSB_LRP, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye))
+
 g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye, type = "MSY")) %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
@@ -474,32 +511,38 @@ samps <- data.frame(M = sra_ye[[1]]@OM@cpars$M, h = sra_ye[[1]]@OM@cpars$h, lowM
 #dev.off()
 
 ggplot(samps, aes(M)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.045, linetype = 2) +
-  gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
+  gfplot::theme_pbs() + labs(x = en2fr("Natural mortality", FRENCH), y = en2fr("Frequency", FRENCH))
 ggsave(paste0(fig_dir, "/M.png"), height = 4, width = 5)
 
 ggplot(samps, aes(lowM)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.045, linetype = 2) +
-  gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
+  gfplot::theme_pbs() + labs(x = en2fr("Natural mortality", FRENCH), y = en2fr("Frequency", FRENCH))
 ggsave(paste0(fig_dir, "/lowM.png"), height = 4, width = 5)
 
 ggplot(samps, aes(h)) + geom_histogram(bins = 20) + geom_vline(xintercept = 0.71, linetype = 2) +
-  gfplot::theme_pbs() + labs(x = "Steepness", ylab = "Frequency")
+  gfplot::theme_pbs() + labs(en2fr(x = "Steepness", FRENCH), y = en2fr("Frequency", FRENCH))
 ggsave(paste0(fig_dir, "/steepness.png"), height = 4, width = 5)
 
-samps <- data.frame(M = c(samps$M, samps$lowM), Scenario = rep(c("All others", "Low M"), each = 250))
+all_others <- if (FRENCH) "Tous les autres" else "All others"
+low_m <- if (FRENCH) "Faibles M" else "Low M"
+samps <- data.frame(M = c(samps$M, samps$lowM), Scenario = rep(c(all_others, low_m), each = 250))
 ggplot(samps, aes(M, colour = Scenario)) + geom_freqpoly(bins = 20) +
-  gfplot::theme_pbs() + labs(x = "Natural mortality", ylab = "Frequency")
+  gfplot::theme_pbs() + labs(x = en2fr("Natural mortality", FRENCH), y = en2fr("Frequency", FRENCH)) +
+  labs(colour = en2fr("Scenario", FRENCH))
 ggsave(paste0(fig_dir, "/lowM.png"), height = 4, width = 5)
 
 #### Low/high catch  ----------------------------------------------------------
 cat <- data.frame(Year = rep(1918:2019, 3),
                   Catch = c(sra_ye[[1]]@data$Chist[, 2], sra_ye[[1]]@data$Chist[, 1], sra_ye$lowcatch_fixsel@data$Chist[, 1]),
-                  Fleet = c(rep("Recreational", 102), rep("Catch", 2 * 102)),
-                  Scenario = c(rep("All others", 2 * 102), rep("Low catch", 102)))
+                  Fleet = c(rep(en2fr("Recreational", FRENCH), 102), rep(en2fr("Catch", FRENCH), 2 * 102)),
+                  Scenario = c(rep(all_others, 2 * 102), rep(en2fr("Low catch", FRENCH), 102)))
 
-ggplot(cat, aes(Year, Catch, colour = Fleet, linetype = Scenario)) + geom_line() + gfplot::theme_pbs()
+ggplot(cat, aes(Year, Catch, colour = Fleet, linetype = Scenario)) + geom_line() + gfplot::theme_pbs()+
+  labs(colour = en2fr("Fleet", FRENCH), lty = en2fr("Scenario", FRENCH)) +
+  ylab(en2fr("Catch", FRENCH)) + xlab(en2fr("Year", FRENCH))
 ggsave(paste0(fig_dir, "/catch.png"), width = 5.5, height = 3.5)
 
-ggplot(filter(cat, Scenario != "Low catch"), aes(Year, Catch, colour = Fleet)) + geom_line() + gfplot::theme_pbs()
+ggplot(filter(cat, Scenario != "Low catch"), aes(Year, Catch, colour = Fleet)) + geom_line() + gfplot::theme_pbs()+ylab(en2fr("Catch", FRENCH)) + xlab(en2fr("Year", FRENCH))+
+  labs(colour = en2fr("Fleet", FRENCH))
 ggsave(paste0(fig_dir, "/catch2.png"), width = 5.5, height = 3.5)
 
 ### COSEWIC indicators and probability below LRP/USR in 2019

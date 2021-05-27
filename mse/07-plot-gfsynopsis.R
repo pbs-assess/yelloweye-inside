@@ -2,13 +2,23 @@ FRENCH <- FALSE
 
 if (FRENCH) options(OutDec = ",")
 
+if (FRENCH) fig_folder <- "mse/figures-french/"
+if (!FRENCH) fig_folder <- "mse/figures/"
+
+dir.create(fig_folder, showWarnings = FALSE)
+
 library(reshape2)
 library(dplyr)
 library(gfplot)
 library(ggplot2)
+library(rosettafish)
 
 dat <- readRDS("data-generated/yelloweye-rockfish-ins-privacy.rds")
 
+# file.remove("vb_gfplot.o")
+# file.remove("vb_gfplot.so")
+# file.remove("lw_gfplot.o")
+# file.remove("lw_gfplot.so")
 # GROWTH
 check_convergence_tmb <- TRUE
 
@@ -51,7 +61,7 @@ gfplot:::ann_vb(g, vb_a$pars,
   gap = 0.06 * max(vb_a$predictions$length))
 #-----------------------------------------------------
 
-ggsave("mse/figures/vb.png", width = 4, height = 3)
+ggsave(paste0(fig_folder, "vb.png"), width = 4, height = 3)
 
 
 # Plot figure and residual
@@ -67,8 +77,6 @@ abline(h = 0)
 plot(resid_log ~ jitter(age), datpl)
 abline(h = 0)
 
-
-
 lw_m <- fit_length_weight(dat$survey_samples, sex = "male", method = "tmb",
                           too_high_quantile = 1)
 lw_f <- fit_length_weight(dat$survey_samples, sex = "female", method = "tmb",
@@ -78,11 +86,7 @@ lw_f <- fit_length_weight(dat$survey_samples, sex = "female", method = "tmb",
 lw_a <- gfplot::fit_length_weight(dat$survey_samples, sex = "all", method = "tmb", too_high_quantile = 1)
 plot_length_weight(object_all = lw_a, french = FRENCH) + geom_line(data = lw_a$predictions, aes(length, weight)) +
   guides(col = FALSE, lty = FALSE)
-ggsave("mse/figures/length-weight.png", width = 4, height = 3)
-
-
-
-
+ggsave(paste0(fig_folder, "length-weight.png"), width = 4, height = 3)
 
 #### MATURITY
 if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
@@ -94,8 +98,9 @@ if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
   mat_age <- NA
 }
 
-ogive_age <- plot_mat_ogive(mat_age)
-ggsave("mse/figures/mat-ogive-age.png", width = 5, height = 3)
+ogive_age <- plot_mat_ogive(mat_age, french = FRENCH)
+ogive_age
+ggsave(paste0(fig_folder, "mat-ogive-age.png"), width = 5, height = 3)
 
 if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
   mat_length <- dat$survey_samples %>%
@@ -106,12 +111,12 @@ if (sum(!is.na(dat$survey_samples$maturity_code)) > 10) {
   mat_length <- NA
 }
 
-ogive_length <- plot_mat_ogive(mat_length)
-ggsave("mse/figures/mat-ogive-length.png", width = 5, height = 3)
+ogive_length <- plot_mat_ogive(mat_length, french = FRENCH)
+ogive_length
+ggsave(paste0(fig_folder, "mat-ogive-length.png"), width = 5, height = 3)
 
 cowplot::plot_grid(ogive_age, ogive_length, nrow = 2, ncol = 1)
-ggsave("mse/figures/mat-ogives.png", width = 5, height = 6)
-
+ggsave(paste0(fig_folder, "mat-ogives.png"), width = 5, height = 6)
 
 # Show predicted vs. observed proportions
 prop <- mat_age[[3]]$data %>% group_by(female, age_or_length) %>% summarise(prop_mature = sum(mature)/n()) %>% reshape2::acast(list("female", "age_or_length"))
@@ -120,14 +125,14 @@ prop_female <- data.frame(age = as.numeric(colnames(prop)), prop = prop[2, ])
 
 ggplot(prop_female, aes(age, prop)) + geom_point() +
   geom_line(data = filter(mat_age[[2]], female == 1), aes(age_or_length, glmm_fe)) + gfplot::theme_pbs() +
-  coord_cartesian(xlim = c(0, 60)) + labs(x = "Age (years)", y = "Probability mature")
-ggsave("mse/figures/mat-prop.png", width = 5, height = 3)
+  coord_cartesian(xlim = c(0, 60)) + labs(x = en2fr("Age (years)", FRENCH), y = en2fr("Probability mature", FRENCH))
+ggsave(paste0(fig_folder, "mat-prop.png"), width = 5, height = 3)
 
 # A50 = 14.4, A95 = 27.4, Mat = 0 if age <=7
 
 # Plot maturity by month: ----------------------------------------------------
-gfplot::tidy_maturity_months(dat$survey_samples) %>% gfplot::plot_maturity_months()
-ggsave("mse/figures/mat-months.png", width = 5, height = 3)
+gfplot::tidy_maturity_months(dat$survey_samples) %>% gfplot::plot_maturity_months(french = FRENCH)
+ggsave(paste0(fig_folder, "mat-months.png"), width = 5, height = 3)
 
 # Age frequencies (by survey, HBLL INS only): ---------------------------------
 ages <- gfplot::tidy_ages_raw(dat$survey_samples,
@@ -138,11 +143,12 @@ survey_col_names = c("HBLL INS N", "HBLL INS S", "HBLL OUT S", "OTHER")
 survey_cols = c(RColorBrewer::brewer.pal(length(survey_col_names), "Set2"))
 survey_cols <- stats::setNames(survey_cols, survey_col_names)
 
-g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
+g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols, french = FRENCH) +
   guides(fill = FALSE, colour = FALSE) +
-  ggtitle("Age frequencies") +
-  labs(y = "Age (years)")
-ggsave("mse/figures/age-freq-hbll.png", width = 3, height = 5)
+  ggtitle(en2fr("Age frequencies", FRENCH)) +
+  labs(y = en2fr("Age (years)", FRENCH))
+g_ages
+ggsave(paste0(fig_folder, "age-freq-hbll.png"), width = 3, height = 5)
 
 # Age frequencies (by survey, all surveys): ----------------------------------------------------------
 ages <- gfplot::tidy_ages_raw(dat$survey_samples,
@@ -153,14 +159,15 @@ survey_col_names = c("HBLL INS N", "HBLL INS S", "HBLL OUT S", "OTHER")
 survey_cols = c(RColorBrewer::brewer.pal(length(survey_col_names), "Set2"))
 survey_cols <- stats::setNames(survey_cols, survey_col_names)
 
-g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols) +
+g_ages <- gfplot::plot_ages(ages, survey_cols = survey_cols, french = FRENCH) +
   guides(fill = FALSE, colour = FALSE) +
-  ggtitle("Age frequencies") +
-  labs(y = "Age (years)")+
+  ggtitle(en2fr("Age frequencies", FRENCH)) +
+  labs(y = en2fr("Age (years)", FRENCH))+
   scale_x_continuous(
     breaks =
       c(1986, 1990, 1994, 1998, 2002, 2006, 2010, 2014, 2018))
-ggsave("mse/figures/age-freq.png", width = 6, height = 5)
+g_ages
+ggsave(paste0(fig_folder, "age-freq.png"), width = 6, height = 5)
 
 # Age frequencies (all surveys combined): ------------------------------------
 # ages <- dat$survey_samples %>%
@@ -191,10 +198,11 @@ len$survey_abbrev <- factor(len$survey_abbrev,
 g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
   bin_size = 2) +
   guides(colour = FALSE, fill = FALSE) +
-  ggtitle("Length frequencies") +
-  ggplot2::xlab(paste("Length", "(cm)")) +
-  ggplot2::ylab("Relative length frequency")
-ggsave("mse/figures/length-freq-hbll.png", width = 3, height = 5)
+  ggtitle(en2fr("Length frequencies", FRENCH)) +
+  ggplot2::xlab(paste(en2fr("Length", FRENCH), "(cm)")) +
+  ggplot2::ylab(en2fr("Relative length frequency", FRENCH))
+g_lengths
+ggsave(paste0(fig_folder, "length-freq-hbll.png"), width = 3, height = 5)
 
 # Length frequencies (by survey, all surveys): ----------------------------------------------------------
 len <- gfplot::tidy_lengths_raw(dat$survey_samples,
@@ -208,10 +216,11 @@ len$survey_abbrev <- factor(len$survey_abbrev,
 g_lengths <- gfplot::plot_lengths(len, survey_cols = survey_cols,
   bin_size = 2) +
   guides(colour = FALSE, fill = FALSE) +
-  ggtitle("Length frequencies") +
-  ggplot2::xlab(paste("Length", "(cm)")) +
-  ggplot2::ylab("Relative length frequency")
-ggsave("mse/figures/length-freq.png", width = 5, height = 6)
+  ggtitle(en2fr("Length frequencies", FRENCH)) +
+  ggplot2::xlab(paste(en2fr("Length", FRENCH), "(cm)")) +
+  ggplot2::ylab(en2fr("Relative length frequency", FRENCH))
+g_lengths
+ggsave(paste0(fig_folder, "length-freq.png"), width = 5, height = 6)
 
 # Length frequencies (all surveys combined): ----------------------------------------------------------
 # len <- dat$survey_samples %>%
@@ -232,10 +241,10 @@ ggsave("mse/figures/length-freq.png", width = 5, height = 6)
 #   ggplot2::ylab("Relative length frequency")
 # ggsave("mse/figures/length-freq-all-surveys-combined.png", width = 3, height = 5)
 
-optimize_png <- TRUE
+optimize_png <- FALSE
 if (optimize_png && !identical(.Platform$OS.type, "windows")) {
   files_per_core <- 4
-  setwd("mse/figures")
+  setwd(fig_folder)
   system(paste0(
     "find -X . -name 'ye*.png' -print0 | xargs -0 -n ",
     files_per_core, " -P ", parallel::detectCores() / 2, " optipng -strip all"
