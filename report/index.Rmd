@@ -16,9 +16,13 @@ address: |
   ^2^Institute for the Oceans and Fisheries\
      University of British Columbia AERL, 2202 Main Mall\
      Vancouver, British Columbia, V6T 1Z4, Canada\
-year: 2020
-report_number: nnn
+citation_other_language: "Haggarty, D.R., Huynh, Q.C., Forrest, R.E., Anderson, S.C., Bresch, M.J., Keppel, E.A. 2021. Évaluation des stratégies de rétablissement possibles pour le sébaste aux yeux jaunes (*Sebastes ruberrimus*) des eaux intérieures de la Colombie-Britannique. DFO Can. Sci. Advis. Sec. Res. Doc. 2021/008. vi + 141 p."
+year: 2021
+report_number: 008
+isbn: "Fs70-5/2021-008E-PDF"
+cat_no: "978-0-660-38698-0"
 region: Pacific Region
+
 
 abstract: |
   Under Canadian policy and legislation, fish stocks that have been assessed as being below the Limit Reference Point (LRP) require a rebuilding plan to grow the stock above the LRP. Rebuilding plans should be based upon objectives characterised by (1) a target, (2) a desired time to reach the target, and (3) an acceptable probability of reaching the target. Rebuilding plans should also include planned management measures or management procedures (MPs), milestone objectives, and should undergo regular evaluation.
@@ -34,7 +38,7 @@ abstract: |
   We present a number of visualizations to show trade-offs among conservation and catch objectives for the different MPs across alternative OM scenarios. The visualizations present trade-offs in tabular and graphical formats, intended to support the process of selecting the final MP. Because all the MPs met the principle objective under the reference set scenarios, there were no strong trade-offs between conservation and catch objectives. Of the two OM robustness set scenarios, trade-offs were most apparent under the Low M scenario, where the probability of meeting the principle objective decreased as the probability of achieving an average short-term catch of 10 t increased.
   
   We discuss major uncertainties, including uncertainty in natural mortality, selectivity, and historical catches, noting that we attempted to account for these uncertainties by evaluating performance of MPs across multiple OMs. We highlight issues regarding estimates of current stock status for Inside Yelloweye Rockfish, and the role of reference points in the MP Framework. We make recommendations for assessment frequency and suggest triggers for re-assessment. Performance of MPs with respect to meeting two alternative assessment criteria for the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) are also evaluated.
-header: "Draft working paper --- Do not cite or circulate" # or "" to omit
+# header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  csasdown::resdoc_pdf:
    french: false
