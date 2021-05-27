@@ -1,0 +1,227 @@
+# PRESENTATION OF TRADE-OFFS AMONG MANAGEMENT PROCEDURES {#sec:results}
+
+## REFERENCE SET RESULTS
+
+Performance within the OM reference set of scenarios varied across satisficed MPs (hereafter just "MPs") and performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
+All MPs were able to achieve LRP 1.5GT > 0.99.
+The fixed TACs of 10 t and 15 t, by definition, met their respective ST C10 and ST C15 performance metrics (Figures \@ref(fig:tigure-panel) and \@ref(fig:dot-lines)).
+The Islope MPs showed some contrast across MPs within the reference set for ST C10 and ST C15.
+The Islope MPs achieved between 0.59 and 0.88 for ST C10, depending on the OM and the Islope MP configuration (Figures \@ref(fig:tigure-panel)).
+
+Within the reference set, there was virtually no trade-off between LRP 1.5GT and ST C10 since all MPs were able to achieve LRP 1.5 GT > 0.99 (Figure \@ref(fig:tradeoff-reference)).
+Multidimensional trade-offs are sometimes represented using radar plots. However, these were challenging to interpret for this analysis (Figure \@ref(fig:spider-satisficed-mps-avg)), which exemplifies some of the warnings about radar plots offered in @anderson2020gfmp.
+We include radar plots here to gauge reader interest at the Regional Peer Review meeting and to illustrate their potential pitfalls for the MP Framework.
+
+<!--
+A dot-and-line plot of the performance metrics aggregated across scenarios helps compare performance across MPs (Figure \@ref(fig:dot-lines)).
+In general, variation performance metric values for any one MP across reference set OMs was small, with the slight exception of Islope_10_lambda08 for LT C20 (Figure \@ref(fig:dot-lines)).
+-->
+
+The timeseries trajectories of the projected survey index (Figure \@ref(fig:proj-index)), *B*/*B*~MSY~, *F*/*F*~MSY~, and catch (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)) further demonstrate performance across the various MPs and reference set OMs.
+We note that none of the biomass projections predicted the stock to be below the LRP in the first year of the projection period, and all MPs achieved continuous growth throughout the projection period, albeit at different rates (Figures \@ref(fig:proj-updog-fixsel)--\@ref(fig:proj-upweight-dogfish)).
+
+Kobe plots demonstrate either the final *B*/*B*~MSY~ vs. *F*/*F*~MSY~ status among replicates (Figure \@ref(fig:kobe)) or the trajectory of these stock status values through time (Figure \@ref(fig:worm)).
+Within the reference set and across all MPs, only OM Scenario (2) produced some replicates that had *F* > *F*~MSY~ and *B* < *B*~MSY~ (and *B* < LRP) by the final projection year (Figure \@ref(fig:kobe)).
+
+We note that OM Scenario (3), Episodic recruitment, yielded near identical results to the Base OM Scenario (1) (e.g., Figure \@ref(fig:tigure-panel)).
+The Episodic recruitment scenario modeled the likelihood of an extreme recruitment event to occur approximately once every generation (38 years) (Section \@ref(sec:approach3-reference3)).
+Despite the Episodic recruitment scenario predicting some fairly extreme large recruitment events it also predicted extreme low recruitment events (Figure \@ref(fig:recdev-om-proj)) and it is likely that these effects counter-balanced one another, producing no contrast in final results.
+It is also possible that long lag effects prevented single large recruitment events from affecting MP performance.
+Future adaptations of this framework might explore alternative assumptions about the period and magnitude of extreme recruitment events for Inside Yelloweye Rockfish.
+Exploration of alternative probability distributions for projected recruitment deviations (e.g., skewed or heavy-tailed distributions) could also be explored.
+
+(ref:fig-tigure-panel) Performance of satisficed MPs for the OM reference set scenarios.
+MPs are ordered by decreasing performance metric values from the averaged reference set (Figure \@ref(fig:tigure-avg)).
+These are the same data underlying Figure \@ref(fig:tigure-avg) and Figure \@ref(fig:tigure-min) but shown for individual OM reference set scenarios, and only for satisficed MPs.
+
+```{r tigure-panel, fig.cap="(ref:fig-tigure-panel)", out.width="0.8\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-tigure-refset.png"))
+```
+
+
+\clearpage
+
+(ref:fig-dot-lines)
+Dot-and-line plot of performance metrics across OM scenarios.
+Dots represent average performance metric values and thin lines represent the range of values across OM scenarios.
+Thick lines represent the range of values across OM scenarios after dropping the high and low values.
+Reference MPs are indicated by open circles (True).
+Non-reference MPs are indicated by closed circles (False).
+
+```{r dot-lines, fig.cap="(ref:fig-dot-lines)", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-dot-refset-avg.png"))
+```
+
+\clearpage
+
+```{r tradeoff-reference, fig.cap="Trade-off between LRP 1.5GT and ST C10 average performance metrics across the OM reference set scenarios. Reference MPs are indicated by open circles (True). Non-reference MPs are indicated by closed circles (False).", out.width="5in"}
+knitr::include_graphics(here("mse/figures/ye-tradeoff-refset-avg.png"))
+```
+
+\clearpage
+
+```{r spider-satisficed-mps-avg, fig.cap="Radar-plot representation of average performance metric trade-offs for the OM reference set scenarios. The outside of the hexagon represents a performance metric probability of 1 while the middle represents a value of 0. Dashed lines represent reference MPs.", out.width="5in"}
+knitr::include_graphics(here("mse/figures/ye-radar-refset-avg.png"))
+```
+
+\clearpage
+
+```{r proj-index, fig.cap="Historical and projected HBLL-inside survey relative abundance index values. Vertical dashed line represents 2019. The shaded region represents the 95\\% quantile of the simulated index values and individual lines represent four sample replicates.", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-projections-index.png"))
+```
+
+\clearpage
+
+(ref:fig-proj-updog-fixsel) *B*/*B*~MSY~, *F*/*F*~MSY~, and catch from the historical and projected time periods for the OM "(1) Base".
+Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
+Thin gray lines represent illustrative simulation replicates.
+The vertical dashed line indicates the last year of the historical period.
+The horizontal dashed lines indicate *B*/*B*~MSY~ = 0.8 and 0.4, and *F*/*F*~MSY~ = 1.
+
+```{r proj-updog-fixsel, fig.cap="(ref:fig-proj-updog-fixsel)", out.width="6.5in"}
+knitr::include_graphics(here("mse/figures/ye-projections-updog_fixsel.png"))
+```
+
+(ref:fig-proj-low-catch) *B*/*B*~MSY~, *F*/*F*~MSY~, and catch from the historical and projected time periods for the OM "(2) Low Catch".
+Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
+Thin gray lines represent illustrative simulation replicates.
+The vertical dashed line indicates the last year of the historical period.
+The horizontal dashed lines indicate *B*/*B*~MSY~ = 0.8 and 0.4, and *F*/*F*~MSY~ = 1. 
+
+```{r proj-low-catch, fig.cap="(ref:fig-proj-low-catch)", out.width="6.5in"}
+knitr::include_graphics(here("mse/figures/ye-projections-lowcatch_fixsel.png"))
+```
+
+(ref:fig-proj-episodic-recruitment) *B*/*B*~MSY~, *F*/*F*~MSY~, and catch from the historical and projected time periods for the OM "(3) Episodic Recruitment".
+Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
+Thin gray lines represent illustrative simulation replicates.
+The vertical dashed line indicates the last year of the historical period.
+The horizontal dashed lines indicate *B*/*B*~MSY~ = 0.8 and 0.4, and *F*/*F*~MSY~ = 1. 
+
+```{r proj-episodic-recruitment, fig.cap="(ref:fig-proj-episodic-recruitment)", out.width="6.5in"}
+knitr::include_graphics(here("mse/figures/ye-projections-episodic_recruitment.png"))
+```
+
+(ref:fig-proj-upweight-dogfish) *B*/*B*~MSY~, *F*/*F*~MSY~, and catch from the historical and projected time periods for the OM "(4) Estimate HBLL Selecivity".
+Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
+Thin gray lines represent illustrative simulation replicates.
+The vertical dashed line indicates the last year of the historical period.
+The horizontal dashed lines indicate *B*/*B*~MSY~ = 0.8 and 0.4, and *F*/*F*~MSY~ = 1. 
+
+```{r proj-upweight-dogfish, fig.cap="(ref:fig-proj-upweight-dogfish)", out.width="6.5in"}
+knitr::include_graphics(here("mse/figures/ye-projections-upweight_dogfish.png"))
+```
+
+\clearpage
+
+(ref:fig-kobe) *B*/*B*~MSY~ and *F*/*F*~MSY~ values from the final year of the projections across all replicates.
+Dots represent individual replicates.
+Contour lines indicate two-dimensional kernel-density-smoothed quantiles at 0.25, 0.50, and 0.75 levels, calculated in log space.
+The vertical dashed lines show B/B~MSY~ = 0.4 (left) and 0.8 (right).
+The horizontal dashed line shows F/F~MSY~ = 1.
+
+```{r kobe, fig.cap="(ref:fig-kobe)", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-kobe.png"))
+```
+
+\clearpage
+
+(ref:fig-worm) Trajectory of *B*/*B*~MSY~ and *F*/*F*~MSY~ values summarized across replicates.
+The solid line corresponds to the median value.
+Each diamond represents the 50% quantile of *B*/*B*~MSY~ (horizontal) and *F*/*F*~MSY~ (vertical).
+The vertical dashed lines show B/B~MSY~ = 0.4 (left) and 0.8 (right).
+The horizontal dashed line shows F/F~MSY~ = 1.
+
+```{r worm, fig.cap="(ref:fig-worm)", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-worms.png"))
+```
+
+\clearpage
+
+(ref:fig-recdev-om-proj)
+Historical recruitment deviations estimated by the SRA model (left of the vertical dashed line) and projected recruitment deviations (right of the vertical dashed line) for the six OM scenarios.
+Lines represent individual replicates. For clarity, only the first 50 replicates are shown. The vertical dashed line represents the last year of the historical period (2019).
+
+```{r recdev-om-proj, fig.cap="(ref:fig-recdev-om-proj)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-nat-recdev-panel-proj.png"))
+```
+
+\clearpage
+
+## ROBUSTNESS SET RESULTS
+
+OM Scenario (A), Low M, reduced the probability of achieving the LRP 1.5GT performance metric to a range of 0.75--0.90 compared to > 0.99 across the reference set (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)).
+There were similar declines in the other conservation performance metrics.
+
+OM Scenario (B), High HBLL CV, slightly reduced the probability of achieving the ST C10 performance metric compared to the OM reference scenarios (Figure \@ref(fig:tigure-panel-rob) vs Figure \@ref(fig:tigure-panel)), presumably because of the added error in the projected HBLL index.
+For example, Islope_5_lambda04 achieved at least 0.86 probability of achieving ST C10 across the reference set OMs but only achieved this performance metric with a probability of 0.79 in OM Scenario (B).
+
+OM Scenario (A) demonstrated a trade-off between ST C10 and LRP 1.5GT among MPs (Figure \@ref(fig:tradeoff-robust)).
+OM Scenario (B) demonstrated no trade-off between ST C10 and LRP 1.5GT since all MPs achieved LRP 1.5GT with probability > 0.99.
+Similar to the results for the reference set, we found the radar plots challenging to interpret (Figure \@ref(fig:spider-satisficed-mps-robust)).
+
+Projection timeseries plots of *B*/*B*~MSY~, *F*/*F*~MSY~, and catch further explain the closed-loop simulation results for the robustness set (Figure \@ref(fig:proj-low-m) and \@ref(fig:proj-high-index-cv)).
+For example, in OM Scenario (A), the CC_15t MP took the stock to very low biomass levels in some replicates (Figure \@ref(fig:proj-low-m)).
+The Kobe plots indicated that a number of replicates resulted in *F* > *F*~MSY~ and *B* < LRP  (Figure \@ref(fig:kobe)). 
+The FMSYref and FMSYref75 MPs illustrate that catches would have to be lower in OM Scenario (A) than in the reference set OMs to achieve similar conservation outcomes (e.g., Figure \@ref(fig:proj-low-m) vs. \@ref(fig:proj-updog-fixsel)).
+This occurred across the MPs, although least for the CC_10t MP, and, among the Islope MPs, it occurred the least for Islope_10_lambda04 (Figure \@ref(fig:kobe)).
+
+There was increased TAC variability across replicates and within individual replicates in OM Scenario (B) compared to the reference set OM projections, most likely due to increased variability in the projected index (e.g., Figure \@ref(fig:proj-high-index-cv) vs. \@ref(fig:proj-updog-fixsel)).
+
+By comparing the projections across OM scenarios on the same figure, it is clear that *F*/*F*~MSY~, *B*/*B*~MSY~, and catch were most sensitive to the OM Scenario (A) assumptions (Figure \@ref(fig:proj-scenarios)). 
+Note that the rank order of MPs, which is likely more important in a decision context, differed under OM Scenario (A) compared to the OM reference set scenarios (Figures \@ref(fig:tigure-panel) and \@ref(fig:tigure-panel-rob)).
+
+(ref:fig-tigure-panel-rob) Performance of satisficed MPs for the robustness set OMs.
+
+```{r tigure-panel-rob, fig.cap="(ref:fig-tigure-panel-rob)", out.width="5.5in"}
+knitr::include_graphics(here("mse/figures/ye-tigure-robset.png"))
+```
+
+```{r dots-satisficed-mps-robust, fig.cap="Performance of satisficed MPs for the robustness set OMs.", out.width="0.9\\textwidth", eval=FALSE}
+knitr::include_graphics(here("mse/figures/ye-dot-robset.png"))
+```
+
+```{r tradeoff-robust, fig.cap="Trade-off plot between LRP 1.5GT and ST C10 performance metric values for satisficed MPs for the robustness set OMs. Reference MPs are indicated by open circles (True). Non-reference MPs are indicated by closed circles (False).", out.width="6in"}
+knitr::include_graphics(here("mse/figures/ye-tradeoff-robset.png"))
+```
+
+```{r spider-satisficed-mps-robust, fig.cap="Radar-plot representation of the trade-off in performance metric values for satisficed MPs for the robustness set OMs.", out.width="\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-radar-robset.png"))
+```
+
+(ref:fig-proj-low-m) *B*/*B*~MSY~, *F*/*F*~MSY~, and catch from the historical and projected time periods for the OM "(A) Low M".
+Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
+Thin gray lines represent illustrative simulation replicates.
+The vertical dashed line indicates the last year of the historical period.
+The horizontal dashed lines indicate *B*/*B*~MSY~ = 0.8 and 0.4, and *F*/*F*~MSY~ = 1. 
+
+```{r proj-low-m, fig.cap="(ref:fig-proj-low-m)", out.width="6.5in"}
+knitr::include_graphics(here("mse/figures/ye-projections-lowM_fixsel.png"))
+```
+
+(ref:fig-proj-high-index-cv) *B*/*B*~MSY~, *F*/*F*~MSY~, and catch from the historical and projected time periods for the OM "(B) High HBLL CV".
+Dark line indicates the median value and the darker and lighter shaded ribbons indicate the 50% and 90% quantiles.
+Thin gray lines represent illustrative simulation replicates.
+The vertical dashed line indicates the last year of the historical period.
+The horizontal dashed lines indicate *B*/*B*~MSY~ = 0.8 and 0.4, and *F*/*F*~MSY~ = 1. 
+
+```{r proj-high-index-cv, fig.cap="(ref:fig-proj-high-index-cv)", out.width="6.5in"}
+knitr::include_graphics(here("mse/figures/ye-projections-high_index_cv.png"))
+```
+
+(ref:fig-proj-scenarios) B/B~MSY~, F/F~MSY~, and catch from the historical and projected time periods.
+Colours represent the OM reference and robustness set scenarios.
+Lines represent medians and shaded regions represent 50% quantiles.
+Satisficed and reference MPs are shown from top to bottom.
+The vertical dashed line indicates the last year of the historical period.
+
+```{r proj-scenarios, fig.cap="(ref:fig-proj-scenarios)", out.width="0.9\\textwidth"}
+knitr::include_graphics(here("mse/figures/ye-projections-scenarios.png"))
+```
+
+\clearpage
+
+## COSEWIC CONSIDERATIONS
+
+We present results with respect to meeting two alternative COSEWIC criteria (probabilities of past stock declines and probabilities of future extinction) in Appendix \@ref(app:cosewic).
+

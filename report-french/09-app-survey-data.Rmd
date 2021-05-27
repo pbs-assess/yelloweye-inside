@@ -1,0 +1,355 @@
+# FISHERY-INDEPENDENT SURVEY DATA {#app:index-data}
+
+We conditioned the operating models using indices of abundance from the inside Hard Bottom Longline (HBLL) survey and the Strait of Georgia Dogfish Longline survey. Survey design and modelling of indices for each survey are described here.   
+
+## INSIDE HBLL SURVEY INDEX {#sec:hbll-index-data}
+
+The Inside HBLL survey for the Strait of Georgia management area (4B) has been providing catch-rate indices and associated biological data for inshore rockfish assessment since 2003 [@lochead2007].
+The survey has a depth-stratified random design consisting of 2km by 2km survey blocks, and has always taken place on the CCGS Neocaligus vessel.
+The survey uses size 13/0 snap-type circle hooks and squid bait with a two-hour soak time.
+Hook-by-hook data, which has been collected since the start of the survey, is electronically collected and stored in a database.
+For further details on survey design see @lochead2004.
+
+The survey area is divided into northern and southern regions (Figure \@ref(fig:map-HBLL-NS)), which are fished in alternating years.
+The border between the two regions occurs approximately at the northern ends of Pacific Fishery Management Areas (PFMAs) 14 and 15 (Figure \@ref(fig:map-4B)).
+However, several irregularities have occurred (Figure \@ref(fig:hbll-raw)):
+
+(ref:fig-map-HBLL-NS) Map of HBLL survey blocks indicating the northern (blue) and southern (green) regions. RCAs (orange blocks) are also shown.
+
+```{r map-HBLL-NS, fig.cap="(ref:fig-map-HBLL-NS)", out.width="5in"}
+knitr::include_graphics(here::here("figs/YE_Inside_2019_HBLL_L.png"))
+```
+
+- The survey did not take place in 2006 and 2017.
+- The length of the survey has varied annually, and has lead to inconsistencies in the geographic extent surveyed between years.
+- Desolation Sound (PFMA 15) is allocated as part of the southern region, but was sampled as part of the northern region in 2003, 2008, and 2019, and not sampled in 2009 and 2018. Catch rates of Yelloweye Rockfish are highest in Desolation Sound (PFMA 15; Figure \@ref(fig:map-4B)). Therefore, we expect the lack of sampling in 2009 and 2018 to have an effect on survey estimates from the southern survey.
+- The full southern survey was not completed in 2009 where only 38 blocks were fished in the southern Strait of Georgia, and only between Nanaimo and Victoria. This is in contrast to normal years when approximately 70 blocks are fished as far north as Campbell River. Catch rates of most rockfish species caught on this survey tend to decline from the north to the south, so this could also have a major effect on the survey index in that year.
+
+We applied a geostatistical spatiotemporal model to standardize of the HBLL index [e.g., @shelton2014; @thorson2015; @anderson2019synopsis] to account for the irregular implementation of the survey design (Section \@ref(sec:hbll-spatiotemporal)).
+We confirmed, via simulation, that this approach can "stitch" together the north and south survey regions with relatively little bias (Section \@ref(sec:hbll-sim)).
+
+### Hook competition {#sec:hbll-hook-competition}
+
+A longline index of species abundance may not be proportional to actual abundance under certain conditions.
+For example, if there is a high degree of competition among species for baited hooks, the actual catch may not accurately reflect the true abundance of less competitive species [@kuriyama2018].
+The Inside HBLL survey catch is mostly comprised of North Pacific Spiny Dogfish (*Squalus suckleyi*; hereafter "Dogfish"), which are potentially a major hook competitor with rockfishes [@obradovich2018].
+As in @yamanaka2011, we applied a hook competition correction, which accounts for the competition between individual fish for the bait on hooks, to the HBLL survey data. 
+To apply the correction, a competition adjustment factor is estimated for each set, in each year.
+This adjustment factor, $A_{i,t}$, scales up the observed number of Yelloweye Rockfish caught, $N_{i,t}$, for each set $i$ in each year $t$ to give the expected number of fish caught after accounting for competition, $N_{i,t}^{(0)}$:
+
+$$
+N_{i,t}^{(0)} = A_{i,t} N_{i,t}.
+(\#eq:Nit)
+$$
+
+The adjustment factor depends on the proportion of observed hooks that are returned with bait still on them, $P_{i,t}$ (Figure \@ref(fig:hbll-baited)):
+
+$$
+A_{i,t} = - \frac{ \log P_{i,t}}{1 - P_{i,t}}.
+(\#eq:hbll-hook-adjustment)
+$$
+
+As $P_{i,t} \rightarrow 0$, $A_{i,t} \rightarrow \infty$, so that the expected number $N_{i,t}^{(0)} \rightarrow \infty$.
+Therefore, in cases where zero hooks were returned with bait, we set the number of baited hooks to one.
+See @anderson2019synopsis (their Appendix G, Section G.5) for further details on the hook competition correction.
+We passed the hook-competition-adjusted data (Figure \@ref(fig:hbll-hook-adjustment)) to the spatiotemporal model to develop the index of abundance.
+
+### Spatiotemporal HBLL index standardization {#sec:hbll-spatiotemporal}
+
+We fit a geostatistical spatiotemporal index-standardization model:
+
+\begin{align}
+  y_{s,t} &\sim \mathrm{NegBin}\left(\mu_{s,t}, \phi \right),\\
+  \mu_{s,t} &= \exp \left( \bm{X}_{s,t} O_{s,t} + \bm{\beta} + \omega_s + \epsilon_{s,t} \right),
+(\#eq:hbll-model)
+\end{align}
+
+where NegBin refers to the negative binomial distribution (the NB2 parameterization [@hilbe2011] where the variance scales quadratically with the mean),
+$\phi$ represents the dispersion parameter,
+$y_{s,t}$ and $\mu_{s,t}$ refers to the observed and expected value, respectively, at spatial point $s$ and time $t$,
+$\phi$ refers to the dispersion parameter,
+$\bm{X}$ refers to a design matrix, and
+$\beta$ refers to a vector of estimated coefficients (an independent mean for each year).
+The symbol $O_{s,t}$ represents an "offset" for the number of hooks and the hook-competition-adjustment factor.
+Specifically, it was represented as $\log \left(S_{i,t} / A_{i,t} \right)$, where $S_{i,t}$ represents the area "swept" by the set.
+We calculated of the area swept based on the number of hooks ($N^\textrm{hooks}_{i,t}$) in set $i$ and year $t$ as:
+
+$$
+N^\textrm{hooks}_{i,t} \cdot 0.0024384 \cdot 0.009144 \cdot 1000.
+$$
+
+The value 0.002438 corresponds to the spacing between hooks (8 ft) in kms, 0.009144 to an assumed 30 ft area swept around the set that fish are catchable (in kms), and 1000 scales the area swept from km to m.
+Note that the 30 ft assumption only serves to scale the density up or down in all years and ultimately affects the survey-catchability estimate but will not influence the shape of the index timeseries.
+
+We assumed that the spatial random effects ($\omega_s$) were drawn from a multivariate normal distribution with a covariance matrix $\bm{\Sigma}_\omega$:
+
+$$
+\bm{\omega} \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_\omega \right).
+$$
+
+We constrained the spatial random effects to follow a \mbox{Mat\'ern} covariance
+function, which defines the rate with which spatial correlation decays with
+distance.
+The \mbox{Mat\'ern} function describes the covariance $\Phi_\omega \left( s_j, s_k \right)$ between spatial locations $s_j$ and $s_k$ as:
+
+$$
+\Phi_\omega\left( s_j,s_k \right) = \tau_\omega^2/\Gamma(\nu)2^{\nu - 1}
+    (\kappa d_{jk})^\nu K_\nu \left( \kappa d_{jk} \right),
+$$
+
+where $\tau_\omega^2$ represents the spatial variance, $\Gamma$ represents the Gamma
+function, $K_\nu$ represents the Bessel function, $d_{jk}$ represents the
+Euclidean distance between locations $s_j$ and $s_k$, and $\kappa$ represents
+a scaling parameter that is estimated [e.g., @lindgren2011]. The parameter $\nu$
+controls the smoothness of the covariance function. We set $\nu = 1$, which
+lets us take advantage of the Stochastic Partial Differential Equation (SPDE)
+approximation to Gaussian Markov Random Fields (GMRF) to greatly increase
+computational efficiency [@lindgren2011].
+
+We assumed the same structure for the spatiotemporal random effects, with each time slice being given its own independent set of random effects ($\bm{\epsilon}_t$) with covariance matrix $\bm{\Sigma}_{\epsilon,t}$:
+
+$$
+\bm{\epsilon}_t \sim \mathrm{MVNormal} \left( \bm{0}, \bm{\Sigma}_{\epsilon,t} \right).
+$$
+
+This covariance matrix is also constrained to follow a \mbox{Mat\'ern} covariance
+function with the same $\kappa$ but its own $\tau_\epsilon^2$ (spatial variance):
+
+$$
+\Phi_\epsilon\left( s_j,s_k \right) = \tau_\epsilon^2/\Gamma(\nu)2^{\nu - 1}
+    (\kappa d_{jk})^\nu K_\nu \left( \kappa d_{jk} \right).
+$$
+
+Although we have described the \mbox{Mat\'ern} functions above using the simple isometric form for simplicity (spatial correlation is the same in all directions), we actually allowed for anisotropy in the spatial and spatiotemporal correlation [e.g., @thorson2015].
+
+The spatial random effects accounted for spatial factors that were constant across time, for example, depth and substrate type.
+The spatiotemporal random effects accounted for factors that varied spatially from year-to-year, such as bottom temperature, water circulation patterns, species interactions, and species movement.
+As sensitivity analyses, we included alternate versions of our models that: (1) also accounted for depth; and (2) did not account for hook competition.
+
+We fit our model with the sdmTMB R package [@sdmtmb] and TMB [@tmb] using a "mesh" with 400 predictive-process "knots" generated by INLA [@lindgren2011; @rue2016] with locations determined by a K-means clustering algorithm (Figure \@ref(fig:hbll-spde)).
+We estimated the fixed effects via maximum likelihood with the random effects set to the values that maximized the joint likelihood conditional on the estimated value of fixed effects.
+We checked that the model fits were consistent with convergence by checking that the maximum gradient across all estimated coefficients was < 0.001 and that the covariance matrix was positive-definite.
+
+We projected predictions from the model to the full survey domain (Figure \@ref(fig:hbll-area-grid)) using the covariance projection matrix and the bilinear interpolation mesh provided by INLA [@lindgren2011; @rue2016] (Figures \@ref(fig:hbll-spde) and \@ref(fig:hbll-predicted-spacetime)).
+In terms of the model components, the spatial random effects were, by definition, constant across years (Figure \@ref(fig:hbll-spatial-re)), and the spatiotemporal random effects varied across years (Figure \@ref(fig:hbll-spatiotemporal-re)).
+
+We then calculated expected biomass $B_t$ in year $t$ as:
+
+$$
+B_t = \sum_{j = 1}^{n_j}
+  w_j \cdot \exp \left( \bm{X}_{j,t} \bm{\beta} + \bar{\bm{O}} + \omega_j + \epsilon_{j,t} \right),
+$$
+
+where $j$ references a grid cell within the survey domain, $w_j$ represents the area of that grid cell (Figure \@ref(fig:hbll-area-grid)), and $\bar{\bm{O}}$ represents the mean offset value.
+In other words, we summed the predicted biomass across all grid cells within the survey domain for each year.
+We generated standard errors on the annual estimates of log biomass via the generalized delta method as implemented in TMB [@tmb].
+
+The resulting standardized population index accounts for the irregular sampling of the survey domain and hook competition and "stitches" the northern and southern regions into a single population index (Figure \@ref(fig:hbll-index)).
+The inclusion of depth or the exclusion of the hook competition adjustments had relatively minor effects on the population index (Figure \@ref(fig:hbll-index)).
+The model was also able to "fill in" what the index might hypothetically look like for the northern and southern regions independently (Figure \@ref(fig:hbll-index)).
+Note that this statistical interpolation cannot account for one-off events in the unobserved region, such as an abnormally high abundance only in the northern region in a year when the southern region was surveyed.
+
+### Simulation-testing survey "stitching" via spatiotemporal models {#sec:hbll-sim}
+
+We undertook a basic simulation analysis to test that our approach of "stitching" northern and southern regions into a single survey domain was reasonable from a statistical perspective.
+We generated a system that roughly matches the HBLL survey data we worked with in this document:
+
+* 10 years of observations
+* 100 possible spatial observation locations $s_j$ and $s_k$ drawn from a Uniform(0, 1) distribution each year.
+* A marginal SD($\omega_s$) = 2.2
+* A marginal SD($\epsilon_{s,t}$) = 0.3
+* A \mbox{Mat\'ern} parameter $\kappa = 0.1$
+* Annual means drawn from a Lognormal(0.1, 0.2) distribution
+* A Poisson observation process (for simplicity vs. a negative binomial)
+
+We simulated the underlying true mean abundance on a complete [0, 1] grid with 25 x 25 evenly sized grid cells.
+We then discarded the northern and southern regions (above or below 0.5) in alternating years, to render approximately 50 observations per year, and attempted to fit the same form of spatiotemporal model as the one used for the HBLL index standardization (Figure \@ref(fig:stich-sim-pred)).
+
+Despite the model only observing alternating northern and southern regions, the model was able to reconstruct the unobserved missing portions based on the estimated spatial correlation, and to a lesser extent, the estimated spatiotemporal correlation (Figure \@ref(fig:stich-sim-pred)).
+By projecting the model predictions onto a grid over the full area of the simulated square, our model was able to produce an index that was similar to the true index (Figure \@ref(fig:stich-sim-index)).
+If we instead naively generated the index using an approach to mimic a design-based approach (by summing the observed abundances each year and scaling it to the same geometric mean for visualization purposes), the resulting index does not reflect the true index trend in many years (Figure \@ref(fig:stich-sim-index)).
+
+Through experimentation (not shown) we found that the stitching was most accurate at recapturing the true index if the magnitude of spatial correlation deviations ($\omega_s$) was much larger than the magnitude of spatiotemporal correlation deviations ($\epsilon_{s,t}$).
+This is the case in our HBLL model, where the marginal standard deviation of $\omega_s$ was approximately six times larger than the marginal standard deviation of $\epsilon_{s,t}$.
+The stitching was most needed when there was a north to south gradient in abundance, as seems evident for Yelloweye Rockfish.
+
+```{r}
+include_figs <- function(file) {
+  knitr::include_graphics(here::here("figs", file), dpi = NA)
+}
+```
+
+```{r hbll-raw, fig.cap="Inside HBLL survey observations of Yelloweye Rockfish. Gray background shading indicates the northern and southern survey areas. The area of the circles represents the number of fish caught per hook after accounting for hook competition.", out.width="\\textwidth"}
+include_figs("hbll-joint-raw-data.png")
+```
+
+```{r hbll-area-grid, out.width="5in", fig.cap="Area per survey grid cell that is in water for the inside HBLL survey. The predicted count density for each grid cell is scaled up to the full survey domain based on these areas."}
+include_figs("hbll-area-in-water.png")
+```
+
+```{r hbll-baited, fig.cap="Proportion baited hooks returned for the inside HBLL survey. Note the substantial difference between the northern and southern areas and the change in the north between 2003--2007 and subsequent years.", out.width="\\textwidth"}
+include_figs("hbll-joint-baited.png")
+```
+
+```{r hbll-hook-adjustment, fig.cap="Hook adjustment factor for the inside HBLL survey accounting for the number of hooks and the number of returned baited hooks.", out.width="\\textwidth"}
+include_figs("hbll-joint-hook-adjust.png")
+```
+
+```{r hbll-spde, fig.cap="Stochastic Partial Differential Equation (SPDE) mesh for the HBLL. The open grey circles in the background (often hidden) represent the locations of the observed data and the red dots represent the \"knots\". The lines show the triangularization mesh used in the SPDE approximation and bilinear interpolation. A greater number of knots will increase the accuracy of the approximation at the expense of computational time.", out.width="0.6\\textwidth"}
+include_figs("hbll-joint-spde.png")
+```
+
+```{r hbll-predicted-spacetime, fig.cap="Predicted relative density in space and time for the inside HBLL survey. Observed (hook-adjusted) counts are illustrated with circles. Predictions are illustrated with colour shading.", out.width="\\textwidth"}
+include_figs("hbll-joint-prediction-log.png")
+```
+
+```{r hbll-spatial-re, fig.cap="The spatial random effects. These are consistent spatially correlated differences in expected abundance through time. The values are shown in link (log) space.", out.width="4.2in"}
+include_figs("hbll-joint-omega.png")
+```
+
+```{r hbll-spatiotemporal-re, fig.cap="The spatiotemporal random effects. These are spatially correlated deviations that change through time. Note the reversion to the mean in area-year combinations without sampling data. Note the difference in magnitude between the spatial random effects (previous figure) and these spatiotemporal random effects.", out.width="\\textwidth"}
+include_figs("hbll-joint-epsilon.png")
+```
+
+```{r hbll-index, out.width="4in", fig.cap="The joint relative abundance index. Top panel shows the joint prediction from the spatial temporal model. Included are three versions: (1) random effects and annual means only, (2) adding a depth covariate, and (3) removing the hook adjustment factor. The middle and bottom panels show the joint predictions for the northern and southern areas. All shaded regions represent 95\\% confidence intervals. The joint index timeseries in the top panel have been scaled to have the same geometric mean as the main ``HBLL INS'' index for visualization purposes. Dashed vertical lines indicate years with surveys (mostly) in the southern area."}
+include_figs("hbll-index-components-eps-depth2.png")
+```
+
+\clearpage
+
+```{r stich-sim-pred, fig.cap="Simulation testing the relative abundance index calculation with alternating north and south observations. (A) The true simulated (mean) abundance in space and time. (B) The observed (dots) and estimated (colour) counts in space and time from the geostatistical model. The observations occur in north and south regions in alternating years and are ``blind'' to the missing region. Notice how the spatial temporal model is able to predict what the abundance should be in the ``blind'' region based on the consistent spatial correlation pattern (and to a lesser degree the spatiotemporal correlation pattern).", out.width="\\textwidth"}
+include_figs("geostatistical-sim-predicted.png")
+```
+
+\clearpage
+
+```{r stich-sim-index, fig.cap="Simulation testing the relative abundance index calculation with alternating north and south observations. The solid red line represents the true simulated abundance through time. The dashed and dotted green line represents a ``naive'' design-based estimate, which is calculated here by calculating the abundance with just the observed north or south counts in each year. The dashed blue line represents a geostatistical standardized index that attempts to account for the north-south biennial observations. The shaded blue region represents the modelled 95\\% confidence interval.", out.width="5in"}
+include_figs("geostatistical-sim-stitched-index.png")
+```
+
+\clearpage
+
+## DOGFISH SURVEY INDEX {#sec:dogfish-index-data}
+
+```{r dogfish-model}
+m <- readRDS(here::here("data-generated/dogfish-model.rds"))
+est <- as.list(m$sd_report, "Estimate")
+se <- as.list(m$sd_report, "Std. Error")
+d2004 <- m$data %>% dplyr::filter(year == 2004)
+hook_comparison <- d2004 %>% select(circle_hook, ye_count, fe_begin_retrieval_time) %>% reshape2::dcast(fe_begin_retrieval_time~circle_hook, value.var = "ye_count") %>% select(-fe_begin_retrieval_time) %>% rename(j_hook = `0`, circle_hook = `1`)
+```
+
+The Dogfish survey samples nine locations in the Strait of Georgia that were historically fished by the commercial Dogfish fishery [@king2012].
+The survey began in 1986 and sampling has occurred in 1989, 2005, 2011, 2014, and 2019.
+The survey is a depth-stratified longline survey that uses snap on gear with 300 size 14/0circle hooks baited with Pacific Herring and a two-hour soak time.
+A more detailed description of survey methods is provided in @king2012.
+For most of the time series, set-by-set catch of rockfish has been recorded.
+Beginning in 2019, hook-by-hook data for all captured species were collected on board, along with biological data for rockfish.
+We use a spatiotemporal model to estimate the density of Yelloweye Rockfish per km^2^. We calculated the area swept by multiplying the number of hooks deployed by the estimated distance between hooks (8 ft spacing) and the estimated width swept (the length of two gagnions).
+
+The Dogfish survey is not designed to index rockfish, so there are several important differences between the inside HBLL and Dogfish survey designs. Perhaps the most significant difference is that the HBLL specifically targets habitats suitable for rockfish (i.e. hard bottom), whereas the Dogfish survey visits sites that were important in the commercial fishery that have mainly soft sediment bottoms. The Dogfish survey also uses slightly larger circle hooks than the HBLL survey (14/0 vs. 13/0); herring bait instead of squid; fishes 300 hooks per set instead of 225; and the hooks are spaced 1.8m apart instead of 2.4m. We use the Dogfish survey in this analysis because it provides the longest time series of fishery independent data for inside Yelloweye Rockfish and because it was used in the previous assessment in 2011. 
+
+### Hook comparison {#sec:dog-hook-comparison}
+
+The survey fished with J hooks originally and then changed to circle hooks in 2005.
+In 2004, @mcfarlane2005 undertook a calibration study to assess the potential for a change in catch rates due to the change in hook type.
+However, the study compared catch rates for Dogfish only, and the hook change likely affected catchability for Yelloweye Rockfish differently than for Dogfish.
+The previous assessment attempted to deal with this by estimating a catchability ratio, using data for all rockfish, to scale the catch in the 1980s [@yamanaka2011].
+It is not clear from their description how this catchability ratio was estimated.
+The previous assessment was quite sensitive to the resulting Dogfish index (because of the large decline from the 1980s), and that decline was largely dependent on the hook ratio.
+
+In the hook comparison study, `r sum(d2004$circle_hook)` sets used circle hooks and `r sum(d2004$circle_hook)` sets used J hooks.
+On these experimental sets, `r sum(hook_comparison$j_hook)` Yelloweye Rockfish were caught on J hooks and `r sum(hook_comparison$circle_hook)` were caught on circle hooks Table \@ref(tab:dogfish-hook-comparison).
+Although this represents a relatively small sample size of fish for estimating a hook correction factor for Yelloweye Rockfish,
+by simultaneously estimating the correction factor while standardizing the population index using a geostatistical model, we were able to incorporate uncertainty in the correction factor into the resulting index standard errors (Section \@ref(sec:dog-index-model)).
+Nonetheless, it is important to note that this correction factor is based on a limited number of sets. It is driven largely by five sets with one or two more Yelloweye Rockfish caught by circle hooks than J hooks and two sets with 12 and four Yelloweye Rockfish caught by circle hooks vs. zero by J hooks (Table \@ref(tab:dogfish-hook-comparison)).
+
+\clearpage
+
+```{r dogfish-hook-comparison, results='asis'}
+hook_comparison %>%
+  mutate(Set = 1:n()) %>%
+  select(Set, j_hook, circle_hook) %>%
+  csasdown::csas_table(caption = "Number of Yelloweye Rockfish caught in J-hook/circle-hook experiment in 2004.", col_names = c("Set", "J-hook", "Circle hook"))
+```
+
+### Depth {#sec:dog-depth}
+
+In addition to the survey not being designed for rockfishes, and the change in gear type, the shallower depth stratum was dropped in 2004 and later surveys.
+This was done to purposely try to avoid catching rockfish (because of conservation concerns).
+While depth is not explicitly included in the spatiotemporal model, the spatial random effects should absorb much of the variation driven by depth while also accounting for other spatially varying effects.
+
+### Hook competition {#sec:dog-hook-competition}
+
+The previous inside Yelloweye Rockfish assessment indicates they used an exponential hook competition model on the Dogfish Survey data in 2011.
+However, there are no data on the number of baited and empty hooks available for the Dogfish Survey prior to 2019 and it is unclear how the previous assessment accounted for this.
+Therefore, we did not apply an explicit hook competition model in the present analysis.
+However, to partially account for hook competition, we included the number of Dogfish caught (log transformed so as to have a multiplicative effect on observed account) as a covariate in the model.
+
+### Spatiotemporal Dogfish survey index standardization {#sec:dog-index-model}
+
+We used a similar geostatistical model to that described for the HBLL survey (Section \@ref(sec:hbll-spatiotemporal)) with the addition of Dogfish and hook-type covariates.
+We included the log Dogfish count and hook-type in the model matrix $\bm{X}_{s,t}$:
+
+\begin{align}
+  y_{s,t} &\sim \mathrm{NegBin}(\mu_{s,t}, \phi),\\
+  \mu_{s,t} &= \exp \left( \bm{X}_{s,t} \bm{\beta} + O_{s,t} + \omega_s + \epsilon_{s,t} \right),
+(\#eq:dogfish-model)
+\end{align}
+
+with symbols defined as in Equation \@ref(eq:hbll-model).
+Hook-type is an identifier for J-hook vs. circle-hook.
+The offset represents the log(area swept), as previously defined.
+We fit our model with sdmTMB [@sdmtmb] as described above with 300 knots.
+
+In our projection of the model predictions onto the survey grid to calculate the standardized relative abundance:
+
+$$
+B_t = \sum_{j = 1}^{n_j}
+  w_j \cdot \exp \left( \bm{X}_{j,t} \bm{\beta} + \bar{\bm{O}} + \omega_j + \epsilon_{j,t} \right),
+(\#eq:dog-prediction)
+$$
+
+with symbols defined as above, we could predict for a J-hook or a circle hook.
+Choosing one or the other would place more of the uncertainty in the years with one or the other since the other effect's uncertainty would be incorporated in only some years.
+As a compromise, we chose to predict for an average hook type across the data set to distribute this hook-type uncertainty across the timeseries.
+In practice, this meant coding circle hooks as `r round(min(m$data$circle_hook_centered), 2)` and J hooks as `r round(max(m$data$circle_hook_centered), 2)` in the model-fitting matrix $\bm{X}_{s,t}$ and setting the equivalent predictor in the prediction model matrix to 0.
+
+We estimated that J hooks caught
+`r sprintf("%.1f", round(exp(est$b_j[1]), 1))` times more Yelloweye Rockfish than circle-hooks, all else being equal, but with considerable uncertainty (95% confidence interval (CI): `r sprintf("%.1f", round(exp(est$b_j[1] - 1.96 * se$b_j[1]), 1))` -- `r sprintf("%.1f", round(exp(est$b_j[1] + 1.96 * se$b_j[1]), 1))`).
+We estimated the log Dogfish effect to be `r sprintf("%.2f", round((est$b_j[10]), 2))` (95% CI: `r sprintf("%.2f", round((est$b_j[10] - 1.96 * se$b_j[10]), 2))` -- `r sprintf("%.2f", round((est$b_j[10] + 1.96 * se$b_j[10]), 2))`).
+This means that we can expect to catch, on average, about `r -10 * round(est$b_j[10], 2)`% (95% CI: `r  -10 * round(est$b_j[10] + 1.96 * se$b_j[10], 2)`% -- `r -10 * round(est$b_j[10] - 1.96 * se$b_j[10], 2)`%)
+fewer Yelloweye Rockfish for every 10% additional Dogfish also caught on the same set, presumably due to hook competition.
+
+In Equation \@ref(eq:dog-prediction), we set up the prediction grid cells, indexed by $j$, by overlaying a 500 m x 500 m grid on the survey-domain. 
+Because the Dogfish survey uses fixed stations rather than a randomly sampled grid, rectangles were manually drawn around all of the historically fished longline sets in order to delineate the area sampled (Figure \@ref(fig:dog-raw)).
+We calculated the grid cell areas ($w_j$) after removing a portion of the fine-scale grid cells that overlapped land.
+We set up the design matrix $\bm{X}_{j,t}$ to predict for a mean Dogfish count and a mean area-swept offset.
+
+The resulting projection of the model onto the fine-scale grid is shown in Figure \@ref(fig:dog-prediction) along with the modelled spatial (Figure \@ref(fig:dog-spatial)) and spatiotemporal (Figure \@ref(fig:dog-spatiotemporal)) random-effect values.
+The standardized index for Yelloweye Rockfish for an average hook type indicates a decline in relative abundance from the 1980s to the next survey in 2004, but with considerable uncertainty (Figure \@ref(fig:dog-standardized-index)).
+The index remained relatively stationary from 2004 until 2014 with a slight increase in the mean from 2014 to 2019, but again with considerable uncertainty (Figure \@ref(fig:dog-standardized-index)).
+
+\clearpage
+
+```{r dog-raw, fig.cap="Yelloweye Rockfish caught per area swept by hooks in the Dogfish Survey. The values are shown as area of circles. Grey rectangles illustrate the assumed survey domain.", out.width="\\textwidth"}
+include_figs("dogfish-yelloweye-per-area-data.png")
+```
+
+```{r dog-prediction, fig.cap="Predicted Yelloweye Rockfish relative abundance (colour). The colour scale is log transformed. Circles represent the same observed data as in the previous figure.", out.width="\\textwidth"}
+include_figs("dogfish-prediction-log.png")
+```
+
+```{r dog-spatial, fig.cap="Spatial random effects from the spatiotemporal model shown in log space. This represents consistent spatial correlation through time.", out.width="4.2in"}
+include_figs("dogfish-omega.png")
+```
+
+```{r dog-spatiotemporal, fig.cap="Spatiotemporal random effects from the spatiotemporal model shown in log space. These panels represent spatial correlation that varies through time.", out.width="\\textwidth"}
+include_figs("dogfish-epsilon.png")
+```
+
+```{r dog-standardized-index, fig.cap="The resulting standardized Yelloweye Rockfish relative abundance index. Dots represent mean estimates and line segments represent 95\\% confidence intervals. The dashed vertical line represents the year of the hook experiment and the switch from J hooks to circle hooks.", out.width="5in"}
+include_figs("dogfish-index-estimated-hook.png")
+```
+
+\clearpage

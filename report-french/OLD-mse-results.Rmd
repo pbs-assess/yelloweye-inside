@@ -1,0 +1,51 @@
+\clearpage
+
+# RESULTS
+
+
+## STEP 6: PRESENTATION OF RESULTS AND SELECTION OF MANAGEMENT PROCEDURE  {#sec:results-6}
+
+*below were pasted in from Quang's notes*
+
+### Conditioning OM Model
+
+-Fit to HBLL is reasonable: estimated index within confidence intervals, although there are several outliers. A slight increasing trend in all OMs.
+- Fit to dogfish survey is better in (4) and (A) compared to the others, although this is in light of the large uncertainties associated with the pre-1990 values and gear change.
+- Fit to commercial CPUE is generally good due to short time stanzas.
+<!-- I need to find a way to show fits to HBLL age comps -->
+<!-- I need to report range of FMSY and MSY in OMs -->
+
+- Additional model fit to a state-state surplus production model was done. This model indicates that the stock is below the LRP, output of model is consistent with 2011 assessment which used a similar model.
+
+### Historical metrics
+From the six OMs, 3 share common historical conditioning. From the four unique historical reconstruction, all likely show that 30 and 50% declines have occurred. Different results among OMs with respect to P70:
+
+70% decline is likely in (4) and (A) while somewhat likely for (1) and (2) with probabilities between 43-53%.
+
+Stock is very likely above the LRP in all OMs except (A).
+Stock is likely above the USR in (1), (2); likely below in (4) and (A)
+
+
+### Reference Set Results
+
+
+### Robustness Set Results
+
+### Management procedures
+
+- All MPs met the satisficing criterion (LRP 1.5GT > 0.95) in individual OMs in the reference set and averaged across all four reference OMs.
+- Most MPs generate low yields, we further filtered MPs where ST C10 > 50%. This leaves us with Fixed TACs of 10 and 15t and Islope MPs. For these MPs, we see slight loss of yield in (B) if the index were to be less precise than in the reference set.
+- Low M OM more easily shows the conservation vs. yield tradeoff. To meet satisficing criterion for LRP 1.5GT, ST C10 must be very low.
+- No MPs considered here is likely to generate catches > 20 t in 56 years. The best performing MP for LT C20 is Iratio.
+
+Based on projection plots:
+<!-- Need to make projection plots for reference MPs -->
+- FMSYref shows that catches can be increased without increasing risk of falling below LRP. This is due to current high probability of being above LRP in the OM.
+- Iratio generates low catches within the first decade but generates high catches later on. There is high variability among replicates in each OM.
+- SP MPs generate no catch in the first decade, but increase catches later on.
+
+### Risk extinction
+- The status quo approach, as well as almost all MPs, has low probability of reaching the extinction threshold in all OMs.
+
+
+
