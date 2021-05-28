@@ -2,126 +2,134 @@
 
 # INTRODUCTION {#sec:introduction}
 
-The purpose of this project is to provide scientific advice to support revision of the rebuilding plan for the inside stock of Yelloweye Rockfish (*Sebastes ruberrimus*)[@ifmp2018], consistent with national policy guidance [@dfo2009; @dfo2013]. 
-The project applies a closed-loop simulation framework [@anderson2020gfmp] to evaluate the performance of alternative management procedures (MPs) with respect to rebuilding objectives for the inside stock of Yelloweye Rockfish (hereafter Inside Yelloweye Rockfish).
+Ce projet vise à fournir un avis scientifique à l’appui de la révision du plan de rétablissement du stock de sébaste aux yeux jaunes (*Sebastes ruberrimus*) des eaux intérieures [@ifmp2018], conformément aux directives stratégiques nationales [@dfo2009; @dfo2013]. 
+Il applique un cadre de simulation en boucle fermée [@anderson2020gfmp] pour évaluer le rendement des procédures de gestion de rechange en ce qui concerne les objectifs de rétablissement du stock de sébaste aux yeux jaunes des eaux intérieures.
 
-## MOTIVATION: POLICY AND LEGISLATIVE OBLIGATIONS {#sec:introduction-motivation}
 
-The Canadian Sustainable Fisheries Framework (SFF) lays the foundation for the precautionary approach (PA) to fisheries management in Canada [@dfo2006; @dfo2009].
-The PA Framework [@dfo2009] relies on the definition of biological reference points (BRPs), which define biomass targets and low biomass thresholds that are to be avoided with high probability.
-The approach requires that fishing mortality be adjusted in relation to two levels of stock status---an Upper Stock Reference (USR) and a Limit Reference Point (LRP) (Figure \@ref(fig:pa-illustration)).
-The LRP and USR delineate three stock status zones ("critical", "cautious", and "healthy").
+## MOTIVATION : OBLIGATIONS STRATÉGIQUES ET LÉGISLATIVES {#sec:introduction-motivation}
 
-Canadian fish stocks that have been assessed as being below the LRP, i.e., in the critical zone [@dfo2009], require a rebuilding plan to grow the stock above the LRP [@dfo2013].
+Le Cadre pour la pêche durable du Canada jette les bases de l’approche de précaution en matière de gestion des pêches au Canada [@dfo2006; @dfo2009]. 
+Le Cadre de l’approche de précaution [@dfo2009] repose sur la définition des points de référence biologiques qui définissent les cibles de la biomasse ainsi que les seuils de biomasse faible à éviter avec une probabilité élevée. 
+L’approche exige que la mortalité par pêche soit ajustée par rapport à deux niveaux de l’état des stocks : un point de référence supérieur du stock (RSS) et un point de référence limite (PRL) (figure \@ref(fig:pa-illustration)). 
+Le PRL et le RSS délimitent trois zones d’état des stocks (« critique », « de prudence » et « saine »).
+Il faut établir un plan de rétablissement pour les stocks de poissons canadiens qui ont été évalués comme étant inférieurs au PRL, c.-à-d. dans la zone critique [@dfo2009], afin de les ramener au-dessus du PRL [@dfo2013].
 
-(ref:fig-pa) Illustration of DFO's Precautionary Approach Framework. Based on @dfo2009.
+
+(ref:fig-pa) Illustration du Cadre de l’approche de précaution du MPO. D’après @dfo2009.
 
 ```{r pa-illustration, fig.cap="(ref:fig-pa)", out.width="3.8in"}
-knitr::include_graphics(here::here("figs/pa-framework.png"))
+knitr::include_graphics(here::here("figs-french/pa-framework.png"))
 ```
 
-In June 2019, major amendments to Canada's *Fisheries Act* legislated many key components of the SFF, which are encoded in the Fish Stocks provisions ([Section 6 of the *Fisheries Act*](https://laws-lois.justice.gc.ca/eng/acts/f-14/page-3.html#h-1175547)).
-The Fish Stocks provisions require that major stocks be managed at sustainable levels, specifically at biomass levels above the LRP.
-Furthermore,  Section 6.2(1) of the provisions states that if a major fish stock has declined below its LRP, a rebuilding plan shall be established to rebuild the stock above the LRP.
-Major fish stocks will be designated under regulations, with the first batch of stocks due to be designated in the fall of 2020.
+En juin 2019, d’importantes modifications apportées à la *Loi sur les pêches* du Canada ont légiféré de nombreux éléments clés du Cadre pour la pêche durable, qui sont enchâssés dans les dispositions sur les stocks de poissons ([article 6 de la *Loi sur les pêches*] (https://laws-lois.justice.gc.ca/fra/lois/f-14/page-3.html#h-1175547). 
+Les dispositions relatives aux stocks de poissons exigent que les principaux stocks soient gérés à des niveaux durables, en particulier à des niveaux de biomasse supérieurs au PRL. 
+De plus, le paragraphe 6.2(1) stipule que si un grand stock de poissons a diminué en deçà de son PRL, un plan de rétablissement doit être établi pour reconstituer le stock au-dessus du PRL. 
+Les grands stocks de poissons seront désignés en vertu d’un règlement, le premier lot de stocks devant l’être à l’automne 2020.
 
-The guidance for the development of rebuilding plans in Canada [@dfo2013] states that rebuilding plans should be based upon objectives characterised by:
+En vertu des directives sur l’élaboration de plans de rétablissement au Canada [@dfo2013], les plans de rétablissement doivent être fondés sur des objectifs caractérisés par :
 
-1. A target.
-2. A desired time to reach the target.
-3. An agreed-upon acceptable probability of reaching the target.
 
-Rebuilding plans should also include planned management measures (i.e., MPs), milestone objectives, and should undergo regular performance reviews (every three years), in addition to annual monitoring and evaluation. 
-Current guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring.
+1. une cible;
+2. un délai souhaité pour atteindre la cible;
+3. une probabilité acceptable convenue d’atteindre la cible.
 
-## BACKGROUND {#sec:introduction-background}
+Les plans de rétablissement doivent également comprendre des mesures de gestion planifiées (les procédures de gestion), des jalons cibles et leur rendement doit faire l’objet d’examens réguliers (tous les trois ans), en plus de la surveillance et de l’évaluation annuelles. 
+Les directives actuelles indiquent que le délai de rétablissement doit être de 1,5 à 2 fois la durée de génération de l’espèce [@dfo2013], la durée de génération étant le nombre moyen d’années entre la naissance d’un individu et la naissance de sa progéniture.
 
-Inside Yelloweye Rockfish occur in Groundfish Management Area 4B in British Columbia (BC) (Figure \@ref(fig:map-4B)).
-The stock is expected to be designated as a major fish stock in the fall of 2020, at which time its management will be legislated under the Fish Stocks provisions.
-The stock was assessed as being below the LRP in 2010 [@yamanaka2011; @dfo2012].
-In response, a rebuilding plan was developed and published in Appendix 9 of the Pacific Region Integrated Fishery Management Plan (IFMP) for Groundfish [@ifmp2018].
-The Inside Yelloweye stock is also listed under the *Species at Risk Act* (SARA) as a Species of Special Concern [@cosewic2008], and is anticipated to be reassessed by the Committee on the Status of Endangered Wildlife in Canada (COSEWIC) in 2020.
-Results from this project may inform the COSEWIC reassessment and, potentially, a SARA Recovery Potential Assessment, should one be required (see Appendix \@ref(app:cosewic)).
 
-(ref:fig-map-4B) Map of Groundfish Management Area 4B showing rockfish conservation areas (RCAs) and the boundaries separating the Inside Yelloweye Rockfish designatable unit (DU) from the Outside Yelloweye Rockfish DU. The red lines indicate a proposed adjustment to the range for the Inside DU, based on recent genetic evidence [@andrews2018; @siegle2011; @siegle2013]. 
+## CONTEXTE {#sec:introduction-background}
+
+Le sébaste aux yeux jaunes des eaux intérieures est présent dans la zone de gestion 4B du poisson de fond en Colombie-Britannique (Figure \@ref(fig:map-4B)). 
+Il devrait être désigné comme grand stock de poissons à l’automne 2020, date à laquelle sa gestion sera légiférée en vertu des dispositions sur les stocks de poissons. 
+Le stock a été évalué comme étant inférieur au PLR en 2010 [@yamanaka2011; @dfo2012]. 
+De ce fait, un plan de rétablissement a été élaboré et publié à l’annexe 9 du Plan de gestion intégrée des pêches de la région du Pacifique pour le poisson de fond [@ifmp2018]. 
+Le stock de sébaste aux yeux jaunes des eaux intérieures est également inscrit en vertu de la *Loi sur les espèces en péril* (LEP) comme espèce préoccupante [@cosewic2008] et il est prévu que le Comité sur la situation des espèces en péril au Canada (COSEPAC) le réévaluera en 2020. 
+Les résultats de ce projet pourraient guider la réévaluation du COSEPAC et, éventuellement, une évaluation du potentiel de rétablissement en vertu de la LEP, s’il y a lieu (voir l’annexe \@ref(app:cosewic)).
+
+(ref:fig-map-4B) Carte de la zone de gestion 4B du poisson de fond montrant les aires de conservation du sébaste (ACS) et les limites séparant l’unité désignable (UD) du sébaste aux yeux jaunes des eaux intérieures de l’UD du sébaste aux yeux jaunes des eaux extérieures. Les lignes rouges indiquent une proposition d’ajustement de l’aire de répartition de l’UD des eaux intérieures, fondée sur des preuves génétiques récentes [@andrews2018; @siegle2011; @siegle2013].
+
 
 ```{r map-4B, fig.cap="(ref:fig-map-4B)", out.width="5in"}
-knitr::include_graphics(here::here("figs/InsideYE_Map_new.png"))
+knitr::include_graphics(here::here("figs-french/InsideYE_Map_new.png"))
 ```
 
-The current rebuilding plan objective is to "rebuild the stock above the LRP over 80 years with 56% probability of success".
-The milestone objective is to "achieve positive trends within each 10 year period".
-The current MP for Inside Yelloweye Rockfish aims to keep the total annual catch (commercial, recreational, First Nations food, social and ceremonial (FSC), and survey) below 15 tonnes (see Appendix 9 of @ifmp2018 for details).
+L’objectif du plan de rétablissement actuel est de « reconstituer le stock au-dessus du PRL sur 80 ans avec une probabilité de réussite de 56 % ». 
+Le jalon cible est de « dégager des tendances positives au cours de chaque période de 10 ans ». 
+La procédure de gestion actuelle du sébaste aux yeux jaunes des eaux intérieures vise à maintenir les prises annuelles totales (commerciales, récréatives, alimentaires, sociales et rituelles des Premières Nations et de relevé) à moins de 15 tonnes (voir l’annexe 9 du document @ifmp2018 pour plus de renseignements).
 
-The guidance for rebuilding plans in Canada states that there should be a high probability of rebuilding fish stocks out of the critical zone within the stated time-frame [@dfo2013].
-Part of the motivation for this project was concern, expressed by fisheries managers, that the 56% probability of success stated in the current rebuilding plan [@ifmp2018] is inconsistent with the definition of high probability.
+D’après les directives, les plans de rétablissement au Canada doivent présenter une forte probabilité de rétablissement des stocks de poissons hors de la zone critique dans le délai prescrit [@dfo2013]. 
+Ce projet vise notamment à répondre à une préoccupation exprimée par les gestionnaires des pêches, à savoir que la probabilité de réussite de 56 % énoncée dans le plan de rétablissement actuel [@ifmp2018] ne correspond pas à la définition d’une probabilité élevée.
 
-The guidance document also identifies some recommended management measures, which include: keeping removals from all sources to the lowest possible level; development of a harvest control rule (HCR); and application of management strategy evaluation (MSE) to evaluate, via simulation, the performance of alternative management measures with respect to meeting rebuilding objectives for the stock [@dfo2013].
-The current rebuilding plan implements an annual fixed total allowable catch (TAC) of 15 metric tonnes [@ifmp2018], which has not been simulation-tested.
+Le document d’orientation indique également certaines mesures de gestion recommandées, comme le maintien des prélèvements par toutes les sources au niveau le plus bas possible, l’élaboration d’une règle de contrôle des prises et l’application de l’évaluation de la stratégie de gestion pour évaluer, par simulation, le rendement d’autres mesures de gestion pour atteindre les objectifs de rétablissement du stock [@dfo2013]. 
+Le plan de rétablissement actuel met en œuvre un total autorisé des captures annuel fixe de 15 tonnes [@ifmp2018], qui n’a pas été mis à l’essai par simulation.
 
-Yelloweye Rockfish are a long-lived species [up to 121 years in B.C., @keppel2019], occurring in rocky demersal habitats that have a patchy, discontinuous distribution along BC's inner coast [@yamanaka2011].
-These life history traits make the species vulnerable to overexploitation by fisheries.
-The inside stock is considered to be data-limited, as there is sparse availability of age-composition data, a lack of biological data from commercial, recreational, and First Nations' fisheries, and uncertainty in the magnitude of historical catches.
+Le sébaste aux yeux jaunes est une espèce qui vit longtemps [jusqu’à 121 ans en Colombie-Britannique, @keppel2019], dans des habitats démersaux rocheux répartis de manière irrégulière et discontinue sur la côte intérieure de la Colombie-Britannique [@yamanaka2011]. 
+Ces caractéristiques du cycle biologique rendent l’espèce vulnérable à la surexploitation par la pêche. 
+Le stock des eaux intérieures est considéré comme étant à données limitées, car peu de données sont accessibles sur la composition selon l’âge, on manque de données biologiques sur les pêches commerciales, récréatives et des Premières Nations, et une incertitude entoure l’ampleur des prises historiques.
 
-## MANAGEMENT STRATEGY EVALUATION (MSE) {#sec:introduction-mse}
 
-Worldwide, the provision of scientific advice for managing fisheries has been moving towards MSE (or management-oriented) approaches [e.g., @butterworth1999; @rademeyer2007; @berkson2015; @geromont2015; @punt2016; @carruthers2016].
-MSE focuses on identifying MPs that perform best, with respect to meeting agreed-upon policy and fishery objectives, when implemented in a "closed-loop" simulation environment (Figure \@ref(fig:mse-chart-basic)).
-In output-controlled fisheries, such as the quota-managed BC groundfish fishery, MPs describe management measures for setting catch limits.
-MPs can vary greatly in their data demands, from very data-rich approaches, including statistical catch-at-age stock assessments with harvest control rules, to simple data rules ("data-limited" approaches), which only rely on catch data and an index of abundance [e.g., @geromont2015; @carruthers2016].
+## ÉVALUATION DE LA STRATÉGIE DE GESTION {#sec:introduction-mse}
 
-Closed-loop simulation is distinguished from conventional stock assessment approaches because it simulates feedback between implementation of MPs and the underlying system (the fish stock and its environment), which is described by one or more operating models (OMs).
-The closed-loop simulation approach takes into account the effect of the MPs on the system, as well as the future data collected from the system and its use in the MPs [@punt2016; @carruthers2018; @anderson2020gfmp].
+À l’échelle mondiale, la fourniture d’avis scientifiques pour la gestion des pêches a évolué vers des approches axées sur l’évaluation de la stratégie de gestion (ou axées sur la gestion) [p. ex., @butterworth1999; @rademeyer2007; @berkson2015; @geromont2015; @punt2016; @carruthers2016]. 
+L’évaluation de la stratégie de gestion se concentre sur la détermination des procédures de gestion qui donnent les meilleurs résultats en ce qui concerne l’atteinte des objectifs convenus en matière de politique et de pêche, lorsqu’ils sont mis en œuvre dans un environnement de simulation en « boucle fermée » (figure \@ref(fig:mse-chart-basic)). 
+Dans les pêches à production contrôlée, comme la pêche du poisson de fond en Colombie-Britannique, où les quotas sont gérés, les procédures de gestion décrivent les mesures de gestion pour l’établissement des limites des prises. 
+Les données exigées dans les procédures de gestion peuvent varier considérablement, allant d’approches très riches en données, y compris les évaluations statistiques des prises selon l’âge avec des règles de contrôle des prises, à des règles de données simples (approches « limitées en données »), qui ne reposent que sur les données sur les prises et un indice de l’abondance [p. ex., @geromont2015; @carruthers2016].
 
-(ref:fig-mse-chart-basic) Illustration of the fisheries closed-loop simulation process from @anderson2020gfmp following @punt2016. The management procedure may be based on a simple data rule (e.g., decrease the allowable catch x% if the survey index decreases y%) or it might be an estimation model combined with a harvest control rule.
+La simulation en boucle fermée diffère des approches d’évaluation classique des stocks parce qu’elle simule la rétroaction entre la mise en œuvre des procédures de gestion et le système sous-jacent (le stock de poisson et son environnement), décrite par un ou plusieurs modèles opérationnels. 
+L’approche de la simulation en boucle fermée tient compte de l’effet des procédures de gestion sur le système, ainsi que des données futures recueillies dans le système et de leur utilisation chez les procédures de gestion [@punt2016; @carruthers2018; @anderson2020gfmp].
+
+(ref:fig-mse-chart-basic) Illustration du processus de simulation en boucle fermée des pêches d’après @anderson2020gfmp, selon @punt2016. La procédure de gestion peut être fondée sur une règle de données simple (p. ex., réduire les prises autorisées de x % si l’indice du relevé diminue de y %) ou peut être un modèle d’estimation combiné à une règle de contrôle des prises.
 
 ```{r mse-chart-basic, fig.cap="(ref:fig-mse-chart-basic)", out.width="6.3in"}
-knitr::include_graphics(here::here("figs/mse-chart-simple2.png"))
+knitr::include_graphics(here::here("figs-french/mse-chart-simple2.png"))
 ```
  
-## APPROACH {#sec:introduction-approach}
+## APPROCHE {#sec:introduction-approach}
 
-Data-limitations for the Inside Yelloweye stock pose a challenge to evaluating the expected performance of management measures needed to bring the stock into compliance with the Fish Stocks provisions, i.e., to build the stock out of the critical zone within the agreed time-frame and with the agreed probability.
-Closed-loop simulation-testing of data-limited MPs allows for evaluation of the relative performance of MPs across a range of uncertainties in, for example, underlying fish biology, observation error, estimation error, and implementation error [e.g., @kell2006; @carruthers2016].
+En raison des données limitées sur le stock de sébaste aux yeux jaunes des eaux intérieures, il est difficile d’évaluer le rendement prévu des mesures de gestion nécessaires pour rendre le stock conforme aux dispositions sur les stocks de poissons, c.-à-d. pour le faire sortir de la zone critique dans le délai convenu et avec la probabilité convenue. 
+La simulation-mise à l’essai en boucle fermée des procédures de gestion à données limitées permet d’évaluer le rendement relatif des procédures de gestion dans un éventail d’incertitudes entourant, par exemple, la biologie sous-jacente des poissons, l’erreur d’observation, l’erreur d’estimation et l’erreur de mise en œuvre [p. ex., @kell2006; @carruthers2016].
 
-Since 2017, a partnership agreement between the University of British Columbia (UBC) and DFO [@dfo_dlmtool_2017] has supported development of two open-source software packages for MSE, implemented in the statistical programming environment R [@r2019]: the Data Limited Methods toolkit (DLMtool) [@carruthers2018; @carruthers_hordyk_2018] and the Management Strategy Evaluation toolkit (MSEtool) [@huynh_msetool_2019].
-After several years of development, these packages provide some of the fastest, most flexible and extensible software for conducting MSE for fisheries. They can be applied to data-poor or data-rich stocks, enabling rapid assessment of multiple MPs according to customizable conservation and fisheries objectives, and evaluation of key trade-offs.
+Depuis 2017, une entente de partenariat entre l’Université de la Colombie-Britannique et le MPO [@dfo_dlmtool_2017] a facilité l’élaboration de deux progiciels à accès libre pour l’évaluation de la stratégie de gestion, mis en œuvre dans l’environnement de programmation statistique R [@r2019] : l’outil pour les méthodes à données limitées (DLMtool) [@carruthers2018; @carruthers_hordyk_2018] et l’outil pour l’évaluation de la stratégie de gestion (MSEtool) [@huynh_msetool_2019]. 
+Après plusieurs années de développement, ces progiciels sont parmi les logiciels les plus rapides, les plus souples et les plus extensibles pour évaluer les stratégies de gestion des pêches. Ils peuvent être appliqués à des stocks pauvres ou riches en données, permettant d’évaluer rapidement plusieurs procédures de gestion en fonction d’objectifs de conservation et de pêche personnalisables, et d’évaluer les principaux compromis.
 
-### The Management Procedure Framework for Groundfish in British Columbia {#sec:introduction-mp-framework}
 
-Concurrently with the development of this document, a management procedure framework (MP Framework) for Groundfish in British Columbia [@anderson2020gfmp] has been developed for evaluating performance of a wide range of MPs for data-limited groundfish species.
-The MP Framework uses the functionality of DLMtool and MSEtool extensively, supported by an R package gfdlm [@gfdlm] written by the authors of @anderson2020gfmp, which houses a suite of software support tools and custom visualizations.
+### Cadre des procédures de gestion du poisson de fond en Colombie-Britannique {#sec:introduction-mp-framework}
 
-We follow the MP Framework for selecting MPs to set catch limits for data-limited groundfish stocks [@anderson2020gfmp].
-Our evaluation of the Inside Yelloweye rebuilding plan represents the first application of the MP Framework for providing science advice in support of catch decisions.
-The framework follows six best practice steps described below and in greater detail in @anderson2020gfmp.
+Le Cadre des procédures de gestion pour le poisson de fond en Colombie-Britannique [@anderson2020gfmp] a été élaboré parallèlement au présent document pour évaluer le rendement d’un large éventail de procédures de gestion pour les espèces de poisson de fond à données limitées. 
+Le Cadre des procédures de gestion fait largement appel aux fonctions de DLMtool et de MSEtool, avec l’appui d’un progiciel R gfdlm [@gfdlm] rédigé par les auteurs de @anderson2020gfmp, qui contient un ensemble d’outils de soutien logiciel et des visualisations personnalisées.
 
-The best practice steps are based on a review by @punt2016, who identified five key steps in the MSE process (Steps 2--6 below).
-An additional first step of the MP Framework, defining the decision context, was identified by @gregory2012 and @cox2016.
-In large part, the DLMtool software has been designed to allow practitioners to follow these steps [Figure \@ref(fig:mse-chart); @carruthers2018].
+Nous suivons le Cadre des procédures de gestion pour sélectionner les procédures de gestion afin d’établir des limites des prises pour les stocks de poissons de fond à données limitées [@anderson2020gfmp]. 
+Notre évaluation du plan de rétablissement du sébaste aux yeux jaunes des eaux intérieures constitue la première application du Cadre des procédures de gestion pour produire un avis scientifique à l’appui des décisions sur les prises. 
+Le cadre suit six étapes de pratiques exemplaires décrites ci-après et plus en détail dans @anderson2020gfmp.
 
-(ref:fig-mse-chart) The steps of the MSE process following @punt2016 as implemented in DLMtool. Copied from @anderson2020gfmp and adapted from @carruthers2018. This figure expands on Figure \@ref(fig:mse-chart-basic).
+Les étapes des pratiques exemplaires sont fondées sur un examen effectué par @punt2016, qui a cerné cinq étapes clés du processus d’évaluation de la stratégie de gestion (étapes 2 à 6 ci-après). 
+Une première étape supplémentaire du Cadre des procédures de gestion, qui définit le contexte décisionnel, a été définie par @gregory2012 et @cox2016. 
+En grande partie, le logiciel DLMtool a été conçu pour permettre aux praticiens de suivre ces étapes [figure \@ref(fig:mse-chart); @carruthers2018].
+
+(ref:fig-mse-chart) Les étapes du processus d’évaluation de la stratégie de gestion selon @punt2016, tel que mis en œuvre dans DLMtool. Copié de @anderson2020gfmp et adapté de @carruthers2018. Cette figure complète la figure \@ref(fig:mse-chart-basic).
+
 
 ```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("figs/mse-chart.png"))
+knitr::include_graphics(here::here("figs-french/mse-chart.png"))
 ```
 
-The six steps are as follows:
+Les six étapes sont les suivantes :
 
-  Step 1: Definition of the decision context.
+Étape 1 : Définition du contexte décisionnel.
 
-  Step 2: Selection of objectives and performance metrics.
+Étape 2 : Choix des objectifs et des paramètres de rendement.
 
-  Step 3: Selection of uncertainties/specification of operating models.
+Étape 3 : Choix des incertitudes/spécification des modèles opérationnels.
 
-  Step 4: Identification of candidate management procedures.
+Étape 4 : Détermination des procédures de gestion possibles.
 
-  Step 5: Simulation of the application of the management procedures.
+Étape 5 : Simulation de l’application des procédures de gestion.
 
-  Step 6: Presentation of results and selection of management procedure.
+Étape 6 : Présentation des résultats et choix de la procédure de gestion.
 
-After selection and implementation of the MP for setting the catch limit (Figure \@ref(fig:mse-chart); e.g., applying the selected MP algorithm to the observed survey index), a final necessary step is to periodically monitor and evaluate the performance of the MP [@dfo2013; @dowling2015a; @carruthers2018]. 
-This may be done through informal means, e.g., via feedback from fishers and survey information [e.g., @cox2008a], or through more formal statistical measures, where observed data are compared to predictions from the OMs to test whether the system is performing as expected [@butterworth2008; @carruthers_hordyk_2018; discussed in @anderson2020gfmp].
+Après la sélection et la mise en œuvre de la procédure de gestion pour l’établissement de la limite des prises (figure \@ref(fig:mse-chart); par exemple, application de l’algorithme de la procédure de gestion sélectionnée à l’indice du relevé observé), la dernière étape nécessaire consiste à surveiller et à évaluer périodiquement le rendement de la procédure de gestion [@dfo2013; @dowling2015a; @carruthers2018]. 
+Cela peut se faire par des moyens informels, comme à l’aide de la rétroaction des pêcheurs et des données des relevés [p. ex., @cox2008a], ou au moyen de mesures statistiques plus formelles, où l’on compare les données observées aux prévisions des modèles opérationnels pour vérifier si le système fonctionne comme prévu [@butterworth2008; @carruthers_hordyk_2018; discussion dans @anderson2020gfmp].
 
-In the following sections, we describe our approach for developing a candidate rebuilding plan for Inside Yelloweye Rockfish, following the six best practice steps.
+Dans les sections suivantes, nous décrivons notre approche pour l’élaboration d’un éventuel plan de rétablissement du sébaste aux yeux jaunes des eaux intérieures, en suivant les six étapes des pratiques exemplaires.
+
 
