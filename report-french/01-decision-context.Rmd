@@ -1,14 +1,14 @@
-# DEFINE THE DECISION CONTEXT {#sec:decision-context}
+# DÉFINIR LE CONTEXTE DÉCISIONNEL {#sec:decision-context}
 
-Key questions to guide defining the decision context for MSE include:
+Les principales questions qui guident la définition du contexte décisionnel de l’évaluation de la stratégie de gestion sont les suivantes :
 
-* What is the exact decision to be made?
+* Quelle est la décision exacte à prendre?
 
-* What is the time frame for making the decision?
+* Quel est le délai pour prendre la décision?
 
-* What are specific roles and responsibilities of parties involved? Parties include Science, Management, First Nations, industry, academia, and/or non-governmental organizations (NGOs).
+* Quels sont les rôles et responsabilités précis des parties concernées? Les parties sont les Sciences, la Gestion des pêches, les Premières Nations, l’industrie, le milieu universitaire et des organisations non gouvernementales.
 
-* How will the final decision be made?
+* Comment la décision finale sera-t-elle prise?
 
-For this rebuilding plan, the decision to be made is which MP to use to determine catch limits for the period until the next available catch advice.
-The final decision on the MP to determine future catch limits should be made based on a consensus by the Regional Peer Review (RPR) committee, after review of the scientific content of the advice (including the structure and content of the OMs), and consideration of the relative performance of the MPs and trade-offs among performance metrics.
+Pour ce plan de rétablissement, il faut décider de la procédure de gestion à utiliser pour déterminer les limites des prises pour la période allant jusqu’au prochain avis disponible sur les prises. 
+Le Comité régional d’examen par les pairs devrait prendre la décision finale sur la procédure de gestion à appliquer pour déterminer les futures limites des prises sur une base consensuelle, après avoir examiné le contenu scientifique de l’avis (y compris la structure et le contenu des modèles opérationnels) et tenu compte du rendement relatif des procédures de gestion et des compromis entre les paramètres de rendement.
