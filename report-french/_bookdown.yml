@@ -1,9 +1,9 @@
 book_filename: "resdoc"
 rmd_files: ["index.Rmd",
-             "00-introduction.Rmd",
-             "01-decision-context.Rmd",
-             "02-objectives.Rmd",
-#            "03-om.Rmd",
+#             "00-introduction.Rmd",
+#             "01-decision-context.Rmd",
+#             "02-objectives.Rmd",
+             "03-om.Rmd",
 #            "04-mp.Rmd",
 #            "05-simulation.Rmd",
 #            "06-results.Rmd",
