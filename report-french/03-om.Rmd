@@ -1,51 +1,51 @@
-# SELECTION OF UNCERTAINTIES/SPECIFICATION OF OPERATING MODELS {#sec:om}
+# CHOIX DES INCERTITUDES/SPÉCIFICATION DES MODÈLES OPÉRATIONNELS {#sec:om}
 
-DLMtool OMs are organized into four main components representing a real fished system:
+Les modèles opérationnels de l’outil DLMtool sont organisés en quatre composantes principales représentant un réseau hydrographique exploité réel :
 
-1. population dynamics of the fish stock (e.g., growth, recruitment, mortality);
-2. fishery dynamics (e.g., selectivity, spatial targeting);
-3. observation processes (e.g., bias and precision in survey indices); and
-4. management implementation (e.g., catch limit overages).
+1. la dynamique des populations du stock de poissons (p. ex., croissance, recrutement, mortalité);
+2. la dynamique de la pêche (p. ex., sélectivité, ciblage spatial);
+3. les processus d’observation (p. ex., biais et précision des indices des relevés);
+4. la mise en œuvre de la gestion (p. ex., dépassement des limites de prises).
 
-Equations and parameters describing the four OM components are provided in detail in Appendix B of @carruthers2018 and Appendix A of @anderson2020gfmp.
-DLMtool allows the incorporation of uncertainty in many OM parameters through optional specification of probability distributions.
-To further isolate the effects of specific sources of uncertainty on performance of MPs, we develop alternative OMs that change the value (or distribution) of one or more parameters and/or data sources of interest (Section \@ref(sec:approach3-oms)).
+Les équations et les paramètres décrivant les quatre composantes des modèles opérationnels sont fournis en détail à l’annexe B de @carruthers2018 et à l’annexe A de @anderson2020gfmp. 
+L’outil DLMtool permet d’intégrer l’incertitude dans de nombreux paramètres des modèles opérationnels grâce à la spécification facultative des distributions de probabilité. 
+Afin d’isoler davantage les effets de certaines sources d’incertitude sur le rendement des procédures de gestion, nous élaborons d’autres modèles opérationnels qui modifient la valeur (ou la distribution) d’un ou de plusieurs paramètres ou sources de données d’intérêt (section \@ref(sec:approach3-oms)).
 
-Best practice recommends calibrating or conditioning OMs with observed data, so they can reproduce historical observations.
-DLMtool's companion software package, MSEtool [@huynh_msetool_2019], includes an efficient implementation of a stock reduction analysis (SRA) [@kimura1982; @walters2006], which is effectively a statistical catch-at-age model that estimates the combinations of historical fishing mortality and recruitment that would be consistent with the observed data. The SRA is fully described in Appendix B of @anderson2020gfmp.
+La pratique exemplaire recommande d’étalonner ou de conditionner les modèles opérationnels à l’aide des données observées, afin qu’ils puissent reproduire les observations historiques. 
+Le progiciel complémentaire de DLMtool, MSEtool [@huynh_msetool_2019], comprend une mise en œuvre efficace d’une analyse de réduction du stock [@kimura1982; @walters2006], qui est en fait un modèle statistique des prises selon l’âge qui estime les combinaisons historiques de la mortalité par pêche et du recrutement qui correspondraient aux données observées. L’analyse de réduction du stock est décrite en détail à l’annexe B de @anderson2020gfmp.
 
-There are two distinct time-periods in the simulation framework:
-(1) the historical period, which includes all years from the first year of the observed catch time series $t_1$ to the final year of the observed catch time series $t_c$ (where "c" represents the "current" year); and
-(2) the projection period, which covers the period from the first year after $t_c$ to the final projection year $t_N$.
-The historical period is conditioned on historical observations using the SRA [see Appendix B of @anderson2020gfmp].
-The closed-loop simulations, with application of the MPs and calculation of performance metrics, begin in the first year of the projection period (year $t_{c+1}$).
+Le cadre de simulation comporte deux périodes distinctes : 
+1) la période historique, qui comprend toutes les années, de la première année de la série chronologique des prises observées $t_1$ à la dernière année de cette série chronologique $t_c$ (où « c » représente l’année « en cours »); 
+2) la période de projection, qui va de la première année suivant $t_c$ à la dernière année de la projection $t_N$. 
+La période historique est conditionnée par des observations historiques à l’aide de l’analyse de réduction du stock [voir l’annexe B dans @anderson2020gfmp]. 
+Les simulations en boucle fermée, avec application des procédures de gestion et calcul des paramètres de rendement, commencent la première année de la période de projection (année $t_{c+1}$).
 
-OM development in the MP Framework follows three steps:
+L’élaboration d’un modèle opérationnel dans le cadre des procédures de gestion comporte trois étapes.
 
-1. Set parameter values and ranges in the OM.
+1. Définir les valeurs et les plages des paramètres dans le modèle opérationnel.
 
-2. Pass the OM parameters to the SRA model, which conditions the OM by fitting to historical observed catches, indices of abundance, and any available years of age-composition data.
-This results in conditioned estimates of model parameters and estimates of historical biomass and historical fishing mortality (in years $t_1$ to $t_c$), which are consistent with historical observations.
+2. Envoyer les paramètres du modèle opérationnel dans le modèle d’analyse de réduction du stock, qui conditionne le modèle opérationnel en l’ajustant aux prises observées historiques, aux indices de l’abondance et à toutes les données accessibles sur la composition selon l’âge. 
+On obtient des estimations conditionnées des paramètres du modèle et des estimations de la biomasse historique et de la mortalité historique par pêche (les années $t_1$ à $t_c$), qui sont conformes aux observations historiques.
 
-3. Pass the conditioned parameter values back to the OM (now the "conditioned" OM) for use in the closed-loop simulation projections, starting in year $t_{c+1}$.
+3. Renvoyer les valeurs des paramètres conditionnés au modèle opérationnel (maintenant le modèle opérationnel « conditionné ») pour les utiliser dans les projections de simulation en boucle fermée, à partir de l’année $t_{c+1}$.
 
-Where possible, we derived OM settings from all available survey biological data from area 4B, which is primarily collected on the inside hard bottom longline (HBLL) surveys (Appendix \@ref(app:biological-data)).
-We derived other parameters from the scientific literature and stock assessments for Yelloweye Rockfish in other areas (see Appendix \@ref(app:desc-om-yelloweye) for details).
-A list of "default" OM parameter settings recommended for most BC groundfish stocks is provided in Appendix C of @anderson2020gfmp.
+Dans la mesure du possible, nous avons dérivé les paramètres du modèle opérationnel à partir de toutes les données biologiques accessibles des relevés dans la zone 4B, qui sont principalement recueillies dans le cadre des relevés à la palangre sur fond dur dans les eaux intérieures (annexe \@ref(app:biological-data)).
+Nous avons tiré d’autres paramètres de la documentation scientifique et des évaluations des stocks de sébaste aux yeux jaunes dans d’autres régions (voir les renseignements détaillés dans l’annexe \@ref(app:desc-om-yelloweye)). 
+Une liste des réglages « par défaut » des paramètres du modèle opérationnel recommandés pour la plupart des stocks de poisson de fond de la Colombie-Britannique est fournie à l’annexe C de @anderson2020gfmp.
 
-We conditioned the OMs with the SRA, using age-composition data from research surveys (Appendix \@ref(app:biological-data)), inside HBLL survey indices (Appendix \@ref(app:index-data)), and commercial and recreational catch data (Appendix \@ref(app:catch-data)).
-Results from conditioning the OMs are provided below in Section \@ref(sec:approach3-conditioning).
+Nous avons conditionné les modèles opérationnels avec l’analyse de réduction du stock, en utilisant les données sur la composition selon l’âge provenant des relevés de recherche (annexe \@ref(app:biological-data)), les indices des relevés à la palangre sur fond dur dans les eaux intérieures (annexe \@ref(app:index-data)) et les données sur les prises des pêches commerciales et récréatives (annexe \@ref(app:catch-data)). 
+Les résultats du conditionnement des modèles opérationnels sont fournis ci-après dans la section \@ref(sec:approach3-conditioning).
 
-## OPERATING MODELS {#sec:approach3-oms}
+## MODÈLES OPÉRATIONNELS {#sec:approach3-oms}
 
-MSE best practice recommends dividing MSE trials into a "reference set" of core OMs that include the most important uncertainties (e.g., depletion of the stock or range of natural mortality values), and a "robustness set", to capture a wider range of uncertainties that may be less plausible but should nonetheless be explored [@rademeyer2007].
-@anderson2020gfmp recommended presenting performance metrics from the reference and robustness sets separately.
-They recommended that, for most results, reference set performance metrics should be averaged across all OM reference set scenarios (an ensemble approach to integrate across OM uncertainties) but that performance metrics from individual OM robustness set scenarios should be presented separately. 
-Presenting robustness results separately allows managers to see how MPs that performed well in the reference set perform under a set of more diverse assumptions [@rademeyer2007].
+La pratique exemplaire en matière d’évaluation de la stratégie de gestion recommande de diviser les essais en un « ensemble de référence » de modèles opérationnels de base, qui comprend les incertitudes les plus importantes (p. ex., épuisement du stock ou plage des valeurs de la mortalité naturelle) et un « ensemble de robustesse », afin de refléter un plus grand éventail d’incertitudes peut-être moins plausibles, mais qu’il est néanmoins intéressant d’explorer [@rademeyer2007].
+@anderson2020gfmp recommandent de présenter séparément les paramètres de rendement des ensembles de référence et de robustesse. 
+Ils préconisent, pour la plupart des résultats, de calculer la moyenne des paramètres de rendement de l’ensemble de référence pour tous les scénarios de l’ensemble de référence de modèles opérationnels (une approche d’ensemble à intégrer pour toutes les incertitudes du modèle opérationnel), mais de présenter séparément les paramètres de rendement des différents scénarios de l’ensemble de robustesse de modèles opérationnels. 
+La présentation distincte des résultats de l’ensemble de robustesse permet aux gestionnaires de voir comment les procédures de gestion qui ont donné de bons résultats dans l’ensemble de référence se comportent pour un ensemble d’hypothèses plus diversifiées [@rademeyer2007].
 
-For Inside Yelloweye Rockfish, we established four reference set OMs: (1) a baseline OM; (2) an OM reflecting an alternative assumption about the magnitude of historical catch during the period 1986--2005; (3) an OM allowing for episodic (rare but large) future recruitment events; and (4) an OM estimating selectivity in the HBLL survey (Table \@ref(tab:ye-scen)).
+Pour le sébaste aux yeux jaunes des eaux intérieures, nous avons établi quatre modèles opérationnels de l’ensemble de référence : (1) un modèle opérationnel de référence; (2) un modèle opérationnel reflétant une autre hypothèse au sujet de l’ampleur des prises historiques entre 1986 et 2005; (3) un modèle opérationnel prévoyant des événements de recrutement futurs épisodiques (rares, mais importants); (4) un modèle opérationnel estimant la sélectivité dans le relevé à la palangre sur fond dur (tableau \@ref(tab:ye-scen)).
 
-We further established two robustness set OMs encompassing additional sources of uncertainty: (A) an OM that assumes lower natural mortality than the other OMs; and (B) an OM that assumes a higher coefficient of variation (CV) in the future HBLL survey (Table \@ref(tab:ye-scen)).
+Nous avons également établi deux modèles opérationnels de l’ensemble de robustesse englobant d’autres sources d’incertitude : (A) un modèle opérationnel qui suppose une mortalité naturelle plus faible que les autres modèles opérationnels; (B) un modèle opérationnel qui suppose un coefficient de variation (CV) plus élevé dans le futur relevé à la palangre sur fond dur (tableau \@ref(tab:ye-scen)).
 
 ```{r ye-scen, results='asis'}
 sc <- readRDS(here("mse/om/ye-scenarios2.rds"))
@@ -53,56 +53,54 @@ sc <- sc %>%
   select(-order) %>%
   mutate(scenario_human = gsub("\\\n", " ", scenario_human))
   sc %>% select(-scenario) %>%
-  csasdown::csas_table(caption = "Inside Yelloweye Rockfish OM scenarios.",
-    col_names = c("OM Scenario name", "Set type")) %>%
+  csasdown::csas_table(caption = "Scénarios de modèle opérationnel pour le sébaste aux yeux jaunes des eaux intérieures.",
+    col_names = c("Nom du scénario de modèle opérationnel", "Type d’ensemble")) %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
 ```
 
-### Reference set {#sec:approach3-reference}
+### Ensemble de référence {#sec:approach3-reference}
 
-The following OMs were developed as the reference set. We hereafter refer to them by their numbers, e.g., OM Scenario (1).
+Les modèles opérationnels suivants ont été élaborés en tant qu’ensemble de référence. Nous les désignons ci-après par leurs numéros, p. ex., scénario de modèle opérationnel (1).
 
 #### (1) Base {#sec:approach3-reference1}
 
-Data sources are provided in Appendices \@ref(app:biological-data) through \@ref(app:catch-data).
-Parameter settings for the Base OM are provided in Appendix \@ref(app:desc-om-yelloweye).
-We here provide a brief description of the Base OM assumptions that were adjusted in other OM scenarios.
+Les sources de données sont fournies dans les annexes \@ref(app:biological-data) à \@ref(app:catch-data). 
+Les réglages des paramètres du modèle opérationnel de base sont indiqués à l’annexe \@ref(app:desc-om-yelloweye). 
+Nous donnons ici une brève description des hypothèses du modèle opérationnel de base qui ont été ajustées dans d’autres scénarios de modèle opérationnel.
 
-There are two main uncertainties associated with the historical commercial catch time series for Inside Yelloweye Rockfish (details in Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)).
-These are: (1) aggregated reporting of rockfish as Other Rockfish (ORF; rockfish species other than Pacific Ocean Perch) and (2) the magnitude of unreported catch that was discarded at sea prior to the introduction of 100% at-sea monitoring in the groundfish longline fleet in 2006 [@stanley2009].
-For consistency with @yamanaka2011, we doubled the nominal catch data for the period 1986---2005, as industry did not have confidence in the catch data for those years [@dfo2012; see  Appendix \@ref(app:catch-data), Section \@ref(sec:com-catch-data)].
+Deux grandes incertitudes sont associées à la série chronologique des prises commerciales historiques pour le sébaste aux yeux jaunes des eaux intérieures (renseignements détaillés dans l’annexe \@ref(app:catch-data), section \@ref(sec:com-catch-data)) : (1) les rapports sur les sébastes regroupés sous Autres sébastes (espèces de sébastes autres que le sébaste à longue mâchoire) et (2) l’ampleur des prises non déclarées qui ont été rejetées en mer avant la mise en place de la surveillance en mer de 100 % pour la flottille de pêche à la palangre du poisson de fond en 2006 [@stanley2009]. 
+Dans un souci d’uniformité avec @yamanaka2011, nous avons doublé les données sur les prises nominales pour la période 1986---2005, car l’industrie ne jugeait pas fiables les données sur les prises pour ces années [@dfo2012; voir l’annexe \@ref(app:catch-data), section \@ref(sec:com-catch-data)].
 
-Projected recruitment deviations were sampled in log space with standard deviation $\tau = 0.4$, with autocorrelation estimated post-hoc from the historical recruitment deviates in the SRA model [Appendix A of @anderson2020gfmp].
+Les écarts de recrutement projetés ont été échantillonnés dans l’espace logarithmique avec l’écart-type $\tau = 0,4$, avec une autocorrélation estimée a posteriori à partir des écarts de recrutement historiques dans le modèle d’analyse de réduction du stock [annexe A de @anderson2020gfmp].
 
-The Inside Yelloweye Rockfish stock is indexed by two fishery-independent surveys: the inside Hard Bottom Longline Survey (Appendix \@ref(app:index-data), Section \@ref(sec:hbll-index-data)) and the Dogfish Survey (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
-The SRA model exhibited better retrospective behaviour when the SRA model was fit with more likelihood weight applied to the Dogfish Survey. The age of full selectivity in the HBLL survey was fixed at 22 years (see Section \@ref(sec:approach3-conditioning) below).
+Le stock de sébaste aux yeux jaunes des eaux intérieures est indexé par deux relevés indépendants de la pêche : le relevé à la palangre sur fond dur dans les eaux intérieures (annexe @ref(app:index-data), section \@ref(sec:hbll-index-data)) et le relevé sur l’aiguillat commun (annexe \@ref(app:index-data), section \@ref(sec:dogfish-index-data)). 
+Le modèle d’analyse de réduction du stock affichait un meilleur comportement rétrospectif lorsqu’il était ajusté avec une plus grande pondération de la vraisemblance appliquée au relevé sur l’aiguillat commun. L’âge de la pleine sélectivité dans le relevé à la palangre sur fond dur a été fixé à 22 ans (voir la section \@ref(sec:approach3-conditioning) ci-après).
 
-Historical commerical CPUE was also available and used as an index of abundance for conditioning the OM [@yamanaka2011]. Following the decisions made for the 2011 assessment, the time series was divided into three stanzas (1986-1990, 1995-2001, and 2003-2005), representing periods when fishery behaviour is likely to have changed in response to management regulations (Appendix \@ref(app:catch-data), Section \@ref(sec:management-changes)). 
+Les CPUE commerciales historiques étaient également accessibles et ont été utilisées comme indice de l’abondance pour le conditionnement du modèle opérationnel [@yamanaka2011]. À la suite des décisions prises pour l’évaluation de 2011, la série chronologique a été divisée en trois phases (1986-1990, 1995-2001 et 2003-2005), représentant les périodes où le comportement de la pêche a probablement changé en réponse aux règlements de gestion (annexe \@ref(app:catch-data), section \@ref(sec:management-changes)). 
 
-Natural mortality (*M*) was sampled  from a probability distribution based on that used by @yamanaka2011, where $M \sim \textrm{Lognormal}(0.045, 0.2)$ (Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-stock-m-yelloweye)).
+La mortalité naturelle (*M*) a été échantillonnée selon une distribution de probabilité fondée sur celle utilisée par @yamanaka2011, où $M \sim \textrm{Lognormal}(0,045, 0,2)$ (annexe \@ref(app:desc-om-yelloweye), section \@ref(app:desc-stock-m-yelloweye)).
 
-During the projection period, only the HBLL index was assumed to be available for the MPs, as this survey is conducted annually. Projecting only one index of abundance is consistent with many data-limited MPs, which only use a single index of abundance (see Appendix \@ref(app:mps)).
-Observation error in the projected index values was simulated with random deviates from a lognormal distribution with mean of 1 and standard deviation of 0.25 based on the estimated observation error in the HBLL index.
+Au cours de la période de projection, on a supposé que seul l’indice du relevé à la palangre sur fond dur était accessible pour les procédures de gestion, puisque ce relevé est mené chaque année. La projection d’un seul indice de l’abondance est compatible avec de nombreuses procédures de gestion à données limitées, qui n’utilisent qu’un seul indice de l’abondance (voir l’annexe \@ref(app:mps)). 
+L’erreur d’observation dans les valeurs d’indice projetées a été simulée avec des écarts aléatoires par rapport à une distribution log-normale avec une moyenne de 1 et un écart-type de 0,25 d’après l’erreur d’observation estimée dans l’indice du relevé à la palangre sur fond dur.
 
-All other OM scenarios were adjusted from this baseline OM and differed only in terms of adjustments to key parameters or data sources, described below.
+Tous les autres scénarios du modèle opérationnel ont été ajustés à partir de ce modèle opérationnel de référence et différaient uniquement de par les ajustements des paramètres clés ou des sources de données, décrits ci-après.
 
-#### (2) Low catch {#sec:approach3-reference2}
+#### (2) Prises faibles  {#sec:approach3-reference2}
+Dans le scénario de modèle opérationnel « Prises faibles », nous testons la sensibilité du modèle à l’hypothèse de prises importantes non déclarées pour la période 1986--2005. 
+Au lieu de doubler les données sur les prises nominales pour cette période, nous avons ajusté l’analyse de réduction du stock à ces données. 
+Pour les autres scénarios de modèle opérationnel, nous avons utilisé les prises reconstituées jusqu’en 1985 et les prises nominales à partir de 1986.
 
-In the "Low catch" OM scenario, we test model sensitivity to the assumption of large unreported catch for the period 1986--2005.
-Instead of doubling nominal catch data for this period, the SRA was fit to the nominal catch data.
-As for the other OM scenarios, we used the reconstructed catch up to 1985 and the nominal catch from 1986 onwards.
+#### (3) Recrutement épisodique {#sec:approach3-reference3}
 
-#### (3) Episodic recruitment {#sec:approach3-reference3}
+Les espèces longévives à maturation tardive, comme les sébastes du Pacifique, affichent souvent des stratégies de recrutement épisodiques ou périodiques caractérisées par une fécondité élevée et des épisodes occasionnels de recrutement important [@winemiller1992; @rose2001; @winemiller2005].
+Cette stratégie du cycle biologique est parfois appelée l’effet de stockage (@warner1985) parce que les épisodes de fort recrutement sont stockés dans la population adulte et peuvent contribuer à la reproduction, parfois de façon significative, lorsque les conditions favorables reviennent. 
+On pense que la longévité du sébaste a évolué comme stratégie pour résister à des conditions difficiles.
+ Des classes d’âge très importantes ou même extrêmes ont été observées pour plusieurs espèces de sébastes de la Colombie-Britannique [p. ex., le sébaste à longue mâchoire : @haigh2019; le bocaccio : @haigh2020].
 
-Long-lived, late-maturing species such as Pacific rockfishes often exhibit episodic, or periodic, recruitment strategies characterized by high fecundity and occasional very large recruitment events [@winemiller1992; @rose2001; @winemiller2005].
-This life history strategy is sometimes called the storage effect (@warner1985) because strong recruitment events are stored in the adult population and are capable of contributing to reproduction, sometimes significantly, when favourable conditions return. 
-Longevity in rockfish is thought to have evolved as a strategy for weathering un-favourable conditions.
-Very large or even extreme year classes have been observed for several BC rockfish species [e.g., Pacific Ocean Perch: @haigh2019; Bocaccio: @haigh2020].
+Afin de tenir compte de la possibilité que le futur recrutement durant la période de projection puisse être caractérisé par des épisodes occasionnels de recrutement très important, nous avons inclus un scénario de modèle opérationnel de « recrutement épisodique ». 
+Ce scénario de modèle opérationnel répond à la préoccupation selon laquelle la distribution log-normale pour les écarts de recrutement qui a été utilisée dans le scénario de modèle opérationnel (1) ne modélise pas correctement les très grandes cohortes. 
+Dans le scénario de modèle opérationnel de recrutement épisodique, les écarts de recrutement $\varepsilon_{R,y}$ pour chaque année de la période de projection sont générés comme suit :
 
-
-To address the possibility that future recruitment during the projection period could be characterized by occasional very large recruitment events, we included an "Episodic recruitment" OM scenario.
-This OM scenario addresses the concern that very large cohorts are not adequately modelled by the lognormal distribution for recruitment deviations that was used in OM Scenario (1).
-In the Episodic recruitment OM scenario, recruitment deviations $\varepsilon_{R,y}$ for each year of the projection period are generated as:
 
 $$
 \varepsilon_{R,y} = 
@@ -114,28 +112,28 @@ $$
 \right.
 $$
 
-where $\varepsilon^{(1)}_{R,y}$ is the recruitment deviation from OM Scenario (1) and
-$\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0.5\tau^2, \tau)$ represents the "episodic" recruitment distribution with $\tau = 2$ (standard deviation).
-The parameter $\eta_y$ is a Bernoulli random variable $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, which selects whether an extreme recruitment event will occur. 
-We assume that an extreme recruitment event is expected to occur once every generation (38 years), based on the observation that strong recruitment events in Inside Yelloweye Rockfish were present in 1948 and 1970. 
-Although recent environmental conditions may be favourable for some species of rockfishes [@haigh2020; @lincandeo2020], we don't yet have any evidence of recent strong recruitment events for Inside Yelloweye Rockfish that might indicate more frequent episodic or spasmodic recruitment events. 
+où  $\varepsilon^{(1)}_{R,y}$ est l’écart de recrutement par rapport au scénario de modèle opérationnel (1) et
+$\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0,5\tau^2, \ta)$ représente la distribution du recrutement « épisodique » avec $\tau = 2$ (écart-type). 
+Le paramètre $\eta_y$ est une variable aléatoire de Bernoulli $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, qui sélectionne si un événement de recrutement extrême se produira. 
+Nous supposons qu’un événement de recrutement extrême devrait se produire une fois par génération (38 ans), d’après l’observation selon laquelle des épisodes de fort recrutement chez le sébaste aux yeux jaunes des eaux intérieures ont eu lieu en 1948 et en 1970. 
+Bien que les conditions environnementales récentes puissent être favorables à certaines espèces de sébastes [@haigh2020; @lincandeo2020], nous n’avons pas encore de preuve de récents épisodes de recrutement important pour le sébaste aux yeux jaunes des eaux intérieures qui pourraient indiquer des épisodes de fort recrutement plus fréquents. 
 
-#### (4) Estimate HBLL selectivity {#sec:approach3-reference4}
+#### (4) Estimer la sélectivité du relevé à la palangre sur fond dur {#sec:approach3-reference4}
 
-Annual sample sizes of age-composition data from research surveys are very small (Appendix \@ref(app:biological-data)). 
-This makes estimation of selectivity in the surveys highly uncertain, which led to the choice to fix survey selectivity in the other OM scenarios.
+Les tailles des échantillons annuels de données sur la composition selon l’âge provenant des relevés de recherche sont très petites (annexe \@ref(app:biological-data)). 
+De ce fait, l’estimation de la sélectivité des relevés est très incertaine, ce qui a mené au choix de fixer la sélectivité des relevés dans les autres scénarios de modèle opérationnel.
 
-Given large uncertainty in our choice of selectivity, we allowed the SRA to estimate selectivity for the surveys in this OM scenario and utilized the available survey age-composition data.
+Compte tenu de la grande incertitude entourant notre choix de sélectivité, nous avons laissé l’analyse de réduction du stock estimer la sélectivité des relevés dans ce scénario de modèle opérationnel et nous avons utilisé les données accessibles sur la composition selon l’âge dans les relevés.
 
-### Robustness set {#sec:approach3-robustness}
+### Ensemble de robustesse {#sec:approach3-robustness}
 
-The following OMs were developed as the robustness set. We hereafter refer to them by their letters.
+Les modèles opérationnels suivants ont été élaborés en tant qu’ensemble de robustesse. Nous les désignons ci-après par leurs lettres.
 
-#### (A) Low M {#sec:approach3-referenceA}
+#### (A) M faible {#sec:approach3-referenceA}
 
-Lower values of natural mortality have been used for Inside Yelloweye Rockfish [@yamanaka2001; @cosewic2008; @wood2019]. This OM scenario used a lower mean in the distribution for *M*, with $M \sim \textrm{Lognormal}(0.025, 0.2)$, reflecting the possibility that the stock could be less productive than assumed in the other OM scenarios. 
+Des valeurs inférieures de la mortalité naturelle ont été utilisées pour le sébaste aux yeux jaunes des eaux intérieures [@yamanaka2001; @cosewic2008; @wood2019]. Ce scénario de modèle opérationnel utilisait une moyenne plus faible dans la distribution pour *M*, avec $M \sim \textrm{Lognormal}(0,025, 0,2)$, reflétant la possibilité que le stock soit moins productif que ce qui est supposé dans les autres scénarios de modèle opérationnel.  
 
-#### (B) Higher HBLL CV {#sec:approach3-referenceB}
+#### (B) CV supérieur du relevé à la palangre sur fond dur {#sec:approach3-referenceB}
 
 ```{r higher-cv}
 SRA_highCV <- readRDS(here::here("mse/om/updog_fixsel.rds"))
@@ -146,186 +144,203 @@ mean_Isd <- mean(Isd[,1])
 range_Isd <- range(Isd[,1])
 ```
 
-This OM scenario considers the possibility that the future HBLL index might be less precise than assumed in the other OM scenarios.
-Instead of an observation standard deviation $\sigma_I = 0.25$, we use the standard deviation ($\sigma_I$) and autocorrelation ($\theta_\textrm{AC}$) from the index residuals in OM Scenario (1), obtained from the SRA fit to the HBLL index.
+Ce scénario de modèle opérationnel envisage la possibilité que le futur indice du relevé à la palangre sur fond dur soit moins précis que ce qui est supposé dans les autres scénarios de modèle opérationnel. 
+Au lieu d’un écart-type de l’observation $\sigma_I = 0,25$, nous utilisons l’écart-type ($\sigma_I$) et l’autocorrélation ($\theta_\textrm{AC}$) tirés des résidus de l’indice dans le scénario de modèle opérationnel (1), obtenus à partir de l’analyse de réduction du stock ajustée à l’indice du relevé à la palangre sur fond dur.
 
-This $\sigma_I$ has a mean of `r round2(mean_Isd)` and a range of `r round2(range_Isd[1])`--`r round2(range_Isd[2])`.
+Cet écart-type $\sigma_I$ a une moyenne de `r round2(mean_Isd)` et une plage de `r round2(range_Isd[1])`--`r round2(range_Isd[2])`.
 
-## CONDITIONING THE OPERATING MODELS {#sec:approach3-conditioning} 
 
-After specifying the OM parameters (Appendix \@ref(app:desc-om-yelloweye)), we conditioned the OMs using the SRA model described in Appendix B of @anderson2020gfmp.
+## CONDITIONNEMENT DES MODÈLES OPÉRATIONNELS {#sec:approach3-conditioning} 
 
-Note that the DLMtool OM combines all fleets into a single fleet.
-However, if the OM is conditioned using the SRA model, the SRA can accommodate multiple fleets, and selectivity is fleet-specific.
-In this case, fishery selectivity in the OM for the projection period is replaced with the SRA-conditioned estimates of fishing mortality-at-age in the final year  of the historical period ($t_c$), normalized by dividing by apical fishing mortality in that year.
-This essentially provides the DLMtool OM with relative selectivity-at-age, weighted by catch across all fleets.
-The closed-loop simulation projections therefore assume that the relative selectivity across fleets remains constant in the projection period.
+Après avoir spécifié les paramètres des modèles opérationnels (annexe \@ref(app:desc-om-yelloweye)), nous avons conditionné les modèles opérationnels en utilisant le modèle d’analyse de réduction du stock décrit à l’annexe B de @anderson2020gfmp.
 
-Similarly, if the OM is conditioned using the SRA model, analysts can also specify (or estimate) selectivity parameters for the individual indices of abundance (in this case two fishery-independent surveys and three commercial CPUE series (Figure \@ref(fig:survey-fits))).
-In this case, the SRA passes all of the indices back to DLMtool, preserving the estimated or user-defined selectivities-at-age for each index.
-However, note that the DLMtool MPs only utilize a single index of abundance (see Appendix \@ref(app:mps)).
-In the current study, all index-based MPs utilize the inside HBLL survey.
+Il convient de noter que le modèle opérationnel de l’outil DLMtool regroupe toutes les flottilles en une seule. 
+Toutefois, si le modèle opérationnel est conditionné à l’aide du modèle d’analyse de réduction du stock, l’analyse de réduction du stock peut tenir compte de plusieurs flottilles et la sélectivité est propre à chaque flottille. 
+Dans ce cas, la sélectivité de la pêche dans le modèle opérationnel pour la période de projection est remplacée par les estimations, conditionnées par l’analyse de réduction du stock, de la mortalité selon l’âge dans la pêche pour la dernière année de la période historique ($t_c$), normalisées en divisant par la mortalité par pêche apicale pour cette année. 
+En gros, cela fournit au modèle opérationnel de l’outil DLMtool une sélectivité relative selon l’âge, pondérée par les prises dans toutes les flottilles. 
+Les projections de simulation en boucle fermée supposent donc que la sélectivité relative entre les flottilles demeure constante pendant la période de projection.
 
-We used the SRA to populate the following parameters in the conditioned OMs:
+De même, si le modèle opérationnel est conditionné à l’aide du modèle d’analyse de réduction du stock, les analystes peuvent également préciser (ou estimer) les paramètres de sélectivité pour les différents indices de l’abondance (dans ce cas, deux relevés indépendants de la pêche et trois séries de CPUE commerciales (figure \@ref(fig:survey-fits))). 
+Dans ce cas, l’analyse de réduction du stock renvoie tous les indices dans l’outil DLMtool, en conservant les sélectivités selon l’âge estimées ou définies par l’utilisateur pour chaque indice. 
+Toutefois, il convient de noter que les procédures de gestion de l’outil DLMtool n’utilisent qu’un seul indice de l’abondance (voir l’annexe \@ref(app:mps)). 
+Dans la présente étude, toutes les procédures de gestion fondées sur des indices utilisent le relevé à la palangre sur fond dur dans les eaux intérieures.
 
-- $B_{t_c}/B_0$ (or "D"; depletion in the last historical year $t_c$)
-- $R_0$ (unfished recruitment)
-- $\theta_\textrm{AC}$ (or "AC"; first-order autocorrelation of recruitment deviations)
-- $\varepsilon_{\textrm{R},y}$ for years $t_1$ to $t_c$ (annual recruitment deviations)
-- $F_{a,y}$ (fishing mortality at age by year)
+Nous avons utilisé l’analyse de réduction du stock pour remplir les paramètres suivants dans les modèles opérationnels conditionnés :
 
-See Appendix B of @anderson2020gfmp for details on these parameters.
+- $B_{t_c}/B_0$ (ou « D »; épuisement au cours de la dernière année historique $t_c$)
+- $R_0$ (recrutement non exploité)
+- $\theta_\textrm{AC}$ (ou « AC »; autocorrélation de premier ordre des écarts de recrutement)
+- $\varepsilon_{\textrm{R},y}$ pour les années $t_1$ à $t_c$ (écarts annuels de recrutement)
+- $F_{a,y}$ (mortalité par pêche selon l’âge, par année)
 
-The SRA was run for 250 replicates.
-Each replicate used a different value of *M* and *h* (sampled independently from the distributions shown in Appendix \@ref(app:desc-om-yelloweye), except for OM Scenario (A), which used a different distribution for *M*).
-The model was initialized under the assumption that spawning biomass ($B_y$) was in an unfished equilibrium state prior to 1918, the first year of the time series, i.e., $B_{1918} = B_0$.
-While this is unlikely to be true, as First Nations and others would have been catching Yelloweye Rockfish prior to 1918, these numbers are expected to be small enough not to impact the outcomes of the performance of MPs in the projection period.
+Des renseignements détaillés sur ces paramètres se trouvent à l’annexe B de @anderson2020gfmp.
 
-### Selection of base OM {#sec:approach3-conditioning-base-om}
+L’analyse de réduction du stock a été exécutée pour 250 répétitions. 
+Chaque répétition utilisait une valeur différente de *M* et *h* (échantillonnée indépendamment des distributions indiquées à l’annexe \@ref(app:desc-om-yelloweye), sauf pour le scénario de modèle opérationnel (A), qui utilisait une distribution différente pour *M*). 
+Le modèle a été initialisé en supposant que la biomasse féconde ($B_y$) était dans un état d’équilibre non exploité avant 1918, la première année de la série chronologique, c.-à-d. $B_{1918} = B_0$. 
+Bien que cela ne soit probablement pas vrai, étant donné que les Premières Nations et d’autres groupes pêchaient des sébastes aux yeux jaunes avant 1918, ces nombres devraient être suffisamment faibles pour ne pas avoir d’incidence sur le rendement des procédures de gestion pendant la période de projection.
 
-Initial attempts to fit the SRA model did not produce good fits to the dogfish survey.
-Furthermore, retrospective analysis showed persistent retrospective bias in annual estimates of spawning biomass when sequentially removing 11 years of data (when evaluated at the mean values of *M* and *h*, Figure \@ref(fig:retro-initial), top panel).
-The choice to base retrospective analysis on 11 years of data was primarily to evaluate sensitivity of the model to removal of each year of data, going back to 2009, the terminal year for the 2011 assessment.
+### Sélection du modèle opérationnel de base {#sec:approach3-conditioning-base-om}
 
-Increasing the likelihood weight for the SRA fit to the Dogfish survey [$\lambda^I_s = 4$; Equation B.22 in @anderson2020gfmp], and fixing age-at-full-selectivity in the HBLL survey to 22 years, removed the retrospective pattern (Figure \@ref(fig:retro-initial), bottom panel). 
-Therefore, for OM Scenario (1) and all other OM scenarios except Scenario (4), we fixed the age-at-full selectivity of the HBLL Survey at 22 years (Figure \@ref(fig:HBLL-selectivity)), while also upweighting the Dogfish survey.
+Les premières tentatives d’ajustement du modèle d’analyse de réduction du stock n’ont pas donné de bons ajustements au relevé sur l’aiguillat commun. 
+De plus, l’analyse rétrospective a révélé un biais rétrospectif persistant dans les estimations annuelles de la biomasse féconde lorsque l’on supprime séquentiellement 11 années de données (lorsqu’elles sont évaluées aux valeurs moyennes de *M* et *h*, figure \@ref(fig:retro-initial), graphique du haut). 
+Le choix de fonder l’analyse rétrospective sur 11 années de données visait principalement à évaluer la sensibilité du modèle à l’élimination de chaque année de données, en remontant en 2009, la dernière année pour l’évaluation de 2011.
 
-(ref:fig-retro-initial) Retrospective patterns in spawning biomass for the initial fit and OM Scenario (1). Coloured lines represent estimates of spawning biomass with $X$ years of data removed, where $X$ is shown in the legend for each series.
+L’augmentation de la pondération de la vraisemblance pour l’analyse de réduction du stock ajustée au relevé sur l’aiguillat commun [$\lambda^I_s = 4$; équation B.22 dans @anderson2020gfmp] et le réglage à 22 ans de l’âge à la pleine sélectivité dans le relevé à la palangre sur fond dur ont permis d’éliminer le profil rétrospectif (figure \@ref(fig:retro-initial), graphique du bas). 
+Nous avons donc, pour le scénario de modèle opérationnel (1) et tous les autres scénarios de modèle opérationnel à l’exception du scénario (4), fixé à 22 ans l’âge à la pleine sélectivité du relevé à la palangre sur fond dur (figure \@ref(fig:HBLL-selectivity)), tout en augmentant la pondération du relevé sur l’aiguillat commun.
+
+(ref:fig-retro-initial) Profils rétrospectifs de la biomasse féconde pour l’ajustement initial et le scénario de modèle opérationnel (1). Les lignes colorées représentent les estimations de la biomasse féconde avec $X$ années de données supprimées, où $X$ est indiqué dans la légende pour chaque série.
+
 
 ```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="4.25in"}
-knitr::include_graphics(here::here("mse/figures/retrospective-spawning-biomass.png"))
+knitr::include_graphics(here::here("mse/figure-french/retrospective-spawning-biomass-f.png"))
 ```
 
-There are a number of factors that increase uncertainty in estimating selectivity for the Dogfish survey e.g. the absence of biological data from this survey, and changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)). There are also several differences between the HBLL and Dogfish longline surveys (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)), but, for the reasons mentioned, we cannot reliably estimate the selectivity for the Dogfish survey. Out of necessity, selectivity in the Dogfish survey was set to mirror selectivity in the HBLL survey, whether it was estimated (OM Scenario (4)) or fixed (all other OM scenarios).
+Un certain nombre de facteurs augmentent l’incertitude dans l’estimation de la sélectivité pour le relevé sur l’aiguillat commun, p. ex., l’absence de données biologiques de ce relevé et les changements apportés aux opérations de pêche et au type de hameçon en 2004 (annexe \@ref(app:index-data), section \@ref(sec:dogfish-index-data)). Il y a également plusieurs différences entre les relevés à la palangre sur fond dur et à la palangre sur l’aiguillat commun (annexe \@ref(app:index-data), section \@ref(sec:dogfish-index-data)), mais pour les raisons mentionnées, nous ne pouvons pas estimer de façon fiable la sélectivité pour le relevé sur l’aiguillat commun. Par nécessité, la sélectivité dans le relevé sur l’aiguillat commun a été réglée de manière à refléter la sélectivité dans le relevé à la palangre sur fond dur, qu’elle ait été estimée (scénario du modèle opérationnel (4)) ou fixée (tous les autres scénarios de modèle opérationnel).
 
-Age composition data from the commerical fishery were available from a single fishing trip in 1989, and length samples from 2002--2019 were identified from the recreational fishery. Attempts to fit the SRA model to these data did not produce satisfactory estimates of selectivity. The estimated values of the age of full selectivity were very high, suggesting that most ages were not completely vulnerable to the fishery, and significantly differed from values estimated for the Outside Yelloweye population [@cox2020]. Since it is unlikely that selectivity varies to such an extent between geographical regions, these data were not further considered. 
+Les données sur la composition selon l’âge provenant de la pêche commerciale étaient accessibles pour une seule sortie de pêche en 1989, et des échantillons de longueur de 2002--2019 ont été déterminés à partir de la pêche récréative. Les tentatives visant à ajuster le modèle d’analyse de réduction du stock à ces données n’ont pas donné d’estimations satisfaisantes de la sélectivité. Les valeurs estimées de l’âge de la pleine sélectivité étaient très élevées, ce qui suggère que la plupart des âges n’étaient pas complètement vulnérables à la pêche, et elles différaient considérablement des valeurs estimées pour la population de sébaste aux yeux jaunes des eaux extérieures [@cox2020]. Comme il est peu probable que la sélectivité varie à ce point entre les régions géographiques, ces données n’ont pas été prises en compte pour la suite. 
 
-As a result, selectivity for these gears was fixed in all OM scenarios (Figure \@ref(fig:sra-selectivity)).
-Parameter values were set so that the selectivity-at-age curves approximated those estimated by @cox2020 for the commercial longline and recreational fisheries for outside Yelloweye Rockfish (see Appendix \@ref(app:desc-om-yelloweye), Section \@ref(app:desc-fleet-selectivity-yelloweye)).
-As noted above, these selectivities were returned to the DLMtool OMs as a combined-fleet selectivity curve from the terminal year ($t_c$) of the historical period (Figure \@ref(fig:om-selectivity)).
+Par conséquent, la sélectivité de ces engins a été fixée dans tous les scénarios de modèle opérationnel (figure \@ref(fig:sra-selectivity)). 
+Les valeurs des paramètres ont été établies de façon à ce que les courbes de la sélectivité selon l’âge se rapprochent de celles estimées par @cox2020 pour la pêche commerciale à la palangre et la pêche récréative du sébaste aux yeux jaunes des eaux extérieures (voir l’annexe \@ref(app:desc-om-yelloweye), section \@ref(app:desc-fleet-selectivity-yelloweye)). 
+Comme il a été mentionné ci-dessus, ces sélectivités ont été renvoyées dans les modèles opérationnels de l’outil DLMtool sous forme de courbe de sélectivité combinée des flottilles de la dernière année ($t_c$) de la période historique (figure \@ref(fig:om-selectivity)).
 
-### OM conditioning results {#sec:approach3-conditioning-results} 
-The following sections describe the results of conditioning the OMs.
+### Résultats du conditionnement des modèles opérationnels {#sec:approach3-conditioning-results} 
+Les sections suivantes décrivent les résultats du conditionnement des modèles opérationnels.
 
-#### Fits to data {#sec:approach3-conditioning-indices}
+#### Ajustements aux données {#sec:approach3-conditioning-indices}
 
-The predicted catch in the SRA models matched the catch data by design, which was achieved by setting the standard deviation of the observation error to a value of 0.01 [@anderson2020gfmp, their Equation B.27].
+Les prises prévues dans les modèles d’analyse de réduction du stock correspondaient aux données sur les prises par leur conception, puisque l’écart-type de l’erreur d’observation était fixé à une valeur de 0,01 [@anderson2020gfmp, leur équation B.27].
 
-The SRA was able to fit to the indices of abundance reasonably well (Figure \@ref(fig:survey-fits)) and convergence was achieved for all replicates in all OM scenarios.
-For all OM scenarios, the estimated index fell within the observed confidence intervals in most years, although there were some outliers (Figure \@ref(fig:survey-fits)).
-The fit to the early 1986  and 1989 observations in the Dogfish Survey was slightly better in OM Scenario (A), which is consistent with a less productive, more depleted stock. However, these two observations are more uncertain than those in recent years, due to changes in fishing operations and hook type that occurred in 2004 (Appendix \@ref(app:index-data), Section \@ref(sec:dogfish-index-data)).
-Fits to the commercial CPUE series were generally good, due to the short time stanzas for each series (Figure \@ref(fig:survey-fits)).
+Il a été possible d’ajuster raisonnablement bien l’analyse de réduction du stock aux indices de l’abondance (figure \@ref(fig:survey-fits)) et la convergence a été atteinte pour toutes les répétitions dans tous les scénarios de modèle opérationnel. 
+Pour tous les scénarios de modèle opérationnel, l’indice estimé se situait dans les intervalles de confiance observés la plupart des années, malgré quelques valeurs aberrantes (figure \@ref(fig:survey-fits)). 
+L’ajustement aux observations du début de 1986 et de 1989 dans le relevé sur l’aiguillat commun était légèrement meilleur dans le scénario de modèle opérationnel (A), correspondant à un stock moins productif et plus épuisé. Toutefois, ces deux observations sont plus incertaines que celles des dernières années, en raison des changements apportés en 2004 aux opérations de pêche et au type d’hameçon (annexe \@ref(app:index-data), section \@ref(sec:dogfish-index-data)). 
+Les ajustements à la série des CPUE commerciales étaient généralement bons, en raison des courtes phases pour chaque série (figure \@ref(fig:survey-fits)).
 
 (ref:fig-survey-fits)
-SRA model fits to the HBLL, Dogfish, and three commercial CPUE relative indices.
-Panels from left to right represent OM scenarios.
-Thin lines represent individual SRA model fits across stochastic draws from the various OM parameters.
-Dots represent index mean and line segments represent 2 times the standard errors as entered into the SRA models.
+Ajustements du modèle d’analyse de réduction du stock aux indices du relevé à la palangre sur fond dur, du relevé sur l’aiguillat commun et à trois indices relatifs des CPUE commerciales. 
+Les graphiques de gauche à droite représentent les scénarios de modèle opérationnel. 
+Les lignes fines représentent les différents ajustements du modèle d’analyse de réduction du stock parmi les tirages stochastiques des divers paramètres du modèle opérationnel. 
+Les points représentent la moyenne de l’indice et les segments de lignes représentent deux fois les erreurs-types entrées dans les modèles d’analyse de réduction du stock.
+
 
 ```{r survey-fits, fig.cap="(ref:fig-survey-fits)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figures/ye-index-fits.png"))
+knitr::include_graphics(here("mse/figure-french/ye-index-fits.png"))
 ```
 
-The SRA model fit the survey age-composition data reasonably well, despite very small sample sizes (Figures \@ref(fig:sra-conditioned-comp-fit1) to \@ref(fig:sra-conditioned-comp-fitB)). We note that in comparing OM Scenarios (1) and (4) it appears that fixing or estimating selectivity in the HBLL survey did not generate very different fits to the age composition data (Figures \@ref(fig:sra-conditioned-comp-fit1) and \@ref(fig:sra-conditioned-comp-fit4)).
+Le modèle d’analyse de réduction du stock est raisonnablement bien ajusté aux données sur la composition selon l’âge du relevé, malgré la très petite taille des échantillons (figures \@ref(fig:sra-conditioned-comp-fit1) à \@ref(fig:sra-conditioned-comp-fitB)). Il est à noter qu’en comparant les scénarios de modèle opérationnel (1) et (4), il semble que le réglage ou l’estimation de la sélectivité dans le relevé à la palangre sur fond dur n’a pas produit des ajustements très différents des données sur la composition selon l’âge (figures \@ref(fig:sra-conditioned-comp-fit1) et \@ref(fig:sra-conditioned-comp-fit4)).
 
-For most years, the SRA predicted larger abundance in the plus group (80+ *y*) than what was observed. 
-A lack of fish older than 80 *y* in the survey suggested that total mortality could have been greater in the past than estimated in our OMs.
-This could be represented in the OMs in two ways.
-First, *M* could be increased in the models. 
-However, our preliminary model investigations indicated that increasing *M* also increases retrospective bias.
-Secondly, the catch history could be changed to predict higher values of fishing mortality.
-This was done in OM Scenario (2) by assuming lower catches in 1986-2005, which resulted in a slightly smaller stock (Figure \@ref(fig:biomass-om)) and higher fishing mortality (Figure \@ref(fig:F-om)).
-However, the estimated plus group was only slightly reduced in most years for this OM scenario (Figure \@ref(fig:sra-conditioned-comp-fit2)).
+Pour la plupart des années, l’analyse de réduction du stock a prédit une abondance plus importante dans le groupe « plus » (80+*y*) que celle qui a été observée. 
+Le manque de poissons âgés de plus de 80 *y* dans le relevé permet de penser que la mortalité totale aurait pu être plus élevée dans le passé que celle qui avait été estimée dans nos modèles opérationnels.
+On pourrait le représenter dans les modèles opérationnels de deux façons. 
+Premièrement, on pourrait augmenter la valeur de *M* dans les modèles. 
+Cependant, nos études préliminaires sur les modèles ont indiqué qu’une augmentation de *M* accroît également le biais rétrospectif. 
+Deuxièmement, on pourrait modifier l’historique des prises de manière à prévoir des valeurs plus élevées de la mortalité par pêche. 
+Cela a été fait dans le scénario de modèle opérationnel (2) en supposant des prises plus faibles de 1986 à 2005, ce qui a donné un stock légèrement plus petit (figure \@ref(fig:biomass-om)) et une mortalité par pêche plus élevée (figure \@ref(fig:F-om)). 
+Cependant, l’estimation du groupe « plus » n’a été que légèrement réduite la plupart des années pour ce scénario de modèle opérationnel (figure \@ref(fig:sra-conditioned-comp-fit2)).
 
-This issue is a challenge for very long-lived species with poor age-composition sampling.
-With such small sample sizes, there is a relatively small chance of observing very old fish.
-Large structural uncertainties in the model and available data (e.g., the Dogfish survey, catch data) made it difficult to resolve one issue, e.g., persistent overprediction of old fish, without generating another issue, e.g., retrospective bias.
+Ce problème est un défi pour les espèces très longévives dont la composition selon l’âge n’est pas bien échantillonnée. 
+Avec de si petits échantillons, les chances d’observer de très vieux poissons sont relativement faibles. 
+En raison des grandes incertitudes structurelles du modèle et des données accessibles (p. ex., le relevé sur l’aiguillat commun, les données sur les prises), il a été difficile de résoudre un problème, la surprédiction persistante des vieux poissons, sans en créer un autre, le biais rétrospectif.
 
 
 \clearpage
 
 (ref:fig-sra-comp-fit1)
-SRA model fits to the survey age composition data for OM Scenario (1), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
+Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (1), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit1, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit1)"}
-knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_updog_fixsel.png"))
+knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_updog_fixsel.png"))
 ```
 
 \clearpage
 
 (ref:fig-sra-comp-fit2)
-SRA model fits to the survey age composition data for OM Scenario (2), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
+Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (2), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit2, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit2)"}
-knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowcatch_fixsel.png"))
+knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_lowcatch_fixsel.png"))
 ```
 
 \clearpage
 
 (ref:fig-sra-comp-fit3)
-SRA model fits to the survey age composition data for OM Scenario (3), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
+
+Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (3), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit3, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit3)"}
-knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_episodic_recruitment.png"))
+knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_episodic_recruitment.png"))
 ```
 
 \clearpage
 
 (ref:fig-sra-comp-fit4)
-SRA model fits to the survey age composition data for OM Scenario (4), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
+
+Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (4), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit4, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit4)"}
-knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_upweight_dogfish.png"))
+knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_upweight_dogfish.png"))
 ```
 
 
 \clearpage
 
 (ref:fig-sra-comp-fitA)
-SRA model fits to the survey age composition data for OM Scenario (A), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
+
+Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (A), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
+
 
 ```{r sra-conditioned-comp-fitA, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitA)"}
-knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_lowM_fixsel.png"))
+knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_lowM_fixsel.png"))
 ```
 
 \clearpage
 
 (ref:fig-sra-comp-fitB)
-SRA model fits to the survey age composition data for OM Scenario (B), showing observed (points) and estimated (green lines) proportions. Sample sizes (N) are number of sets from which age samples were collected in each year.
+Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (B), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
+
 
 ```{r sra-conditioned-comp-fitB, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitB)"}
-knitr::include_graphics(here("mse/figures/conditioning/HBLL_age_comp_high_index_cv.png"))
+knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_high_index_cv.png"))
 ```
 
-#### Parameter estimates {#sec:approach3-conditioning-parameters}
+#### Estimation des paramètres  {#sec:approach3-conditioning-parameters}
 
-The OM reference and robustness scenarios rendered a range of estimated parameter values (Figure \@ref(fig:sra-conditioned-parameters)).
-
-(ref:fig-sra-conditioned-parameters) Histograms of parameters estimated by the SRA. AC refers to $\theta_\textrm{AC}$. D refers to depletion ($B_{t_c}/B_0$).
-For visualization purposes, the *R*~0~ axis limits have been restricted to a maximum of 490 and the AC axis limits to a minimum of 0.76.
-This excludes a small number of replicates.
+Les scénarios de référence et de robustesse des modèles opérationnels ont produit une plage de valeurs estimées des paramètres (figure \@ref(fig:sra-conditioned-parameters)).
+(ref:fig-sra-conditioned-parameters) Histogrammes des paramètres estimés par l’analyse de réduction du stock. AC fait référence à $\theta_\textrm{AC}$. D désigne l’épuisement ($B_{t_c}/B_0$). 
+À des fins de visualisation, les limites de l’axe *R*~0~ ont été limitées à un maximum de 490 et les limites de l’axe AC à un minimum de 0,76. 
+Cela exclut un petit nombre de répétitions.
 
 ```{r sra-conditioned-parameters, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-conditioned-parameters)"}
-knitr::include_graphics(here("mse/figures/ye-sra-estimated.png"))
+knitr::include_graphics(here("mse/figure-french/ye-sra-estimated.png"))
 ```
 
-Estimated means and coefficients of variation (CV) for reference points *F*~MSY~, *B*~MSY~ and MSY are provided in Table \@ref(tab:sra-ref-pts).
-The CVs are large due to the large range of sampled values for *M* and *h* (Appendix \@ref(app:desc-om-yelloweye), Sections \@ref(app:desc-stock-m-yelloweye) and \@ref(app:desc-stock-h-yelloweye)).
+Les moyennes et les coefficients de variation (CV) estimés pour les points de référence *F*~RMD~, *B*~RMD~ et RMD sont fournis dans le tableau \@ref(tab:sra-ref-pts). 
+Les CV sont larges en raison de la grande gamme de valeurs échantillonnées pour *M* et *h* (annexe \@ref(app:desc-om-yelloweye), sections \@ref(app:desc-stock-m-yelloweye) et \@ref(app:desc-stock-h-yelloweye)).
+
 
 ```{r sra-ref-pts, results='asis'}
-ref_pts <- readr::read_csv(here::here("mse/figures/ref_pt.csv"))
-ref_pts %>%
+ref_pts <- readr::read_csv(here::here("mse/figure-french/ref_pt_f.csv"))
+ref_pts<-  ref_pts %>%
   mutate(X1 = gsub("\\\n", " ", X1)) %>%
-  select(X1, FMSY, BMSY, MSY) %>%
-  rename("F~MSY~ (/y)" = FMSY, "B~MSY~ (t)" = BMSY, "MSY (t)" = MSY) %>% 
+  select(X1, FRMD, BRMD, RMD) %>%
+  rename("F~RMD~ (/y)" = FRMD, "B~RMD~ (t)" = BRMD, "RMD (t)" = RMD)
+  ref_pts[,1] <- c(
+  "(1) Base",
+  "(2) Faibles prises",
+  "(3) Recrutement épisodique",
+  "(4) Estimation de la sélectivité du RPFD",
+  "(A) Faible M ",
+  "(B) CV élevé du RPFD")
+
+  #rename("F~MSY~ (/y)" = FMSY, "B~MSY~ (t)" = BMSY, "MSY (t)" = MSY) %>% 
   rename("OM Scenario" = X1) %>% 
-  csasdown::csas_table(caption = "Estimated reference points for each OM Scenario. Standard deviations across replicates are shown in parentheses.") %>% 
+  csasdown::csas_table(caption = "Points de référence estimés pour chaque scénario de modèle opérationnel. Les écarts-types entre les répétitions sont indiqués entre parenthèses. PDF = relevé à la palangre sur fond dur.") %>% 
   kableExtra::column_spec(1:5, width = "5cm") 
 ```
 
 \clearpage
 
-#### Historical trajectories {#sec:approach3-conditioning-trajectories}
+#### Trajectoires historiques {#sec:approach3-conditioning-trajectories}
 
 In all OM scenarios, except OM Scenario (A), the median spawning biomass in 2019 is estimated to be above the LRP (Figure \@ref(fig:biomass-om)). 
 OM Scenario (A) estimated median spawning biomass to have been below the LRP for most years after 2000 and less than 50% probability of being above the LRP in 2019 (Figure \@ref(fig:ref-pt)).
