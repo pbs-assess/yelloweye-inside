@@ -79,22 +79,23 @@ add_label <- function(xfrac, yfrac, label, pos = 4, ...) {
   text(x, y, label, pos = pos, ...)
 }
 
-plot_retro_pbs <- function(retro, legend = TRUE) {
-  color <- viridisLite::plasma(length(nyr_label))
-  Year_matrix <- matrix(as.numeric(dimnames(retro@TS)$Year), ncol = length(color), nrow = dim(retro@TS)[2], byrow = FALSE)
+plot_retro_pbs <- function(retro, legend = TRUE, french = FALSE) {
   xlim <- range(as.numeric(dimnames(retro@TS)$Year))
   nyr_label <- dimnames(retro@TS)$Peel
+  color <- viridisLite::plasma(length(nyr_label))
+  Year_matrix <- matrix(as.numeric(dimnames(retro@TS)$Year), ncol = length(color), nrow = dim(retro@TS)[2], byrow = FALSE)
   # for(i in 1:length(retro@TS_var)) {
   for(i in 3) {
     matrix_to_plot <- t(retro@TS[, , i])
     ylim <- c(0, 1.1 * max(matrix_to_plot, na.rm = TRUE))
-    ylab <- attr(retro, "TS_lab")[i]
+    if (!french) ylab <- attr(retro, "TS_lab")[i]
+    if (french) ylab <- rosettafish::en2fr("Spawning biomass")
     plot(NULL, NULL, xlim = xlim, ylim = ylim, xlab = "Year", ylab = ylab, axes = FALSE)
     abline(h = 0, col = "grey")
     if(grepl("MSY", as.character(ylab))) abline(h = 1, lty = 3)
     matlines(Year_matrix, matrix_to_plot, col = color, lty = 1)
     if (legend)
-      legend(1917, 4000, legend = nyr_label, lwd = 1, col = color, bty = "n", title = "Years removed:", y.intersp = 0.8)
+      legend(1917, 4000, legend = nyr_label, lwd = 1, col = color, bty = "n", title = paste0(rosettafish::en2fr("Years removed", translate = french), ":"), y.intersp = 0.8)
   }
 }
 
@@ -114,6 +115,23 @@ mtext("Year", side = 1, line = 2.5, cex = 0.8)
 add_label(0.02, 0.06, "(B) Base OM")
 nyr_label <- dimnames(ret@TS)$Peel
 dev.off()
+
+png(here::here("mse/figures-french/retrospective-spawning-biomass.png"), width = 5, height = 5,
+  res = 260, units = "in")
+par(mfcol = c(2, 1), mar = c(0, 4, 0, 0), oma = c(4, 0, 1, 1), cex = 0.7, yaxs = "i")
+plot_retro_pbs(ret, legend = FALSE, french = TRUE)
+add_label(0.02, 0.06, "(A) Ajustement initial du modèle")
+box()
+axis(2, at = seq(0, 5000, 1000))
+plot_retro_pbs(ret3, french = TRUE)
+axis(2, at = seq(0, 4000, 1000))
+axis(1)
+box()
+mtext(rosettafish::en2fr("Year"), side = 1, line = 2.5, cex = 0.8)
+add_label(0.02, 0.06, "(B) ME de base")
+nyr_label <- dimnames(ret@TS)$Peel
+dev.off()
+# -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
 plot(SRA3, retro = ret3, file = "mse/scoping/scoping_updog_fixsel", dir = getwd(), open_file = FALSE, f_name = SRA_data$f_name, s_name = SRA_data$s_name,
