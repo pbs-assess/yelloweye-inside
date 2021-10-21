@@ -317,14 +317,14 @@ knitr::include_graphics(here("mse/figure-french/ye-sra-estimated.png"))
 Les moyennes et les coefficients de variation (CV) estimés pour les points de référence *F*~RMD~, *B*~RMD~ et RMD sont fournis dans le tableau \@ref(tab:sra-ref-pts). 
 Les CV sont larges en raison de la grande gamme de valeurs échantillonnées pour *M* et *h* (annexe \@ref(app:desc-om-yelloweye), sections \@ref(app:desc-stock-m-yelloweye) et \@ref(app:desc-stock-h-yelloweye)).
 
-
 ```{r sra-ref-pts, results='asis'}
-ref_pts <- readr::read_csv(here::here("mse/figure-french/ref_pt_f.csv"))
-ref_pts<-  ref_pts %>%
+ref_pts <- readr::read_csv(here::here("mse/figures/ref_pt.csv"))
+names(ref_pts) <- c("X1", "FRMD", "BRMD", "RMD")
+ref_pts <- ref_pts %>%
   mutate(X1 = gsub("\\\n", " ", X1)) %>%
   select(X1, FRMD, BRMD, RMD) %>%
   rename("F~RMD~ (/y)" = FRMD, "B~RMD~ (t)" = BRMD, "RMD (t)" = RMD)
-  ref_pts[,1] <- c(
+ref_pts[,1] <- c(
   "(1) Base",
   "(2) Faibles prises",
   "(3) Recrutement épisodique",
@@ -332,8 +332,7 @@ ref_pts<-  ref_pts %>%
   "(A) Faible M ",
   "(B) CV élevé du RPFD")
 
-  #rename("F~MSY~ (/y)" = FMSY, "B~MSY~ (t)" = BMSY, "MSY (t)" = MSY) %>% 
-  rename("OM Scenario" = X1) %>% 
+ref_pts %>% rename("OM Scenario" = X1) %>% 
   csasdown::csas_table(caption = "Points de référence estimés pour chaque scénario de modèle opérationnel. Les écarts-types entre les répétitions sont indiqués entre parenthèses. PDF = relevé à la palangre sur fond dur.") %>% 
   kableExtra::column_spec(1:5, width = "5cm") 
 ```
