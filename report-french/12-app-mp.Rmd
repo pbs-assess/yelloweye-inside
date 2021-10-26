@@ -1,31 +1,30 @@
-
 \newpage
 
-# DATA-LIMITED MANAGEMENT PROCEDURES {#app:mps}
+# PROCÉDURES DE GESTION À DONNÉES LIMITÉES {#app:mps}
 
-Here we present the MPs that were evaluated in the current study. See @anderson2020gfmp for a full list of MPs available in the MP Framework.
+Nous présentons ici les procédures de gestion qui ont été évaluées dans le contexte de la présente étude. Voir la liste complète des procédures de gestion possibles dans le Cadre des procédures de gestion de @anderson2020gfmp.
 
-## CONSTANT-CATCH MANAGEMENT PROCEDURES {#sec:mp-cc}
+## PROCÉDURES DE GESTION À PRISES CONSTANTES {#sec:mp-cc}
 
-We evaluated three alternative constant-catch MPs: 
+Nous avons évalué trois procédures de gestion à prises constantes : 
 
-- CC_5t:  Constant annual catch of 5 t
-- CC_10t: Constant annual catch of 10 t 
-- CC_15t: Constant annual catch of 15 t
+- CC_5t : Prises annuelles constantes de 5 tonnes
+- CC_10t : Prises annuelles constantes de 10 tonnes
+- CC_15t : Prises annuelles constantes de 15 tonnes
 
-## INDEX-BASED MPs {#sec:mp-ibased}
+## PROCÉDURES DE GESTION FONDÉES SUR DES INDICES {#sec:mp-ibased}
 
-### Index-ratio MPs {#sec:mp-iratio}
+### Procédures de gestion indice-ratio {#sec:mp-iratio}
 
-Index-ratio MPs base their TAC recommendation in year $y$ on last year's catch $C_{y-1}$ multiplied by the ratio of the average population index in a recent time period (e.g., the last two years) compared to the average population index in a previous short period. Therefore the reference population index is a moving window average.
+Les procédures de gestion indice-ratio fondent leur recommandation de TAC pour l’année $y$ sur les prises de l’année précédente $C_{y-1}$ multipliées par le ratio de l’indice moyen de la population sur une période récente (p. ex., les deux dernières années) par rapport à l’indice moyen de la population sur une courte période précédente. L’indice de la population de référence est ainsi une moyenne de fenêtre mobile.
 
-The TAC is calculated as:
+Le TAC est calculé comme suit :
 
 $$
 \textrm{TAC}_y = \alpha C_{y-1},
 $$
 
-where, for example,
+où, par exemple,
 
 $$
 \alpha =
@@ -33,50 +32,50 @@ $$
 \frac{I_{y-3} + I_{y-4} + I_{y-5}} {3} \right. ,
 $$
 
-where $\alpha$ is the ratio of the mean index in the most recent two years and the mean index in years 3--5 before the current year.
+où $\alpha$ est le ratio de l’indice moyen des deux dernières années et de l’indice moyen des trois à cinq années précédant l’année en cours.
 
-We evaluated two configurations of the index-ratio MPs, which differ in the time periods used to calculate $\alpha$, applied annually:
+Nous avons évalué deux configurations des procédures de gestion indice-ratio, qui diffèrent de par les périodes utilisées pour calculer $\alpha$, appliquées annuellement :
 
-- Iratio_23:     ratio of the last 2 years to the previous 3 years
+- Iratio_23 : ratio des deux dernières années par rapport aux trois années précédentes
 
-- Iratio_55:     ratio of the last 5 years to the previous 5 years
+- Iratio_55 : ratio des cinq dernières années par rapport aux cinq années précédentes
 
-We also evaluated the same two configurations, applied every five years:
+Nous avons également évalué les deux mêmes configurations, appliquées tous les cinq ans :
 
-- Iratio_23_5u:  same as Iratio_23
+- Iratio_23_5u : même que Iratio_23
 
-- Iratio_55_5u:  same as Iratio_23
+- Iratio_55_5u : même que Iratio_23
 
-### Index-Slope MPs {#sec:mp-islope}
+### Procédures de gestion indice-pente {#sec:mp-islope}
 
-Index-slope MPs fit a linear regression of population index data compared to time and make a catch recommendation based on the slope of the regression. 
-They are closely related to index-ratio MPs.
-Here we describe three main "families" of index-slope MPs.
+Les procédures de gestion indice-pente ajustent une régression linéaire des données de l’indice de la population comparées au temps et produisent une recommandation de prises fondée sur la pente de la régression. 
+Elles sont étroitement liées aux procédures de gestion indice-ratio. 
+Nous décrivons ici trois grandes « familles » de procédures de gestion indice-pente.
 
-#### GB_slope: Geromont and Butterworth index slope {#sec:mp-gb-slope}
+#### GB_slope : Pente de l’indice de Geromont et Butterworth {#sec:mp-gb-slope}
 
-This MP adjusts TAC based on previous catch and the trend in a relative abundance index to aim for relatively stable catch rates [@geromont2015].
-The TAC is calculated as:
+Cette procédure de gestion ajuste le TAC en fonction des prises antérieures et de la tendance d’un indice de l’abondance relative pour viser des taux de prises relativement stables [@geromont2015].
+Le TAC est calculé comme suit :
 
 $$
 \textrm{TAC}_y= C_{y-1}(1+\lambda \beta_I),
 $$
 
-where $C_{y-1}$ is catch from the previous year, $\beta_I$ is the slope of a linear regression of the ln abundance index over the last $n$ years (default of $n = 5$), and $\lambda$ is a control parameter between 0 and 1 that adjusts how quickly TAC is adjusted based on the slope of the index. The default $\lambda$ value is 1 in DLMtool.
-The TAC is subject to the following conditions that limit the rate at which the TAC can be adjusted up or down:
+où $C_{y-1}$ est les prises de l’année précédente, $\beta_I$ est la pente d’une régression linéaire de l’indice de l’abondance ln au cours des $n$ années précédentes (valeur par défaut de $n = 5$), et $\lambda$ est un paramètre de contrôle entre 0 et 1 qui ajuste la rapidité de l’ajustement du TAC en fonction de la pente de l’indice. La valeur $\lambda$ par défaut est 1 dans l’outil DLMtool.
+Le TAC est assujetti aux conditions suivantes qui limitent le taux auquel il peut être ajusté à la hausse ou à la baisse :
 
-- if next TAC > 1.2 last catch, then TAC = 1.2 $\times$ last catch
-- if next TAC < 0.8 last catch, then TAC = 0.8 $\times$ last catch.
+- si le TAC suivant > 1,2 les dernières prises, alors le TAC = 1,2 $\times$ les dernières prises
+- si le TAC suivant < 0,8 les dernières prises, alors le TAC = 0,8 $\times$ les dernières prises.
 
-We evaluated three configurations of GB_slope, each applied annually:
+Nous avons évalué trois configurations de GB_slope, chacune appliquée annuellement :
 
-- GB_slope_lambda1:   $\lambda = 1$	and  $\beta_I$ is calculated from index in the preceding 5 years
+- GB_slope_lambda1 : $\lambda = 1$ et $\beta_I$ est calculé à partir de l’indice des cinq années précédentes
 
-- GB_slope_lambda05:  $\lambda = 0.5$	and $\beta_I$ is calculated from the preceding 5 years 
+- GB_slope_lambda05 : $\lambda = 0,5$ et $\beta_I$ est calculé à partir des cinq années précédentes 
 
-- GB_slope_yrs10:     $\lambda = 1$	and  $\beta_I$ is calculated from the preceding 10 years
+- GB_slope_yrs10 : $\lambda = 1$ et $\beta_I$ est calculé à partir des 10 années précédentes
 
-We also evaluated the same three configurations, applied every five years:
+Nous avons également évalué les trois mêmes configurations, appliquées tous les cinq ans :
 
 - GB_slope_lambda1_5u
 
@@ -84,32 +83,32 @@ We also evaluated the same three configurations, applied every five years:
 
 - GB_slope_yrs10_5u
 
-Illustrations of the GB_slope MPs are provided in @anderson2020gfmp (their Appendix D)
+Des illustrations des procédures de gestion GB_slope sont fournies dans @anderson2020gfmp (leur annexe D).
 
-#### Islope: Index slope tracking {#sec:mp-islope-track}
+#### Islope : Suivi de la pente de l’indice {#sec:mp-islope-track}
 
-These MPs incrementally adjust the TAC in an attempt to maintain a constant relative abundance index.
-The MPs are similar to "GB_slope" with the addition of a parameter that determines the TAC in the first projection year ($\textrm{TAC}^*$) and different choices of the $\lambda$ parameter.
-The TAC is calculated as:
+Ces procédures de gestion ajustent progressivement le TAC pour tenter de maintenir un indice de l’abondance relative constant. 
+Les procédures de gestion sont semblables à "GB_slope" avec l’ajout d’un paramètre qui détermine le TAC pour la première année de projection ($\textrm{TAC}^*$) et différents choix du paramètre $\lambda$.
+Le TAC est calculé comme suit :
 
 $$
 \textrm{TAC}_y = \textrm{TAC}^*(1+\lambda \beta_I),
 $$
 
-where, in the first projection year, $\textrm{TAC}^*$ is $(1-x)$ multiplied by the mean catch from the last 5 historical years.
-We set $x=0$ for all configurations of the Islope MP.
-In subsequent years, $\textrm{TAC}^*$ is the TAC from the previous year.
-Again, $\lambda$ is a gain or smoothing parameter, and $\beta_I$ is the slope of the ln abundance index over the past $n$ years.
+où, la première année de projection, $\textrm{TAC}^*$ est $(1-x)$ multiplié par les prises moyennes des cinq dernières années historiques.
+Nous avons établi $x = 0$ pour toutes les configurations de la procédure de gestion Islope.
+Les années suivantes, $\textrm{TAC}^*$ est le TAC de l’année précédente.
+Encore une fois, $\lambda$ est un paramètre de gain ou de lissage, et $\beta_I$ est la pente de l’indice d’abondance ln les dernières $n$ années.
 
-As for the GB_slope MPs, we evaluated three configurations of the Islope MPs, applied annually:
+Pour ce qui est des procédures de gestion GB_slope, nous avons évalué trois configurations des procédures de gestion Islope, appliquées annuellement :
 
-- Islope_10_lambda04:  $\lambda = 0.4$ and $\beta_I$ is calculated from the preceding 10 years
+- Islope_10_lambda04 : $\lambda = 0,4$ et $\beta_I$ est calculé à partir des 10 années précédentes
 
-- Islope_10_lambda08:  $\lambda = 0.8$ and $\beta_I$ is calculated from the preceding 10 years
+- Islope_10_lambda08 : $\lambda = 0,8$ et $\beta_I$ est calculé à partir des 10 années précédentes
 
-- Islope_5_lambda04:   $\lambda = 0.4$ and $\beta_I$ is calculated from index in the preceding 5 years
+- Islope_5_lambda04 : $\lambda = 0,4$ et $\beta_I$ est calculé à partir de l’indice des cinq années précédentes
 
-We also evaluated the same three configurations, applied every five years:
+Nous avons également évalué les trois mêmes configurations, appliquées tous les cinq ans :
 
 - Islope_10_lambda04_5u
 
@@ -117,12 +116,12 @@ We also evaluated the same three configurations, applied every five years:
 
 - Islope_5_lambda04_5u
 
-Illustrations of the Islope MPs are provided in @anderson2020gfmp (their Appendix D)
+Des illustrations des procédures de gestion Islope sont fournies dans @anderson2020gfmp (leur annexe D).
 
-#### IDX: Index-based MP from @cox2020 {#sec:mp-idx}
+#### IDX : Procédure de gestion fondée sur des indices de @cox2020 {#sec:mp-idx}
 
-This MP was used in the rebuilding plan for Outside Yelloweye Rockfish in BC [@cox2020].
-The MP assigns TAC based on:
+Cette procédure de gestion a été utilisée dans le plan de rétablissement du sébaste aux yeux jaunes des eaux extérieures en Colombie-Britannique [@cox2020]. 
+Elle attribue le TAC selon la formule suivante :
 
 $$
 \textrm{TAC}_y =
@@ -133,45 +132,45 @@ $$
 \end{cases}
 $$
 
-where $\delta_\textrm{min}$ is the most negative drop allowed in the relative biomass index before the fishery is closed that year and $\Delta I_y$ is defined as:
+où $\delta_\textrm{min}$ est la baisse la plus négative permise dans l’indice de la biomasse relative avant la fermeture de la pêche cette année-là et $\Delta I_y$ est défini comme suit :
 
 $$
 \Delta I_y = \frac{I_y}{I_{y-n}} - 1,
 $$
 
-where $I_y$ refers to a population index value in year $y$ and $n$ determines the reference year.
-We set $\textrm{TAC}_\textrm{Floor} = 5 t$.
-We set $\delta_\textrm{min} = -0.5$ as in @cox2020.
-The maximum increase in TAC is capped at $\delta_\textrm{max} = 0.25$ by default.
-This means that the TAC in any one year cannot increase by more than 25%, implementing a "slow up" behaviour of the MP.
-The parameters $\delta_\textrm{min}$ and $\delta_\textrm{max}$ could possibly be additionally tuned to adjust the behaviour of the MP.
+où $I_y$ désigne une valeur de l’indice de la population l’année $y$ et $n$ détermine l’année de référence. 
+Nous avons défini $\textrm{TAC}_\textrm{Floor} = 5 t$. 
+Nous avons défini $\delta_\textrm{min} = -0,5$ comme dans @cox2020. 
+L’augmentation maximale du TAC est plafonnée à $\delta_\textrm{max} = 0,25$ par défaut. 
+Cela signifie que le TAC d’une année ne peut augmenter de plus de 25 %, ce qui entraîne un comportement « lent » de la procédure de gestion. 
+Il serait possible de régler les paramètres $\delta_\textrm{min}$ et $\delta_\textrm{max}$ pour ajuster le comportement de la procédure de gestion.
 
-Note that the "slow-up--fast-down" behaviour determined by settings for $\delta_\textrm{min}$ and $\delta_\textrm{max}$, combined with the simulated survey index variability, can result in the MP "ratcheting" down the TAC despite an overall increasing index (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
-Furthermore, we implemented the MP exactly as described above and in @cox2020, which only uses $\textrm{TAC}_\textrm{Floor}$ if $\Delta I_y \leq \delta_\textrm{min}$.
-This does *not* stop the TAC from slowly being lowered below $\textrm{TAC}_\textrm{Floor}$ by the "ramp" described by $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ if $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$ (e.g., Figure \@ref(fig:proj-not-satisficed-eg)).
+Il est à noter que le comportement « augmentation lente--baisse rapide » déterminé par les réglages de $\delta_\textrm{min}$ et $\delta_\textrm{max}$, combiné à la variabilité simulée de l’indice du relevé, peut entraîner un « abaissement » du TAC par la procédure de gestion malgré une augmentation globale de l’indice (p. ex., figure \@ref(fig:proj-not-satisficed-eg)). 
+De plus, nous avons mis en œuvre la procédure de gestion exactement comme décrit ci-dessus et dans @cox2020, qui utilise seulement $\textrm{TAC}_\textrm{Floor}$ si $\Delta I_y \leq \delta_\textrm{min}$. 
+Cela n’empêche *pas* la « rampe » décrite par $(1 + \Delta I_y ) \textrm{TAC}_{y-1}$ si $\delta_\textrm{min} \lt \Delta I_y \leq \delta_\textrm{max}$ de faire lentement passer le TAC en dessous de $\textrm{TAC}_\textrm{Floor}$ (p. ex., figure \@ref(fig:proj-not-satisficed-eg)).
 
-This MP can be additionally smoothed:
+Cette procédure de gestion peut être lissée davantage :
 
 $$
 \textrm{TAC}_y = \lambda \cdot \textrm{TAC}_y + (1-\lambda) \textrm{TAC}_{y-1},
 $$
 
-where $\lambda$ controls the degree of smoothing and can range between 0 and 1. @cox2020 used $\lambda=0.5$.
-We define these MPs for DLMtool as "IDX" ($\delta_{\textrm{min}} = -0.5$, $\delta_{\textrm{max}} = 0.25$) and "IDX_smooth" (same as IDX but with $\lambda = 0.5$ to split the difference between the upcoming proposed TAC and the one previously recommended).
+où $\lambda$ contrôle le degré de lissage et peut varier entre 0 et 1. @cox2020 ont utilisé $\lambda=0,5$. 
+Nous définissons ces procédures de gestion pour l’outil DLMtool comme "IDX" ($\delta_{\textrm{min}} = -0,5$, $\delta_{\textrm{max}} = 0,25$) et "IDX_smooth" (identique à IDX, mais avec $\lambda = 0,5$ pour répartir la différence entre le TAC proposé à venir et celui précédemment recommandé).
 
-We evaluated three configurations of the IDX MPs, applied annually:
+Nous avons évalué trois configurations des procédures de gestion IDX, appliquées chaque année :
 
 
-- IDX                : IDX with $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
+- IDX : IDX avec $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
 
-- IDX_smooth         : IDX_smooth with $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
+- IDX_smooth : IDX_smooth avec $\Delta I_y = \frac{I_y}{I_{y-1}} -1$ 
   
 
-- IDX_smooth_yrs5    : IDX with $\Delta I_y = \frac{I_y}{I_{y-5}} -1$
+- IDX_smooth_yrs5 : IDX avec $\Delta I_y = \frac{I_y}{I_{y-5}} -1$
 
-- IDX_yrs5           : IDX_smooth with $\Delta I_y = \frac{I_y}{I_{y-5}} -1$ 
+- IDX_yrs5 : IDX_smooth avec $\Delta I_y = \frac{I_y}{I_{y-5}} -1$ 
 
-We also evaluated the same four configurations, applied every five years:
+Nous avons également évalué les quatre mêmes configurations, appliquées tous les cinq ans :
 
 - IDX_5u
 
@@ -181,42 +180,9 @@ We also evaluated the same four configurations, applied every five years:
 
 - IDX_yrs5_5u
 
-Illustrations of the IDX MPs are provided in @anderson2020gfmp (their Appendix D).
+Des illustrations des procédures de gestion IDX sont fournies dans @anderson2020gfmp (leur annexe D).
 
-## MODEL-BASED MANAGEMENT PROCEDURES {#sec:mp-model-based}
-
-### Surplus Production Model {#sec:mp-sp}
-
-In addition to the empirical MPs described above, we evaluated a surplus production (SP) model, paired with a harvest control rule as a model-based MP.
-Here, we use the surplus production model implemented in MSEtool [@huynh_msetool_2019] and TMB [@tmb], based on @fletcher1978.
-The SP model used in this framework is fully documented in @anderson2020gfmp (their Appendix D).
-Note that the SP model uses all available indices in the historical period, but only the HBLL survey in the projection period.
-
-We paired the model with two ramped harvest control rules (Figure \@ref(fig:mp-hcrs)):
-
-1. HCR-8040: Above 80% of $\hat{B}/\hat{B}_\textrm{MSY}$, $F_y = \hat{F}_\textrm{MSY}$; at or below 40% of estimated $\hat{B}/\hat{B}_\textrm{MSY}$, $F_y = 0$; between 40% and 80%, interpolate the adjustment factor linearly.
-Note that the hat notation indicates the reference point was estimated in the SP MP. 
-This HCR creates operational control points that mimic the provisional biological upper stock reference and limit reference points from DFO's Sustainable Fisheries Framework (Figure \@ref(fig:pa-illustration)), where operational control points define the thresholds of management action (i.e., reducing fishing mortality).
-
-2. HCR-4010: Above 40% of estimated $\hat{B}/\hat{B}_0$ (biomass divided by unfished equilibrium spawning biomass), $F_y = \hat{F}_\textrm{MSY}$; at 10% of estimated $\hat{B}/\hat{B}_0$, $F_y = 0$; between 10% and 40%, interpolate the adjustment factor linearly.
-This is a commonly applied HCR in the fisheries literature and on the US West Coast [e.g., @berger_2019].
-Note that this reference point is based on MP estimates of *B*~0~, whereas HCR-8040 is based on *B*~MSY~.
-
-We evaluated two configurations of the SP model MPs, applied every five years:
-
-- SP_8040_5u: SP model paired with HCR-8040
-
-- SP_4010_5u: SP model paired with HCR-4010
-
-We also evaluated the same two configurations, applied every 10 years:
-
-- SP_4010_10u
-
-- SP_8040_10u
-
-
-
-```{r, mp-hcrs, fig.cap="Proposed provisional harvest control rules associated with model-based MPs.", fig.asp=0.38, fig.width=7.5, out.width="0.8\\textwidth"}
+```{r, mp-hcrs, fig.cap="Règles de contrôle des prises provisoires proposées associées aux procédures de gestion fondées sur des modèles.", fig.asp=0.38, fig.width=7.5, out.width="0.8\\textwidth"}
 f <- function (Brel, LRP, TRP, rel_min = 0, rel_max = 1, ...) {
     adj <- rep(rel_max, length(Brel))
     adj[Brel <= LRP] <- rel_min
@@ -240,33 +206,33 @@ pars8040 <- expand.grid(
   type = "HCR-8040", stringsAsFactors = FALSE)
 pars8040$tac <- purrr::pmap_dbl(pars8040, f)
 
-parsMSY <- expand.grid(
+parsRMD <- expand.grid(
   Brel = seq(0, 1, length.out = 200),
   LRP = NA,
   TRP = NA,
-  type = "HCR-MSY", stringsAsFactors = FALSE)
-parsMSY$tac <- 1
+  type = "HCR-RMD", stringsAsFactors = FALSE)
+parsRMD$tac <- 1
 
 pars <- bind_rows(pars8040, pars4010) %>%
-  bind_rows(parsMSY)
+  bind_rows(parsRMD)
 
 pars$type <- as.factor(pars$type)
-pars$type <- forcats::fct_relevel(pars$type, "HCR-MSY", "HCR-4010", "HCR-8040")
+pars$type <- forcats::fct_relevel(pars$type, "HCR-RMD", "HCR-4010", "HCR-8040")
 
-make_hcr_fig <- function(dat, xlab = expression(Estimated~B/B[0])) {
+make_hcr_fig <- function(dat, xlab = expression(Estimé~B/B[0])) {
   ggplot(dat, aes(Brel, tac)) +
   geom_line() +
   ggsidekick::theme_sleek() +
   labs(
     x = xlab,
-    y = "TAC adjustment factor\n(proportion of MSY)"
+    y = "Facteur d’ajustement du TAC\n(proportion de RMD"
   ) +
   geom_vline(aes(xintercept = LRP), lty = 2, alpha = 0.4) +
   geom_vline(aes(xintercept = TRP), lty = 2, alpha = 0.4)
 }
 
 g1 <- make_hcr_fig(filter(pars, type == "HCR-4010")) + ggtitle("HCR-4010")
-g2 <- make_hcr_fig(filter(pars, type == "HCR-8040"), expression(Estimated~B/B[MSY])) + ggtitle("HCR-8040")
+g2 <- make_hcr_fig(filter(pars, type == "HCR-8040"), expression(Estimated~B/B[RMD])) + ggtitle("HCR-8040")
 
 cowplot::plot_grid(g2, g1, nrow = 1)
 ```
