@@ -1,176 +1,178 @@
 # DISCUSSION {#sec:discussion}
 
-We applied a new MP Framework for Pacific groundfishes [@anderson2020gfmp] to evaluate the ability of alternative MPs to meet rebuilding objectives for Inside Yelloweye Rockfish.
-This is the first application of the MP Framework for decision-making purposes.
+Nous avons appliqué un nouveau Cadre des procédures de gestion pour les poissons de fond du Pacifique [@anderson2020gfmp] afin d’évaluer la capacité des autres procédures de gestion à atteindre les objectifs de rétablissement pour le sébaste aux yeux jaunes des eaux intérieures. 
+Il s’agit de la première application du Cadre des procédures de gestion à des fins décisionnelles.
 
-We evaluated the performance of 31 data-limited MPs (and three reference MPs) with respect to meeting the objectives described in Section \@ref(sec:objectives-metrics).
-We screened out MPs that did not meet both satisficing criteria LRP 1.5GT > 0.9 and ST C10 > 0.50 across the OM reference set scenarios, resulting in `r gfutilities::number_to_word(length(mp_sat))` remaining MPs (`r gfutilities::commify(sort(mp_sat))`).
-All remaining MPs achieved the conservation metrics LRP 1.5 GT, USR 1.5GT and LRP 1GT with greater than 0.98 probability (49 times out of 50) across all four OM reference set scenarios.
-This was largely because none of the reference set OMs estimated the stock to be in the critical zone in 2020---the start of the projection period.
-Within the two OM robustness set scenarios, OM Scenario (B), which simulated higher variability in the future HBLL survey, performed similarly to the OM reference set scenarios.
-However, under OM Scenario (A), the Low M scenario, the probabilities of meeting the performance metric LRP 1.5GT ranged from 0.75 (75 times out of 100) to 0.9 (nine times out of 10), with the current MP (CC_15t) having the lowest probability in this range.
+Nous avons évalué le rendement de 31 procédures de gestion à données limitées (et de trois procédures de gestion de référence) en ce qui a trait à l’atteinte des objectifs décrits dans la section \@ref(sec:objectives-metrics). 
+Nous avons éliminé les procédures de gestion qui ne satisfaisaient pas aux deux critères PRL 1,5DG > 0,9 et CT C10 > 0,50 dans les scénarios de l’ensemble de référence de modèles opérationnels, et il est resté 
+`r gfutilities::number_to_word(length(mp_sat))` procédures de gestion (`r gfutilities::commify(sort(mp_sat))`).
+Toutes les procédures de gestion restantes atteignaient les paramètres de conservation PRL 1,5DG, SSR 1,5DG et PRL 1DG avec une probabilité supérieure à 0,98 (49 fois sur 50) dans les quatre scénarios de l’ensemble de référence de modèles opérationnels, surtout qu’aucun des modèles opérationnels de l’ensemble de référence n’estimait que le stock serait dans la zone critique en 2020---le début de la période de projection. 
+Dans les deux scénarios de l’ensemble de robustesse de modèles opérationnels, le scénario de modèle opérationnel (B), qui simulait une plus grande variabilité dans le futur relevé à la palangre sur fond dur, a donné des résultats semblables à ceux des scénarios de l’ensemble de référence de modèles opérationnels. 
+Cependant, dans le scénario de modèle opérationnel (A), le scénario M faible, les probabilités de respecter le paramètre de rendement PRL 1,5DG variaient de 0,75 (75 fois sur 100) à 0,9 (neuf fois sur 10), la procédure de gestion actuelle (CC_15t) ayant la probabilité la plus faible dans cette fourchette.
 
-Whereas the rebuilding plan guidance [@dfo2013] only describes objectives related to rebuilding, we also evaluated performance of MPs with respect to three average-catch objectives and one catch-variability objective.
-The CC_10t and CC_15t MPs, by definition, met their respective ST C10 and ST C15 performance metrics.
-The Islope MPs showed some contrast across MPs within the reference set for ST C10 and ST C15, depending on the MP configuration and the OM scenario.
-The OM robustness set scenarios generally produced lower probabilities of meeting the ST C10 metric.
+Alors que les directives du plan de rétablissement [@dfo2013] ne décrivent que les objectifs liés au rétablissement, nous avons également évalué le rendement des procédures de gestion pour trois objectifs de prises moyennes et un objectif de variabilité des prises. 
+Les procédures de gestion CC_10t et CC_15t, par définition, respectaient leurs paramètres de rendement CT C10 et CT C15 respectifs. 
+Un certain contraste est apparu entre les procédures de gestion Islope dans l’ensemble de référence pour CT C10 et CT C15 selon la configuration de la procédure de gestion et le scénario de modèle opérationnel. 
+Les scénarios de l’ensemble de robustesse de modèles opérationnels produisaient généralement des probabilités plus faibles de respecter le paramètre CT C10.
 
-We presented a number of visualizations to show trade-offs among conservation and catch objectives [see also @anderson2020gfmp].
-The visualizations present trade-offs in different tabular and graphical formats, intended to support the process of selecting the final MP.
-Because all the MPs met the LRP 1.5 GT objective under the OM reference set scenarios, there were no strong trade-offs between conservation and catch objectives.
-Of the two OM robustness set scenarios, trade-offs were most apparent under the Low M scenario, where the probability of meeting the LRP 1.5GT objective decreased as the probability of achieving an ST C10 increased.
+Nous présentons un certain nombre de visualisations pour illustrer les compromis entre les objectifs de conservation et de prises [voir aussi @anderson2020gfmp]. 
+Ces visualisations illustrent les compromis sous forme de différents tableaux et de graphiques, destinés à faciliter le processus de sélection de la procédure de gestion finale. 
+Étant donné que toutes les procédures de gestion atteignaient l’objectif du PRL 1,5DG dans les scénarios de l’ensemble de référence de modèles opérationnels, il n’y avait pas de compromis important entre les objectifs de conservation et les objectifs de prises. 
+Parmi les deux scénarios de l’ensemble de robustesse de modèles opérationnels, les compromis étaient les plus évidents dans le scénario de M faible, où la probabilité d’atteindre l’objectif du PRL 1,5DG diminuait à mesure que la probabilité d’atteindre CT C10 augmentait.
 
-We found the radar plot visualizations difficult to interpret.
-While these plots can be useful for rapid visualization of multiple trade-offs, and have been recommended for visualization of MSE results [@punt2017], they become more difficult to interpret as more metrics ("spokes") are added.
-They are also very sensitive to the order in which the metrics are placed, and have been shown to be less interpretable that Cartesian plots [@diehl2010; @feldman2013; @albo2016]. We presented radar plots here to gauge interest from RPR participants and solicit feedback on whether to include them in future applications of the MP Framework.
-
-## NATURAL MORTALITY {#sec:discussion-m}
-
-The purpose of the robustness set is to explore OM formulations that represent alternative  hypotheses to those in the reference set [@rademeyer2007; @punt2016].
-Candidate MPs should perform well across both OM reference and robustness scenarios [@rademeyer2007].
-In our study, the two OM robustness set scenarios performed differently from the OM reference set scenarios, especially OM Scenario (A).
-This low mortality/low productivity scenario ($M \sim \textrm{Lognormal}(0.025, 0.2)$) was the only one where the median biomass was estimated to be in the critical zone at the start of the projection period.
-For all other OM scenarios, we sampled from a probability distribution for *M* with mean 0.045 y^-1^, which matched that used in the previous stock assessment [@yamanaka2011].
-
-The rate of natural mortality of fish populations is of one of the most important, yet most difficult parameters to estimate. 
-Numerous methods have been developed to estimate *M* from available life history parameters.
-An [app](http://barefootecologist.com.au/shiny_m.html) developed by NOAA scientists that estimates *M* using various published empirical methods was populated with inside Yelloweye Rockfish parameters. Estimates of *M* ranged from 0.03 to 0.17, depending on the empirical method. Other Yelloweye Rockfish assessments have used lower values for *M*, closer to or lower than those used in OM Scenario (A) (mean 0.025 y^-1^).
-For example, the recent rebuilding plan for the outside stock of Yelloweye Rockfish estimated median values for *M* between 0.031 *y*^-1^ and 0.044 *y*^-1^, depending on the OM [@cox2020].
-The 2008 COSEWIC assessment and status report for inside and outside Yelloweye Rockfish stocks [@cosewic2008] used a value of *M* = 0.02 *y*^-1^, citing the 2001 stock assessment for the inside stock [@yamanaka2001].
-Similarly, stock assessments for the southern Gulf of Alaska stock of Yelloweye Rockfish have used a value of *M* = 0.02 *y*^-1^ [@wood2019].
-
-It is likely that natural mortality rates have varied over time, due to changes in predator populations in the Strait of Georgia. 
-Yelloweye Rockfish occupy a relatively high trophic position [@olson2020] and Steller Sea Lions, Orca Whales (*Orcinus orca*) and Chinook Salmon (*Oncorhynchus tshawytscha*) are the only predators of Yelloweye Rockfish listed in a large data-base of predator-prey interactions (database assembled for @dunne2016; @szoboszlai2015). 
-Populations of all three predator species have experienced large fluctuations in the last century.
-Steller Sea Lion abundance was greatly reduced due to hunting and predator controls, but have now recovered to historical levels [@olesiuk2018; and see Appendix F]. 
-The Southern Resident population of Orca Whales is endangered and the Northern Resident population is threatened [@cosewic2008b]. The cause of decline for both populations is attributed to the declining abundance of Chinook Salmon [@ford2010].
-Pacific Halibut have also been observed preying on Yelloweye Rockfish in the Gulf of Alaska [@livingston2017]; however, Pacific Halibut are not very abundant in inside waters (see data for 2018 IPHC survey in @anderson2019synopsis). 
-Lingcod are likely predators of juvenile Yelloweye Rockfish as they are known predators of rockfish species. 
-However, stomach content studies are often not able to resolve rockfish species beyond unidentified rockfish (i.e. @beaudreau2007, @livingston2017).
-Lingcod in the Strait of Georgia also suffered major population declines and were thought to have been fished down to 2% of historic levels in 1990 but the population has increased since [@logan2005; @holt2016]. 
-Future projects might investigate the effects of time-varying natural mortality on Inside Yelloweye Rockfish.
-
-## ROCKFISH CONSERVATION AREAS {#sec:discussion-rca}
-
-As part of the rockfish conservation strategy, 164 Rockfish Conservation Areas (RCAs), in which fisheries targeting or catching rockfish as bycatch are prohibited, were established in BC waters between 2004-2006 [@yamanaka2010]. 
-There are 130 RCAs in Area 4B (Figure \@ref(fig:map-4B)) that protect an estimated 267 square kilometres of rockfish habitat, amounting to 22% of available rockfish habitat in inside waters [@haggarty2018]. 
-Although RCAs were established as one measure to help rebuild rockfish populations [@yamanaka2010], this analysis does not consider any possible effects of the closures. 
-Remotely Operated Vehicle (ROV) surveys of RCAs in inside waters found that there was no difference in the abundance or size of Yelloweye Rockfish inside RCAs at the time of study (3-7 years after RCA establishment) [@haggarty2016b]. 
-It is expected that, given the late age-at-maturity and longevity of rockfishes, it will take upwards of 20 years for populations to show responses to closed areas [@starr2015]. 
-The RCAs in the inside waters have now been in place for 14 to 16 years, so we might expect to find increased densities and sizes of rockfish in RCAs soon. 
-DFO, in partnership with biologists from the Washington Department of Fish and Wildlife (WDFW) and the National Ocean and Atmospheric Administration (NOAA), undertook an ROV survey of several RCAs in the Strait of Georgia in the fall of 2018 on board the CCGS Vector. 
-However, results from this survey were not available in time to be included in this project. 
-
-## STOCK STATUS {#sec:discussion-status}
-
-The rebuilding plan for the inside stock of Yelloweye Rockfish was triggered by the 2010 stock assessment [@yamanaka2011], which estimated the stock to be below the LRP with high probability.
-Out of all the reference  and robustness set OMs explored in our analysis, only OM Scenario (A), Low M, estimated median spawning biomass to be below the LRP in 2010.
-In all OM scenarios, log recruitment deviations began to increase after 2000, albeit still below zero, likely tracking slight increases in the HBLL index during this period. 
-The 2010 assessment used a surplus production (SP) model, with fundamentally different structural assumptions to the SRA used for conditioning OMs in our analysis.
-As a check, we fit a SP model, similar to that used by @yamanaka2011, and obtained much lower biomass and stock status estimates than from the reference set SRA OMs.
-Furthermore, the estimate of *B*~MSY~ was higher for the SP model than our OM Scenario (1), while the *F*~MSY~ estimate from the SP model was lower than those from the reference set SRA models, indicating lower productivity in the SP model.
-The fact that the SP model had lower estimated productivity and biomass, and higher *B*~MSY~ would lead to a more pessimistic assessment of stock status.
-The SP-fitting exercise suggests that model structure, rather than the addition of ten years of new data since the last assessment, was a major factor contributing to different perceptions of stock status between the current OMs and the previous assessment.
-
-In a recent evaluation of the outside stock of Yelloweye Rockfish, @cox2020 found similar differences between their age-structured OMs, which estimated stock status to be above the LRP, and the 2014 SP-based assessment [@yamanaka2018yelloweyeoutside], which found the stock to be below the LRP, triggering a rebuilding plan.
-@cox2020 noted that structural differences between SP and age-structured models would be expected to produce different results, particularly due to differences in the formulation of productivity.
-We were able to mimic the stock status estimates of @yamanaka2011 when we forced the stock to have lower productivity in OM Scenario (A), although the mean value of *M* used in OM Scenario (A) was lower than that used by @yamanaka2011 to develop the productivity prior for their SP model.
-@cox2020 noted that age-structured models allow for lags in recruitment to fisheries, surveys, and the spawning stock, characteristics that can promote resilience and are more realistic for a long-lived species like Yelloweye Rockfish.
-These differences are controlled by fishery selectivity-at-age, survey selectivity-at-age and maturity-at-age, respectively, in age-structured models and can be over-simplified in aggregate SP models.
-Our OM Scenario (4), where we estimated survey selectivity-at-age, resulted in lower estimates of stock status, implying that assumptions about selectivity were a contributing factor to perceptions of stock status (see Section \@ref(sec:discussion-uncertainties-selectivity)), most likely resulting from impacts on other parameter estimates such as *R*~0~ and autocorrelation in recruitment.
-@cox2020 also noted that their SP-based MPs tended to underestimate biomass, which we also found in the current study, where the SP MPs generated no catch in the first decade of the projections.
-
-Despite differences in perception of stock status among some of our OMs, and between this and the previous stock assessment, we note that the MP Framework provides a method for integrating across the major uncertainties in stock status and reference points (see Section \@ref(sec:discussion-implicit)) that are prevalent for this stock.
-In particular, the inclusion of OM Scenario (A) in the robustness set provides decision-makers with an alternative view of stock status and performance of MPs. In cases such as these, where the data available are not sufficient to resolve the different estimates of stock status a "weight of evidence" approach can be used to make management decisions [@kronlund2020]. A weight of evidence approach considers the combined contributions of individual studies (totality of evidence) and enlists expert judgement to assign weights for each line of evidence (individual studies or operating models). 
-
-## KEY UNCERTAINTIES {#sec:discussion-uncertainties}
-
-### Selectivity {#sec:discussion-uncertainties-selectivity}
-
-Selectivity was a major source of uncertainty in our OMs.
-There are no available age-composition data for commercial or recreational fisheries, and none from the Dogfish survey.
-We therefore fixed selectivity for all these gears.
-Commercial and recreational selectivities were set to match those reported for the outside stock [@cox2020] and we set selectivity in the Dogfish survey to mirror the value used for the HBLL survey.
-However, it was noted during the Outside Yelloweye Rebuilding process that additional biological sampling should be undertaken to inform the selectivity of commercial, recreational and FSC catches [@dfo2020], and this recommendation equally applies to the inside population. Full biological data, including otoliths from Yelloweye Rockfish were collected on the Dogfish survey in 2019 for the first time.
-Although the ages were not yet available for this work, they may inform selectivity of the Dogfish survey for future work. 
-We also initiated a project in August 2019 to compare the HBLL and Dogfish gear by fishing some of the Dogfish survey sites with both the HBLL and Dogfish survey gear. These data may also inform the comparability of the two surveys.  
-
-Age-composition data from the area 4B surveys were sparse and have only been collected in recent years.
-Initial attempts to estimate selectivity in the HBLL survey (coupled with equal weighting between the HBLL and Dogfish survey) resulted in implausible estimates of age-at-full-selectivity and a strong retrospective pattern in biomass estimates.
-We therefore fixed age-at-full-selectivity at 22 *y*, and upweighted the Dogfish survey likelihood component, which greatly improved the retrospective behaviour.
-To separate the effects of upweighting the Dogfish survey from fixing HBLL selectivity, we estimated HBLL selectivity in OM Scenario (4), which slightly changed the perception of stock status.
-
-While we could have explored other fixed selectivity assumptions, we believe we used the most plausible values, and, for the HBLL survey, included an alternative OM scenario in the reference set.
-Future applications of the MP Framework for this stock could explore other selectivity OM scenarios.
+Nous avons constaté que les visualisations des diagrammes en radar étaient difficiles à interpréter. 
+Bien que ces diagrammes puissent être utiles pour visualiser rapidement plusieurs compromis et qu’ils aient été recommandés pour la visualisation des résultats de l’évaluation de la stratégie de gestion [@punt2017], ils deviennent plus difficiles à interpréter à mesure que l’on ajoute d’autres paramètres (« rayons »). 
+Ils sont également très sensibles à l’ordre dans lequel les paramètres sont placés, et il a été démontré qu’ils sont moins interprétables que les graphiques cartésiens [@diehl2010; @feldman2013; @albo2016]. Nous avons présenté des diagrammes en radar ici pour évaluer l’intérêt des participants au processus régional d’examen par les pairs et leur demander leurs commentaires sur la question de savoir s’il faut les inclure dans les futures applications du Cadre des procédures de gestion.
 
 
-### Historical catch {#sec:discussion-uncertainties-catch}
+## MORTALITÉ NATURELLE {#sec:discussion-m}
 
-The other major source of uncertainty in our analyses is the magnitude of historical commercial and recreational catch. Uncertainty regarding commercial catch is due to reporting of rockfishes other than Pacific Ocean Perch in an aggregate category before 1950, and large uncertainty in the magnitude of unreported catch during the period 1986--2005.
-A reconstruction of historical catch data to 2005 was done by @haigh2011, which attempted to parse out Yelloweye Rockfish from the aggregated rockfish category and to account for discarded fish.
-The reconstructed catches were used in the previous stock assessment [@yamanaka2011].
-While there has been some controversy over reconstructed catch data, for both the outside and inside Yelloweye stocks, re-evaluation of the reconstruction was outside the scope of this work and it remains the best available time series of historical catches.
-We therefore followed the same approach to reconstructing historical recreational catch data and estimating current recreational catch data as @yamanaka2011.
-We evaluated the effect of doubling the nominal catch data for the period 1986--2005 in OM Scenario (2) but performance of MPs was not appreciably different from other OM reference set scenarios.
+L’objectif de l’ensemble de robustesse est d’explorer les formulations des modèles opérationnels qui représentent d’autres hypothèses que celles de l’ensemble de référence [@rademeyer2007; @punt2016]. 
+Les procédures de gestion possibles devraient donner de bons résultats dans les scénarios de référence et de robustesse de modèles opérationnels [@rademeyer2007]. 
+Dans notre étude, les deux scénarios de l’ensemble de robustesse de modèles opérationnels ont donné des résultats différents des scénarios de l’ensemble de référence de modèles opérationnels, en particulier le scénario de modèle opérationnel (A). 
+Ce scénario de faible mortalité/faible productivité ($M \sim \textrm{Lognormal}(0,025, 0,2)$) était le seul où la biomasse médiane était estimée se trouver dans la zone critique au début de la période de projection. 
+Pour tous les autres scénarios de modèles opérationnels, nous avons échantillonné selon une distribution de probabilités pour *M* avec une moyenne de 0,045 y^-1^, qui correspondait à celle utilisée dans l’évaluation du stock précédente [@yamanaka2011].
 
-We deviated from @yamanaka2011 in our treatment of FSC catch. They applied an algorithm to explicitly estimate FSC catch, based on assumptions about consumption rates.
-After discussions with fisheries biologists who work with local First Nations in the northern and southern portions of Area 4B, we elected to include FSC catches with commercial catches in the northern portion, because most of the rockfish catch is understood to be caught under dual fishing licences and would therefore be included in DFO commercial catch databases.
-We elected to assume FSC catches in the southern region were accounted for in recreational catches, because most of the rockfish catch is caught from small vessels, so effort, at least, is likely already counted by DFO overflights.
-We recognize the large uncertainties surrounding FSC catch.
-Future applications of the MP Framework for this stock would benefit from more detailed collaborative work with First Nations to quantify contemporary and historical FSC catch in Area 4B.
+Le taux de mortalité naturelle des populations de poissons est l’un des paramètres les plus importants, mais les plus difficiles à estimer. 
+De nombreuses méthodes ont été élaborées pour estimer *M* à partir des paramètres du cycle biologique accessibles. 
+Les paramètres du sébaste aux yeux jaunes des eaux intérieures ont été saisis dans une [application] (http://barefootecologist.com.au/shiny_m.html) mise au point par des scientifiques de la NOAA, qui permet d’estimer *M* à l’aide de diverses méthodes empiriques publiées. Les estimations de *M* variaient de 0,03 à 0,17, selon la méthode empirique. D’autres évaluations du sébaste aux yeux jaunes ont utilisé des valeurs plus faibles pour *M*, plus proches ou plus basses que celles utilisées dans le scénario de modèle opérationnel (A) (moyenne de 0,025 y^-1^). 
+Par exemple, le récent plan de rétablissement du stock de sébaste aux yeux jaunes des eaux extérieures a estimé les valeurs médianes pour *M* entre 0,031 *y*^-1^ et 0,044 *y*^-1^, selon le modèle opérationnel [@cox2020]. 
+L’évaluation et le rapport de situation de 2008 du COSEPAC pour les stocks de sébaste aux yeux jaunes des eaux intérieures et extérieures [@cosewic2008] ont utilisé une valeur de *M* = 0,02 *y*^-1^, citant l’évaluation de 2001 du stock des eaux intérieures [@yamanaka2001]. 
+De même, les évaluations du stock de sébaste aux yeux jaunes du sud du golfe d’Alaska ont utilisé une valeur de *M* = 0,02 *y*^-1^ [@wood2019].
 
-## IMPLICIT VS. EXPLICIT KNOWLEDGE OF LIMIT REFERENCE POINTS {#sec:discussion-implicit}
+Les taux de mortalité naturelle ont probablement varié au fil du temps, en raison des changements dans les populations de prédateurs dans le détroit de Georgie. 
+Le sébaste aux yeux jaunes occupe une position trophique relativement élevée [@olson2020] : l’otarie de Steller, l’épaulard (*Orcinus orca*) et le saumon chinook (*Oncorhynchus tshawytscha*) sont ses seuls prédateurs inscrits dans une grande base de données sur les interactions prédateur-proie (base de données assemblée pour @dunne2016; @szoboszlai2015). 
+Les populations des trois espèces prédatrices ont beaucoup fluctué au cours du dernier siècle.
+L’abondance de l’otarie de Steller a été considérablement réduite en raison de la chasse et du contrôle des prédateurs, mais elle s’est maintenant rétablie à des niveaux historiques [@olesiuk2018; voir l’annexe F]. 
+La population résidente d’épaulard du sud est en voie de disparition et la population résidente du nord est menacée [@cosewic2008b]. La cause du déclin des deux populations est attribuée au déclin de l’abondance du saumon chinook [@ford2010]. 
+On a également observé une prédation sur le sébaste aux yeux jaunes par le flétan du Pacifique dans le golfe d’Alaska [@livingston2017]; toutefois, le flétan du Pacifique n’est pas très abondant dans les eaux intérieures (voir les données du relevé de 2018 de la CIFP dans @anderson2019synopsis). 
+La morue-lingue est probablement un prédateur des sébastes aux yeux jaunes juvéniles, car c’est un prédateur connu des espèces de sébastes. 
+Cependant, les études des contenus stomacaux ne permettent souvent pas d’identifier les espèces de sébastes au-delà de « sébaste non identifié » (@beaudreau2007, @livingston2017). 
+La population de morue-lingue dans le détroit de Georgie a également beaucoup décliné et on pensait que la pêche l’avait fait chuter à 2 % des niveaux historiques en 1990, mais elle a augmenté depuis [@logan2005; @holt2016]. 
+Des projets pourraient étudier les effets de la mortalité naturelle variable dans le temps sur le sébaste aux yeux jaunes des eaux intérieures.
 
-This MP Framework, and all MSE processes, differ from conventional stock assessments in the way science advice is delivered [@anderson2020gfmp].
-In most BC groundfish stock assessments [e.g., @yamanaka2011; @starr2017; @forrest2019], catch advice is presented in the form of decision tables, where probabilities of breaching reference points (e.g., probability of the stock falling below the LRP) are presented over a range of possible future TAC levels.
-This approach depends on explicit reporting of reference points and estimation of stock status.
-Following the production of a decision table, it is then the job of the decision-makers to select a future TAC based on the probabilities presented, taking into consideration other factors such as the economic needs of the fishery and some level of risk tolerance.
-In this process, consideration of risk occurs at the final step of the decision-making process and may not always be transparent or be related to pre-agreed objectives.
+## AIRES DE CONSERVATION DU SÉBASTE {#sec:discussion-rca}
 
-MP frameworks differ from conventional assessments in two key ways: (1) reference points and stock status are not necessarily explicitly reported; and (2) objectives related to the probability of breaching reference points must be agreed upon at the beginning of the process, (i.e., Step 2 of the best practices).
-Reference points and stock status are therefore still an integral component of the framework, but they are calculated in the OMs and are built into the performance metrics.
-Critically, agreement on acceptable risk (e.g., acceptable probabilities of breaching reference points) must be reached at the beginning of the process so that performance metrics and satisficing criteria can be established.
+Dans le cadre de la stratégie de conservation du sébaste, 164 aires de conservation du sébaste (ACS), dans lesquelles les pêches ciblant le sébaste ou le capturant comme prises accessoires sont interdites, ont été établies dans les eaux de la Colombie-Britannique entre 2004 et 2006 [@yamanaka2010]. 
+Il y a 130 ACS dans la zone 4B (figure \@ref(fig:map-4B)) qui protègent environ 267 kilomètres carrés d’habitat du sébaste, soit 22 % de l’habitat disponible dans les eaux intérieures [@haggarty2018]. 
+Bien que les ACS aient été établies comme une mesure visant à aider à reconstituer les populations de sébaste [@yamanaka2010], la présente analyse ne tient pas compte des effets possibles des fermetures.
+ Les relevés par véhicule sous-marin téléguidé effectués dans les ACS dans les eaux intérieures ont révélé qu’il n’y avait pas de différence dans l’abondance ou la taille du sébaste aux yeux jaunes dans les ACS au moment de l’étude (de 3 à 7 ans après la mise en place des aires) [@haggarty2016b]. 
+Compte tenu de l’âge tardif à la maturité et de la longévité du sébaste, il faudra sans doute plus de 20 ans pour que les populations affichent des réactions aux zones fermées [@starr2015]. 
+Les ACS dans les eaux intérieures étant maintenant en place depuis 14 à 16 ans, nous pourrions commencer à y trouver bientôt des sébastes plus grands et en plus forte densité. 
+Le MPO, en partenariat avec des biologistes du Washington Department of Fish and Wildlife (WDFW) et de la National Ocean and Atmospheric Administration (NOAA), a entrepris un relevé par véhicule sous-marin téléguidé de plusieurs ACS dans le détroit de Georgie à l’automne 2018, à bord du NGCC Vector. 
+Cependant, les résultats de ce relevé n’ont pas été publiés à temps pour être inclus dans ce projet. 
 
-For many stocks, especially data-limited stocks, it is not possible to reliably estimate biological reference points or estimate stock status.
-MP frameworks such as this one may be especially important for these stocks.
-The Sustainable Fisheries Framework and the Fish Stocks provisions of the *Fisheries Act* require that fish stocks be maintained at sustainable levels, and particularly above the LRP.
-This framework implicitly preserves the intent of these policies despite the fact that reference points and stock status are not explicitly emphasized.
+## ÉTAT DU STOCK {#sec:discussion-status}
 
-## REASSESSMENT FREQUENCY AND TRIGGERS {#sec:discussion-triggers}
 
-In general, the purpose of an MP framework is to identify and select a robust MP that can be left in place for an agreed amount of time.
-Interim checks between assessments are also recommended to ensure the selected MP is performing as expected.
-In addition to the MSE best practice steps, @carruthers2018 describe a final evaluation step, where performance of the selected MP is formally reviewed once it has been implemented.
-Departures from an MP's expected performance have been termed "exceptional circumstances".
-These may occur when the observed system dynamics fall outside the range of OM scenarios specified in the OMs over which the MP was demonstrated to be robust [@butterworth2008].
+Le plan de rétablissement du stock de sébaste aux yeux jaunes des eaux intérieures a été déclenché par l’évaluation du stock de 2010 [@yamanaka2011], qui a estimé qu’il y avait une probabilité élevée que le stock soit inférieur au PRL. 
+De tous les modèles opérationnels des ensembles de référence et de robustesse explorés dans notre analyse, seul le scénario de modèle opérationnel (A), M faible, a estimé que la médiane de la biomasse féconde serait inférieure au PRL en 2010. 
+Dans tous les scénarios de modèles opérationnels, les écarts de recrutement sur l’échelle logarithmique ont commencé à augmenter après 2000, bien qu'ils soient toujours en deçà de zéro, suivant probablement les légères augmentations de l’indice du relevé à la palangre sur fond dur pendant cette période. 
+L’évaluation de 2010 a utilisé un modèle de production excédentaire, avec des hypothèses structurelles fondamentalement différentes de l’analyse de réduction du stock utilisée pour le conditionnement des modèles opérationnels dans notre analyse. 
+À titre de vérification, nous avons ajusté un modèle de production excédentaire, semblable à celui utilisé par @yamanaka2011, et avons obtenu des estimations de la biomasse et de l’état du stock beaucoup plus faibles que celles des modèles opérationnels d’analyse de rétablissement du stock de l’ensemble de référence. 
+De plus, dans le modèle de production excédentaire, l’estimation de *B*~RMD~ était plus élevée que notre scénario de modèle opérationnel (1) et l’estimation de *F*~RMD~ inférieure à celle des modèles d’analyse de réduction du stock de l’ensemble de référence, ce qui indique une productivité plus faible dans le modèle de production excédentaire. 
+La productivité et la biomasse estimées plus faibles et une *B*~RMD~ plus élevée dans le modèle de production excédentaire donneraient une évaluation plus pessimiste de l’état du stock. 
+L’exercice d’ajustement du modèle de production excédentaire donne à penser que la structure du modèle, plus que l’ajout de dix années de nouvelles données depuis la dernière évaluation, était un facteur important qui a contribué aux différentes perceptions de l’état du stock entre les modèles opérationnels actuels et l’évaluation précédente.
 
-Evidence for exceptional circumstances, occurring within the recommended assessment interval, would trigger a review of the OM(s) and MP, possibly resulting in a new OM, or an adjustment to the selected MP [@carruthers_hordyk_2018].
-These authors list several examples of MSEs where formal protocols for detecting exceptional circumstances have been established.
-In general, formal protocols include monitoring the biomass index, catch, and other data-types such as age-composition data, and comparing observations to the OM predictions.
-An example of a trigger for re-evaluation could be the observed index of abundance falling outside the 90% confidence interval of the OM-projected index.
-See @carruthers_hordyk_2018 for further recommendations on formal evaluation procedures.
-Informal evaluation procedures, via feedback from stakeholders or visual comparison of observed data vs. projected data, can also be used to detect exceptional circumstances [e.g., @cox2008a].
+Dans une évaluation récente du stock de sébaste aux yeux jaunes des eaux extérieures, @cox2020 ont relevé des différences semblables entre leurs modèles opérationnels structurés selon l’âge, qui estimaient que l’état du stock était supérieur au PRL, et l’évaluation fondée sur la production excédentaire de 2014 [@yamanaka2018yelloweyeoutside], selon laquelle le stock était inférieur au PRL, déclenchant un plan de rétablissement. 
+@cox2020 ont remarqué que les différences structurelles entre les modèles de production excédentaire et les modèles structurés selon l’âge devraient produire des résultats différents, surtout en raison des différences dans la formulation de la productivité. 
+Nous avons été en mesure d’imiter les estimations de l’état du stock de @yamanaka2011 en forçant une productivité plus faible du stock dans le scénario de modèle opérationnel (A), même si la valeur moyenne de *M* utilisée dans le scénario de modèle opérationnel (A) était inférieure à celle utilisée par @yamanaka2011 pour calculer la valeur a priori de la productivité pour leur modèle de production excédentaire. 
+@cox2020 ont souligné que les modèles structurés selon l’âge prévoient des retards du recrutement dans les pêches, les relevés et le stock reproducteur, des caractéristiques qui peuvent favoriser la résilience et qui sont plus réalistes pour une espèce longévive comme le sébaste aux yeux jaunes. 
+Ces différences sont contrôlées par la sélectivité de la pêche selon l’âge, la sélectivité du relevé selon l’âge et la maturité selon l’âge, respectivement, dans les modèles structurés selon l’âge et peuvent être trop simplifiées dans les modèles de production excédentaire agrégés. 
+Notre scénario de modèle opérationnel (4), dans lequel nous avons estimé la sélectivité du relevé selon l’âge, a produit des estimations plus faibles de l’état du stock, ce qui signifie que les hypothèses au sujet de la sélectivité ont contribué aux perceptions de l’état du stock (voir la section \@ref(sec:discussion-uncertainties-selectivity)), fort probablement en raison des impacts sur d’autres estimations de paramètres comme *R*~0~ et l’autocorrélation dans le recrutement. 
+@cox2020 ont également remarqué que leurs procédures de gestion fondées sur la production excédentaire avaient tendance à sous-estimer la biomasse, ce que nous avons aussi constaté dans la présente étude, où les procédures de gestion de la production excédentaire n’ont pas généré de prises dans la première décennie des projections.
 
-Satisficed MPs in the current analyses included constant catch MPs and annual Islope MPs. All of the index-based MPs were also evaluated at five-year intervals. While all of these MPs met the LRP 1.5GT criteria, none of them met the ST C10 criteria.
-Therefore, if an index-based MP is selected, we recommend annual updates.
-In line with guidance for rebuilding plans in Canada [@dfo2013], we recommend re-evaluation of the performance of the selected MP at least every three years.
+Malgré les différences de perception de l’état du stock entre certains de nos modèles opérationnels, et entre cette évaluation et la précédente, nous remarquons que le Cadre des procédures de gestion fournit une méthode d’intégration des principales incertitudes dans l’état du stock et les points de référence (voir la section \@ref(sec:discussion-implicit)) qui sont prévalentes pour ce stock. 
+En particulier, l’inclusion du scénario de modèle opérationnel (A) dans l’ensemble de robustesse offre aux décideurs un autre point de vue sur l’état du stock et le rendement des procédures de gestion. Dans de tels cas, où les données accessibles ne sont pas suffisantes pour résoudre les différentes estimations de l’état du stock, on peut recourir à une approche du « poids de la preuve » pour prendre des décisions de gestion [@kronlund2020]. Une approche fondée sur le poids de la preuve tient compte des contributions combinées des différentes études (ensemble de la preuve) et fait appel au jugement d’experts pour attribuer des pondérations à chaque source de données (études individuelles ou modèles opérationnels). 
+
+## PRINCIPALES INCERTITUDES {#sec:discussion-uncertainties}
+
+### Sélectivité {#sec:discussion-uncertainties-selectivity}
+La sélectivité était une source majeure d’incertitude dans nos modèles opérationnels. 
+Il n’existe aucune donnée sur la composition selon l’âge pour les pêches commerciales ou récréatives, et aucune donnée du relevé sur l’aiguillat commun. 
+Nous avons donc fixé la sélectivité pour tous ces engins. 
+Les sélectivités pour les pêches commerciales et récréatives ont été établies de façon à correspondre à celles déclarées pour le stock des eaux extérieures [@cox2020], et nous avons fixé la sélectivité dans le relevé sur l’aiguillat commun pour refléter la valeur utilisée pour le relevé à la palangre sur fond dur. 
+Toutefois, il a été noté au cours du processus de rétablissement du sébaste aux yeux jaunes des eaux extérieures qu’il faudrait effectuer des échantillonnages biologiques supplémentaires pour étayer la sélectivité dans les pêches commerciales, récréatives et à des fins ASR [@dfo2020], et cette recommandation s’applique également à la population des eaux intérieures. Des données biologiques complètes, y compris des otolithes de sébaste aux yeux jaunes, ont été recueillies pour la première fois pendant le relevé sur l’aiguillat commun en 2019. 
+Même si les données sur l’âge n’étaient pas encore accessibles pour ce travail, elles pourraient orienter la sélectivité dans le relevé sur l’aiguillat commun pour les travaux futurs. 
+Nous avons également lancé en août 2019 un projet pour comparer les engins des relevés à la palangre sur fond dur et sur l’aiguillat commun en pêchant à certains des sites du relevé sur l’aiguillat commun avec les engins des deux relevés. Ces données peuvent également guider la comparabilité des deux relevés. 
+
+Les données sur la composition selon l’âge tirées des relevés dans la zone 4B étaient rares et n’ont été recueillies que ces dernières années. 
+Les premières tentatives d’estimation de la sélectivité dans le relevé à la palangre sur fond dur (associées à une pondération égale entre ce relevé et celui sur l’aiguillat commun) ont donné des estimations invraisemblables de l’âge à la pleine sélectivité et une forte tendance rétrospective dans les estimations de la biomasse. 
+Par conséquent, nous avons fixé à 22 *y* l’âge à la pleine sélectivité et nous avons augmenté la pondération de la composante de vraisemblance du relevé sur l’aiguillat commun, ce qui a nettement amélioré le comportement rétrospectif. 
+Pour séparer les effets de l’augmentation de la pondération du relevé sur l’aiguillat commun de la détermination de la sélectivité du relevé à la palangre sur fond dur, nous avons estimé cette dernière dans le scénario de modèle opérationnel (4), ce qui a légèrement modifié la perception de l’état du stock.
+
+Nous aurions pu explorer d’autres hypothèses de sélectivité fixes, mais nous pensons avoir utilisé les valeurs les plus plausibles et, pour le relevé à la palangre sur fond dur, nous avons inclus un autre scénario de modèle opérationnel dans l’ensemble de référence. 
+Les applications futures du Cadre des procédures de gestion pour ce stock pourraient examiner d’autres scénarios de modèles opérationnels de sélectivité.
+
+
+### Prises historiques {#sec:discussion-uncertainties-catch}
+
+L’autre grande source d’incertitude dans nos analyses est l’ampleur des prises commerciales et récréatives historiques. L’incertitude concernant les prises commerciales vient du fait qu’avant 1950, les sébastes autres que le sébaste à longue mâchoire étaient déclarés dans une catégorie agrégée; l’ampleur des prises non déclarées de 1986 à 2005 constitue également une grande incertitude.
+@Haigh2011 ont reconstitué les données sur les prises historiques jusqu’en 2005 et tenté de séparer le sébaste aux yeux jaunes de la catégorie agrégée des sébastes et de tenir compte des poissons rejetés. 
+Les prises reconstituées ont été utilisées dans l’évaluation précédente du stock [@yamanaka2011].
+Malgré une certaine controverse au sujet des données reconstituées sur les prises, pour le stock de sébaste des eaux extérieures comme pour celui des eaux intérieures, la réévaluation de la reconstitution était hors de la portée de ce travail et demeure la meilleure série chronologique accessible des prises historiques. 
+Nous avons donc repris la même approche que @yamanaka2011 pour reconstituer les données historiques sur les prises récréatives et estimer les prises récréatives actuelles. 
+Nous avons évalué l’effet du doublement des données sur les prises nominales de 1986 à 2005 dans le scénario de modèle opérationnel (2), mais le rendement des procédures de gestion n’était pas sensiblement différent des autres scénarios de l’ensemble de référence de modèles opérationnels.
+
+Nous nous sommes écartés de @yamanaka2011 dans notre traitement des prises à des fins ASR . Ils ont appliqué un algorithme pour estimer explicitement les prises à des fins ASR , en se fondant sur des hypothèses au sujet des taux de consommation. 
+Après avoir discuté avec des ichtyobiologistes qui travaillent avec les Premières Nations locales dans les parties nord et sud de la zone 4B, nous avons choisi d’inclure les prises à des fins ASR  avec les prises commerciales dans la partie nord, la plupart des prises de sébaste étant capturées en vertu de permis de double pêche et étant donc incluses dans les bases de données sur les prises commerciales du MPO. 
+Nous avons choisi de supposer que les prises à des fins ASR  dans la région du sud étaient comptabilisées dans les prises récréatives, parce que la plupart des prises de sébaste sont effectuées à partir de petits bateaux, de sorte que l’effort, du moins, est probablement déjà compté par les survols du MPO. 
+Nous sommes conscients des grandes incertitudes entourant les prises à des fins ASR . 
+Les applications futures du Cadre des procédures de gestion de ce stock bénéficieraient d’un travail de collaboration plus détaillé avec les Premières Nations pour quantifier les prises à des fins ASR  contemporaines et historiques dans la zone 4B.
+
+
+## CONNAISSANCE IMPLICITE ET EXPLICITE DES POINTS DE RÉFÉRENCE LIMITES {#sec:discussion-implicit}
+
+Ce Cadre des procédures de gestion et tous les processus d’évaluation de la stratégie de gestion diffèrent des évaluations classiques des stocks de par la façon dont les avis scientifiques sont fournis [@anderson2020gfmp]. 
+Dans la plupart des évaluations des stocks de poisson de fond de la Colombie-Britannique [p. ex., @yamanaka2011; @starr2017; @forrest2019], les avis sur les prises sont présentés sous forme de tableaux de décision, où les probabilités de dépassement des points de référence (p. ex., la probabilité que les stocks tombent en deçà du PRL) sont présentées pour un éventail de futurs niveaux de TAC possibles. 
+Cette approche dépend de la déclaration explicite des points de référence et de l’estimation de l’état des stocks. 
+Une fois qu’un tableau de décision a été produit, il incombe aux décideurs de choisir un futur TAC en fonction des probabilités présentées, en tenant compte d’autres facteurs comme les besoins économiques de la pêche et un certain niveau de tolérance au risque. 
+Dans ce processus, la prise en compte du risque se fait à l’étape finale du processus décisionnel et n'est pas toujours transparente ou liée à des objectifs convenus à l’avance.
+
+Les cadres de procédures de gestion diffèrent des évaluations conventionnelles de deux façons principales : 1) les points de référence et l’état des stocks ne sont pas explicitement déclarés; 2) les objectifs liés à la probabilité de dépasser les points de référence doivent être convenus au début du processus (l’étape 2 des pratiques exemplaires). 
+Les points de référence et l’état des stocks font donc toujours partie intégrante du cadre, mais ils sont calculés dans les modèles opérationnels et intégrés dans les paramètres de rendement. 
+Il est essentiel de s’entendre sur le risque acceptable (p. ex., les probabilités acceptables de dépassement des points de référence) au début du processus afin de pouvoir établir les paramètres de rendement et les critères de satisfaction.
+
+Pour de nombreux stocks, en particulier les stocks à données limitées, il n’est pas possible d’en estimer de façon fiable les points de référence biologiques ou l’état. 
+Des cadres de procédures de gestion comme celui-ci peuvent être particulièrement importants pour ces stocks. 
+Le Cadre pour la pêche durable et les dispositions relatives aux stocks de poissons de la *Loi sur les pêches* exigent que les stocks de poissons soient maintenus à des niveaux durables, et en particulier au-dessus du PRL. 
+Ce cadre préserve implicitement l’intention de ces politiques bien que les points de référence et l’état du stock ne soient pas explicitement mis en évidence.
+
+## FRÉQUENCE ET DÉCLENCHEURS DES RÉÉVALUATIONS {#sec:discussion-triggers}
+
+En général, l’objectif d’un cadre de procédures de gestion est de déterminer et de choisir une procédure de gestion solide qui peut être laissée en place pendant une période convenue. 
+Il est également recommandé d’effectuer des vérifications provisoires entre les évaluations pour s’assurer que les procédures de gestion choisies fonctionnent comme prévu. 
+En plus des étapes des pratiques exemplaires de l’évaluation de la stratégie de gestion, @carruthers2018 décrivent une étape d’évaluation finale, où le rendement de la procédure de gestion choisie est examiné officiellement une fois qu’elle a été mise en œuvre. 
+Les écarts par rapport au rendement attendu d’une procédure de gestion ont été qualifiés de « circonstances exceptionnelles ». 
+Cela peut se produire lorsque la dynamique du système observée se situe en dehors de l’éventail des scénarios de modèles opérationnels précisés dans les modèles opérationnels pour lesquels la procédure de gestion s’est avérée solide [@butterworth2008].
+
+La preuve de circonstances exceptionnelles, survenant dans l’intervalle recommandé entre les évaluations, déclencherait un examen des modèles opérationnels et de la procédure de gestion, ce qui pourrait entraîner un nouveau modèle opérationnel ou un ajustement de la procédure de gestion choisie [@carruthers_hordyk_2018]. 
+Ces auteurs donnent plusieurs exemples d’évaluations de la stratégie de gestion pour lesquelles des protocoles officiels de détection de circonstances exceptionnelles ont été établis. 
+En général, les protocoles officiels comprennent la surveillance de l’indice de la biomasse, des prises et d’autres types de données, comme les données sur la composition selon l’âge, et la comparaison des observations aux prévisions du modèle opérationnel. 
+L’indice de l’abondance observé sortant de l’intervalle de confiance de 90 % de l’indice projeté par le modèle opérationnel est un exemple de déclencheur d’une réévaluation. 
+Voir d’autres recommandations sur les procédures d’évaluation officielles dans @carruthers_hordyk_2018. 
+Les procédures d’évaluation informelles, sous la forme de commentaires des intervenants ou de comparaison visuelle des données observées par rapport aux données projetées, peuvent également permettre de détecter des circonstances exceptionnelles [p. ex. @cox2008a].
+
+Parmi les procédures de gestion satisfaisantes dans les analyses actuelles, certaines sont à prises constantes et d’autres sont des procédures de gestion Islope annuelles. Toutes les procédures de gestion fondées sur des indices ont également été évaluées tous les cinq ans. Toutes ces procédures de gestion satisfaisaient aux critères du PRL 1,5DG, mais aucune ne répondait aux critères de CT C10. 
+C’est pourquoi nous recommandons des mises à jour annuelles si une procédure de gestion fondée sur des indices est sélectionnée. 
+Conformément aux directives pour les plans de rétablissement au Canada [@dfo2013], nous recommandons de réévaluer le rendement de la procédure de gestion choisie au moins tous les trois ans.
+
 
 \clearpage
 
-# ACKNOWLEDGEMENTS
+# REMERCIEMENTS
 
-We are grateful to Adam Keizer and Maureen Finn (Groundfish Management Unit), and Roger Kanno (Sustainable Fisheries Framework Coordinator) for helpful discussions and guidance regarding objectives for the rebuilding plan.
+Nous remercions Adam Keizer et Maureen Finn (Groupe de gestion du poisson de fond), ainsi que Roger Kanno (coordonnateur du Cadre pour la pêche durable) pour les discussions et les conseils utiles concernant les objectifs du plan de rétablissement.
 
-We are very grateful to Bob Bocking, Cheri Ayers and Christa Rusel, fisheries consultants working with local First Nations; and Mark Fetterly, Aleta Rushton and Patrik Zetterberg from DFO, who provided very helpful advice regarding FSC catch.
+Nous sommes très reconnaissants à Bob Bocking, Cheri Ayers et Christa Rusel, experts-conseils en pêches qui travaillent avec les Premières Nations locales, et à Mark Fetterly, Aleta Rushton et Patrik Zetterberg du MPO, qui nous ont donné des conseils très utiles au sujet des prises à des fins ASR .
 
-Ross Claytor and Dwayne Lepitzki from COSEWIC provided useful guidance on the development of performance metrics that we be of use for COSEWIC assessments. 
+Ross Claytor et Dwayne Lepitzki, du COSEPAC, nous ont fourni des conseils précieux sur l’élaboration des paramètres de rendement qui seront utilisés pour les évaluations du COSEPAC. 
 
-Strahan Tucker and the pinniped team, DFO, provided data on Pinniped abundance and rockfish consumption rates.
-Spencer Wood, The Natural Capital Project, Stanford University, searched their large predator-prey database for us.
+Strahan Tucker et l’équipe responsable des pinnipèdes au sein du MPO ont fourni des données sur l’abondance des pinnipèdes et les taux de consommation de sébaste. Spencer Wood (The Natural Capital Project, Université Stanford) a fait une recherche dans la grande base de données sur les prédateurs et les proies de l’université pour nous.
 
-Rowan Haigh provided advice on the historical catch reconstruction.
+Rowan Haigh nous a apporté ses conseils sur la reconstitution des prises historiques.
 
-We thank Tom Carruthers and Adrian Hordyk (UBC) for early guidance on this rebuilding plan and their cheerful willingness to add new features to the DLMtool software on request.
+Nous remercions Tom Carruthers et Adrian Hordyk (Université de la Colombie-Britannique) pour leurs recommandations précoces sur ce plan de rétablissement et de leur enthousiasme à ajouter de nouvelles fonctions au logiciel DLMtool sur demande.
 
-Finally we thank Dayv Lowry (WDFW) and Kendra Holt (DFO) for insightful reviews that greatly improved the working paper.
+Enfin, nous remercions Dayv Lowry (WDFW) et Kendra Holt (MPO) pour leurs commentaires édifiants qui ont grandement amélioré le document de travail.
 

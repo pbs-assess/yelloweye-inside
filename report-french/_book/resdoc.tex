@@ -132,420 +132,163 @@ Vancouver (Colombie-Britannique) V6T 1Z4, Canada\\}
 
 \frontmatter
 
-\hypertarget{sec:om}{%
-\section{CHOIX DES INCERTITUDES/SPÉCIFICATION DES MODÈLES OPÉRATIONNELS}\label{sec:om}}
+\hypertarget{sec:simulation}{%
+\section{SIMULATION DE L'APPLICATION DES PROCÉDURES DE GESTION}\label{sec:simulation}}
 
-Les modèles opérationnels de l'outil DLMtool sont organisés en quatre composantes principales représentant un réseau hydrographique exploité réel~:
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+Nous avons effectué des simulations en boucle fermée à l'aide de 250 répétitions stochastiques dans la version 5.4.2 de DLMtool, R version 3.6.3, et avec la graine aléatoire établie à 1. Nous avons fixé la durée de la période de projection à 100 ans pour faciliter le calcul des critères d'évaluation des risques d'extinction pour le COSEPAC (annexe~\ref{app:cosewic}). Nous avons évalué la convergence de la simulation en boucle fermée en traçant les paramètres de rendement cumulatifs à mesure que des répétitions étaient ajoutées (figure~\ref{fig:converge}). Nous avons jugé que 250 répétitions étaient suffisantes, le classement des procédures de gestion demeurant constant à mesure que d'autres répétitions étaient ajoutées (figure~\ref{fig:converge}).
 
-\item
-  la dynamique des populations du stock de poissons (p.~ex., croissance, recrutement, mortalité);
-\item
-  la dynamique de la pêche (p.~ex., sélectivité, ciblage spatial);
-\item
-  les processus d'observation (p.~ex., biais et précision des indices des relevés);
-\item
-  la mise en œuvre de la gestion (p.~ex., dépassement des limites de prises).
-\end{enumerate}
-Les équations et les paramètres décrivant les quatre composantes des modèles opérationnels sont fournis en détail à l'annexe B de Carruthers and Hordyk (\protect\hyperlink{ref-carruthers2018}{2018}) et à l'annexe A de Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}). L'outil DLMtool permet d'intégrer l'incertitude dans de nombreux paramètres des modèles opérationnels grâce à la spécification facultative des distributions de probabilité. Afin d'isoler davantage les effets de certaines sources d'incertitude sur le rendement des procédures de gestion, nous élaborons d'autres modèles opérationnels qui modifient la valeur (ou la distribution) d'un ou de plusieurs paramètres ou sources de données d'intérêt (section~\ref{sec:approach3-oms}).
+Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}) ont recommandé de filtrer les procédures de gestion au moyen d'une étape de « satisfaction », où des simulations d'essai sont effectuées pour éliminer les procédures de gestion qui ne répondent pas à un ensemble de critères de rendement de base (Miller and Shelton \protect\hyperlink{ref-miller2010}{2010}; voir Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}). Au départ, nous avons établi les critères suivants pour déterminer les procédures de gestion qui sont satisfaisantes~: PRL 1,5DG \textgreater{} 0,9. Pour déterminer les procédures de gestion qui seraient retenues comme procédures de gestion satisfaisantes, nous avons commencé par évaluer le rendement moyen et minimal de toutes les procédures de gestion possibles pour l'ensemble de référence des modèles opérationnels (figures~\ref{fig:tigure-avg} et~\ref{fig:tigure-min}). Toutes les procédures de gestion répondaient au critère de satisfaction (PRL 1,5DG \textgreater{} 0,9), à la fois dans les scénarios de l'ensemble de référence de modèles opérationnels et dans la moyenne des quatre modèles opérationnels de référence (figures~\ref{fig:tigure-avg} et~\ref{fig:tigure-min}). Comme de nombreuses procédures de gestion généraient également de faibles prises, nous avons appliqué un filtre de satisfaction supplémentaire, retenant seulement les procédures de gestion dont la moyenne de ST C10 est supérieure à 0,50. Ainsi, seuls les TAC à prises constantes de 10 t et 15 t et les procédures de gestion Islope ont été satisfaits (figure~\ref{fig:tigure-avg}). Les 'r gfutilities::number\_to\_word(length(mp\_sat))` procédures de gestion satisfaisantes étaient CC\_10t, CC\_15t, Islope\_10\_lambda04, Islope\_10\_lambda08, and Islope\_5\_lambda04 (voir les descriptions à l'annexe~\ref{app:mps}).
 
-La pratique exemplaire recommande d'étalonner ou de conditionner les modèles opérationnels à l'aide des données observées, afin qu'ils puissent reproduire les observations historiques. Le progiciel complémentaire de DLMtool, MSEtool (Huynh et al. \protect\hyperlink{ref-huynh_msetool_2019}{2019}), comprend une mise en œuvre efficace d'une analyse de réduction du stock (Kimura and Tagart \protect\hyperlink{ref-kimura1982}{1982}; Walters et al. \protect\hyperlink{ref-walters2006}{2006}), qui est en fait un modèle statistique des prises selon l'âge qui estime les combinaisons historiques de la mortalité par pêche et du recrutement qui correspondraient aux données observées. L'analyse de réduction du stock est décrite en détail à l'annexe B de Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}).
+Dans l'ensemble de référence, le PRL moyen de 1,5DG était de -Inf pour toutes les procédures de gestion et ST C10 variait entre Inf et -Inf (figures~\ref{fig:tigure-avg} et~\ref{fig:tigure-panel}). Le PRL minimal de 1,5DG était de -Inf pour toutes les procédures de gestion et CT C10 variait de Inf à -Inf parmi les procédures de gestion de l'ensemble de référence (figures~\ref{fig:tigure-min} et~\ref{fig:tigure-panel}).
 
-Le cadre de simulation comporte deux périodes distinctes~: 1) la période historique, qui comprend toutes les années, de la première année de la série chronologique des prises observées \(t_1\) à la dernière année de cette série chronologique \(t_c\) (où « c » représente l'année « en cours »); 2) la période de projection, qui va de la première année suivant \(t_c\) à la dernière année de la projection \(t_N\). La période historique est conditionnée par des observations historiques à l'aide de l'analyse de réduction du stock (voir l'annexe B dans Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}). Les simulations en boucle fermée, avec application des procédures de gestion et calcul des paramètres de rendement, commencent la première année de la période de projection (année \(t_{c+1}\)).
-
-L'élaboration d'un modèle opérationnel dans le cadre des procédures de gestion comporte trois étapes.
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Définir les valeurs et les plages des paramètres dans le modèle opérationnel.
-\item
-  Envoyer les paramètres du modèle opérationnel dans le modèle d'analyse de réduction du stock, qui conditionne le modèle opérationnel en l'ajustant aux prises observées historiques, aux indices de l'abondance et à toutes les données accessibles sur la composition selon l'âge. On obtient des estimations conditionnées des paramètres du modèle et des estimations de la biomasse historique et de la mortalité historique par pêche (les années \(t_1\) à \(t_c\)), qui sont conformes aux observations historiques.
-\item
-  Renvoyer les valeurs des paramètres conditionnés au modèle opérationnel (maintenant le modèle opérationnel « conditionné ») pour les utiliser dans les projections de simulation en boucle fermée, à partir de l'année \(t_{c+1}\).
-\end{enumerate}
-Dans la mesure du possible, nous avons dérivé les paramètres du modèle opérationnel à partir de toutes les données biologiques accessibles des relevés dans la zone 4B, qui sont principalement recueillies dans le cadre des relevés à la palangre sur fond dur dans les eaux intérieures (annexe~\ref{app:biological-data}). Nous avons tiré d'autres paramètres de la documentation scientifique et des évaluations des stocks de sébaste aux yeux jaunes dans d'autres régions (voir les renseignements détaillés dans l'annexe~\ref{app:desc-om-yelloweye}). Une liste des réglages « par défaut » des paramètres du modèle opérationnel recommandés pour la plupart des stocks de poisson de fond de la Colombie-Britannique est fournie à l'annexe C de Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}).
-
-Nous avons conditionné les modèles opérationnels avec l'analyse de réduction du stock, en utilisant les données sur la composition selon l'âge provenant des relevés de recherche (annexe~\ref{app:biological-data}), les indices des relevés à la palangre sur fond dur dans les eaux intérieures (annexe~\ref{app:index-data}) et les données sur les prises des pêches commerciales et récréatives (annexe~\ref{app:catch-data}). Les résultats du conditionnement des modèles opérationnels sont fournis ci-après dans la section~\ref{sec:approach3-conditioning}.
-
-\hypertarget{sec:approach3-oms}{%
-\subsection{MODÈLES OPÉRATIONNELS}\label{sec:approach3-oms}}
-
-La pratique exemplaire en matière d'évaluation de la stratégie de gestion recommande de diviser les essais en un « ensemble de référence » de modèles opérationnels de base, qui comprend les incertitudes les plus importantes (p.~ex., épuisement du stock ou plage des valeurs de la mortalité naturelle) et un « ensemble de robustesse », afin de refléter un plus grand éventail d'incertitudes peut-être moins plausibles, mais qu'il est néanmoins intéressant d'explorer (Rademeyer et al. \protect\hyperlink{ref-rademeyer2007}{2007}). Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}) recommandent de présenter séparément les paramètres de rendement des ensembles de référence et de robustesse. Ils préconisent, pour la plupart des résultats, de calculer la moyenne des paramètres de rendement de l'ensemble de référence pour tous les scénarios de l'ensemble de référence de modèles opérationnels (une approche d'ensemble à intégrer pour toutes les incertitudes du modèle opérationnel), mais de présenter séparément les paramètres de rendement des différents scénarios de l'ensemble de robustesse de modèles opérationnels. La présentation distincte des résultats de l'ensemble de robustesse permet aux gestionnaires de voir comment les procédures de gestion qui ont donné de bons résultats dans l'ensemble de référence se comportent pour un ensemble d'hypothèses plus diversifiées (Rademeyer et al. \protect\hyperlink{ref-rademeyer2007}{2007}).
-
-Pour le sébaste aux yeux jaunes des eaux intérieures, nous avons établi quatre modèles opérationnels de l'ensemble de référence~: (1) un modèle opérationnel de référence; (2) un modèle opérationnel reflétant une autre hypothèse au sujet de l'ampleur des prises historiques entre 1986 et 2005; (3) un modèle opérationnel prévoyant des événements de recrutement futurs épisodiques (rares, mais importants); (4) un modèle opérationnel estimant la sélectivité dans le relevé à la palangre sur fond dur (tableau~\ref{tab:ye-scen}).
-
-Nous avons également établi deux modèles opérationnels de l'ensemble de robustesse englobant d'autres sources d'incertitude~: (A) un modèle opérationnel qui suppose une mortalité naturelle plus faible que les autres modèles opérationnels; (B) un modèle opérationnel qui suppose un coefficient de variation (CV) plus élevé dans le futur relevé à la palangre sur fond dur (tableau~\ref{tab:ye-scen}).
-\begin{longtable}[]{@{}ll@{}}
-\caption{\label{tab:ye-scen}Scénarios de modèle opérationnel pour le sébaste aux yeux jaunes des eaux intérieures.}\tabularnewline
-\toprule
-Nom du scénario de modèle opérationnel & Type d'ensemble\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-Nom du scénario de modèle opérationnel & Type d'ensemble\tabularnewline
-\midrule
-\endhead
-(1) Base & Reference\tabularnewline
-(2) Low catch & Reference\tabularnewline
-(3) Episodic recruitment & Reference\tabularnewline
-(4) Estimate HBLL selectivity & Reference\tabularnewline
-(A) Low M & Robustness\tabularnewline
-(B) High HBLL CV & Robustness\tabularnewline
-\bottomrule
-\end{longtable}
-\hypertarget{sec:approach3-reference}{%
-\subsubsection{Ensemble de référence}\label{sec:approach3-reference}}
-
-Les modèles opérationnels suivants ont été élaborés en tant qu'ensemble de référence. Nous les désignons ci-après par leurs numéros, p.~ex., scénario de modèle opérationnel (1).
-
-\hypertarget{sec:approach3-reference1}{%
-\subsubsection{(1) Base}\label{sec:approach3-reference1}}
-
-Les sources de données sont fournies dans les annexes~\ref{app:biological-data} à~\ref{app:catch-data}. Les réglages des paramètres du modèle opérationnel de base sont indiqués à l'annexe~\ref{app:desc-om-yelloweye}. Nous donnons ici une brève description des hypothèses du modèle opérationnel de base qui ont été ajustées dans d'autres scénarios de modèle opérationnel.
-
-Deux grandes incertitudes sont associées à la série chronologique des prises commerciales historiques pour le sébaste aux yeux jaunes des eaux intérieures (renseignements détaillés dans l'annexe~\ref{app:catch-data}, section~\ref{sec:com-catch-data})~: (1) les rapports sur les sébastes regroupés sous Autres sébastes (espèces de sébastes autres que le sébaste à longue mâchoire) et (2) l'ampleur des prises non déclarées qui ont été rejetées en mer avant la mise en place de la surveillance en mer de 100 \% pour la flottille de pêche à la palangre du poisson de fond en 2006 (Stanley et al. \protect\hyperlink{ref-stanley2009}{2009}). Dans un souci d'uniformité avec Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}), nous avons doublé les données sur les prises nominales pour la période 1986---2005, car l'industrie ne jugeait pas fiables les données sur les prises pour ces années {[}DFO (\protect\hyperlink{ref-dfo2012}{2012}); voir l'annexe~\ref{app:catch-data}, section~\ref{sec:com-catch-data}{]}.
-
-Les écarts de recrutement projetés ont été échantillonnés dans l'espace logarithmique avec l'écart-type \(\tau = 0,4\), avec une autocorrélation estimée a posteriori à partir des écarts de recrutement historiques dans le modèle d'analyse de réduction du stock (annexe A de Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}).
-
-Le stock de sébaste aux yeux jaunes des eaux intérieures est indexé par deux relevés indépendants de la pêche~: le relevé à la palangre sur fond dur dans les eaux intérieures (annexe ({\textbf{???}})(app:index-data), section~\ref{sec:hbll-index-data}) et le relevé sur l'aiguillat commun (annexe~\ref{app:index-data}, section~\ref{sec:dogfish-index-data}). Le modèle d'analyse de réduction du stock affichait un meilleur comportement rétrospectif lorsqu'il était ajusté avec une plus grande pondération de la vraisemblance appliquée au relevé sur l'aiguillat commun. L'âge de la pleine sélectivité dans le relevé à la palangre sur fond dur a été fixé à 22 ans (voir la section~\ref{sec:approach3-conditioning} ci-après).
-
-Les CPUE commerciales historiques étaient également accessibles et ont été utilisées comme indice de l'abondance pour le conditionnement du modèle opérationnel (Yamanaka et al. \protect\hyperlink{ref-yamanaka2011}{2011}). À la suite des décisions prises pour l'évaluation de 2011, la série chronologique a été divisée en trois phases (1986-1990, 1995-2001 et 2003-2005), représentant les périodes où le comportement de la pêche a probablement changé en réponse aux règlements de gestion (annexe~\ref{app:catch-data}, section~\ref{sec:management-changes}).
-
-La mortalité naturelle (\emph{M}) a été échantillonnée selon une distribution de probabilité fondée sur celle utilisée par Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}), où \(M \sim \textrm{Lognormal}(0,045, 0,2)\) (annexe~\ref{app:desc-om-yelloweye}, section~\ref{app:desc-stock-m-yelloweye}).
-
-Au cours de la période de projection, on a supposé que seul l'indice du relevé à la palangre sur fond dur était accessible pour les procédures de gestion, puisque ce relevé est mené chaque année. La projection d'un seul indice de l'abondance est compatible avec de nombreuses procédures de gestion à données limitées, qui n'utilisent qu'un seul indice de l'abondance (voir l'annexe~\ref{app:mps}). L'erreur d'observation dans les valeurs d'indice projetées a été simulée avec des écarts aléatoires par rapport à une distribution log-normale avec une moyenne de 1 et un écart-type de 0,25 d'après l'erreur d'observation estimée dans l'indice du relevé à la palangre sur fond dur.
-
-Tous les autres scénarios du modèle opérationnel ont été ajustés à partir de ce modèle opérationnel de référence et différaient uniquement de par les ajustements des paramètres clés ou des sources de données, décrits ci-après.
-
-\hypertarget{sec:approach3-reference2}{%
-\subsubsection{(2) Prises faibles}\label{sec:approach3-reference2}}
-
-Dans le scénario de modèle opérationnel « Prises faibles », nous testons la sensibilité du modèle à l'hypothèse de prises importantes non déclarées pour la période 1986--2005. Au lieu de doubler les données sur les prises nominales pour cette période, nous avons ajusté l'analyse de réduction du stock à ces données. Pour les autres scénarios de modèle opérationnel, nous avons utilisé les prises reconstituées jusqu'en 1985 et les prises nominales à partir de 1986.
-
-\hypertarget{sec:approach3-reference3}{%
-\subsubsection{(3) Recrutement épisodique}\label{sec:approach3-reference3}}
-
-Les espèces longévives à maturation tardive, comme les sébastes du Pacifique, affichent souvent des stratégies de recrutement épisodiques ou périodiques caractérisées par une fécondité élevée et des épisodes occasionnels de recrutement important (Winemiller and Rose \protect\hyperlink{ref-winemiller1992}{1992}; Rose et al. \protect\hyperlink{ref-rose2001}{2001}; Winemiller \protect\hyperlink{ref-winemiller2005}{2005}). Cette stratégie du cycle biologique est parfois appelée l'effet de stockage (Warner and Chesson (\protect\hyperlink{ref-warner1985}{1985})) parce que les épisodes de fort recrutement sont stockés dans la population adulte et peuvent contribuer à la reproduction, parfois de façon significative, lorsque les conditions favorables reviennent. On pense que la longévité du sébaste a évolué comme stratégie pour résister à des conditions difficiles. Des classes d'âge très importantes ou même extrêmes ont été observées pour plusieurs espèces de sébastes de la Colombie-Britannique (p.~ex., le sébaste à longue mâchoire~: Haigh et al. \protect\hyperlink{ref-haigh2019}{2019}; le bocaccio~: Haigh and Starr \protect\hyperlink{ref-haigh2020}{2020}).
-
-Afin de tenir compte de la possibilité que le futur recrutement durant la période de projection puisse être caractérisé par des épisodes occasionnels de recrutement très important, nous avons inclus un scénario de modèle opérationnel de « recrutement épisodique ». Ce scénario de modèle opérationnel répond à la préoccupation selon laquelle la distribution log-normale pour les écarts de recrutement qui a été utilisée dans le scénario de modèle opérationnel (1) ne modélise pas correctement les très grandes cohortes. Dans le scénario de modèle opérationnel de recrutement épisodique, les écarts de recrutement \(\varepsilon_{R,y}\) pour chaque année de la période de projection sont générés comme suit~:
-\begin{equation}
-\varepsilon_{R,y} = 
-\left\{
-\begin{array}{ll}
-\varepsilon^{(1)}_{R,y} & \eta_y = 0\\
-\varepsilon^{(3)}_{R,y} & \eta_y = 1,
-\end{array}
-\right.
-\end{equation}
-où \(\varepsilon^{(1)}_{R,y}\) est l'écart de recrutement par rapport au scénario de modèle opérationnel (1) et \(\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0,5\tau^2, \tau)\) représente la distribution du recrutement « épisodique » avec \(\tau = 2\) (écart-type). Le paramètre \(\eta_y\) est une variable aléatoire de Bernoulli \(\eta_y \sim \textrm{Bernoulli}(p = 1/38)\), qui sélectionne si un événement de recrutement extrême se produira. Nous supposons qu'un événement de recrutement extrême devrait se produire une fois par génération (38 ans), d'après l'observation selon laquelle des épisodes de fort recrutement chez le sébaste aux yeux jaunes des eaux intérieures ont eu lieu en 1948 et en 1970. Bien que les conditions environnementales récentes puissent être favorables à certaines espèces de sébastes (Haigh and Starr \protect\hyperlink{ref-haigh2020}{2020}; Lincandeo et al. \protect\hyperlink{ref-lincandeo2020}{2020}), nous n'avons pas encore de preuve de récents épisodes de recrutement important pour le sébaste aux yeux jaunes des eaux intérieures qui pourraient indiquer des épisodes de fort recrutement plus fréquents.
-
-\hypertarget{sec:approach3-reference4}{%
-\subsubsection{(4) Estimer la sélectivité du relevé à la palangre sur fond dur}\label{sec:approach3-reference4}}
-
-Les tailles des échantillons annuels de données sur la composition selon l'âge provenant des relevés de recherche sont très petites (annexe~\ref{app:biological-data}). De ce fait, l'estimation de la sélectivité des relevés est très incertaine, ce qui a mené au choix de fixer la sélectivité des relevés dans les autres scénarios de modèle opérationnel.
-
-Compte tenu de la grande incertitude entourant notre choix de sélectivité, nous avons laissé l'analyse de réduction du stock estimer la sélectivité des relevés dans ce scénario de modèle opérationnel et nous avons utilisé les données accessibles sur la composition selon l'âge dans les relevés.
-
-\hypertarget{sec:approach3-robustness}{%
-\subsubsection{Ensemble de robustesse}\label{sec:approach3-robustness}}
-
-Les modèles opérationnels suivants ont été élaborés en tant qu'ensemble de robustesse. Nous les désignons ci-après par leurs lettres.
-
-\hypertarget{sec:approach3-referenceA}{%
-\subsubsection{(A) M faible}\label{sec:approach3-referenceA}}
-
-Des valeurs inférieures de la mortalité naturelle ont été utilisées pour le sébaste aux yeux jaunes des eaux intérieures (Yamanaka and Lacko \protect\hyperlink{ref-yamanaka2001}{2001}; COSEWIC \protect\hyperlink{ref-cosewic2008}{2008}; Wood et al. \protect\hyperlink{ref-wood2019}{2019}). Ce scénario de modèle opérationnel utilisait une moyenne plus faible dans la distribution pour \emph{M}, avec \(M \sim \textrm{Lognormal}(0,025, 0,2)\), reflétant la possibilité que le stock soit moins productif que ce qui est supposé dans les autres scénarios de modèle opérationnel.
-
-\hypertarget{sec:approach3-referenceB}{%
-\subsubsection{(B) CV supérieur du relevé à la palangre sur fond dur}\label{sec:approach3-referenceB}}
-
-Ce scénario de modèle opérationnel envisage la possibilité que le futur indice du relevé à la palangre sur fond dur soit moins précis que ce qui est supposé dans les autres scénarios de modèle opérationnel. Au lieu d'un écart-type de l'observation \(\sigma_I = 0,25\), nous utilisons l'écart-type (\(\sigma_I\)) et l'autocorrélation (\(\theta_\textrm{AC}\)) tirés des résidus de l'indice dans le scénario de modèle opérationnel (1), obtenus à partir de l'analyse de réduction du stock ajustée à l'indice du relevé à la palangre sur fond dur.
-
-Cet écart-type \(\sigma_I\) a une moyenne de 0.41 et une plage de 0.38--0.44.
-
-\hypertarget{sec:approach3-conditioning}{%
-\subsection{CONDITIONNEMENT DES MODÈLES OPÉRATIONNELS}\label{sec:approach3-conditioning}}
-
-Après avoir spécifié les paramètres des modèles opérationnels (annexe~\ref{app:desc-om-yelloweye}), nous avons conditionné les modèles opérationnels en utilisant le modèle d'analyse de réduction du stock décrit à l'annexe B de Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}).
-
-Il convient de noter que le modèle opérationnel de l'outil DLMtool regroupe toutes les flottilles en une seule. Toutefois, si le modèle opérationnel est conditionné à l'aide du modèle d'analyse de réduction du stock, l'analyse de réduction du stock peut tenir compte de plusieurs flottilles et la sélectivité est propre à chaque flottille. Dans ce cas, la sélectivité de la pêche dans le modèle opérationnel pour la période de projection est remplacée par les estimations, conditionnées par l'analyse de réduction du stock, de la mortalité selon l'âge dans la pêche pour la dernière année de la période historique (\(t_c\)), normalisées en divisant par la mortalité par pêche apicale pour cette année. En gros, cela fournit au modèle opérationnel de l'outil DLMtool une sélectivité relative selon l'âge, pondérée par les prises dans toutes les flottilles. Les projections de simulation en boucle fermée supposent donc que la sélectivité relative entre les flottilles demeure constante pendant la période de projection.
-
-De même, si le modèle opérationnel est conditionné à l'aide du modèle d'analyse de réduction du stock, les analystes peuvent également préciser (ou estimer) les paramètres de sélectivité pour les différents indices de l'abondance (dans ce cas, deux relevés indépendants de la pêche et trois séries de CPUE commerciales (figure~\ref{fig:survey-fits})). Dans ce cas, l'analyse de réduction du stock renvoie tous les indices dans l'outil DLMtool, en conservant les sélectivités selon l'âge estimées ou définies par l'utilisateur pour chaque indice. Toutefois, il convient de noter que les procédures de gestion de l'outil DLMtool n'utilisent qu'un seul indice de l'abondance (voir l'annexe~\ref{app:mps}). Dans la présente étude, toutes les procédures de gestion fondées sur des indices utilisent le relevé à la palangre sur fond dur dans les eaux intérieures.
-
-Nous avons utilisé l'analyse de réduction du stock pour remplir les paramètres suivants dans les modèles opérationnels conditionnés~:
+Nous nous concentrons sur l'évaluation des compromis entre les procédures de gestion satisfaisantes dans la section~\ref{sec:results}. Toutefois, en ce qui concerne les procédures de gestion qui ne répondaient pas aux critères de satisfaction (figure~\ref{fig:proj-not-satisficed-eg})~:
 \begin{itemize}
 
 \item
-  \(B_{t_c}/B_0\) (ou « D »; épuisement au cours de la dernière année historique \(t_c\))
+  Iratio a généré de faibles prises durant la première décennie, mais des prises élevées par la suite. Il y avait une grande variabilité entre les répétitions dans chaque modèle opérationnel.
 \item
-  \(R_0\) (recrutement non exploité)
+  IDX et IDX\_smooth ont produit des prises progressivement réduites au fil du temps. Voir les précisions à l'annexe~\ref{app:mps}, section~\ref{sec:mp-idx}.
 \item
-  \(\theta_\textrm{AC}\) (ou « AC »; autocorrélation de premier ordre des écarts de recrutement)
+  Iratio et GB\_slope n'ont généré aucune prise dans le modèle opérationnel à prises faibles; elles ne satisfaisaient donc pas au critère ST C10 \textgreater{} 0,50.
 \item
-  \(\varepsilon_{\textrm{R},y}\) pour les années \(t_1\) à \(t_c\) (écarts annuels de recrutement)
-\item
-  \(F_{a,y}\) (mortalité par pêche selon l'âge, par année)
+  Les procédures de gestion de production excédentaires ont généré des prises nulles ou très faibles durant la première décennie, mais les prises augmentaient plus tard c.-à-d.~après 50 ans.
 \end{itemize}
-Des renseignements détaillés sur ces paramètres se trouvent à l'annexe B de Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}).
-
-L'analyse de réduction du stock a été exécutée pour 250 répétitions. Chaque répétition utilisait une valeur différente de \emph{M} et \emph{h} (échantillonnée indépendamment des distributions indiquées à l'annexe~\ref{app:desc-om-yelloweye}, sauf pour le scénario de modèle opérationnel (A), qui utilisait une distribution différente pour \emph{M}). Le modèle a été initialisé en supposant que la biomasse féconde (\(B_y\)) était dans un état d'équilibre non exploité avant 1918, la première année de la série chronologique, c.-à-d.~\(B_{1918} = B_0\). Bien que cela ne soit probablement pas vrai, étant donné que les Premières Nations et d'autres groupes pêchaient des sébastes aux yeux jaunes avant 1918, ces nombres devraient être suffisamment faibles pour ne pas avoir d'incidence sur le rendement des procédures de gestion pendant la période de projection.
-
-\hypertarget{sec:approach3-conditioning-base-om}{%
-\subsubsection{Sélection du modèle opérationnel de base}\label{sec:approach3-conditioning-base-om}}
-
-Les premières tentatives d'ajustement du modèle d'analyse de réduction du stock n'ont pas donné de bons ajustements au relevé sur l'aiguillat commun. De plus, l'analyse rétrospective a révélé un biais rétrospectif persistant dans les estimations annuelles de la biomasse féconde lorsque l'on supprime séquentiellement 11 années de données (lorsqu'elles sont évaluées aux valeurs moyennes de \emph{M} et \emph{h}, figure~\ref{fig:retro-initial}, graphique du haut). Le choix de fonder l'analyse rétrospective sur 11 années de données visait principalement à évaluer la sensibilité du modèle à l'élimination de chaque année de données, en remontant en 2009, la dernière année pour l'évaluation de 2011.
-
-L'augmentation de la pondération de la vraisemblance pour l'analyse de réduction du stock ajustée au relevé sur l'aiguillat commun (\(\lambda^I_s = 4\); équation B.22 dans Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}) et le réglage à 22 ans de l'âge à la pleine sélectivité dans le relevé à la palangre sur fond dur ont permis d'éliminer le profil rétrospectif (figure~\ref{fig:retro-initial}, graphique du bas). Nous avons donc, pour le scénario de modèle opérationnel (1) et tous les autres scénarios de modèle opérationnel à l'exception du scénario (4), fixé à 22 ans l'âge à la pleine sélectivité du relevé à la palangre sur fond dur (figure~\ref{fig:HBLL-selectivity}), tout en augmentant la pondération du relevé sur l'aiguillat commun.
-
 
 \begin{figure}[htb]
 
-{\centering \pdftooltip{\includegraphics[width=4.25in]{C:/GitHub/yelloweye-inside/mse/figures-french/retrospective-spawning-biomass}}{Figure \ref{fig:retro-initial}} 
+{\centering \pdftooltip{\includegraphics[width=\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-convergence}}{Figure \ref{fig:converge}} 
 
 }
 
-\caption{Profils rétrospectifs de la biomasse féconde pour l'ajustement initial et le scénario de modèle opérationnel (1). Les lignes colorées représentent les estimations de la biomasse féconde avec \(X\) années de données supprimées, où \(X\) est indiqué dans la légende pour chaque série.}\label{fig:retro-initial}
+\caption{Évaluation de la convergence des simulations en boucle fermée sur le classement uniforme des procédures de gestion dans les paramètres de rendement. Les couleurs représentent les différentes procédures de gestion satisfaisantes et de référence. Les lignes qui ne se croisent pas avant les répétitions finales indiquent que le classement des répétitions a convergé. Bien que cela ne soit pas illustré, nous avons également vérifié que les règles de satisfaction avaient convergé (c.‑à‑d.~que la sélection des procédures de gestion satisfaisantes ne changeait pas avec des répétitions supplémentaires). Nous n'affichons que le PRL 1,5DG et CT C10 puisqu'il s'agissait des deux principaux paramètres de rendement utilisés pour l'étape de la satisfaction. Les autres paramètres de rendement ont également été vérifiés (non illustrés).}\label{fig:converge}
 \end{figure}
-Un certain nombre de facteurs augmentent l'incertitude dans l'estimation de la sélectivité pour le relevé sur l'aiguillat commun, p.~ex., l'absence de données biologiques de ce relevé et les changements apportés aux opérations de pêche et au type de hameçon en 2004 (annexe~\ref{app:index-data}, section~\ref{sec:dogfish-index-data}). Il y a également plusieurs différences entre les relevés à la palangre sur fond dur et à la palangre sur l'aiguillat commun (annexe~\ref{app:index-data}, section~\ref{sec:dogfish-index-data}), mais pour les raisons mentionnées, nous ne pouvons pas estimer de façon fiable la sélectivité pour le relevé sur l'aiguillat commun. Par nécessité, la sélectivité dans le relevé sur l'aiguillat commun a été réglée de manière à refléter la sélectivité dans le relevé à la palangre sur fond dur, qu'elle ait été estimée (scénario du modèle opérationnel (4)) ou fixée (tous les autres scénarios de modèle opérationnel).
-
-Les données sur la composition selon l'âge provenant de la pêche commerciale étaient accessibles pour une seule sortie de pêche en 1989, et des échantillons de longueur de 2002--2019 ont été déterminés à partir de la pêche récréative. Les tentatives visant à ajuster le modèle d'analyse de réduction du stock à ces données n'ont pas donné d'estimations satisfaisantes de la sélectivité. Les valeurs estimées de l'âge de la pleine sélectivité étaient très élevées, ce qui suggère que la plupart des âges n'étaient pas complètement vulnérables à la pêche, et elles différaient considérablement des valeurs estimées pour la population de sébaste aux yeux jaunes des eaux extérieures (Cox et al. \protect\hyperlink{ref-cox2020}{2020}). Comme il est peu probable que la sélectivité varie à ce point entre les régions géographiques, ces données n'ont pas été prises en compte pour la suite.
-
-Par conséquent, la sélectivité de ces engins a été fixée dans tous les scénarios de modèle opérationnel (figure~\ref{fig:sra-selectivity}). Les valeurs des paramètres ont été établies de façon à ce que les courbes de la sélectivité selon l'âge se rapprochent de celles estimées par Cox et al. (\protect\hyperlink{ref-cox2020}{2020}) pour la pêche commerciale à la palangre et la pêche récréative du sébaste aux yeux jaunes des eaux extérieures (voir l'annexe~\ref{app:desc-om-yelloweye}, section~\ref{app:desc-fleet-selectivity-yelloweye}). Comme il a été mentionné ci-dessus, ces sélectivités ont été renvoyées dans les modèles opérationnels de l'outil DLMtool sous forme de courbe de sélectivité combinée des flottilles de la dernière année (\(t_c\)) de la période historique (figure~\ref{fig:om-selectivity}).
-
-\hypertarget{sec:approach3-conditioning-results}{%
-\subsubsection{Résultats du conditionnement des modèles opérationnels}\label{sec:approach3-conditioning-results}}
-
-Les sections suivantes décrivent les résultats du conditionnement des modèles opérationnels.
-
-\hypertarget{sec:approach3-conditioning-indices}{%
-\subsubsection{Ajustements aux données}\label{sec:approach3-conditioning-indices}}
-
-Les prises prévues dans les modèles d'analyse de réduction du stock correspondaient aux données sur les prises par leur conception, puisque l'écart-type de l'erreur d'observation était fixé à une valeur de 0,01 (Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}, leur équation B.27).
-
-Il a été possible d'ajuster raisonnablement bien l'analyse de réduction du stock aux indices de l'abondance (figure~\ref{fig:survey-fits}) et la convergence a été atteinte pour toutes les répétitions dans tous les scénarios de modèle opérationnel. Pour tous les scénarios de modèle opérationnel, l'indice estimé se situait dans les intervalles de confiance observés la plupart des années, malgré quelques valeurs aberrantes (figure~\ref{fig:survey-fits}). L'ajustement aux observations du début de 1986 et de 1989 dans le relevé sur l'aiguillat commun était légèrement meilleur dans le scénario de modèle opérationnel (A), correspondant à un stock moins productif et plus épuisé. Toutefois, ces deux observations sont plus incertaines que celles des dernières années, en raison des changements apportés en 2004 aux opérations de pêche et au type d'hameçon (annexe~\ref{app:index-data}, section~\ref{sec:dogfish-index-data}). Les ajustements à la série des CPUE commerciales étaient généralement bons, en raison des courtes phases pour chaque série (figure~\ref{fig:survey-fits}).
-
 
 \begin{figure}[htb]
 
-{\centering \pdftooltip{\includegraphics[width=\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-index-fits}}{Figure \ref{fig:survey-fits}} 
+{\centering \pdftooltip{\includegraphics[width=3.5in]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-tigure-refset-avg}}{Figure \ref{fig:tigure-avg}} 
 
 }
 
-\caption{Ajustements du modèle d'analyse de réduction du stock aux indices du relevé à la palangre sur fond dur, du relevé sur l'aiguillat commun et à trois indices relatifs des CPUE commerciales. Les graphiques de gauche à droite représentent les scénarios de modèle opérationnel. Les lignes fines représentent les différents ajustements du modèle d'analyse de réduction du stock parmi les tirages stochastiques des divers paramètres du modèle opérationnel. Les points représentent la moyenne de l'indice et les segments de lignes représentent deux fois les erreurs-types entrées dans les modèles d'analyse de réduction du stock.}\label{fig:survey-fits}
+\caption{Rendement moyen de toutes les procédures de gestion possibles dans les scénarios de l'ensemble de référence de modèles opérationnels. Nous avons classé les procédures de gestion par valeur décroissante du paramètre de rendement, de haut en bas, en commençant par le paramètre de rendement le plus à gauche (PRL 1,5DG) et en utilisant les colonnes de gauche à droite pour départager les égalités. L'ombrage de couleur reflète les probabilités. Les cellules mises en évidence représentent les procédures de gestion qui répondent aux critères de satisfaction d'un paramètre de rendement donné. À l'aide de cet ensemble de critères, les procédures de gestion seraient « satisfaisantes » si les cellules \emph{à la fois} de ``LRP 1.5GT'' et de ``ST C10'' étaient mises en évidence. Les procédures de gestion en gris pâle indiquent les procédures de gestion de référence.}\label{fig:tigure-avg}
 \end{figure}
-Le modèle d'analyse de réduction du stock est raisonnablement bien ajusté aux données sur la composition selon l'âge du relevé, malgré la très petite taille des échantillons (figures~\ref{fig:sra-conditioned-comp-fit1} à~\ref{fig:sra-conditioned-comp-fitB}). Il est à noter qu'en comparant les scénarios de modèle opérationnel (1) et (4), il semble que le réglage ou l'estimation de la sélectivité dans le relevé à la palangre sur fond dur n'a pas produit des ajustements très différents des données sur la composition selon l'âge (figures~\ref{fig:sra-conditioned-comp-fit1} et~\ref{fig:sra-conditioned-comp-fit4}).
-
-Pour la plupart des années, l'analyse de réduction du stock a prédit une abondance plus importante dans le groupe « plus » (80+\emph{y}) que celle qui a été observée. Le manque de poissons âgés de plus de 80 \emph{y} dans le relevé permet de penser que la mortalité totale aurait pu être plus élevée dans le passé que celle qui avait été estimée dans nos modèles opérationnels. On pourrait le représenter dans les modèles opérationnels de deux façons. Premièrement, on pourrait augmenter la valeur de \emph{M} dans les modèles. Cependant, nos études préliminaires sur les modèles ont indiqué qu'une augmentation de \emph{M} accroît également le biais rétrospectif. Deuxièmement, on pourrait modifier l'historique des prises de manière à prévoir des valeurs plus élevées de la mortalité par pêche. Cela a été fait dans le scénario de modèle opérationnel (2) en supposant des prises plus faibles de 1986 à 2005, ce qui a donné un stock légèrement plus petit (figure~\ref{fig:biomass-om}) et une mortalité par pêche plus élevée (figure~\ref{fig:F-om}). Cependant, l'estimation du groupe « plus » n'a été que légèrement réduite la plupart des années pour ce scénario de modèle opérationnel (figure~\ref{fig:sra-conditioned-comp-fit2}).
-
-Ce problème est un défi pour les espèces très longévives dont la composition selon l'âge n'est pas bien échantillonnée. Avec de si petits échantillons, les chances d'observer de très vieux poissons sont relativement faibles. En raison des grandes incertitudes structurelles du modèle et des données accessibles (p.~ex., le relevé sur l'aiguillat commun, les données sur les prises), il a été difficile de résoudre un problème, la surprédiction persistante des vieux poissons, sans en créer un autre, le biais rétrospectif.
-
-\clearpage
-
 
 \begin{figure}[htb]
 
-{\centering \pdftooltip{\includegraphics[width=0.85\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/conditioning/HBLL_age_comp_updog_fixsel}}{Figure \ref{fig:sra-conditioned-comp-fit1}} 
+{\centering \pdftooltip{\includegraphics[width=3.5in]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-tigure-refset-min}}{Figure \ref{fig:tigure-min}} 
 
 }
 
-\caption{Ajustements du modèle d'analyse de réduction du stock aux données sur la composition selon l'âge pour le scénario de modèle opérationnel (1), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d'ensembles dans lesquels des échantillons d'âge ont été prélevés chaque année.}\label{fig:sra-conditioned-comp-fit1}
+\caption{Rendement minimal de toutes les procédures de gestion possibles dans les scénarios de l'ensemble de référence de modèles opérationnels. Cette figure est la même que la figure~\ref{fig:tigure-avg}, mais elle illustre le paramètre de rendement \textbf{minimum} dans les modèles opérationnels de l'ensemble de référence aux fins de l'application des règles de satisfaction. En d'autres termes, elle montre le pire rendement de chaque procédure de gestion dans les scénarios de l'ensemble de référence de modèles opérationnels.}\label{fig:tigure-min}
 \end{figure}
 \clearpage
 
 
 \begin{figure}[htb]
 
-{\centering \pdftooltip{\includegraphics[width=0.85\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/conditioning/HBLL_age_comp_lowcatch_fixsel}}{Figure \ref{fig:sra-conditioned-comp-fit2}} 
+{\centering \pdftooltip{\includegraphics[width=0.8\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-projections-not-sat2}}{Figure \ref{fig:proj-not-satisficed-eg}} 
 
 }
 
-\caption{Ajustements du modèle d'analyse de réduction du stock aux données sur la composition selon l'âge pour le scénario de modèle opérationnel (2), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d'ensembles dans lesquels des échantillons d'âge ont été prélevés chaque année.}\label{fig:sra-conditioned-comp-fit2}
+\caption{Exemples de procédures de gestion qui n'étaient pas satisfaisantes pour le scénario de modèle opérationnel (1). B/B\textsubscript{RMD}, F/F\textsubscript{RMD} et les prises sont représentées pour les périodes historiques et projetées. La ligne foncée indique la valeur médiane et les rubans ombrés plus foncés et plus pâles indiquent les quantiles de 50 \% et de 90 \%. Les lignes grises fines représentent des répétitions de simulation à titre d'illustration. La ligne verticale tiretée indique la dernière année de la période historique (\(t_c\)). Les lignes horizontales tiretées indiquent la B/B\textsubscript{RMD} = 0,8 et 0,4, et la F/F\textsubscript{RMD} = 1.}\label{fig:proj-not-satisficed-eg}
 \end{figure}
 \clearpage
 
-(ref:fig-sra-comp-fit3)
+\hypertarget{sec:discussion}{%
+\section{DISCUSSION}\label{sec:discussion}}
 
-Ajustements du modèle d'analyse de réduction du stock aux données sur la composition selon l'âge pour le scénario de modèle opérationnel (3), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d'ensembles dans lesquels des échantillons d'âge ont été prélevés chaque année.
-\begin{figure}[htb]
+Nous avons appliqué un nouveau Cadre des procédures de gestion pour les poissons de fond du Pacifique (Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}) afin d'évaluer la capacité des autres procédures de gestion à atteindre les objectifs de rétablissement pour le sébaste aux yeux jaunes des eaux intérieures. Il s'agit de la première application du Cadre des procédures de gestion à des fins décisionnelles.
 
-{\centering \pdftooltip{\includegraphics[width=0.85\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/conditioning/HBLL_age_comp_episodic_recruitment}}{Figure \ref{fig:sra-conditioned-comp-fit3}} 
+Nous avons évalué le rendement de 31 procédures de gestion à données limitées (et de trois procédures de gestion de référence) en ce qui a trait à l'atteinte des objectifs décrits dans la section~\ref{sec:objectives-metrics}. Nous avons éliminé les procédures de gestion qui ne satisfaisaient pas aux deux critères PRL 1,5DG \textgreater{} 0,9 et CT C10 \textgreater{} 0,50 dans les scénarios de l'ensemble de référence de modèles opérationnels, et il est resté five procédures de gestion (CC\_10t, CC\_15t, Islope\_10\_lambda04, Islope\_10\_lambda08, and Islope\_5\_lambda04). Toutes les procédures de gestion restantes atteignaient les paramètres de conservation PRL 1,5DG, SSR 1,5DG et PRL 1DG avec une probabilité supérieure à 0,98 (49 fois sur 50) dans les quatre scénarios de l'ensemble de référence de modèles opérationnels, surtout qu'aucun des modèles opérationnels de l'ensemble de référence n'estimait que le stock serait dans la zone critique en 2020---le début de la période de projection. Dans les deux scénarios de l'ensemble de robustesse de modèles opérationnels, le scénario de modèle opérationnel (B), qui simulait une plus grande variabilité dans le futur relevé à la palangre sur fond dur, a donné des résultats semblables à ceux des scénarios de l'ensemble de référence de modèles opérationnels. Cependant, dans le scénario de modèle opérationnel (A), le scénario M faible, les probabilités de respecter le paramètre de rendement PRL 1,5DG variaient de 0,75 (75 fois sur 100) à 0,9 (neuf fois sur 10), la procédure de gestion actuelle (CC\_15t) ayant la probabilité la plus faible dans cette fourchette.
 
-}
+Alors que les directives du plan de rétablissement (DFO \protect\hyperlink{ref-dfo2013}{2013}) ne décrivent que les objectifs liés au rétablissement, nous avons également évalué le rendement des procédures de gestion pour trois objectifs de prises moyennes et un objectif de variabilité des prises. Les procédures de gestion CC\_10t et CC\_15t, par définition, respectaient leurs paramètres de rendement CT C10 et CT C15 respectifs. Un certain contraste est apparu entre les procédures de gestion Islope dans l'ensemble de référence pour CT C10 et CT C15 selon la configuration de la procédure de gestion et le scénario de modèle opérationnel. Les scénarios de l'ensemble de robustesse de modèles opérationnels produisaient généralement des probabilités plus faibles de respecter le paramètre CT C10.
 
-\caption{(ref:fig-sra-comp-fit3)}\label{fig:sra-conditioned-comp-fit3}
-\end{figure}
+Nous présentons un certain nombre de visualisations pour illustrer les compromis entre les objectifs de conservation et de prises (voir aussi Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}). Ces visualisations illustrent les compromis sous forme de différents tableaux et de graphiques, destinés à faciliter le processus de sélection de la procédure de gestion finale. Étant donné que toutes les procédures de gestion atteignaient l'objectif du PRL 1,5DG dans les scénarios de l'ensemble de référence de modèles opérationnels, il n'y avait pas de compromis important entre les objectifs de conservation et les objectifs de prises. Parmi les deux scénarios de l'ensemble de robustesse de modèles opérationnels, les compromis étaient les plus évidents dans le scénario de M faible, où la probabilité d'atteindre l'objectif du PRL 1,5DG diminuait à mesure que la probabilité d'atteindre CT C10 augmentait.
+
+Nous avons constaté que les visualisations des diagrammes en radar étaient difficiles à interpréter. Bien que ces diagrammes puissent être utiles pour visualiser rapidement plusieurs compromis et qu'ils aient été recommandés pour la visualisation des résultats de l'évaluation de la stratégie de gestion (Punt \protect\hyperlink{ref-punt2017}{2017}), ils deviennent plus difficiles à interpréter à mesure que l'on ajoute d'autres paramètres (« rayons »). Ils sont également très sensibles à l'ordre dans lequel les paramètres sont placés, et il a été démontré qu'ils sont moins interprétables que les graphiques cartésiens (Diehl et al. \protect\hyperlink{ref-diehl2010}{2010}; Feldman \protect\hyperlink{ref-feldman2013}{2013}; Albo et al. \protect\hyperlink{ref-albo2016}{2016}). Nous avons présenté des diagrammes en radar ici pour évaluer l'intérêt des participants au processus régional d'examen par les pairs et leur demander leurs commentaires sur la question de savoir s'il faut les inclure dans les futures applications du Cadre des procédures de gestion.
+
+\hypertarget{sec:discussion-m}{%
+\subsection{MORTALITÉ NATURELLE}\label{sec:discussion-m}}
+
+L'objectif de l'ensemble de robustesse est d'explorer les formulations des modèles opérationnels qui représentent d'autres hypothèses que celles de l'ensemble de référence (Rademeyer et al. \protect\hyperlink{ref-rademeyer2007}{2007}; Punt et al. \protect\hyperlink{ref-punt2016}{2016}). Les procédures de gestion possibles devraient donner de bons résultats dans les scénarios de référence et de robustesse de modèles opérationnels (Rademeyer et al. \protect\hyperlink{ref-rademeyer2007}{2007}). Dans notre étude, les deux scénarios de l'ensemble de robustesse de modèles opérationnels ont donné des résultats différents des scénarios de l'ensemble de référence de modèles opérationnels, en particulier le scénario de modèle opérationnel (A). Ce scénario de faible mortalité/faible productivité (\(M \sim \textrm{Lognormal}(0,025, 0,2)\)) était le seul où la biomasse médiane était estimée se trouver dans la zone critique au début de la période de projection. Pour tous les autres scénarios de modèles opérationnels, nous avons échantillonné selon une distribution de probabilités pour \emph{M} avec une moyenne de 0,045 y\textsuperscript{-1}, qui correspondait à celle utilisée dans l'évaluation du stock précédente (Yamanaka et al. \protect\hyperlink{ref-yamanaka2011}{2011}).
+
+Le taux de mortalité naturelle des populations de poissons est l'un des paramètres les plus importants, mais les plus difficiles à estimer. De nombreuses méthodes ont été élaborées pour estimer \emph{M} à partir des paramètres du cycle biologique accessibles. Les paramètres du sébaste aux yeux jaunes des eaux intérieures ont été saisis dans une {[}application{]} (\url{http://barefootecologist.com.au/shiny_m.html}) mise au point par des scientifiques de la NOAA, qui permet d'estimer \emph{M} à l'aide de diverses méthodes empiriques publiées. Les estimations de \emph{M} variaient de 0,03 à 0,17, selon la méthode empirique. D'autres évaluations du sébaste aux yeux jaunes ont utilisé des valeurs plus faibles pour \emph{M}, plus proches ou plus basses que celles utilisées dans le scénario de modèle opérationnel (A) (moyenne de 0,025 y\textsuperscript{-1}). Par exemple, le récent plan de rétablissement du stock de sébaste aux yeux jaunes des eaux extérieures a estimé les valeurs médianes pour \emph{M} entre 0,031 \emph{y}\textsuperscript{-1} et 0,044 \emph{y}\textsuperscript{-1}, selon le modèle opérationnel (Cox et al. \protect\hyperlink{ref-cox2020}{2020}). L'évaluation et le rapport de situation de 2008 du COSEPAC pour les stocks de sébaste aux yeux jaunes des eaux intérieures et extérieures (COSEWIC \protect\hyperlink{ref-cosewic2008}{2008}\protect\hyperlink{ref-cosewic2008}{a}) ont utilisé une valeur de \emph{M} = 0,02 \emph{y}\textsuperscript{-1}, citant l'évaluation de 2001 du stock des eaux intérieures (Yamanaka and Lacko \protect\hyperlink{ref-yamanaka2001}{2001}). De même, les évaluations du stock de sébaste aux yeux jaunes du sud du golfe d'Alaska ont utilisé une valeur de \emph{M} = 0,02 \emph{y}\textsuperscript{-1} (Wood et al. \protect\hyperlink{ref-wood2019}{2019}).
+
+Les taux de mortalité naturelle ont probablement varié au fil du temps, en raison des changements dans les populations de prédateurs dans le détroit de Georgie. Le sébaste aux yeux jaunes occupe une position trophique relativement élevée (Olson et al. \protect\hyperlink{ref-olson2020}{2020})~: l'otarie de Steller, l'épaulard (\emph{Orcinus orca}) et le saumon chinook (\emph{Oncorhynchus tshawytscha}) sont ses seuls prédateurs inscrits dans une grande base de données sur les interactions prédateur-proie (base de données assemblée pour Dunne et al. (\protect\hyperlink{ref-dunne2016}{2016}); Szoboszlai et al. (\protect\hyperlink{ref-szoboszlai2015}{2015})). Les populations des trois espèces prédatrices ont beaucoup fluctué au cours du dernier siècle. L'abondance de l'otarie de Steller a été considérablement réduite en raison de la chasse et du contrôle des prédateurs, mais elle s'est maintenant rétablie à des niveaux historiques {[}Olesiuk (\protect\hyperlink{ref-olesiuk2018}{2018}); voir l'annexe F{]}. La population résidente d'épaulard du sud est en voie de disparition et la population résidente du nord est menacée (COSEWIC \protect\hyperlink{ref-cosewic2008b}{2008}\protect\hyperlink{ref-cosewic2008b}{b}). La cause du déclin des deux populations est attribuée au déclin de l'abondance du saumon chinook (Ford et al. \protect\hyperlink{ref-ford2010}{2010}). On a également observé une prédation sur le sébaste aux yeux jaunes par le flétan du Pacifique dans le golfe d'Alaska (Livingston et al. \protect\hyperlink{ref-livingston2017}{2017}); toutefois, le flétan du Pacifique n'est pas très abondant dans les eaux intérieures (voir les données du relevé de 2018 de la CIFP dans Anderson et al. (\protect\hyperlink{ref-anderson2019synopsis}{2019})). La morue-lingue est probablement un prédateur des sébastes aux yeux jaunes juvéniles, car c'est un prédateur connu des espèces de sébastes. Cependant, les études des contenus stomacaux ne permettent souvent pas d'identifier les espèces de sébastes au-delà de « sébaste non identifié » (Beaudreau and Essington (\protect\hyperlink{ref-beaudreau2007}{2007}), Livingston et al. (\protect\hyperlink{ref-livingston2017}{2017})). La population de morue-lingue dans le détroit de Georgie a également beaucoup décliné et on pensait que la pêche l'avait fait chuter à 2 \% des niveaux historiques en 1990, mais elle a augmenté depuis (Logan et al. \protect\hyperlink{ref-logan2005}{2005}; Holt et al. \protect\hyperlink{ref-holt2016}{2016}). Des projets pourraient étudier les effets de la mortalité naturelle variable dans le temps sur le sébaste aux yeux jaunes des eaux intérieures.
+
+\hypertarget{sec:discussion-rca}{%
+\subsection{AIRES DE CONSERVATION DU SÉBASTE}\label{sec:discussion-rca}}
+
+Dans le cadre de la stratégie de conservation du sébaste, 164 aires de conservation du sébaste (ACS), dans lesquelles les pêches ciblant le sébaste ou le capturant comme prises accessoires sont interdites, ont été établies dans les eaux de la Colombie-Britannique entre 2004 et 2006 (Yamanaka and Logan \protect\hyperlink{ref-yamanaka2010}{2010}). Il y a 130 ACS dans la zone 4B (figure~\ref{fig:map-4B}) qui protègent environ 267 kilomètres carrés d'habitat du sébaste, soit 22 \% de l'habitat disponible dans les eaux intérieures (Haggarty and Yamanaka \protect\hyperlink{ref-haggarty2018}{2018}). Bien que les ACS aient été établies comme une mesure visant à aider à reconstituer les populations de sébaste (Yamanaka and Logan \protect\hyperlink{ref-yamanaka2010}{2010}), la présente analyse ne tient pas compte des effets possibles des fermetures. Les relevés par véhicule sous-marin téléguidé effectués dans les ACS dans les eaux intérieures ont révélé qu'il n'y avait pas de différence dans l'abondance ou la taille du sébaste aux yeux jaunes dans les ACS au moment de l'étude (de 3 à 7 ans après la mise en place des aires) (Haggarty et al. \protect\hyperlink{ref-haggarty2016b}{2016}). Compte tenu de l'âge tardif à la maturité et de la longévité du sébaste, il faudra sans doute plus de 20 ans pour que les populations affichent des réactions aux zones fermées (Starr et al. \protect\hyperlink{ref-starr2015}{2015}). Les ACS dans les eaux intérieures étant maintenant en place depuis 14 à 16 ans, nous pourrions commencer à y trouver bientôt des sébastes plus grands et en plus forte densité. Le MPO, en partenariat avec des biologistes du Washington Department of Fish and Wildlife (WDFW) et de la National Ocean and Atmospheric Administration (NOAA), a entrepris un relevé par véhicule sous-marin téléguidé de plusieurs ACS dans le détroit de Georgie à l'automne 2018, à bord du NGCC Vector. Cependant, les résultats de ce relevé n'ont pas été publiés à temps pour être inclus dans ce projet.
+
+\hypertarget{sec:discussion-status}{%
+\subsection{ÉTAT DU STOCK}\label{sec:discussion-status}}
+
+Le plan de rétablissement du stock de sébaste aux yeux jaunes des eaux intérieures a été déclenché par l'évaluation du stock de 2010 (Yamanaka et al. \protect\hyperlink{ref-yamanaka2011}{2011}), qui a estimé qu'il y avait une probabilité élevée que le stock soit inférieur au PRL. De tous les modèles opérationnels des ensembles de référence et de robustesse explorés dans notre analyse, seul le scénario de modèle opérationnel (A), M faible, a estimé que la médiane de la biomasse féconde serait inférieure au PRL en 2010. Dans tous les scénarios de modèles opérationnels, les écarts de recrutement sur l'échelle logarithmique ont commencé à augmenter après 2000, bien qu'ils soient toujours en deçà de zéro, suivant probablement les légères augmentations de l'indice du relevé à la palangre sur fond dur pendant cette période. L'évaluation de 2010 a utilisé un modèle de production excédentaire, avec des hypothèses structurelles fondamentalement différentes de l'analyse de réduction du stock utilisée pour le conditionnement des modèles opérationnels dans notre analyse. À titre de vérification, nous avons ajusté un modèle de production excédentaire, semblable à celui utilisé par Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}), et avons obtenu des estimations de la biomasse et de l'état du stock beaucoup plus faibles que celles des modèles opérationnels d'analyse de rétablissement du stock de l'ensemble de référence. De plus, dans le modèle de production excédentaire, l'estimation de \emph{B}\textsubscript{RMD} était plus élevée que notre scénario de modèle opérationnel (1) et l'estimation de \emph{F}\textsubscript{RMD} inférieure à celle des modèles d'analyse de réduction du stock de l'ensemble de référence, ce qui indique une productivité plus faible dans le modèle de production excédentaire. La productivité et la biomasse estimées plus faibles et une \emph{B}\textsubscript{RMD} plus élevée dans le modèle de production excédentaire donneraient une évaluation plus pessimiste de l'état du stock. L'exercice d'ajustement du modèle de production excédentaire donne à penser que la structure du modèle, plus que l'ajout de dix années de nouvelles données depuis la dernière évaluation, était un facteur important qui a contribué aux différentes perceptions de l'état du stock entre les modèles opérationnels actuels et l'évaluation précédente.
+
+Dans une évaluation récente du stock de sébaste aux yeux jaunes des eaux extérieures, Cox et al. (\protect\hyperlink{ref-cox2020}{2020}) ont relevé des différences semblables entre leurs modèles opérationnels structurés selon l'âge, qui estimaient que l'état du stock était supérieur au PRL, et l'évaluation fondée sur la production excédentaire de 2014 (Yamanaka et al. \protect\hyperlink{ref-yamanaka2018yelloweyeoutside}{2018}), selon laquelle le stock était inférieur au PRL, déclenchant un plan de rétablissement. Cox et al. (\protect\hyperlink{ref-cox2020}{2020}) ont remarqué que les différences structurelles entre les modèles de production excédentaire et les modèles structurés selon l'âge devraient produire des résultats différents, surtout en raison des différences dans la formulation de la productivité. Nous avons été en mesure d'imiter les estimations de l'état du stock de Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}) en forçant une productivité plus faible du stock dans le scénario de modèle opérationnel (A), même si la valeur moyenne de \emph{M} utilisée dans le scénario de modèle opérationnel (A) était inférieure à celle utilisée par Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}) pour calculer la valeur a priori de la productivité pour leur modèle de production excédentaire. Cox et al. (\protect\hyperlink{ref-cox2020}{2020}) ont souligné que les modèles structurés selon l'âge prévoient des retards du recrutement dans les pêches, les relevés et le stock reproducteur, des caractéristiques qui peuvent favoriser la résilience et qui sont plus réalistes pour une espèce longévive comme le sébaste aux yeux jaunes. Ces différences sont contrôlées par la sélectivité de la pêche selon l'âge, la sélectivité du relevé selon l'âge et la maturité selon l'âge, respectivement, dans les modèles structurés selon l'âge et peuvent être trop simplifiées dans les modèles de production excédentaire agrégés. Notre scénario de modèle opérationnel (4), dans lequel nous avons estimé la sélectivité du relevé selon l'âge, a produit des estimations plus faibles de l'état du stock, ce qui signifie que les hypothèses au sujet de la sélectivité ont contribué aux perceptions de l'état du stock (voir la section~\ref{sec:discussion-uncertainties-selectivity}), fort probablement en raison des impacts sur d'autres estimations de paramètres comme \emph{R}\textsubscript{0} et l'autocorrélation dans le recrutement. Cox et al. (\protect\hyperlink{ref-cox2020}{2020}) ont également remarqué que leurs procédures de gestion fondées sur la production excédentaire avaient tendance à sous-estimer la biomasse, ce que nous avons aussi constaté dans la présente étude, où les procédures de gestion de la production excédentaire n'ont pas généré de prises dans la première décennie des projections.
+
+Malgré les différences de perception de l'état du stock entre certains de nos modèles opérationnels, et entre cette évaluation et la précédente, nous remarquons que le Cadre des procédures de gestion fournit une méthode d'intégration des principales incertitudes dans l'état du stock et les points de référence (voir la section~\ref{sec:discussion-implicit}) qui sont prévalentes pour ce stock. En particulier, l'inclusion du scénario de modèle opérationnel (A) dans l'ensemble de robustesse offre aux décideurs un autre point de vue sur l'état du stock et le rendement des procédures de gestion. Dans de tels cas, où les données accessibles ne sont pas suffisantes pour résoudre les différentes estimations de l'état du stock, on peut recourir à une approche du « poids de la preuve » pour prendre des décisions de gestion (Kronlund et al. \protect\hyperlink{ref-kronlund2020}{2020}). Une approche fondée sur le poids de la preuve tient compte des contributions combinées des différentes études (ensemble de la preuve) et fait appel au jugement d'experts pour attribuer des pondérations à chaque source de données (études individuelles ou modèles opérationnels).
+
+\hypertarget{sec:discussion-uncertainties}{%
+\subsection{PRINCIPALES INCERTITUDES}\label{sec:discussion-uncertainties}}
+
+\hypertarget{sec:discussion-uncertainties-selectivity}{%
+\subsubsection{Sélectivité}\label{sec:discussion-uncertainties-selectivity}}
+
+La sélectivité était une source majeure d'incertitude dans nos modèles opérationnels. Il n'existe aucune donnée sur la composition selon l'âge pour les pêches commerciales ou récréatives, et aucune donnée du relevé sur l'aiguillat commun. Nous avons donc fixé la sélectivité pour tous ces engins. Les sélectivités pour les pêches commerciales et récréatives ont été établies de façon à correspondre à celles déclarées pour le stock des eaux extérieures (Cox et al. \protect\hyperlink{ref-cox2020}{2020}), et nous avons fixé la sélectivité dans le relevé sur l'aiguillat commun pour refléter la valeur utilisée pour le relevé à la palangre sur fond dur. Toutefois, il a été noté au cours du processus de rétablissement du sébaste aux yeux jaunes des eaux extérieures qu'il faudrait effectuer des échantillonnages biologiques supplémentaires pour étayer la sélectivité dans les pêches commerciales, récréatives et à des fins ASR (DFO \protect\hyperlink{ref-dfo2020}{2020}), et cette recommandation s'applique également à la population des eaux intérieures. Des données biologiques complètes, y compris des otolithes de sébaste aux yeux jaunes, ont été recueillies pour la première fois pendant le relevé sur l'aiguillat commun en 2019. Même si les données sur l'âge n'étaient pas encore accessibles pour ce travail, elles pourraient orienter la sélectivité dans le relevé sur l'aiguillat commun pour les travaux futurs. Nous avons également lancé en août 2019 un projet pour comparer les engins des relevés à la palangre sur fond dur et sur l'aiguillat commun en pêchant à certains des sites du relevé sur l'aiguillat commun avec les engins des deux relevés. Ces données peuvent également guider la comparabilité des deux relevés.
+
+Les données sur la composition selon l'âge tirées des relevés dans la zone 4B étaient rares et n'ont été recueillies que ces dernières années. Les premières tentatives d'estimation de la sélectivité dans le relevé à la palangre sur fond dur (associées à une pondération égale entre ce relevé et celui sur l'aiguillat commun) ont donné des estimations invraisemblables de l'âge à la pleine sélectivité et une forte tendance rétrospective dans les estimations de la biomasse. Par conséquent, nous avons fixé à 22 \emph{y} l'âge à la pleine sélectivité et nous avons augmenté la pondération de la composante de vraisemblance du relevé sur l'aiguillat commun, ce qui a nettement amélioré le comportement rétrospectif. Pour séparer les effets de l'augmentation de la pondération du relevé sur l'aiguillat commun de la détermination de la sélectivité du relevé à la palangre sur fond dur, nous avons estimé cette dernière dans le scénario de modèle opérationnel (4), ce qui a légèrement modifié la perception de l'état du stock.
+
+Nous aurions pu explorer d'autres hypothèses de sélectivité fixes, mais nous pensons avoir utilisé les valeurs les plus plausibles et, pour le relevé à la palangre sur fond dur, nous avons inclus un autre scénario de modèle opérationnel dans l'ensemble de référence. Les applications futures du Cadre des procédures de gestion pour ce stock pourraient examiner d'autres scénarios de modèles opérationnels de sélectivité.
+
+\hypertarget{sec:discussion-uncertainties-catch}{%
+\subsubsection{Prises historiques}\label{sec:discussion-uncertainties-catch}}
+
+L'autre grande source d'incertitude dans nos analyses est l'ampleur des prises commerciales et récréatives historiques. L'incertitude concernant les prises commerciales vient du fait qu'avant 1950, les sébastes autres que le sébaste à longue mâchoire étaient déclarés dans une catégorie agrégée; l'ampleur des prises non déclarées de 1986 à 2005 constitue également une grande incertitude. ({\textbf{???}}) ont reconstitué les données sur les prises historiques jusqu'en 2005 et tenté de séparer le sébaste aux yeux jaunes de la catégorie agrégée des sébastes et de tenir compte des poissons rejetés. Les prises reconstituées ont été utilisées dans l'évaluation précédente du stock (Yamanaka et al. \protect\hyperlink{ref-yamanaka2011}{2011}). Malgré une certaine controverse au sujet des données reconstituées sur les prises, pour le stock de sébaste des eaux extérieures comme pour celui des eaux intérieures, la réévaluation de la reconstitution était hors de la portée de ce travail et demeure la meilleure série chronologique accessible des prises historiques. Nous avons donc repris la même approche que Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}) pour reconstituer les données historiques sur les prises récréatives et estimer les prises récréatives actuelles. Nous avons évalué l'effet du doublement des données sur les prises nominales de 1986 à 2005 dans le scénario de modèle opérationnel (2), mais le rendement des procédures de gestion n'était pas sensiblement différent des autres scénarios de l'ensemble de référence de modèles opérationnels.
+
+Nous nous sommes écartés de Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}) dans notre traitement des prises à des fins ASR . Ils ont appliqué un algorithme pour estimer explicitement les prises à des fins ASR , en se fondant sur des hypothèses au sujet des taux de consommation. Après avoir discuté avec des ichtyobiologistes qui travaillent avec les Premières Nations locales dans les parties nord et sud de la zone 4B, nous avons choisi d'inclure les prises à des fins ASR avec les prises commerciales dans la partie nord, la plupart des prises de sébaste étant capturées en vertu de permis de double pêche et étant donc incluses dans les bases de données sur les prises commerciales du MPO. Nous avons choisi de supposer que les prises à des fins ASR dans la région du sud étaient comptabilisées dans les prises récréatives, parce que la plupart des prises de sébaste sont effectuées à partir de petits bateaux, de sorte que l'effort, du moins, est probablement déjà compté par les survols du MPO. Nous sommes conscients des grandes incertitudes entourant les prises à des fins ASR . Les applications futures du Cadre des procédures de gestion de ce stock bénéficieraient d'un travail de collaboration plus détaillé avec les Premières Nations pour quantifier les prises à des fins ASR contemporaines et historiques dans la zone 4B.
+
+\hypertarget{sec:discussion-implicit}{%
+\subsection{CONNAISSANCE IMPLICITE ET EXPLICITE DES POINTS DE RÉFÉRENCE LIMITES}\label{sec:discussion-implicit}}
+
+Ce Cadre des procédures de gestion et tous les processus d'évaluation de la stratégie de gestion diffèrent des évaluations classiques des stocks de par la façon dont les avis scientifiques sont fournis (Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}). Dans la plupart des évaluations des stocks de poisson de fond de la Colombie-Britannique (p.~ex., Yamanaka et al. \protect\hyperlink{ref-yamanaka2011}{2011}; Starr and Haigh \protect\hyperlink{ref-starr2017}{2017}; Forrest et al. \protect\hyperlink{ref-forrest2019}{2019}), les avis sur les prises sont présentés sous forme de tableaux de décision, où les probabilités de dépassement des points de référence (p.~ex., la probabilité que les stocks tombent en deçà du PRL) sont présentées pour un éventail de futurs niveaux de TAC possibles. Cette approche dépend de la déclaration explicite des points de référence et de l'estimation de l'état des stocks. Une fois qu'un tableau de décision a été produit, il incombe aux décideurs de choisir un futur TAC en fonction des probabilités présentées, en tenant compte d'autres facteurs comme les besoins économiques de la pêche et un certain niveau de tolérance au risque. Dans ce processus, la prise en compte du risque se fait à l'étape finale du processus décisionnel et n'est pas toujours transparente ou liée à des objectifs convenus à l'avance.
+
+Les cadres de procédures de gestion diffèrent des évaluations conventionnelles de deux façons principales~: 1) les points de référence et l'état des stocks ne sont pas explicitement déclarés; 2) les objectifs liés à la probabilité de dépasser les points de référence doivent être convenus au début du processus (l'étape 2 des pratiques exemplaires). Les points de référence et l'état des stocks font donc toujours partie intégrante du cadre, mais ils sont calculés dans les modèles opérationnels et intégrés dans les paramètres de rendement. Il est essentiel de s'entendre sur le risque acceptable (p.~ex., les probabilités acceptables de dépassement des points de référence) au début du processus afin de pouvoir établir les paramètres de rendement et les critères de satisfaction.
+
+Pour de nombreux stocks, en particulier les stocks à données limitées, il n'est pas possible d'en estimer de façon fiable les points de référence biologiques ou l'état. Des cadres de procédures de gestion comme celui-ci peuvent être particulièrement importants pour ces stocks. Le Cadre pour la pêche durable et les dispositions relatives aux stocks de poissons de la \emph{Loi sur les pêches} exigent que les stocks de poissons soient maintenus à des niveaux durables, et en particulier au-dessus du PRL. Ce cadre préserve implicitement l'intention de ces politiques bien que les points de référence et l'état du stock ne soient pas explicitement mis en évidence.
+
+\hypertarget{sec:discussion-triggers}{%
+\subsection{FRÉQUENCE ET DÉCLENCHEURS DES RÉÉVALUATIONS}\label{sec:discussion-triggers}}
+
+En général, l'objectif d'un cadre de procédures de gestion est de déterminer et de choisir une procédure de gestion solide qui peut être laissée en place pendant une période convenue. Il est également recommandé d'effectuer des vérifications provisoires entre les évaluations pour s'assurer que les procédures de gestion choisies fonctionnent comme prévu. En plus des étapes des pratiques exemplaires de l'évaluation de la stratégie de gestion, Carruthers and Hordyk (\protect\hyperlink{ref-carruthers2018}{2018}\protect\hyperlink{ref-carruthers2018}{a}) décrivent une étape d'évaluation finale, où le rendement de la procédure de gestion choisie est examiné officiellement une fois qu'elle a été mise en œuvre. Les écarts par rapport au rendement attendu d'une procédure de gestion ont été qualifiés de « circonstances exceptionnelles ». Cela peut se produire lorsque la dynamique du système observée se situe en dehors de l'éventail des scénarios de modèles opérationnels précisés dans les modèles opérationnels pour lesquels la procédure de gestion s'est avérée solide (Butterworth \protect\hyperlink{ref-butterworth2008}{2008}).
+
+La preuve de circonstances exceptionnelles, survenant dans l'intervalle recommandé entre les évaluations, déclencherait un examen des modèles opérationnels et de la procédure de gestion, ce qui pourrait entraîner un nouveau modèle opérationnel ou un ajustement de la procédure de gestion choisie (Carruthers and Hordyk \protect\hyperlink{ref-carruthers_hordyk_2018}{2018}\protect\hyperlink{ref-carruthers_hordyk_2018}{b}). Ces auteurs donnent plusieurs exemples d'évaluations de la stratégie de gestion pour lesquelles des protocoles officiels de détection de circonstances exceptionnelles ont été établis. En général, les protocoles officiels comprennent la surveillance de l'indice de la biomasse, des prises et d'autres types de données, comme les données sur la composition selon l'âge, et la comparaison des observations aux prévisions du modèle opérationnel. L'indice de l'abondance observé sortant de l'intervalle de confiance de 90 \% de l'indice projeté par le modèle opérationnel est un exemple de déclencheur d'une réévaluation. Voir d'autres recommandations sur les procédures d'évaluation officielles dans Carruthers and Hordyk (\protect\hyperlink{ref-carruthers_hordyk_2018}{2018}\protect\hyperlink{ref-carruthers_hordyk_2018}{b}). Les procédures d'évaluation informelles, sous la forme de commentaires des intervenants ou de comparaison visuelle des données observées par rapport aux données projetées, peuvent également permettre de détecter des circonstances exceptionnelles (p.~ex. Cox and Kronlund \protect\hyperlink{ref-cox2008a}{2008}).
+
+Parmi les procédures de gestion satisfaisantes dans les analyses actuelles, certaines sont à prises constantes et d'autres sont des procédures de gestion Islope annuelles. Toutes les procédures de gestion fondées sur des indices ont également été évaluées tous les cinq ans. Toutes ces procédures de gestion satisfaisaient aux critères du PRL 1,5DG, mais aucune ne répondait aux critères de CT C10. C'est pourquoi nous recommandons des mises à jour annuelles si une procédure de gestion fondée sur des indices est sélectionnée. Conformément aux directives pour les plans de rétablissement au Canada (DFO \protect\hyperlink{ref-dfo2013}{2013}), nous recommandons de réévaluer le rendement de la procédure de gestion choisie au moins tous les trois ans.
+
 \clearpage
 
-(ref:fig-sra-comp-fit4)
+\hypertarget{remerciements}{%
+\section{REMERCIEMENTS}\label{remerciements}}
 
-Ajustements du modèle d'analyse de réduction du stock aux données sur la composition selon l'âge pour le scénario de modèle opérationnel (4), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d'ensembles dans lesquels des échantillons d'âge ont été prélevés chaque année.
-\begin{figure}[htb]
+Nous remercions Adam Keizer et Maureen Finn (Groupe de gestion du poisson de fond), ainsi que Roger Kanno (coordonnateur du Cadre pour la pêche durable) pour les discussions et les conseils utiles concernant les objectifs du plan de rétablissement.
 
-{\centering \pdftooltip{\includegraphics[width=0.85\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/conditioning/HBLL_age_comp_upweight_dogfish}}{Figure \ref{fig:sra-conditioned-comp-fit4}} 
+Nous sommes très reconnaissants à Bob Bocking, Cheri Ayers et Christa Rusel, experts-conseils en pêches qui travaillent avec les Premières Nations locales, et à Mark Fetterly, Aleta Rushton et Patrik Zetterberg du MPO, qui nous ont donné des conseils très utiles au sujet des prises à des fins ASR .
 
-}
+Ross Claytor et Dwayne Lepitzki, du COSEPAC, nous ont fourni des conseils précieux sur l'élaboration des paramètres de rendement qui seront utilisés pour les évaluations du COSEPAC.
 
-\caption{(ref:fig-sra-comp-fit4)}\label{fig:sra-conditioned-comp-fit4}
-\end{figure}
-\clearpage
+Strahan Tucker et l'équipe responsable des pinnipèdes au sein du MPO ont fourni des données sur l'abondance des pinnipèdes et les taux de consommation de sébaste. Spencer Wood (The Natural Capital Project, Université Stanford) a fait une recherche dans la grande base de données sur les prédateurs et les proies de l'université pour nous.
 
-(ref:fig-sra-comp-fitA)
+Rowan Haigh nous a apporté ses conseils sur la reconstitution des prises historiques.
 
-Ajustements du modèle d'analyse de réduction du stock aux données sur la composition selon l'âge pour le scénario de modèle opérationnel (A), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d'ensembles dans lesquels des échantillons d'âge ont été prélevés chaque année.
-\begin{figure}[htb]
+Nous remercions Tom Carruthers et Adrian Hordyk (Université de la Colombie-Britannique) pour leurs recommandations précoces sur ce plan de rétablissement et de leur enthousiasme à ajouter de nouvelles fonctions au logiciel DLMtool sur demande.
 
-{\centering \pdftooltip{\includegraphics[width=0.85\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/conditioning/HBLL_age_comp_lowM_fixsel}}{Figure \ref{fig:sra-conditioned-comp-fitA}} 
-
-}
-
-\caption{(ref:fig-sra-comp-fitA)}\label{fig:sra-conditioned-comp-fitA}
-\end{figure}
-\clearpage
-
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=0.85\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/conditioning/HBLL_age_comp_high_index_cv}}{Figure \ref{fig:sra-conditioned-comp-fitB}} 
-
-}
-
-\caption{Ajustements du modèle d'analyse de réduction du stock aux données sur la composition selon l'âge pour le scénario de modèle opérationnel (B), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d'ensembles dans lesquels des échantillons d'âge ont été prélevés chaque année.}\label{fig:sra-conditioned-comp-fitB}
-\end{figure}
-\hypertarget{sec:approach3-conditioning-parameters}{%
-\subsubsection{Estimation des paramètres}\label{sec:approach3-conditioning-parameters}}
-
-Les scénarios de référence et de robustesse des modèles opérationnels ont produit une plage de valeurs estimées des paramètres (figure~\ref{fig:sra-conditioned-parameters}). (ref:fig-sra-conditioned-parameters) Histogrammes des paramètres estimés par l'analyse de réduction du stock. AC fait référence à \(\theta_\textrm{AC}\). D désigne l'épuisement (\(B_{t_c}/B_0\)). À des fins de visualisation, les limites de l'axe \emph{R}\textsubscript{0} ont été limitées à un maximum de 490 et les limites de l'axe AC à un minimum de 0,76. Cela exclut un petit nombre de répétitions.
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=0.85\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-sra-estimated}}{Figure \ref{fig:sra-conditioned-parameters}} 
-
-}
-
-\caption{(ref:fig-sra-conditioned-parameters)}\label{fig:sra-conditioned-parameters}
-\end{figure}
-Les moyennes et les coefficients de variation (CV) estimés pour les points de référence \emph{F}\textsubscript{RMD}, \emph{B}\textsubscript{RMD} et RMD sont fournis dans le tableau~\ref{tab:sra-ref-pts}. Les CV sont larges en raison de la grande gamme de valeurs échantillonnées pour \emph{M} et \emph{h} (annexe~\ref{app:desc-om-yelloweye}, sections~\ref{app:desc-stock-m-yelloweye} et~\ref{app:desc-stock-h-yelloweye}).
-\begin{longtable}[]{@{}llll@{}}
-\caption{\label{tab:sra-ref-pts}Points de référence estimés pour chaque scénario de modèle opérationnel. Les écarts-types entre les répétitions sont indiqués entre parenthèses. PDF = relevé à la palangre sur fond dur.}\tabularnewline
-\toprule
-OM Scenario & F\textsubscript{RMD} (/y) & B\textsubscript{RMD} (t) & RMD (t)\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-OM Scenario & F\textsubscript{RMD} (/y) & B\textsubscript{RMD} (t) & RMD (t)\tabularnewline
-\midrule
-\endhead
-(1) Base & 63.92 (0.64) & 0.04 (0.33) & 1362.08 (0.27)\tabularnewline
-(2) Faibles prises & 53.01 (1.12) & 0.04 (0.33) & 1087.02 (0.55)\tabularnewline
-(3) Recrutement épisodique & 63.92 (0.64) & 0.04 (0.33) & 1362.08 (0.27)\tabularnewline
-(4) Estimation de la sélectivité du RPFD & 54.75 (0.44) & 0.04 (0.33) & 1199.70 (0.18)\tabularnewline
-(A) Faible M & 34.30 (0.20) & 0.02 (0.29) & 1384.54 (0.11)\tabularnewline
-(B) CV élevé du RPFD & 63.92 (0.64) & 0.04 (0.33) & 1362.08 (0.27)\tabularnewline
-\bottomrule
-\end{longtable}
-\clearpage
-
-\hypertarget{sec:approach3-conditioning-trajectories}{%
-\subsubsection{Trajectoires historiques}\label{sec:approach3-conditioning-trajectories}}
-
-Dans tous les scénarios de modèle opérationnel, à l'exception du scénario de modèle opérationnel (A), la médiane estimée de la biomasse féconde en 2019 est au-dessus du PRL (figure~\ref{fig:biomass-om}). Dans le scénario de modèle opérationnel (A), la médiane estimée de la biomasse féconde est inférieure au PRL la plupart des années après 2000 et a une probabilité inférieure à 50 \% d'être au-dessus du PRL en 2019 (figure~\ref{fig:ref-pt}). Les scénarios de modèle opérationnel (2) et (4) présentaient également une faible probabilité d'être inférieurs au PRL pour l'année en cours. Par conséquent, selon tous les scénarios de modèle opérationnel de l'ensemble de référence et un scénario de modèle opérationnel de l'ensemble de robustesse, on peut déjà considérer que le stock s'est rétabli au-dessus du PRL. On estime que la médiane de la biomasse féconde est supérieure au RSS dans les scénarios de modèle opérationnel (1), (2), (3) et (B) et inférieure au RSS dans les scénarios de modèle opérationnel (4) et (A).
-
-Tous les scénarios de modèle opérationnel prévoyaient une légère augmentation de la biomasse féconde au cours de la dernière décennie de la série chronologique (figure~\ref{fig:biomass-om}). L'intervalle de crédibilité pour tous les scénarios de modèle opérationnel sauf (A) était très large, découlant des incertitudes relatives à la mortalité naturelle et au taux de variation de la pente (figure~\ref{fig:sra-conditioned-parameters}). Il convient de noter que les trajectoires sont identiques pour les scénarios de modèle opérationnel (1), (3) et (B), car les scénarios de modèle opérationnel (3) et (B) ne diffèrent du scénario de modèle opérationnel (1) que par le traitement des paramètres durant la période de projection. L'intervalle de crédibilité très étroit pour le scénario de modèle opérationnel (A) reflète la valeur fixe très faible de \emph{M} dans ce scénario de modèle opérationnel, qui limite l'éventail des résultats possibles. Les trajectoires implicites d'épuisement de la biomasse féconde durant la période historique d'après les huit modèles opérationnels suivent le même profil que celles de \emph{B} (figure~\ref{fig:depletion-om}).
-
-Les estimations des écarts de recrutement historiques étaient semblables dans tous les scénarios de modèles opérationnels (figure~\ref{fig:recdev-om}).
-
-La mortalité historique estimée apicale par pêche variait selon les scénarios de modèle opérationnel, avec des valeurs plus élevées estimées pour les scénarios de modèle opérationnel (4) et (A), les trajectoires avec le plus d'épuisement (figure~\ref{fig:F-om}). Tous les scénarios de modèle opérationnel prévoyaient des pics importants de la mortalité par pêche dans les années 1980 et 1990 (figure~\ref{fig:F-om}).
-
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=\textwidth]{C:/GitHub/yelloweye-inside/mse/figures/ye-compare-SRA-MSY-panel}}{Figure \ref{fig:biomass-om}} 
-
-}
-
-\caption{Trajectoires de la biomasse féconde par rapport à la biomasse féconde au rendement maximal soutenu (\emph{B}/\emph{B}\textsubscript{RMD}) pour les modèles opérationnels des ensembles de référence et de robustesse. Les lignes représentent les médianes, et les ombres gris foncé et gris pâle représentent les quantiles de 50 \% et 95 \% entre les répétitions, respectivement. Les lignes horizontales en pointillés représentent le RSS (0,8\emph{B}\textsubscript{RMD}) et le PRL (0,4\emph{B}\textsubscript{RMD}).}\label{fig:biomass-om}
-\end{figure}
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=2.5in]{C:/GitHub/yelloweye-inside/mse/figures/historical_indicators_ref_pt}}{Figure \ref{fig:ref-pt}} 
-
-}
-
-\caption{Probabilité que la biomasse féconde en 2019 soit supérieure au PRL et au RSS pour les six modèles opérationnels.}\label{fig:ref-pt}
-\end{figure}
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=\textwidth]{C:/GitHub/yelloweye-inside/mse/figures/ye-compare-SRA-depletion-panel}}{Figure \ref{fig:depletion-om}} 
-
-}
-
-\caption{Trajectoires de l'épuisement de la biomasse féconde pour les modèles opérationnels des ensembles de référence et de robustesse. L'épuisement est représenté sous la forme d'une fraction de \(B_0\) (biomasse féconde à l'équilibre à un taux d'exploitation nul). Les lignes représentent les répétitions individuelles.}\label{fig:depletion-om}
-\end{figure}
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=\textwidth]{C:/GitHub/yelloweye-inside/mse/figures/ye-compare-SRA-recdev-panel}}{Figure \ref{fig:recdev-om}} 
-
-}
-
-\caption{Écarts historiques de recrutement estimés par le modèle d'analyse de réduction du stock (dans l'espace logarithmique). Les lignes représentent les répétitions individuelles.}\label{fig:recdev-om}
-\end{figure}
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=\textwidth]{C:/GitHub/yelloweye-inside/mse/figures/ye-compare-SRA-F-panel}}{Figure \ref{fig:F-om}} 
-
-}
-
-\caption{Trajectoires de la mortalité par pêche apicale (\(f_y\)) pour les modèles opérationnels des ensembles de référence et de robustesse. La mortalité par pêche apicale est la valeur maximale de \(F_y\) subie par les poissons de tout âge une année donnée. Les lignes représentent les répétitions individuelles.}\label{fig:F-om}
-\end{figure}
-\clearpage
-
-\hypertarget{scuxe9nario-du-moduxe8le-opuxe9rationnel-pour-le-moduxe8le-de-production-excuxe9dentaire}{%
-\subsection{SCÉNARIO DU MODÈLE OPÉRATIONNEL POUR LE MODÈLE DE PRODUCTION EXCÉDENTAIRE}\label{scuxe9nario-du-moduxe8le-opuxe9rationnel-pour-le-moduxe8le-de-production-excuxe9dentaire}}
-
-L'évaluation du stock de 2011 pour le sébaste aux yeux jaunes des eaux intérieures a appliqué un modèle bayésien espace-état de production excédentaire, ajusté aux prises, aux CPUE commerciales et aux relevés à la palangre sur fond dur et sur l'aiguillat commun (Yamanaka et al. \protect\hyperlink{ref-yamanaka2011}{2011}). Elle a estimé une probabilité de 90 \% {[}neuf fois sur 10{]} que le stock soit inférieur au PRL, c'est-à-dire qu'il se trouve dans la zone critique. Les résultats de l'évaluation ont déclenché un plan de rétablissement (DFO \protect\hyperlink{ref-ifmp2018}{2018}), qui est mis à jour dans le présent document. Les modèles d'analyse de réduction du stock de tous les scénarios de modèle opérationnel de la présente analyse prédisent des trajectoires de la biomasse semblables à celles présentées dans Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}). Toutefois, seul le scénario de modèle opérationnel (A) estime que le stock a été inférieur au PRL dans les années 2000 (figure~\ref{fig:biomass-om}).
-
-Les résultats du modèle divergeaient entre les deux analyses en raison des grandes différences de structure entre le modèle de production excédentaire utilisé dans Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}) et l'analyse de réduction du stock utilisée ici. Pour explorer les effets de la structure du modèle sur l'état du stock, nous avons adapté un modèle de production excédentaire aux indices de l'abondance des prises, des CPUE et indépendants de la pêche actuellement accessibles. Nous avons utilisé le modèle de production excédentaire mis en œuvre dans le progiciel R MSEtool (Huynh et al. \protect\hyperlink{ref-huynh_msetool_2019}{2019}), entièrement décrit dans l'annexe D de Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}), qui a été configuré pour ressembler le plus possible à l'évaluation de 2011, bien que le modèle appliqué ici ait estimé les paramètres en utilisant la vraisemblance maximale. Le modèle de production excédentaire a établi \emph{B}\textsubscript{RMD} à 50 \% de la biomasse non exploitée, la biomasse initiale en 1918 à 90 \% de la biomasse non exploitée, et a utilisé une distribution de probabilité a priori pour le taux intrinsèque de croissance de la population (\emph{r}) comme pénalité de vraisemblance. La distribution de probabilité a priori pour \emph{r} était normalement distribuée avec une moyenne de 0,068 et un écart-type de 0,03, d'après les valeurs utilisées dans Yamanaka et al. (\protect\hyperlink{ref-yamanaka2011}{2011}).
-
-Les résultats du modèle de production excédentaire correspondaient plus étroitement à ceux de l'évaluation précédente, estimant que le stock était inférieur au PRL (figure~\ref{fig:spm-biomass}). Le modèle a estimé les points de référence \emph{B}\textsubscript{RMD} = 1 844 t, \emph{F}\textsubscript{RMD} = 0,03 \emph{y}\textsuperscript{-1} et RMD = 62 tonnes. Les estimations de RMD et de \emph{F}\textsubscript{RMD} étaient semblables à celles du modèle opérationnel de base de l'analyse de réduction du stock (tableau~\ref{tab:sra-ref-pts}), mais l'estimation de \emph{B}\textsubscript{RMD} était environ 35 \% plus élevée pour le modèle de production excédentaire que pour l'analyse de réduction du stock. Nous notons que Cox et al. (\protect\hyperlink{ref-cox2020}{2020}) ont tiré des conclusions très similaires dans le plan de rétablissement du stock de sébaste aux yeux jaunes des eaux extérieures. Leur analyse, également fondée sur des modèles structurés selon l'âge, a prédit que l'état actuel du stock de sébaste aux yeux jaunes des eaux extérieures se situerait au-dessus du PRL, c'est-à-dire qu'un rétablissement n'était pas nécessaire, contrairement aux résultats obtenus par le modèle de production excédentaire utilisé dans l'évaluation des stocks de 2014 (Yamanaka et al. \protect\hyperlink{ref-yamanaka2018yelloweyeoutside}{2018}).
-
-En particulier, les tendances de la biomasse pour la population des eaux intérieures depuis 2000 diffèrent également entre les deux types de modèles. Une tendance aplatie et stable (inférieure au PRL) a été estimée dans le modèle de production excédentaire. Par ailleurs, bon nombre des modèles opérationnels élaborés à partir de l'analyse de réduction du stock indiquent que la taille du stock a augmenté, bien que la tendance soit beaucoup plus aplatie dans le scénario de M faible. Nous avons essayé quatre modèles de rechange pour tenter de trouver des scénarios qui refléteraient la tendance de la biomasse estimée dans le modèle de production excédentaire (figure~\ref{fig:alt-SRA-fit}).
-
-Tout d'abord, le relevé sur l'aiguillat commun a été encore moins pondéré, avec un facteur de pondération de la vraisemblance \(\lambda = 0,1\). Cela n'a pas changé la tendance de la biomasse féconde et l'état du stock obtenu était plus optimiste que le modèle opérationnel de base. Ensuite, la valeur du relevé sur l'aiguillat commun de 2019 a été exclue de la vraisemblance puisque la moyenne observée est plus élevée que les dernières années (avec \(\lambda = 4\) d'après le modèle opérationnel de base). Ce scénario n'a pas non plus eu d'effet appréciable sur la tendance et l'ampleur de la biomasse féconde. Puis, les compositions selon l'âge du relevé ont été pondérées à la baisse, avec \(\lambda = 1\). Comme dans la première option, la tendance de la biomasse féconde était semblable à celle du modèle opérationnel de base, mais l'état du stock obtenu était un peu moins optimiste. Enfin, les compositions selon l'âge du relevé ont été supprimées de la vraisemblance avec \(\lambda = 0\). Ce scénario a estimé que le stock était inférieur au PRL conformément au modèle de production excédentaire.
-
-Ces résultats permettent de penser que les différences dans l'état estimé du stock entre l'analyse actuelle et l'évaluation du stock précédente (Yamanaka et al. \protect\hyperlink{ref-yamanaka2011}{2011}) sont en grande partie attribuables aux types de données inclus dans les modèles respectifs et leur structure. Les deux utilisent les prises et les indices de l'abondance, bien que le modèle de production excédentaire ne tienne pas compte des compositions selon l'âge. Lorsque les deux modèles utilisent les mêmes types de données, c.-à-d.~en excluant les compositions selon l'âge de la vraisemblance avec des hypothèses fixes concernant la sélectivité du relevé, les deux se comportent de façon plus similaire.
-
-Nous avons choisi le modèle structuré selon l'âge plutôt que le modèle de production excédentaire pour élaborer des modèles opérationnels pour le sébaste aux yeux jaunes des eaux intérieures selon les premiers principes. Le modèle structuré selon l'âge est plus réaliste pour modéliser les retards dans la productivité du stock au fil du temps. Une seule cohorte contribue à la biomasse féconde (et à la biomasse vulnérable) sur plusieurs années à mesure qu'elle progresse dans la structure selon l'âge de la population. Ce mécanisme peut expliquer l'augmentation de la biomasse estimée dans l'analyse de réduction du stock. À mesure que la mortalité par pêche diminuait à la suite de la réduction des prises à la fin des années 1990 jusqu'en 2000, la biomasse féconde a commencé à augmenter. De plus, l'âge à 5 \% de maturité est inférieur à l'âge à 5 \% de sélectivité de la flottille commerciale, ce qui permettrait à certaines parties des cohortes de frayer avant une vulnérabilité importante à la pêche.
-
-Pour le modèle de production excédentaire, ce retard peut être implicitement intégré à la fonction de production du modèle, mais la biomasse prévue pour une année donnée est explicitement une fonction de la biomasse observée l'année précédente. De plus, la biomasse du stock dans le modèle de production excédentaire est implicitement la biomasse vulnérable puisqu'il n'y a pas d'hypothèses explicites sur la sélectivité. Il est plus difficile d'expliquer la productivité du stock de manière mécaniste, car tous les processus biologiques concernant la croissance, la mortalité naturelle et la maturité sont intégrés dans le paramètre de taux intrinsèque \emph{r}.
-
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=0.8\textwidth]{C:/GitHub/yelloweye-inside/mse/figures/SP_fit}}{Figure \ref{fig:spm-biomass}} 
-
-}
-
-\caption{Trajectoire de la biomasse par rapport à la biomasse au rendement maximal soutenu (\emph{B}/\emph{B}\textsubscript{RMD}) dans le modèle de production excédentaire. Les lignes horizontales en pointillés représentent le RSS (0,8\emph{B}\textsubscript{RMD}) et le PRL (0,4\emph{B}\textsubscript{RMD}).}\label{fig:spm-biomass}
-\end{figure}
-
-\begin{figure}[htb]
-
-{\centering \pdftooltip{\includegraphics[width=5.5in]{C:/GitHub/yelloweye-inside/mse/figures/alt_SRA_fit}}{Figure \ref{fig:alt-SRA-fit}} 
-
-}
-
-\caption{Biomasse féconde relative (\emph{B}/\emph{B}\textsubscript{RMD}) selon d'autres ajustements à l'analyse de réduction du stock qui réduisaient ou éliminaient les données de la vraisemblance. On a utilisé les valeurs moyennes de la mortalité naturelle et du taux de variation de la pente. Les lignes horizontales en pointillés représentent le RSS (0,8\emph{B}\textsubscript{RMD}) et le PRL (0,4\emph{B}\textsubscript{RMD}). Les scénarios de référence et d'exclusion du relevé de 2019 sur l'aiguillat commun se chevauchent et les lignes correspondantes sont différenciées sur la figure pour plus de clarté.}\label{fig:alt-SRA-fit}
-\end{figure}
-\clearpage
+Enfin, nous remercions Dayv Lowry (WDFW) et Kendra Holt (MPO) pour leurs commentaires édifiants qui ont grandement amélioré le document de travail.
 
 \hypertarget{computational-environment}{%
 \section{COMPUTATIONAL ENVIRONMENT}\label{computational-environment}}
 
-This version of the document was generated on 2021-10-26 15:05:22 with R version 3.6.3 (2020-02-29) (R Core Team \protect\hyperlink{ref-r2019}{2019}) and R package versions:
+This version of the document was generated on 2021-10-26 15:48:04 with R version 3.6.3 (2020-02-29) (R Core Team \protect\hyperlink{ref-r2019}{2019}) and R package versions:
 \begin{longtable}[]{@{}lll@{}}
 \toprule
 Package & Version & Date\tabularnewline
@@ -597,41 +340,95 @@ or installed via:
 \clearpage
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-albo2016}{}%
+Albo, Y., Lanir, J., Bak, P., and Rafaeli, S. 2016. Off the radar: Comparative evaluation of radial visualization solutions for composite indicators. IEEE Trans. Vis. Comput. Graph. 22(1): 569--578.
+
 \leavevmode\hypertarget{ref-anderson2020gfmp}{}%
 Anderson, S.C., Forrest, R.E., Huynh, Q.C., and Keppel, E.A. 2020a. A management procedure framework for groundfish in British Columbia. DFO Can. Sci. Advis. Sec. Res. Doc. 2020/nnn: In prep.
 
 \leavevmode\hypertarget{ref-csasdown}{}%
 Anderson, S.C., Grandin, C., Edwards, A.M., Grinnell, M.H., Ricard, D., and Haigh, R. 2020b. csasdown: Reproducible CSAS reports with bookdown. R package version 0.0.8. \url{https://github.com/pbs-assess/csasdown}.
 
+\leavevmode\hypertarget{ref-anderson2019synopsis}{}%
+Anderson, S.C., Keppel, E.A., and Edwards, A.M. 2019. A reproducible data synopsis for over 100 species of British Columbia groundfish. DFO Can. Sci. Advis. Sec. Res. Doc. 2019/041 \url{http://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/2019/2019_041-eng.html}.
+
+\leavevmode\hypertarget{ref-beaudreau2007}{}%
+Beaudreau, A. H., and Essington, T.E. 2007. Spatiotemporal patterns of rockfish bycatch in us west coast groundfish fisheries: Opportunities for reducing incidental catch of depleted species. Trans. Am. Fish. Soc. 136(5): 1438--1452.
+
+\leavevmode\hypertarget{ref-butterworth2008}{}%
+Butterworth, D.S. 2008. Some lessons from implementing management procedures. Edited by K. Tsukamoto, T. Kawamura, T. Takeuchi, T.D. Beard, Jr., And M.J. Kaiser. \emph{In} Fisheries for Global Welfare and Environment, 5th World Fisheries Congress 2008. TERRAPUB, Toyko. pp. 381--397.
+
 \leavevmode\hypertarget{ref-carruthers2018}{}%
-Carruthers, T.R., and Hordyk, A. 2018. The data-limited methods toolkit (DLMtool): An R package for informing management of data-limited populations. Methods Ecol. Evol. 9: 2388--2395.
+Carruthers, T.R., and Hordyk, A. 2018a. The data-limited methods toolkit (DLMtool): An R package for informing management of data-limited populations. Methods Ecol. Evol. 9: 2388--2395.
+
+\leavevmode\hypertarget{ref-carruthers_hordyk_2018}{}%
+Carruthers, T.R., and Hordyk, A.R. 2018b. Using management strategy evaluation to establish indicators of changing fisheries. Can. J. Fish. Aquat. Sci.: 1--16.
 
 \leavevmode\hypertarget{ref-cosewic2008}{}%
-COSEWIC. 2008. COSEWIC assessment and status report on the Yelloweye Rockfish (\emph{Sebastes ruberrimus}), Pacific Ocean inside waters population and Pacific Ocean outside waters population, in Canada. Committee on the Status of Endangered Wildlife in Canada \url{https://www.sararegistry.gc.ca/virtual_sara/files/cosewic/sr_yelloweye_rockfish_0809_e.pdf}.
+COSEWIC. 2008a. COSEWIC assessment and status report on the Yelloweye Rockfish (\emph{Sebastes ruberrimus}), Pacific Ocean inside waters population and Pacific Ocean outside waters population, in Canada. Committee on the Status of Endangered Wildlife in Canada \url{https://www.sararegistry.gc.ca/virtual_sara/files/cosewic/sr_yelloweye_rockfish_0809_e.pdf}.
+
+\leavevmode\hypertarget{ref-cosewic2008b}{}%
+COSEWIC. 2008b. COSEWIC assessment and update status report on the Killer Whale (\emph{Orcinus orca}) Southern Resident population, Northern Resident population, West Coast Transient population, Offshore population and Northwest Atlantic/Eastern Arctic population in Canada. viii + 65 p. Committee on the Status of Endangered Wildlife in Canada \url{https://www.sararegistry.gc.ca/virtual_sara/files/cosewic/sr_killer_whale_0809_e.pdf}.
 
 \leavevmode\hypertarget{ref-cox2020}{}%
 Cox, S.P., Doherty, B., Benson, A.J., Johnson, S.D., and Haggarty, D. 2020. Evaluation of potential rebuilding strategies for Outside Yelloweye Rockfish in British Columbia. DFO Can. Sci. Advis. Sec. Res. Doc. 2020/nnn.
 
-\leavevmode\hypertarget{ref-dfo2012}{}%
-DFO. 2012. Survey of recreational fishing in canada 2010. DFO Res. Manage. Eco. Fish. Manage. 2012-1804.
+\leavevmode\hypertarget{ref-cox2008a}{}%
+Cox, S.P., and Kronlund, A.R. 2008. Practical stakeholder-driven harvest policies for groundfish fisheries in British Columbia, Canada. Fish. Res. 94(3): 224--237.
 
-\leavevmode\hypertarget{ref-ifmp2018}{}%
-DFO. 2018. Pacific Region integrated fisheries management plan, groundfish, effective February 21, 2018 \url{http://waves-vagues.dfo-mpo.gc.ca/Library/40657814.pdf}.
+\leavevmode\hypertarget{ref-dfo2013}{}%
+DFO. 2013. Guidance for the development of rebuilding plans under the Precautionary Approach framework~: Growing stocks out of the critical zone \url{https://www.dfo-mpo.gc.ca/reports-rapports/regs/sff-cpd/precautionary-precaution-eng.htm}.
 
-\leavevmode\hypertarget{ref-haigh2020}{}%
-Haigh, R., and Starr, P.J. 2020. Bocaccio (\emph{Sebastes paucispinis}) stock assessment for British Columbia in 2019, including guidance for rebuilding plans. DFO Can. Sci. Advis. Sec. Res. Doc. 2020/nnn.
+\leavevmode\hypertarget{ref-dfo2020}{}%
+DFO. 2020. Evaluation of potential rebuilding strategies for outside yelloweye rockfish in british columbia. DFO Can. Sci. Advis. Sec. Advis. Rep. (2020/024).
 
-\leavevmode\hypertarget{ref-haigh2019}{}%
-Haigh, R., Starr, P.J., Edwards, A.M., King, J.R., and Lecomte, J.-B. 2019. Stock assessment for Pacific Ocean Perch (\emph{Sebastes alutus}) in Queen Charlotte Sound, British Columbia in 2017. DFO Can. Sci. Advis. Sec. Res. Doc. 2019/038. v + 227 pp.
+\leavevmode\hypertarget{ref-diehl2010}{}%
+Diehl, S., Beck, F., and Burch, M. 2010. Uncovering strengths and weaknesses of radial visualizations --- an empirical approach. IEEE Trans. Vis. Comput. Graph. 16(6): 935--942.
 
-\leavevmode\hypertarget{ref-huynh_msetool_2019}{}%
-Huynh, Q.C., Hordyk, A.R., and Carruthers, T. 2019. MSEtool: Management strategy evaluation toolkit. R package version 1.4.3.
+\leavevmode\hypertarget{ref-dunne2016}{}%
+Dunne, J.A., Maschner, H., Betts, M.W., Huntly, N., Russel, R., Williams, R.J., and Wood, S.A. 2016. The roles and impacts of human hunter-gathers in North Pacific marine food webs. Sci. Rep. 6: 21179.
 
-\leavevmode\hypertarget{ref-kimura1982}{}%
-Kimura, D.K., and Tagart, J.V. 1982. Stock Reduction Analysis, another solution to the catch equations. Can. J. Fish. Aquat. Sci. 39(11): 1467--1472.
+\leavevmode\hypertarget{ref-feldman2013}{}%
+Feldman, R. 2013. Filled radar charts should not be used to compare social indicators. Soc. Indic. Res. 111(3): 709--712.
 
-\leavevmode\hypertarget{ref-lincandeo2020}{}%
-Lincandeo, R., Duplisea, D.E., Senay, C., Marantette, J.R., and McAllister, M.K. 2020. Management strategies for spasmodic stocks: A Canadian Atlantic redfish fishery case study. Can. J. Fish. Aquat. Sci. 77: 684--702.
+\leavevmode\hypertarget{ref-ford2010}{}%
+Ford, J.K., Wright, B.M., Ellis, G.M., and Candy, J.R. 2010. Chinook salmon predation by resident killer whales: Seasonal and regional selectivity, stock identity of prey, and consumption rates. DFO Can. Sci. Advis. Sec. Res. Doc. 2009/101. iv + 43 p.
+
+\leavevmode\hypertarget{ref-forrest2019}{}%
+Forrest, R.E., Anderson, S.C., Grandin, C.J., and Starr, P.J. 2019. Assessment of Pacific Cod (\emph{Gadus macrocephalus}) for Hecate Strait and Queen Charlotte Sound (Area 5ABCD), and West Coast Vancouver Island (Area 3CD) in 2018. DFO Can. Sci. Advis. Sec. Res. Doc. 2019/nnn.
+
+\leavevmode\hypertarget{ref-haggarty2016b}{}%
+Haggarty, D.R., Shurin, J.B., and Yamanaka, K.L. 2016. Assessing population recovery inside British Columbia's rockfish conservation areas with a remotely operated vehicle. Fish. Res. 183: 165--179.
+
+\leavevmode\hypertarget{ref-haggarty2018}{}%
+Haggarty, D., and Yamanaka, L. 2018. Evaluating rockfish conservation areas in southern British Columbia, Canada using a random forest model of rocky reef habitat. Estuar. Coast. Shelf. S. 208: 191--204.
+
+\leavevmode\hypertarget{ref-holt2016}{}%
+Holt, K.R., King, J.R., and Krishka, B.A. 2016. Stock assessment for lingcod (\emph{Ophiodon elongatus}) in the Strait of Georgia, British Columbia in 2014. DFO Can. Sci. Advis. Sec. Res. Doc. (2016/013).
+
+\leavevmode\hypertarget{ref-kronlund2020}{}%
+Kronlund, A.R., Marentette, J.R., Olmstead, M., Shaw, J., and Beauchamp, B. 2020. Considerations for the design of rebuilding strategies for canadian fish stocks. DFO. Can. Sci. Advis. Sec. Res. Doc.: 2020/nnn.
+
+\leavevmode\hypertarget{ref-livingston2017}{}%
+Livingston, P.A., Aydin, K., Buckley, T.W., Lang, G.M., Yang, M.-S., and Miller, B.S. 2017. Quantifying food web interactions in the north pacific -- a data-based approach. Environmental Biology of Fishes 100(4, 4): 443--470.
+
+\leavevmode\hypertarget{ref-logan2005}{}%
+Logan, G., Mare, W. de la, King, J., and Haggarty, D. 2005. Management framework for Strait of Georgia Lingcod. DFO Can. Sci. Advis. Sec. Res. Doc. (2005/048).
+
+\leavevmode\hypertarget{ref-miller2010}{}%
+Miller, D.C.M., and Shelton, P.A. 2010. "Satisficing" and trade-offs: Evaluating rebuilding strategies for Greenland halibut off the east coast of Canada. ICES J. Mar. Sci. 67(9): 1896--1902.
+
+\leavevmode\hypertarget{ref-olesiuk2018}{}%
+Olesiuk, P.F. 2018. Recent trends in abundance of Steller sea lions (\emph{Eumetopias jubatus}) in British Columbia. DFO Can. Sci. Advis. Sec. Res. Doc 2018/006: 67 p.
+
+\leavevmode\hypertarget{ref-olson2020}{}%
+Olson, A., Frid, A., Santos, J., and Juanes, F. 2020. Trophic position scales positively with body size within but not among four species of rocky reef predators. Mar. Ecol. Prog. Ser.
+
+\leavevmode\hypertarget{ref-punt2017}{}%
+Punt, A.E. 2017. Strategic management decision-making in a complex world: Quantifying, understanding, and using trade-offs. ICES J. Mar. Sci. 74(2).
+
+\leavevmode\hypertarget{ref-punt2016}{}%
+Punt, A.E., Butterworth, D.S., de Moor, C.L., De Oliveira, J.A.A., and Haddon, M. 2016. Management strategy evaluation: Best practices. Fish Fish. 17(2): 303--334.
 
 \leavevmode\hypertarget{ref-rademeyer2007}{}%
 Rademeyer, R.A., Plagányi, É.E., and Butterworth, D.S. 2007. Tips and tricks in designing management procedures. ICES J. Mar. Sci. 64(4): 618--625.
@@ -639,23 +436,14 @@ Rademeyer, R.A., Plagányi, É.E., and Butterworth, D.S. 2007. Tips and tricks i
 \leavevmode\hypertarget{ref-r2019}{}%
 R Core Team. 2019. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria.
 
-\leavevmode\hypertarget{ref-rose2001}{}%
-Rose, K.A., Cowan, J.H., Winemiller, K.O., Myers, R.A., and Hilborn, R. 2001. Compensatory density dependence in fish populations: Importance, controversy, understanding and prognosis: Compensation in fish populations. Fish. Fish. 2(4): 293--327.
+\leavevmode\hypertarget{ref-starr2017}{}%
+Starr, P.J., and Haigh, R. 2017. Stock assessment of the coastwide population of Shortspine Thornyhead (\emph{Sebastolobus alascanus}) in 2015 off the British Columbia coast. DFO Can. Sci. Advis. Sec. Res. Doc. 2017/015.
 
-\leavevmode\hypertarget{ref-stanley2009}{}%
-Stanley, R.D., Olsen, N., and Fedoruk, A. 2009. Independent validation of the accuracy of Yelloweye Rockfish catch estimates from the Canadian groundfish integration pilot project. Mar. Coast. Fish. 1(1): 354--362.
+\leavevmode\hypertarget{ref-starr2015}{}%
+Starr, R.M., Wendt, D.E., Barnes, C.L., Marks, C.I., Malone, D., Waltz, G., Schmidt, K.T., Chiu, J., Launer, A.L., Hall, N.C., and Yochum, N. 2015. Variation in responses of fishes across multiple reserves within a network of marine protected areas in temperate waters. PLOS ONE 10: e0118502.
 
-\leavevmode\hypertarget{ref-walters2006}{}%
-Walters, C.J., Martell, S.J.D., and Korman, J. 2006. A stochastic approach to stock reduction analysis. Can. J. Fish. Aquat. Sci. 63(1): 212--223.
-
-\leavevmode\hypertarget{ref-warner1985}{}%
-Warner, R.R., and Chesson, P.L. 1985. Coexistence mediated by recruitment fluctuations: A field guide to the storage effect. The American Naturalist 125(6): 769--787.
-
-\leavevmode\hypertarget{ref-winemiller2005}{}%
-Winemiller, K.O. 2005. Life history strategies, population regulation, and implications for fisheries management. Can. J. Fish. Aquat. Sci. 62(4): 872--885.
-
-\leavevmode\hypertarget{ref-winemiller1992}{}%
-Winemiller, K.O., and Rose, K.A. 1992. Patterns of life-history diversification in North American fishes: Implications for population regulation. Can. J. Fish. Aquat. Sci. 49(10): 2196--2218.
+\leavevmode\hypertarget{ref-szoboszlai2015}{}%
+Szoboszlai, A.I., Thayer, J.A., Wood, S.A., Sydeman, W.J., and Koehn, L.E. 2015. Forage species in predator diets: Synthesis of data from the California Current. Ecol. Inform. 29: 45--56.
 
 \leavevmode\hypertarget{ref-wood2019}{}%
 Wood, K., Olson, A., Williams, B., and Jaenicke, M. 2019. 14: Assessment of the demersal shelf rockfish stock complex in the southeast outside subdistrict of the gulf of alaska. NPFMC.
@@ -668,5 +456,8 @@ Yamanaka, K.L., McAllister, M.K., Olesiuk, P.F., Etienne, M.-P., Obradovich, S.G
 
 \leavevmode\hypertarget{ref-yamanaka2018yelloweyeoutside}{}%
 Yamanaka, K.L., McAllister, M.M., Etienne, M.-P., Edwards, A.M., and Rowan Haigh. 2018. Stock assessment for the outside population of Yelloweye Rockfish (\emph{Sebastes ruberrimus}) for British Columbia, Canada in 2014. DFO Can. Sci. Advis. Sec. Res. Doc. 2018/001. ix + 150 p.
+
+\leavevmode\hypertarget{ref-yamanaka2010}{}%
+Yamanaka, K., and Logan, G. 2010. Developing British Columbia's inshore rockfish conservation strategy. Mar. Coast. Fish. 2: 28--46.
 
 \end{document}

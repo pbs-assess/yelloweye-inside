@@ -54,7 +54,7 @@ Nous n’affichons que le PRL 1,5DG et CT C10 puisqu’il s’agissait des deux 
 Les autres paramètres de rendement ont également été vérifiés (non illustrés).
 
 ```{r converge, fig.cap="(ref:fig-converge)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figure-french/ye-convergence.png"))
+knitr::include_graphics(here("mse/figures-french/ye-convergence.png"))
 ```
 
 (ref:fig-tigure-avg) Rendement moyen de toutes les procédures de gestion possibles dans les scénarios de l’ensemble de référence de modèles opérationnels. 
@@ -65,7 +65,7 @@ Les cellules mises en évidence représentent les procédures de gestion qui ré
 Les procédures de gestion en gris pâle indiquent les procédures de gestion de référence.
 
 ```{r tigure-avg, fig.cap="(ref:fig-tigure-avg)", out.width="3.5in"}
-knitr::include_graphics(here("mse/figure-french/ye-tigure-refset-avg.png"))
+knitr::include_graphics(here("mse/figures-french/ye-tigure-refset-avg.png"))
 ```
 
 (ref:fig-tigure-min) Rendement minimal de toutes les procédures de gestion possibles dans les scénarios de l’ensemble de référence de modèles opérationnels. 
@@ -73,7 +73,7 @@ Cette figure est la même que la figure \@ref(fig:tigure-avg), mais elle illustr
 En d’autres termes, elle montre le pire rendement de chaque procédure de gestion dans les scénarios de l’ensemble de référence de modèles opérationnels.
 
 ```{r tigure-min, fig.cap="(ref:fig-tigure-min)", out.width="3.5in"}
-knitr::include_graphics(here("mse/figure-french/ye-tigure-refset-min.png"))
+knitr::include_graphics(here("mse/figures-french/ye-tigure-refset-min.png"))
 ```
 
 \clearpage
@@ -87,7 +87,7 @@ La ligne verticale tiretée indique la dernière année de la période historiqu
 Les lignes horizontales tiretées indiquent la B/B~RMD~ = 0,8 et 0,4, et la F/F~RMD~ = 1.
 
 ```{r proj-not-satisficed-eg, fig.cap="(ref:fig-proj-not-satisficed-eg)", out.width="0.8\\textwidth"}
-knitr::include_graphics(here("mse/figure-french/ye-projections-not-sat2.png"))
+knitr::include_graphics(here("mse/figures-french/ye-projections-not-sat2.png"))
 ```
 
 \clearpage
