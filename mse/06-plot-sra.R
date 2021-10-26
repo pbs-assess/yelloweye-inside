@@ -302,8 +302,6 @@ out <- dplyr::bind_rows(out, .id = "scenario") %>% rename(b = value) %>% tibble:
   rename(run = scenario)
 saveRDS(out, "data-generated/ye-inside-b-mcmc.rds")
 
-dd <- do.call(rbind, Map(get_SSB_LRP, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye))
-
 g <- do.call(rbind, Map(get_SSB, x = sra_ye, scenario = sc$scenario_human, mse = mse_ye, type = "MSY")) %>%
   mutate(scenario = factor(scenario, levels = sc$scenario_human)) %>%
   ggplot(aes(year, med, ymin = lwr, ymax = upr)) +
