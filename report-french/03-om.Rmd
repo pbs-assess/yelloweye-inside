@@ -113,7 +113,7 @@ $$
 $$
 
 où  $\varepsilon^{(1)}_{R,y}$ est l’écart de recrutement par rapport au scénario de modèle opérationnel (1) et
-$\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0,5\tau^2, \tau)$ représente la distribution du recrutement « épisodique » avec $\tau = 2$ (écart-type).
+$\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0,5\tau^2, \tau)$ représente la distribution du recrutement « épisodique » avec $\tau = 2$ (écart-type). 
 Le paramètre $\eta_y$ est une variable aléatoire de Bernoulli $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, qui sélectionne si un événement de recrutement extrême se produira. 
 Nous supposons qu’un événement de recrutement extrême devrait se produire une fois par génération (38 ans), d’après l’observation selon laquelle des épisodes de fort recrutement chez le sébaste aux yeux jaunes des eaux intérieures ont eu lieu en 1948 et en 1970. 
 Bien que les conditions environnementales récentes puissent être favorables à certaines espèces de sébastes [@haigh2020; @lincandeo2020], nous n’avons pas encore de preuve de récents épisodes de recrutement important pour le sébaste aux yeux jaunes des eaux intérieures qui pourraient indiquer des épisodes de fort recrutement plus fréquents. 
@@ -193,7 +193,7 @@ Nous avons donc, pour le scénario de modèle opérationnel (1) et tous les autr
 
 
 ```{r retro-initial, fig.cap="(ref:fig-retro-initial)", out.width="4.25in"}
-knitr::include_graphics(here::here("mse/figure-french/retrospective-spawning-biomass-f.png"))
+knitr::include_graphics(here::here("mse/figures-french/retrospective-spawning-biomass.png"))
 ```
 
 Un certain nombre de facteurs augmentent l’incertitude dans l’estimation de la sélectivité pour le relevé sur l’aiguillat commun, p. ex., l’absence de données biologiques de ce relevé et les changements apportés aux opérations de pêche et au type de hameçon en 2004 (annexe \@ref(app:index-data), section \@ref(sec:dogfish-index-data)). Il y a également plusieurs différences entre les relevés à la palangre sur fond dur et à la palangre sur l’aiguillat commun (annexe \@ref(app:index-data), section \@ref(sec:dogfish-index-data)), mais pour les raisons mentionnées, nous ne pouvons pas estimer de façon fiable la sélectivité pour le relevé sur l’aiguillat commun. Par nécessité, la sélectivité dans le relevé sur l’aiguillat commun a été réglée de manière à refléter la sélectivité dans le relevé à la palangre sur fond dur, qu’elle ait été estimée (scénario du modèle opérationnel (4)) ou fixée (tous les autres scénarios de modèle opérationnel).
@@ -224,7 +224,7 @@ Les points représentent la moyenne de l’indice et les segments de lignes repr
 
 
 ```{r survey-fits, fig.cap="(ref:fig-survey-fits)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figure-french/ye-index-fits.png"))
+knitr::include_graphics(here("mse/figures-french/ye-index-fits.png"))
 ```
 
 Le modèle d’analyse de réduction du stock est raisonnablement bien ajusté aux données sur la composition selon l’âge du relevé, malgré la très petite taille des échantillons (figures \@ref(fig:sra-conditioned-comp-fit1) à \@ref(fig:sra-conditioned-comp-fitB)). Il est à noter qu’en comparant les scénarios de modèle opérationnel (1) et (4), il semble que le réglage ou l’estimation de la sélectivité dans le relevé à la palangre sur fond dur n’a pas produit des ajustements très différents des données sur la composition selon l’âge (figures \@ref(fig:sra-conditioned-comp-fit1) et \@ref(fig:sra-conditioned-comp-fit4)).
@@ -249,7 +249,7 @@ En raison des grandes incertitudes structurelles du modèle et des données acce
 Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (1), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit1, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit1)"}
-knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_updog_fixsel.png"))
+knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_updog_fixsel.png"))
 ```
 
 \clearpage
@@ -258,7 +258,7 @@ knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_updog
 Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (2), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit2, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit2)"}
-knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_lowcatch_fixsel.png"))
+knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_lowcatch_fixsel.png"))
 ```
 
 \clearpage
@@ -268,7 +268,7 @@ knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_lowca
 Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (3), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit3, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit3)"}
-knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_episodic_recruitment.png"))
+knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_episodic_recruitment.png"))
 ```
 
 \clearpage
@@ -278,7 +278,7 @@ knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_episo
 Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (4), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit4, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit4)"}
-knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_upweight_dogfish.png"))
+knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_upweight_dogfish.png"))
 ```
 
 
@@ -290,7 +290,7 @@ Ajustements du modèle d’analyse de réduction du stock aux données sur la co
 
 
 ```{r sra-conditioned-comp-fitA, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitA)"}
-knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_lowM_fixsel.png"))
+knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_lowM_fixsel.png"))
 ```
 
 \clearpage
@@ -300,7 +300,7 @@ Ajustements du modèle d’analyse de réduction du stock aux données sur la co
 
 
 ```{r sra-conditioned-comp-fitB, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fitB)"}
-knitr::include_graphics(here("mse/figure-french/conditioning/HBLL_age_comp_high_index_cv.png"))
+knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_high_index_cv.png"))
 ```
 
 #### Estimation des paramètres  {#sec:approach3-conditioning-parameters}
@@ -311,7 +311,7 @@ Les scénarios de référence et de robustesse des modèles opérationnels ont p
 Cela exclut un petit nombre de répétitions.
 
 ```{r sra-conditioned-parameters, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-conditioned-parameters)"}
-knitr::include_graphics(here("mse/figure-french/ye-sra-estimated.png"))
+knitr::include_graphics(here("mse/figures-french/ye-sra-estimated.png"))
 ```
 
 Les moyennes et les coefficients de variation (CV) estimés pour les points de référence *F*~RMD~, *B*~RMD~ et RMD sont fournis dans le tableau \@ref(tab:sra-ref-pts). 
