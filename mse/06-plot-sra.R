@@ -480,8 +480,16 @@ ggplot(sel2, aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::them
   coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
 ggsave(paste0(fig_dir, "/fishery-selectivity.png"), width = 4, height = 3)
 
-ggplot(filter(sel2, Fleet != "HBLL"), aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::theme_pbs() +
-  coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1))
+temp <- filter(sel2, Fleet != "HBLL")
+if (FRENCH) {
+  temp$Fleet <- rosettafish::en2fr(temp$Fleet, translate = FRENCH)
+  .ylab <- if (FRENCH) "Sélectivité" else "Selectivity"
+}
+ggplot(temp, aes(Age, Selectivity, colour = Fleet)) + geom_line() + gfplot::theme_pbs() +
+  coord_cartesian(xlim = c(0, 40), expand = FALSE, ylim = c(0, 1.1)) +
+  labs(colour = en2fr("Fleet", FRENCH)) +
+  ylab(.ylab) +
+  xlab(en2fr("Age", FRENCH))
 ggsave(paste0(fig_dir, "/fishery-selectivity2.png"), width = 4.5, height = 3)
 
 # Terminal year selectivity

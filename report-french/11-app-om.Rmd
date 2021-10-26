@@ -18,45 +18,52 @@ display_om <- function(om, slot) {
       (length(unique(cpars[[1]])) == 1L && !is.null(unlist(cpars)))) {
     out <- x[[1]]
   } else if ((length(unique(x)) > 1L && is.null(unlist(cpars)))) {
-    out <- reshape2::melt(x) %>% 
+    out <- reshape2::melt(x) %>%
       dplyr::mutate(type = rep(c("min", "max"), length(om)/2)) %>%
       tidyr::pivot_wider(names_from = type, values_from = value) %>%
       dplyr::rename(scenario = L1)
   }
+  names(cpars) <- sc_french <- c(
+  "(1) Base",
+  "(2) Faibles prises",
+  "(3) Recrutement\népisodique",
+  "(4) Estimation de la\nsélectivité du RPFD",
+  "(A) Faible M ",
+  "(B) CV élevé\ndu RPFD")
   if (!is.null(unlist(cpars)) && length(unique(cpars[[1]])) > 1L) {
     dat <- reshape2::melt(cpars)
-    out <- ggplot(dat, aes(value)) + 
-      geom_histogram(position="identity", bins = 18, fill = "grey85", 
-        colour = "grey50") + 
+    out <- ggplot(dat, aes(value)) +
+      geom_histogram(position="identity", bins = 18, fill = "grey85",
+        colour = "grey50") +
       facet_wrap(~L1, nrow = 2) +
-      gfdlm::theme_pbs() + 
-      coord_cartesian(expand = FALSE) + 
+      gfdlm::theme_pbs() +
+      coord_cartesian(expand = FALSE) +
       xlab(slot) +
-      ylab("Frequency")
+      ylab("Fréquence")
   }
   out
 }
 ```
 
-# INSIDE YELLOWEYE ROCKFISH OPERATING MODEL DEFINITION {#app:desc-om-yelloweye}
+# DÉFINITION DU MODÈLE OPÉRATIONNEL DU SÉBASTE AUX YEUX JAUNES DES EAUX INTÉRIEURES {#app:desc-om-yelloweye}
 
-Here we describe the specification of the initial OM before conditioning with the SRA model.
-The operating model is fully described in Appendix A of @anderson2020gfmp.
-We use a convenience function `display_om()` to display the contents of various parameters in the OMs.
-The object `oms` is a list of the operating models across the various OM scenarios.
-If a given "slot" or OM parameter is entered as a single value then `display_om()` outputs a single value.
-Where a range of values is displayed, this represents the lower and upper boundaries of a uniform distribution.
-Where a "slot" or OM parameter is defined based on a stochastic distribution other than a uniform distribution, we demonstrate the sampling from that distribution along with the stochastic seed used to generate consistent samples.
+Nous décrivons ici les spécifications du modèle opérationnel initial avant le conditionnement avec le modèle d’analyse de la réduction du stock. 
+Le modèle opérationnel est décrit en détail à l’annexe A de @anderson2020gfmp. 
+Nous utilisons une fonction pratique 'display_om()' pour afficher le contenu des différents paramètres dans les modèles opérationnels. 
+L’objet 'oms' est une liste des modèles opérationnels des différents scénarios de modèles opérationnels. 
+Si un « tiroir » ou un paramètre de modèle opérationnel donné est entré comme une valeur unique, alors 'display_om()' produit une seule valeur. 
+Lorsqu’une plage de valeurs est affichée, elle représente les limites inférieure et supérieure d’une distribution uniforme. 
+Lorsqu’un « tiroir » ou un paramètre de modèle opérationnel est défini selon une distribution stochastique autre qu’une distribution uniforme, nous démontrons l’échantillonnage selon cette distribution avec la graine stochastique utilisée pour générer des échantillons cohérents.
 
-## STOCK SLOT DESCRIPTIONS {#app:desc-stock-yelloweye}
+## DESCRIPTIONS DES TIROIRS DU STOCK {#app:desc-stock-yelloweye}
 
 <!-- slot-chunk-begin -->
 ### maxage {#app:desc-stock-maxage-yelloweye}
 
-*The maximum age of individuals that is simulated.*
+*Âge maximal simulé des individus. *
 
-The maximum observed age of Inside Yelloweye Rockfish is 101 *y* [@databases2019].
-Here we set a maximum age of 80 *y*, noting that the maximum age class is treated as a plus group once the OM is conditioned by the SRA [@anderson2020gfmp].
+L’âge maximal observé du sébaste aux yeux jaunes des eaux intérieures est de 101 *y* [@databases2019]. 
+Ici, nous avons fixé un âge maximum de 80 *y*, en notant que la classe d’âge maximum est traitée comme un groupe plus une fois que le modèle opérationnel est conditionné par l’analyse de la réduction du stock [@anderson2020gfmp].
 
 ```{r desc-stock-maxage-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "maxage")
@@ -66,12 +73,12 @@ display_om(oms, "maxage")
 <!-- slot-chunk-begin -->
 ### M {#app:desc-stock-m-yelloweye}
 
-*Natural mortality rate.*
+*Taux de mortalité naturelle.*
 
-The rate of natural mortality *M* is a core uncertainty for this stock, as for many stocks. 
-We incorporated uncertainty using a Monte Carlo approach, by sampling *M* from a prior probability distribution based on that used by @yamanaka2011, where $M \sim \textrm{Lognormal}(0.045, 0.2)$ (with the seed in R set to 91283).
-This was based on the Hoenig equation [@hoenig1983] using an assumed maximum age of 101 years.
-The exception was OM Scenario (A), which used the distribution $M \sim \textrm{Lognormal}(0.025, 0.2)$.
+Le taux de mortalité naturelle *M* est une incertitude fondamentale pour ce stock, comme pour de nombreux autres. 
+Nous avons incorporé l’incertitude à l’aide d’une approche de Monte Carlo, en échantillonnant *M* à partir d’une distribution de probabilité a priori fondée sur celle utilisée par @yamanaka2011, où $M \sim \textrm{Lognormal}(0,045, 0,2)$ (avec la graine en R fixée à 91283). 
+Cette formule reposait sur l’équation de Hoenig [@hoenig1983] en utilisant un âge maximal présumé de 101 ans. 
+L’exception était le scénario de modèle opérationnel (A), qui utilisait la distribution $M \sim \textrm{Lognormal}(0,025, 0,2)$.
 
 ```{r, eval=FALSE, echo=TRUE}
 # pseudo code:
@@ -82,7 +89,7 @@ set.seed(91283)
 OM_Scenario_A@cpars$M <- rlnorm(nsim, log(0.025) - 0.5 * 0.2^2, 0.2)
 ```
 
-```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions of natural mortality (\\emph{M}) used in the OM scenarios. All OMs used the same distributions except \"(A) Low M\"."}
+```{r desc-stock-m-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions de la mortalité naturelle (\\emph{M} utilisées dans les scénarios de modèles opérationnels. Tous les modèles opérationnels utilisaient les mêmes distributions sauf \"(A) Low M\"."}
 display_om(oms, "M")
 ```
 <!-- slot-chunk-end -->
@@ -90,10 +97,10 @@ display_om(oms, "M")
 <!-- slot-chunk-begin -->
 ### h {#app:desc-stock-h-yelloweye}
 
-*Steepness of the stock-recruit relationship.*
+*Taux de variation de la relation stock-recrutement.*
 
-Steepness (*h*) is another core uncertainty for most stocks. We incorporated uncertainty using a Monte Carlo approach, by sampling *h* from a prior probability distribution based on that published by @forrest2010 and used in @yamanaka2011, where $X \sim \textrm{Beta}(\alpha = 9.6, \beta = 5.5)$, which was then transformed to $h = 0.8 X + 0.2$.
-The values for $\alpha$ and $\beta$ were selected to give mean *h* = 0.71 and standard deviation 0.1. While the standard deviation of 0.1 is lower than the value of 0.15 given in @yamanaka2011, a larger standard deviation is more likely to generate lower values of *h* with *F*~MSY~ < 0.01, which seemed implausible. The value of 0.1 still gave steepness values between 0.5--0.9, which appeared to be a sufficiently wide range of coverage.
+Le taux de variation (*h*) est une autre incertitude fondamentale pour la plupart des stocks. Nous avons incorporé l’incertitude à l’aide d’une approche de Monte Carlo, en échantillonnant *h* à partir d’une distribution de probabilité a priori fondée sur celle publiée par @forrest2010 et utilisée dans @yamanaka2011, où $X \sim \textrm{Beta}(\alpha = 9,6, \beta = 5,5)$, que nous avons ensuite transformée en $h = 0,8 X + 0,2$. 
+Les valeurs de $\alpha$ et de $\beta$ ont été sélectionnées de manière à donner une moyenne *h* = 0,71 et un écart-type de 0,1. Bien que l’écart-type de 0,1 soit inférieur à la valeur de 0,15 donnée dans @yamanaka2011, un écart-type plus important est plus susceptible de générer des valeurs plus basses de *h* avec *F*~RMD~ < 0,01, ce qui semblait invraisemblable. La valeur de 0,1 donnait toujours des valeurs du taux de variation comprises entre 0,5 et 0,9, ce qui semblait être une fourchette de couverture suffisamment large.
 
 ```{r, eval=TRUE, echo=TRUE}
 alphaconv <- function(m, sd) m * (((m * (1 - m)) / (sd^2)) - 1)
@@ -111,7 +118,7 @@ sd(h_samps) %>% round(2)
 OM@cpars$h <- h_samps
 ```
 
-```{r desc-stock-h-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions of steepness (\\emph{h}) used in the OM scenarios. All OMs used the same \\emph{h} samples."}
+```{r desc-stock-h-yelloweye, results = knitr_results, echo = knitr_echo, fig.cap="Distributions du taux de variation (\\emph{h}) utilisées dans les scénarios de modèles opérationnels. Tous les modèles opérationnels utilisaient les mêmes échantillons de \\emph{h}."}
 display_om(oms, "h")
 ```
 <!-- slot-chunk-end -->
@@ -119,9 +126,9 @@ display_om(oms, "h")
 <!-- slot-chunk-begin -->
 ### Perr {#app:desc-stock-perr-yelloweye}
 
-*Process error, the CV of lognormal recruitment deviations.*
+*Erreur de traitement, le coefficient de variation des écarts de recrutement log-normal.*
 
-We used a value of 0.4, as estimated in the base model for the Outside Yelloweye Rockfish rebuilding plan [@cox2020].
+Nous avons utilisé une valeur de 0,4, estimée dans le modèle de base pour le plan de rétablissement du sébaste aux yeux jaunes des eaux extérieures [@cox2020].
 ```{r desc-stock-perr-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "Perr")
 ```
@@ -130,10 +137,10 @@ display_om(oms, "Perr")
 <!-- slot-chunk-begin -->
 ### Linf {#app:desc-stock-linf-yelloweye}
 
-*Mean asymptotic length.*
+*Longueur asymptotique moyenne.*
 
-This value was estimated from length and age data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
-This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
+Cette valeur a été estimée à partir des données sur la longueur et l’âge tirées des relevés effectués dans la zone 4B (voir l’annexe \@ref(app:biological-data)). 
+Ce paramètre a été estimé pour les mâles et les femelles combinés, car aucun dimorphisme sexuel n’a été observé pour ce stock.
 
 ```{r desc-stock-linf-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "Linf")
@@ -143,11 +150,11 @@ display_om(oms, "Linf")
 <!-- slot-chunk-begin -->
 ### K {#app:desc-stock-k-yelloweye}
 
-*von Bertalanffy growth parameter.*
+*Coefficient de croissance de von Bertalanffy.*
 
 
-This value was estimated from length and age data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
-This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
+Cette valeur a été estimée à partir des données sur la longueur et l’âge tirées des relevés effectués dans la zone 4B (voir l’annexe \@ref(app:biological-data)). 
+Ce paramètre a été estimé pour les mâles et les femelles combinés, car aucun dimorphisme sexuel n’a été observé pour ce stock.
 
 
 ```{r desc-stock-k-yelloweye, results = knitr_results, echo = knitr_echo}
@@ -158,11 +165,11 @@ display_om(oms, "K")
 <!-- slot-chunk-begin -->
 ### t0 {#app:desc-stock-t0-yelloweye}
 
-*von Bertalanffy theoretical age at length zero.*
+*Âge théorique de von Bertalanffy à la longueur zéro.*
 
 
-This value was estimated from length and age data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
-This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
+Cette valeur a été estimée à partir des données sur la longueur et l’âge tirées des relevés effectués dans la zone 4B (voir l’annexe \@ref(app:biological-data)). 
+Ce paramètre a été estimé pour les mâles et les femelles combinés, car aucun dimorphisme sexuel n’a été observé pour ce stock.
 
 
 ```{r desc-stock-t0-yelloweye, results = knitr_results, echo = knitr_echo}
@@ -171,14 +178,14 @@ display_om(oms, "t0")
 <!-- slot-chunk-end -->
 
 <!-- slot-chunk-begin -->
-### Maturity {#app:desc-stock-maturity-yelloweye}
+### Maturité {#app:desc-stock-maturity-yelloweye}
 
-*Maturity ogive.*
+*Courbe de maturité.*
 
-Maturity was directly input as an age-based function.
-Therefore the default DLMtool slots `L50` and `L50_95` were not used.
-Female maturity-at-age was estimated using maturity and age data from the survey data collected in Area 4B (Appendix \@ref(app:biological-data)).
-The minimum observed age of maturity was seven years and it assumed that younger ages were all immature.
+La maturité était directement entrée comme une fonction fondée sur l’âge. 
+Par conséquent, les tiroirs par défaut 'L50' et 'L50_95' de l’outil DLMtool n’ont pas été utilisés. 
+La maturité selon l’âge des femelles a été estimée à l’aide des données sur la maturité et l’âge tirées des relevés effectués dans la zone 4B (annexe \@ref(app:biological-data)). 
+L’âge minimum de maturité observé était de sept ans, et on a supposé que les individus plus jeunes étaient tous immatures.
 
 ```{r desc-stock-maturity, eval = FALSE, echo = TRUE}
 create_maturity_ogive <- function(A50, A95, maxage, Amin) {
@@ -186,7 +193,7 @@ create_maturity_ogive <- function(A50, A95, maxage, Amin) {
   mat_age <- 1/(1 + exp(log(19) * (ages - A50)/(A95 - A50)))
   return(ifelse(ages < Amin, 0, Amin, mat_age))
 }
-OM@cpars$Mat_age <- create_maturity_ogive(14.4, 27.4, OM@maxage, 7) %>% 
+OM@cpars$Mat_age <- create_maturity_ogive(14.4, 27.4, OM@maxage, 7) %>%
   array(OM@maxage, OM@nyears + OM@proyears, OM@nsim) %>% aperm(c(3, 1, 2))
 ```
 
@@ -195,10 +202,10 @@ OM@cpars$Mat_age <- create_maturity_ogive(14.4, 27.4, OM@maxage, 7) %>%
 <!-- slot-chunk-begin -->
 ### a {#app:desc-stock-a-yelloweye}
 
-*Length-weight parameter alpha.*
+*Paramètre longueur-poids alpha.*
 
-This value was estimated from length and weight data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
-This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
+Cette valeur a été estimée à partir des données sur la longueur et le poids tirées des relevés effectués dans la zone 4B (voir l’annexe \@ref(app:biological-data)). 
+Ce paramètre a été estimé pour les mâles et les femelles combinés, car aucun dimorphisme sexuel n’a été observé pour ce stock.
 
 ```{r desc-stock-a-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "a")
@@ -208,22 +215,22 @@ display_om(oms, "a")
 <!-- slot-chunk-begin -->
 ### b {#app:desc-stock-b-yelloweye}
 
-*Length-weight parameter beta. Positive real number.*
+*Paramètre longueur-poids bêta. Valeur réelle positive.*
 
-This value was estimated from length and weight data from the survey data collected in Area 4B (see Appendix \@ref(app:biological-data)).
-This parameter was estimated for both males and females combined, as no sexual dimorphism has been observed for this stock.
+Cette valeur a été estimée à partir des données sur la longueur et le poids tirées des relevés effectués dans la zone 4B (voir l’annexe \@ref(app:biological-data)). 
+Ce paramètre a été estimé pour les mâles et les femelles combinés, car aucun dimorphisme sexuel n’a été observé pour ce stock.
 
 ```{r desc-stock-b-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "b")
 ```
 <!-- slot-chunk-end -->
 
-## FLEET SLOT DESCRIPTIONS {#app:desc-fleet-yelloweye}
+## DESCRIPTIONS DES TIROIRS DES FLOTTILLES {#app:desc-fleet-yelloweye}
 
 <!-- slot-chunk-begin -->
 ### CurrentYr {#app:desc-fleet-currentyr-yelloweye}
 
-*The current calendar year (final year) of the historical simulations ($t_c$).*
+*L’année civile en cours (dernière année) des simulations historiques ($t_c$).*
 
 ```{r desc-fleet-currentyr-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "CurrentYr")
@@ -233,10 +240,10 @@ display_om(oms, "CurrentYr")
 <!-- slot-chunk-begin -->
 ### nyears {#app:desc-fleet-nyears-yelloweye}
 
-*The number of years for the historical period.*
+*Le nombre d’années pour la période historique.*
 
-The time series of historical catch data $t_1 = 1918$ to $t_c = 2019$ was used to define the historical period of the operating model.
- 
+Nous avons utilisé la série chronologique des données sur les prises historiques de $t_1 = 1918$ à $t_c = 2019 pour définir la période historique du modèle d’exploitation.
+
 ```{r desc-fleet-nyears-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "nyears")
 ```
@@ -244,39 +251,39 @@ display_om(oms, "nyears")
 
 
 <!-- slot-chunk-begin -->
-### Selectivity {#app:desc-fleet-selectivity-yelloweye}
+### Sélectivité {#app:desc-fleet-selectivity-yelloweye}
 
-Selectivities for all commercial and survey fleets were directly input as age-based logistic functions in the SRA model.
-Therefore the default DLMtool slots describing selectivity-at-length were not used.
+Les sélectivités pour toutes les flottilles commerciales et de relevé ont été entrées directement comme des fonctions logistiques fondées sur l’âge dans le modèle d’analyse de la réduction du stock. 
+Par conséquent, les tiroirs par défaut de l’outil DLMtool décrivant la sélectivité selon la longueur n’ont pas été utilisés.
 
-Selectivity-at-age in the HBLL survey was set to give 5% selectivity at 6.8 *y* and full selectivity at age = 22 *y*, in all OM scenarios except Scenario (4), where selectivity-at-age was estimated using available age-composition data (Figure \@ref(fig:HBLL-selectivity)).
-Due to large uncertainties in selectivity-at-age in the Dogfish survey, selectivity in this survey was set to mirror selectivity in the HBLL survey.
+La sélectivité selon l’âge dans le relevé à la palangre sur fond dur a été établie de manière à donner une sélectivité de 5 % à 6,8 *y* et une pleine sélectivité à l’âge = 22 *y* dans tous les scénarios de modèles opérationnels, sauf le scénario (4), où la sélectivité selon l’âge a été estimée à l’aide des données accessibles sur la composition selon l’âge (figure \@ref(fig:HBLL-selectivity)). 
+En raison des grandes incertitudes relatives à la sélectivité selon l’âge dans le relevé sur l’aiguillat commun, la sélectivité dans ce relevé a été définie pour refléter la sélectivité dans le relevé à la palangre sur fond dur.
 
-(ref:fig-HBLL-selectivity) Selectivity-at-age for the HBLL survey, which was fixed for all OM scenarios except Scenario (4). Note that selectivity in the Dogfish Survey was set to mirror the selectivity in the HBLL survey within simulation replicates.
+(ref:fig-HBLL-selectivity) Sélectivité selon l’âge pour le relevé à la palangre sur fond dur, qui a été fixée pour tous les scénarios de modèles opérationnels à l’exception du scénario (4). Il est à noter que la sélectivité dans le relevé sur l’aiguillat commun a été établie de manière à refléter la sélectivité dans le relevé à la palangre sur fond dur dans les répétitions de simulation.
 
 ```{r HBLL-selectivity, fig.cap="(ref:fig-HBLL-selectivity)", out.width="6.3in"}
-knitr::include_graphics(here::here("mse/figures/HBLL-selectivity.png"))
+knitr::include_graphics(here::here("mse/figures-french/HBLL-selectivity.png"))
 ```
 
-Selectivities-at-age in the recreational and commercial fleets were based on the values used in @cox2020 (Figure \@ref(fig:sra-selectivity)).
-Commercial and recreational selectivity was fixed in the SRA model, for all OM scenarios.
-For the recreational fleet, the age-at-50% and 95% selectivity was 6.7 *y* and 11.5 *y*, respectively.
-For the commercial hook and line fleet, the age-at-50% and 95% selectivity was 14.4 *y* and 21 *y*, respectively.
+Les sélectivités selon l’âge dans les flottilles récréative et commerciale étaient fondées sur les valeurs utilisées dans @cox2020 (figure \@ref(fig:sra-selectivity)). 
+La sélectivité dans les pêches commerciales et récréatives a été déterminée dans le modèle d’analyse de la réduction du stock, pour tous les scénarios de modèles opérationnels. 
+Pour la flottille récréative, l’âge à 50 % et à 95 % de sélectivité était respectivement de 6,7 *y* et de 11,5 *y*. 
+Pour la flottille commerciale à la ligne et à l’hameçon, l’âge à 50 % et à 95 % de sélectivité était respectivement de 14,4 *y* et de 21 *y*.
 
-(ref:fig-sel-fleet) Selectivities-at-age used in the SRA model for the recreational and commercial fleets.
+(ref:fig-sel-fleet) Sélectivités selon l’âge utilisées dans le modèle d’analyse de la réduction du stock pour les flottilles récréative et commerciale.
 
 ```{r sra-selectivity, fig.cap="(ref:fig-sel-fleet)", out.width="3.8in"}
-knitr::include_graphics(here::here("mse/figures/fishery-selectivity2.png"))
+knitr::include_graphics(here::here("mse/figures-french/fishery-selectivity2.png"))
 ```
 
-For the projection period ($t > t_c$), the DLMtool OM only accommodates one fishing fleet.
-In analyses with more than one fishing fleet, selectivity-at-age is passed from the SRA back to the DLMtool OM as an average catch-weighted selectivity function, based on normalized SRA estimates of relative fishing mortality by age and year $F_{a,y}$ (see Appendix A of @anderson2020gfmp).
-The closed-loop simulation projections assume that the relative selectivities across fleets remains constant, as estimated by the SRA in the final historical year($t_c$) (Figure \@ref(fig:om-selectivity)).
+Pour la période de projection ($t > t_c$), le modèle opérationnel de l’outil DLMtool ne tient compte que d’une seule flottille de pêche. 
+Dans les analyses portant sur plus d’une flottille de pêche, la sélectivité selon l’âge est transmise de l’analyse de la réduction du stock au modèle opérationnel de l’outil DLMM en tant que fonction de sélectivité moyenne pondérée selon les prises, fondée sur les estimations, normalisées par l’analyse de la réduction du stock, de la mortalité relative de la pêche selon l’âge et l’année $F_{a,y}$ (voir l’annexe A dans @anderson2020gfmp). 
+Les projections de simulation en boucle fermée supposent que les sélectivités relatives entre les flottilles demeurent constantes, telles qu’estimées par l’analyse de la réduction du stock dans la dernière année historique ($t_c$) (figure \@ref(fig:om-selectivity)).
 
-(ref:fig-om-sel) Selectivity-at-age in years $t \geq t_c$ for the combined commercial and recreational fleets in the OM projections.
+(ref:fig-om-sel) Sélectivité selon l’âge les années $t \geq t_c$ pour les flottilles commerciale et récréative combinées dans les projections du modèle opérationnel.
 
 ```{r om-selectivity, fig.cap="(ref:fig-om-sel)", out.width="4.5in"}
-knitr::include_graphics(here::here("mse/figures/fishery-selectivity-terminal-year.png"))
+knitr::include_graphics(here::here("mse/figures-french/fishery-selectivity-terminal-year.png"))
 ```
 
 <!-- slot-chunk-end -->
@@ -284,53 +291,53 @@ knitr::include_graphics(here::here("mse/figures/fishery-selectivity-terminal-yea
 \clearpage
 
 
-## OBS SLOT DESCRIPTIONS {#app:desc-obs-yelloweye}
+## DESCRIPTIONS DES TIROIRS DES OBSERVATIONS {#app:desc-obs-yelloweye}
 
 <!-- slot-chunk-begin -->
 ### Cobs {#app:desc-obs-cobs-yelloweye}
 
-*Observation error in the catch expressed as a SD.*
+*Erreur d’observation dans les prises exprimée en tant qu’écart-type.*
 
-This parameter ($\sigma_C$) sets the standard deviation of the simulated catch for the projection period. The DLMtool operating model can generate $\sigma_C$ based on the residuals between the predicted and observed catch. Since the SRA model conditions the OM on observed catch, the predicted catch will match the observed catch and thus, $\sigma_C < 0.01$.
+Ce paramètre ($\sigma_C$) établit l’écart-type des prises simulées pour la période de projection. Le modèle d’exploitation de l’outil DLMtool peut générer $\sigma_C$ en fonction des résidus entre les prises prévues et observées. Étant donné que le modèle d’analyse de la réduction du stock conditionne le modèle opérationnel sur les prises observées, les prises prévues correspondront aux prises observées et, par conséquent, $\sigma_C < 0,01$.
 
 <!-- slot-chunk-end -->
 
 <!-- slot-chunk-begin -->
 ### Cbias {#app:desc-obs-cbias-yelloweye}
 
-*Bias in the catch.*
+*Biais dans les prises.*
 
-This parameter controls the bias, expressed as the ratio of simulated observed to true catches, i.e. under/overreporting, for the projection period. The DLMtool operating model can estimate the bias parameter as the ratio of mean observed and mean predicted catch. Since the SRA model conditions the OM on observed catch, the ratio is 1.
+Ce paramètre contrôle le biais, exprimé sous la forme du rapport entre les prises réelles et observées simulées, c.-à-d. la sous-déclaration/surdéclaration, pour la période de projection. Le modèle opérationnel de l’outil DLMtool peut estimer le paramètre de biais comme le rapport des prises moyennes observées et des prises moyennes prévues. Étant donné que le modèle d’analyse de la réduction du stock conditionne le modèle opérationnel sur les prises observées, le rapport est de 1.
 
 <!-- slot-chunk-end -->
 
 <!-- slot-chunk-begin -->
 ### Iobs {#app:desc-obs-iobs-yelloweye}
 
-*Observation error in the relative abundance indices expressed as a SD.*
+*Erreur d’observation dans les indices de l’abondance relative exprimée en tant qu’écart-type.*
 
-This parameter ($\sigma_I$) sets the standard deviation in simulated survey indices for the projection period.
-We set $\sigma_I = 0.25$, based on the standard deviation of the observed HBLL index for all OM scenarios except Scenario (B), where $\sigma_I$ was set based on the standard deviation and autocorrelation from the index residuals in OM Scenario (1) (see Section \@ref(sec:approach3-referenceB)).
+Ce paramètre ($\sigma_I$) établit l’écart-type dans les indices de relevé simulés pour la période de projection. 
+Nous avons établi $\sigma_I = 0,25$, en fonction de l’écart-type de l’indice du relevé à la palangre sur fond dur observé pour tous les scénarios de modèles opérationnels sauf le scénario (B), où $\sigma_I$ a été défini en fonction de l’écart-type et de l’autocorrélation par rapport aux résidus de l’indice dans le scénario de modèle opérationnel (1) (voir la section \@ref(sec:approach3-referenceB)).
 
 <!-- slot-chunk-end -->
 
 <!-- slot-chunk-begin -->
 ### beta {#app:desc-obs-beta-yelloweye}
 
-*A parameter controlling hyperstability/hyperdepletion where values below 1 lead to hyperstability (an index that decreases more slowly than true abundance) and values above 1 lead to hyperdepletion (an index that decreases more rapidly than true abundance). Uniform distribution*
+*Un paramètre contrôlant l’hyperstabilité et l’hyperépuisement où les valeurs inférieures à 1 mènent à l’hyperstabilité (un indice qui diminue plus lentement que l’abondance réelle) et les valeurs supérieures à 1 mènent à l’hyperépuisement (un indice qui diminue plus rapidement que l’abondance réelle). Distribution uniforme*
 
-We set the hyperstability/hyperdepletion parameter $\beta = 1$  to imply no hyperstability or hyperdepletion.
+Nous avons défini le paramètre d’hyperstabilité/hyperépuisement $\beta = 1$ pour signifier qu’il n’y a pas d’hyperstabilité ou d’hyperépuisement.
 
 <!-- slot-chunk-end -->
 
-## IMP SLOT DESCRIPTIONS {#app:desc-imp-yelloweye}
+## DESCRIPTION DES TIROIRS DE MISE EN ŒUVRE {#app:desc-imp-yelloweye}
 
 <!-- slot-chunk-begin -->
 ### TACFrac {#app:desc-imp-tacfrac-yelloweye}
 
-*Mean fraction of TAC taken. Uniform distribution.*
+*Fraction moyenne du TAC prélevé. Distribution uniforme.*
 
-We assumed no implementation error.
+Nous avons présumé qu’il n’y avait pas d’erreur de mise en œuvre.
 
 ```{r desc-imp-tacfrac-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "TACFrac")
@@ -340,9 +347,9 @@ display_om(oms, "TACFrac")
 <!-- slot-chunk-begin -->
 ### TACSD {#app:desc-imp-tacsd-yelloweye}
 
-*Log-normal CV in the fraction of TAC taken. Uniform distribution.*
+*CV log-normal dans la fraction du TAC prélevé. Distribution uniforme.*
 
-We assumed no implementation error.
+Nous avons présumé qu’il n’y avait pas d’erreur de mise en œuvre.
 
 ```{r desc-imp-tacsd-yelloweye, results = knitr_results, echo = knitr_echo}
 display_om(oms, "TACSD")
