@@ -341,44 +341,42 @@ ref_pts %>% rename("OM Scenario" = X1) %>%
 
 #### Trajectoires historiques {#sec:approach3-conditioning-trajectories}
 
-In all OM scenarios, except OM Scenario (A), the median spawning biomass in 2019 is estimated to be above the LRP (Figure \@ref(fig:biomass-om)). 
-OM Scenario (A) estimated median spawning biomass to have been below the LRP for most years after 2000 and less than 50% probability of being above the LRP in 2019 (Figure \@ref(fig:ref-pt)).
-OM Scenario (2) and OM Scenario (4) also had a small probability of being below the LRP in the current year.
-Therefore, according to all the reference set OM scenarios and one robustness set OM scenario, the stock can already be considered to have rebuilt above the LRP. 
-The median spawning biomass is estimated to be above the USR in OM Scenarios (1), (2), (3), and (B); and estimated to be below the USR in OM Scenarios (4) and (A).
+Dans tous les scénarios de modèle opérationnel, à l’exception du scénario de modèle opérationnel (A), la médiane estimée de la biomasse féconde en 2019 est au-dessus du PRL (figure \@ref(fig:biomass-om)). 
+Dans le scénario de modèle opérationnel (A), la médiane estimée de la biomasse féconde est inférieure au PRL la plupart des années après 2000 et a une probabilité inférieure à 50 % d’être au-dessus du PRL en 2019 (figure \@ref(fig:ref-pt)). 
+Les scénarios de modèle opérationnel (2) et (4) présentaient également une faible probabilité d’être inférieurs au PRL pour l’année en cours. 
+Par conséquent, selon tous les scénarios de modèle opérationnel de l’ensemble de référence et un scénario de modèle opérationnel de l’ensemble de robustesse, on peut déjà considérer que le stock s’est rétabli au-dessus du PRL. 
+On estime que la médiane de la biomasse féconde est supérieure au RSS dans les scénarios de modèle opérationnel (1), (2), (3) et (B) et inférieure au RSS dans les scénarios de modèle opérationnel (4) et (A).
 
-All OM scenarios predicted a slight increase in spawning biomass during the last decade of the time series (Figure \@ref(fig:biomass-om)).
-The credible interval for all OM scenarios except (A) was very broad, arising from uncertainties in natural mortality and steepness (Figure \@ref(fig:sra-conditioned-parameters)).
-Note that trajectories are identical for OM Scenarios (1), (3) and (B), as OM Scenarios (3) and (B) only differ from OM Scenario (1) in the treatment of parameters in the projection period.
-The very narrow credible interval for OM Scenario (A) reflects the very low fixed value of *M* in this OM scenario, restricting the range of possible outcomes.
+Tous les scénarios de modèle opérationnel prévoyaient une légère augmentation de la biomasse féconde au cours de la dernière décennie de la série chronologique (figure \@ref(fig:biomass-om)).
+L’intervalle de crédibilité pour tous les scénarios de modèle opérationnel sauf (A) était très large, découlant des incertitudes relatives à la mortalité naturelle et au taux de variation de la pente (figure \@ref(fig:sra-conditioned-parameters)). 
+Il convient de noter que les trajectoires sont identiques pour les scénarios de modèle opérationnel (1), (3) et (B), car les scénarios de modèle opérationnel (3) et (B) ne diffèrent du scénario de modèle opérationnel (1) que par le traitement des paramètres durant la période de projection. 
+L’intervalle de crédibilité très étroit pour le scénario de modèle opérationnel (A) reflète la valeur fixe très faible de *M* dans ce scénario de modèle opérationnel, qui limite l’éventail des résultats possibles.
+Les trajectoires implicites d’épuisement de la biomasse féconde durant la période historique d’après les huit modèles opérationnels suivent le même profil que celles de *B* (figure \@ref(fig:depletion-om)).
 
-The implied spawning biomass depletion trajectories during the historical period from the eight OMs follow the same pattern as those for *B* (Figure \@ref(fig:depletion-om)).
+Les estimations des écarts de recrutement historiques étaient semblables dans tous les scénarios de modèles opérationnels (figure \@ref(fig:recdev-om)).
 
-Estimates of historical recruitment deviations were similar across OM scenarios (Figure \@ref(fig:recdev-om)).
-
-Estimated historical apical fishing mortality varied across OM scenarios, with larger values estimated for OM Scenarios (4) and (A), the more depleted trajectories (Figure \@ref(fig:F-om)).
-All OM scenarios predicted large peaks in fishing mortality during the 1980s and 1990s (Figure \@ref(fig:F-om)).
+La mortalité historique estimée apicale par pêche variait selon les scénarios de modèle opérationnel, avec des valeurs plus élevées estimées pour les scénarios de modèle opérationnel (4) et (A), les trajectoires avec le plus d’épuisement (figure \@ref(fig:F-om)). 
+Tous les scénarios de modèle opérationnel prévoyaient des pics importants de la mortalité par pêche dans les années 1980 et 1990 (figure \@ref(fig:F-om)).
 
 (ref:fig-biomass-om)
-Spawning biomass relative to spawning biomass at MSY (*B*/*B*~MSY~) trajectories for reference and robustness set OMs.
-Lines represent medians, and dark and light grey shading represent 50% and 95% quantiles across replicates, respectively.
-Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
+Trajectoires de la biomasse féconde par rapport à la biomasse féconde au rendement maximal soutenu (*B*/*B*~RMD~) pour les modèles opérationnels des ensembles de référence et de robustesse.
+Les lignes représentent les médianes, et les ombres gris foncé et gris pâle représentent les quantiles de 50 % et 95 % entre les répétitions, respectivement. 
+Les lignes horizontales en pointillés représentent le RSS (0,8*B*~RMD~) et le PRL (0,4*B*~RMD~).
 
 ```{r biomass-om, fig.cap="(ref:fig-biomass-om)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-compare-SRA-MSY-panel.png"))
 ```
 
 (ref:fig-ref-pt)
-Probability that the 2019 spawning biomass is above the LRP and USR for the six operating models.
+Probabilité que la biomasse féconde en 2019 soit supérieure au PRL et au RSS pour les six modèles opérationnels.
 
 ```{r ref-pt, fig.cap="(ref:fig-ref-pt)", out.width="2.5in"}
 knitr::include_graphics(here("mse/figures/historical_indicators_ref_pt.png"))
 ```
 
 (ref:fig-depletion-om)
-Spawning biomass depletion trajectories for reference and robustness set OMs.
-Depletion is represented as a fraction of $B_0$ (spawning biomass at unfished equilibrium).
-Lines represent individual replicates.
+Trajectoires de l’épuisement de la biomasse féconde pour les modèles opérationnels des ensembles de référence et de robustesse. L’épuisement est représenté sous la forme d’une fraction de $B_0$ (biomasse féconde à l’équilibre à un taux d’exploitation nul). 
+Les lignes représentent les répétitions individuelles.
 
 ```{r depletion-om, fig.cap="(ref:fig-depletion-om)", out.width="\\textwidth"}
 knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
@@ -386,17 +384,18 @@ knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
 
 
 (ref:fig-recdev-om)
-Historical recruitment deviations estimated by the SRA model (in log space).
-Lines represent individual replicates.
+Écarts historiques de recrutement estimés par le modèle d’analyse de réduction du stock (dans l’espace logarithmique). 
+Les lignes représentent les répétitions individuelles.
 
 ```{r recdev-om, fig.cap="(ref:fig-recdev-om)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"))
 ```
 
 (ref:fig-F-om)
-Apical fishing mortality ($F_y$) trajectories for reference and robustness set OMs.
-Apical fishing mortality is the maximum $F_y$ experienced by fish of any age in a given year.
-Lines represent individual replicates.
+Trajectoires de la mortalité par pêche apicale ($f_y$) pour les modèles opérationnels des ensembles de référence et de robustesse. 
+La mortalité par pêche apicale est la valeur maximale de $F_y$ subie par les poissons de tout âge une année donnée. 
+Les lignes représentent les répétitions individuelles.
+
 
 ```{r F-om, fig.cap="(ref:fig-F-om)", out.width="\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
@@ -404,44 +403,41 @@ knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
 
 \clearpage
 
-## SURPLUS PRODUCTION MODEL OM SCENARIO
+## SCÉNARIO DU MODÈLE OPÉRATIONNEL POUR LE MODÈLE DE PRODUCTION EXCÉDENTAIRE
 
-The 2011 stock assessment for Inside Yelloweye Rockfish applied a Bayesian state space surplus production (SP) model, fit to catch, commercial CPUE, and the HBLL and Dogfish surveys [@yamanaka2011]. 
-The assessment estimated a 90% [nine times out of 10] probability that the stock was below the LRP, i.e., in the critical zone. 
-The assessment results triggered a rebuilding plan [@ifmp2018], which is updated in this document.
-The SRA models under all OM scenarios in the current analysis predict similar biomass trajectories to that in @yamanaka2011.
-However, only OM Scenario (A) estimates the stock to have been below the LRP during the 2000s (Figure \@ref(fig:biomass-om)).
 
-Model results diverged between the two analyses due to large differences in model structure between the SP model used in @yamanaka2011 and the SRA used here. To explore the effects of model structure on stock status, we fit a SP model to the currently-available catch, CPUE and fishery-independent indices of abundance. 
-We used the SP model implemented in the R software package MSEtool [@huynh_msetool_2019], fully described in Appendix D of @anderson2020gfmp,
-which was configured to resemble the 2011 assessment as much as possible, although the model used here estimated parameters using maximum likelihood.
-The SP model set *B*~MSY~ to 50% of unfished biomass, set the initial biomass in 1918 to 90% of unfished biomass, and used a prior probability distribution for the intrinsic rate of population growth (*r*) as a likelihood penalty.
-The prior probability distribution for *r* was normally distributed with a mean of 0.068 and standard deviation of 0.03, based on values used in @yamanaka2011.
+L’évaluation du stock de 2011 pour le sébaste aux yeux jaunes des eaux intérieures a appliqué un modèle bayésien espace-état de production excédentaire, ajusté aux prises, aux CPUE commerciales et aux relevés à la palangre sur fond dur et sur l’aiguillat commun [@yamanaka2011]. 
+Elle a estimé une probabilité de 90 % [neuf fois sur 10] que le stock soit inférieur au PRL, c’est-à-dire qu’il se trouve dans la zone critique. 
+Les résultats de l’évaluation ont déclenché un plan de rétablissement [@ifmp2018], qui est mis à jour dans le présent document. 
+Les modèles d’analyse de réduction du stock de tous les scénarios de modèle opérationnel de la présente analyse prédisent des trajectoires de la biomasse semblables à celles présentées dans @yamanaka2011. 
+Toutefois, seul le scénario de modèle opérationnel (A) estime que le stock a été inférieur au PRL dans les années 2000 (figure \@ref(fig:biomass-om)).
 
-SP model results more closely matched those of the previous assessment, estimating the stock to be below the LRP (Figure \@ref(fig:spm-biomass)).
-The model estimated the reference points *B*~MSY~ = 1844 t, *F*~MSY~ = 0.03 *y*^-1^, and MSY = 62 t.
-MSY and *F*~MSY~ estimates were similar to those from the SRA Base OM (Table \@ref(tab:sra-ref-pts)), but the estimate of *B*~MSY~ was approximately 35% higher for the SP model than the SRA. We note that very similar findings were made by @cox2020 in the rebuilding plan for the outside stock of Yelloweye Rockfish.
-Their analysis, also based on age-structured models, predicted the current stock status for Outside Yelloweye Rockfish to be above the LRP, i.e., not in need of rebuilding, in contrast to results obtained by the SP model used in the 2014 stock assessment [@yamanaka2018yelloweyeoutside]. 
+Les résultats du modèle divergeaient entre les deux analyses en raison des grandes différences de structure entre le modèle de production excédentaire utilisé dans @yamanaka2011 et l’analyse de réduction du stock utilisée ici. Pour explorer les effets de la structure du modèle sur l’état du stock, nous avons adapté un modèle de production excédentaire aux indices de l’abondance des prises, des CPUE et indépendants de la pêche actuellement accessibles. 
+Nous avons utilisé le modèle de production excédentaire mis en œuvre dans le progiciel R MSEtool [@huynh_msetool_2019], entièrement décrit dans l’annexe D de @anderson2020gfmp, qui a été configuré pour ressembler le plus possible à l’évaluation de 2011, bien que le modèle appliqué ici ait estimé les paramètres en utilisant la vraisemblance maximale. 
+Le modèle de production excédentaire a établi *B*~RMD~ à 50 % de la biomasse non exploitée, la biomasse initiale en 1918 à 90 % de la biomasse non exploitée, et a utilisé une distribution de probabilité a priori pour le taux intrinsèque de croissance de la population (*r*) comme pénalité de vraisemblance. La distribution de probabilité a priori pour *r* était normalement distribuée avec une moyenne de 0,068 et un écart-type de 0,03, d’après les valeurs utilisées dans @yamanaka2011.
 
-Notably, the biomass trends for the inside population since 2000 also differs between the two types of models. A flat, stable trend (below the LRP) was estimated in the SP model. On the other hand, many of the OMs developed from the SRA indicated that stock size has been increasing, although the trend is much flatter in the Low M scenario. We attempted four alternative model fits in an attempt to find scenarios that would mirror the biomass trend estimated in the SP model (Figure \@ref(fig:alt-SRA-fit)).  
+Les résultats du modèle de production excédentaire correspondaient plus étroitement à ceux de l’évaluation précédente, estimant que le stock était inférieur au PRL (figure \@ref(fig:spm-biomass)). 
+Le modèle a estimé les points de référence *B*~RMD~ = 1 844 t, *F*~RMD~ = 0,03 *y*^-1^ et RMD = 62 tonnes. 
+Les estimations de RMD et de *F*~RMD~ étaient semblables à celles du modèle opérationnel de base de l’analyse de réduction du stock (tableau \@ref(tab:sra-ref-pts)), mais l’estimation de *B*~RMD~ était environ 35 % plus élevée pour le modèle de production excédentaire que pour l’analyse de réduction du stock. Nous notons que @cox2020 ont tiré des conclusions très similaires dans le plan de rétablissement du stock de sébaste aux yeux jaunes des eaux extérieures. 
+Leur analyse, également fondée sur des modèles structurés selon l’âge, a prédit que l’état actuel du stock de sébaste aux yeux jaunes des eaux extérieures se situerait au-dessus du PRL, c’est-à-dire qu’un rétablissement n’était pas nécessaire, contrairement aux résultats obtenus par le modèle de production excédentaire utilisé dans l’évaluation des stocks de 2014 [@yamanaka2018yelloweyeoutside]. 
 
-First, the dogfish survey was further downweighted with a likelihood weighting factor $\lambda = 0.1$. This did not change the spawning biomass trend and the resulting stock status was more optimistic compared to the Base OM. Second, the 2019 dogfish survey value was excluded from the likelihood since the observed mean is higher than in previous recent years (with $\lambda = 4$ following the Base OM). This scenario also did not appreciably affect the spawning biomass trend and magnitude. Third, the survey age comps was downweighted with $\lambda = 0.1$. Similar to the first alternative, the spawning biomass trend was similar to the Base OM although the resultant stock status was somewhat less optimistic. Finally, the survey age comps were removed from the likelihood with $\lambda = 0$. This scenario estimated the stock to be below the LRP in concordance with the SP model. 
+En particulier, les tendances de la biomasse pour la population des eaux intérieures depuis 2000 diffèrent également entre les deux types de modèles. Une tendance aplatie et stable (inférieure au PRL) a été estimée dans le modèle de production excédentaire. Par ailleurs, bon nombre des modèles opérationnels élaborés à partir de l’analyse de réduction du stock indiquent que la taille du stock a augmenté, bien que la tendance soit beaucoup plus aplatie dans le scénario de M faible. Nous avons essayé quatre modèles de rechange pour tenter de trouver des scénarios qui refléteraient la tendance de la biomasse estimée dans le modèle de production excédentaire (figure \@ref(fig:alt-SRA-fit)). 
 
-These results suggest that differences in estimated stock status between the current analysis and the previous stock assessment [@yamanaka2011] are in large part due to the data types included in the respective models and model structure. Both use catch and indices of abundance although the SP model leaves out the age compositions. When the two models use the same data types, i.e., excluding the age compositions from the likelihood with fixed assumptions regarding survey selectivity, both behave more similarly.
+Tout d’abord, le relevé sur l’aiguillat commun a été encore moins pondéré, avec un facteur de pondération de la vraisemblance $\lambda = 0,1$. Cela n’a pas changé la tendance de la biomasse féconde et l’état du stock obtenu était plus optimiste que le modèle opérationnel de base. Ensuite, la valeur du relevé sur l’aiguillat commun de 2019 a été exclue de la vraisemblance puisque la moyenne observée est plus élevée que les dernières années (avec $\lambda = 4$ d’après le modèle opérationnel de base). Ce scénario n’a pas non plus eu d’effet appréciable sur la tendance et l’ampleur de la biomasse féconde. Puis, les compositions selon l’âge du relevé ont été pondérées à la baisse, avec $\lambda = 1$. Comme dans la première option, la tendance de la biomasse féconde était semblable à celle du modèle opérationnel de base, mais l’état du stock obtenu était un peu moins optimiste. Enfin, les compositions selon l’âge du relevé ont été supprimées de la vraisemblance avec $\lambda = 0$. Ce scénario a estimé que le stock était inférieur au PRL conformément au modèle de production excédentaire. 
 
-The age-structured model was chosen over the SP model to develop operating models for inside yelloweye rockfish on first principles. The age-structured model is more realistic in modeling delays in stock productivity over time. A single cohort contributes to the spawning biomass (and vulnerable biomass) over several years as it progresses through the age structure of the population. This mechanism can explain the increasing biomass estimated in the SRA. As fishing mortality decreased from catch reductions in the late 1990s into 2000, the spawning biomass started to increase. Also, the age of 5% maturity is lower than the age of 5% selectivity of the commercial fleet which would allow portions of cohorts to spawn before significant vulnerability to fishing.
+Ces résultats permettent de penser que les différences dans l’état estimé du stock entre l’analyse actuelle et l’évaluation du stock précédente [@yamanaka2011] sont en grande partie attribuables aux types de données inclus dans les modèles respectifs et leur structure. Les deux utilisent les prises et les indices de l’abondance, bien que le modèle de production excédentaire ne tienne pas compte des compositions selon l’âge. Lorsque les deux modèles utilisent les mêmes types de données, c.-à-d. en excluant les compositions selon l’âge de la vraisemblance avec des hypothèses fixes concernant la sélectivité du relevé, les deux se comportent de façon plus similaire.
 
-For the SP model, this delay may be implicitly incorporated in the production function of the SP model but the biomass predicted in a given year is explicitly a function of the biomass observed in the previous year. Furthermore, the stock biomass in the SP model is implicitly vulnerable biomass since there are no explicit assumptions about selectivity. There is more difficulty in explaining the productivity of the stock mechanistically as all biological processes regarding growth, natural mortality, and maturity is incorporated in the intrinsic rate parameter *r*.
+Nous avons choisi le modèle structuré selon l’âge plutôt que le modèle de production excédentaire pour élaborer des modèles opérationnels pour le sébaste aux yeux jaunes des eaux intérieures selon les premiers principes. Le modèle structuré selon l’âge est plus réaliste pour modéliser les retards dans la productivité du stock au fil du temps. Une seule cohorte contribue à la biomasse féconde (et à la biomasse vulnérable) sur plusieurs années à mesure qu’elle progresse dans la structure selon l’âge de la population. Ce mécanisme peut expliquer l’augmentation de la biomasse estimée dans l’analyse de réduction du stock. À mesure que la mortalité par pêche diminuait à la suite de la réduction des prises à la fin des années 1990 jusqu’en 2000, la biomasse féconde a commencé à augmenter. De plus, l’âge à 5 % de maturité est inférieur à l’âge à 5 % de sélectivité de la flottille commerciale, ce qui permettrait à certaines parties des cohortes de frayer avant une vulnérabilité importante à la pêche.
 
-(ref:fig-spm-biomass) Biomass relative to biomass at MSY (*B*/*B*~MSY~) trajectory from the SP model.
-Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~).
+Pour le modèle de production excédentaire, ce retard peut être implicitement intégré à la fonction de production du modèle, mais la biomasse prévue pour une année donnée est explicitement une fonction de la biomasse observée l’année précédente. De plus, la biomasse du stock dans le modèle de production excédentaire est implicitement la biomasse vulnérable puisqu’il n’y a pas d’hypothèses explicites sur la sélectivité. Il est plus difficile d’expliquer la productivité du stock de manière mécaniste, car tous les processus biologiques concernant la croissance, la mortalité naturelle et la maturité sont intégrés dans le paramètre de taux intrinsèque *r*.
+
+(ref:fig-spm-biomass) Trajectoire de la biomasse par rapport à la biomasse au rendement maximal soutenu (*B*/*B*~RMD~) dans le modèle de production excédentaire. Les lignes horizontales en pointillés représentent le RSS (0,8*B*~RMD~) et le PRL (0,4*B*~RMD~).
 
 ```{r spm-biomass, fig.cap="(ref:fig-spm-biomass)", out.width="0.8\\textwidth"}
 knitr::include_graphics(here::here("mse/figures/SP_fit.png"))
 ```
 
-
-(ref:fig-alt-SRA-fit) Relative spawning biomass (*B*/*B*~MSY~) from alternative fits to the SRA that downweighted or eliminated data from the likelihood. Mean values of natural mortality and steepness were used. Dotted horizontal lines represent the USR (0.8 *B*~MSY~) and LRP (0.4 *B*~MSY~). The Base and Exclude 2019 dogfish scenarios overlap and the corresponding lines are jittered in the figure for clarity.
+(ref:fig-alt-SRA-fit) Biomasse féconde relative (*B*/*B*~RMD~) selon d’autres ajustements à l’analyse de réduction du stock qui réduisaient ou éliminaient les données de la vraisemblance. On a utilisé les valeurs moyennes de la mortalité naturelle et du taux de variation de la pente. Les lignes horizontales en pointillés représentent le RSS (0,8*B*~RMD~) et le PRL (0,4*B*~RMD~). Les scénarios de référence et d’exclusion du relevé de 2019 sur l’aiguillat commun se chevauchent et les lignes correspondantes sont différenciées sur la figure pour plus de clarté.
 
 ```{r alt-SRA-fit, fig.cap="(ref:fig-alt-SRA-fit)"}
 knitr::include_graphics(here::here("mse/figures/alt_SRA_fit.png"))
