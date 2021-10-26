@@ -113,7 +113,7 @@ $$
 $$
 
 où  $\varepsilon^{(1)}_{R,y}$ est l’écart de recrutement par rapport au scénario de modèle opérationnel (1) et
-$\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0,5\tau^2, \ta)$ représente la distribution du recrutement « épisodique » avec $\tau = 2$ (écart-type). 
+$\log\varepsilon^{(3)}_{R,y} \sim \textrm{Normal}(-0,5\tau^2, \tau)$ représente la distribution du recrutement « épisodique » avec $\tau = 2$ (écart-type).
 Le paramètre $\eta_y$ est une variable aléatoire de Bernoulli $\eta_y \sim \textrm{Bernoulli}(p = 1/38)$, qui sélectionne si un événement de recrutement extrême se produira. 
 Nous supposons qu’un événement de recrutement extrême devrait se produire une fois par génération (38 ans), d’après l’observation selon laquelle des épisodes de fort recrutement chez le sébaste aux yeux jaunes des eaux intérieures ont eu lieu en 1948 et en 1970. 
 Bien que les conditions environnementales récentes puissent être favorables à certaines espèces de sébastes [@haigh2020; @lincandeo2020], nous n’avons pas encore de preuve de récents épisodes de recrutement important pour le sébaste aux yeux jaunes des eaux intérieures qui pourraient indiquer des épisodes de fort recrutement plus fréquents. 
