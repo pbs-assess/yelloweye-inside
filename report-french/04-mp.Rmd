@@ -1,76 +1,77 @@
 
-# IDENTIFICATION OF CANDIDATE MANAGEMENT PROCEDURES  {#sec:mp}
+# DÉTERMINATION DES PROCÉDURES DE GESTION POSSIBLES {#sec:mp}
+@anderson2020gfmp ont examiné toutes les procédures de gestion qui étaient accessibles dans l’outil DLMtool en novembre 2019. 
+L’outil DLMtool comprend un ensemble complet de procédures de gestion à données limitées qui formulent différents types de recommandations de gestion, y compris des ajustements au TAC, à l’effort ou à la répartition spatiale des prises ou de l’effort.
+@anderson2020gfmp ont exclu certaines procédures de gestion du Cadre des procédures de gestion, car leurs exigences seraient rarement respectées pour les stocks de poisson de fond de la Colombie-Britannique.
+Les procédures de gestion exclues étaient celles qui exigeaient une connaissance de l’abondance absolue, des données récentes sur la composition selon l’âge, une connaissance de l’épuisement et une connaissance du taux de variation de la pente (*h*) de la relation stock-recrutement, puisqu’il s’agit probablement de grands axes d’incertitude pour les stocks auxquels ce cadre sera appliqué.
+Bien qu’il soit nécessaire d’explorer ces axes d’incertitude dans les modèles opérationnels, la mise en œuvre des procédures de gestion qui exigent la connaissance de ces facteurs nécessiterait de nombreuses hypothèses supplémentaires.
+@anderson2020gfmp ont également ajusté certaines des procédures de gestion de l’outil DLMtool afin de tenir compte des types de données accessibles sur le poisson de fond de la Colombie-Britannique (p. ex., relevés biennaux dans plusieurs zones de gestion).
 
-@anderson2020gfmp screened all MPs that were available in DLMtool as of November 2019.
-DLMtool includes a comprehensive set of data-limited MPs that make different types of management recommendations, including adjustments to TAC, effort, or spatial allocation of catch or effort.
-@anderson2020gfmp excluded certain MPs from the MP Framework that had requirements that would rarely be met for BC groundfish stocks.
-Excluded MPs were those that required: knowledge of absolute abundance; recent age-composition data; knowledge of depletion; and knowledge of steepness (*h*) of the stock-recruit relationship, since these are likely to be major axes of uncertainty for the stocks to which this framework will be applied.
-While it is necessary to explore these axes of uncertainty within OMs, implementing MPs that require knowledge of these factors would require many additional assumptions.
-@anderson2020gfmp also adjusted some of the DLMtool MPs to accommodate the types of data available for BC groundfish (e.g., biennial surveys in several management areas).
+Le Cadre des procédures de gestion ne tient compte que des procédures de gestion qui font des recommandations sur le TAC, parce que la plupart des stocks de poisson de fond sont gérés par des quotas et des TAC.
+Un recueil de toutes les procédures de gestion prises en compte dans le Cadre des procédures de gestion est fourni dans @anderson2020gfmp (à l’annexe D).
+Les procédures de gestion qui ont été prises en considération pour le plan de rétablissement actuel sont décrites en détail à l’annexe \@ref(app:mps) du présent document.
 
-The MP Framework only considers MPs that make TAC recommendations, because most groundfish stocks are managed by quotas and TACs.
-A library of all MPs considered in the MP Framework is provided in @anderson2020gfmp (their Appendix D).
-MPs that were considered for the current rebuilding plan are detailed in Appendix \@ref(app:mps) of this document.
+Nous avons évalué deux principaux types de procédures de gestion : les procédures de gestion empiriques (fondées sur des données) et les procédures de gestion fondées sur des modèles. 
+Nous avons également évalué trois procédures de gestion de référence.
 
-We evaluated two main types of MPs: empirical (data-based) and model-based MPs.
-We also evaluated three reference MPs.
+L’ensemble complet des procédures de gestion possibles est indiqué dans le tableau \@ref(tab:mps). Voir les descriptions complètes à l’annexe \@ref(app:mps).
 
-The full set of candidate MPs is provided in Table \@ref(tab:mps). See Appendix \@ref(app:mps) for full descriptions.
 
-## EMPIRICAL MPs
+## PROCÉDURES DE GESTION EMPIRIQUES
 
-Empirical MPs make use of catch and population index data.
-These MPs can be divided into two main categories: constant-catch MPs and index-based MPs.
+Les procédures de gestion empiriques utilisent les données sur les prises et l’indice de la population.
+Elles peuvent être divisées en deux grandes catégories : les procédures de gestion à prises constantes et les procédures de gestion fondées sur des indices.
 
-### Constant-catch MPs
 
-Constant-catch MPs set the recommended catch to some fixed level, typically based on recent or historical catches.
-Constant-catch MPs do not incorporate feedback between the management system and the population---they make the same catch recommendation regardless of trends in the population index.
-The current MP being used for Inside Yelloweye Rockfish is a constant-catch MP of 15 t.
+### Procédures de gestion à prises constantes
 
-We considered three constant-catch MPs: 5 t, 10 t, and 15 t (Appendix \@ref(app:mps), Section \@ref(sec:mp-cc)).
+Les procédures de gestion à prises constantes établissent les prises recommandées à un niveau fixé, habituellement en fonction des prises récentes ou historiques. 
+Les procédures de gestion à prises constantes ne tiennent pas compte de la réaction entre le système de gestion et la population; --- elles font la même recommandation, quelles que soient les tendances de l’indice de population. 
+La procédure de gestion actuelle utilisée pour le sébaste aux yeux jaunes des eaux intérieures est une procédure de gestion à prises constantes de 15 tonnes.
 
-### Index-based MPs 
+Nous avons examiné trois procédures de gestion à prises constantes : 5 tonnes, 10 tonnes et 15 tonnes (annexe \@ref(app:mps), section \@ref(sec:mp-cc)).
 
-Index-based MPs, in general, adjust the TAC based on changes in a population index over time.
-Index-ratio MPs increase or decrease the TAC in accordance with the ratio of the index from two different time periods.
-Index-slope MPs increase or decrease the TAC in accordance with the estimated slope in the index over a recent period of time. 
-A third type, index-target MPs, adjusts the TAC based on the ratio of the recent index and a fixed target index value, based on some pre-agreed historical period.
-We did not consider an index-target MP here, as further guidance would be needed in order to select the appropriate target value.
-Also, for rebuilding plans, the main objective is to rebuild the stock above the LRP.
-However, the LRP is not likely to be a desired final target stock status.
+### Procédures de gestion fondées sur des indices 
 
-We evaluated index-based MPs with either annual updates or five-year updates (denoted "5u") with fixed TAC between updates, i.e., the last recommended TAC. 
-All index-based MPs set a minimum TAC "floor" = 0.5 t, which is approximately the amount of catch required for scientific surveys to continue.
-We included the following index-based MPs: Iratio, Islope, GB_slope and IDX, with a variety of configurations (Appendix \@ref(app:mps), Section \@ref(sec:mp-ibased)).
+En général, les procédures de gestion fondées sur des indices ajustent le TAC en fonction de l’évolution d’un indice de la population au fil du temps. 
+Les procédures de gestion indice-ratio augmentent ou diminuent le TAC en fonction du ratio de l’indice sur deux périodes différentes. 
+Les procédures de gestion indice-pente augmentent ou diminuent le TAC en fonction de la pente estimée de l’indice sur une période récente. 
+Un troisième type, les procédures de gestion indice-cible, ajuste le TAC en fonction du ratio de l’indice récent et d’une valeur fixée de l’indice cible, d’après une période historique préétablie.
+Nous n’avons pas envisagé de procédure de gestion indice-cible ici, car d’autres directives seraient nécessaires pour sélectionner la valeur cible appropriée. 
+De plus, pour les plans de rétablissement, l’objectif principal est de ramener le stock au-dessus du PRL.
+Toutefois, il est peu probable que le PRL soit un état de stock cible final souhaité.
 
-## MODEL-BASED MPs
+Nous avons évalué les procédures de gestion fondées sur des indices avec des mises à jour annuelles ou des mises à jour quinquennales (indiquées par « 5u ») avec un TAC fixe entre les mises à jour, c’est-à-dire le dernier TAC recommandé. 
+Toutes les procédures de gestion fondées sur des indices ont établi un « plancher » minimum du TAC = 0,5 tonne, qui correspond approximativement à la quantité de prises requise pour pouvoir poursuivre les relevés scientifiques. 
+Nous avons inclus les procédures de gestion fondées sur des indices suivantes : Iratio, Islope, GB_slope et IDX, avec diverses configurations (annexe \@ref(app:mps), section \@ref(sec:mp-ibased)).
 
-In addition to the empirical MPs, we considered a surplus production (SP) model, paired with two alternative harvest control rules (HCRs).
-We evaluated two assessment frequencies (five and 10 years), with a fixed TAC between assessments (Appendix \@ref(app:mps), Section \@ref(sec:mp-sp)).
-We used the SP model coded in MSEtool [@huynh_msetool_2019] and based on @fletcher1978 [see Appendix D of @anderson2020gfmp].
+## PROCÉDURES DE GESTION FONDÉES SUR DES MODÈLES
 
-The alternative HCRs (Figure \@ref(fig:mp-hcrs)) were characterized by:
+En plus des procédures de gestion empiriques, nous avons envisagé un modèle de production excédentaire, jumelé à deux règles de contrôle des prises de rechange. 
+Nous avons évalué deux fréquences d’évaluation (5 et 10 ans), avec un TAC fixe entre les évaluations (annexe \@ref(app:mps), section \@ref(sec:mp-sp)). 
+Nous avons utilisé le modèle de production excédentaire codé dans MSEtool [@huynh_msetool_2019] et fondé sur @fletcher1978 [voir l’annexe D dans @anderson2020gfmp].
 
-1. 80% B~MSY~ and 40% B~MSY~ as the USR and LRP, respectively; and
-2. 40% B~0~ and 10% B~0~ as the USR and LRP, respectively.
+Les règles de contrôle des prises de rechange (figure \@ref(fig:mp-hcrs)) étaient caractérisées par :
 
-## REFERENCE MPs
+1. 80 %B~RMD~ et 40 %B~RMD~ comme RSS et PRL, respectivement;
+2. 40 %B~0~ et 10 %B~0~ comme RSS et PRL, respectivement.
 
-In addition to the empirical and model-based candidate MPs, we included the following reference MPs:
+## PROCÉDURES DE GESTION DE RÉFÉRENCE
 
-1. No fishing (NFref)
-2. Fishing at *F*/*F*~MSY~ (FMSYref)
-3. Fishing at 0.75 *F*/*F*~MSY~ (FMSYref75)
+En plus des procédures de gestion empiriques et fondées sur des modèles possibles, nous avons inclus les procédures de gestion de référence suivantes :
 
-The purpose of reference MPs is not to explore viable management strategies but to bound the range of expected or possible performance and contextualize whether differences between performance statistics among MPs are meaningful [@punt2016].
-For example, the "no fishing" reference MP provides information on maximum possible stock levels and the maximum possible rate of rebuilding under a rebuilding scenario.
+1. Aucune pêche (APref)
+2. Pêche à *F*/*F*~RMD~ (FRMDref)
+3. Pêche à 0,75 *F*/*F*~RMD~ (FRMDref75)
+
+Le but des procédures de gestion de référence n’est pas d’explorer des stratégies de gestion viables, mais de limiter l’éventail du rendement attendu ou possible et de mettre en contexte si les différences entre les statistiques sur le rendement des procédures de gestion sont significatives [@punt2016]. 
+Par exemple, la procédure de gestion de référence « aucune pêche » fournit de l’information sur les niveaux de stocks maximaux possibles et le taux de rétablissement maximal possible dans un scénario de rétablissement.
 
 \clearpage
 
 ```{r mps, results='asis'}
 mp <- readr::read_csv(here("mse",  "mp.txt"), comment = "#")
-csasdown::csas_table(mp, caption = "Candidate MPs. \"5u\" and \"10u\" refer to every-five- and every-10-year update intervals; the other MPs were applied annually. Other numbers refer to MP configurations.", col_names = c("Management procedure", "MP type"))
+csasdown::csas_table(mp, caption = "Procédures de gestion possibles. \"5u\" et \"10u\" font référence à des intervalles de cinq et dix ans entre les mises à jour; les autres procédures de gestion ont été appliquées chaque année. Les autres numéros font référence aux configurations des procédures de gestion.", col_names = c("Procédure de gestion", "Type de procédure de gestion"))
 ```
 
 \clearpage
