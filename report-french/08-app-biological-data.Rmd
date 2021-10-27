@@ -9,29 +9,28 @@ output:
 
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
 
-# BIOLOGICAL DATA {#app:biological-data}
+# DONNÉES BIOLOGIQUES {#app:biological-data}
 
-Inside Yelloweye Rockfish, which reside in area 4B (Figure \@ref(fig:map-4B)), are genetically distinct from the outside stock of Yelloweye Rockfish, whose range covers the rest of the coast [@andrews2018; @siegle2011; @siegle2013]. The northerly boundary between the two stocks is found in the middle of the Queen Charlotte Strait, north of Malcolm Island. Understanding of the Southern boundary has recently changed, based on analyses presented in @andrews2018, who argue that the Victoria Sill is the most likely geological boundary between the two populations and that the inside population extends into Puget Sound. Groundfish management area 4B is used to define the inside stock, despite the fact that area 4B extends beyond the boundaries of the biological population (Figure \@ref(fig:map-4B)). The inside and outside stocks are also considered two separate designatable units by COSEWIC [@cosewic2008].
+Le sébaste aux yeux jaunes des eaux intérieures, qui réside dans la zone 4B (figure \@ref(fig:map-4B)), est génétiquement distinct du stock de sébaste aux yeux jaunes des eaux extérieures, dont l’aire de répartition couvre le reste de la côte [@andrews2018; @siegle2011; @siegle2013]. La limite nord entre les deux stocks se trouve au milieu du détroit de la Reine-Charlotte, au nord de l’île Malcolm. La compréhension de la limite sud a changé récemment, d’après les analyses présentées dans @andrews2018, qui soutiennent que le seuil de Victoria est la limite géologique la plus probable entre les deux populations et que la population des eaux intérieures s’étend dans la baie Puget. On utilise la zone de gestion du poisson de fond 4B pour définir le stock des eaux intérieures, malgré le fait que la zone 4B s’étend au-delà des limites de la population biologique (figure \@ref(fig:map-4B)). Les stocks des eaux intérieures et extérieures sont également considérés comme deux unités désignables distinctes par le COSEPAC [@cosewic2008].
 
-## AGE, SIZE, AND GROWTH {#sec:growth}
+## ÂGE, TAILLE ET CROISSANCE {#sec:growth}
 
-Yelloweye Rockfish are a long-lived species, with a reported maximum age of 121 *y* for the outside stock [@keppel2019]. The maximum observed age for the inside Yelloweye Rockfish stock is 101 years, updated from the previously reported max age of 98 years based on additional recent ageing data (Figure \@ref(fig:age-freq)). 
-Age data for Inside Yelloweye Rockfish, derived from the break and burn or break and bake methods, are available from various surveys in area 4B from 1984-2018.
-Directed hard-bottom longline (HBLL) surveys began in Area 4B in 2003 after which greater numbers of Yelloweye Rockfish were aged.
-Proportions-at-age of Yelloweye Rockfish are shown by year and sex in Figure \@ref(fig:age-freq). It is assumed that all ages are independent of subarea.
-Human error can occur in reading ages from otoliths. Ageing precision for inside Yelloweye Rockfish is plotted in Figure \@ref(fig:age-precision) which displays ages for fish that were aged twice by independent technicians, including each technicians' reported range of possible ages.
+Le sébaste aux yeux jaunes est une espèce qui vit longtemps et dont l’âge maximal déclaré est de 121 *y* pour le stock des eaux extérieures [@keppel2019]. L’âge maximal observé pour le stock de sébaste aux yeux jaunes des eaux intérieures est de 101 ans, mis à jour à partir de l’âge maximal de 98 ans signalé précédemment d’après des données récentes supplémentaires sur la détermination de l’âge (figure \@ref(fig:age-freq)). 
+Les données sur l’âge du sébaste aux yeux jaunes des eaux intérieures, dérivées des méthodes de « cassure et brûlage » ou de « cassure et cuisson », sont tirées de divers relevés effectués dans la zone 4B de 1984 à 2018. 
+Les relevés dirigés à la palangre sur fond dur ont commencé dans la zone 4B en 2003, après quoi on a déterminé l’âge de davantage de sébastes aux yeux jaunes. 
+Les proportions selon l’âge du sébaste aux yeux jaunes sont indiquées par année et sexe sur la figure \@ref(fig:age-freq). On suppose que tous les âges sont indépendants de la sous-zone. 
+Une erreur humaine est possible lors de la lecture de l’âge à partir d’otolithes. La précision de la détermination de l’âge du sébaste aux yeux jaunes des eaux intérieures est indiquée sur la figure \@ref(fig:age-precision), qui illustre l’âge des poissons déterminé deux fois par des techniciens indépendants, y compris la fourchette d’âges possibles déclarée par chaque technicien.
 
-
-Inside Yelloweye Rockfish grow up to 75.9 cm in length for males and 76.9 cm for females (Figure \@ref(fig:length-freq)). The maximum recorded weight is 8.0 kg for both males and females. Length-weight model fits and plots for all available survey data in area 4B are shown in Figure \@ref(fig:length-weight). It is assumed that all measurements are independent of subarea. The length-weight curve is of the form:
+La longueur maximale du sébaste aux yeux jaunes des eaux intérieures est de 75,9 cm (mâles) et de 76,9 cm (femelles) [figure \@ref(fig:length-freq)]. Le poids maximal enregistré est de 8,0 kg pour les mâles et les femelles. Les ajustements et les graphiques du modèle longueur-poids pour toutes les données de relevé accessibles sur la zone 4B sont présentés sur la figure \@ref(fig:length-weight). On suppose que toutes les mesures sont indépendantes de la sous-zone. La courbe longueur-poids prend la forme suivante :
 
 $$
 \log (W_i) \sim \operatorname{Student-t}(df = 3, \log(a) + b \log(L_i), \sigma),
 $$
 
-with $W_i$ and $L_i$ representing the weight and length for fish $i$, respectively, and $\sigma$ representing the observation error scale.
-We set the degrees of freedom of the Student-t distribution to 3 to be robust to outliers [@anderson2019synopsis].
-The variables $a$ and $b$ represent the estimated length-weight parameters.
-Length-age model fits and plots for inside Yelloweye Rockfish are shown in Figure \@ref(fig:length-age). The length-age growth curve is a von Bertalanffy model of the form:
+où $W_i$ et $L_i$ représentent le poids et la longueur du poisson $i$, respectivement, et $\sigma$ représente l’échelle de l’erreur d’observation. 
+Nous avons fixé les degrés de liberté de la loi de Student à 3 pour conférer une certaine robustesse par rapport aux valeurs aberrantes [@anderson2019synopsis]. 
+Les variables $a$ et $b$ représentent les paramètres longueur-poids estimés. 
+La figure \@ref(fig:length-age) illustre les ajustements et les graphiques du modèle de l’âge selon la longueur pour le sébaste aux yeux jaunes des eaux intérieures. La courbe de croissance de l’âge selon la longueur est un modèle de von Bertalanffy exprimé comme suit :
 
 $$
 L_i \sim \operatorname{Log-normal}
@@ -39,110 +38,97 @@ L_i \sim \operatorname{Log-normal}
 \sigma^2 / 2, \sigma \right),
 $$
 
-where $L_i$ and $A_i$ represent the length and age of fish $i$, $l_\mathrm{inf}$, $k$, and $t_0$ represent the von Bertalanffy growth parameters, and $\sigma$ represents the scale parameter. The term $- \sigma^2 /2$ represents a 
-lognormal bias adjustment term so we model the mean length rather than the median.
-The model was fit in TMB as described in @anderson2019synopsis.
+où $L_i$ et $A_i$ représentent la longueur et l’âge du poisson $i$, $l_\mathrm{inf}$, $k$ et $t_0$ représentent les paramètres de croissance de von Bertalanffy et $\sigma$ représente le paramètre d’échelle. 
+Le terme $- \sigma^2 /2$ représente un terme d’ajustement du biais log-normal, de sorte que nous avons modélisé la longueur moyenne plutôt que la médiane. 
+Le modèle a été ajusté dans Template Model Builder, tel que décrit dans @anderson2019synopsis.
 
-## MATURITY {#sec:maturity}
+## MATURITÉ {#sec:maturity}
 
-Yelloweye Rockfish, in addition to being large and long-lived, are also slow to mature. In order to examine age at maturity, sample records from all surveys within area 4B were analyzed for specimens that were identified as male or female with a valid maturity code and for which age was determined using the break and burn or break and bake methods. 
+En plus d’être de grande taille et d’avoir une grande longévité, le sébaste aux yeux jaunes arrive à maturité tardivement. Afin d’examiner l’âge à la maturité, nous avons analysé les enregistrements d’échantillons de tous les relevés menés dans la zone 4B pour trouver des spécimens identifiés comme mâles ou femelles avec un code de maturité valide et dont l’âge a été déterminé selon les méthodes de « cassure et brûlage » ou de « cassure et cuisson ». 
 
-Maturity ogives are fit as logistic regressions to individual fish specimens, which are categorized as mature vs. not mature against length or age (Figure \@ref(fig:percent-maturity)):
+Les courbes de maturité sont ajustées en tant que régressions logistiques aux spécimens de poissons individuels, qui sont classés comme étant matures ou non matures en fonction de leur longueur ou de leur âge (figure \@ref(fig:percent-maturity)) :
 
 \begin{align}
 y_i &\sim \mathrm{Binomial}(\pi_i)\\
 \mathrm{logit} \left( \pi_i \right) &= \beta_0 + \beta_1 x_i + \beta_2 F_i
 \end{align}
 
-where $y_i$ represents a 1 if fish $i$ is considered mature and a 0 if fish $i$
-is considered immature. The $\beta$ parameters represent estimated coefficients,
-$x_i$ represents either the length or age of fish $i$, and $F_i$ represents
-a binary predictor that is 1 if the fish is female and 0 if the fish is male.
-The variable $\pi_i$ represents the expected probability of fish $i$ being
-mature. Models are fit to all available survey samples regardless of time of
-year. Predicted vs. observed proportions mature-at-age are shown in Figure \@ref(fig:prop-mature).
+où $y_i$ représente un 1 si le poisson $i$ est considéré comme étant mature et un 0 si le poisson $i$ est considéré comme étant non mature. Les paramètres $\beta$ représentent les coefficients estimés, $x_i$ la longueur ou l’âge du poisson $i$ et $F_i$ un prédicteur binaire qui a la valeur 1 si le poisson est une femelle et 0 si le poisson est un mâle. La variable $\pi_i$ représente la probabilité prévue que le poisson $i$ soit mature. Les modèles sont ajustés à tous les échantillons de relevé accessibles, quelle que soit la période de l’année. La figure \@ref(fig:prop-mature) illustre les proportions prédites par rapport aux proportions observées de la maturité selon l’âge.
 
-(ref:fig-percent-maturity) Age-at-maturity ogive plots for inside Yelloweye Rockfish. The solid black lines represent fits to the female fish and the dashed grey lines represent fits to the male fish. The vertical lines indicate the estimated age at 50% maturity. Text on the panels indicates the estimated age at 5, 50 and 95% maturity for females (F) and males (M). Short rug lines along the top and bottom represent up to 1500 randomly chosen individual fish with a small amount of random jittering to help differentiate individual fish.
+(ref:fig-percent-maturity) Courbes de l’âge à la maturité pour le sébaste aux yeux jaunes des eaux intérieures. Les lignes noires pleines représentent les ajustements aux poissons femelles et les lignes grises tiretées, les ajustements aux poissons mâles. Les lignes verticales indiquent l’âge estimé à 50 % de maturité. Le texte dans les graphiques indique l’âge estimé à 5, 50 et 95 % de maturité pour les femelles (F) et les mâles (M). Les traits courts en haut et en bas représentent jusqu’à 1 500 poissons choisis au hasard, avec une petite fluctuation aléatoire pour aider à différencier les poissons individuels.
 
-Maturity frequency by each month is shown in the bubble plot in Figure \@ref(fig:mat-months) for all fish in all surveys within area 4B for which maturity was sampled. Categories of maturity are listed from most immature (top) to most mature (bottom); individual fish, once mature, cycle through the mature stages.
+La fréquence de maturité par mois est représentée dans le graphique à bulles de la figure \@ref(fig:mat-months) pour tous les poissons de tous les relevés menés dans la zone 4B pour lesquels la maturité a été échantillonnée. Les catégories de maturité sont présentées du stade le plus immature (en haut) au stade le plus mature (en bas); les poissons individuels, une fois matures, suivent un cycle d’un stade de maturité à l’autre.
 
-## GENERATION TIME {#sec:generation}
+## DURÉE DE GÉNÉRATION {#sec:generation}
+Les directives sur le rétablissement indiquent que le délai de rétablissement doit être de 1,5 à 2 fois la durée de génération de l’espèce [@dfo2013], la durée de génération étant le nombre moyen d’années entre la naissance d’un individu et la naissance de sa progéniture. 
+Une analyse récente du stock de sébaste aux yeux jaunes des eaux extérieures a estimé la durée de génération à environ 38 ans, qui était l’âge moyen du stock reproducteur non exploité modélisé [@cox2020]. 
+Nous avons fixé la durée de génération pour le sébaste aux yeux jaunes des eaux intérieures à un niveau égal à celui estimé pour le stock des eaux extérieures afin d’aligner les calendriers de rétablissement entre les deux stocks. 
 
-Rebuilding guidance states that the timelines for rebuilding should be 1.5 to 2 times the generation time of the species [@dfo2013], where generation time is the average number of years between the birth of an individual and the birth of its offspring. 
-A recent analysis for the Outside Yelloweye Rockfish stock estimated generation time at approximately 38 years which was the average age of the modeled unfished spawning stock [@cox2020]. 
-We fixed generation time for Inside Yelloweye to be equal to that estimated for Outside Yelloweye Rockfish to align rebuilding timeframes between the two stocks.  
-
-However, previous generation time estimates from COSEWIC and Pre-COSEWIC reports have been calculated using age at maturity and natural mortality (age at 50% maturity + 1/M). In 2008, a natural mortality rate of 0.02 and age at 50% maturity for females in the inside stock of 37.5 years were used to estimate generation time at 70 years [@cosewic2008], which is now thought to be higher than it probably is. 
-In 2018, this was revised to be 40.5 to 45.0 years using a natural mortality of 0.038 and age at 50% maturity of 14.2 to 18.7 years, estimated using commercial and research data, respectively [@keppel2019]. 
-Using this formula and the median estimate of natural mortality used in our baseline OM, 0.045, and the inside 50% maturity presented in Figure \@ref(fig:percent-maturity), the generation time would be 36 for females and 40 for males. 
-There is, of course, great uncertainty associated with the estimation of generation time using this formula given that natural mortality is usually listed as the major axis of uncertainty in any stock assessment (e.g. @gertseva2017, this analysis). 
-Maturity estimates, especially the classification of mature and immature individuals when done macroscopically, are also imprecise [@head2016]. 
-Lastly, age estimates are also subject to error (Figure \@ref(fig:age-precision) replotted from Appendix A of the BC Groundfish Data Synopsis Report [@anderson2019synopsis]).
+Toutefois, pour les estimations précédentes de la durée de génération tirées des rapports du COSEPAC et des examens préalables aux évaluations du COSEPAC, on a fait les calculs en utilisant l’âge à la maturité et la mortalité naturelle (âge à 50 % de la maturité + 1/M). En 2008, on a utilisé un taux de mortalité naturelle de 0,02 et un âge à la maturité de 50 % de 37,5 ans pour les femelles du stock des eaux intérieures, ce qui a donné une durée de génération estimée à 70 ans [@cosewic2008], que l’on considère maintenant comme probablement plus élevée qu’en réalité. 
+En 2018, on a révisé ce chiffre à entre 40,5 et 45,0 ans en utilisant une mortalité naturelle de 0,038 et une maturité de 50 % de 14,2 à 18,7 ans, estimée à l’aide de données tirées des pêches commerciales et de la recherche, respectivement [@keppel2019]. 
+En appliquant cette formule et l’estimation médiane de la mortalité naturelle utilisée dans notre modèle opérationnel de référence, 0,045, et la maturité de 50 % pour le stock des eaux intérieures présentée sur la figure \@ref(fig:percent-maturity), nous obtenons une durée de génération de 36 pour les femelles et de 40 pour les mâles. 
+Il y a, bien sûr, une grande incertitude associée à l’estimation de la durée de génération à l’aide de cette formule étant donné que la mortalité naturelle est habituellement indiquée comme l’axe principal de l’incertitude dans toutes les évaluations des stocks (p. ex., @gertseva2017, la présente analyse). 
+Les estimations de la maturité, en particulier la classification des individus matures et non matures selon des méthodes macroscopiques, sont également imprécises [@head2016]. 
+Enfin, les estimations de l’âge sont également sujettes à des erreurs (figure \@ref(fig:age-precision) reproduite d’après l’annexe A du rapport de synthèse des données sur le poisson de fond en Colombie-Britannique [@anderson2019synopsis]).
 
 
 
 \clearpage
 
-(ref:fig-age-freq) Age-frequency plot for Inside Yelloweye Rockfish from all available surveys in Area 4B: hard-bottom 
-longline surveys (northern and southern) in inside waters (HBLL INS N/S), hard-bottom longline surveys in outside waters (a small portion of area 4B was included in this survey in 2014 and 2016; HBLL OUT S), and "OTHER" surveys including jig surveys in 1985 and 1986 and a bottom trawl survey in 2005. 
-Female fish are shown as coloured circles and male fish are shown behind as light grey
-circles. The total number of fish aged for a given survey and year are indicated
-along the top of the panels. Diagonal lines are shown at five-year intervals to
-facilitate tracing cohorts through time.
+(ref:fig-age-freq) Graphique de la fréquence des âges pour le sébaste aux yeux jaunes des eaux intérieures d’après tous les relevés accessibles menés dans la zone 4B : relevés à la palangre sur fond dur (nord et sud) dans les eaux intérieures (RPFD INT N/S), relevés à la palangre sur fond dur dans les eaux extérieures (une petite partie de la zone 4B a été incluse dans ce relevé en 2014 et en 2016; RPFD EXT S) et relevés « AUTRES », comprenant les relevés à la turlutte de 1985 et de 1986 et un relevé au chalut de fond en 2005. 
+Les femelles sont représentées par des cercles colorés et les mâles sont représentés derrière par des cercles gris clair. Le nombre total de poissons dont l’âge a été déterminé pour un relevé et une année donnés est indiqué en haut des graphiques. Les lignes diagonales sont affichées à des intervalles de cinq ans pour faciliter le suivi des cohortes dans le temps.
 
 
 ```{r age-freq, fig.cap="(ref:fig-age-freq)", out.width="6in"}
 library(here)
-knitr::include_graphics(here("mse/figures/age-freq.png"))
+knitr::include_graphics(here("mse/figures-french/age-freq.png"))
 ```
 
 
-(ref:fig-age-precision) Ageing precision plot for inside Yelloweye Rockfish. Each dot and cross-hatch represents an individual fish that has been aged twice. The x-axis represents the age and upper and lower ends of the possible age range recorded for the initial ('primary') ageing of the fish. The y-axis represents the equivalent values recorded for the second ('precision') ageing of the fish by a different technician. The dashed diagonal line represents a perfect one-to-one agreement between the two ages. 300 fish have been randomly sampled from all Yelloweye Rockfish precision-aged, and a small amount of random jitter has been added to both axes to reduce overplotting with the same jitter value added to both the x and y axes for a given fish.
-
+(ref:fig-age-precision) Graphique de précision de la détermination de l’âge pour le sébaste aux yeux jaunes des eaux intérieures. Chaque point et hachure représente un poisson individuel dont l’âge a été déterminé deux fois. L’axe des abscisses représente l’âge et les extrémités supérieures et inférieures de la fourchette des âges possibles enregistrés par le premier lecteur (« principal ») de l’âge des poissons. L’axe des ordonnées représente les valeurs équivalentes enregistrées par le deuxième lecteur (« précision ») de l’âge du poisson. La ligne diagonale tiretée représente un parfait accord un à un entre les deux âges. Parmi tous les sébastes aux yeux jaunes dont l’âge a été déterminé avec précision, 300 poissons ont été échantillonnés au hasard et une petite quantité de fluctuation aléatoire a été ajoutée aux deux axes pour réduire la surreprésentation, la même valeur de fluctuation étant ajoutée aux axes x et y pour un poisson donné.
 
 ```{r age-precision, fig.cap="(ref:fig-age-precision)", out.width="4in"}
 library(here)
-knitr::include_graphics(here("figs/ye-ins-age-precision.png"))
+knitr::include_graphics(here("mse/figures-french/ye-ins-age-precision.png"))
 ```
 
 
 
-(ref:fig-length-freq) Length-frequency plot for Inside Yelloweye Rockfish from all available surveys in Area 4B: hard-bottom 
-longline surveys (northern and southern) in inside waters (HBLL INS N/S), hard-bottom longline surveys in outside waters (a small portion of area 4B was included in this survey in 2014 and 2016; HBLL OUT S), and "OTHER" surveys including jig surveys in 1985 and 1986 and a bottom trawl survey in 2005. Female fish are shown as coloured bars and male fish are shown behind as light grey bars. The total number of fish measured for a given survey and year are indicated in the top left corner of each panel.
+(ref:fig-length-freq) Graphiques de la fréquence des longueurs pour le sébaste aux yeux jaunes des eaux intérieures d’après tous les relevés accessibles menés dans la zone 4B : relevés à la palangre sur fond dur (nord et sud) dans les eaux intérieures (RPFD INT N/S), relevés à la palangre sur fond dur dans les eaux extérieures (une petite partie de la zone 4B a été incluse dans ce relevé en 2014 et en 2016; RPFD EXT S) et relevés « AUTRES », comprenant les relevés à la turlutte de 1985 et de 1986 et un relevé au chalut de fond en 2005. Les poissons femelles sont représentés par des barres colorées et les poissons mâles sont représentés derrière par des barres gris clair. Le nombre total de poissons mesurés pour un relevé et une année donnés est indiqué dans le coin supérieur gauche de chaque graphique.
 
 
 ```{r length-freq, fig.cap="(ref:fig-length-freq)", out.width="5in"}
 library(here)
-knitr::include_graphics(here("mse/figures/length-freq.png"))
+knitr::include_graphics(here("mse/figures-french/length-freq.png"))
 ```
 
-```{r length-weight, fig.cap=paste0("Length-weight model fits and plots for inside Yelloweye Rockfish. Female model fits are indicated as solid black lines and male model fits are indicated as dashed grey lines. Text on the panels shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples in area 4B."), out.width="0.6\\textwidth"}
+```{r length-weight, fig.cap=paste0("Ajustements et graphiques du modèle longueur-poids pour le sébaste aux yeux jaunes des eaux intérieures. Les ajustements du modèle pour les femelles sont indiqués par une ligne pleine noire, et les ajustements du modèle pour les mâles sont indiqués par une ligne grise tiretée. Le texte dans le graphique montre les estimations des paramètres, et les cercles gris ouverts représentent les poissons individuels auxquels les modèles sont ajustés. Tous les échantillons prélevés dans la zone 4B sont compris."), out.width="0.6\\textwidth"}
 library(here)
-knitr::include_graphics(here("mse/figures/length-weight.png"))
+knitr::include_graphics(here("mse/figures-french/length-weight.png"))
 ```
 
-```{r length-age, fig.cap=paste0("Length-age model fits and plots for inside Yelloweye Rockfish. Female model fit is indicated as a solid black line, male model fit is indicated as a dashed grey line, and combined sex model fit is indicated by a thin black line. Text shows the parameter estimates and open grey circles represent individual fish that the models are fit to. These figures include all survey samples."), out.width="0.6\\textwidth"}
+```{r length-age, fig.cap=paste0("Ajustements et graphiques du modèle longueur-âge pour le sébaste aux yeux jaunes des eaux intérieures. Les ajustements du modèle sont indiqués pour les femelles par une ligne pleine noire, pour les mâles par une ligne grise tiretée, et pour les sexes combinés par une ligne fine noire. Le texte montre les estimations des paramètres, et les cercles gris ouverts représentent les poissons individuels auxquels les modèles sont ajustés. Tous les échantillons de relevé sont compris."), out.width="0.6\\textwidth"}
 library(here)
-knitr::include_graphics(here("mse/figures/vb.png"))
+knitr::include_graphics(here("mse/figures-french/vb.png"))
 ```
 
 ```{r percent-maturity, fig.cap="(ref:fig-percent-maturity)", out.width="0.6\\textwidth"}
 library(here)
-knitr::include_graphics(here("mse/figures/mat-ogive-age.png"))
+knitr::include_graphics(here("mse/figures-french/mat-ogive-age.png"))
 ```
 
-(ref:fig-prop-mature) Predicted and observed proportions mature-at-age for inside Yelloweye Rockfish.
+(ref:fig-prop-mature) Proportions prédites et observées de la maturité selon l’âge chez le sébaste aux yeux jaunes des eaux intérieures.
 
 ```{r prop-mature, fig.cap="(ref:fig-prop-mature)", out.width="0.6\\textwidth"}
 library(here)
-knitr::include_graphics(here("mse/figures/mat-prop.png"))
+knitr::include_graphics(here("mse/figures-french/mat-prop.png"))
 ```
 
-(ref:fig-mat-months)   Maturity-frequency-by-month plot for inside Yelloweye Rockfish. The area of each circle corresponds to the number of fish specimens in a given maturity category for the given month. Female fish are indicated by black circles and male fish are indicated by light grey circles behind. The total number of fish specimens for each month are indicated by the numbers at the top of the plot.
+(ref:fig-mat-months)   Courbe de la fréquence de maturité par mois pour le sébaste aux yeux jaunes des eaux intérieures. La superficie de chaque cercle correspond au nombre de spécimens de poissons dans une catégorie de maturité donnée pour un mois donné. Les femelles sont indiquées par des cercles noirs et les mâles sont indiqués derrière par des cercles gris clair. Le nombre total de spécimens de poissons pour chaque mois est indiqué par les chiffres figurant en haut du graphique.
 
 ```{r mat-months, fig.cap="(ref:fig-mat-months)", out.width="0.6\\textwidth"}
 library(here)
-knitr::include_graphics(here("mse/figures/mat-months.png"))
+knitr::include_graphics(here("mse/figures-french/mat-months.png"))
 ```
 
 \clearpage
@@ -163,8 +149,8 @@ sum <- sum %>%
     age_specimen_collected = sum(!is.na(age_specimen_collected))) %>%
   mutate(specimens = gsub("\\\n", " ", specimens))
 sum %>%
-  csasdown::csas_table(caption = "Inside Yelloweye Rockfish biological data.",
-    col_names = c("Year", "Specimens", "Lengths", "Weights", "Maturities", "Ages", "Age specimen collected"),
+  csasdown::csas_table(caption = "Données biologiques sur le sébaste aux yeux jaunes des eaux intérieures.",
+    col_names = c("Année", "Spécimens", "Longueurs", "Poids","Maturités","Âges","Spécimens d’âge prélevés"),
     align = c( "c", "c", "c", "c", "c", "c", "c")) %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
 ```
