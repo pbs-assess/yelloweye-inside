@@ -147,7 +147,7 @@ rec_wide <- rec_area %>%
   select(-starts_with("totaleffort")) %>%
   rename_at(vars(starts_with("tonnes_")), list(~ stringr::str_remove(., "tonnes_"))) %>% 
   mutate_if(is.numeric , replace_na, replace = "--") %>% 
-  rename(Annee = year, Effort = effort)
+  rename(Year = year, Effort = effort)
 
 
 # préparer le tableau des prises par SGPP et l’effort total par année
@@ -213,7 +213,7 @@ csasdown::csas_table(fsc_catch,
 
 ```{r comm-mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
 
-comm_timeline <- readr::read_csv(here("data-raw/comm-management.csv")) %>% 
+comm_timeline <- readr::read_csv(here("data-raw/comm-management_fr.csv")) %>% 
   dplyr::mutate(Year = gsub("-", "--", Year))
 
 csasdown::csas_table(comm_timeline,
@@ -230,7 +230,7 @@ csasdown::csas_table(comm_timeline,
 \clearpage
 
 ```{r rec-mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
-timeline <- readr::read_csv(here("data-raw/management-chronology.csv")) %>% 
+timeline <- readr::read_csv(here("data-raw/management-chronology_fr.csv")) %>% 
   dplyr::mutate(Year = gsub("-", "--", Year))
 
 csasdown::csas_table(timeline,
