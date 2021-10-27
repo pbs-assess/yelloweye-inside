@@ -3,4 +3,4 @@ the following French/English translation. For a French document, set the followi
 
 \clearpage
 
-# REFERENCES {-}
+# RÉFÉRENCES CITÉES {-}

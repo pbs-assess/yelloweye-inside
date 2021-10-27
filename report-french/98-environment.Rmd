@@ -1,7 +1,7 @@
-# COMPUTATIONAL ENVIRONMENT
+# ENVIRONNEMENT INFORMATIQUE
 
-This version of the document was generated on `r Sys.time()` with
-`r devtools::session_info()$platform$version` [@r2019] and R package versions:
+Cette version du document a été produite sur `r Sys.time()` avec
+`r devtools::session_info()$platform$version` [@r2019] et des versions du progiciel R:
 
 ```{r env, echo = FALSE, results='asis', message=FALSE, warning=FALSE, eval=TRUE, cache=FALSE}
 library(TMB, warn.conflicts = FALSE, quietly = TRUE)
@@ -69,12 +69,12 @@ sha_csasdown <- "f9d5081"
 sha_ye <- "2f9a8a4"
 ```
 
-The source code for this document is available at:\
+Le code source de ce document est accessible à l’adresse suivante:\
 <`r paste0("https://github.com/pbs-assess/yelloweye-inside/tree/", sha_ye)`>.
 
-This document was compiled with the R package csasdown [@csasdown].
+Ce document a été compilé avec le progiciel csasdown en R [@csasdown].
 
-The specific versions of the primary packages used to generate this report can be viewed at:
+Les versions particulières des logiciels de base utilisés pour générer ce rapport peuvent être consultées aux adresses:
 
 <`r paste0("https://github.com/DLMtool/DLMtool/tree/", sha_dlm)`>\
 <`r paste0("https://github.com/tcarruth/MSEtool/tree/", sha_mse)`>\
@@ -84,7 +84,7 @@ The specific versions of the primary packages used to generate this report can b
 <`r paste0("https://github.com/pbs-assess/csasdown/tree/", sha_csasdown)`>\
 
 \vspace{4mm}
-or installed via:
+ou installées par l’intermédiaire de:
 
 `# install.packages('devtools')`\
 `devtools::install_github('DLMtool/DLMtool', ref = '`r sha_dlm`')`\
