@@ -1,49 +1,49 @@
-# CATCH DATA {#app:catch-data}
+# DONNÉES SUR LES PRISES {#app:catch-data}
 
-Inside Yelloweye Rockfish is targeted in hook and line commercial fisheries, Food Social and Ceremonial (FSC) fisheries, and recreational fisheries.
-Management of Inside Yelloweye Rockfish fisheries began in 1986, with the introduction of the "ZN" category commercial licence and daily bag limits for recreational fishermen.
-A chronology of management changes for  commercial and recreational fisheries is shown in Tables \@ref(tab:comm-mgt-changes) and \@ref(tab:rec-mgt-changes).
+Le sébaste aux yeux jaunes des eaux intérieures est ciblé dans les pêches commerciales à la ligne et à l’hameçon, les pêches à des fins alimentaires, sociales et rituelles (ASR) et les pêches récréatives. 
+La gestion de la pêche du sébaste aux yeux jaunes des eaux intérieures a commencé en 1986, avec la mise en place du permis commercial de catégorie « ZN » et des limites de prises quotidiennes pour les pêcheurs récréatifs. 
+Une chronologie des changements de gestion pour les pêches commerciales et récréatives est présentée dans les tableaux \@ref(tab:comm-mgt-changes) et \@ref(tab:rec-mgt-changes).
 
-## COMMERCIAL CATCH DATA {#sec:com-catch-data}
+## DONNÉES SUR LES PRISES COMMERCIALES {#sec:com-catch-data}
 
-Rockfish catch data can be grouped into three time periods: historic (1918-1950), early electronic (1951--2005), and modern (2006 onwards).
-There are two major sources of uncertainty in the historical and early electronic periods for Inside Yelloweye Rockfish.
-The first uncertainty is that rockfish catch, other than Pacific Ocean Perch (*Sebastes alutus*), was reported as an aggregate (other rockfish, ORF) in the historic period.
-To reconstruct historical catches an algorithm was developed by DFO authors [@haigh2011].
-The reconstruction algorithm applies a ratio calculated from a period with credible landings data from the hook and line dockside monitoring program (1997--2005) to generate a time series of catch by species, year, fishery sector, and management area [@haigh2011].
-"Credible" landings data are taken from reference years where catch knowledge was considered high quality and stable, beginning in 1997 with the start of observer trawl coverage and the individual vessel quota system [@haigh2011]. 
+Les données sur les prises de sébaste peuvent être regroupées en trois périodes : historique (de 1918 à 1950), début de la période électronique (de 1951 à 2005) et moderne (2006 et après). 
+Il y a deux grandes sources d’incertitude dans la période historique et le début de la période électronique pour le sébaste aux yeux jaunes des eaux intérieures. 
+La première est que les prises de sébastes, autres que de sébaste à longue mâchoire (*Sebastes alutus*), étaient déclarées de façon regroupée (autre sébaste, ORF) pendant la période historique. 
+Pour reconstituer les prises historiques, des auteurs du MPO ont élaboré un algorithme [@haigh2011].
+Cet algorithme de reconstitution applique un ratio calculé à partir d’une période pour laquelle on dispose de données crédibles sur les débarquements provenant du programme de vérification à quai des pêches à la ligne et à l’hameçon (1997--2005) pour générer une série chronologique des prises par espèce, année, secteur de pêche et zone de gestion [@haigh2011]. 
+Les données « crédibles » sur les débarquements sont tirées des années de référence où la connaissance des prises était considérée comme étant de grande qualité et stable, depuis 1997, avec le début de la présence d’observateurs à bord des chalutiers et le système de quotas individuels des bateaux [@haigh2011].
 
-The second major source of uncertainty is the magnitude of unreported catch that was released or discarded at sea, prior to the introduction of 100% observer coverage in 2006.
-The catch reconstruction of @haigh2011 assumes no discarding prior to 1986, when the ZN licence was instituted.
-Prior to that it is assumed all rockfish were kept. Discards are assumed to be fully reported in DFO databases since 2006 and the introduction of 100% observer coverage.
-Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for each fishery using the ratio of Yelloweye Rockfish discarded by a fishery to fishery-specific landed targets using data from 2000--2004 hook and line observer logs.
-The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  
+La deuxième grande source d’incertitude est l’ampleur des prises non déclarées qui étaient remises à l’eau ou rejetées en mer avant la mise en place du niveau de présence des observateurs de 100 % en 2006. 
+La reconstitution des prises de @haigh2011 suppose qu’il n’y avait pas de rejet avant 1986, année où le permis ZN a été institué. 
+On suppose qu’auparavant, tous les sébastes étaient conservés. Les rejets sont présumés être entièrement déclarés dans les bases de données du MPO depuis 2006 et le niveau de présence des observateurs en mer de 100 %. 
+Les prises de sébaste aux yeux jaunes non conservées (remises à l’eau ou rejetées) ont été estimées pour chaque pêche à l’aide du ratio des rejets de sébaste aux yeux jaunes par les cibles de débarquement propres à la pêche d’après les données de 2000 à 2004 des registres des observateurs des pêches à la ligne et à l’hameçon. 
+Les prises historiques non déclarées ont ensuite été intégrées à la reconstitution des prises, pour donner un total annuel final.
 
-The commercial catch time series used in this analysis (Figure \@ref(fig:commcatch2) and Table \@ref(tab:commcatch)) differs from the one previously reported in 2009, for several reasons.
-Ongoing quality control and updates to the groundfish catch database resulted in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020).
-As well, an earlier version of the catch reconstruction algorithm was used to develop the time series for the previous stock assessment, as the final version had not yet been published.
-Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020).
+La série chronologique des prises commerciales utilisée dans cette analyse (figure \@ref(fig:commcatch2) et tableau \@ref(tab:commcatch)) diffère de celle précédemment présentée en 2009 pour plusieurs raisons. 
+Le contrôle continu de la qualité et les mises à jour de la base de données sur les prises de poisson de fond ont entraîné des différences mineures dans les données au fil du temps (Maria Surry, MPO, Station biologique du Pacifique, comm. pers., 9 mars 2020). 
+De plus, une version antérieure de l’algorithme de reconstitution des prises a été utilisée pour élaborer la série chronologique pour l’évaluation des stocks précédente, car la version finale n’avait pas encore été publiée. 
+D’autres améliorations apportées à l’algorithme de reconstitution ont provoqué des changements importants des prises historiques estimées certaines années (Norm Olsen, MPO, Station biologique du Pacifique, comm. pers., 9 mars 2020).
 
-The reconstruction algorithm could have been applied to all years in the time series until to 2005 (after which, full at-sea and dockside monitoring came into effect).
-However, for this analysis we used the reconstructed catch data from 1918--1985, and switched to the nominal catch data in 1986.
-The nominal catch from 1986--2005 was then doubled,to be consistent with the previous assessment [@yamanaka2011].
-We made the choice to double the nominal catch rather than the reconstructed catch because, prior to the previous assessment, advice from industry representatives indicated they did not have confidence in the catch reconstruction between 1986 and 2005, and that the scale of unreported catch was probably equal to landed catch [@dfo2012b].
-As a result of this advice, the catch for these years was doubled [@yamanaka2011]. However, because discards are estimated as part of the catch reconstruction algorithm, in the current analysis we doubled the nominal catch for the period 1986--2005 (rather than the reconstructed catch), to avoid double counting of discards.
-As a sensitivity check, we explore one OM scenario where the 1986--2005 commercial catches were not doubled (the "Low catch" Scenario (2), Section \@ref(sec:approach3-reference2)). 
+L’algorithme de reconstitution aurait pu être appliqué à toutes les années de la série chronologique jusqu’en 2005 (après quoi la vérification complète en mer et à quai est entrée en vigueur). 
+Toutefois, pour cette analyse, nous avons utilisé les données reconstituées sur les prises de 1918 à 1985 et nous sommes passés aux données sur les prises nominales en 1986. 
+Les prises nominales de 1986 à 2005 ont ensuite été doublées, conformément à l’évaluation précédente [@yamanaka2011]. 
+Nous avons choisi de doubler les prises nominales plutôt que les prises reconstituées parce que, avant l’évaluation précédente, les représentants de l’industrie nous avaient dit qu’ils n’avaient pas confiance dans la reconstitution des prises entre 1986 et 2005 et que l’échelle des prises non déclarées était probablement égale aux prises débarquées [@dfo2012b]. 
+Ces indications nous ont amenés à doubler les prises pour ces années [@yamanaka2011]. Cependant, comme les rejets sont estimés dans le cadre de l’algorithme de reconstitution des prises, dans l’analyse actuelle, nous avons doublé les prises nominales pour la période 1986--2005 (plutôt que les prises reconstituées) afin d’éviter de compter les rejets deux fois. 
+Pour vérifier la sensibilité, nous explorons un scénario de modèle opérationnel où les prises commerciales de 1986 à 2005 n’ont pas été doublées (le scénario « Prises faibles » (2), section \@ref(sec:approach3-reference2)).
 
-```{r commcatch2, out.width="0.8\\textwidth", fig.width=6, fig.cap="Commercial catch by sector for Inside Yelloweye Rockfish. This figure contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes."}
+```{r commcatch2, out.width="0.8\\textwidth", fig.width=6, fig.cap="Prises commerciales par secteur pour le sébaste aux yeux jaunes des eaux intérieures. Cette figure comprend les estimations reconstituées (1918--1985) et nominales (1986--2019) des prises en tonnes."}
 comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
 
 tidyr::pivot_longer(comm_catch, -1) %>%
   mutate(name = gfutilities::firstup(gsub("_", " ", name))) %>%
-  mutate(name = gsub("Hook line rockfish", "Hook and line rockfish", name)) %>%
-  mutate(name = gsub("Dogfish lingcod", "Dogfish and lingcod", name)) %>%
+  mutate(name = gsub("Sébaste à la ligne et à l’hameçon", "Sébaste à la ligne et à l’hameçon", name)) %>%
+  mutate(name = gsub("Aiguillat commun, Morue-lingue", "Aiguillat commun, Morue-lingue", name)) %>%
   dplyr::filter(name != "Total t") %>% 
   ggplot(aes(year, value, fill = name)) + geom_col(width = 1) +
   gfdlm::theme_pbs() +
   scale_fill_brewer(palette = "Set2") + 
   coord_cartesian(expand = FALSE) +
-  labs(fill = "Sector", y = "Catch (t)") +
+  labs(fill = "Secteur", y = "Prises (t)") +
   theme(axis.title.x = element_blank(), legend.position = "bottom",
     plot.margin = margin(t = 11 / 2, r = 11 / 2 + 5, b = 11 / 2, l = 11 / 2)
 )
@@ -56,9 +56,9 @@ tidyr::pivot_longer(comm_catch, -1) %>%
 
 csasdown::csas_table(comm_catch,
   format = "latex",
-  col_names = c("Year", "Trawl", "Halibut", "Dogfish and Lingcod", "Hook and Line Rockfish", "Total"),
+  col_names = c("Année", "Chalut", "Flétan", "Aiguillat commun et morue-lingue", "Sébaste à la ligne et à l’hameçon", "Total"),
   repeat_header = TRUE,
-  caption = "Commercial catch by sector for Inside Yelloweye Rockfish. The table contains reconstructed (1918--1985) and nominal (1986--2019) catch estimates in tonnes. Although nominal catch is shown, total catch for each year between 1986-2005 was doubled in all OMs except the 'Low Catch' scenario. This was done for consistency with the previous stock assessment in 2012."
+  caption = "Prises commerciales par secteur pour le sébaste aux yeux jaunes des eaux intérieures. Le tableau présente les estimations des prises reconstituées (1918--1985) et nominales (1986--2019), en tonnes. Bien que les prises nominales soient indiquées, les prises totales pour chaque année entre 1986 et 2005 ont été doublées dans tous les modèles opérationnels, sauf dans le scénario « Prises faibles », dans un souci de cohérence avec l’évaluation précédente du stock en 2012."
 ) %>%
   kableExtra::column_spec(1, width = "1.0cm") %>%
   kableExtra::column_spec(2:6, width = "2cm")  
@@ -66,66 +66,68 @@ csasdown::csas_table(comm_catch,
 
 \clearpage
 
-## RECREATIONAL CATCH DATA {#sec:rec-catch-data}
+## DONNÉES SUR LES PRISES RÉCRÉATIVES {#sec:rec-catch-data}
 
-In 2012, DFO established a coast-wide, internet-based survey of tidal water licence holders (iRec), which collects Yelloweye data [@dfo2015].
-However, the results of the survey have not been calibrated to account for uncertainties such as non-response bias. Therefore the iRec data were not included in this analysis.
+En 2012, le MPO a établi un relevé sur Internet destiné aux détenteurs de permis de pêche en eaux de marées à l’échelle de la côte (iRec) qui permet de recueillir des données sur le sébaste aux yeux jaunes [@dfo2015]. 
+Toutefois, on n’a pas étalonné les résultats de ce relevé pour tenir compte des incertitudes comme le biais de non-réponse. C’est pourquoi les données iRec n’ont pas été incluses dans cette analyse.
 
-### Reconstructed historical recreational catch {#sec:recon-rec-catch-data}
 
-Historical recreational catch, prior to 1982 was reconstructed for the previous assessment based on trends in fishing effort developed through interviews with the owners of a recreational fishing resort [@yamanaka2011].
-We used the same historical time series of reconstructed recreational catch for the current analysis (Table \@ref(tab:rectable)).
+### Prises récréatives historiques reconstituées {#sec:recon-rec-catch-data}
 
-### Creel survey data 1982-2019 {#sec:creel-catch-data}
+Les prises récréatives historiques, avant 1982, ont été reconstituées pour l’évaluation précédente d’après les tendances de l’effort de pêche dégagées d’entrevues avec les propriétaires d’un camp de pêche récréative [@yamanaka2011]. 
+Nous avons utilisé la même série chronologique des prises récréatives reconstituées pour l’analyse actuelle (tableau \@ref(tab:rectable)).
 
-Annual catch of inside Yelloweye Rockfish by the recreational fishery is estimated by the Strait of Georgia (SOG) and the Northern Vancouver Island (NVI) creel surveys in all PFMAs (Figure \@ref(fig:map-4B)).
-The surveys cover PFMAs 12--20, 28, and 29 [@zetterberg2010].
-Rockfish catch has been recorded in areas 13--19, 28, and 29 since 1982 but was not enumerated by species until 2000.
-In PFMA 12 rockfish have been counted by species since 2000, with no records prior to 2000 [@zetterberg2010].
+### Données des relevés par interrogation de pêcheurs, de 1982 à 2019 {#sec:creel-catch-data}
 
-We followed the same method as in @yamanaka2011 to estimate the recreational catch of Inside Yelloweye Rockfish from 1982 to 1999.
-First, for all PFMAs other than PFMA 12, the average proportion of Yelloweye Rockfish to total rockfish catch was calculated for each PFMA in 2000 and 2001.
-The average proportions were then used to derive estimates of Yelloweye Rockfish catch from the total rockfish catch by PFMA between 1982--1999.
-The previous assessment assumed that the proportion of Yelloweye Rockfish catch in PFMA 12, out of the total Yelloweye catch in the SOG, would remain relatively constant over time.
-Therefore, to estimate catch of Yelloweye Rockfish in PFMA 12 for the years 1982--1999, the proportion of Yelloweye Rockfish caught in PFMA 12, out of the total Yelloweye Rockfish caught in the SOG in 2000 and 2001, was calculated.
-The average proportion over 2000 and 2001 was then multiplied by the total Yelloweye Rockfish catch estimated for the rest of the SOG (sum of areas 13--19, 28 and 29) to estimate Yelloweye Rockfish catch in PFMA 12 by year. (Table \@ref(tab:recbyarea)).
-To be consistent with the previous assessment, an adjustment of 1.09 was applied to total annual effort to account for lack of records in PFMA 12, where effort was not recorded prior to 2000.
-We converted rockfish pieces to weight by multiplying by 2.49 kg, which was the average weight of Yelloweye sampled in the creel surveys between 2000 and 2008.
+Les prises annuelles de sébaste aux yeux jaunes des eaux intérieures dans la pêche récréative sont estimées par les relevés par interrogation de pêcheurs dans le détroit de Georgie (DG) et du nord de l’île de Vancouver (NIV) dans tous les SGPP (figure \@ref(fig:map-4B)). 
+Les relevés portent sur les SGPP 12--20, 28 et 29 [@zetterberg2010]. 
+Les prises de sébaste ont été enregistrées dans les secteurs 13--19, 28 et 29 depuis 1982, mais n’étaient pas dénombrées par espèce avant 2000. 
+Dans le SGPP 12, les sébastes sont dénombrés par espèce depuis 2000, sans enregistrement avant 2000 [@zetterberg2010].
 
-We did not develop a CPUE index for the recreational fishery, despite the availability of recent creel survey data. Since the imposition of management procedures aimed at conservation of rockfishes (Table \@ref(tab:rec-mgt-changes)) there has been a shift towards active avoidance of Rockfish in recreational fisheries. As a result, there is concern that a CPUE series for the recreational fishery would not be responsive to changes in abundance and therefore could be misleading for assessment purposes. 
+Nous avons suivi la même méthode que celle de @yamanaka2011 pour estimer les prises récréatives de sébaste aux yeux jaunes des eaux intérieures de 1982 à 1999. 
+Tout d’abord, pour tous les SGPP autres que le SGPP 12, nous avons calculé la proportion moyenne des prises de sébaste aux yeux jaunes par rapport aux prises totales de sébaste pour chaque SGPP en 2000 et en 2001. 
+Nous avons ensuite utilisé les proportions moyennes pour dériver les estimations des prises de sébaste aux yeux jaunes des prises totales de sébastes par SGPP de 1982 à 1999. 
+L’évaluation précédente supposait que la proportion des prises de sébaste aux yeux jaunes dans le SGPP 12, sur le total des prises de sébaste aux yeux jaunes dans le détroit de Georgie, demeurerait relativement constante dans le temps. 
+Par conséquent, pour estimer les prises de sébaste aux yeux jaunes dans le SGPP 12 pour les années 1982--1999, nous avons calculé la proportion de sébastes aux yeux jaunes capturés dans le SGPP 12, sur le total de sébastes aux yeux jaunes capturés dans le détroit de Georgie en 2000 et en 2001. 
+Nous avons ensuite multiplié la proportion moyenne pour 2000 et 2001 par le total des prises de sébaste aux yeux jaunes estimées pour le reste du détroit de Georgie (somme des secteurs 13--19, 28 et 29) afin d’estimer les prises de sébaste aux yeux jaunes dans le SGPP 12 par année (tableau \@ref(tab:recbyarea)). 
+Pour assurer la conformité à l’évaluation précédente, nous avons appliqué un ajustement de 1,09 à l’effort annuel total pour tenir compte du manque d’enregistrements dans le SGPP 12, où l’effort n’a pas été enregistré avant 2000. 
+Nous avons converti les nombres de sébastes en poids en multipliant par 2,49 kg le poids moyen de l’échantillon de sébaste aux yeux jaunes prélevé dans les relevés par interrogation de pêcheurs entre 2000 et 2008.
+
+Nous n’avons pas élaboré d’indice des CPUE pour la pêche récréative, bien que des données récentes sur les relevés par interrogation de pêcheurs soient accessibles. Depuis l’imposition de procédures de gestion visant la conservation des sébastes (tableau \@ref(tab:rec-mgt-changes)), une tendance à l’évitement actif du sébaste a été observée dans les pêches récréatives. De ce fait, nous craignons qu’une série de CPUE pour la pêche récréative ne tienne pas compte des changements de l’abondance et ne soit donc trompeuse aux fins de l’évaluation.
+
 
 \clearpage
 
-```{r reccatch, out.width="0.8\\textwidth", fig.width=6, fig.cap="Recreational catch for Inside Yelloweye Rockfish. The black line indicates reconstructed catch and the bars are creel survey data. The data are a combination of reconstructed catch (1918--1981), catch parsed from total rockfish catch in creel surveys (1982-1999), and catch from species specific creel surveys (1982--2019)."}
+```{r reccatch, out.width="0.8\\textwidth", fig.width=6, fig.cap="Prises récréatives de sébaste aux yeux jaunes des eaux intérieures. La ligne noire indique les prises reconstituées et les barres sont les données des relevés par interrogation de pêcheurs. Les données sont une combinaison des prises reconstituées (1918--1981), des prises analysées à partir du total des prises de sébaste dans les relevés par interrogation de pêcheurs (1982--1999) et des prises provenant de relevés sur certaines espèces par interrogation de pêcheurs (1982--2019)."}
 rec_catch <- readr::read_csv(here("data-raw/rec-allcatch-effort.csv"))
  
-# make a bar plot of recreational catch
+# préparer un histogramme des prises récréatives
 ggplot() + 
   geom_line(data=filter(rec_catch, year <= 1981), aes(year, catch) ) +
   geom_col(data=filter(rec_catch, year %in% 1982:1999), aes(year, catch, fill="#999999"), width = 1 ) +
   geom_col(data=filter(rec_catch, year >= 2000), aes(year, catch, fill = "#E69F00"), width = 1 ) +
   gfdlm::theme_pbs() +
   coord_cartesian(expand = FALSE) +
-  labs( y = "Catch (t)") +
+  labs( y = "Prises (t)") +
   theme(axis.title.x = element_blank(), legend.position = "bottom",
     plot.margin = margin(t = 11 / 2, r = 11 / 2 + 5, b = 11 / 2, l = 11 / 2) ) +
-  scale_fill_discrete(name = "Data Source", labels = c("Creel Survey:all rockfish", "Creel Survey:species specific"))
+  scale_fill_discrete(name = "Source des données", labels = c("Relevé par interrogation de pêcheurs, tous les sébastes", "Relevé par interrogation de pêcheurs, par espèce"))
 
 ```
 
 ```{r rectable, echo = FALSE, warning = FALSE, results = "asis"}
-# make a table of recreational catch
+# préparer un histogramme des prises récréatives
 rec_catch <- rec_catch %>% mutate(catch = round(catch, 1)) %>% 
   mutate(effort= round(effort, 0)) %>% 
   mutate_if(is.numeric , replace_na, replace = "--") 
 
 csasdown::csas_table(rec_catch,
   format = "latex",
-  col_names = c("Year", "Catch (t)", "Effort (boat trips)"),
+  col_names = c("Année", "Prises (t)", "Effort (sorties de bateaux)"),
   align = c("c", "c", "c"),
   digits = 1,
   repeat_header = TRUE,
-  caption = "Recreational catch for Inside Yelloweye. The data are a combination of reconstructed catch (1918--1981), catch parsed from total rockfish catch in creel surveys (1982-1999), and catch from species specific creel surveys (1982--2019)."
+  caption = "Prises récréatives de sébaste aux yeux jaunes des eaux intérieures. Les données sont une combinaison des prises reconstituées (1918--1981), des prises analysées à partir du total des prises de sébaste dans les relevés par interrogation de pêcheurs (1982--1999) et des prises provenant de relevés sur certaines espèces par interrogation de pêcheurs (1982--2019)."
 )
 ```
 
@@ -135,7 +137,7 @@ csasdown::csas_table(rec_catch,
 ```{r recbyarea, echo=FALSE, warning=FALSE, results = "asis"}
 rec_area <- readr::read_csv(here("data-raw/rec-catcheffortbyarea.csv"))
 
-# organizing the data from long to wide format
+# organiser les données du format long au format large
 rec_wide <- rec_area %>%
   select(year, tonnes, totaleffort, pfma) %>%
   mutate(tonnes = round(tonnes,1)) %>% 
@@ -145,14 +147,14 @@ rec_wide <- rec_area %>%
   select(-starts_with("totaleffort")) %>%
   rename_at(vars(starts_with("tonnes_")), list(~ stringr::str_remove(., "tonnes_"))) %>% 
   mutate_if(is.numeric , replace_na, replace = "--") %>% 
-  rename(Year = year, Effort = effort)
+  rename(Annee = year, Effort = effort)
 
 
-# make the table of catch by PFMA and total effort by year
+# préparer le tableau des prises par SGPP et l’effort total par année
 csasdown::csas_table(rec_wide,
   format = "latex",
   digits = 1,
-  caption = "Recreational catch estimates of Yelloweye Rockfish (tonnes) from the inside Strait of Georgia creel survey by statistical area (PFMA) and total effort in 10,000 boat trips by year from 1982 to 2019. Numbers of fish were converted to weight using 2.49 kg (average weight of yelloweye rockfish in the creel survey 2000--2008)."
+  caption = "Estimations des prises récréatives de sébaste aux yeux jaunes (en tonnes) tirées des relevés par interrogation de pêcheurs dans les eaux intérieures du détroit de Georgie par zone statistique (SGPP) et effort total dans 10 000 sorties en bateau par année de 1982 à 2019. Le nombre de poissons a été converti en poids à l’aide d’un facteur de 2,49 kg (poids moyen du sébaste aux yeux jaunes dans les relevés par interrogation de pêcheurs 2000--2008)."
 ) %>%
   kableExtra::column_spec(1:13, width = "0.75cm")
 ```
@@ -160,35 +162,36 @@ csasdown::csas_table(rec_wide,
 
 \clearpage
 
-## FOOD, SOCIAL, AND CEREMONIAL CATCH (FSC) {#sec:fsc-catch-data}
+## PRISES À DES FINS ALIMENTAIRES, SOCIALES ET RITUELLES (ASR) {#sec:fsc-catch-data}
 
-Yelloweye Rockfish are an important traditional food source for coastal First Nations in BC [@eckert2018], including in the inside waters of 4B.
-Total FSC catch of Yelloweye Rockfish is not available for either the historic or contemporary time period, and the available data is not resolved to the species level (M. Fetterly, DFO Policy Treaty Support, pers. comm., November 7, 2019 and  A. Rushton, DFO South Coast Fisheries Management, pers. comm., February 7, 2020).
-To account for FSC catch in the last stock assessment, @yamanaka2011 used a consumption rate (0.23 kg/year/person), which was half of the consumption rate determined in a traditional diet study from Southeast Alaska.
-They applied the consumption rate to the First Nations population near area 4B to estimate total consumption over the time series (1918-2009).
-This approach assumes that the consumption rate of Yelloweye Rockfish by First Nations has remained constant, despite the fact that European colonization is known to have impacted most aspects of Indigenous society over this same time period.
-A decline in the amount of fish and seafood consumed by First Nations in BC has been attributed to numerous social, ecological, and economic factors; including the loss of traditional territories, diminished traditional knowledge transmission, and barriers such as poverty that makes buying boats and fishing gear unattainable for many communities [@marushka2019].
-Specific to the southern part of our study area, the Coast Salish people have seen their relationship to marine resources eroded due to the development of commercial and recreational fisheries, as well as policy and political decisions [@ayers2012].
-We did not, therefore, follow the methods used in @yamanaka2011.
+Le sébaste aux yeux jaunes est une importante source de nourriture traditionnelle pour les Premières Nations de la côte de la Colombie-Britannique [@eckert2018], y compris dans les eaux intérieures de la zone 4B. 
+Les prises à des fins ASR totales de sébaste aux yeux jaunes ne sont accessibles ni pour la période historique, ni pour la période contemporaine, et les données accessibles ne sont pas résolues au niveau de l’espèce (M. Fetterly, MPO, Analyse des politiques et soutien aux traités, comm. pers., 7 novembre 2019 et A. Rushton, MPO, Gestion des pêches de la côte sud, comm. pers., 7 février 2020).
+Pour tenir compte des prises à des fins ASR dans la dernière évaluation des stocks, @yamanaka2011 ont utilisé un taux de consommation (0,23 kg/année/personne), qui représentait la moitié du taux de consommation déterminé dans une étude sur l’alimentation traditionnelle dans le sud-est de l’Alaska. 
+Ils ont appliqué le taux de consommation aux populations des Premières Nations proches de la zone 4B pour estimer la consommation totale au cours de la série chronologique (de 1918 à 2009). 
+Cette approche suppose que le taux de consommation de sébaste aux yeux jaunes par les Premières Nations est demeuré constant, mais on sait que la colonisation européenne a eu une incidence sur la plupart des aspects de la société autochtone durant cette période. 
+Une baisse de la quantité de poisson et de fruits de mer consommée par les Premières Nations en Colombie-Britannique a été attribuée à de nombreux facteurs sociaux, écologiques et économiques, notamment la perte de territoires traditionnels, la diminution de la transmission du savoir traditionnel, et des obstacles comme la pauvreté qui rend l’achat de bateaux et d’engins de pêche inaccessible pour de nombreuses communautés [@marushka2019]. 
+En ce qui concerne la partie sud de notre zone d’étude, les peuples Salish du littoral ont vu leur relation avec les ressources marines s’éroder en raison du développement des pêches commerciales et récréatives, ainsi que des politiques et des décisions politiques [@ayers2012]. 
+Nous n’avons donc pas suivi les méthodes utilisées dans @yamanaka2011.
 
-The only FSC data that are available are from the commercial dockside monitoring program (DMP) between 2006 and 2019 (Table \@ref(tab:fsc-catch)).
-These data were collected from "dual fishing" trips, which occur when indigenous fishers choose to keep some of the catch obtained during a commercial fishing trip for FSC purposes.
-Both commercial and FSC catch are monitored during the offload.
-Between 0 and 0.8 tonnes amounting to an average of 5.6% of the total commercial catch has been landed on dual fishing trips in this time period.
-The FSC catch from these dual trips is included in the annual totals for commercial catch within the groundfish sector databases. 
-The DMP catch data can only be resolved to the trip level rather than the set level, so some of the dual fishing data may be from outside of area 4B (i.e. include the catch of Outside Yelloweye). 
-In order to deal with this, if more than 50% of the sets on a trip took place in 4B, we included them in the commercial catch data for 4B.
-Conversely, we excluded trips that had 50% or more sets completed outside of 4B. 
-Most of the dual fishing trip took place in the northern part of the study area because this is also where most of the commercial fishing for Yelloweye Rockfish in 4B currently takes place.
-Indigenous fishers from the member First Nations represented by the A-Tlegay Fisheries Society, are largely obtaining Yelloweye Rockfish on dual fishing trips (C. Rusel, pers. comm., November 8, 2019).
+Les seules données sur les pêches à des fins ASR accessibles proviennent du Programme de vérification à quai entre 2006 et 2019 (tableau \@ref(tab:fsc-catch)). 
+Ces données ont été recueillies dans le cadre de sorties de « pêche double », qui ont lieu lorsque les pêcheurs autochtones choisissent de conserver à des fins ASR une partie des prises obtenues pendant une sortie de pêche commerciale. 
+Les prises commerciales et à des fins ASR sont surveillées pendant le déchargement. 
+Entre 0 et 0,8 tonne, soit une moyenne de 5,6 % du total des prises commerciales, a été débarquée dans le cadre de sorties de pêche double durant cette période. 
+Les prises à des fins ASR de ces sorties de pêche double sont incluses dans les totaux annuels des prises commerciales dans les bases de données du secteur du poisson de fond. 
+Les données sur les prises du Programme de vérification à quai ne peuvent être résolues qu’au niveau de la sortie plutôt qu’à celui de la calée, de sorte que certaines des données sur la pêche double peuvent provenir de l’extérieur de la zone 4B (c.-à-d. inclure des prises de sébaste aux yeux jaunes des eaux extérieures). 
+Pour régler ce problème, si plus de 50 % des calées d’une sortie ont eu lieu dans la zone 4B, nous les avons incluses dans les données sur les prises commerciales pour la zone 4B. 
+À l’inverse, nous avons exclu les sorties dont au moins 50 % des calées avaient été effectuées à l’extérieur de la zone 4B. 
+La plupart des sorties de pêche double ont eu lieu dans la partie nord de la zone d’étude parce que c’est aussi là que se pratique actuellement la plus grande partie de la pêche commerciale du sébaste aux yeux jaunes dans la zone 4B. 
+Les pêcheurs autochtones des Premières Nations membres représentés par la A-Tlegay Fisheries Society capturent essentiellement des sébastes aux yeux jaunes lors de sorties de pêche double (C. Rusel, comm. pers., 8 novembre 2019).
 
-In the southern part of the study area, indigenous fishers have little commercial capacity.
-FSC catch in the Strait of Georgia is, therefore, primarily from small recreational boats (C. Ayers, pers. comm., November 7, 2019; B. Bocking, pers. comm., November 7, 2019).
-Some FSC effort from small boats will be captured in the recreational data from the creel survey program.
-Although FSC fishers are not constrained by recreational catch limits or closures, their boats will be counted on the aerial portion of the creel survey, and therefore contribute to the expanded recreational catch estimates.
-The proportion of FSC fishers encountered by the dockside creel monitor was not, however, readily available in the recreational database (CREST) (P. Zetterberg, DFO, pers. comm., November 29, 2019).
+Dans la partie sud de la zone d’étude, les pêcheurs autochtones ont une faible capacité commerciale. 
+Les prises à des fins ASR dans le détroit de Georgie proviennent donc principalement de petits bateaux de pêche récréative (C. Ayers, comm. pers., 7 novembre 2019; B. Bocking, comm. pers., 7 novembre 2019). 
+Une partie de l’effort à des fins ASR des petits bateaux sera enregistrée dans les données sur les activités récréatives du programme de relevé par interrogation de pêcheurs. 
+Bien que les pêcheurs à des fins ASR ne soient pas liés par les limites de prises ou les fermetures des pêches récréatives, leurs bateaux seront comptés dans la partie aérienne du relevé par interrogation de pêcheurs et contribueront donc aux estimations élargies des prises récréatives. 
+Toutefois, la proportion de pêcheurs à des fins ASR rencontrés par le vérificateur à quai n’était pas facilement accessible dans la base de données des pêcheurs récréatifs (CREST) [P. Zetterberg, MPO, comm. pers., 29 novembre 2019].
 
-As we have shown, there are limited information available to assist with quantifying FSC catch of Inside Yelloweye Rockfish. Without more detailed information it is not possible to reliably estimate any impact of FSC catch on the results of this analysis. Greater collarboration with First Nations could help address some of these data issues, and should be a priority for future analyses. 
+Comme nous l’avons montré, il y a peu d’information accessible pour aider à quantifier les prises à des fins ASR de sébaste aux yeux jaunes des eaux intérieures. Sans des informations plus détaillées, il n’est pas possible d’estimer de façon fiable l’impact des prises à des fins ASR sur les résultats de cette analyse. Une plus grande collaboration avec les Premières Nations pourrait aider à régler certains de ces problèmes de données et devrait être une priorité pour les analyses futures.
+
 
 \clearpage
 
@@ -198,14 +201,14 @@ fsc_catch <- readr::read_csv(here("data-raw/fsc-dmp.csv")) %>%
   dplyr::mutate(year = gsub("mean", "Mean", year))
 csasdown::csas_table(fsc_catch,
   format = "latex",
-  col_names = c("Year", "FSC", "Commercial", "Total", "Percent FSC"),
-  caption = "FSC catch of Inside Yelloweye Rockfish as a proportion of total commercial catch reported to dockside observers from dual fishing trips."
+  col_names = c("Année", "ASR", "Commerciales", "Total", "Pourcentage ASR"),
+  caption = "Prises à des fins ASR de sébaste aux yeux jaunes des eaux intérieures en proportion du total des prises commerciales déclarées aux observateurs à quai lors de sorties de pêche double."
 )
 ```
 
 \clearpage
 
-## CHRONOLOGY OF MANAGEMENT CHANGES {#sec:management-changes}
+## CHRONOLOGIE DES CHANGEMENTS DE GESTION {#sec:management-changes}
 
 
 ```{r comm-mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
@@ -215,8 +218,8 @@ comm_timeline <- readr::read_csv(here("data-raw/comm-management.csv")) %>%
 
 csasdown::csas_table(comm_timeline,
   format = "latex",
-  col.names = c("Year", "Area", "Management Action"),
-  caption = "History of management changes for the commercial Rockfish fishery in area 4B from 1986 to 2019."
+  col.names = c("Année", "Zone", "Mesure de gestion"),
+  caption = "Historique des changements apportés à la gestion de la pêche commerciale du sébaste dans la zone 4B de 1986 à 2019."
 )%>%
   kableExtra::column_spec(1, width = "2.5cm") %>%
   kableExtra::column_spec(2, width = "1.75cm") %>%
@@ -232,8 +235,8 @@ timeline <- readr::read_csv(here("data-raw/management-chronology.csv")) %>%
 
 csasdown::csas_table(timeline,
   format = "latex",
-  col.names = c("Year", "Area", "Management Action"),
-  caption = "History of management changes for the recreational Rockfish fishery from 1986 to 2019."
+  col.names = c("Année", "Zone", "Mesure de gestion"),
+  caption = "Historique des changements apportés à la gestion de la pêche récréative du sébaste de 1986 à 2019."
 ) %>%
   kableExtra::column_spec(1, width = "2.5cm") %>%
   kableExtra::column_spec(2, width = "1.75cm") %>%
