@@ -165,7 +165,7 @@ C’est le cas dans notre modèle de relevé à la palangre sur fond dur, où l�
 
 ```{r}
 include_figs <- function(file) {
-  knitr::include_graphics(here::here("figs", file), dpi = NA)
+  knitr::include_graphics(here::here("figs-french", file), dpi = NA)
 }
 ```
 
