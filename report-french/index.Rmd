@@ -94,7 +94,7 @@ opts_chunk$set(
 )
 options(xtable.comment = FALSE)
 options(kableExtra.latex.load_packages = FALSE)
-options(french = FALSE)
+options(french = TRUE)
 ```
 
 ```{r load-libraries, cache=FALSE}
@@ -117,5 +117,10 @@ round2 <- function(x, never_perfect = TRUE) {
     out <- "< 0.01"
   out
 }
+
+
+csl <- "csl/csas-french.csl"
+options(OutDec =  ",")
+options(tinytex.verbose = TRUE)
 ```
 
