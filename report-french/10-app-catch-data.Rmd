@@ -211,9 +211,9 @@ csasdown::csas_table(fsc_catch,
 ## CHRONOLOGIE DES CHANGEMENTS DE GESTION {#sec:management-changes}
 
 
-```{r comm-mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
+```{r comm-mgt-changes, echo=FALSE, warning=FALSE, results="asis", cache=FALSE}
 
-comm_timeline <- readr::read_csv(here("data-raw/comm-management_fr.csv")) %>% 
+comm_timeline <- readr::read_csv(here("data-raw/comm-management_fr.csv")) %>%
   dplyr::mutate(Year = gsub("-", "--", Year))
 
 csasdown::csas_table(comm_timeline,
@@ -229,7 +229,7 @@ csasdown::csas_table(comm_timeline,
 
 \clearpage
 
-```{r rec-mgt-changes, echo=FALSE, warning=FALSE, results="asis"}
+```{r rec-mgt-changes, echo=FALSE, warning=FALSE, results="asis", cache=FALSE}
 timeline <- readr::read_csv(here("data-raw/management-chronology_fr.csv")) %>% 
   dplyr::mutate(Year = gsub("-", "--", Year))
 
