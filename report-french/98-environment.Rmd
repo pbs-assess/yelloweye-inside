@@ -3,7 +3,7 @@
 Cette version du document a été produite sur `r Sys.time()` avec
 `r devtools::session_info()$platform$version` [@r2019] et des versions du progiciel R:
 
-```{r env, echo = FALSE, results='asis', message=FALSE, warning=FALSE, eval=TRUE, cache=FALSE}
+```{r env, echo = FALSE, results='asis', message=FALSE, warning=FALSE, eval=FALSE, cache=FALSE}
 library(TMB, warn.conflicts = FALSE, quietly = TRUE)
 library(bookdown, warn.conflicts = FALSE, quietly = TRUE)
 library(rmarkdown, warn.conflicts = FALSE, quietly = TRUE)
@@ -33,7 +33,31 @@ info %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
 ```
 
-```{r sha, cache=TRUE}
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+& Package & Version & Date \\
+\midrule
+\endhead
+bookdown & bookdown & 0.24 & 2021-09-02 \\
+cowplot & cowplot & 1.1.1 & 2020-12-30 \\
+csasdown & csasdown & 0.0.10.9000 & 2021-08-13 \\
+DLMtool & DLMtool & 5.4.3 & 2021-10-26 \\
+dplyr & dplyr & 1.0.7 & 2021-06-18 \\
+gfdata & gfdata & 0.0.0.9000 & 2021-07-05 \\
+gfdlm & gfdlm & 0.0.1.9001 & 2021-10-26 \\
+gfplot & gfplot & 0.1.4 & 2021-08-13 \\
+ggplot2 & ggplot2 & 3.3.5 & 2021-06-25 \\
+knitr & knitr & 1.36 & 2021-09-29 \\
+MSEtool & MSEtool & 1.6.0 & 2020-05-05 \\
+purrr & purrr & 0.3.4 & 2020-04-17 \\
+rmarkdown & rmarkdown & 2.11 & 2021-09-14 \\
+tidyr & tidyr & 1.1.4 & 2021-09-27 \\
+TMB & TMB & 1.7.22 & 2021-09-28 \\
+\bottomrule
+\end{longtable}
+\vspace{4mm}
+
+```{r sha, cache=FALSE, eval=TRUE}
 get_sha <- function(path) {
   if (!identical(.Platform$OS.type, "windows")) {
     suppressWarnings({
@@ -53,7 +77,7 @@ get_sha <- function(path) {
 }
 # sha_gfmp <- get_sha("pbs-assess/gfmp")
 sha_gfmp <- "c5da749"
-sha_gfdlm <- get_sha("pbs-assess/gfdlm")
+# sha_gfdlm <- get_sha("pbs-assess/gfdlm")
 sha_gfdlm <- "b895686"
 # sha_gfdata <- get_sha("pbs-assess/gfdata")
 sha_gfdata <- "7292039"
@@ -69,6 +93,8 @@ sha_csasdown <- "f9d5081"
 sha_ye <- "2f9a8a4"
 ```
 
+\vspace{4mm}
+
 Le code source de ce document est accessible à l’adresse suivante:\
 <`r paste0("https://github.com/pbs-assess/yelloweye-inside/tree/", sha_ye)`>.
 
@@ -82,16 +108,5 @@ Les versions particulières des logiciels de base utilisés pour générer ce ra
 <`r paste0("https://github.com/pbs-assess/gfplot/tree/", sha_gfplot)`>\
 <`r paste0("https://github.com/pbs-assess/gfdlm/tree/", sha_gfdlm)`>\
 <`r paste0("https://github.com/pbs-assess/csasdown/tree/", sha_csasdown)`>\
-
-\vspace{4mm}
-ou installées par l’intermédiaire de:
-
-`# install.packages('devtools')`\
-`devtools::install_github('DLMtool/DLMtool', ref = '`r sha_dlm`')`\
-`devtools::install_github('tcarruth/MSEtool', ref = '`r sha_mse`')`\
-`devtools::install_github('pbs-assess/gfdata', ref = '`r sha_gfdata`')`\
-`devtools::install_github('pbs-assess/sha_gfplot', ref = '`r sha_gfplot`')`\
-`devtools::install_github('pbs-assess/gfdlm', ref = '`r sha_gfdlm`')`\
-`devtools::install_github('pbs-assess/csasdown', ref = '`r sha_csasdown`')`\
 
 \clearpage
