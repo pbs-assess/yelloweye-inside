@@ -221,8 +221,8 @@ csasdown::csas_table(comm_timeline,
   col.names = c("Année", "Zone", "Mesure de gestion"),
   caption = "Historique des changements apportés à la gestion de la pêche commerciale du sébaste dans la zone 4B de 1986 à 2019."
 )%>%
-  kableExtra::column_spec(1, width = "2.5cm") %>%
-  kableExtra::column_spec(2, width = "1.75cm") %>%
+  kableExtra::column_spec(1, width = "3.5cm") %>%
+  kableExtra::column_spec(2, width = "3.5cm") %>%
   kableExtra::column_spec(3, width = "7.5cm")
 
 ```
@@ -238,8 +238,8 @@ csasdown::csas_table(timeline,
   col.names = c("Année", "Zone", "Mesure de gestion"),
   caption = "Historique des changements apportés à la gestion de la pêche récréative du sébaste de 1986 à 2019."
 ) %>%
-  kableExtra::column_spec(1, width = "2.5cm") %>%
-  kableExtra::column_spec(2, width = "1.75cm") %>%
+  kableExtra::column_spec(1, width = "3.5cm") %>%
+  kableExtra::column_spec(2, width = "3.5cm") %>%
   kableExtra::column_spec(3, width = "7.5cm")
 ```
 
