@@ -106,6 +106,7 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 library(ggplot2)
+library(rosettafish)
 library(here)
 filter <- dplyr::filter
 options(tinytex.verbose = TRUE)
