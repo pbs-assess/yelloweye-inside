@@ -86,7 +86,7 @@ opts_chunk$set(
   out.width = fig_out_width,
   echo = FALSE,
   autodep = TRUE,
-  cache = TRUE,
+  cache = FALSE,
   cache.comments = FALSE,
   dev = fig_out_type,
   dpi = fig_dpi,
