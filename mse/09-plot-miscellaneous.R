@@ -28,6 +28,16 @@ abline(h = 0, col = "grey")
 abline(h = c(0.4, 0.8), lty = 3)
 dev.off()
 
+options(OutDec =  ",")
+png("mse/figures-french/SP_fit.png", height = 4.5, width = 5.5, units = "in", res = 300)
+par(mar = c(5, 4, 1, 1))
+plot(as.numeric(names(SP_mod@B_BMSY)), SP_mod@B_BMSY, typ = "l", lwd = 3, xlab = rosettafish::en2fr("Year"), ylab = expression(B/B[RMD]),
+     ylim = c(0, 2.1))
+abline(h = 0, col = "grey")
+abline(h = c(0.4, 0.8), lty = 3)
+dev.off()
+options(OutDec =  ".")
+
 
 # Plot retrospective bias with respect to M from 3 operating models:
 #- Initial fit not used in reference/robustness set
