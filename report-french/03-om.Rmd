@@ -264,7 +264,6 @@ knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_lowc
 \clearpage
 
 (ref:fig-sra-comp-fit3)
-
 Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (3), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit3, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit3)"}
@@ -274,7 +273,6 @@ knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_epis
 \clearpage
 
 (ref:fig-sra-comp-fit4)
-
 Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (4), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 ```{r sra-conditioned-comp-fit4, out.width="0.85\\textwidth", fig.cap="(ref:fig-sra-comp-fit4)"}
@@ -285,7 +283,6 @@ knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_upwe
 \clearpage
 
 (ref:fig-sra-comp-fitA)
-
 Ajustements du modèle d’analyse de réduction du stock aux données sur la composition selon l’âge pour le scénario de modèle opérationnel (A), montrant les proportions observées (points) et estimées (lignes vertes). La taille des échantillons (N) est le nombre d’ensembles dans lesquels des échantillons d’âge ont été prélevés chaque année.
 
 
