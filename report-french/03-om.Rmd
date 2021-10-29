@@ -49,6 +49,13 @@ Nous avons également établi deux modèles opérationnels de l’ensemble de ro
 
 ```{r ye-scen, results='asis'}
 sc <- readRDS(here("mse/om/ye-scenarios2.rds"))
+sc$scenario_human <-  c(
+  "(1) Base",
+  "(2) Faibles prises",
+  "(3) Recrutement\népisodique",
+  "(4) Estimation de la\nsélectivité du RPFD",
+  "(A) Faible M ",
+  "(B) CV élevé\ndu RPFD")
 sc <- sc %>%
   select(-order) %>%
   mutate(scenario_human = gsub("\\\n", " ", scenario_human))
