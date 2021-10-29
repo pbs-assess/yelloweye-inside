@@ -43,14 +43,14 @@ abstract: |
 # header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 output:
  csasdown::resdoc_pdf:
-   french: false
+   french: true
   # csasdown::resdoc_word
 # ------------
 # End of options to set
 knit: bookdown::render_book
 link-citations: true
 bibliography: [refs.bib, mpframework-refs.bib]
-csl: csl/csas.csl # or csl/csas-french.csl for French
+csl: csl/csas-french.csl # or csl/csas-french.csl for French
 # Any extra LaTeX code for the header:
 # header-includes:
 # - \usepackage{etex}
@@ -86,7 +86,7 @@ opts_chunk$set(
   out.width = fig_out_width,
   echo = FALSE,
   autodep = TRUE,
-  cache = TRUE,
+  cache = FALSE,
   cache.comments = FALSE,
   dev = fig_out_type,
   dpi = fig_dpi,
