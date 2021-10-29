@@ -56,10 +56,12 @@ sc$scenario_human <-  c(
   "(4) Estimation de la\nsélectivité du RPFD",
   "(A) Faible M ",
   "(B) CV élevé\ndu RPFD")
+sc$scenario_type <- gsub("Reference", en2fr("Reference"), sc$scenario_type)
+sc$scenario_type <- gsub("Robustness", "Robustesse", sc$scenario_type)
 sc <- sc %>%
   select(-order) %>%
   mutate(scenario_human = gsub("\\\n", " ", scenario_human))
-  sc %>% select(-scenario) %>%
+sc %>% select(-scenario) %>%
   csasdown::csas_table(caption = "Scénarios de modèle opérationnel pour le sébaste aux yeux jaunes des eaux intérieures.",
     col_names = c("Nom du scénario de modèle opérationnel", "Type d’ensemble")) %>%
   kableExtra::kable_styling(latex_options = c("hold_position"))
