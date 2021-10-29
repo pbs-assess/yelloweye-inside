@@ -21,7 +21,7 @@ Pour guider la réévaluation du sébaste aux yeux jaunes des eaux intérieures 
 Résultats pour la mesure A du COSEPAC, soit la probabilité que le stock ait décliné en moyenne de plus de 70 %, 50 % ou 30 % par rapport à *B*~1918~ au cours des trois dernières générations, pour chaque scénario de modèle opérationnel, où la valeur d’une durée de génération est établie à 38 ans. 
 
 ```{r cosewic-metrics, fig.cap="(ref:fig-cosewic-metrics)", out.width="3in"}
-knitr::include_graphics(here("mse/figures/historical_indicators2.png"))
+knitr::include_graphics(here("mse/figures-french/historical_indicators2.png"))
 ```
 
 ## RISQUE D’EXTINCTION – MESURE E DU COSEPAC
@@ -48,7 +48,7 @@ Les résultats de cette analyse montrent qu’en utilisant ces seuils, le risque
 Probabilité que le stock de sébaste aux yeux jaunes des eaux intérieures demeure supérieur à 2 % et à 5 % de *B*~0~, par scénario de modèle opérationnel et procédure de gestion. 
 
 ```{r cosewic-all, fig.cap="(ref:fig-cosewic-all)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
+knitr::include_graphics(here("mse/figures-french/ye-tigure-cosewic-all.png"))
 ```
 
 \clearpage
@@ -57,7 +57,7 @@ knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-all.png"))
 Probabilité que le stock de sébaste aux yeux jaunes des eaux intérieures demeure supérieur à 2 % et à 5 % de *B*~0~, en moyenne pour les modèles opérationnels de l’ensemble de référence. 
 
 ```{r cosewic-avg, fig.cap="(ref:fig-cosewic-avg)", out.width="3in"}
-knitr::include_graphics(here("mse/figures/ye-tigure-cosewic-avg.png"))
+knitr::include_graphics(here("mse/figures-french/ye-tigure-cosewic-avg.png"))
 ```
 
 

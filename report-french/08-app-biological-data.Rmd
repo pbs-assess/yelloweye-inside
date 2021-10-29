@@ -133,7 +133,7 @@ knitr::include_graphics(here("mse/figures-french/mat-months.png"))
 
 \clearpage
 
-## SUMMARY TABLE OF BIOLOGICAL DATA AVAILABLE
+## TABLEAU RÉCAPITULATIF DES DONNÉES BIOLOGIQUES ACCESSIBLES
 
 ```{r test, results='asis'}
 dat <- readRDS(here("data-generated/yelloweye-rockfish-ins-privacy.rds"))
