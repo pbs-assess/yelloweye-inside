@@ -106,6 +106,18 @@ matlines(1918:2020, do.call(cbind, B_BMSY), lty = 1, lwd = 2)
 legend("bottomleft", SRA_names, col = 1:5, lty = 1, lwd = 2)
 dev.off()
 
+SRA_names_fr <- c("base", TeX("enquête sur l'aiguillat $\\lambda = 0.1$"), "exclure l'aiguillat commun 2019",
+  TeX("âges de HBLL $\\lambda = 0.1$"), "exclure les âges HBLL")
+
+png("mse/figures-french/alt_SRA_fit.png", height = 4, width = 6, units = "in", res = 400)
+par(mar = c(5, 4, 1, 1))
+matplot(1918:2020, do.call(cbind, B_BMSY), type = "n", lty = 1, xlab = rosettafish::en2fr("Year"), ylab = expression(B/B[RMD]))
+abline(h = 0, col = "grey")
+abline(h = c(0.4, 0.8), lty = 2)
+matlines(1918:2020, do.call(cbind, B_BMSY), lty = 1, lwd = 2)
+legend("bottomleft", SRA_names_fr, col = 1:5, lty = 1, lwd = 2)
+dev.off()
+
 #SRA_names <- c("1xDog", "4xDog", "0.1xDog", "4xDog_Ex2019", "0.1xCAA", "0xCAA", "0xCAA_NoDev", "LowComSel")
 #
 #f_name <- c("Com", "Rec")
