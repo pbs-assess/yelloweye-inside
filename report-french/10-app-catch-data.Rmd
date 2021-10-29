@@ -31,7 +31,7 @@ Nous avons choisi de doubler les prises nominales plutôt que les prises reconst
 Ces indications nous ont amenés à doubler les prises pour ces années [@yamanaka2011]. Cependant, comme les rejets sont estimés dans le cadre de l’algorithme de reconstitution des prises, dans l’analyse actuelle, nous avons doublé les prises nominales pour la période 1986--2005 (plutôt que les prises reconstituées) afin d’éviter de compter les rejets deux fois. 
 Pour vérifier la sensibilité, nous explorons un scénario de modèle opérationnel où les prises commerciales de 1986 à 2005 n’ont pas été doublées (le scénario « Prises faibles » (2), section \@ref(sec:approach3-reference2)).
 
-```{r commcatch2, out.width="0.8\\textwidth", fig.width=6, fig.cap="Prises commerciales par secteur pour le sébaste aux yeux jaunes des eaux intérieures. Cette figure comprend les estimations reconstituées (1918--1985) et nominales (1986--2019) des prises en tonnes."}
+```{r commcatch2, out.width="0.8\\textwidth", fig.width=6, fig.cap="Prises commerciales par secteur pour le sébaste aux yeux jaunes des eaux intérieures. Cette figure comprend les estimations reconstituées (1918--1985) et nominales (1986--2019) des prises en tonnes. A=Sébaste à la ligne et à l’hameçon, B=Aiguillat commun, Morue-lingue, C=Flétan, D=Chalut."}
 comm_catch <- read.csv(here("data-raw/ye_catch_by_sector.csv"))
 
 tidyr::pivot_longer(comm_catch, -1) %>%

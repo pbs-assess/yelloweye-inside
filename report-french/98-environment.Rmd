@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # ENVIRONNEMENT INFORMATIQUE
 
 Cette version du document a été produite sur `r Sys.time()` avec
@@ -35,7 +40,7 @@ info %>%
 
 \begin{longtable}[]{@{}llll@{}}
 \toprule
-& Package & Version & Date \\
+& Paquet & Version & Date \\
 \midrule
 \endhead
 bookdown & bookdown & 0.24 & 2021-09-02 \\

@@ -316,7 +316,7 @@ Les moyennes et les coefficients de variation (CV) estimés pour les points de r
 Les CV sont larges en raison de la grande gamme de valeurs échantillonnées pour *M* et *h* (annexe \@ref(app:desc-om-yelloweye), sections \@ref(app:desc-stock-m-yelloweye) et \@ref(app:desc-stock-h-yelloweye)).
 
 ```{r sra-ref-pts, results='asis'}
-ref_pts <- readr::read_csv(here::here("mse/figures/ref_pt.csv"))
+ref_pts <- readr::read_csv(here::here("mse/figures-french/ref_pt.csv"))
 names(ref_pts) <- c("X1", "FRMD", "BRMD", "RMD")
 ref_pts <- ref_pts %>%
   mutate(X1 = gsub("\\\n", " ", X1)) %>%
@@ -362,14 +362,14 @@ Les lignes représentent les médianes, et les ombres gris foncé et gris pâle 
 Les lignes horizontales en pointillés représentent le RSS (0,8*B*~RMD~) et le PRL (0,4*B*~RMD~).
 
 ```{r biomass-om, fig.cap="(ref:fig-biomass-om)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figures/ye-compare-SRA-MSY-panel.png"))
+knitr::include_graphics(here("mse/figures-french/ye-compare-SRA-MSY-panel.png"))
 ```
 
 (ref:fig-ref-pt)
 Probabilité que la biomasse féconde en 2019 soit supérieure au PRL et au RSS pour les six modèles opérationnels.
 
 ```{r ref-pt, fig.cap="(ref:fig-ref-pt)", out.width="2.5in"}
-knitr::include_graphics(here("mse/figures/historical_indicators_ref_pt.png"))
+knitr::include_graphics(here("mse/figures-french/historical_indicators_ref_pt.png"))
 ```
 
 (ref:fig-depletion-om)
@@ -377,7 +377,7 @@ Trajectoires de l’épuisement de la biomasse féconde pour les modèles opéra
 Les lignes représentent les répétitions individuelles.
 
 ```{r depletion-om, fig.cap="(ref:fig-depletion-om)", out.width="\\textwidth"}
-knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
+knitr::include_graphics(here("mse/figures-french/ye-compare-SRA-depletion-panel.png"))
 ```
 
 
@@ -386,7 +386,7 @@ knitr::include_graphics(here("mse/figures/ye-compare-SRA-depletion-panel.png"))
 Les lignes représentent les répétitions individuelles.
 
 ```{r recdev-om, fig.cap="(ref:fig-recdev-om)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-recdev-panel.png"))
+knitr::include_graphics(here::here("mse/figures-french/ye-compare-SRA-recdev-panel.png"))
 ```
 
 (ref:fig-F-om)
@@ -396,7 +396,7 @@ Les lignes représentent les répétitions individuelles.
 
 
 ```{r F-om, fig.cap="(ref:fig-F-om)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("mse/figures/ye-compare-SRA-F-panel.png"))
+knitr::include_graphics(here::here("mse/figures-french/ye-compare-SRA-F-panel.png"))
 ```
 
 \clearpage
@@ -432,13 +432,13 @@ Pour le modèle de production excédentaire, ce retard peut être implicitement 
 (ref:fig-spm-biomass) Trajectoire de la biomasse par rapport à la biomasse au rendement maximal soutenu (*B*/*B*~RMD~) dans le modèle de production excédentaire. Les lignes horizontales en pointillés représentent le RSS (0,8*B*~RMD~) et le PRL (0,4*B*~RMD~).
 
 ```{r spm-biomass, fig.cap="(ref:fig-spm-biomass)", out.width="0.8\\textwidth"}
-knitr::include_graphics(here::here("mse/figures/SP_fit.png"))
+knitr::include_graphics(here::here("mse/figures-french/SP_fit.png"))
 ```
 
 (ref:fig-alt-SRA-fit) Biomasse féconde relative (*B*/*B*~RMD~) selon d’autres ajustements à l’analyse de réduction du stock qui réduisaient ou éliminaient les données de la vraisemblance. On a utilisé les valeurs moyennes de la mortalité naturelle et du taux de variation de la pente. Les lignes horizontales en pointillés représentent le RSS (0,8*B*~RMD~) et le PRL (0,4*B*~RMD~). Les scénarios de référence et d’exclusion du relevé de 2019 sur l’aiguillat commun se chevauchent et les lignes correspondantes sont différenciées sur la figure pour plus de clarté.
 
 ```{r alt-SRA-fit, fig.cap="(ref:fig-alt-SRA-fit)"}
-knitr::include_graphics(here::here("mse/figures/alt_SRA_fit.png"))
+knitr::include_graphics(here::here("mse/figures-french/alt_SRA_fit.png"))
 ```
 
 
