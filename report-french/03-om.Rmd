@@ -303,6 +303,7 @@ knitr::include_graphics(here("mse/figures-french/conditioning/HBLL_age_comp_high
 #### Estimation des paramètres  {#sec:approach3-conditioning-parameters}
 
 Les scénarios de référence et de robustesse des modèles opérationnels ont produit une plage de valeurs estimées des paramètres (figure \@ref(fig:sra-conditioned-parameters)).
+
 (ref:fig-sra-conditioned-parameters) Histogrammes des paramètres estimés par l’analyse de réduction du stock. AC fait référence à $\theta_\textrm{AC}$. D désigne l’épuisement ($B_{t_c}/B_0$). 
 À des fins de visualisation, les limites de l’axe *R*~0~ ont été limitées à un maximum de 490 et les limites de l’axe AC à un minimum de 0,76. 
 Cela exclut un petit nombre de répétitions.
