@@ -190,7 +190,6 @@ The proportion of FSC fishers encountered by the dockside creel monitor was not,
 
 As we have shown, there are limited information available to assist with quantifying FSC catch of Inside Yelloweye Rockfish. Without more detailed information it is not possible to reliably estimate any impact of FSC catch on the results of this analysis. Greater collarboration with First Nations could help address some of these data issues, and should be a priority for future analyses. 
 
-\clearpage
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
 fsc_catch <- readr::read_csv(here("data-raw/fsc-dmp.csv")) %>% 
