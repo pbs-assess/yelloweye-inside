@@ -314,6 +314,7 @@ The CVs are large due to the large range of sampled values for *M* and *h* (Appe
 
 ```{r sra-ref-pts, results='asis'}
 ref_pts <- readr::read_csv(here::here("mse/figures/ref_pt.csv"))
+names(ref_pts)[1] <- "X1"
 ref_pts %>%
   mutate(X1 = gsub("\\\n", " ", X1)) %>%
   select(X1, FMSY, BMSY, MSY) %>%
