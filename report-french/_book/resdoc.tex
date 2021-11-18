@@ -838,6 +838,67 @@ FMSYref75 & Référence\tabularnewline
 \end{longtable}
 \clearpage
 
+\hypertarget{sec:simulation}{%
+\section{SIMULATION DE L'APPLICATION DES PROCÉDURES DE GESTION}\label{sec:simulation}}
+
+Nous avons effectué des simulations en boucle fermée à l'aide de 250 répétitions stochastiques dans la version 5.4.2 de DLMtool, R version 3.6.3, et avec la graine aléatoire établie à 1. Nous avons fixé la durée de la période de projection à 100 ans pour faciliter le calcul des critères d'évaluation des risques d'extinction pour le COSEPAC (annexe~\ref{app:cosewic}). Nous avons évalué la convergence de la simulation en boucle fermée en traçant les paramètres de rendement cumulatifs à mesure que des répétitions étaient ajoutées (figure~\ref{fig:converge}). Nous avons jugé que 250 répétitions étaient suffisantes, le classement des procédures de gestion demeurant constant à mesure que d'autres répétitions étaient ajoutées (figure~\ref{fig:converge}).
+
+Anderson et al. (\protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}) ont recommandé de filtrer les procédures de gestion au moyen d'une étape de « satisfaction », où des simulations d'essai sont effectuées pour éliminer les procédures de gestion qui ne répondent pas à un ensemble de critères de rendement de base (Miller et Shelton \protect\hyperlink{ref-miller2010}{2010}; voir Anderson et al. \protect\hyperlink{ref-anderson2020gfmp}{2020}\protect\hyperlink{ref-anderson2020gfmp}{a}). Au départ, nous avons établi les critères suivants pour déterminer les procédures de gestion qui sont satisfaisantes~: PRL 1,5DG \textgreater{} 0,9. Pour déterminer les procédures de gestion qui seraient retenues comme procédures de gestion satisfaisantes, nous avons commencé par évaluer le rendement moyen et minimal de toutes les procédures de gestion possibles pour l'ensemble de référence des modèles opérationnels (figures~\ref{fig:tigure-avg} et~\ref{fig:tigure-min}). Toutes les procédures de gestion répondaient au critère de satisfaction (PRL 1,5DG \textgreater{} 0,9), à la fois dans les scénarios de l'ensemble de référence de modèles opérationnels et dans la moyenne des quatre modèles opérationnels de référence (figures~\ref{fig:tigure-avg} et~\ref{fig:tigure-min}). Comme de nombreuses procédures de gestion généraient également de faibles prises, nous avons appliqué un filtre de satisfaction supplémentaire, retenant seulement les procédures de gestion dont la moyenne de ST C10 est supérieure à 0,50. Ainsi, seuls les TAC à prises constantes de 10 t et 15 t et les procédures de gestion Islope ont été satisfaits (figure~\ref{fig:tigure-avg}). Les cinq procédures de gestion satisfaisantes étaient CC\_10t, CC\_15t, Islope\_10\_lambda04, Islope\_10\_lambda08, and Islope\_5\_lambda04 (voir les descriptions à l'annexe~\ref{app:mps}).
+
+Dans l'ensemble de référence, le PRL moyen de 1,5DG était de -Inf pour toutes les procédures de gestion et ST C10 variait entre Inf et -Inf (figures~\ref{fig:tigure-avg} et~\ref{fig:tigure-panel}). Le PRL minimal de 1,5DG était de -Inf pour toutes les procédures de gestion et CT C10 variait de Inf à -Inf parmi les procédures de gestion de l'ensemble de référence (figures~\ref{fig:tigure-min} et~\ref{fig:tigure-panel}).
+
+Nous nous concentrons sur l'évaluation des compromis entre les procédures de gestion satisfaisantes dans la section~\ref{sec:results}. Toutefois, en ce qui concerne les procédures de gestion qui ne répondaient pas aux critères de satisfaction (figure~\ref{fig:proj-not-satisficed-eg})~:
+\begin{itemize}
+
+\item
+  Iratio a généré de faibles prises durant la première décennie, mais des prises élevées par la suite. Il y avait une grande variabilité entre les répétitions dans chaque modèle opérationnel.
+\item
+  IDX et IDX\_smooth ont produit des prises progressivement réduites au fil du temps. Voir les précisions à l'annexe~\ref{app:mps}, section~\ref{sec:mp-idx}.
+\item
+  Iratio et GB\_slope n'ont généré aucune prise dans le modèle opérationnel à prises faibles; elles ne satisfaisaient donc pas au critère ST C10 \textgreater{} 0,50.
+\item
+  Les procédures de gestion de production excédentaires ont généré des prises nulles ou très faibles durant la première décennie, mais les prises augmentaient plus tard c.-à-d.~après 50 ans.
+\end{itemize}
+
+\begin{figure}[htb]
+
+{\centering \pdftooltip{\includegraphics[width=\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-convergence}}{Figure \ref{fig:converge}} 
+
+}
+
+\caption{Évaluation de la convergence des simulations en boucle fermée sur le classement uniforme des procédures de gestion dans les paramètres de rendement. Les couleurs représentent les différentes procédures de gestion satisfaisantes et de référence. Les lignes qui ne se croisent pas avant les répétitions finales indiquent que le classement des répétitions a convergé. Bien que cela ne soit pas illustré, nous avons également vérifié que les règles de satisfaction avaient convergé (c.‑à‑d.~que la sélection des procédures de gestion satisfaisantes ne changeait pas avec des répétitions supplémentaires). Nous n'affichons que le PRL 1,5DG et CT C10 puisqu'il s'agissait des deux principaux paramètres de rendement utilisés pour l'étape de la satisfaction. Les autres paramètres de rendement ont également été vérifiés (non illustrés).}\label{fig:converge}
+\end{figure}
+
+\begin{figure}[htb]
+
+{\centering \pdftooltip{\includegraphics[width=3.5in]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-tigure-refset-avg}}{Figure \ref{fig:tigure-avg}} 
+
+}
+
+\caption{Rendement moyen de toutes les procédures de gestion possibles dans les scénarios de l'ensemble de référence de modèles opérationnels. Nous avons classé les procédures de gestion par valeur décroissante du paramètre de rendement, de haut en bas, en commençant par le paramètre de rendement le plus à gauche (PRL 1,5DG) et en utilisant les colonnes de gauche à droite pour départager les égalités. L'ombrage de couleur reflète les probabilités. Les cellules mises en évidence représentent les procédures de gestion qui répondent aux critères de satisfaction d'un paramètre de rendement donné. À l'aide de cet ensemble de critères, les procédures de gestion seraient « satisfaisantes » si les cellules \emph{à la fois} de ``LRP 1.5GT'' et de ``ST C10'' étaient mises en évidence. Les procédures de gestion en gris pâle indiquent les procédures de gestion de référence.}\label{fig:tigure-avg}
+\end{figure}
+
+\begin{figure}[htb]
+
+{\centering \pdftooltip{\includegraphics[width=3.5in]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-tigure-refset-min}}{Figure \ref{fig:tigure-min}} 
+
+}
+
+\caption{Rendement minimal de toutes les procédures de gestion possibles dans les scénarios de l'ensemble de référence de modèles opérationnels. Cette figure est la même que la figure~\ref{fig:tigure-avg}, mais elle illustre le paramètre de rendement \textbf{minimum} dans les modèles opérationnels de l'ensemble de référence aux fins de l'application des règles de satisfaction. En d'autres termes, elle montre le pire rendement de chaque procédure de gestion dans les scénarios de l'ensemble de référence de modèles opérationnels.}\label{fig:tigure-min}
+\end{figure}
+\clearpage
+
+
+\begin{figure}[htb]
+
+{\centering \pdftooltip{\includegraphics[width=0.8\textwidth]{C:/GitHub/yelloweye-inside/mse/figures-french/ye-projections-not-sat2}}{Figure \ref{fig:proj-not-satisficed-eg}} 
+
+}
+
+\caption{Exemples de procédures de gestion qui n'étaient pas satisfaisantes pour le scénario de modèle opérationnel (1). B/B\textsubscript{RMD}, F/F\textsubscript{RMD} et les prises sont représentées pour les périodes historiques et projetées. La ligne foncée indique la valeur médiane et les rubans ombrés plus foncés et plus pâles indiquent les quantiles de 50 \% et de 90 \%. Les lignes grises fines représentent des répétitions de simulation à titre d'illustration. La ligne verticale tiretée indique la dernière année de la période historique (\(t_c\)). Les lignes horizontales tiretées indiquent la B/B\textsubscript{RMD} = 0,8 et 0,4, et la F/F\textsubscript{RMD} = 1.}\label{fig:proj-not-satisficed-eg}
+\end{figure}
+\clearpage
+
 \newpage
 
 \section{PROCÉDURES DE GESTION À DONNÉES LIMITÉES}
@@ -1058,10 +1119,12 @@ Nous avons également évalué les deux mêmes configurations, appliquées tous 
 
 \caption{Règles de contrôle des prises provisoires proposées associées aux procédures de gestion fondées sur des modèles.}\label{fig:mp-hcrs}
 \end{figure}
+\clearpage
+
 \hypertarget{environnement-informatique}{%
 \section{ENVIRONNEMENT INFORMATIQUE}\label{environnement-informatique}}
 
-Cette version du document a été produite sur 2021-11-18 14:02:58 avec R version 3.6.3 (2020-02-29) (R Core Team \protect\hyperlink{ref-r2019}{2019}) et des versions du progiciel R:
+Cette version du document a été produite sur 2021-11-18 14:20:54 avec R version 3.6.3 (2020-02-29) (R Core Team \protect\hyperlink{ref-r2019}{2019}) et des versions du progiciel R:
 \begin{longtable}[]{@{}llll@{}}
 \toprule
 & Paquet & Version & Date \\
@@ -1212,6 +1275,9 @@ Lincandeo, R., Duplisea, D.E., Senay, C., Marantette, J.R., et McAllister, M.K. 
 
 \leavevmode\hypertarget{ref-mcilgorm2013}{}%
 McIlgorm, A. 2013. Literature study and review of international best practice in fisheries harvest strategy policy approaches. A Report to the Department of Agriculture, Fisheries and Forestry (DAFF) Canberra, by the Australian National Centre for Ocean Resources and Security (ANCORS), University of Wollongong. Final Report, March 26, 2013.
+
+\leavevmode\hypertarget{ref-miller2010}{}%
+Miller, D.C.M., et Shelton, P.A. 2010. "Satisficing" and trade-offs: evaluating rebuilding strategies for Greenland halibut off the east coast of Canada. ICES J. Mar. Sci. 67(9): 1896‑1902.
 
 \leavevmode\hypertarget{ref-punt2016}{}%
 Punt, A.E., Butterworth, D.S., de Moor, C.L., De Oliveira, J.A.A., et Haddon, M. 2016. Management Strategy Evaluation: Best Practices. Fish Fish. 17(2): 303‑334.
