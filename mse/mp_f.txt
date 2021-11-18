@@ -1,0 +1,42 @@
+mp, type
+
+CC_10t, "Prise constante"
+CC_15t, "Prise constante"
+CC_5t, "Prise constante"
+
+IDX, "Indice-ratio"
+IDX_5u, "Indice-ratio"
+IDX_smooth, "Indice-ratio"
+IDX_smooth_5u, "Indice-ratio"
+IDX_smooth_yrs5, "Indice-ratio"
+IDX_smooth_yrs5_5u, "Indice-ratio"
+IDX_yrs5, "Indice-ratio"
+IDX_yrs5_5u, "Indice-ratio"
+
+Iratio_23, "Indice-ratio"
+Iratio_23_5u, "Indice-ratio"
+Iratio_55, "Indice-ratio"
+Iratio_55_5u, "Indice-ratio"
+
+GB_slope_lambda05, "Indice-pente"
+GB_slope_lambda05_5u, "Indice-pente"
+GB_slope_lambda1, "Indice-pente"
+GB_slope_lambda1_5u, "Indice-pente"
+GB_slope_yrs10, "Indice-pente"
+GB_slope_yrs10_5u, "Indice-pente"
+
+Islope_10_lambda04, "Indice-pente"
+Islope_10_lambda04_5u, "Indice-pente"
+Islope_10_lambda08, "Indice-pente"
+Islope_10_lambda08_5u, "Indice-pente"
+Islope_5_lambda04, "Indice-pente"
+Islope_5_lambda04_5u, "Indice-pente"
+
+SP_4010_10u, "Production excédentaire"
+SP_4010_5u, "Production excédentaire"
+SP_8040_10u, "Production excédentaire"
+SP_8040_5u, "Production excédentaire"
+
+NFref, "Référence"
+FMSYref, "Référence"
+FMSYref75, "Référence"
