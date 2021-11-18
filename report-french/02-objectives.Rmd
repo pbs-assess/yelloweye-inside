@@ -1,4 +1,4 @@
-#SÉLECTION DES OBJECTIFS ET DES PARAMÈTRES DE RENDEMENT {#sec:objectives-metrics}
+# SÉLECTION DES OBJECTIFS ET DES PARAMÈTRES DE RENDEMENT {#sec:objectives-metrics}
 
 Il faut établir des objectifs clairs en matière de gestion et de pêche, ainsi que les paramètres de rendement qui permettent de les évaluer. 
 Les objectifs peuvent couvrir un large éventail d’objectifs stratégiques ou législatifs (p. ex., maintenir le stock au-dessus du PRL), d’objectifs économiques (p. ex., maintenir des prises moyennes ou réduire la variabilité des prises) et d’objectifs culturels (p. ex., maintenir l’accès minimal requis au stock ou à des zones de pêche particulières). Dans un scénario de rétablissement, les objectifs de conservation doivent avoir préséance. Cependant, dans un cadre de simulation, il est possible d’examiner des compromis entre la conservation et d’autres objectifs de pêche à court et à long terme, tant que l’objectif principal de conservation est atteint. 
