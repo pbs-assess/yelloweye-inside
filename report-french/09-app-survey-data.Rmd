@@ -17,7 +17,7 @@ Cependant, plusieurs irrégularités se sont produites (figure \@ref(fig:hbll-ra
 (ref:fig-map-HBLL-NS) Carte des blocs du relevé à la palangre sur fond dur indiquant les régions du nord (en bleu) et du sud (en vert). Les aires de conservation du sébaste (blocs orange) sont également représentées.
 
 ```{r map-HBLL-NS, fig.cap="(ref:fig-map-HBLL-NS)", out.width="5in"}
-knitr::include_graphics(here::here("figs/YE_Inside_2019_HBLL_L.png"))
+knitr::include_graphics(here::here("figs-french/YE_Inside_2019_HBLL_L.png"))
 ```
 
 - Le relevé n’a pas eu lieu en 2006 et en 2017.
@@ -254,7 +254,6 @@ Dans ces calées expérimentales, `r sum(hook_comparison$j_hook)` sébastes aux 
 Bien que cela représente un échantillon relativement petit de poissons pour estimer un facteur de correction des hameçons pour le sébaste aux yeux jaunes, en estimant simultanément le facteur de correction tout en normalisant l’indice de la population à l’aide d’un modèle géostatistique, nous avons été en mesure d’intégrer l’incertitude du facteur de correction dans les erreurs types de l’indice ainsi obtenues (section \@ref(sec:dog-index-model)). 
 Néanmoins, il est important de noter que ce facteur de correction est basé sur un nombre limité de calées. Il repose principalement sur cinq calées avec un ou deux sébastes aux yeux jaunes de plus capturés au moyen d’hameçons circulaires que par des hameçons en J et deux calées avec 12 et quatre sébastes aux yeux jaunes capturés au moyen d’hameçons circulaires contre zéro au moyen d’hameçons en J (tableau \@ref(tab:dogfish-hook-comparison)).
 
-\clearpage
 
 ```{r dogfish-hook-comparison, results='asis'}
 hook_comparison %>%
