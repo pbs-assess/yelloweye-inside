@@ -26,7 +26,7 @@ Il faut établir un plan de rétablissement pour les stocks de poissons canadien
 knitr::include_graphics(here::here("figs-french/pa-framework.png"))
 ```
 
-En juin 2019, d’importantes modifications apportées à la *Loi sur les pêches* du Canada ont légiféré de nombreux éléments clés du Cadre pour la pêche durable, qui sont enchâssés dans les dispositions sur les stocks de poissons ([article 6 de la *Loi sur les pêches*](https://laws-lois.justice.gc.ca/fra/lois/f-14/page-3.html#h-1175547). 
+En juin 2019, d’importantes modifications apportées à la *Loi sur les pêches* du Canada ont légiféré de nombreux éléments clés du Cadre pour la pêche durable, qui sont enchâssés dans les dispositions sur les stocks de poissons ([article 6 de la *Loi sur les pêches*](https://laws-lois.justice.gc.ca/fra/lois/f-14/page-3.html#h-1175547)). 
 Les dispositions relatives aux stocks de poissons exigent que les principaux stocks soient gérés à des niveaux durables, en particulier à des niveaux de biomasse supérieurs au PRL. 
 De plus, le paragraphe 6.2(1) stipule que si un grand stock de poissons a diminué en deçà de son PRL, un plan de rétablissement doit être établi pour reconstituer le stock au-dessus du PRL. 
 Les grands stocks de poissons seront désignés en vertu d’un règlement, le premier lot de stocks devant l’être à l’automne 2020.
