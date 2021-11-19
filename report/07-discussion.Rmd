@@ -155,7 +155,6 @@ Satisficed MPs in the current analyses included constant catch MPs and annual Is
 Therefore, if an index-based MP is selected, we recommend annual updates.
 In line with guidance for rebuilding plans in Canada [@dfo2013], we recommend re-evaluation of the performance of the selected MP at least every three years.
 
-\clearpage
 
 # ACKNOWLEDGEMENTS
 

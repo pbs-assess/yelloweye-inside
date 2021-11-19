@@ -108,7 +108,7 @@ Les applications futures du Cadre des procédures de gestion pour ce stock pourr
 ### Prises historiques {#sec:discussion-uncertainties-catch}
 
 L’autre grande source d’incertitude dans nos analyses est l’ampleur des prises commerciales et récréatives historiques. L’incertitude concernant les prises commerciales vient du fait qu’avant 1950, les sébastes autres que le sébaste à longue mâchoire étaient déclarés dans une catégorie agrégée; l’ampleur des prises non déclarées de 1986 à 2005 constitue également une grande incertitude.
-@Haigh2011 ont reconstitué les données sur les prises historiques jusqu’en 2005 et tenté de séparer le sébaste aux yeux jaunes de la catégorie agrégée des sébastes et de tenir compte des poissons rejetés. 
+@haigh2011 ont reconstitué les données sur les prises historiques jusqu’en 2005 et tenté de séparer le sébaste aux yeux jaunes de la catégorie agrégée des sébastes et de tenir compte des poissons rejetés. 
 Les prises reconstituées ont été utilisées dans l’évaluation précédente du stock [@yamanaka2011].
 Malgré une certaine controverse au sujet des données reconstituées sur les prises, pour le stock de sébaste des eaux extérieures comme pour celui des eaux intérieures, la réévaluation de la reconstitution était hors de la portée de ce travail et demeure la meilleure série chronologique accessible des prises historiques. 
 Nous avons donc repris la même approche que @yamanaka2011 pour reconstituer les données historiques sur les prises récréatives et estimer les prises récréatives actuelles. 
