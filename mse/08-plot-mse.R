@@ -173,7 +173,7 @@ g <- map(e_df_list, ~ dplyr::filter(.x, MP %in% union(mp_sat, "NFref"))) %>%
   theme(
     plot.margin = margin(t = 11 / 2 - 5, r = 11 / 2 + 15, b = 11 / 2, l = 11 / 2 - 5)
   )
-ggsave(paste0(fig_dir, "/ye-tigure-cosewic-all.png"), width = 5.7, height = 5)
+ggsave(paste0(fig_dir, "/ye-tigure-cosewic-all.png"), width = 6.3, height = 5)
 
 g <- dplyr::filter(e_avg, MP %in% union(mp_sat, "NFref")) %>%
   plot_tigure(french = FRENCH) + theme(panel.border = element_rect(fill = NA, colour = "grey70", size = rel(1))) + coord_cartesian(expand = FALSE)
