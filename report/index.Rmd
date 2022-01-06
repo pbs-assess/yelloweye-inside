@@ -13,7 +13,7 @@ address: |
   ^1^Pacific Biological Station\
      Fisheries and Oceans Canada, 3190 Hammond Bay Road\
      Nanaimo, British Columbia, V9T 6N7, Canada\
-     
+  \smallskip
   ^2^Institute for the Oceans and Fisheries\
      University of British Columbia AERL, 2202 Main Mall\
      Vancouver, British Columbia, V6T 1Z4, Canada\
