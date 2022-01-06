@@ -182,6 +182,41 @@ Nous avons également évalué les quatre mêmes configurations, appliquées tou
 
 Des illustrations des procédures de gestion IDX sont fournies dans @anderson2020gfmp (leur annexe D).
 
+
+## PROCÉDURES DE GESTION FONDÉES SUR UN MODÈLE {#sec:mp-model-based}
+
+### Modèle de production excédentaire {#sec:mp-sp}
+
+En plus des procédures de gestion empiriques décrites ci-dessus, nous avons évalué un modèle de production excédentaire, jumelé à une règle de contrôle des prises en tant que procédure de gestion fondée sur un modèle. 
+Nous utilisons ici le modèle de production excédentaire mis en œuvre dans l’outil MSEtool [@huynh_msetool_2019] et dans TMB [@tmb], d’après @fletcher1978. 
+Le modèle de production excédentaire utilisé dans ce cadre est entièrement documenté dans @anderson2020gfmp (leur annexe D). 
+Il convient de noter que le modèle de production excédentaire utilise tous les indices accessibles pour la période historique, mais seulement le relevé à la palangre sur fond dur pour la période de projection.
+
+Nous avons associé ce modèle à deux règles de contrôle des prises à augmentation progressive (figure \@ref(fig:mp-hcrs)) :
+
+1. HCR-8040 : Au-dessus de 80 % de $\hat{B}/\hat{B}_\textrm{RMD}$, $F_y = \hat{F}_\textrm{RMD}$; à 40 % ou moins de l’estimation de $\hat{B}/\hat{B}_\textrm{RMD}$, $F_y = 0$; entre 40 % et 80 %, interpoler le facteur d’ajustement linéairement. 
+
+Il est à noter que la notation hat indique que le point de référence a été estimé dans la procédure de gestion de procédure excédentaire. 
+
+Cette règle de contrôle des prises crée des points de contrôle opérationnels qui imitent les points de référence biologiques provisoires, supérieur du stock et de référence limite, du Cadre pour la pêche durable du MPO (figure \@ref(fig:pa-illustration)), les points de contrôle opérationnels définissant les seuils des mesures de gestion (c.-à-d. réduction de la mortalité par pêche).
+
+2. HCR-4010 : Au-dessus de 40 % de l’estimation de $\hat{B}/\hat{B}_0$ (biomasse divisée par la biomasse féconde à l’équilibre non exploitée), $F_y = \hat{F}_\textrm{RMD}$; à 10 % de l’estimation de $F_y = \hat{F}_\textrm{RMD}$, $F_y = 0$; entre 10 % et 40 %, interpoler le facteur d’ajustement linéairement. 
+Cette règle de contrôle des prises est couramment appliquée dans la documentation sur les pêches et sur la côte Ouest des États-Unis [p. ex., @berger_2019]. 
+Il convient de noter que ce point de référence est fondé sur les estimations de la procédure de gestion de *B*~0~, tandis que HCR-8040 repose sur *B*~RMD~.
+
+Nous avons évalué deux configurations des procédures de gestion du modèle de production excédentaire, appliquées tous les cinq ans :
+
+- SP_8040_5u : Modèle de production excédentaire jumelé à HCR-8040
+
+- SP_4010_5u : Modèle de production excédentaire jumelé à HCR-4010
+
+Nous avons également évalué les deux mêmes configurations, appliquées tous les 10 ans :
+
+- SP_4010_10u
+
+- SP_8040_10u
+
+
 ```{r, mp-hcrs, fig.cap="Règles de contrôle des prises provisoires proposées associées aux procédures de gestion fondées sur des modèles.", fig.asp=0.38, fig.width=7.5, out.width="0.8\\textwidth"}
 f <- function (Brel, LRP, TRP, rel_min = 0, rel_max = 1, ...) {
     adj <- rep(rel_max, length(Brel))
@@ -206,34 +241,35 @@ pars8040 <- expand.grid(
   type = "HCR-8040", stringsAsFactors = FALSE)
 pars8040$tac <- purrr::pmap_dbl(pars8040, f)
 
-parsRMD <- expand.grid(
+parsMSY <- expand.grid(
   Brel = seq(0, 1, length.out = 200),
   LRP = NA,
   TRP = NA,
-  type = "HCR-RMD", stringsAsFactors = FALSE)
-parsRMD$tac <- 1
+  type = "HCR-MSY", stringsAsFactors = FALSE)
+parsMSY$tac <- 1
 
 pars <- bind_rows(pars8040, pars4010) %>%
-  bind_rows(parsRMD)
+  bind_rows(parsMSY)
 
 pars$type <- as.factor(pars$type)
-pars$type <- forcats::fct_relevel(pars$type, "HCR-RMD", "HCR-4010", "HCR-8040")
+pars$type <- forcats::fct_relevel(pars$type, "HCR-MSY", "HCR-4010", "HCR-8040")
 
-make_hcr_fig <- function(dat, xlab = expression(Estimé~B/B[0])) {
+make_hcr_fig <- function(dat, xlab = expression(Estimated~B/B[0])) {
   ggplot(dat, aes(Brel, tac)) +
   geom_line() +
   ggsidekick::theme_sleek() +
   labs(
     x = xlab,
-    y = "Facteur d’ajustement du TAC\n(proportion de RMD"
+    y = "Facteur d’ajustement du TAC\n(proportion de RMD)"
   ) +
   geom_vline(aes(xintercept = LRP), lty = 2, alpha = 0.4) +
   geom_vline(aes(xintercept = TRP), lty = 2, alpha = 0.4)
 }
 
 g1 <- make_hcr_fig(filter(pars, type == "HCR-4010")) + ggtitle("HCR-4010")
-g2 <- make_hcr_fig(filter(pars, type == "HCR-8040"), expression(Estimated~B/B[RMD])) + ggtitle("HCR-8040")
+g2 <- make_hcr_fig(filter(pars, type == "HCR-8040"), expression(Estimated~B/B[MSY])) + ggtitle("HCR-8040")
 
 cowplot::plot_grid(g2, g1, nrow = 1)
 ```
 
+\clearpage

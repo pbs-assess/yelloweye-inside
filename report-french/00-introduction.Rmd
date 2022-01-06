@@ -113,11 +113,6 @@ En grande partie, le logiciel DLMtool a été conçu pour permettre aux praticie
 
 (ref:fig-mse-chart) Les étapes du processus d’évaluation de la stratégie de gestion selon @punt2016, tel que mis en œuvre dans DLMtool. Copié de @anderson2020gfmp et adapté de @carruthers2018. Cette figure complète la figure \@ref(fig:mse-chart-basic).
 
-
-```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
-knitr::include_graphics(here::here("figs-french/mse-chart.png"))
-```
-
 Les six étapes sont les suivantes :
 
 Étape 1 : Définition du contexte décisionnel.
@@ -131,6 +126,11 @@ Les six étapes sont les suivantes :
 Étape 5 : Simulation de l’application des procédures de gestion.
 
 Étape 6 : Présentation des résultats et choix de la procédure de gestion.
+
+\clearpage
+```{r mse-chart, fig.cap="(ref:fig-mse-chart)", out.width="\\textwidth"}
+knitr::include_graphics(here::here("figs-french/mse-chart.png"))
+```
 
 Après la sélection et la mise en œuvre de la procédure de gestion pour l’établissement de la limite des prises (figure \@ref(fig:mse-chart); par exemple, application de l’algorithme de la procédure de gestion sélectionnée à l’indice du relevé observé), la dernière étape nécessaire consiste à surveiller et à évaluer périodiquement le rendement de la procédure de gestion [@dfo2013; @dowling2015a; @carruthers2018]. 
 Cela peut se faire par des moyens informels, comme à l’aide de la rétroaction des pêcheurs et des données des relevés [p. ex., @cox2008a], ou au moyen de mesures statistiques plus formelles, où l’on compare les données observées aux prévisions des modèles opérationnels pour vérifier si le système fonctionne comme prévu [@butterworth2008; @carruthers_hordyk_2018; discussion dans @anderson2020gfmp].

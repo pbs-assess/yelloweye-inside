@@ -144,7 +144,7 @@ rec_wide <- rec_area %>%
   select(-starts_with("totaleffort")) %>%
   rename_at(vars(starts_with("tonnes_")), list(~ stringr::str_remove(., "tonnes_"))) %>% 
   mutate_if(is.numeric , replace_na, replace = "--") %>% 
-  rename(Year = year, Effort = effort)
+  rename(ANNEE = year, EFFORT = effort)
 
 
 names(rec_wide) <- gsub("PFMA", "SGPP", names(rec_wide))
@@ -192,7 +192,7 @@ Toutefois, la proportion de pêcheurs à des fins ASR rencontrés par le vérifi
 Comme nous l’avons montré, il y a peu d’information accessible pour aider à quantifier les prises à des fins ASR de sébaste aux yeux jaunes des eaux intérieures. Sans des informations plus détaillées, il n’est pas possible d’estimer de façon fiable l’impact des prises à des fins ASR sur les résultats de cette analyse. Une plus grande collaboration avec les Premières Nations pourrait aider à régler certains de ces problèmes de données et devrait être une priorité pour les analyses futures.
 
 
-\clearpage
+
 
 ```{r fsc-catch, echo=FALSE, results = "asis"}
 fsc_catch <- readr::read_csv(here("data-raw/fsc-dmp.csv")) %>% 
@@ -242,3 +242,4 @@ csasdown::csas_table(timeline,
   kableExtra::column_spec(3, width = "7.5cm")
 ```
 
+\clearpage

@@ -17,7 +17,7 @@ Cependant, plusieurs irrégularités se sont produites (figure \@ref(fig:hbll-ra
 (ref:fig-map-HBLL-NS) Carte des blocs du relevé à la palangre sur fond dur indiquant les régions du nord (en bleu) et du sud (en vert). Les aires de conservation du sébaste (blocs orange) sont également représentées.
 
 ```{r map-HBLL-NS, fig.cap="(ref:fig-map-HBLL-NS)", out.width="5in"}
-knitr::include_graphics(here::here("figs/YE_Inside_2019_HBLL_L_fr.png"))
+knitr::include_graphics(here::here("figs-french/YE_Inside_2019_HBLL_L.png"))
 ```
 
 * Le relevé n’a pas eu lieu en 2006 et en 2017.
