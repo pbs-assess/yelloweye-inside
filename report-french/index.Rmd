@@ -13,16 +13,17 @@ address: |
     ^1^Station biologique du Pacifique\
       Pêches et Océans Canada, 3190, chemin Hammond Bay\
       Nanaimo (Colombie-Britannique) V9T 6N7, Canada\
+     \smallskip
     ^2^Institut pour les océans et la pêche\
      LRAE de l’Université de la Colombie- Britannique, 2202, Main Mall\
      Vancouver (Colombie-Britannique)  V6T 1Z4, Canada\
 citation_other_language: "Haggarty, D.R., Huynh, Q.C., Forrest, R.E., Anderson, S.C., Bresch, M.J., Keppel, E.A. 2021. Evaluation of potential rebuilding strategies for Inside Yelloweye Rockfish (*Sebastes ruberrimus*) in British Columbia. DFO Can. Sci. Advis. Sec. Res. Doc. 2021/008. vi + 141 p."
-year: 2021
-report_number: 008
+year: "2021"
+report_number: "008"
 isbn: "Fs70-5/2021-008F-PDF"
 cat_no: "978-0-660-38699-7"
 region: Pacific Region
-copy_sty: false
+copy_sty: true
 
 
 abstract: |
