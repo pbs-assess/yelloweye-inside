@@ -95,9 +95,6 @@ Nous avons converti les nombres de sébastes en poids en multipliant par 2,49 kg
 
 Nous n’avons pas élaboré d’indice des CPUE pour la pêche récréative, bien que des données récentes sur les relevés par interrogation de pêcheurs soient accessibles. Depuis l’imposition de procédures de gestion visant la conservation des sébastes (tableau \@ref(tab:rec-mgt-changes)), une tendance à l’évitement actif du sébaste a été observée dans les pêches récréatives. De ce fait, nous craignons qu’une série de CPUE pour la pêche récréative ne tienne pas compte des changements de l’abondance et ne soit donc trompeuse aux fins de l’évaluation.
 
-
-\clearpage
-
 ```{r reccatch, out.width="0.8\\textwidth", fig.width=6, fig.cap="Prises récréatives de sébaste aux yeux jaunes des eaux intérieures. La ligne noire indique les prises reconstituées et les barres sont les données des relevés par interrogation de pêcheurs. Les données sont une combinaison des prises reconstituées (1918--1981), des prises analysées à partir du total des prises de sébaste dans les relevés par interrogation de pêcheurs (1982--1999) et des prises provenant de relevés sur certaines espèces par interrogation de pêcheurs (1982--2019)."}
 rec_catch <- readr::read_csv(here("data-raw/rec-allcatch-effort.csv"))
  
@@ -150,6 +147,8 @@ rec_wide <- rec_area %>%
   rename(Year = year, Effort = effort)
 
 
+names(rec_wide) <- gsub("PFMA", "SGPP", names(rec_wide))
+names(rec_wide) <- gsub("Year", rosettafish::en2fr("Year"), names(rec_wide))
 # préparer le tableau des prises par SGPP et l’effort total par année
 csasdown::csas_table(rec_wide,
   format = "latex",

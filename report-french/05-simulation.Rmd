@@ -32,7 +32,7 @@ Pour déterminer les procédures de gestion qui seraient retenues comme procédu
 Toutes les procédures de gestion répondaient au critère de satisfaction (PRL 1,5DG > 0,9), à la fois dans les scénarios de l’ensemble de référence de modèles opérationnels et dans la moyenne des quatre modèles opérationnels de référence (figures \@ref(fig:tigure-avg) et \@ref(fig:tigure-min)). 
 Comme de nombreuses procédures de gestion généraient également de faibles prises, nous avons appliqué un filtre de satisfaction supplémentaire, retenant seulement les procédures de gestion dont la moyenne de ST C10 est supérieure à 0,50. 
 Ainsi, seuls les TAC à prises constantes de 10 t et 15 t et les procédures de gestion Islope ont été satisfaits (figure \@ref(fig:tigure-avg)). 
-Les 'r gfutilities::number_to_word(length(mp_sat))` procédures de gestion satisfaisantes étaient `r gfutilities::commify(sort(mp_sat))` (voir les descriptions à l’annexe \@ref(app:mps)).
+Les `r gfutilities::number_to_word(length(mp_sat))` procédures de gestion satisfaisantes étaient `r gfutilities::commify(sort(mp_sat))` (voir les descriptions à l’annexe \@ref(app:mps)).
 
 Dans l’ensemble de référence, le PRL moyen de 1,5DG était de `r round2(max(pm_avg_sat$"PRL 1,5DG"))` pour toutes les procédures de gestion et ST C10 variait entre `r round2(min(pm_avg_sat$"CT C10"))` et `r round2(max(pm_avg_sat$"CT C10"))` (figures \@ref(fig:tigure-avg) et \@ref(fig:tigure-panel)). 
 Le PRL minimal de 1,5DG était de `r round2(max(pm_min_sat$"PRL 1,5DG"))` pour toutes les procédures de gestion et CT C10 variait de `r round2(min(pm_min_sat$"CT C10"))` à `r round2(max(pm_min_sat$"CT C10"))` parmi les procédures de gestion de l’ensemble de référence (figures \@ref(fig:tigure-min) et \@ref(fig:tigure-panel)).

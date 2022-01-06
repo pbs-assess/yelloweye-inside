@@ -17,13 +17,13 @@ Cependant, plusieurs irrégularités se sont produites (figure \@ref(fig:hbll-ra
 (ref:fig-map-HBLL-NS) Carte des blocs du relevé à la palangre sur fond dur indiquant les régions du nord (en bleu) et du sud (en vert). Les aires de conservation du sébaste (blocs orange) sont également représentées.
 
 ```{r map-HBLL-NS, fig.cap="(ref:fig-map-HBLL-NS)", out.width="5in"}
-knitr::include_graphics(here::here("figs/YE_Inside_2019_HBLL_L.png"))
+knitr::include_graphics(here::here("figs/YE_Inside_2019_HBLL_L_fr.png"))
 ```
 
-- Le relevé n’a pas eu lieu en 2006 et en 2017.
-- La durée du relevé varie d’une année à l’autre, ce qui se traduit par des incohérences dans la portée géographique du relevé d’une année à l’autre.
-- La baie Desolation (SGPP 15) fait partie de la région du sud, mais a été échantillonnée dans la région du nord en 2003, 2008 et 2019, et ne l’a pas été en 2009 et 2018. Les taux de prise du sébaste aux yeux jaunes sont les plus élevés dans la baie Desolation (SGPP 15; figure \@ref(fig:map-4B)). Le manque d’échantillonnage en 2009 et en 2018 devrait donc avoir un effet sur les estimations du relevé du sud.
-- Le relevé du sud n’a pas été réalisé en entier en 2009; la pêche a seulement eu lieu dans 38 blocs dans le sud du détroit de Georgie, et uniquement entre Nanaimo et Victoria. Cela contraste avec les années normales où le relevé couvre environ 70 blocs jusqu’à Campbell River au nord. Les taux de prise de la plupart des espèces de sébastes capturées dans ce relevé ayant tendance à diminuer du nord au sud, cela pourrait également avoir un effet important sur l’indice du relevé cette année-là.
+* Le relevé n’a pas eu lieu en 2006 et en 2017.
+* La durée du relevé varie d’une année à l’autre, ce qui se traduit par des incohérences dans la portée géographique du relevé d’une année à l’autre.
+* La baie Desolation (SGPP 15) fait partie de la région du sud, mais a été échantillonnée dans la région du nord en 2003, 2008 et 2019, et ne l’a pas été en 2009 et 2018. Les taux de prise du sébaste aux yeux jaunes sont les plus élevés dans la baie Desolation (SGPP 15; figure \@ref(fig:map-4B)). Le manque d’échantillonnage en 2009 et en 2018 devrait donc avoir un effet sur les estimations du relevé du sud.
+* Le relevé du sud n’a pas été réalisé en entier en 2009; la pêche a seulement eu lieu dans 38 blocs dans le sud du détroit de Georgie, et uniquement entre Nanaimo et Victoria. Cela contraste avec les années normales où le relevé couvre environ 70 blocs jusqu’à Campbell River au nord. Les taux de prise de la plupart des espèces de sébastes capturées dans ce relevé ayant tendance à diminuer du nord au sud, cela pourrait également avoir un effet important sur l’indice du relevé cette année-là.
 
 Nous avons appliqué un modèle spatiotemporel géostatistique pour normaliser l’indice du relevé à la palangre sur fond dur [p. ex., @shelton2014; @thorson2015; @anderson2019synopsis] afin de tenir compte de la mise en œuvre irrégulière du plan du relevé (section \@ref(sec:hbll-spatiotemporal)). 
 Nous avons confirmé, par simulation, que cette approche peut « assembler » les régions de relevé du nord et du sud avec relativement peu de biais (section \@ref(sec:hbll-sim)).
@@ -253,8 +253,6 @@ Dans l’étude de comparaison des hameçons, `r sum(d2004$circle_hook)` calées
 Dans ces calées expérimentales, `r sum(hook_comparison$j_hook)` sébastes aux yeux jaunes ont été capturés à l’aide d’hameçons en J et `r sum(hook_comparison$circle_hook)` à l’aide d’hameçons circulaires (tableau \@ref(tab:dogfish-hook-comparison)). 
 Bien que cela représente un échantillon relativement petit de poissons pour estimer un facteur de correction des hameçons pour le sébaste aux yeux jaunes, en estimant simultanément le facteur de correction tout en normalisant l’indice de la population à l’aide d’un modèle géostatistique, nous avons été en mesure d’intégrer l’incertitude du facteur de correction dans les erreurs types de l’indice ainsi obtenues (section \@ref(sec:dog-index-model)). 
 Néanmoins, il est important de noter que ce facteur de correction est basé sur un nombre limité de calées. Il repose principalement sur cinq calées avec un ou deux sébastes aux yeux jaunes de plus capturés au moyen d’hameçons circulaires que par des hameçons en J et deux calées avec 12 et quatre sébastes aux yeux jaunes capturés au moyen d’hameçons circulaires contre zéro au moyen d’hameçons en J (tableau \@ref(tab:dogfish-hook-comparison)).
-
-\clearpage
 
 ```{r dogfish-hook-comparison, results='asis'}
 hook_comparison %>%

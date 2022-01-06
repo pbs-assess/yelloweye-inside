@@ -3,7 +3,7 @@
 Nous avons appliqué un nouveau Cadre des procédures de gestion pour les poissons de fond du Pacifique [@anderson2020gfmp] afin d’évaluer la capacité des autres procédures de gestion à atteindre les objectifs de rétablissement pour le sébaste aux yeux jaunes des eaux intérieures. 
 Il s’agit de la première application du Cadre des procédures de gestion à des fins décisionnelles.
 
-Nous avons évalué le rendement de 31 procédures de gestion à données limitées (et de trois procédures de gestion de référence) en ce qui a trait à l’atteinte des objectifs décrits dans la section \@ref(sec:objectives-metrics). 
+Nous avons évalué le rendement de 31 procédures de gestion à données limitées (et de trois procédures de gestion de référence) en ce qui a trait à l’atteinte des objectifs décrits dans la section 3. 
 Nous avons éliminé les procédures de gestion qui ne satisfaisaient pas aux deux critères PRL 1,5DG > 0,9 et CT C10 > 0,50 dans les scénarios de l’ensemble de référence de modèles opérationnels, et il est resté 
 `r gfutilities::number_to_word(length(mp_sat))` procédures de gestion (`r gfutilities::commify(sort(mp_sat))`).
 Toutes les procédures de gestion restantes atteignaient les paramètres de conservation PRL 1,5DG, SSR 1,5DG et PRL 1DG avec une probabilité supérieure à 0,98 (49 fois sur 50) dans les quatre scénarios de l’ensemble de référence de modèles opérationnels, surtout qu’aucun des modèles opérationnels de l’ensemble de référence n’estimait que le stock serait dans la zone critique en 2020---le début de la période de projection. 
@@ -35,7 +35,7 @@ Pour tous les autres scénarios de modèles opérationnels, nous avons échantil
 
 Le taux de mortalité naturelle des populations de poissons est l’un des paramètres les plus importants, mais les plus difficiles à estimer. 
 De nombreuses méthodes ont été élaborées pour estimer *M* à partir des paramètres du cycle biologique accessibles. 
-Les paramètres du sébaste aux yeux jaunes des eaux intérieures ont été saisis dans une [application] (http://barefootecologist.com.au/shiny_m.html) mise au point par des scientifiques de la NOAA, qui permet d’estimer *M* à l’aide de diverses méthodes empiriques publiées. Les estimations de *M* variaient de 0,03 à 0,17, selon la méthode empirique. D’autres évaluations du sébaste aux yeux jaunes ont utilisé des valeurs plus faibles pour *M*, plus proches ou plus basses que celles utilisées dans le scénario de modèle opérationnel (A) (moyenne de 0,025 y^-1^). 
+Les paramètres du sébaste aux yeux jaunes des eaux intérieures ont été saisis dans une [application](http://barefootecologist.com.au/shiny_m.html) mise au point par des scientifiques de la NOAA, qui permet d’estimer *M* à l’aide de diverses méthodes empiriques publiées. Les estimations de *M* variaient de 0,03 à 0,17, selon la méthode empirique. D’autres évaluations du sébaste aux yeux jaunes ont utilisé des valeurs plus faibles pour *M*, plus proches ou plus basses que celles utilisées dans le scénario de modèle opérationnel (A) (moyenne de 0,025 y^-1^). 
 Par exemple, le récent plan de rétablissement du stock de sébaste aux yeux jaunes des eaux extérieures a estimé les valeurs médianes pour *M* entre 0,031 *y*^-1^ et 0,044 *y*^-1^, selon le modèle opérationnel [@cox2020]. 
 L’évaluation et le rapport de situation de 2008 du COSEPAC pour les stocks de sébaste aux yeux jaunes des eaux intérieures et extérieures [@cosewic2008] ont utilisé une valeur de *M* = 0,02 *y*^-1^, citant l’évaluation de 2001 du stock des eaux intérieures [@yamanaka2001]. 
 De même, les évaluations du stock de sébaste aux yeux jaunes du sud du golfe d’Alaska ont utilisé une valeur de *M* = 0,02 *y*^-1^ [@wood2019].
@@ -108,7 +108,7 @@ Les applications futures du Cadre des procédures de gestion pour ce stock pourr
 ### Prises historiques {#sec:discussion-uncertainties-catch}
 
 L’autre grande source d’incertitude dans nos analyses est l’ampleur des prises commerciales et récréatives historiques. L’incertitude concernant les prises commerciales vient du fait qu’avant 1950, les sébastes autres que le sébaste à longue mâchoire étaient déclarés dans une catégorie agrégée; l’ampleur des prises non déclarées de 1986 à 2005 constitue également une grande incertitude.
-@Haigh2011 ont reconstitué les données sur les prises historiques jusqu’en 2005 et tenté de séparer le sébaste aux yeux jaunes de la catégorie agrégée des sébastes et de tenir compte des poissons rejetés. 
+@haigh2011 ont reconstitué les données sur les prises historiques jusqu’en 2005 et tenté de séparer le sébaste aux yeux jaunes de la catégorie agrégée des sébastes et de tenir compte des poissons rejetés. 
 Les prises reconstituées ont été utilisées dans l’évaluation précédente du stock [@yamanaka2011].
 Malgré une certaine controverse au sujet des données reconstituées sur les prises, pour le stock de sébaste des eaux extérieures comme pour celui des eaux intérieures, la réévaluation de la reconstitution était hors de la portée de ce travail et demeure la meilleure série chronologique accessible des prises historiques. 
 Nous avons donc repris la même approche que @yamanaka2011 pour reconstituer les données historiques sur les prises récréatives et estimer les prises récréatives actuelles. 
@@ -156,9 +156,6 @@ Les procédures d’évaluation informelles, sous la forme de commentaires des i
 Parmi les procédures de gestion satisfaisantes dans les analyses actuelles, certaines sont à prises constantes et d’autres sont des procédures de gestion Islope annuelles. Toutes les procédures de gestion fondées sur des indices ont également été évaluées tous les cinq ans. Toutes ces procédures de gestion satisfaisaient aux critères du PRL 1,5DG, mais aucune ne répondait aux critères de CT C10. 
 C’est pourquoi nous recommandons des mises à jour annuelles si une procédure de gestion fondée sur des indices est sélectionnée. 
 Conformément aux directives pour les plans de rétablissement au Canada [@dfo2013], nous recommandons de réévaluer le rendement de la procédure de gestion choisie au moins tous les trois ans.
-
-
-\clearpage
 
 # REMERCIEMENTS
 

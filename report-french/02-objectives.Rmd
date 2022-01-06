@@ -55,12 +55,12 @@ Nous proposons les paramètres de rendement suivants pour mesurer les objectifs,
 Nous définissons le PRL et le RSS comme 0,4*B*~RMD~ et 0,8*B*~RMD~, respectivement, en suivant les définitions provisoires du Cadre de l’approche de précaution [@dfo2006], utilisées dans l’évaluation des stocks de 2010 [@yamanaka2011]. 
 Dans les simulations en boucle fermée, tous les points de référence et les paramètres de rendement sont calculés dans le modèle opérationnel. 
 Les paramètres de rendement bruts sont calculés pour chacune des 100 années de la période de projection et résumés en fonction de la période d’intérêt :
+
 1. **PRL 1,5DG** : P(*B* > 0,4 *B*~RMD~) après 1,5 DG (en 2075, année 56 de la période de projection)
 2. **RSS 1,5DG** : P(*B* > 0,8 *B*~RMD~) après 1,5 DG (en 2075, année 56 de la période de projection)
 3. **PRL 1DG** : P(*B* > 0,4 *B*~RMD~) après 1 DG (en 2057, année 38 de la période de projection)
 4. **CT C10** : P(prises moyennes > 10 tonnes) de 2020 à 2029, années 1 à 10 de la période de projection 
 5. **CT C15** : P(prises moyennes > 15 tonnes) de 2020 à 2029, années 1 à 10 de la période de projection
-<!-- 6. ST C20: P(catch > 20 t) during 2020--2029 RF: we don't report this one-->
 6. **LT C20** : P(prises moyennes > 20 tonnes) après 1 DG (en 2057, année 38 de la période de projection)
 7. **CT EAMP** : P(EAMP~2020-2029~ < EAMP~2012-2019~)
 
