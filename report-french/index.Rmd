@@ -22,7 +22,7 @@ year: "2021"
 report_number: "008"
 isbn: "Fs70-5/2021-008F-PDF"
 cat_no: "978-0-660-38699-7"
-region: Pacific Region
+region: Région du Pacifique 
 copy_sty: true
 
 
