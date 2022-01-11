@@ -339,6 +339,10 @@ ref_pts[,1] <- c(
   "(A) Faible M ",
   "(B) CV élevé du RPFD")
 
+ref_pts$`F~RMD~ (/y)` <- gsub("\\.", ",", ref_pts$`F~RMD~ (/y)`)
+ref_pts$`B~RMD~ (t)` <- gsub("\\.", ",", ref_pts$`B~RMD~ (t)`)
+ref_pts$`RMD (t)` <- gsub("\\.", ",", ref_pts$`RMD (t)`)
+ref_pts$`RMD (t)` <- gsub("^1", "1 ", ref_pts$`RMD (t)`)
 ref_pts %>% rename("OM Scenario" = X1) %>% 
   csasdown::csas_table(caption = "Points de référence estimés pour chaque scénario de modèle opérationnel. Les écarts-types entre les répétitions sont indiqués entre parenthèses. PDF = relevé à la palangre sur fond dur.") %>% 
   kableExtra::column_spec(1:5, width = "5cm") 
