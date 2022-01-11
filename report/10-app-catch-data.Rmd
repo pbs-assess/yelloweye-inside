@@ -20,7 +20,7 @@ Non-retained Yelloweye Rockfish catch (releases or discards) was estimated for e
 The estimated historical unreported catch was then incorporated into the catch reconstruction, giving a final annual total.  
 
 The commercial catch time series used in this analysis (Figure \@ref(fig:commcatch2) and Table \@ref(tab:commcatch)) differs from the one previously reported in 2009, for several reasons.
-Ongoing quality control and updates to the groundfish catch database resulted in minor differences in the data over time (Maria Surry, DFO, Pacific Biological Station, pers. comm., March 9, 2020).
+Ongoing quality control and updates to the groundfish catch database resulted in minor differences in the data over time (Maria Cornthwaite, DFO, Pacific Biological Station, pers. comm., March 9, 2020).
 As well, an earlier version of the catch reconstruction algorithm was used to develop the time series for the previous stock assessment, as the final version had not yet been published.
 Further refinements to the reconstruction algorithm resulted in significant changes to the estimated historical catch in some years (Norm Olsen, DFO, Pacific Biological Station, pers. comm., March 9,2020).
 
