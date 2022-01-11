@@ -4,9 +4,6 @@
 % https://tex.stackexchange.com/a/325436
 \frenchbsetup{SmallCapsFigTabCaptions=false}
 
-%% Move the footer position flush to the left margin (default is indented a bit)
-\usepackage[flushmargin, bottom]{footmisc}
-
 \usepackage{tabularx}
 \usepackage[all]{nowidow}
 
@@ -60,8 +57,6 @@
             right=1in]
            {geometry}
 %% ------------------------------------------------------------------------------
-%% Add space between the bottom of the text and the footnoterule (line)
-\addtolength{\skip\footins}{10pt}
 
 %% ------------------------------------------------------------------------------
 %% To add in headers and footers
@@ -432,7 +427,6 @@
   labelsep*=0.01in,  % Space betw. numbers and text (note * is req'd)
   leftmargin=!,      % No space betw. margin of list and following lines
   itemindent=0pt,    % Hanging indentation (after first line)
-  label={$\bullet$}, % as of 2022-01-06 French turns this to --- and English has small dot, so set it manually
   itemsep=0pt        % Vertical space between list items
 }
 %\setitemize{nosep}   % This needs to be here for itemsep above to be recognized
