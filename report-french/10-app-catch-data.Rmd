@@ -124,7 +124,7 @@ csasdown::csas_table(rec_catch,
   align = c("c", "c", "c"),
   digits = 1,
   repeat_header = TRUE,
-  caption = "Prises récréatives de sébaste aux yeux jaunes des eaux intérieures. Les données sont une combinaison des prises reconstituées (1918--1981), des prises analysées à partir du total des prises de sébaste dans les relevés par interrogation de pêcheurs (1982--1999) et des prises provenant de relevés sur certaines espèces par interrogation de pêcheurs (1982--2019)."
+  caption = "Prises récréatives de sébaste aux yeux jaunes des eaux intérieures. Les données sont une combinaison des prises reconstituées (1918--1981), des prises analysées à partir du total des prises de sébaste dans les relevés par interrogation de pêcheurs (1982--1999) et des prises provenant de relevés sur certaines espèces par interrogation de pêcheurs (1982--2019).", format.args = list(decimal.mark = ',', big.mark = " ")
 )
 ```
 
