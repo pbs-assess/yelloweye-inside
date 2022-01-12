@@ -18,11 +18,11 @@ address: |
      University of British Columbia AERL, 2202 Main Mall\
      Vancouver, British Columbia, V6T 1Z4, Canada\
 citation_other_language: "Haggarty, D.R., Huynh, Q.C., Forrest, R.E., Anderson, S.C., Bresch, M.J., Keppel, E.A. 2021. Évaluation des stratégies de rétablissement possibles pour le sébaste aux yeux jaunes (*Sebastes ruberrimus*) des eaux intérieures de la Colombie-Britannique. DFO Can. Sci. Advis. Sec. Res. Doc. 2021/008. vi + 141 p."
-year: "2021"
+year: "2022"
 report_number: "008"
 isbn: "Fs70-5/2021-008E-PDF"
 cat_no: "978-0-660-38698-0"
-region: Pacific Region
+region: "Pacific Region"
 
 
 abstract: |

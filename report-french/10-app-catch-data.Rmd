@@ -20,7 +20,7 @@ Les prises de sébaste aux yeux jaunes non conservées (remises à l’eau ou re
 Les prises historiques non déclarées ont ensuite été intégrées à la reconstitution des prises, pour donner un total annuel final.
 
 La série chronologique des prises commerciales utilisée dans cette analyse (figure \@ref(fig:commcatch2) et tableau \@ref(tab:commcatch)) diffère de celle précédemment présentée en 2009 pour plusieurs raisons. 
-Le contrôle continu de la qualité et les mises à jour de la base de données sur les prises de poisson de fond ont entraîné des différences mineures dans les données au fil du temps (Maria Surry, MPO, Station biologique du Pacifique, comm. pers., 9 mars 2020). 
+Le contrôle continu de la qualité et les mises à jour de la base de données sur les prises de poisson de fond ont entraîné des différences mineures dans les données au fil du temps (Maria Cornthwaite, MPO, Station biologique du Pacifique, comm. pers., 9 mars 2020). 
 De plus, une version antérieure de l’algorithme de reconstitution des prises a été utilisée pour élaborer la série chronologique pour l’évaluation des stocks précédente, car la version finale n’avait pas encore été publiée. 
 D’autres améliorations apportées à l’algorithme de reconstitution ont provoqué des changements importants des prises historiques estimées certaines années (Norm Olsen, MPO, Station biologique du Pacifique, comm. pers., 9 mars 2020).
 
