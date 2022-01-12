@@ -23,9 +23,6 @@ report_number: "008"
 isbn: "Fs70-5/2021-008F-PDF"
 cat_no: "978-0-660-38699-7"
 region: "Région du Pacifique"
-copy_sty: true
-
->>>>>>> c28233c7ea4002e42c2bbcaaf18913e281a235bd
 
 abstract: |
   En vertu des politiques et de la législation canadiennes, il faut Eétablir un plan de rétablissement pour les stocks de poissons qui ont été évalués comme étant inférieurs au point de référence limite (PRL) afin de les ramener au-delà du PRL. Les plans de rétablissement doivent être fondés sur des objectifs caractérisés par 1) une cible, 2) un délai souhaité pour atteindre la cible et 3) une probabilité acceptable d’atteindre la cible. Les plans de rétablissement doivent également comprendre des mesures de gestion ou des procédures de gestion, des jalons cibles et être évalués régulièrement.
