@@ -1,6 +1,6 @@
 <!-- In general, you shouldn't need to edit this file with the exception of
-the following French/English translation. For a French document, set the following header to: # RÉFÉRENCES CITÉES {-} -->
+the following French/English translation. For a French document, leave the header as # REFERENCES {-} -->
 
 \clearpage
 
-# RÉFÉRENCES CITÉES {-}
+# REFERENCES {-}

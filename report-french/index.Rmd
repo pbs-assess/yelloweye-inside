@@ -18,13 +18,11 @@ address: |
      LRAE de l’Université de la Colombie- Britannique, 2202, Main Mall\
      Vancouver (Colombie-Britannique)  V6T 1Z4, Canada\
 citation_other_language: "Haggarty, D.R., Huynh, Q.C., Forrest, R.E., Anderson, S.C., Bresch, M.J., Keppel, E.A. 2021. Evaluation of potential rebuilding strategies for Inside Yelloweye Rockfish (*Sebastes ruberrimus*) in British Columbia. DFO Can. Sci. Advis. Sec. Res. Doc. 2021/008. vi + 141 p."
-year: "2021"
+year: "2022"
 report_number: "008"
 isbn: "Fs70-5/2021-008F-PDF"
 cat_no: "978-0-660-38699-7"
-region: Région du Pacifique 
-copy_sty: true
-
+region: "Région du Pacifique"
 
 abstract: |
   En vertu des politiques et de la législation canadiennes, il faut Eétablir un plan de rétablissement pour les stocks de poissons qui ont été évalués comme étant inférieurs au point de référence limite (PRL) afin de les ramener au-delà du PRL. Les plans de rétablissement doivent être fondés sur des objectifs caractérisés par 1) une cible, 2) un délai souhaité pour atteindre la cible et 3) une probabilité acceptable d’atteindre la cible. Les plans de rétablissement doivent également comprendre des mesures de gestion ou des procédures de gestion, des jalons cibles et être évalués régulièrement.

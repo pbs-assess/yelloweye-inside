@@ -115,10 +115,12 @@ ggplot() +
 ```{r rectable, echo = FALSE, warning = FALSE, results = "asis"}
 # préparer un histogramme des prises récréatives
 rec_catch <- rec_catch %>% mutate(catch = round(catch, 1)) %>% 
-  mutate(effort= round(effort, 0)) %>% 
-  mutate_if(is.numeric , replace_na, replace = "--") 
+  mutate(effort= round(effort, 0))
+  # mutate_if(is.numeric , replace_na, replace = "--") 
 
-csasdown::csas_table(rec_catch,
+# rec_catch$effort[is.na(rec_catch$effort)] <- ""
+
+tab <- csasdown::csas_table(rec_catch,
   format = "latex",
   col_names = c("Année", "Prises (t)", "Effort (sorties de bateaux)"),
   align = c("c", "c", "c"),
@@ -126,6 +128,7 @@ csasdown::csas_table(rec_catch,
   repeat_header = TRUE,
   caption = "Prises récréatives de sébaste aux yeux jaunes des eaux intérieures. Les données sont une combinaison des prises reconstituées (1918--1981), des prises analysées à partir du total des prises de sébaste dans les relevés par interrogation de pêcheurs (1982--1999) et des prises provenant de relevés sur certaines espèces par interrogation de pêcheurs (1982--2019).", format.args = list(decimal.mark = ',', big.mark = " ")
 )
+gsub("NA", "--", tab)
 ```
 
 
