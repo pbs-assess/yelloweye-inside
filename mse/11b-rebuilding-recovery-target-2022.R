@@ -253,6 +253,42 @@ tt_avg <- local({
 })
 .ggsave("recovery_table_avg.png", tt_avg, height = 2, width = 3)
 
+# Recovery table after 100 years
+tig_100 <- local({
+  tt <- rbind(rNFref, r15t, rFMSY) %>% filter(Year == max(Year)) %>%
+    mutate(MP = MPout[match(MP, names(MPout))],
+           threshold = paste0(threshold * 100, "%\n", ifelse(!FRENCH, "decline", "déclin"))) %>%
+    select(!"Year")
+
+  OM_names <- unique(tt$OM)
+  tt_list <- lapply(OM_names, function(x) {
+    dplyr::filter(tt, OM == x) %>% reshape2::dcast(MP ~ threshold, value.var = "tvalue")
+  }) %>% structure(names = OM_names)
+  tt_list
+  g <- plot_tigure_facet(tt_list, mp_order = MPout %>% rev()) +
+    theme(axis.text.x = element_text(size = 8))
+  g
+})
+.ggsave("recovery_table_100.png", tig_100, height = 3.5, width = 6)
+
+tt_avg_100 <- local({
+  tt <- rbind(rNFref, r15t, rFMSY) %>% filter(Year == max(Year)) %>%
+    mutate(MP = MPout[match(MP, names(MPout))],
+           threshold = paste0(threshold * 100, "%\n", ifelse(!FRENCH, "decline", "déclin"))) %>%
+    select(!"Year")
+
+  OM_names <- unique(tt$OM)[1:4]
+
+  tt_avg <- tt %>% filter(OM %in% OM_names) %>% group_by(MP, threshold) %>% summarise(tvalue = mean(tvalue)) %>%
+    reshape2::dcast(MP ~ threshold, value.var = "tvalue")
+
+  g <- plot_tigure(tt_avg, mp_order = MPout %>% rev()) +
+    theme(axis.text.x = element_text(size = 8))
+  g
+})
+.ggsave("recovery_table_avg_100.png", tt_avg_100, height = 2, width = 3)
+
+
 # Probability of decline vs. biomass
 
 cNFref <- left_join(pNFref, rNFref, by = c("Year", "OM", "MP")) %>%
