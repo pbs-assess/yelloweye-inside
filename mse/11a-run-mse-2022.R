@@ -57,12 +57,12 @@ for(i in 1:length(scenario)) {
   F_terminal <- Hist@AtAge$FM[, , myOM@nyears, 1] %>% apply(1, max)
 
   MP_FMSY <- make_effort_OM(FMSYvec, F_terminal)
-  MP_50FMSY <- make_effort_OM(FMSYvec, F_terminal, relF = 0.5)
-  MP_75FMSY <- make_effort_OM(FMSYvec, F_terminal, relF = 0.75)
-  MP_125FMSY <- make_effort_OM(FMSYvec, F_terminal, relF = 1.25)
+  #MP_50FMSY <- make_effort_OM(FMSYvec, F_terminal, relF = 0.5)
+  #MP_75FMSY <- make_effort_OM(FMSYvec, F_terminal, relF = 0.75)
+  #MP_125FMSY <- make_effort_OM(FMSYvec, F_terminal, relF = 1.25)
 
   message("Projecting...")
-  myMSE <- runMSE(myOM, MPs = c("MP_FMSY", "MP_50FMSY", "MP_75FMSY", "MP_125FMSY"), silent = TRUE)
+  myMSE <- runMSE(myOM, MPs = c("MP_FMSY"), silent = TRUE)
   saveRDS(myMSE, file = paste0("mse/om/MSE_", scenario[i], "_FMSYproj.rds"))
 
   message("Done.\n")

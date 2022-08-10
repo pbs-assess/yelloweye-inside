@@ -56,7 +56,7 @@ mse <- map(scenarios, ~ readRDS(paste0("mse/om/MSE_", .x, ".rds")))
 # Rebuilding target --------------------------------------------------------------------
 .ggsave <- function(filename, plot, ...) {
   if(FRENCH) {
-    filename <- paste0("figS_2022/fr/", filename)
+    filename <- paste0("figs_2022/fr/", filename)
   } else {
     filename <- paste0("figs_2022/", filename)
   }
@@ -73,7 +73,7 @@ p15t <- Map(targ_proj, x = mse, y = scenario_human, MoreArgs = list(MP = "CC_15t
 pFMSY <- Map(targ_proj, x = mse_fmsyproj, y = scenario_human, MoreArgs = list(MP = "MP_FMSY")) %>% bind_rows()
 
 # Summary table of probabilities after 1.5 generations
-MPout <- c("NFref" = en2fr("No fishing", FRENCH),
+MPout <- c("NFref" = en2fr("No fishing", FRENCH, custom_terms = data.frame(english = "No fishing", french = "Aucun pêche")),
            "CC_15t" = en2fr("CC_15t", FRENCH, custom_terms = data.frame(english = "CC_15t", french = "PC_15t")),
            "MP_FMSY" = en2fr("FMSY", FRENCH))
 tig <- local({
@@ -181,8 +181,8 @@ r15t <- lapply(1:length(mse), cosewic_proj, x = mse, y = scenario_human, MP = "C
 rFMSY <- lapply(1:length(mse_fmsyproj), cosewic_proj, x = mse_fmsyproj,
                 y = scenario_human, MP = "MP_FMSY", Hist = Hist_SSB) %>% bind_rows()
 
-col_trans <- en2fr("COSEWIC\ntreshold", FRENCH,
-                   custom_terms = data.frame(english = "COSEWIC\ntreshold",
+col_trans <- en2fr("COSEWIC\nthreshold", FRENCH,
+                   custom_terms = data.frame(english = "COSEWIC\nthreshold",
                                              french = "Seuil du\nCOSEPAC"))
 y_trans <- en2fr("Probability of X % decline", FRENCH,
                  custom_terms = data.frame(english = "Probability of X % decline",
@@ -222,7 +222,7 @@ g <- ggplot(rFMSY, aes(Year, tvalue, colour = paste0(100 * threshold, "%"))) +
 tig <- local({
   tt <- rbind(rNFref, r15t, rFMSY) %>% filter(Year == 2019 + 56) %>%
     mutate(MP = MPout[match(MP, names(MPout))],
-           threshold = paste0(threshold * 100, "%\n", ifelse(!FRENCH, "decline", "déclin"))) %>%
+           threshold = paste0(threshold * 100, "%\n", en2fr("decline", FRENCH, case = "lower"))) %>%
     select(!"Year")
 
   OM_names <- unique(tt$OM)
@@ -231,7 +231,8 @@ tig <- local({
   }) %>% structure(names = OM_names)
   tt_list
   g <- plot_tigure_facet(tt_list, mp_order = MPout %>% rev()) +
-    theme(axis.text.x = element_text(size = 8))
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_fill_viridis_c(limits = c(0, 1), begin = 0.15, end = 1, alpha = 0.6, option = "D", direction = -1)
   g
 })
 .ggsave("recovery_table.png", tig, height = 3.5, width = 6)
@@ -239,7 +240,7 @@ tig <- local({
 tt_avg <- local({
   tt <- rbind(rNFref, r15t, rFMSY) %>% filter(Year == 2019 + 56) %>%
     mutate(MP = MPout[match(MP, names(MPout))],
-           threshold = paste0(threshold * 100, "%\n", ifelse(!FRENCH, "decline", "déclin"))) %>%
+           threshold = paste0(threshold * 100, "%\n", en2fr("decline", FRENCH, case = "lower"))) %>%
     select(!"Year")
 
   OM_names <- unique(tt$OM)[1:4]
@@ -248,7 +249,8 @@ tt_avg <- local({
     reshape2::dcast(MP ~ threshold, value.var = "tvalue")
 
   g <- plot_tigure(tt_avg, mp_order = MPout %>% rev()) +
-    theme(axis.text.x = element_text(size = 8))
+    theme(axis.text.x = element_text(size = 8)) +
+    scale_fill_viridis_c(limits = c(0, 1), begin = 0.15, end = 1, alpha = 0.6, option = "D", direction = -1)
   g
 })
 .ggsave("recovery_table_avg.png", tt_avg, height = 2, width = 3)
@@ -257,7 +259,7 @@ tt_avg <- local({
 tig_100 <- local({
   tt <- rbind(rNFref, r15t, rFMSY) %>% filter(Year == max(Year)) %>%
     mutate(MP = MPout[match(MP, names(MPout))],
-           threshold = paste0(threshold * 100, "%\n", ifelse(!FRENCH, "decline", "déclin"))) %>%
+           threshold = paste0(threshold * 100, "%\n", en2fr("decline", FRENCH, case = "lower"))) %>%
     select(!"Year")
 
   OM_names <- unique(tt$OM)
@@ -274,7 +276,7 @@ tig_100 <- local({
 tt_avg_100 <- local({
   tt <- rbind(rNFref, r15t, rFMSY) %>% filter(Year == max(Year)) %>%
     mutate(MP = MPout[match(MP, names(MPout))],
-           threshold = paste0(threshold * 100, "%\n", ifelse(!FRENCH, "decline", "déclin"))) %>%
+           threshold = paste0(threshold * 100, "%\n", en2fr("decline", FRENCH, case = "lower"))) %>%
     select(!"Year")
 
   OM_names <- unique(tt$OM)[1:4]
