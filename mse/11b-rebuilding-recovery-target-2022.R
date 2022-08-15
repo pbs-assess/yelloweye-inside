@@ -1,5 +1,5 @@
 
-FRENCH <- TRUE
+FRENCH <- FALSE
 
 library(tidyverse)
 library(rosettafish)
@@ -34,19 +34,21 @@ scenarios_rob <- get_filtered_scenario("Robustness", "scenario")
 scenarios_rob_human <- get_filtered_scenario("Robustness", "scenario_human")
 
 # Read MSE objects --------------------------------------------------------------------
-targ_proj <- function(x, y, target = seq(0.4, 0.8, 0.1), MP, ymax = 100) {
+targ_proj <- function(x, y, BMSYtarget = seq(0.4, 1.6, 0.2), MP, ymax = 100) {
 
   MPind <- match(MP, x@MPs)
-  lapply(target, function(xx) {
+  lapply(BMSYtarget, function(xx) {
     x@B_BMSY[, MPind, 1:ymax, drop = FALSE] %>%
       apply(c(2, 3), function(x) mean(x >= xx)) %>%
       structure(dimnames = list(MP = x@MPs[MPind], Year = x@OM$CurrentYr[1] + 1:ymax)) %>%
       reshape2::melt() %>%
       mutate(OM = y,
-             target = paste0(100 * xx, "~\"%\"~B[", en2fr("MSY", FRENCH), "]"),
-             target2 = xx)
+             target_num = xx,
+             target = factor(paste0(100 * xx, "~\"%\"~B[", en2fr("MSY", FRENCH), "]"),
+                             levels = paste0(100 * BMSYtarget, "~\"%\"~B[", en2fr("MSY", FRENCH), "]")),
+             target2 = factor(paste0(100 * xx, "%\n", en2fr("BMSY", FRENCH)),
+                              levels = paste0(100 * BMSYtarget, "%\n", en2fr("BMSY", FRENCH))))
   }) %>% bind_rows()
-
 }
 parser <- function(x) parse(text = x)
 
@@ -76,40 +78,40 @@ pFMSY <- Map(targ_proj, x = mse_fmsyproj, y = scenario_human, MoreArgs = list(MP
 MPout <- c("NFref" = en2fr("No fishing", FRENCH, custom_terms = data.frame(english = "No fishing", french = "Aucun pêche")),
            "CC_15t" = en2fr("CC_15t", FRENCH, custom_terms = data.frame(english = "CC_15t", french = "PC_15t")),
            "MP_FMSY" = en2fr("FMSY", FRENCH))
+
 tig <- local({
   tt <- rbind(pNFref, p15t, pFMSY) %>% filter(Year == 2019 + 56) %>%
-    mutate(MP = MPout[match(MP, names(MPout))],
-           target = paste0(target2 * 100 , "%\n", en2fr("BMSY", FRENCH))) %>%
-    select(!"target2" & !"Year")
+    mutate(MP = MPout[match(MP, names(MPout))]) %>%
+    select(!"target" & !"Year")
 
   OM_names <- unique(tt$OM)
   tt_list <- lapply(OM_names, function(x) {
-    dplyr::filter(tt, OM == x) %>% reshape2::dcast(MP ~ target) #%>% mutate(scenario = x)
+    dplyr::filter(tt, OM == x) %>% reshape2::dcast(MP ~ target2)
   }) %>% structure(names = OM_names)
 
   g <- plot_tigure_facet(tt_list, mp_order = MPout %>% rev()) +
     theme(axis.text.x = element_text(size = 8))
+  g$facet$params$ncol <- 2
   g
 })
-.ggsave("rebuilding_table.png", tig, height = 3.5, width = 6.5)
+.ggsave("rebuilding_table.png", tig, height = 5, width = 6)
 
 
 tt_avg <- local({
   tt <- rbind(pNFref, p15t, pFMSY) %>% filter(Year == 2019 + 56) %>%
-    mutate(MP = MPout[match(MP, names(MPout))],
-           target = paste0(target2 * 100 , "%\n", en2fr("BMSY", FRENCH))) %>%
-    select(!"target2" & !"Year")
+    mutate(MP = MPout[match(MP, names(MPout))]) %>%
+    select(!"target" & !"Year")
 
   OM_names <- unique(tt$OM)[1:4]
 
-  tt_avg <- tt %>% filter(OM %in% OM_names) %>% group_by(MP, target) %>% summarise(value = mean(value)) %>%
-    reshape2::dcast(MP ~ target) #%>% mutate(scenario = x)
+  tt_avg <- tt %>% filter(OM %in% OM_names) %>% group_by(MP, target2) %>% summarise(value = mean(value)) %>%
+    reshape2::dcast(MP ~ target2)
 
   g <- plot_tigure(tt_avg, mp_order = MPout %>% rev()) +
     theme(axis.text.x = element_text(size = 8))
   g
 })
-.ggsave("rebuilding_table_avg.png", tt_avg, height = 2, width = 3)
+.ggsave("rebuilding_table_avg.png", tt_avg, height = 2, width = 4)
 
 
 
@@ -132,7 +134,6 @@ g <- ggplot(pNFref, aes(Year, value, colour = target)) +
 
 g <- ggplot(p15t, aes(Year, value, colour = target)) +
   geom_path() +
-  #geom_point() +
   gfdlm::theme_pbs() +
   facet_wrap(~ OM) +
   expand_limits(y = 0) + coord_cartesian(xlim = 2019 + c(1, 56)) +
@@ -142,7 +143,6 @@ g <- ggplot(p15t, aes(Year, value, colour = target)) +
 
 g <- ggplot(pFMSY, aes(Year, value, colour = target)) +
   geom_path() +
-  #geom_point() +
   gfdlm::theme_pbs() +
   facet_wrap(~ OM) +
   expand_limits(y = 0) + coord_cartesian(xlim = 2019 + c(1, 56)) +
@@ -292,76 +292,76 @@ tt_avg_100 <- local({
 
 
 # Probability of decline vs. biomass
-
 cNFref <- left_join(pNFref, rNFref, by = c("Year", "OM", "MP")) %>%
-  mutate(target3 = paste0("Y = ", 100 * target2, "% BMSY"), threshold3 = paste0(100 * threshold, "%"))
+  mutate(target3 = paste0("Y = ", 100 * target_num, "% BMSY"), threshold3 = paste0(100 * threshold, "%"))
 
 c15t <- left_join(p15t, r15t, by = c("Year", "OM", "MP")) %>%
-  mutate(target3 = paste0("Y = ", 100 * target2, "% BMSY"), threshold3 = paste0(100 * threshold, "%"))
+  mutate(target3 = paste0("Y = ", 100 * target_num, "% BMSY"), threshold3 = paste0(100 * threshold, "%"))
 
 cFMSY <- left_join(pFMSY, rFMSY, by = c("Year", "OM", "MP")) %>%
-  mutate(target3 = paste0("Y = ", 100 * target2, "% BMSY"), threshold3 = paste0(100 * threshold, "%"))
+  mutate(target3 = paste0("Y = ", 100 * target_num, "% BMSY"), threshold3 = paste0(100 * threshold, "%"))
 
 
-dat_end <- cNFref %>% filter(Year %in% c(range(Year), 2019 + 56))
-g <- ggplot(cNFref, aes(tvalue, value, colour = threshold3, group = threshold3)) +
-  facet_grid(OM ~ target3, scales = "free_y") +
-  geom_vline(xintercept = 0.5, linetype = 3) +
-  geom_hline(yintercept = 0.5, linetype = 3) +
-  geom_path() +
-  geom_point(data = dat_end, aes(shape = as.factor(Year))) +
-  labs(y = "Probability above Y % BMSY", x = "Probability of X % decline",
-       shape = "Year", colour = "COSEWIC\nthreshold (X%)") +
-  theme_bw() +
-  scale_shape_manual(values = c(16, 8, 17)) +
-  theme(panel.spacing = unit(0, "lines"), axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-  expand_limits(y = 0.4) +
-  ggtitle(expression("Projections with no fishing"))
-ggsave("figs_2022/projection_recovery_phase_NFref.png", g, height = 7.25, width = 7.5)
-
-
-dat_end <- c15t %>% filter(Year %in% c(range(Year), 2019 + 56))
-g <- ggplot(c15t, aes(tvalue, value, colour = threshold3, group = threshold3)) +
-  facet_grid(OM ~ target3, scales = "free_y") +
-  geom_vline(xintercept = 0.5, linetype = 3) +
-  geom_hline(yintercept = 0.5, linetype = 3) +
-  geom_path() +
-  geom_point(data = dat_end, aes(shape = as.factor(Year))) +
-  labs(y = "Probability above Y % BMSY", x = "Probability of X % decline",
-       shape = "Year", colour = "COSEWIC\nthreshold (X%)") +
-  theme_bw() +
-  scale_shape_manual(values = c(16, 8, 17)) +
-  theme(panel.spacing = unit(0, "lines"), axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-  expand_limits(y = 0.4) +
-  ggtitle(expression("Projections with 15 t catch"))
-ggsave("figs_2022/projection_recovery_phase_15t.png", g, height = 7.25, width = 7.5)
-
-dat_end <- cFMSY %>% filter(Year %in% c(range(Year), 2019 + 56))
-g <- ggplot(cFMSY, aes(tvalue, value, colour = threshold3, group = threshold3)) +
-  facet_grid(OM ~ target3, scales = "free_y") +
-  geom_vline(xintercept = 0.5, linetype = 3) +
-  geom_hline(yintercept = 0.5, linetype = 3) +
-  geom_path() +
-  geom_point(data = dat_end, aes(shape = as.factor(Year))) +
-  labs(y = "Probability above Y % BMSY", x = "Probability of X % decline",
-       shape = "Year", colour = "COSEWIC\nthreshold (X%)") +
-  theme_bw() +
-  scale_shape_manual(values = c(16, 8, 17)) +
-  theme(panel.spacing = unit(0, "lines"), axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-  expand_limits(y = 0.4) +
-  ggtitle(expression("Projections with F ="~F[MSY]))
-ggsave("figs_2022/projection_recovery_phase_FMSY.png", g, height = 7.25, width = 7.5)
+#dat_end <- cNFref %>% filter(Year %in% c(range(Year), 2019 + 56))
+#g <- ggplot(cNFref, aes(tvalue, value, colour = threshold3, group = threshold3)) +
+#  facet_grid(OM ~ target3, scales = "free_y") +
+#  geom_vline(xintercept = 0.5, linetype = 3) +
+#  geom_hline(yintercept = 0.5, linetype = 3) +
+#  geom_path() +
+#  geom_point(data = dat_end, aes(shape = as.factor(Year))) +
+#  labs(y = "Probability above Y % BMSY", x = "Probability of X % decline",
+#       shape = "Year", colour = "COSEWIC\nthreshold (X%)") +
+#  theme_bw() +
+#  scale_shape_manual(values = c(16, 8, 17)) +
+#  theme(panel.spacing = unit(0, "lines"), axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+#  expand_limits(y = 0.4) +
+#  ggtitle(expression("Projections with no fishing"))
+#ggsave("figs_2022/projection_recovery_phase_NFref.png", g, height = 7.25, width = 7.5)
+#
+#
+#dat_end <- c15t %>% filter(Year %in% c(range(Year), 2019 + 56))
+#g <- ggplot(c15t, aes(tvalue, value, colour = threshold3, group = threshold3)) +
+#  facet_grid(OM ~ target3, scales = "free_y") +
+#  geom_vline(xintercept = 0.5, linetype = 3) +
+#  geom_hline(yintercept = 0.5, linetype = 3) +
+#  geom_path() +
+#  geom_point(data = dat_end, aes(shape = as.factor(Year))) +
+#  labs(y = "Probability above Y % BMSY", x = "Probability of X % decline",
+#       shape = "Year", colour = "COSEWIC\nthreshold (X%)") +
+#  theme_bw() +
+#  scale_shape_manual(values = c(16, 8, 17)) +
+#  theme(panel.spacing = unit(0, "lines"), axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+#  expand_limits(y = 0.4) +
+#  ggtitle(expression("Projections with 15 t catch"))
+#ggsave("figs_2022/projection_recovery_phase_15t.png", g, height = 7.25, width = 7.5)
+#
+#dat_end <- cFMSY %>% filter(Year %in% c(range(Year), 2019 + 56))
+#g <- ggplot(cFMSY, aes(tvalue, value, colour = threshold3, group = threshold3)) +
+#  facet_grid(OM ~ target3, scales = "free_y") +
+#  geom_vline(xintercept = 0.5, linetype = 3) +
+#  geom_hline(yintercept = 0.5, linetype = 3) +
+#  geom_path() +
+#  geom_point(data = dat_end, aes(shape = as.factor(Year))) +
+#  labs(y = "Probability above Y % BMSY", x = "Probability of X % decline",
+#       shape = "Year", colour = "COSEWIC\nthreshold (X%)") +
+#  theme_bw() +
+#  scale_shape_manual(values = c(16, 8, 17)) +
+#  theme(panel.spacing = unit(0, "lines"), axis.text.x = element_text(angle = 45, vjust = 0.5)) +
+#  expand_limits(y = 0.4) +
+#  ggtitle(expression("Projections with F ="~F[MSY]))
+#ggsave("figs_2022/projection_recovery_phase_FMSY.png", g, height = 7.25, width = 7.5)
 
 
 # Scatter plot
 scat_plot <- rbind(cNFref, c15t, cFMSY) %>% filter(Year == 2019 + 56, MP == "CC_15t") %>%
-  mutate(target = paste0(target2 * 100, "% B", en2fr("MSY", FRENCH)))
+  mutate(target = paste0(target_num * 100, "% B", en2fr("MSY", FRENCH)) %>%
+           factor(levels = paste0(seq(40, 160, 20), "% B", en2fr("MSY", FRENCH))))
 
 col_trans <- en2fr("Candidate\ntargets", FRENCH,
                    custom_terms = data.frame(english = "Candidate\ntargets",
                                              french = "Cibles\npotentielles"))
-shape_trans <- en2fr("COSEWIC\ntreshold", FRENCH,
-                   custom_terms = data.frame(english = "COSEWIC\ntreshold",
+shape_trans <- en2fr("COSEWIC\nthreshold", FRENCH,
+                   custom_terms = data.frame(english = "COSEWIC\nthreshold",
                                              french = "Seuil du\nCOSEPAC"))
 x_trans <- en2fr("Probability of decline", FRENCH,
                  custom_terms = data.frame(english = "Probability of decline",
@@ -377,6 +377,7 @@ g <- ggplot(scat_plot, aes(tvalue, value, group = target, colour = target, shape
   labs(colour = col_trans,
        shape = shape_trans,
        x = x_trans,
-       y = y_trans)
+       y = y_trans) +
+  coord_cartesian(ylim = c(0, 1), xlim = c(0, 1))
 .ggsave("projection_recovery_scatter.png", g, height = 4, width = 7.5)
 
